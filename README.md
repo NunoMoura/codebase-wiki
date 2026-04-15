@@ -56,6 +56,20 @@ Project-local install:
 pi install -l git:github.com/NunoMoura/codebase-wiki
 ```
 
+### From npm
+
+After this package is published to npm, install it with:
+
+```bash
+pi install npm:codebase-wiki
+```
+
+Project-local install:
+
+```bash
+pi install -l npm:codebase-wiki
+```
+
 ### From a local checkout
 
 ```bash
@@ -69,6 +83,21 @@ pi -e /absolute/path/to/codebase-wiki
 ```
 
 After install, run `/reload` if the session was already open.
+
+## Runtime prerequisites
+
+The starter rebuild flow shells out to Python and the generated `scripts/rebuild_docs_meta.py` imports `yaml`.
+
+Minimum runtime requirements for bootstrap/rebuild:
+
+- Python 3 available as `python3` or `python`
+- PyYAML installed for that interpreter
+
+Example:
+
+```bash
+python3 -m pip install pyyaml
+```
 
 ## Quick start
 
@@ -216,6 +245,25 @@ Or install it from the local path:
 
 ```bash
 pi install /absolute/path/to/codebase-wiki
+```
+
+Smoke-test the package locally:
+
+```bash
+npm test
+```
+
+That runs:
+
+- a package manifest check
+- a `DefaultResourceLoader` package-load smoke test
+- a starter wiki bootstrap + rebuild smoke test
+- an `npm pack --dry-run` tarball validation
+
+If `pi-coding-agent` is not installed in a standard local/global location, set:
+
+```bash
+PI_CODING_AGENT_ROOT=/absolute/path/to/@mariozechner/pi-coding-agent npm test
 ```
 
 ## License

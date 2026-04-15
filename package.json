@@ -11,10 +11,16 @@
     "agent"
   ],
   "type": "module",
+  "scripts": {
+    "test:smoke": "node ./scripts/smoke-test.mjs",
+    "test:pack": "npm pack --dry-run",
+    "test": "npm run test:smoke && npm run test:pack",
+    "prepublishOnly": "npm test"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/NunoMoura/codebase-wiki.git"
+    "url": "git+https://github.com/NunoMoura/codebase-wiki.git"
   },
   "bugs": {
     "url": "https://github.com/NunoMoura/codebase-wiki/issues"
@@ -30,6 +36,9 @@
   "peerDependencies": {
     "@mariozechner/pi-coding-agent": "*",
     "@sinclair/typebox": "*"
+  },
+  "engines": {
+    "node": ">=20.6.0"
   },
   "pi": {
     "extensions": [

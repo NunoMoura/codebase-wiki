@@ -5,6 +5,7 @@ import { promisify } from "node:util";
 import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-agent";
 import { Type } from "@sinclair/typebox";
 import { registerBootstrapFeatures } from "./bootstrap";
+import { withLockedPaths } from "./mutation-queue";
 
 const execFileAsync = promisify(execFile);
 const CONFIG_RELATIVE_PATH = ".docs/config.json";
@@ -13,6 +14,7 @@ const DEFAULT_SCHEMA_PATH = "docs/schema.md";
 const DEFAULT_INDEX_PATH = "docs/index.md";
 const DEFAULT_META_ROOT = ".docs";
 const DEFAULT_REBUILD_SCRIPT = "scripts/rebuild_docs_meta.py";
+const GENERATED_METADATA_FILES = ["registry.json", "backlinks.json", "lint.json"] as const;
 const COMMAND_PREFIX = "wiki";
 
 interface ScopeConfig {
@@ -306,28 +308,38 @@ async function readStatus(cwd: string): Promise<string> {
 }
 
 async function runRebuild(project: WikiProject): Promise<void> {
-  const configuredCommand = sanitizeCommand(project.config.codebase_wiki?.rebuild_command);
-  const commands = configuredCommand
-    ? uniqueCommands([configuredCommand, ...pythonAliasFallback(configuredCommand)])
-    : await detectRebuildCommands(project.root);
+  return withLockedPaths(rebuildTargetPaths(project), async () => {
+    const configuredCommand = sanitizeCommand(project.config.codebase_wiki?.rebuild_command);
+    const commands = configuredCommand
+      ? uniqueCommands([configuredCommand, ...pythonAliasFallback(configuredCommand)])
+      : await detectRebuildCommands(project.root);
 
-  if (commands.length === 0) {
-    throw new Error(
-      `No rebuild command configured. Add codebase_wiki.rebuild_command to ${CONFIG_RELATIVE_PATH} or provide ${DEFAULT_REBUILD_SCRIPT}.`,
-    );
-  }
-
-  let lastError: unknown;
-  for (const command of commands) {
-    try {
-      await execFileAsync(command[0], command.slice(1), { cwd: project.root, timeout: 120_000 });
-      return;
-    } catch (error) {
-      lastError = error;
+    if (commands.length === 0) {
+      throw new Error(
+        `No rebuild command configured. Add codebase_wiki.rebuild_command to ${CONFIG_RELATIVE_PATH} or provide ${DEFAULT_REBUILD_SCRIPT}.`,
+      );
     }
-  }
 
-  throw new Error(`Rebuild failed: ${formatError(lastError)}`);
+    let lastError: unknown;
+    for (const command of commands) {
+      try {
+        await execFileAsync(command[0], command.slice(1), { cwd: project.root, timeout: 120_000 });
+        return;
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    throw new Error(`Rebuild failed: ${formatError(lastError)}`);
+  });
+}
+
+function rebuildTargetPaths(project: WikiProject): string[] {
+  return [
+    resolve(project.root, project.indexPath),
+    resolve(project.root, project.eventsPath),
+    ...GENERATED_METADATA_FILES.map((fileName) => resolve(project.root, project.metaRoot, fileName)),
+  ];
 }
 
 async function detectRebuildCommands(root: string): Promise<string[][]> {

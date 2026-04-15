@@ -4,9 +4,16 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { Type } from "@sinclair/typebox";
+import { withLockedPaths } from "./mutation-queue";
 import { starterDirectories, starterFiles } from "./templates";
 
 const execFileAsync = promisify(execFile);
+const GENERATED_OUTPUTS = [
+  "docs/index.md",
+  ".docs/registry.json",
+  ".docs/backlinks.json",
+  ".docs/lint.json",
+] as const;
 
 export interface BootstrapOptions {
   projectName?: string;
@@ -69,27 +76,34 @@ export async function bootstrapCodebaseWiki(root: string, options: BootstrapOpti
   const projectName = (options.projectName?.trim() || basename(root)).trim();
   const date = new Date().toISOString().slice(0, 10);
   const files = starterFiles({ projectName, date });
-  const result: BootstrapResult = { projectName, created: [], updated: [], skipped: [] };
 
-  for (const relativeDir of starterDirectories()) {
-    await mkdir(resolve(root, relativeDir), { recursive: true });
-  }
+  return withLockedPaths(bootstrapTargetPaths(root, files), async () => {
+    const result: BootstrapResult = { projectName, created: [], updated: [], skipped: [] };
 
-  for (const [relativePath, content] of Object.entries(files)) {
-    const absolutePath = resolve(root, relativePath);
-    const exists = await pathExists(absolutePath);
-    if (exists && !options.force) {
-      result.skipped.push(relativePath);
-      continue;
+    for (const relativeDir of starterDirectories()) {
+      await mkdir(resolve(root, relativeDir), { recursive: true });
     }
-    await mkdir(dirname(absolutePath), { recursive: true });
-    await writeFile(absolutePath, content, "utf8");
-    if (exists) result.updated.push(relativePath);
-    else result.created.push(relativePath);
-  }
 
-  await runRebuild(root);
-  return result;
+    for (const [relativePath, content] of Object.entries(files)) {
+      const absolutePath = resolve(root, relativePath);
+      const exists = await pathExists(absolutePath);
+      if (exists && !options.force) {
+        result.skipped.push(relativePath);
+        continue;
+      }
+      await mkdir(dirname(absolutePath), { recursive: true });
+      await writeFile(absolutePath, content, "utf8");
+      if (exists) result.updated.push(relativePath);
+      else result.created.push(relativePath);
+    }
+
+    await runRebuild(root);
+    return result;
+  });
+}
+
+function bootstrapTargetPaths(root: string, files: Record<string, string>): string[] {
+  return [...Object.keys(files), ...GENERATED_OUTPUTS].map((relativePath) => resolve(root, relativePath));
 }
 
 async function runRebuild(root: string): Promise<void> {
