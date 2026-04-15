@@ -1,0 +1,39 @@
+{
+  "name": "codebase-wiki",
+  "version": "0.1.0",
+  "description": "Pi extensions for repo-local codebase wiki bootstrap, rebuild, lint, and drift audits.",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "documentation",
+    "wiki",
+    "llm",
+    "agent"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/NunoMoura/codebase-wiki.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NunoMoura/codebase-wiki/issues"
+  },
+  "homepage": "https://github.com/NunoMoura/codebase-wiki#readme",
+  "files": [
+    "extensions",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*",
+    "@sinclair/typebox": "*"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/codebase-wiki/index.ts",
+      "./extensions/codebase-wiki-bootstrap/index.ts"
+    ]
+  }
+}
