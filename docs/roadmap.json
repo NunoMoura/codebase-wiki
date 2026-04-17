@@ -143,7 +143,7 @@
     "TASK-005": {
       "id": "TASK-005",
       "title": "Support roadmap update and close mutations",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "kind": "agent-workflow",
       "summary": "After append flow, package should let agents update or close existing roadmap tasks without manual roadmap JSON editing.",
@@ -162,11 +162,11 @@
       ],
       "delta": {
         "desired": "Agents can append, update, and close roadmap tasks through package-native workflow.",
-        "current": "Current implementation appends new tasks only; existing tasks still need manual edits for closure or rewrite.",
-        "closure": "Add safe mutation tool for targeting existing task ids and rebuilding generated outputs after edit."
+        "current": "Runtime now supports append plus mutation of existing task ids through codebase_wiki_roadmap_update with automatic rebuilds.",
+        "closure": "Done via codebase_wiki_roadmap_update, mutation history/events logging, and smoke coverage for closing an appended task."
       },
       "created": "2026-04-16",
-      "updated": "2026-04-16"
+      "updated": "2026-04-17"
     },
     "TASK-006": {
       "id": "TASK-006",

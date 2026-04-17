@@ -32,6 +32,7 @@ Public command surface is intentionally small:
 - `codebase_wiki_rebuild`
 - `codebase_wiki_status`
 - `codebase_wiki_roadmap_append`
+- `codebase_wiki_roadmap_update`
 - `codebase_wiki_task_session_link`
 
 ### Skill
@@ -315,6 +316,7 @@ It then uses that repo config to:
 - read `.docs/registry.json`, `.docs/lint.json`, `.docs/events.jsonl`
 - build semantic audit scopes from `.docs/config.json`
 - append structured roadmap tasks to `docs/roadmap.json` when audits uncover real unresolved delta
+- update or close existing roadmap tasks through package-native mutation tools instead of manual JSON edits
 - append Pi custom session entries that link current session to roadmap tasks
 - read active task context from Pi session state at runtime
 - maintain `.docs/roadmap-state.json` so the first-party roadmap widget and any future third-party UI can read compact roadmap/task state without mutating canonical files

@@ -39,7 +39,7 @@ Rebuild should deterministically produce:
 
 ## Roadmap mutation support
 
-Runtime should be able to mutate `docs/roadmap.json`, preserve explicit task order, log event metadata, and rebuild generated outputs in one safe step. Starter roadmap seeds should use canonical `TASK-###` ids for task records.
+Runtime should be able to append new roadmap tasks, update existing tasks, close existing tasks, preserve explicit task order, log event metadata, and rebuild generated outputs in one safe step. Starter roadmap seeds should use canonical `TASK-###` ids for task records.
 
 ## Session link support
 

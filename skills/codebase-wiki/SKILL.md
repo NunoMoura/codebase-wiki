@@ -23,6 +23,7 @@ Internal agent tools:
 - `codebase_wiki_rebuild`
 - `codebase_wiki_status`
 - `codebase_wiki_roadmap_append`
+- `codebase_wiki_roadmap_update`
 - `codebase_wiki_task_session_link`
 
 ## Default workflow
@@ -38,8 +39,9 @@ Internal agent tools:
    - Use repo evidence first and ask only high-value clarifying questions when ambiguity materially changes the fix.
 4. Use `/wiki-review [idea|architecture]` for higher-level assessment.
 5. When drift review finds real unresolved delta not already tracked, prefer `codebase_wiki_roadmap_append` to append structured roadmap tasks.
-6. When starting or continuing work on a task, prefer `codebase_wiki_task_session_link` so Pi session history links back to roadmap tasks.
-7. Keep `.docs/` generated. Do not hand-edit generated outputs unless fixing the generator itself.
+6. When an existing task needs rewrite, reprioritization, or closure, prefer `codebase_wiki_roadmap_update` instead of manual roadmap JSON edits.
+7. When starting or continuing work on a task, prefer `codebase_wiki_task_session_link` so Pi session history links back to roadmap tasks.
+8. Keep `.docs/` generated. Do not hand-edit generated outputs unless fixing the generator itself.
 
 ## Wiki rules
 

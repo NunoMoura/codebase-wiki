@@ -132,6 +132,7 @@ async function main() {
       "codebase_wiki_rebuild",
       "codebase_wiki_status",
       "codebase_wiki_roadmap_append",
+      "codebase_wiki_roadmap_update",
       "codebase_wiki_task_session_link",
     ], "extension tools");
 
@@ -222,6 +223,30 @@ async function main() {
             closure: "Append one roadmap task through package tool.",
           },
         }],
+      },
+      undefined,
+      undefined,
+      toolCtx,
+    );
+    const appendedRoadmap = JSON.parse(readFileSync(resolve(projectDir, "docs", "roadmap.json"), "utf8"));
+    const appendedTaskId = Array.isArray(appendedRoadmap.order)
+      ? appendedRoadmap.order.find((id) => appendedRoadmap.tasks[id]?.title === "Smoke audit task")
+      : undefined;
+    assert.ok(appendedTaskId, "Roadmap order missing appended task before update");
+
+    const roadmapUpdateTool = extension.tools.get("codebase_wiki_roadmap_update");
+    assert.ok(roadmapUpdateTool && typeof roadmapUpdateTool.definition?.execute === "function", "Roadmap update tool missing execute function");
+    await roadmapUpdateTool.definition.execute(
+      "roadmap-update-smoke",
+      {
+        taskId: appendedTaskId,
+        status: "done",
+        summary: "Close smoke-test delta through existing roadmap task mutation.",
+        labels: ["smoke", "closed"],
+        delta: {
+          current: "Task was appended and then closed through package mutation tool.",
+          closure: "Update existing roadmap task through package tool and rebuild generated outputs.",
+        },
       },
       undefined,
       undefined,
@@ -352,11 +377,16 @@ async function main() {
     assert.ok(roadmapJson.tasks["TASK-001"], "Structured roadmap seed missing");
     assert.ok(!roadmapJson.tasks["ROADMAP-001"], "Canonical roadmap seed should no longer use ROADMAP ids");
     assert.ok(Object.values(roadmapJson.tasks).some((task) => task.title === "Smoke audit task"), "Roadmap append tool did not persist appended task");
-    const appendedTaskId = Array.isArray(roadmapJson.order) ? roadmapJson.order.find((id) => roadmapJson.tasks[id]?.title === "Smoke audit task") : undefined;
-    assert.ok(appendedTaskId, "Roadmap order missing appended task");
-    assert.match(appendedTaskId ?? "", /^TASK-\d+$/, "Appended roadmap task should use canonical TASK ids");
+    const appendedTaskIdFromJson = Array.isArray(roadmapJson.order) ? roadmapJson.order.find((id) => roadmapJson.tasks[id]?.title === "Smoke audit task") : undefined;
+    assert.ok(appendedTaskIdFromJson, "Roadmap order missing appended task");
+    assert.match(appendedTaskIdFromJson ?? "", /^TASK-\d+$/, "Appended roadmap task should use canonical TASK ids");
+    assert.equal(roadmapJson.tasks[appendedTaskIdFromJson].status, "done", "Roadmap update tool should be able to close an existing task");
+    assert.equal(roadmapJson.tasks[appendedTaskIdFromJson].summary, "Close smoke-test delta through existing roadmap task mutation.", "Roadmap update tool should persist summary changes");
+    assert.deepEqual(roadmapJson.tasks[appendedTaskIdFromJson].labels, ["smoke", "closed"], "Roadmap update tool should replace labels");
+    assert.equal(roadmapJson.tasks[appendedTaskIdFromJson].delta.current, "Task was appended and then closed through package mutation tool.", "Roadmap update tool should persist delta changes");
     assert.match(roadmapText, /Smoke audit task/, "Generated roadmap view missing appended task");
-    assert.match(roadmapEvents, /Smoke audit task/, "Roadmap history missing appended task");
+    assert.match(roadmapEvents, /"action":"append"/, "Roadmap history missing append mutation");
+    assert.match(roadmapEvents, /"action":"close"/, "Roadmap history missing close mutation");
     assert.ok(!existsSync(resolve(projectDir, ".docs", "task-session-index.json")), "Task session index cache should not be generated");
     assert.equal(roadmapState.version, 2, "Roadmap state should use session-free v2 contract");
     assert.equal(roadmapState.health.color, "green", "Roadmap state should embed deterministic lint health");

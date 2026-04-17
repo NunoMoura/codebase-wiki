@@ -10,7 +10,7 @@ updated: '2026-04-17'
 
 # Roadmap
 
-Generated: 2026-04-17T16:44:37Z
+Generated: 2026-04-17T22:56:59Z
 
 Canonical source: [roadmap.json](roadmap.json)
 
@@ -37,22 +37,6 @@ _None._
 - Desired: History stays cheap and accessible without reviving bulky archive docs.
 - Current: Current stance prefers git plus `.docs/events.jsonl`, but package does not yet document compact history patterns deeply.
 - Closure: Choose and document whether events-only is enough or if compact history JSONL should be generated.
-
-### TASK-005 — Support roadmap update and close mutations
-
-- Status: todo
-- Priority: medium
-- Kind: agent-workflow
-- Summary: After append flow, package should let agents update or close existing roadmap tasks without manual roadmap JSON editing.
-- Specs:
-  - [docs/specs/extension/overview.md](specs/extension/overview.md)
-  - [docs/specs/templates/overview.md](specs/templates/overview.md)
-- Code:
-  - extensions/codebase-wiki/index.ts
-- Labels: roadmap, automation, follow-up
-- Desired: Agents can append, update, and close roadmap tasks through package-native workflow.
-- Current: Current implementation appends new tasks only; existing tasks still need manual edits for closure or rewrite.
-- Closure: Add safe mutation tool for targeting existing task ids and rebuilding generated outputs after edit.
 
 ## Blocked
 
@@ -119,6 +103,22 @@ _None._
 - Desired: Audit output converts directly into `docs/roadmap.json` task entries.
 - Current: Drift prompts now instruct roadmap task-object emission and package tool appends structured tasks with automatic TASK ids and rebuild.
 - Closure: Done for append-new-task flow. Future work can add update/close mutation support for existing roadmap tasks.
+
+### TASK-005 — Support roadmap update and close mutations
+
+- Status: done
+- Priority: medium
+- Kind: agent-workflow
+- Summary: After append flow, package should let agents update or close existing roadmap tasks without manual roadmap JSON editing.
+- Specs:
+  - [docs/specs/extension/overview.md](specs/extension/overview.md)
+  - [docs/specs/templates/overview.md](specs/templates/overview.md)
+- Code:
+  - extensions/codebase-wiki/index.ts
+- Labels: roadmap, automation, follow-up
+- Desired: Agents can append, update, and close roadmap tasks through package-native workflow.
+- Current: Runtime now supports append plus mutation of existing task ids through codebase_wiki_roadmap_update with automatic rebuilds.
+- Closure: Done via codebase_wiki_roadmap_update, mutation history/events logging, and smoke coverage for closing an appended task.
 
 ### TASK-006 — Link Pi sessions to roadmap tasks
 

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-04-17T16:44:37Z",
+  "generated_at": "2026-04-17T22:56:59Z",
   "health": {
     "color": "green",
     "errors": 0,
@@ -9,10 +9,10 @@
   },
   "summary": {
     "task_count": 11,
-    "open_count": 2,
+    "open_count": 1,
     "status_counts": {
-      "done": 9,
-      "todo": 2
+      "done": 10,
+      "todo": 1
     },
     "priority_counts": {
       "critical": 2,
@@ -35,13 +35,11 @@
       "TASK-011"
     ],
     "open_task_ids": [
-      "TASK-004",
-      "TASK-005"
+      "TASK-004"
     ],
     "in_progress_task_ids": [],
     "todo_task_ids": [
-      "TASK-004",
-      "TASK-005"
+      "TASK-004"
     ],
     "blocked_task_ids": [],
     "done_task_ids": [
@@ -52,6 +50,7 @@
       "TASK-006",
       "TASK-010",
       "TASK-011",
+      "TASK-005",
       "TASK-007",
       "TASK-009"
     ],
@@ -63,8 +62,8 @@
       "TASK-008",
       "TASK-007",
       "TASK-006",
-      "TASK-002",
       "TASK-005",
+      "TASK-002",
       "TASK-004",
       "TASK-003",
       "TASK-001"
@@ -163,7 +162,7 @@
     "TASK-005": {
       "id": "TASK-005",
       "title": "Support roadmap update and close mutations",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "kind": "agent-workflow",
       "summary": "After append flow, package should let agents update or close existing roadmap tasks without manual roadmap JSON editing.",
@@ -179,7 +178,7 @@
       "code_paths": [
         "extensions/codebase-wiki/index.ts"
       ],
-      "updated": "2026-04-16"
+      "updated": "2026-04-17"
     },
     "TASK-006": {
       "id": "TASK-006",

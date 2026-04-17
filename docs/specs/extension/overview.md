@@ -30,6 +30,7 @@ Internal agent tools may remain more granular:
 - `codebase_wiki_rebuild`
 - `codebase_wiki_status`
 - `codebase_wiki_roadmap_append`
+- `codebase_wiki_roadmap_update`
 - `codebase_wiki_task_session_link`
 
 ## Runtime responsibilities
@@ -50,7 +51,7 @@ Internal agent tools may remain more granular:
 
 ## Drift and fix expectation
 
-`/wiki-status` should classify wiki health as green, yellow, or red and list per-spec drift signals. `wiki-fix` should use repo evidence first, ask only high-value clarifying questions when needed, and emit structured roadmap tasks through `codebase_wiki_roadmap_append` only when unresolved work is genuinely new.
+`/wiki-status` should classify wiki health as green, yellow, or red and list per-spec drift signals. `wiki-fix` should use repo evidence first, ask only high-value clarifying questions when needed, emit structured roadmap tasks through `codebase_wiki_roadmap_append` only when unresolved work is genuinely new, and use `codebase_wiki_roadmap_update` when an existing task already covers the delta but needs mutation.
 
 ## Session linkage expectation
 

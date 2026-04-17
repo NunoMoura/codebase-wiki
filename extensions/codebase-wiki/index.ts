@@ -132,6 +132,20 @@ interface RoadmapTaskInput {
   delta?: Partial<RoadmapTaskDelta>;
 }
 
+interface RoadmapTaskUpdateInput {
+  taskId: string;
+  title?: string;
+  status?: RoadmapStatus;
+  priority?: RoadmapPriority;
+  kind?: string;
+  summary?: string;
+  spec_paths?: string[];
+  code_paths?: string[];
+  research_ids?: string[];
+  labels?: string[];
+  delta?: Partial<RoadmapTaskDelta>;
+}
+
 interface RoadmapTaskRecord {
   id: string;
   title: string;
@@ -256,6 +270,23 @@ const roadmapTaskInputSchema = Type.Object({
     desired: Type.Optional(Type.String()),
     current: Type.Optional(Type.String()),
     closure: Type.Optional(Type.String()),
+  })),
+});
+const roadmapTaskUpdateInputSchema = Type.Object({
+  taskId: Type.String({ minLength: 1, description: "Existing task id to update. Canonical ids use TASK-###; legacy ROADMAP-### is still accepted." }),
+  title: Type.Optional(Type.String({ minLength: 1, description: "Updated task title." })),
+  status: Type.Optional(roadmapStatusSchema),
+  priority: Type.Optional(roadmapPrioritySchema),
+  kind: Type.Optional(Type.String({ minLength: 1, description: "Updated task kind." })),
+  summary: Type.Optional(Type.String({ minLength: 1, description: "Updated one-sentence task summary." })),
+  spec_paths: Type.Optional(Type.Array(Type.String(), { description: "Replacement spec path list." })),
+  code_paths: Type.Optional(Type.Array(Type.String(), { description: "Replacement code path list." })),
+  research_ids: Type.Optional(Type.Array(Type.String(), { description: "Replacement research id list." })),
+  labels: Type.Optional(Type.Array(Type.String(), { description: "Replacement label list." })),
+  delta: Type.Optional(Type.Object({
+    desired: Type.Optional(Type.String({ description: "Replacement desired-state text when provided." })),
+    current: Type.Optional(Type.String({ description: "Replacement current-state text when provided." })),
+    closure: Type.Optional(Type.String({ description: "Replacement closure text when provided." })),
   })),
 });
 const taskSessionLinkInputSchema = Type.Object({
@@ -413,6 +444,28 @@ export default function codebaseWikiExtension(pi: ExtensionAPI) {
       await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
       return {
         content: [{ type: "text", text: formatRoadmapAppendSummary(project, result.created) }],
+        details: result,
+      };
+    },
+  });
+
+  pi.registerTool({
+    name: "codebase_wiki_roadmap_update",
+    label: "Codebase Wiki Roadmap Update",
+    description: "Update or close an existing roadmap task in docs/roadmap.json, log history event, and rebuild generated roadmap/index outputs",
+    promptSnippet: "Update or close an existing roadmap task in the current project's codebase wiki roadmap",
+    promptGuidelines: [
+      "Use this when an existing roadmap task needs status, summary, paths, labels, or delta changes instead of creating a duplicate task.",
+      "Set status='done' or status='cancelled' to close an existing task through the package workflow.",
+      "Tool preserves task order, accepts legacy ROADMAP-### lookup during migration, logs mutation history, and rebuilds generated outputs.",
+    ],
+    parameters: roadmapTaskUpdateInputSchema,
+    async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
+      const project = await loadProject(ctx.cwd);
+      const result = await updateRoadmapTask(project, params);
+      await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
+      return {
+        content: [{ type: "text", text: formatRoadmapUpdateSummary(project, result.task, result.action) }],
         details: result,
       };
     },
@@ -1082,6 +1135,7 @@ function rebuildTargetPaths(project: WikiProject): string[] {
 function roadmapMutationTargetPaths(project: WikiProject): string[] {
   return [
     resolve(project.root, project.roadmapPath),
+    resolve(project.root, project.eventsPath),
     resolve(project.root, project.roadmapEventsPath),
     ...rebuildTargetPaths(project),
   ];
@@ -1160,7 +1214,7 @@ async function appendRoadmapTasks(pi: ExtensionAPI, project: WikiProject, ctx: E
 
     await writeJsonFile(roadmapPath, roadmap);
     await appendRoadmapHistoryEvent(project, "append", created);
-    await appendRoadmapEvent(project, created);
+    await appendRoadmapEvent(project, "append", created);
     for (const task of created) {
       await recordTaskSessionLinkUnlocked(pi, ctx, task, {
         taskId: task.id,
@@ -1171,6 +1225,31 @@ async function appendRoadmapTasks(pi: ExtensionAPI, project: WikiProject, ctx: E
     }
     await runRebuildUnlocked(project);
     return { created };
+  });
+}
+
+async function updateRoadmapTask(project: WikiProject, input: RoadmapTaskUpdateInput): Promise<{ action: "update" | "close"; task: RoadmapTaskRecord }> {
+  if (!hasRoadmapTaskUpdateFields(input)) throw new Error("No roadmap task changes provided.");
+
+  return withLockedPaths(roadmapMutationTargetPaths(project), async () => {
+    const roadmapPath = resolve(project.root, project.roadmapPath);
+    const roadmap = await readRoadmapFile(roadmapPath);
+    const existing = resolveRoadmapTask(roadmap, input.taskId);
+    if (!existing) throw new Error(`Roadmap task not found: ${input.taskId}`);
+
+    const updatedTask = applyRoadmapTaskUpdate(existing, input, todayIso());
+    roadmap.tasks[updatedTask.id] = updatedTask;
+    roadmap.updated = nowIso();
+
+    const action = isClosedRoadmapStatus(existing.status) || !isClosedRoadmapStatus(updatedTask.status)
+      ? "update"
+      : "close";
+
+    await writeJsonFile(roadmapPath, roadmap);
+    await appendRoadmapHistoryEvent(project, action, [updatedTask]);
+    await appendRoadmapEvent(project, action, [updatedTask]);
+    await runRebuildUnlocked(project);
+    return { action, task: updatedTask };
   });
 }
 
@@ -1201,6 +1280,52 @@ function normalizeRoadmapTask(task: RoadmapTaskInput, nextId: () => string, toda
     created: today,
     updated: today,
   };
+}
+
+function applyRoadmapTaskUpdate(task: RoadmapTaskRecord, input: RoadmapTaskUpdateInput, today: string): RoadmapTaskRecord {
+  return {
+    ...task,
+    title: input.title === undefined ? task.title : requireNonEmptyTrimmed(input.title, `Roadmap task ${task.id} title`),
+    status: input.status === undefined ? task.status : normalizeRoadmapStatus(input.status),
+    priority: input.priority === undefined ? task.priority : normalizeRoadmapPriority(input.priority),
+    kind: input.kind === undefined ? task.kind : requireNonEmptyTrimmed(input.kind, `Roadmap task ${task.id} kind`),
+    summary: input.summary === undefined ? task.summary : requireNonEmptyTrimmed(input.summary, `Roadmap task ${task.id} summary`),
+    spec_paths: input.spec_paths === undefined ? task.spec_paths : unique(input.spec_paths),
+    code_paths: input.code_paths === undefined ? task.code_paths : unique(input.code_paths),
+    research_ids: input.research_ids === undefined ? task.research_ids : unique(input.research_ids),
+    labels: input.labels === undefined ? task.labels : unique(input.labels),
+    delta: {
+      desired: input.delta?.desired === undefined ? task.delta.desired : input.delta.desired.trim(),
+      current: input.delta?.current === undefined ? task.delta.current : input.delta.current.trim(),
+      closure: input.delta?.closure === undefined ? task.delta.closure : input.delta.closure.trim(),
+    },
+    updated: today,
+  };
+}
+
+function hasRoadmapTaskUpdateFields(input: RoadmapTaskUpdateInput): boolean {
+  return input.title !== undefined
+    || input.status !== undefined
+    || input.priority !== undefined
+    || input.kind !== undefined
+    || input.summary !== undefined
+    || input.spec_paths !== undefined
+    || input.code_paths !== undefined
+    || input.research_ids !== undefined
+    || input.labels !== undefined
+    || input.delta?.desired !== undefined
+    || input.delta?.current !== undefined
+    || input.delta?.closure !== undefined;
+}
+
+function requireNonEmptyTrimmed(value: string, fieldLabel: string): string {
+  const trimmed = value.trim();
+  if (!trimmed) throw new Error(`${fieldLabel} is required.`);
+  return trimmed;
+}
+
+function isClosedRoadmapStatus(status: RoadmapStatus): boolean {
+  return status === "done" || status === "cancelled";
 }
 
 function normalizeRoadmapStatus(status: string | undefined): RoadmapStatus {
@@ -1372,14 +1497,14 @@ function setTaskSessionStatus(ctx: ExtensionContext, taskId: string, title: stri
   ctx.ui.setStatus("codebase-wiki-task", `${taskId} ${action} — ${title}`);
 }
 
-async function appendRoadmapEvent(project: WikiProject, tasks: RoadmapTaskRecord[]): Promise<void> {
+async function appendRoadmapEvent(project: WikiProject, action: string, tasks: RoadmapTaskRecord[]): Promise<void> {
   const eventPath = resolve(project.root, project.eventsPath);
   const prefix = await jsonlAppendPrefix(eventPath);
   const titles = tasks.map((task) => `${task.id} ${task.title}`).join("; ");
   const event = JSON.stringify({
     ts: nowIso(),
-    kind: "roadmap_append",
-    title: `Appended ${tasks.length} roadmap task(s)`,
+    kind: `roadmap_${action}`,
+    title: `${roadmapMutationVerb(action)} ${tasks.length} roadmap task(s)`,
     summary: titles,
   });
   await appendFile(eventPath, `${prefix}${event}\n`, "utf8");
@@ -1407,6 +1532,16 @@ async function jsonlAppendPrefix(path: string): Promise<string> {
 
 function formatRoadmapAppendSummary(project: WikiProject, tasks: RoadmapTaskRecord[]): string {
   return `${project.label}: appended ${tasks.length} roadmap task(s) to ${project.roadmapPath} — ${tasks.map((task) => task.id).join(", ")}`;
+}
+
+function formatRoadmapUpdateSummary(project: WikiProject, task: RoadmapTaskRecord, action: "update" | "close"): string {
+  return `${project.label}: ${roadmapMutationVerb(action).toLowerCase()} roadmap task ${task.id} in ${project.roadmapPath}`;
+}
+
+function roadmapMutationVerb(action: string): string {
+  if (action === "append") return "Appended";
+  if (action === "close") return "Closed";
+  return "Updated";
 }
 
 function nowIso(): string {
