@@ -325,7 +325,6 @@ async function main() {
     const roadmapText = readFileSync(resolve(projectDir, "docs", "roadmap.md"), "utf8");
     const roadmapJson = JSON.parse(readFileSync(resolve(projectDir, "docs", "roadmap.json"), "utf8"));
     const roadmapEvents = readFileSync(resolve(projectDir, ".docs", "roadmap-events.jsonl"), "utf8");
-    const taskSessionIndex = JSON.parse(readFileSync(resolve(projectDir, ".docs", "task-session-index.json"), "utf8"));
     const roadmapState = JSON.parse(readFileSync(resolve(projectDir, ".docs", "roadmap-state.json"), "utf8"));
     const widgetLines = renderWidget();
     assert.ok(!existsSync(resolve(nestedDir, "docs")), "Bootstrap should anchor docs at the existing wiki root, not nested cwd");
@@ -358,14 +357,13 @@ async function main() {
     assert.match(appendedTaskId ?? "", /^TASK-\d+$/, "Appended roadmap task should use canonical TASK ids");
     assert.match(roadmapText, /Smoke audit task/, "Generated roadmap view missing appended task");
     assert.match(roadmapEvents, /Smoke audit task/, "Roadmap history missing appended task");
-    assert.ok(taskSessionIndex.tasks["TASK-001"], "Task session index missing linked task");
-    assert.equal(roadmapState.version, 1, "Roadmap state should be versioned");
+    assert.ok(!existsSync(resolve(projectDir, ".docs", "task-session-index.json")), "Task session index cache should not be generated");
+    assert.equal(roadmapState.version, 2, "Roadmap state should use session-free v2 contract");
     assert.equal(roadmapState.health.color, "green", "Roadmap state should embed deterministic lint health");
     assert.ok(Array.isArray(roadmapState.views.open_task_ids) && roadmapState.views.open_task_ids.length >= 1, "Roadmap state should expose open task ids");
-    assert.equal(roadmapState.tasks["TASK-001"].last_session_id, "session-smoke-1", "Roadmap state should carry last session metadata");
-    assert.ok(!taskSessionIndex.tasks["ROADMAP-001"], "Legacy ROADMAP alias should resolve to canonical TASK id in task session index");
-    assert.equal(taskSessionIndex.tasks["TASK-001"].last_session_id, "session-smoke-1", "Task session index missing current session id");
-    assert.match(roadmapText, /Session links:/, "Generated roadmap view missing session linkage metadata");
+    assert.equal(roadmapState.tasks["TASK-001"].id, "TASK-001", "Roadmap state should carry task identifiers");
+    assert.ok(roadmapState.tasks["TASK-001"].title, "Roadmap state should carry task display data");
+    assert.doesNotMatch(roadmapText, /Session links:/, "Generated roadmap view should not persist session linkage metadata");
     assert.match(statusNotifications[0]?.message ?? "", /Scope: both/, "wiki-status should report the requested scope");
     assert.match(statusNotifications[0]?.message ?? "", /Roadmap working set:/, "wiki-status should include the compact roadmap working set");
     assert.match(statusNotifications[0]?.message ?? "", /Specs and mapped drift signals:/, "wiki-status should list spec drift mapping");

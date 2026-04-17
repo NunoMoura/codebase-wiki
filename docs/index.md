@@ -1,6 +1,6 @@
 # codebase-wiki Docs Index
 
-Generated: 2026-04-17T12:10:58Z
+Generated: 2026-04-17T16:44:37Z
 
 ## Roadmap
 

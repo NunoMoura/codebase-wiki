@@ -15,7 +15,6 @@ const GENERATED_OUTPUTS = [
   ".docs/registry.json",
   ".docs/backlinks.json",
   ".docs/lint.json",
-  ".docs/task-session-index.json",
   ".docs/roadmap-state.json",
 ] as const;
 const CONTAINER_DIR_NAMES = new Set(["apps", "components", "domains", "extensions", "libs", "modules", "packages", "services", "skills", "surfaces"]);

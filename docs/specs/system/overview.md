@@ -15,7 +15,7 @@ updated: '2026-04-17'
 - package surface: one Pi extension plus one Pi skill
 - extension runtime: four public commands, internal tools, rebuild orchestration, and prompt generation
 - starter templates: canonical bootstrap contract for docs, config, roadmap, and rebuild script
-- generated metadata: registry, backlinks, lint report, index, roadmap view, task-session index, and roadmap-state read model
+- generated metadata: registry, backlinks, lint report, index, roadmap view, and roadmap-state read model
 
 ## Repo mapping
 
@@ -40,8 +40,8 @@ This package now optimizes for only three canonical artifact classes:
 - specs markdown for desired state
 - roadmap JSON as the top-level container for tracked delta/work
 - task records inside roadmap as atomic work units with canonical `TASK-###` ids
-- Pi sessions as native execution history linked to tasks through custom entries plus derived `.docs/task-session-index.json`
-- `.docs/roadmap-state.json` as a read-only denormalized UI model layered on top of canonical roadmap and session data
+- Pi sessions as native execution history linked to tasks through custom entries and live runtime reads
+- `.docs/roadmap-state.json` as a read-only denormalized UI model layered on top of canonical roadmap and lint data, with active session focus overlaid at runtime
 
 Legacy top-level buckets like plans, drift, decisions, and archive are intentionally collapsed or localized.
 

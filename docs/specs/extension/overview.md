@@ -43,7 +43,7 @@ Internal agent tools may remain more granular:
 - compose intelligent status, fix, and review prompts from configured scopes and live metadata
 - treat roadmap as the top-level container and tasks as atomic work units
 - append Pi custom session entries that link task work to current session
-- maintain derived `.docs/task-session-index.json` metadata
+- read active task context from Pi session state at runtime
 - generate derived `.docs/roadmap-state.json` metadata for first-party and third-party UIs
 - render a compact first-party roadmap widget from the derived roadmap state without expanding the public command surface
 - generate new task ids as `TASK-###` while accepting legacy `ROADMAP-###` lookups during migration

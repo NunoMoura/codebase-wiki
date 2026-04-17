@@ -49,7 +49,7 @@ Bootstrap should be able to infer first-pass `docs/specs/**` ownership docs from
 
 - roadmap stays the top-level container for delta/work
 - task is the atomic work unit and canonically uses `TASK-###`
-- Pi sessions stay native JSONL execution history linked to tasks through custom entries plus derived local metadata
+- Pi sessions stay native JSONL execution history linked to tasks through custom entries and live runtime reads
 
 ## Compatibility goal
 
@@ -60,7 +60,6 @@ A repo using this package should only need:
 - `docs/research/`
 - `docs/specs/`
 - `docs/roadmap.json`
-- `.docs/task-session-index.json`
 - `.docs/roadmap-state.json`
 
 ## Related docs

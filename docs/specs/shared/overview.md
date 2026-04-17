@@ -17,8 +17,7 @@ updated: '2026-04-17'
 - `docs/roadmap.json`: canonical mutable roadmap state
 - `docs/index.md`: generated navigation surface
 - `docs/roadmap.md`: generated roadmap view
-- `.docs/task-session-index.json`: derived task-to-session metadata
-- `.docs/roadmap-state.json`: derived roadmap/task/session UI read model
+- `.docs/roadmap-state.json`: derived roadmap/task UI read model
 - `.docs/`: generated metadata and event log
 
 ## Responsibility split
@@ -37,7 +36,7 @@ Roadmap is the top-level container for numbered tasks that close the gap between
 
 ### Sessions
 
-Pi sessions record execution history. codebase-wiki should not replace Pi's session JSONL model. Instead it should append custom task-link entries and derive local `.docs/task-session-index.json` metadata from them.
+Pi sessions record execution history. codebase-wiki should not replace Pi's session JSONL model. Instead it should append custom task-link entries and read current task context from Pi at runtime.
 
 ## Local decisions
 

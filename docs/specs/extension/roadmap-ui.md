@@ -24,7 +24,6 @@ Canonical write surfaces remain:
 
 - `docs/roadmap.json`
 - Pi session JSONL plus codebase-wiki custom task-link entries
-- derived `.docs/task-session-index.json`
 
 The extension should also generate a read-only UI model at `.docs/roadmap-state.json`.
 
@@ -32,7 +31,8 @@ That file exists so:
 
 - the built-in codebase-wiki widget can render quickly
 - other UI extensions can consume roadmap state without mutating canonical files
-- roadmap/task/session data can be denormalized for display without changing the source model
+- roadmap/task data can be denormalized for display without changing the source model
+- current session focus can be overlaid live from Pi without writing extra repo-owned caches
 
 ## `.docs/roadmap-state.json` contract
 
@@ -44,7 +44,8 @@ Minimum expectations:
 - deterministic wiki health snapshot (`green`, `yellow`, `red`) derived from lint output
 - summary counts for total/open tasks plus status and priority counts
 - ordered task id views for open, in-progress, todo, blocked, done, and recently updated tasks
-- per-task denormalized display data including title, status, priority, kind, summary, labels, spec/code links, and last session metadata when available
+- per-task denormalized display data including title, status, priority, kind, summary, labels, and spec/code links
+- no repo-owned session index is required; current-session focus comes from Pi runtime state
 
 Other extensions may read this file, but codebase-wiki remains the only writer.
 
@@ -80,7 +81,7 @@ The public command surface stays:
 - `/wiki-fix`
 - `/wiki-review`
 
-Roadmap/task TUI improvements should not require new public commands. Richer UI affordances may be added later, but they should consume the same canonical roadmap/task/session model and the same derived `.docs/roadmap-state.json` read contract.
+Roadmap/task TUI improvements should not require new public commands. Richer UI affordances may be added later, but they should consume the same canonical roadmap/task model, plus live Pi session focus, and the same derived `.docs/roadmap-state.json` read contract.
 
 ## Related docs
 

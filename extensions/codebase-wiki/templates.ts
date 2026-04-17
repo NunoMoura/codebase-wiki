@@ -75,7 +75,6 @@ function configJson(projectName: string, brownfieldHints: StarterBrownfieldHints
         ".docs/registry.json",
         ".docs/backlinks.json",
         ".docs/lint.json",
-        ".docs/task-session-index.json",
         ".docs/roadmap-state.json",
       ],
       lint: {
@@ -302,8 +301,7 @@ function sharedSpecDoc(projectName: string, date: string): string {
     "- `docs/roadmap.json`: canonical mutable roadmap state",
     "- `docs/roadmap.md`: generated human roadmap view",
     "- `docs/index.md`: generated navigation surface",
-    "- `.docs/task-session-index.json`: derived task-to-session metadata",
-    "- `.docs/roadmap-state.json`: derived roadmap/task/session UI read model",
+    "- `.docs/roadmap-state.json`: derived roadmap/task UI read model",
     "- `.docs/`: generated metadata and events",
     "",
     "## Responsibilities",
@@ -322,7 +320,7 @@ function sharedSpecDoc(projectName: string, date: string): string {
     "",
     "### Sessions",
     "",
-    "Pi sessions store execution history. This wiki should link tasks to sessions through Pi custom session entries and derive local metadata instead of replacing Pi session JSONL.",
+    "Pi sessions store execution history. This wiki should link tasks to sessions through Pi custom session entries and read active task context from Pi at runtime instead of replacing Pi session JSONL.",
     "",
     "## Writing rules",
     "",
@@ -493,7 +491,6 @@ ROADMAP_PATH = ROOT / str(CONFIG.get("roadmap_path", "docs/roadmap.json"))
 ROADMAP_DOC_PATH = ROOT / str(CONFIG.get("roadmap_doc_path", "docs/roadmap.md"))
 ROADMAP_EVENTS_PATH = ROOT / str(CONFIG.get("roadmap_events_path", ".docs/roadmap-events.jsonl"))
 META_ROOT = ROOT / str(CONFIG.get("meta_root", ".docs"))
-TASK_SESSION_INDEX_PATH = META_ROOT / "task-session-index.json"
 ROADMAP_STATE_PATH = META_ROOT / "roadmap-state.json"
 INDEX_PATH = ROOT / str(CONFIG.get("index_path", "docs/index.md"))
 INDEX_TITLE = str(CONFIG.get("index_title", f"{PROJECT_NAME} Docs Index"))
@@ -603,20 +600,6 @@ def roadmap_entries(roadmap: dict[str, Any]) -> list[dict[str, Any]]:
         if isinstance(task, dict):
             result.append(task)
     return result
-
-
-def read_task_session_index(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        return {"version": 1, "updated": now_iso(), "tasks": {}, "sessions": {}}
-    data = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(data, dict):
-        raise ValueError(f"{path.relative_to(ROOT).as_posix()} is not a JSON object")
-    return {
-        "version": int(data.get("version", 1)),
-        "updated": str(data.get("updated", now_iso())),
-        "tasks": data.get("tasks") if isinstance(data.get("tasks"), dict) else {},
-        "sessions": data.get("sessions") if isinstance(data.get("sessions"), dict) else {},
-    }
 
 
 def normalize_local_link(source_rel: Path, target: str) -> str | None:
@@ -943,22 +926,16 @@ def lint_health(lint_report: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def build_roadmap_state(entries: list[dict[str, Any]], task_session_index: dict[str, Any], lint_report: dict[str, Any]) -> dict[str, Any]:
+def build_roadmap_state(entries: list[dict[str, Any]], lint_report: dict[str, Any]) -> dict[str, Any]:
     ordered = [str(item.get("id", "")).strip() for item in entries if str(item.get("id", "")).strip()]
-    task_sessions = task_session_index.get("tasks") if isinstance(task_session_index.get("tasks"), dict) else {}
-    session_summaries = task_session_index.get("sessions") if isinstance(task_session_index.get("sessions"), dict) else {}
     status_counts = Counter(str(item.get("status", "todo")) for item in entries)
     priority_counts = Counter(str(item.get("priority", "medium")) for item in entries)
     tasks: dict[str, Any] = {}
-    linked_task_count = 0
 
     for item in entries:
         task_id = str(item.get("id", "")).strip()
         if not task_id:
             continue
-        session_meta = task_session_summary(task_sessions, task_id)
-        if session_meta:
-            linked_task_count += 1
         tasks[task_id] = {
             "id": task_id,
             "title": str(item.get("title", task_id)).strip(),
@@ -970,18 +947,12 @@ def build_roadmap_state(entries: list[dict[str, Any]], task_session_index: dict[
             "spec_paths": [str(value) for value in item.get("spec_paths", []) if str(value).strip()],
             "code_paths": [str(value) for value in item.get("code_paths", []) if str(value).strip()],
             "updated": str(item.get("updated", "")).strip(),
-            "session_count": int(session_meta.get("session_count", len(session_meta.get("session_ids", [])))) if session_meta else 0,
-            "last_session_id": str(session_meta.get("last_session_id", "")).strip() if session_meta else "",
-            "last_session_name": str(session_meta.get("last_session_name", "")).strip() if session_meta else "",
-            "last_action": str(session_meta.get("last_action", "")).strip() if session_meta else "",
-            "last_summary": str(session_meta.get("last_summary", "")).strip() if session_meta else "",
-            "last_timestamp": str(session_meta.get("last_timestamp", "")).strip() if session_meta else "",
         }
 
     sorted_entries = sorted(entries, key=roadmap_sort_key)
     recent_entries = sorted(entries, key=lambda item: (str(item.get("updated", "")), str(item.get("id", ""))), reverse=True)
     return {
-        "version": 1,
+        "version": 2,
         "generated_at": now_iso(),
         "health": lint_health(lint_report),
         "summary": {
@@ -989,8 +960,6 @@ def build_roadmap_state(entries: list[dict[str, Any]], task_session_index: dict[
             "open_count": int(status_counts.get("todo", 0) + status_counts.get("in_progress", 0) + status_counts.get("blocked", 0)),
             "status_counts": dict(status_counts),
             "priority_counts": dict(priority_counts),
-            "linked_task_count": linked_task_count,
-            "linked_session_count": len(session_summaries),
         },
         "views": {
             "ordered_task_ids": ordered,
@@ -1022,30 +991,8 @@ def roadmap_sort_key(item: dict[str, Any]) -> tuple[int, int, str]:
     return (status_order.get(status, 99), priority_order.get(priority, 99), str(item.get("id", "")))
 
 
-def task_id_aliases(task_id: str) -> list[str]:
-    stripped = str(task_id).strip()
-    if not stripped:
-        return []
-    upper = stripped.upper()
-    match = re.fullmatch(r"(TASK|ROADMAP)-(\d+)", upper)
-    if not match:
-        return list(dict.fromkeys([stripped, upper]))
-    number = int(match.group(2))
-    padded = f"{number:03d}"
-    return list(dict.fromkeys([stripped, upper, f"TASK-{padded}", f"ROADMAP-{padded}"]))
-
-
-def task_session_summary(task_sessions: dict[str, Any], task_id: str) -> dict[str, Any] | None:
-    for candidate in task_id_aliases(task_id):
-        value = task_sessions.get(candidate)
-        if isinstance(value, dict):
-            return value
-    return None
-
-
-def render_roadmap(entries: list[dict[str, Any]], task_session_index: dict[str, Any]) -> str:
+def render_roadmap(entries: list[dict[str, Any]]) -> str:
     generated_at = now_iso()
-    task_sessions = task_session_index.get("tasks") if isinstance(task_session_index.get("tasks"), dict) else {}
     lines = [
         "---",
         "id: roadmap.live",
@@ -1111,20 +1058,6 @@ def render_roadmap(entries: list[dict[str, Any]], task_session_index: dict[str, 
                 lines.append(f"- Research: {', '.join(research_ids)}")
             if labels:
                 lines.append(f"- Labels: {', '.join(labels)}")
-            session_meta = task_session_summary(task_sessions, task_id)
-            if session_meta:
-                session_count = int(session_meta.get("session_count", len(session_meta.get("session_ids", []))))
-                lines.append(f"- Session links: {session_count}")
-                last_session_name = str(session_meta.get("last_session_name", "")).strip()
-                last_session_id = str(session_meta.get("last_session_id", "")).strip()
-                last_action = str(session_meta.get("last_action", "")).strip()
-                last_timestamp = str(session_meta.get("last_timestamp", "")).strip()
-                last_label = last_session_name or last_session_id
-                if last_label:
-                    lines.append(f"- Last session: {last_label}{' | ' + last_action if last_action else ''}{' | ' + last_timestamp if last_timestamp else ''}")
-                last_summary = str(session_meta.get("last_summary", "")).strip()
-                if last_summary:
-                    lines.append(f"- Last session note: {last_summary}")
             if delta:
                 desired = str(delta.get("desired", "")).strip()
                 current = str(delta.get("current", "")).strip()
@@ -1222,9 +1155,8 @@ def main() -> None:
     META_ROOT.mkdir(parents=True, exist_ok=True)
     roadmap = read_roadmap_file(ROADMAP_PATH)
     roadmap_items = roadmap_entries(roadmap)
-    task_session_index = read_task_session_index(TASK_SESSION_INDEX_PATH)
     ROADMAP_DOC_PATH.parent.mkdir(parents=True, exist_ok=True)
-    ROADMAP_DOC_PATH.write_text(render_roadmap(roadmap_items, task_session_index), encoding="utf-8")
+    ROADMAP_DOC_PATH.write_text(render_roadmap(roadmap_items), encoding="utf-8")
 
     research_collections = load_research_collections()
     docs = [parse_doc(path) for path in markdown_doc_files()]
@@ -1238,12 +1170,10 @@ def main() -> None:
         (META_ROOT / "events.jsonl").write_text("", encoding="utf-8")
     if not ROADMAP_EVENTS_PATH.exists():
         ROADMAP_EVENTS_PATH.write_text("", encoding="utf-8")
-    if not TASK_SESSION_INDEX_PATH.exists():
-        write_json(TASK_SESSION_INDEX_PATH, {"version": 1, "updated": now_iso(), "tasks": {}, "sessions": {}})
     INDEX_PATH.write_text(index_text, encoding="utf-8")
     lint_report = lint(docs, roadmap_items, research_collections)
     write_json(META_ROOT / "lint.json", lint_report)
-    write_json(ROADMAP_STATE_PATH, build_roadmap_state(roadmap_items, task_session_index, lint_report))
+    write_json(ROADMAP_STATE_PATH, build_roadmap_state(roadmap_items, lint_report))
 
 
 if __name__ == "__main__":

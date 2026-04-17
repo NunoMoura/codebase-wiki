@@ -35,8 +35,7 @@ Rebuild should deterministically produce:
 - `.docs/registry.json`
 - `.docs/backlinks.json`
 - `.docs/lint.json`
-- `.docs/task-session-index.json` when missing, and consume it when present
-- `.docs/roadmap-state.json` as a generated read-only roadmap/task/session UI model
+- `.docs/roadmap-state.json` as a generated read-only roadmap/task UI model
 
 ## Roadmap mutation support
 
@@ -44,7 +43,7 @@ Runtime should be able to mutate `docs/roadmap.json`, preserve explicit task ord
 
 ## Session link support
 
-Runtime should be able to append Pi custom session entries for task work, update `.docs/task-session-index.json`, generate `.docs/roadmap-state.json`, and surface last-session metadata in generated roadmap views and widgets without changing Pi's native session JSONL schema. Generated roadmap views should tolerate legacy `ROADMAP-###` task-session keys while repos migrate to canonical `TASK-###` ids.
+Runtime should be able to append Pi custom session entries for task work, read active task context from Pi at runtime, generate `.docs/roadmap-state.json`, and surface current-session focus in widgets without changing Pi's native session JSONL schema. Generated roadmap and widget flows should tolerate legacy `ROADMAP-###` task ids while repos migrate to canonical `TASK-###` ids.
 
 ## Lint responsibilities
 

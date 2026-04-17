@@ -62,15 +62,14 @@ Generated navigation stays separate:
 - `.docs/registry.json`
 - `.docs/backlinks.json`
 - `.docs/lint.json`
-- `.docs/task-session-index.json`
 - `.docs/roadmap-state.json`
 
 Pi session linkage stays local and operational:
 
 - Pi session JSONL remains Pi-owned
 - codebase-wiki appends custom session entries linking tasks to sessions
-- `.docs/task-session-index.json` is derived metadata for navigation and resume flow
-- `.docs/roadmap-state.json` is the denormalized read model used by the built-in roadmap widget and any future third-party UI readers
+- current task focus is read live from Pi session state at runtime
+- `.docs/roadmap-state.json` is the denormalized roadmap/task read model used by the built-in roadmap widget and any future third-party UI readers
 
 Task identity and compatibility:
 
@@ -200,7 +199,6 @@ The rebuild command should update at least:
 - `docs/roadmap.md`
 - `.docs/registry.json`
 - `.docs/lint.json`
-- `.docs/task-session-index.json` (empty or populated)
 - `.docs/roadmap-state.json`
 
 ## Recommended dogfooding workflow
@@ -287,7 +285,7 @@ Starter bootstrap includes:
 - inferred first-pass boundary `overview.md` files under `docs/specs/` when brownfield structure is detected
 - `docs/research/inspiration.jsonl`
 - `docs/roadmap.json`
-- generated outputs like `docs/index.md`, `docs/roadmap.md`, `.docs/registry.json`, `.docs/backlinks.json`, `.docs/lint.json`, `.docs/task-session-index.json`, `.docs/roadmap-state.json`
+- generated outputs like `docs/index.md`, `docs/roadmap.md`, `.docs/registry.json`, `.docs/backlinks.json`, `.docs/lint.json`, `.docs/roadmap-state.json`
 
 ### Status, fix, and review
 
@@ -318,8 +316,8 @@ It then uses that repo config to:
 - build semantic audit scopes from `.docs/config.json`
 - append structured roadmap tasks to `docs/roadmap.json` when audits uncover real unresolved delta
 - append Pi custom session entries that link current session to roadmap tasks
-- maintain `.docs/task-session-index.json` so generated roadmap view can show session continuity
-- maintain `.docs/roadmap-state.json` so the first-party roadmap widget and any future third-party UI can read compact roadmap/task/session state without mutating canonical files
+- read active task context from Pi session state at runtime
+- maintain `.docs/roadmap-state.json` so the first-party roadmap widget and any future third-party UI can read compact roadmap/task state without mutating canonical files
 
 That means one global package install can operate across many repos, while each repo keeps its own `docs/`, `.docs/`, and rebuild contract.
 

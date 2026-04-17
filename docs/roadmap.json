@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-04-17T15:10:00Z",
+  "updated": "2026-04-17T16:45:00Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -174,7 +174,7 @@
       "status": "done",
       "priority": "high",
       "kind": "agent-workflow",
-      "summary": "Keep Pi session JSONL native, append custom task-link entries, and derive local task-session metadata for roadmap navigation.",
+      "summary": "Keep Pi session JSONL native, append custom task-link entries, and read active task focus directly from Pi session state instead of maintaining repo-owned session caches.",
       "spec_paths": [
         "docs/specs/extension/overview.md",
         "docs/specs/shared/overview.md",
@@ -195,11 +195,11 @@
       ],
       "delta": {
         "desired": "Task work can be resumed across Pi sessions without replacing Pi session JSONL format.",
-        "current": "Extension now appends Pi custom task-link entries, maintains `.docs/task-session-index.json`, and surfaces session continuity in generated roadmap view.",
-        "closure": "Done for link and derive flow. Future work can add richer session analytics or task-aware resume helpers."
+        "current": "Extension now appends Pi custom task-link entries, resolves current task focus from the live Pi session branch, and no longer maintains a repo-owned task-session index file.",
+        "closure": "Done for native Pi session linkage and runtime focus overlay. Future work can add richer historical analytics if needed, but session truth stays in Pi sessions."
       },
       "created": "2026-04-16",
-      "updated": "2026-04-16"
+      "updated": "2026-04-17"
     },
     "TASK-007": {
       "id": "TASK-007",
@@ -332,7 +332,7 @@
       "status": "done",
       "priority": "high",
       "kind": "agent-workflow",
-      "summary": "Generate a read-only roadmap-state UI model and render a compact first-party roadmap widget so users can track focused, in-progress, and next tasks inside Pi without expanding the public command surface.",
+      "summary": "Generate a read-only roadmap-state UI model and render a compact first-party roadmap widget so users can track focused, in-progress, and next tasks inside Pi without expanding the public command surface or persisting session caches.",
       "spec_paths": [
         "docs/specs/extension/overview.md",
         "docs/specs/extension/roadmap-ui.md",
@@ -355,8 +355,8 @@
       ],
       "delta": {
         "desired": "Roadmap progress should be readable inside Pi through a compact working-set widget and a stable read-only UI state file that other extensions can consume.",
-        "current": "The extension now generates .docs/roadmap-state.json, refreshes a first-party roadmap widget from that read model, and keeps default roadmap presentation focused on active, in-progress, and next tasks instead of dumping the full roadmap.",
-        "closure": "Done for the first production-ready roadmap TUI pass. Future work can add deeper drill-down interactions on top of the same read contract without changing canonical storage or the four-command public UX."
+        "current": "The extension now generates .docs/roadmap-state.json as roadmap/task UI state, overlays live current-session focus from Pi at runtime, and keeps default roadmap presentation focused on active, in-progress, and next tasks instead of dumping the full roadmap.",
+        "closure": "Done for the production roadmap TUI pass with runtime session overlay. Future work can add deeper drill-down interactions on top of the same read contract without changing canonical storage or the four-command public UX."
       },
       "created": "2026-04-17",
       "updated": "2026-04-17"

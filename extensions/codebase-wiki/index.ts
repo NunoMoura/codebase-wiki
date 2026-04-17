@@ -173,33 +173,6 @@ interface TaskSessionLinkRecord {
   timestamp: string;
 }
 
-interface TaskSessionIndexTaskSummary {
-  session_ids: string[];
-  session_count: number;
-  last_session_id?: string;
-  last_session_name?: string;
-  last_action?: TaskSessionAction;
-  last_summary?: string;
-  last_timestamp?: string;
-}
-
-interface TaskSessionIndexSessionSummary {
-  id: string;
-  name?: string;
-  file_name?: string;
-  task_ids: string[];
-  last_action?: TaskSessionAction;
-  last_summary?: string;
-  last_timestamp?: string;
-}
-
-interface TaskSessionIndexFile {
-  version: number;
-  updated: string;
-  tasks: Record<string, TaskSessionIndexTaskSummary>;
-  sessions: Record<string, TaskSessionIndexSessionSummary>;
-}
-
 interface RoadmapStateHealth {
   color: "green" | "yellow" | "red";
   errors: number;
@@ -212,8 +185,6 @@ interface RoadmapStateSummary {
   open_count: number;
   status_counts: Record<string, number>;
   priority_counts: Record<string, number>;
-  linked_task_count: number;
-  linked_session_count: number;
 }
 
 interface RoadmapStateViews {
@@ -238,12 +209,6 @@ interface RoadmapStateTaskSummary {
   spec_paths: string[];
   code_paths: string[];
   updated: string;
-  session_count: number;
-  last_session_id?: string;
-  last_session_name?: string;
-  last_action?: TaskSessionAction;
-  last_summary?: string;
-  last_timestamp?: string;
 }
 
 interface RoadmapStateFile {
@@ -253,12 +218,6 @@ interface RoadmapStateFile {
   summary: RoadmapStateSummary;
   views: RoadmapStateViews;
   tasks: Record<string, RoadmapStateTaskSummary>;
-}
-
-interface SessionMeta {
-  sessionId: string;
-  sessionName?: string;
-  sessionFileName?: string;
 }
 
 interface WikiProject {
@@ -277,7 +236,6 @@ interface WikiProject {
   registryPath: string;
   eventsPath: string;
   roadmapEventsPath: string;
-  taskSessionIndexPath: string;
   roadmapStatePath: string;
 }
 
@@ -332,8 +290,6 @@ export default function codebaseWikiExtension(pi: ExtensionAPI) {
     }
 
     await withUiErrorHandling(ctx, async () => {
-      const synced = await syncCurrentSessionTaskLinks(project, ctx);
-      if (synced) await runRebuild(project);
       const active = findLatestTaskSessionLink(ctx.sessionManager.getBranch());
       if (!active) {
         ctx.ui.setStatus("codebase-wiki-task", undefined);
@@ -465,7 +421,7 @@ export default function codebaseWikiExtension(pi: ExtensionAPI) {
   pi.registerTool({
     name: "codebase_wiki_task_session_link",
     label: "Codebase Wiki Task Session Link",
-    description: "Link current Pi session to an existing roadmap task, persist a Pi custom session entry, update task-session index, and rebuild generated roadmap outputs",
+    description: "Link current Pi session to an existing roadmap task, persist a Pi custom session entry, and refresh live roadmap focus without maintaining repo-owned session caches",
     promptSnippet: "Link the current Pi session to a roadmap task so future sessions can resume work cleanly",
     promptGuidelines: [
       "Use this when starting, progressing, blocking, or finishing work on an existing roadmap task.",
@@ -731,7 +687,7 @@ function buildStatusText(project: WikiProject, registry: RegistryFile | null, re
   lines.push(`Research: files=${researchFiles.length} entries=${researchEntries}`);
   if (roadmap) lines.push(`Roadmap: tasks=${roadmap.entry_count} ${Object.entries(roadmap.counts).map(([key, value]) => `${key}=${value}`).join(" ")}`.trim());
   if (roadmapState) {
-    lines.push(`Roadmap widget state: health=${roadmapState.health.color} open=${roadmapState.summary.open_count} linked=${roadmapState.summary.linked_task_count}`);
+    lines.push(`Roadmap widget state: health=${roadmapState.health.color} open=${roadmapState.summary.open_count}`);
     lines.push("", "Roadmap working set:", ...buildRoadmapWorkingSetLines(roadmapState, activeLink));
   }
   lines.push("", "Specs and mapped drift signals:", ...buildSpecStatusLines(registry, report));
@@ -1119,7 +1075,6 @@ function rebuildTargetPaths(project: WikiProject): string[] {
     resolve(project.root, project.indexPath),
     resolve(project.root, project.roadmapDocPath),
     resolve(project.root, project.eventsPath),
-    resolve(project.root, project.taskSessionIndexPath),
     ...GENERATED_METADATA_FILES.map((fileName) => resolve(project.root, project.metaRoot, fileName)),
   ];
 }
@@ -1130,10 +1085,6 @@ function roadmapMutationTargetPaths(project: WikiProject): string[] {
     resolve(project.root, project.roadmapEventsPath),
     ...rebuildTargetPaths(project),
   ];
-}
-
-function taskSessionMutationTargetPaths(project: WikiProject): string[] {
-  return [resolve(project.root, project.taskSessionIndexPath), ...rebuildTargetPaths(project)];
 }
 
 async function detectRebuildCommands(root: string): Promise<string[][]> {
@@ -1187,7 +1138,6 @@ async function loadProject(startDir: string): Promise<WikiProject> {
     registryPath: resolve(root, metaRoot, "registry.json"),
     eventsPath: resolve(root, metaRoot, "events.jsonl"),
     roadmapEventsPath,
-    taskSessionIndexPath: resolve(root, metaRoot, "task-session-index.json"),
     roadmapStatePath: resolve(root, metaRoot, "roadmap-state.json"),
   };
 }
@@ -1212,7 +1162,7 @@ async function appendRoadmapTasks(pi: ExtensionAPI, project: WikiProject, ctx: E
     await appendRoadmapHistoryEvent(project, "append", created);
     await appendRoadmapEvent(project, created);
     for (const task of created) {
-      await recordTaskSessionLinkUnlocked(pi, project, ctx, task, {
+      await recordTaskSessionLinkUnlocked(pi, ctx, task, {
         taskId: task.id,
         action: "spawn",
         summary: `Spawned task ${task.id} in current Pi session.`,
@@ -1313,18 +1263,14 @@ async function linkTaskSession(
   ctx: ExtensionContext,
   input: TaskSessionLinkInput,
 ): Promise<{ taskId: string; title: string; action: TaskSessionAction }> {
-  return withLockedPaths(taskSessionMutationTargetPaths(project), async () => {
-    const task = await readRoadmapTask(project, input.taskId);
-    if (!task) throw new Error(`Roadmap task not found: ${input.taskId}`);
-    await recordTaskSessionLinkUnlocked(pi, project, ctx, task, input);
-    await runRebuildUnlocked(project);
-    return { taskId: task.id, title: task.title, action: normalizeTaskSessionAction(input.action) };
-  });
+  const task = await readRoadmapTask(project, input.taskId);
+  if (!task) throw new Error(`Roadmap task not found: ${input.taskId}`);
+  await recordTaskSessionLinkUnlocked(pi, ctx, task, input);
+  return { taskId: task.id, title: task.title, action: normalizeTaskSessionAction(input.action) };
 }
 
 async function recordTaskSessionLinkUnlocked(
   pi: ExtensionAPI,
-  project: WikiProject,
   ctx: ExtensionContext,
   task: RoadmapTaskRecord,
   input: TaskSessionLinkInput,
@@ -1352,11 +1298,6 @@ async function recordTaskSessionLinkUnlocked(
     // Ignore in tests or non-standard execution contexts.
   }
 
-  const index = await readTaskSessionIndex(project.taskSessionIndexPath);
-  const sessionMeta = getSessionMeta(ctx, shouldSetSessionName ? `${task.id} ${task.title}` : undefined);
-  if (!sessionMeta) return;
-  const changed = applyTaskSessionLink(index, sessionMeta, { ...link, taskId: task.id });
-  if (changed) await writeJsonFile(project.taskSessionIndexPath, index);
   setTaskSessionStatus(ctx, task.id, task.title, link.action);
 }
 
@@ -1389,120 +1330,6 @@ async function readRoadmapTask(project: WikiProject, taskId: string): Promise<Ro
 function hasSessionManager(ctx: ExtensionContext | ExtensionCommandContext): boolean {
   const manager = (ctx as { sessionManager?: { getSessionId?: () => string } }).sessionManager;
   return typeof manager?.getSessionId === "function";
-}
-
-function getSessionMeta(ctx: ExtensionContext | ExtensionCommandContext, sessionNameOverride?: string): SessionMeta | null {
-  if (!hasSessionManager(ctx)) return null;
-  const manager = (ctx as { sessionManager: {
-    getSessionId: () => string;
-    getSessionName?: () => string | undefined;
-    getSessionFile?: () => string | undefined;
-  } }).sessionManager;
-  const sessionId = manager.getSessionId();
-  if (!sessionId) return null;
-  const sessionFile = typeof manager.getSessionFile === "function" ? manager.getSessionFile() : undefined;
-  return {
-    sessionId,
-    sessionName: sessionNameOverride ?? (typeof manager.getSessionName === "function" ? manager.getSessionName() : undefined),
-    sessionFileName: sessionFile ? basename(sessionFile) : undefined,
-  };
-}
-
-async function readTaskSessionIndex(path: string): Promise<TaskSessionIndexFile> {
-  if (!(await pathExists(path))) return emptyTaskSessionIndex();
-  const data = await readJson<TaskSessionIndexFile>(path);
-  return {
-    version: data.version ?? 1,
-    updated: data.updated ?? nowIso(),
-    tasks: typeof data.tasks === "object" && data.tasks ? data.tasks : {},
-    sessions: typeof data.sessions === "object" && data.sessions ? data.sessions : {},
-  };
-}
-
-function emptyTaskSessionIndex(): TaskSessionIndexFile {
-  return {
-    version: 1,
-    updated: nowIso(),
-    tasks: {},
-    sessions: {},
-  };
-}
-
-function applyTaskSessionLink(index: TaskSessionIndexFile, session: SessionMeta, link: TaskSessionLinkRecord): boolean {
-  let changed = false;
-  const taskSummary = index.tasks[link.taskId] ?? {
-    session_ids: [],
-    session_count: 0,
-  };
-  if (!taskSummary.session_ids.includes(session.sessionId)) {
-    taskSummary.session_ids.push(session.sessionId);
-    changed = true;
-  }
-  const nextSessionCount = taskSummary.session_ids.length;
-  if (taskSummary.session_count !== nextSessionCount) {
-    taskSummary.session_count = nextSessionCount;
-    changed = true;
-  }
-  if (!taskSummary.last_timestamp || link.timestamp >= taskSummary.last_timestamp) {
-    if (taskSummary.last_session_id !== session.sessionId || taskSummary.last_session_name !== session.sessionName || taskSummary.last_action !== link.action || taskSummary.last_summary !== (link.summary || undefined) || taskSummary.last_timestamp !== link.timestamp) {
-      changed = true;
-    }
-    taskSummary.last_session_id = session.sessionId;
-    taskSummary.last_session_name = session.sessionName;
-    taskSummary.last_action = link.action;
-    taskSummary.last_summary = link.summary || undefined;
-    taskSummary.last_timestamp = link.timestamp;
-  }
-  index.tasks[link.taskId] = taskSummary;
-
-  const sessionSummary = index.sessions[session.sessionId] ?? {
-    id: session.sessionId,
-    task_ids: [],
-  };
-  if (!sessionSummary.task_ids.includes(link.taskId)) {
-    sessionSummary.task_ids.push(link.taskId);
-    changed = true;
-  }
-  if (session.sessionName && sessionSummary.name !== session.sessionName) {
-    sessionSummary.name = session.sessionName;
-    changed = true;
-  }
-  if (session.sessionFileName && sessionSummary.file_name !== session.sessionFileName) {
-    sessionSummary.file_name = session.sessionFileName;
-    changed = true;
-  }
-  if (!sessionSummary.last_timestamp || link.timestamp >= sessionSummary.last_timestamp) {
-    if (sessionSummary.last_action !== link.action || sessionSummary.last_summary !== (link.summary || undefined) || sessionSummary.last_timestamp !== link.timestamp) {
-      changed = true;
-    }
-    sessionSummary.last_action = link.action;
-    sessionSummary.last_summary = link.summary || undefined;
-    sessionSummary.last_timestamp = link.timestamp;
-  }
-  index.sessions[session.sessionId] = sessionSummary;
-  if (changed) index.updated = nowIso();
-  return changed;
-}
-
-async function syncCurrentSessionTaskLinks(project: WikiProject, ctx: ExtensionContext): Promise<boolean> {
-  if (!hasSessionManager(ctx)) return false;
-  const session = getSessionMeta(ctx);
-  if (!session) return false;
-  const entries = ctx.sessionManager.getEntries();
-  const links = entries.flatMap((entry) => {
-    const link = parseTaskSessionLinkEntry(entry);
-    return link ? [link] : [];
-  });
-  const roadmap = await readRoadmapFile(resolve(project.root, project.roadmapPath));
-  const index = await readTaskSessionIndex(project.taskSessionIndexPath);
-  let changed = false;
-  for (const link of links) {
-    const resolvedTask = resolveRoadmapTask(roadmap, link.taskId);
-    changed = applyTaskSessionLink(index, session, { ...link, taskId: resolvedTask?.id ?? link.taskId }) || changed;
-  }
-  if (!changed) return false;
-  await writeJsonFile(project.taskSessionIndexPath, index);
-  return true;
 }
 
 function parseTaskSessionLinkEntry(entry: unknown): TaskSessionLinkRecord | null {
