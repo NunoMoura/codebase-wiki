@@ -10,7 +10,7 @@ updated: '2026-04-17'
 
 # Roadmap
 
-Generated: 2026-04-17T23:24:10Z
+Generated: 2026-04-17T23:46:37Z
 
 Canonical source: [roadmap.json](roadmap.json)
 
@@ -299,6 +299,26 @@ _None._
 - Desired: Skill and global agent overlay stay concise, consistent, and aligned with the renamed codewiki workflow.
 - Current: Repo skill now uses codewiki naming, while global AGENTS was reviewed against the Karpathy-inspired baseline and renamed from codebase-wiki references to codewiki.
 - Closure: Done for naming/alignment review; remaining `.wiki` migration work is tracked separately.
+
+### TASK-015 — Add wiki-code implementation resume command
+
+- Status: done
+- Priority: medium
+- Kind: agent-workflow
+- Summary: Expose a user-facing wiki-code command that resumes the focused roadmap task or picks the next open task and queues implementation work.
+- Specs:
+  - [docs/specs/package/overview.md](specs/package/overview.md)
+  - [docs/specs/extension/overview.md](specs/extension/overview.md)
+  - [docs/specs/extension/roadmap-ui.md](specs/extension/roadmap-ui.md)
+- Code:
+  - extensions/codewiki/index.ts
+  - scripts/smoke-test.mjs
+  - skills/codewiki/SKILL.md
+  - README.md
+- Labels: commands, roadmap, implementation
+- Desired: Users can jump back into roadmap-driven implementation with one command while wiki mutations remain automatic behind agent intent.
+- Current: The extension now exposes /wiki-code, which resumes the current focused task or picks the next open task, links session focus, and queues implementation from roadmap/spec truth.
+- Closure: Done by adding /wiki-code, documenting the five-command public UX, and covering resume behavior in smoke tests.
 
 ## Related docs
 

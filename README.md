@@ -24,6 +24,7 @@ Public command surface is intentionally small:
 - `/wiki-status [docs|code|both]`
 - `/wiki-fix [docs|code|both]`
 - `/wiki-review [idea|architecture]`
+- `/wiki-code [TASK-###]`
 
 ### Internal agent tools
 
@@ -162,6 +163,7 @@ python3 -m pip install pyyaml
 /wiki-status both
 /wiki-fix docs
 /wiki-review architecture
+/wiki-code
 ```
 
 ### Existing repo
@@ -295,6 +297,8 @@ Starter bootstrap includes:
 `/wiki-fix` is the corrective command. It uses repo evidence first, asks only high-value clarifying questions when needed, then fixes drift in `docs`, `code`, or `both`.
 
 `/wiki-review` is the senior analysis command. Use `idea` for business value and product coherence review, or `architecture` for technical execution and design review.
+
+`/wiki-code` is the implementation segue. With no argument it resumes the current focused roadmap task when one exists, otherwise it picks the next open task from the roadmap working set. Pass `TASK-###` to force a specific open task.
 
 ### Roadmap TUI
 

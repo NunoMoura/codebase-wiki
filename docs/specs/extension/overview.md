@@ -22,6 +22,7 @@ Public commands should stay intentionally small:
 - `/wiki-status`
 - `/wiki-fix`
 - `/wiki-review`
+- `/wiki-code`
 
 Internal agent tools may remain more granular:
 
@@ -52,6 +53,8 @@ Internal agent tools may remain more granular:
 ## Drift and fix expectation
 
 `/wiki-status` should classify wiki health as green, yellow, or red and list per-spec drift signals. `wiki-fix` should use repo evidence first, ask only high-value clarifying questions when needed, emit structured roadmap tasks through `codewiki_roadmap_append` only when unresolved work is genuinely new, and use `codewiki_roadmap_update` when an existing task already covers the delta but needs mutation.
+
+`/wiki-code` should resume implementation from the current focused roadmap task when possible, otherwise pick the next actionable open task, then queue implementation grounded in roadmap + spec truth without requiring a separate user-facing wiki mutation command.
 
 ## Session linkage expectation
 

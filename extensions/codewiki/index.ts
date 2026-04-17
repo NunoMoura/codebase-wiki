@@ -383,6 +383,47 @@ export default function codewikiExtension(pi: ExtensionAPI) {
     },
   });
 
+  pi.registerCommand(`${COMMAND_PREFIX}-code`, {
+    description: "Resume roadmap implementation from current task focus or next open task. Usage: /wiki-code [TASK-###]",
+    handler: async (args, ctx) => {
+      await withUiErrorHandling(ctx, async () => {
+        const requestedTaskId = normalizeRequestedTaskId(args);
+        const project = await loadProject(ctx.cwd);
+        const summary = await rebuildAndSummarize(ctx.cwd);
+        const registry = await maybeReadJson<RegistryFile>(project.registryPath);
+        const roadmap = await readRoadmapFile(resolve(project.root, project.roadmapPath));
+        const task = resolveImplementationTask(roadmap, currentTaskLink(ctx), requestedTaskId);
+        if (!task) {
+          ctx.ui.notify(`${project.label}: no open roadmap task available for /wiki-code. Run /wiki-status or /wiki-review if you need a new direction.`, "warning");
+          await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
+          return;
+        }
+        const action: TaskSessionAction = requestedTaskId || currentTaskLink(ctx)?.taskId !== task.id ? "focus" : "progress";
+        await linkTaskSession(pi, project, ctx, {
+          taskId: task.id,
+          action,
+          summary: action === "focus"
+            ? `Focused implementation on ${task.id} through /wiki-code.`
+            : `Resumed implementation on ${task.id} through /wiki-code.`,
+          setSessionName: false,
+        });
+        const activeLink: TaskSessionLinkRecord = {
+          taskId: task.id,
+          action,
+          summary: action === "focus"
+            ? `Focused implementation on ${task.id} through /wiki-code.`
+            : `Resumed implementation on ${task.id} through /wiki-code.`,
+          filesTouched: [],
+          spawnedTaskIds: [],
+          timestamp: nowIso(),
+        };
+        ctx.ui.notify(`${project.label}: queued implementation for ${task.id} — ${task.title}. Deterministic preflight is ${statusColor(summary.report)}.`, statusLevel(summary.report));
+        await refreshRoadmapWidget(project, ctx, activeLink);
+        await queueAudit(pi, ctx, codePrompt(project, registry, summary.report, task));
+      });
+    },
+  });
+
   pi.registerTool({
     name: "codewiki_rebuild",
     label: "Codewiki Rebuild",
@@ -901,6 +942,45 @@ function reviewPrompt(project: WikiProject, registry: RegistryFile | null, repor
   ].join("\n");
 }
 
+function codePrompt(project: WikiProject, registry: RegistryFile | null, report: LintReport, task: RoadmapTaskRecord): string {
+  const drift = buildDriftContext(project, registry);
+  return [
+    `Implement roadmap task ${task.id} for ${project.label}.`,
+    `Task title: ${task.title}.`,
+    `Task status: ${task.status}.`,
+    `Task priority: ${task.priority}.`,
+    `Task kind: ${task.kind}.`,
+    `Task summary: ${task.summary}.`,
+    `Deterministic preflight color: ${statusColor(report)}.`,
+    ...renderScopeForPrompt("both", drift),
+    "Context files:",
+    ...promptContextFiles(project),
+    "Spec map:",
+    ...renderSpecPromptMap(registry),
+    "Task delta:",
+    `- Desired: ${task.delta.desired}`,
+    `- Current: ${task.delta.current}`,
+    `- Closure: ${task.delta.closure}`,
+    ...(task.spec_paths.length > 0 ? ["Task spec paths:", ...task.spec_paths.map((path) => `- ${path}`)] : []),
+    ...(task.code_paths.length > 0 ? ["Task code paths:", ...task.code_paths.map((path) => `- ${path}`)] : []),
+    ...(task.research_ids.length > 0 ? ["Task research ids:", ...task.research_ids.map((researchId) => `- ${researchId}`)] : []),
+    "Rules:",
+    "- implement according to specs and roadmap; surface drift instead of silently choosing code over wiki",
+    "- keep public UX focused on wiki-bootstrap, wiki-status, wiki-fix, wiki-review, and wiki-code",
+    "- do not create a separate user-facing wiki-edit command; update roadmap/wiki artifacts automatically when user intent requires it",
+    "- if intended design must change, update wiki docs and code consistently",
+    "- if this task finishes or blocks, use codewiki_roadmap_update to persist status and delta changes",
+    "- if follow-up delta appears that is not already tracked, use codewiki_roadmap_append",
+    "- rebuild generated outputs before finishing",
+    "- rerun deterministic status before summarizing",
+    "Output format:",
+    "- Changes made",
+    "- Task status recommendation: in_progress|blocked|done",
+    "- Wiki updates made automatically, if any",
+    "- Remaining risks or follow-ups",
+  ].join("\n");
+}
+
 async function rebuildAndSummarize(cwd: string): Promise<{ text: string; issueCount: number; report: LintReport }> {
   const project = await loadProject(cwd);
   await runRebuild(project);
@@ -1041,6 +1121,31 @@ function formatRoadmapCounts(roadmap: RoadmapFile): string {
     .filter((task): task is RoadmapTaskRecord => Boolean(task));
   const counts = countBy(ordered.map((task) => task.status));
   return Object.entries(counts).map(([key, value]) => `${key}=${value}`).join(" ") || "no tasks";
+}
+
+function normalizeRequestedTaskId(args: string): string | null {
+  const trimmed = args.trim();
+  return trimmed ? trimmed : null;
+}
+
+function resolveImplementationTask(roadmap: RoadmapFile, activeLink: TaskSessionLinkRecord | null, requestedTaskId: string | null): RoadmapTaskRecord | null {
+  if (requestedTaskId) {
+    const requestedTask = resolveRoadmapTask(roadmap, requestedTaskId);
+    if (!requestedTask) throw new Error(`Roadmap task not found: ${requestedTaskId}`);
+    if (isClosedRoadmapStatus(requestedTask.status)) throw new Error(`Roadmap task already closed: ${requestedTask.id}`);
+    return requestedTask;
+  }
+
+  const ordered = roadmap.order
+    .map((taskId) => roadmap.tasks[taskId])
+    .filter((task): task is RoadmapTaskRecord => Boolean(task));
+  const activeTask = activeLink ? resolveRoadmapTask(roadmap, activeLink.taskId) : null;
+  if (activeTask && !isClosedRoadmapStatus(activeTask.status)) return activeTask;
+  const inProgressTask = ordered.find((task) => task.status === "in_progress");
+  if (inProgressTask) return inProgressTask;
+  const todoTask = ordered.find((task) => task.status === "todo");
+  if (todoTask) return todoTask;
+  return ordered.find((task) => task.status === "blocked") ?? null;
 }
 
 function formatRoadmapSnapshot(project: WikiProject, roadmap: RoadmapFile): string {
@@ -1385,7 +1490,7 @@ function formatLegacyTaskId(sequence: number): string {
 async function linkTaskSession(
   pi: ExtensionAPI,
   project: WikiProject,
-  ctx: ExtensionContext,
+  ctx: ExtensionContext | ExtensionCommandContext,
   input: TaskSessionLinkInput,
 ): Promise<{ taskId: string; title: string; action: TaskSessionAction }> {
   const task = await readRoadmapTask(project, input.taskId);
@@ -1396,7 +1501,7 @@ async function linkTaskSession(
 
 async function recordTaskSessionLinkUnlocked(
   pi: ExtensionAPI,
-  ctx: ExtensionContext,
+  ctx: ExtensionContext | ExtensionCommandContext,
   task: RoadmapTaskRecord,
   input: TaskSessionLinkInput,
 ): Promise<void> {
@@ -1493,7 +1598,7 @@ function findLatestTaskSessionLink(entries: unknown[]): TaskSessionLinkRecord | 
   return null;
 }
 
-function setTaskSessionStatus(ctx: ExtensionContext, taskId: string, title: string, action: TaskSessionAction): void {
+function setTaskSessionStatus(ctx: ExtensionContext | ExtensionCommandContext, taskId: string, title: string, action: TaskSessionAction): void {
   ctx.ui.setStatus("codewiki-task", `${taskId} ${action} — ${title}`);
 }
 

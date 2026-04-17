@@ -121,8 +121,9 @@ async function main() {
       "wiki-status",
       "wiki-fix",
       "wiki-review",
+      "wiki-code",
     ], "extension commands");
-    assert.equal(commandNames.length, 4, `Expected exactly 4 public commands, got ${commandNames.length}: ${commandNames.join(", ")}`);
+    assert.equal(commandNames.length, 5, `Expected exactly 5 public commands, got ${commandNames.length}: ${commandNames.join(", ")}`);
     for (const legacyCommand of ["wiki-setup", "wiki-rebuild", "wiki-lint", "wiki-roadmap", "wiki-self-drift", "wiki-code-drift", "wiki-task"]) {
       assert.ok(!commandNames.includes(legacyCommand), `Legacy public command should not be registered: ${legacyCommand}`);
     }
@@ -285,6 +286,8 @@ async function main() {
     const statusNotifications = [];
     const fixNotifications = [];
     const reviewNotifications = [];
+    const codeNotifications = [];
+    const taskStatuses = [];
     const widgetState = { key: null, content: null, options: null };
     const renderWidget = () => {
       assert.equal(widgetState.key, "codewiki-roadmap", "Expected roadmap widget key");
@@ -333,6 +336,22 @@ async function main() {
       sessionManager: toolCtx.sessionManager,
       ui: {
         notify: (message, level) => reviewNotifications.push({ message, level }),
+        setWidget: (key, content, options) => {
+          widgetState.key = key;
+          widgetState.content = content;
+          widgetState.options = options;
+        },
+      },
+    });
+    const codeCommand = extension.commands.get("wiki-code");
+    assert.ok(codeCommand && typeof codeCommand.handler === "function", "wiki-code command missing handler");
+    await codeCommand.handler("", {
+      cwd: nestedDir,
+      isIdle: () => true,
+      sessionManager: toolCtx.sessionManager,
+      ui: {
+        notify: (message, level) => codeNotifications.push({ message, level }),
+        setStatus: (key, value) => taskStatuses.push({ key, value }),
         setWidget: (key, content, options) => {
           widgetState.key = key;
           widgetState.content = content;
@@ -402,6 +421,8 @@ async function main() {
     assert.match(widgetLines.join("\n"), /TASK-001/, "Roadmap widget should surface roadmap tasks");
     assert.match(fixNotifications[0]?.message ?? "", /queued docs wiki-fix flow/i, "wiki-fix should queue the requested fix scope");
     assert.match(reviewNotifications[0]?.message ?? "", /queued architecture review/i, "wiki-review should queue the requested review mode");
+    assert.match(codeNotifications[0]?.message ?? "", /queued implementation for TASK-001/i, "wiki-code should resume implementation from the focused roadmap task");
+    assert.ok(taskStatuses.some((entry) => entry.key === "codewiki-task" && /TASK-001 progress/i.test(String(entry.value))), "wiki-code should refresh task focus status");
   });
   console.log(`✓ bootstrap smoke test passed (Python: ${python.command}, PyYAML: ${python.yamlVersion})`);
 

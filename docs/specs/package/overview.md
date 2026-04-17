@@ -42,8 +42,8 @@ Bootstrap should be able to infer first-pass `docs/specs/**` ownership docs from
 
 ## Public UX shape
 
-- public commands stay limited to `/wiki-bootstrap`, `/wiki-status`, `/wiki-fix`, and `/wiki-review`
-- deeper composability lives in internal tools and prompts
+- public commands stay limited to `/wiki-bootstrap`, `/wiki-status`, `/wiki-fix`, `/wiki-review`, and `/wiki-code`
+- deeper composability lives in internal tools and prompts, rather than exposing separate user-facing wiki mutation commands
 
 ## Model naming
 

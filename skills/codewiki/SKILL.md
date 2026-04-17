@@ -15,6 +15,7 @@ Public commands:
 - `/wiki-status [docs|code|both]`
 - `/wiki-fix [docs|code|both]`
 - `/wiki-review [idea|architecture]`
+- `/wiki-code [TASK-###]`
 
 Internal agent tools:
 
@@ -38,10 +39,11 @@ Internal agent tools:
 3. If status comes back yellow or red, use `/wiki-fix [docs|code|both]`.
    - Use repo evidence first and ask only high-value clarifying questions when ambiguity materially changes the fix.
 4. Use `/wiki-review [idea|architecture]` for higher-level assessment.
-5. When drift review finds real unresolved delta not already tracked, prefer `codewiki_roadmap_append` to append structured roadmap tasks.
-6. When an existing task needs rewrite, reprioritization, or closure, prefer `codewiki_roadmap_update` instead of manual roadmap JSON edits.
-7. When starting or continuing work on a task, prefer `codewiki_task_session_link` so Pi session history links back to roadmap tasks.
-8. Keep `.docs/` generated. Do not hand-edit generated outputs unless fixing the generator itself.
+5. Use `/wiki-code [TASK-###]` to resume implementation from current roadmap focus or to jump directly to a specific open task.
+6. When drift review finds real unresolved delta not already tracked, prefer `codewiki_roadmap_append` to append structured roadmap tasks.
+7. When an existing task needs rewrite, reprioritization, or closure, prefer `codewiki_roadmap_update` instead of manual roadmap JSON edits.
+8. When starting or continuing work on a task, prefer `codewiki_task_session_link` so Pi session history links back to roadmap tasks.
+9. Keep `.docs/` generated. Do not hand-edit generated outputs unless fixing the generator itself.
 
 ## Wiki rules
 

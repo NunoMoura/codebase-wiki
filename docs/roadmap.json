@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-04-17T23:55:00Z",
+  "updated": "2026-04-18T00:15:00Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -15,7 +15,8 @@
     "TASK-011",
     "TASK-012",
     "TASK-013",
-    "TASK-014"
+    "TASK-014",
+    "TASK-015"
   ],
   "tasks": {
     "TASK-001": {
@@ -458,6 +459,38 @@
       },
       "created": "2026-04-17",
       "updated": "2026-04-17"
+    },
+    "TASK-015": {
+      "id": "TASK-015",
+      "title": "Add wiki-code implementation resume command",
+      "status": "done",
+      "priority": "medium",
+      "kind": "agent-workflow",
+      "summary": "Expose a user-facing wiki-code command that resumes the focused roadmap task or picks the next open task and queues implementation work.",
+      "spec_paths": [
+        "docs/specs/package/overview.md",
+        "docs/specs/extension/overview.md",
+        "docs/specs/extension/roadmap-ui.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs",
+        "skills/codewiki/SKILL.md",
+        "README.md"
+      ],
+      "research_ids": [],
+      "labels": [
+        "commands",
+        "roadmap",
+        "implementation"
+      ],
+      "delta": {
+        "desired": "Users can jump back into roadmap-driven implementation with one command while wiki mutations remain automatic behind agent intent.",
+        "current": "The extension now exposes /wiki-code, which resumes the current focused task or picks the next open task, links session focus, and queues implementation from roadmap/spec truth.",
+        "closure": "Done by adding /wiki-code, documenting the five-command public UX, and covering resume behavior in smoke tests."
+      },
+      "created": "2026-04-18",
+      "updated": "2026-04-18"
     }
   }
 }

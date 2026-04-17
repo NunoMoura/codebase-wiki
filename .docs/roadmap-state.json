@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-04-17T23:24:10Z",
+  "generated_at": "2026-04-17T23:46:37Z",
   "health": {
     "color": "green",
     "errors": 0,
@@ -8,16 +8,16 @@
     "total_issues": 0
   },
   "summary": {
-    "task_count": 14,
+    "task_count": 15,
     "open_count": 1,
     "status_counts": {
-      "done": 13,
+      "done": 14,
       "todo": 1
     },
     "priority_counts": {
       "critical": 2,
       "high": 7,
-      "medium": 5
+      "medium": 6
     }
   },
   "views": {
@@ -35,7 +35,8 @@
       "TASK-011",
       "TASK-012",
       "TASK-013",
-      "TASK-014"
+      "TASK-014",
+      "TASK-015"
     ],
     "open_task_ids": [
       "TASK-014"
@@ -58,10 +59,12 @@
       "TASK-005",
       "TASK-007",
       "TASK-009",
-      "TASK-013"
+      "TASK-013",
+      "TASK-015"
     ],
     "cancelled_task_ids": [],
     "recent_task_ids": [
+      "TASK-015",
       "TASK-014",
       "TASK-013",
       "TASK-012",
@@ -413,6 +416,31 @@
         "scripts/smoke-test.mjs"
       ],
       "updated": "2026-04-17"
+    },
+    "TASK-015": {
+      "id": "TASK-015",
+      "title": "Add wiki-code implementation resume command",
+      "status": "done",
+      "priority": "medium",
+      "kind": "agent-workflow",
+      "summary": "Expose a user-facing wiki-code command that resumes the focused roadmap task or picks the next open task and queues implementation work.",
+      "labels": [
+        "commands",
+        "roadmap",
+        "implementation"
+      ],
+      "spec_paths": [
+        "docs/specs/package/overview.md",
+        "docs/specs/extension/overview.md",
+        "docs/specs/extension/roadmap-ui.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs",
+        "skills/codewiki/SKILL.md",
+        "README.md"
+      ],
+      "updated": "2026-04-18"
     }
   }
 }

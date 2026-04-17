@@ -1,10 +1,10 @@
 # codewiki Docs Index
 
-Generated: 2026-04-17T23:24:10Z
+Generated: 2026-04-17T23:46:37Z
 
 ## Roadmap
 
-- [Roadmap](roadmap.md) — 14 task(s); done=13, todo=1
+- [Roadmap](roadmap.md) — 15 task(s); done=14, todo=1
 
 ## Specs — Root
 
