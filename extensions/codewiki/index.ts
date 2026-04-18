@@ -333,7 +333,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
     }
 
     await withUiErrorHandling(ctx, async () => {
-      const active = findLatestTaskSessionLink(ctx.sessionManager.getBranch());
+      const active = currentTaskLink(ctx);
       if (!active) {
         ctx.ui.setStatus("codewiki-task", undefined);
         await refreshRoadmapWidget(project, ctx);
@@ -1745,7 +1745,8 @@ function parseTaskSessionLinkEntry(entry: unknown): TaskSessionLinkRecord | null
   }
 }
 
-function findLatestTaskSessionLink(entries: unknown[]): TaskSessionLinkRecord | null {
+function findLatestTaskSessionLink(entries: unknown[] | null | undefined): TaskSessionLinkRecord | null {
+  if (!Array.isArray(entries) || entries.length === 0) return null;
   for (let index = entries.length - 1; index >= 0; index -= 1) {
     const parsed = parseTaskSessionLinkEntry(entries[index]);
     if (parsed) return parsed;

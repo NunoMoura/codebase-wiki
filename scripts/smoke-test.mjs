@@ -424,6 +424,18 @@ async function main() {
       },
     });
 
+    await extension.hooks?.onTurnStart?.({ role: "user", content: "check status" }, {
+      cwd: outsideDir,
+      ui: {
+        setStatus: () => {},
+        setWidget: () => {},
+        notify: (message, level) => errorNotifications.push({ message, level }),
+      },
+      sessionManager: {
+        getSessionId: () => "session-no-branch",
+      },
+    });
+
     const lint = JSON.parse(readFileSync(resolve(projectDir, ".wiki", "lint.json"), "utf8"));
     const registry = JSON.parse(readFileSync(resolve(projectDir, ".wiki", "registry.json"), "utf8"));
     const config = JSON.parse(readFileSync(resolve(projectDir, ".wiki", "config.json"), "utf8"));
