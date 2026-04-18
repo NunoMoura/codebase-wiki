@@ -21,10 +21,10 @@ That is the right shape for this package:
 Public command surface is intentionally small:
 
 - `/wiki-bootstrap [project name] [--force]`
-- `/wiki-status [docs|code|both]`
-- `/wiki-fix [docs|code|both]`
-- `/wiki-review [idea|architecture]`
-- `/wiki-code [TASK-###]`
+- `/wiki-status [docs|code|both] [repo-path]`
+- `/wiki-fix [docs|code|both] [repo-path]`
+- `/wiki-review [idea|architecture] [repo-path]`
+- `/wiki-code [TASK-###] [repo-path]`
 
 ### Internal agent tools
 
@@ -96,6 +96,7 @@ Why:
 - Pi packages can be installed globally via `~/.pi/agent/settings.json`
 - Pi project settings are cwd-scoped, so repo binding should live in repo-local wiki config, not package install location
 - runtime operations can discover the nearest ancestor containing `.wiki/config.json`
+- when current cwd is outside a repo wiki, commands can accept an explicit repo path or offer a repo picker in UI mode
 - one global install can operate across many repos
 
 ### Recommended: global install
@@ -298,6 +299,8 @@ Starter bootstrap includes:
 
 `/wiki-review` is the senior analysis command. Use `idea` for business value and product coherence review, or `architecture` for technical execution and design review.
 
+`/wiki-status`, `/wiki-fix`, `/wiki-review`, and `/wiki-code` all accept an optional repo path. If Pi is running outside a repo with `wiki/` and `.wiki/`, pass the target repo path explicitly. In UI mode, commands can also offer a repo picker when no repo-local wiki is found from current cwd.
+
 `/wiki-code` is the implementation segue. With no argument it resumes the current focused roadmap task when one exists, otherwise it picks the next open task from the roadmap working set. Pass `TASK-###` to force a specific open task.
 
 ### Roadmap TUI
@@ -310,7 +313,9 @@ Per Pi's settings model, project settings are loaded from `<cwd>/.pi/settings.js
 
 Runtime rule:
 
-- resolve the nearest ancestor containing `.wiki/config.json` from current cwd
+- first resolve the nearest ancestor containing `.wiki/config.json` from current cwd
+- if no repo-local wiki exists from current cwd, `/wiki-status`, `/wiki-fix`, `/wiki-review`, and `/wiki-code` may target an explicit repo path instead
+- in UI mode, those commands may offer a picker across candidate repos discovered below current cwd
 - if no wiki exists yet, `/wiki-bootstrap` targets the enclosing git repo root when present, else the current working directory
 
 It then uses that repo config to:

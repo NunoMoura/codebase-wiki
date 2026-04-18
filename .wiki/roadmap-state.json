@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-04-18T00:00:36Z",
+  "generated_at": "2026-04-18T00:21:07Z",
   "health": {
     "color": "green",
     "errors": 0,
@@ -8,14 +8,14 @@
     "total_issues": 0
   },
   "summary": {
-    "task_count": 15,
+    "task_count": 16,
     "open_count": 0,
     "status_counts": {
-      "done": 15
+      "done": 16
     },
     "priority_counts": {
       "critical": 2,
-      "high": 7,
+      "high": 8,
       "medium": 6
     }
   },
@@ -35,7 +35,8 @@
       "TASK-012",
       "TASK-013",
       "TASK-014",
-      "TASK-015"
+      "TASK-015",
+      "TASK-016"
     ],
     "open_task_ids": [],
     "in_progress_task_ids": [],
@@ -51,6 +52,7 @@
       "TASK-011",
       "TASK-012",
       "TASK-014",
+      "TASK-016",
       "TASK-004",
       "TASK-005",
       "TASK-007",
@@ -60,6 +62,7 @@
     ],
     "cancelled_task_ids": [],
     "recent_task_ids": [
+      "TASK-016",
       "TASK-015",
       "TASK-014",
       "TASK-013",
@@ -434,6 +437,31 @@
         "extensions/codewiki/index.ts",
         "scripts/smoke-test.mjs",
         "skills/codewiki/SKILL.md",
+        "README.md"
+      ],
+      "updated": "2026-04-18"
+    },
+    "TASK-016": {
+      "id": "TASK-016",
+      "title": "Add explicit repo targeting and fallback project picker for wiki commands",
+      "status": "done",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Let global wiki commands accept an explicit repo path, offer a project picker when cwd has no wiki, and explain global-vs-local targeting clearly in command errors.",
+      "labels": [
+        "global-install",
+        "targeting",
+        "ux"
+      ],
+      "spec_paths": [
+        "wiki/specs/package/overview.md",
+        "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/roadmap-ui.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/project-root.ts",
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs",
         "README.md"
       ],
       "updated": "2026-04-18"

@@ -8,7 +8,7 @@ import { Container, Markdown, matchesKey, type SelectItem, SelectList, Text, tru
 import { Type } from "@sinclair/typebox";
 import { registerBootstrapFeatures } from "./bootstrap";
 import { withLockedPaths } from "./mutation-queue";
-import { PREFERRED_WIKI_CONFIG_RELATIVE_PATH, requireWikiRoot, resolveWikiConfigPath } from "./project-root";
+import { findWikiRootsBelow, PREFERRED_WIKI_CONFIG_RELATIVE_PATH, requireWikiRoot, resolveWikiConfigPath } from "./project-root";
 
 const execFileAsync = promisify(execFile);
 const DEFAULT_DOCS_ROOT = "wiki";
@@ -333,13 +333,13 @@ export default function codewikiExtension(pi: ExtensionAPI) {
   });
 
   pi.registerCommand(`${COMMAND_PREFIX}-status`, {
-    description: "Review wiki health and drift across docs, code, or both. Usage: /wiki-status [docs|code|both]",
+    description: "Review wiki health and drift across docs, code, or both. Usage: /wiki-status [docs|code|both] [repo-path]",
     getArgumentCompletions: (prefix) => completeCommandOptions(prefix, STATUS_SCOPE_VALUES),
     handler: async (args, ctx) => {
       await withUiErrorHandling(ctx, async () => {
-        const scope = normalizeStatusScope(args);
-        const project = await loadProject(ctx.cwd);
-        const summary = await rebuildAndSummarize(ctx.cwd);
+        const { scope, pathArg } = normalizeStatusArgs(args);
+        const project = await resolveCommandProject(ctx, pathArg, `${COMMAND_PREFIX}-status`);
+        const summary = await rebuildAndSummarize(project);
         const registry = await maybeReadJson<RegistryFile>(project.registryPath);
         const roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
         const text = buildStatusText(project, registry, summary.report, scope, roadmapState, currentTaskLink(ctx));
@@ -351,13 +351,13 @@ export default function codewikiExtension(pi: ExtensionAPI) {
   });
 
   pi.registerCommand(`${COMMAND_PREFIX}-fix`, {
-    description: "Fix wiki drift in docs, code, or both. Usage: /wiki-fix [docs|code|both]",
+    description: "Fix wiki drift in docs, code, or both. Usage: /wiki-fix [docs|code|both] [repo-path]",
     getArgumentCompletions: (prefix) => completeCommandOptions(prefix, STATUS_SCOPE_VALUES),
     handler: async (args, ctx) => {
       await withUiErrorHandling(ctx, async () => {
-        const scope = normalizeStatusScope(args);
-        const project = await loadProject(ctx.cwd);
-        const summary = await rebuildAndSummarize(ctx.cwd);
+        const { scope, pathArg } = normalizeStatusArgs(args);
+        const project = await resolveCommandProject(ctx, pathArg, `${COMMAND_PREFIX}-fix`);
+        const summary = await rebuildAndSummarize(project);
         const registry = await maybeReadJson<RegistryFile>(project.registryPath);
         ctx.ui.notify(`${project.label}: queued ${scope} wiki-fix flow. Deterministic preflight is ${statusColor(summary.report)}.`, statusLevel(summary.report));
         await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
@@ -367,13 +367,13 @@ export default function codewikiExtension(pi: ExtensionAPI) {
   });
 
   pi.registerCommand(`${COMMAND_PREFIX}-review`, {
-    description: "Review project direction through idea or architecture lenses. Usage: /wiki-review [idea|architecture]",
+    description: "Review project direction through idea or architecture lenses. Usage: /wiki-review [idea|architecture] [repo-path]",
     getArgumentCompletions: (prefix) => completeCommandOptions(prefix, REVIEW_MODE_VALUES),
     handler: async (args, ctx) => {
       await withUiErrorHandling(ctx, async () => {
-        const mode = normalizeReviewMode(args);
-        const project = await loadProject(ctx.cwd);
-        const summary = await rebuildAndSummarize(ctx.cwd);
+        const { mode, pathArg } = normalizeReviewArgs(args);
+        const project = await resolveCommandProject(ctx, pathArg, `${COMMAND_PREFIX}-review`);
+        const summary = await rebuildAndSummarize(project);
         const registry = await maybeReadJson<RegistryFile>(project.registryPath);
         ctx.ui.notify(`${project.label}: queued ${mode} review. Deterministic preflight is ${statusColor(summary.report)}.`, statusLevel(summary.report));
         await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
@@ -383,12 +383,12 @@ export default function codewikiExtension(pi: ExtensionAPI) {
   });
 
   pi.registerCommand(`${COMMAND_PREFIX}-code`, {
-    description: "Resume roadmap implementation from current task focus or next open task. Usage: /wiki-code [TASK-###]",
+    description: "Resume roadmap implementation from current task focus or next open task. Usage: /wiki-code [TASK-###] [repo-path]",
     handler: async (args, ctx) => {
       await withUiErrorHandling(ctx, async () => {
-        const requestedTaskId = normalizeRequestedTaskId(args);
-        const project = await loadProject(ctx.cwd);
-        const summary = await rebuildAndSummarize(ctx.cwd);
+        const { requestedTaskId, pathArg } = normalizeCodeArgs(args);
+        const project = await resolveCommandProject(ctx, pathArg, `${COMMAND_PREFIX}-code`);
+        const summary = await rebuildAndSummarize(project);
         const registry = await maybeReadJson<RegistryFile>(project.registryPath);
         const roadmap = await readRoadmapFile(resolve(project.root, project.roadmapPath));
         const task = resolveImplementationTask(roadmap, currentTaskLink(ctx), requestedTaskId);
@@ -559,16 +559,14 @@ function completeCommandOptions(prefix: string, options: readonly string[]): { v
   return items.length > 0 ? items.map((value) => ({ value, label: value })) : null;
 }
 
-function normalizeStatusScope(args: string): StatusScope {
-  const value = args.trim().split(/\s+/, 1)[0] || "both";
-  if ((STATUS_SCOPE_VALUES as readonly string[]).includes(value)) return value as StatusScope;
-  throw new Error(`Invalid wiki scope: ${value}. Use docs, code, or both.`);
+function normalizeStatusArgs(args: string): { scope: StatusScope; pathArg: string | null } {
+  const parsed = parseEnumAndPath(args, STATUS_SCOPE_VALUES, "both");
+  return { scope: parsed.value as StatusScope, pathArg: parsed.pathArg };
 }
 
-function normalizeReviewMode(args: string): ReviewMode {
-  const value = args.trim().split(/\s+/, 1)[0] || "architecture";
-  if ((REVIEW_MODE_VALUES as readonly string[]).includes(value)) return value as ReviewMode;
-  throw new Error(`Invalid review mode: ${value}. Use idea or architecture.`);
+function normalizeReviewArgs(args: string): { mode: ReviewMode; pathArg: string | null } {
+  const parsed = parseEnumAndPath(args, REVIEW_MODE_VALUES, "architecture");
+  return { mode: parsed.value as ReviewMode, pathArg: parsed.pathArg };
 }
 
 interface DriftContext {
@@ -980,8 +978,83 @@ function codePrompt(project: WikiProject, registry: RegistryFile | null, report:
   ].join("\n");
 }
 
-async function rebuildAndSummarize(cwd: string): Promise<{ text: string; issueCount: number; report: LintReport }> {
-  const project = await loadProject(cwd);
+async function resolveCommandProject(ctx: ExtensionCommandContext, pathArg: string | null, commandName: string): Promise<WikiProject> {
+  if (pathArg) {
+    const requestedPath = resolve(ctx.cwd, pathArg);
+    try {
+      return await loadProject(requestedPath);
+    } catch (error) {
+      throw new Error(`${commandName}: could not resolve repo path ${requestedPath}. ${formatError(error)}`);
+    }
+  }
+
+  try {
+    return await loadProject(ctx.cwd);
+  } catch {
+    const candidates = await findWikiRootsBelow(ctx.cwd);
+    if (candidates.length > 0) {
+      const pickedRoot = await pickCommandProjectRoot(ctx, commandName, candidates);
+      if (pickedRoot) return await loadProject(pickedRoot);
+    }
+    throw new Error(buildGlobalCommandHelp(ctx.cwd, commandName, candidates));
+  }
+}
+
+async function pickCommandProjectRoot(ctx: ExtensionCommandContext, commandName: string, roots: string[]): Promise<string | null> {
+  if (!ctx.hasUI || typeof ctx.ui.custom !== "function") return null;
+  const items = roots.map((root) => ({
+    value: root,
+    label: basename(root) || root,
+    description: root,
+  }));
+
+  return ctx.ui.custom<string | null>((tui, theme, _kb, done) => {
+    const container = new Container();
+    const border = new DynamicBorder((s: string) => theme.fg("accent", s));
+    container.addChild(border);
+    container.addChild(new Text(theme.fg("accent", theme.bold(`Choose wiki project for /${commandName}`)), 1, 0));
+    container.addChild(new Text(theme.fg("muted", `${items.length} candidate repo(s) found below ${ctx.cwd}`), 1, 0));
+
+    const selectList = new SelectList(items, Math.min(Math.max(items.length, 4), 12), {
+      selectedPrefix: (text) => theme.fg("accent", text),
+      selectedText: (text) => theme.fg("accent", text),
+      description: (text) => theme.fg("muted", truncateToWidth(text, Math.max((tui?.terminal?.columns ?? 100) - 8, 20))),
+      scrollInfo: (text) => theme.fg("dim", text),
+      noMatch: (text) => theme.fg("warning", text),
+    });
+    selectList.onSelect = (item) => done(item.value);
+    selectList.onCancel = () => done(null);
+    container.addChild(selectList);
+    container.addChild(new Text(theme.fg("dim", "Type to filter • ↑↓ choose repo • Enter select • Esc cancel"), 1, 0));
+    container.addChild(border);
+
+    return {
+      render: () => container.render(tui?.terminal?.columns ?? 100, 16),
+      invalidate: () => container.invalidate(),
+      handleInput: (data: string) => {
+        selectList.handleInput(data);
+        tui.requestRender();
+      },
+    };
+  });
+}
+
+function buildGlobalCommandHelp(cwd: string, commandName: string, candidates: string[]): string {
+  const lines = [
+    `No repo-local wiki found from ${cwd}.`,
+    "codewiki commands are loaded globally, but each run targets one repo-local wiki.",
+    `Try one of these: cd into the repo, run /${commandName} /path/to/repo, or use the picker in UI mode.`,
+  ];
+  if (candidates.length > 0) {
+    lines.push("Candidate repos below current cwd:", ...candidates.slice(0, 8).map((root) => `- ${root}`));
+  } else {
+    lines.push(`No ${PREFERRED_WIKI_CONFIG_RELATIVE_PATH} or .docs/config.json found below current cwd.`);
+  }
+  return lines.join("\n");
+}
+
+async function rebuildAndSummarize(projectOrCwd: WikiProject | string): Promise<{ text: string; issueCount: number; report: LintReport }> {
+  const project = typeof projectOrCwd === "string" ? await loadProject(projectOrCwd) : projectOrCwd;
   await runRebuild(project);
   const report = await readJson<LintReport>(project.lintPath);
   const kinds = Object.entries(report.counts)
@@ -994,8 +1067,8 @@ async function rebuildAndSummarize(cwd: string): Promise<{ text: string; issueCo
   return { text, issueCount, report };
 }
 
-async function readStatus(cwd: string): Promise<string> {
-  const project = await loadProject(cwd);
+async function readStatus(projectOrCwd: WikiProject | string): Promise<string> {
+  const project = typeof projectOrCwd === "string" ? await loadProject(projectOrCwd) : projectOrCwd;
   const registry = await maybeReadJson<RegistryFile>(project.registryPath);
   const report = await maybeReadJson<LintReport>(project.lintPath);
   const roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
@@ -1125,6 +1198,49 @@ function formatRoadmapCounts(roadmap: RoadmapFile): string {
 function normalizeRequestedTaskId(args: string): string | null {
   const trimmed = args.trim();
   return trimmed ? trimmed : null;
+}
+
+function normalizeCodeArgs(args: string): { requestedTaskId: string | null; pathArg: string | null } {
+  const tokens = splitCommandArgs(args);
+  if (tokens.length === 0) return { requestedTaskId: null, pathArg: null };
+
+  const first = tokens[0];
+  const last = tokens[tokens.length - 1];
+  if (isRoadmapTaskToken(first)) {
+    return { requestedTaskId: first, pathArg: joinCommandArgs(tokens.slice(1)) };
+  }
+  if (tokens.length > 1 && isRoadmapTaskToken(last)) {
+    return { requestedTaskId: last, pathArg: joinCommandArgs(tokens.slice(0, -1)) };
+  }
+  return { requestedTaskId: null, pathArg: joinCommandArgs(tokens) };
+}
+
+function parseEnumAndPath<T extends string>(args: string, values: readonly T[], defaultValue: T): { value: T; pathArg: string | null } {
+  const tokens = splitCommandArgs(args);
+  if (tokens.length === 0) return { value: defaultValue, pathArg: null };
+
+  const first = tokens[0] as T;
+  const last = tokens[tokens.length - 1] as T;
+  if ((values as readonly string[]).includes(first)) {
+    return { value: first, pathArg: joinCommandArgs(tokens.slice(1)) };
+  }
+  if (tokens.length > 1 && (values as readonly string[]).includes(last)) {
+    return { value: last, pathArg: joinCommandArgs(tokens.slice(0, -1)) };
+  }
+  return { value: defaultValue, pathArg: joinCommandArgs(tokens) };
+}
+
+function splitCommandArgs(args: string): string[] {
+  return args.trim().split(/\s+/).filter(Boolean);
+}
+
+function joinCommandArgs(tokens: string[]): string | null {
+  const value = tokens.join(" ").trim();
+  return value ? value : null;
+}
+
+function isRoadmapTaskToken(value: string): boolean {
+  return /^(TASK|ROADMAP)-\d+$/i.test(value);
 }
 
 function resolveImplementationTask(roadmap: RoadmapFile, activeLink: TaskSessionLinkRecord | null, requestedTaskId: string | null): RoadmapTaskRecord | null {

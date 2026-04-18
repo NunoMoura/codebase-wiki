@@ -10,7 +10,7 @@ updated: '2026-04-18'
 
 # Roadmap
 
-Generated: 2026-04-18T00:00:36Z
+Generated: 2026-04-18T00:21:07Z
 
 Canonical source: [roadmap.json](roadmap.json)
 
@@ -321,6 +321,26 @@ _None._
 - Desired: Users can jump back into roadmap-driven implementation with one command while wiki mutations remain automatic behind agent intent.
 - Current: The extension now exposes /wiki-code, which resumes the current focused task or picks the next open task, links session focus, and queues implementation from roadmap/spec truth.
 - Closure: Done by adding /wiki-code, documenting the five-command public UX, and covering resume behavior in smoke tests.
+
+### TASK-016 — Add explicit repo targeting and fallback project picker for wiki commands
+
+- Status: done
+- Priority: high
+- Kind: agent-workflow
+- Summary: Let global wiki commands accept an explicit repo path, offer a project picker when cwd has no wiki, and explain global-vs-local targeting clearly in command errors.
+- Specs:
+  - [wiki/specs/package/overview.md](specs/package/overview.md)
+  - [wiki/specs/extension/overview.md](specs/extension/overview.md)
+  - [wiki/specs/extension/roadmap-ui.md](specs/extension/roadmap-ui.md)
+- Code:
+  - extensions/codewiki/project-root.ts
+  - extensions/codewiki/index.ts
+  - scripts/smoke-test.mjs
+  - README.md
+- Labels: global-install, targeting, ux
+- Desired: Wiki commands stay globally available in Pi while safely targeting either nearest repo-local wiki from cwd or an explicitly chosen repo.
+- Current: Status, fix, review, and code commands now accept explicit repo paths, discover candidate repos below current cwd for UI picker fallback, and report clearer global-vs-local targeting guidance when no wiki is found.
+- Closure: Done by adding explicit path parsing for public commands, repo discovery + picker fallback, clearer missing-target errors, smoke coverage for path/picker/error behavior, and matching docs/spec updates.
 
 ## Related docs
 

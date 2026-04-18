@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-04-18T00:15:00Z",
+  "updated": "2026-04-18T01:10:00Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -16,7 +16,8 @@
     "TASK-012",
     "TASK-013",
     "TASK-014",
-    "TASK-015"
+    "TASK-015",
+    "TASK-016"
   ],
   "tasks": {
     "TASK-001": {
@@ -488,6 +489,38 @@
         "desired": "Users can jump back into roadmap-driven implementation with one command while wiki mutations remain automatic behind agent intent.",
         "current": "The extension now exposes /wiki-code, which resumes the current focused task or picks the next open task, links session focus, and queues implementation from roadmap/spec truth.",
         "closure": "Done by adding /wiki-code, documenting the five-command public UX, and covering resume behavior in smoke tests."
+      },
+      "created": "2026-04-18",
+      "updated": "2026-04-18"
+    },
+    "TASK-016": {
+      "id": "TASK-016",
+      "title": "Add explicit repo targeting and fallback project picker for wiki commands",
+      "status": "done",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Let global wiki commands accept an explicit repo path, offer a project picker when cwd has no wiki, and explain global-vs-local targeting clearly in command errors.",
+      "spec_paths": [
+        "wiki/specs/package/overview.md",
+        "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/roadmap-ui.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/project-root.ts",
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs",
+        "README.md"
+      ],
+      "research_ids": [],
+      "labels": [
+        "global-install",
+        "targeting",
+        "ux"
+      ],
+      "delta": {
+        "desired": "Wiki commands stay globally available in Pi while safely targeting either nearest repo-local wiki from cwd or an explicitly chosen repo.",
+        "current": "Status, fix, review, and code commands now accept explicit repo paths, discover candidate repos below current cwd for UI picker fallback, and report clearer global-vs-local targeting guidance when no wiki is found.",
+        "closure": "Done by adding explicit path parsing for public commands, repo discovery + picker fallback, clearer missing-target errors, smoke coverage for path/picker/error behavior, and matching docs/spec updates."
       },
       "created": "2026-04-18",
       "updated": "2026-04-18"

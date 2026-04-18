@@ -2,7 +2,7 @@
 id: spec.extension.overview
 title: Extension Runtime
 state: active
-summary: Extension owns intelligent bootstrap, status, fix, review, and internal roadmap/session operations for repo-local codebase wikis discovered from current cwd.
+summary: Extension owns intelligent bootstrap, status, fix, review, and internal roadmap/session operations for repo-local codebase wikis discovered from current cwd or targeted explicitly by repo path/picker.
 owners:
 - engineering
 updated: '2026-04-17'
@@ -52,7 +52,7 @@ Internal agent tools may remain more granular:
 
 ## Drift and fix expectation
 
-`/wiki-status` should classify wiki health as green, yellow, or red and list per-spec drift signals. `wiki-fix` should use repo evidence first, ask only high-value clarifying questions when needed, emit structured roadmap tasks through `codewiki_roadmap_append` only when unresolved work is genuinely new, and use `codewiki_roadmap_update` when an existing task already covers the delta but needs mutation.
+`/wiki-status` should classify wiki health as green, yellow, or red and list per-spec drift signals. `wiki-fix` should use repo evidence first, ask only high-value clarifying questions when needed, emit structured roadmap tasks through `codewiki_roadmap_append` only when unresolved work is genuinely new, and use `codewiki_roadmap_update` when an existing task already covers the delta but needs mutation. These public commands should stay globally available in Pi while targeting a repo-local wiki by nearest ancestor, explicit repo path, or UI picker fallback.
 
 `/wiki-code` should resume implementation from the current focused roadmap task when possible, otherwise pick the next actionable open task, then queue implementation grounded in roadmap + spec truth without requiring a separate user-facing wiki mutation command.
 

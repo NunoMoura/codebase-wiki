@@ -34,6 +34,8 @@ Runtime should bind to repo-local `.wiki/config.json`, not `.pi/settings.json`.
 Discovery rule:
 
 - resolve the nearest ancestor containing `.wiki/config.json` from current cwd
+- if no repo-local wiki is found from current cwd, public commands may accept an explicit repo path
+- in UI mode, public commands may offer a repo picker across candidate repos found below current cwd
 - if no wiki exists yet, `/wiki-bootstrap` targets enclosing git repo root when present, else current working directory
 
 ## Brownfield bootstrap goal

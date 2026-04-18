@@ -158,6 +158,9 @@ async function main() {
     writeFileSync(resolve(projectDir, "packages", "sdk", "package.json"), JSON.stringify({ name: "@smoke/sdk" }, null, 2));
     const nestedDir = resolve(projectDir, "packages", "nested", "worktree");
     mkdirSync(nestedDir, { recursive: true });
+    const outsideDir = dirname(projectDir);
+    const blankDir = resolve(outsideDir, "blank-worktree");
+    mkdirSync(blankDir, { recursive: true });
 
     const loader = new DefaultResourceLoader({ cwd: projectDir });
     await loader.reload();
@@ -287,6 +290,7 @@ async function main() {
     const fixNotifications = [];
     const reviewNotifications = [];
     const codeNotifications = [];
+    const errorNotifications = [];
     const taskStatuses = [];
     const widgetState = { key: null, content: null, options: null };
     const renderWidget = () => {
@@ -300,8 +304,8 @@ async function main() {
     };
     const statusCommand = extension.commands.get("wiki-status");
     assert.ok(statusCommand && typeof statusCommand.handler === "function", "wiki-status command missing handler");
-    await statusCommand.handler("both", {
-      cwd: nestedDir,
+    await statusCommand.handler(`both ${projectDir}`, {
+      cwd: outsideDir,
       isIdle: () => true,
       sessionManager: toolCtx.sessionManager,
       ui: {
@@ -316,10 +320,12 @@ async function main() {
     const fixCommand = extension.commands.get("wiki-fix");
     assert.ok(fixCommand && typeof fixCommand.handler === "function", "wiki-fix command missing handler");
     await fixCommand.handler("docs", {
-      cwd: nestedDir,
+      cwd: outsideDir,
+      hasUI: true,
       isIdle: () => true,
       sessionManager: toolCtx.sessionManager,
       ui: {
+        custom: async () => projectDir,
         notify: (message, level) => fixNotifications.push({ message, level }),
         setWidget: (key, content, options) => {
           widgetState.key = key;
@@ -330,8 +336,8 @@ async function main() {
     });
     const reviewCommand = extension.commands.get("wiki-review");
     assert.ok(reviewCommand && typeof reviewCommand.handler === "function", "wiki-review command missing handler");
-    await reviewCommand.handler("architecture", {
-      cwd: nestedDir,
+    await reviewCommand.handler(`${projectDir} architecture`, {
+      cwd: outsideDir,
       isIdle: () => true,
       sessionManager: toolCtx.sessionManager,
       ui: {
@@ -346,10 +352,12 @@ async function main() {
     const codeCommand = extension.commands.get("wiki-code");
     assert.ok(codeCommand && typeof codeCommand.handler === "function", "wiki-code command missing handler");
     await codeCommand.handler("", {
-      cwd: nestedDir,
+      cwd: outsideDir,
+      hasUI: true,
       isIdle: () => true,
       sessionManager: toolCtx.sessionManager,
       ui: {
+        custom: async () => projectDir,
         notify: (message, level) => codeNotifications.push({ message, level }),
         setStatus: (key, value) => taskStatuses.push({ key, value }),
         setWidget: (key, content, options) => {
@@ -357,6 +365,15 @@ async function main() {
           widgetState.content = content;
           widgetState.options = options;
         },
+      },
+    });
+
+    await statusCommand.handler("both", {
+      cwd: blankDir,
+      isIdle: () => true,
+      sessionManager: toolCtx.sessionManager,
+      ui: {
+        notify: (message, level) => errorNotifications.push({ message, level }),
       },
     });
 
@@ -413,6 +430,7 @@ async function main() {
     assert.equal(roadmapState.tasks["TASK-001"].id, "TASK-001", "Roadmap state should carry task identifiers");
     assert.ok(roadmapState.tasks["TASK-001"].title, "Roadmap state should carry task display data");
     assert.doesNotMatch(roadmapText, /Session links:/, "Generated roadmap view should not persist session linkage metadata");
+    assert.match(statusNotifications[0]?.message ?? "", /Wiki: Smoke Wiki/, "wiki-status should resolve explicit repo paths from outside cwd");
     assert.match(statusNotifications[0]?.message ?? "", /Scope: both/, "wiki-status should report the requested scope");
     assert.match(statusNotifications[0]?.message ?? "", /Roadmap working set:/, "wiki-status should include the compact roadmap working set");
     assert.match(statusNotifications[0]?.message ?? "", /Specs and mapped drift signals:/, "wiki-status should list spec drift mapping");
@@ -423,6 +441,9 @@ async function main() {
     assert.match(reviewNotifications[0]?.message ?? "", /queued architecture review/i, "wiki-review should queue the requested review mode");
     assert.match(codeNotifications[0]?.message ?? "", /queued implementation for TASK-001/i, "wiki-code should resume implementation from the focused roadmap task");
     assert.ok(taskStatuses.some((entry) => entry.key === "codewiki-task" && /TASK-001 progress/i.test(String(entry.value))), "wiki-code should refresh task focus status");
+    assert.match(errorNotifications[0]?.message ?? "", /No repo-local wiki found from/, "Missing-target errors should explain why global commands could not pick a repo");
+    assert.match(errorNotifications[0]?.message ?? "", /loaded globally, but each run targets one repo-local wiki/i, "Missing-target errors should explain global-vs-local targeting");
+    assert.match(errorNotifications[0]?.message ?? "", /\/wiki-status \/path\/to\/repo/, "Missing-target errors should suggest passing an explicit repo path");
   });
   console.log(`✓ bootstrap smoke test passed (Python: ${python.command}, PyYAML: ${python.yamlVersion})`);
 

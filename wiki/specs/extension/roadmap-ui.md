@@ -82,7 +82,7 @@ The public command surface stays:
 - `/wiki-review`
 - `/wiki-code`
 
-Roadmap/task TUI improvements should not require additional public commands beyond this core workflow. Richer UI affordances may be added later, but they should consume the same canonical roadmap/task model, plus live Pi session focus, and the same derived `.wiki/roadmap-state.json` read contract.
+Roadmap/task TUI improvements should not require additional public commands beyond this core workflow. Richer UI affordances may be added later, but they should consume the same canonical roadmap/task model, plus live Pi session focus, and the same derived `.wiki/roadmap-state.json` read contract. One valid affordance is a repo picker that appears when a globally installed command runs outside any repo-local wiki root.
 
 ## Related docs
 
