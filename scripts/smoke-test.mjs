@@ -149,6 +149,7 @@ async function main() {
   await withTempDir("codewiki-bootstrap-", async (projectDir) => {
     mkdirSync(resolve(projectDir, ".pi"), { recursive: true });
     writeFileSync(resolve(projectDir, ".pi", "settings.json"), JSON.stringify({ packages: [repoRoot] }, null, 2));
+    process.env.PI_CODEWIKI_STATUS_PREFS_PATH = resolve(projectDir, ".pi", "codewiki-status.json");
     mkdirSync(resolve(projectDir, ".git"), { recursive: true });
     mkdirSync(resolve(projectDir, "frontend", "src"), { recursive: true });
     writeFileSync(resolve(projectDir, "frontend", "src", "index.ts"), "export const frontend = true;\n");
@@ -341,8 +342,8 @@ async function main() {
     const taskStatuses = [];
     const widgetState = { key: null, content: null, options: null };
     const renderWidget = () => {
-      assert.equal(widgetState.key, "codewiki-roadmap", "Expected roadmap widget key");
-      assert.ok(typeof widgetState.content === "function", "Expected roadmap widget render callback");
+      assert.equal(widgetState.key, "codewiki-status-dock", "Expected status dock widget key");
+      assert.ok(typeof widgetState.content === "function", "Expected status dock render callback");
       const instance = widgetState.content(
         { terminal: { columns: 120 }, requestRender: () => {} },
         { fg: (_color, text) => text, bold: (text) => text },
@@ -364,6 +365,22 @@ async function main() {
         },
       },
     });
+    await statusCommand.handler(`dock pin ${projectDir}`, {
+      cwd: outsideDir,
+      isIdle: () => true,
+      sessionManager: toolCtx.sessionManager,
+      ui: {
+        notify: (message, level) => statusNotifications.push({ message, level }),
+        setWidget: (key, content, options) => {
+          widgetState.key = key;
+          widgetState.content = content;
+          widgetState.options = options;
+        },
+      },
+    });
+    const dockPrefs = JSON.parse(readFileSync(resolve(projectDir, ".pi", "codewiki-status.json"), "utf8"));
+    assert.equal(dockPrefs.mode, "pin", "wiki-status dock pin should persist pinned dock mode");
+    assert.equal(dockPrefs.pinnedRepoPath, projectDir, "wiki-status dock pin should persist pinned repo path");
     const fixCommand = extension.commands.get("wiki-fix");
     assert.ok(fixCommand && typeof fixCommand.handler === "function", "wiki-fix command missing handler");
     await fixCommand.handler("docs", {
@@ -446,6 +463,7 @@ async function main() {
     const roadmapJson = JSON.parse(readFileSync(resolve(projectDir, "wiki", "roadmap.json"), "utf8"));
     const roadmapEvents = readFileSync(resolve(projectDir, ".wiki", "roadmap-events.jsonl"), "utf8");
     const roadmapState = JSON.parse(readFileSync(resolve(projectDir, ".wiki", "roadmap-state.json"), "utf8"));
+    const statusState = JSON.parse(readFileSync(resolve(projectDir, ".wiki", "status-state.json"), "utf8"));
     const widgetLines = renderWidget();
     assert.ok(!existsSync(resolve(nestedDir, "wiki")), "Bootstrap should anchor wiki at the existing wiki root, not nested cwd");
 
@@ -488,14 +506,18 @@ async function main() {
     assert.ok(Array.isArray(roadmapState.views.open_task_ids) && roadmapState.views.open_task_ids.length >= 1, "Roadmap state should expose open task ids");
     assert.equal(roadmapState.tasks["TASK-001"].id, "TASK-001", "Roadmap state should carry task identifiers");
     assert.ok(roadmapState.tasks["TASK-001"].title, "Roadmap state should carry task display data");
+    assert.equal(statusState.version, 1, "Status state should expose v1 contract");
+    assert.equal(statusState.health.color, "green", "Status state should carry deterministic health color");
+    assert.ok(Array.isArray(statusState.specs) && statusState.specs.length >= 5, "Status state should carry derived spec rows");
+    assert.equal(statusState.bars.spec_mapping.percent, 100, "Smoke repo should have full spec mapping coverage");
+    assert.ok(typeof statusState.next_step.command === "string" && statusState.next_step.command.length > 0, "Status state should recommend a next step");
     assert.doesNotMatch(roadmapText, /Session links:/, "Generated roadmap view should not persist session linkage metadata");
     assert.match(statusNotifications[0]?.message ?? "", /Wiki: Smoke Wiki/, "wiki-status should resolve explicit repo paths from outside cwd");
-    assert.match(statusNotifications[0]?.message ?? "", /Scope: both/, "wiki-status should report the requested scope");
-    assert.match(statusNotifications[0]?.message ?? "", /Roadmap working set:/, "wiki-status should include the compact roadmap working set");
-    assert.match(statusNotifications[0]?.message ?? "", /Specs and mapped drift signals:/, "wiki-status should list spec drift mapping");
-    assert.equal(widgetState.options?.placement, "aboveEditor", "Roadmap widget should render above the editor");
-    assert.match(widgetLines[0] ?? "", /Wiki green .* open .* in progress .* blocked/i, "Roadmap widget header should summarize health and counts");
-    assert.match(widgetLines.join("\n"), /TASK-001/, "Roadmap widget should surface roadmap tasks");
+    assert.match(statusNotifications[0]?.message ?? "", /Tracked drift:/, "wiki-status should summarize tracked drift");
+    assert.match(statusNotifications[0]?.message ?? "", /Direction:/, "wiki-status should provide project direction");
+    assert.equal(widgetState.options?.placement, "aboveEditor", "Status dock should render above the editor");
+    assert.match(widgetLines[0] ?? "", /Smoke Wiki .* GREEN/i, "Status dock header should summarize repo health");
+    assert.match(widgetLines.join("\n"), /Next\s+\/wiki-code TASK-001/i, "Status dock should surface the next command");
     assert.match(fixNotifications[0]?.message ?? "", /queued docs wiki-fix flow/i, "wiki-fix should queue the requested fix scope");
     assert.match(reviewNotifications[0]?.message ?? "", /queued architecture review/i, "wiki-review should queue the requested review mode");
     assert.match(codeNotifications[0]?.message ?? "", /queued implementation for TASK-001/i, "wiki-code should resume implementation from the focused roadmap task");

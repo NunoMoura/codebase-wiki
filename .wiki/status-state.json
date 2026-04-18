@@ -1,0 +1,295 @@
+{
+  "version": 1,
+  "generated_at": "2026-04-18T08:12:15Z",
+  "project": {
+    "name": "codewiki",
+    "docs_root": "wiki",
+    "roadmap_path": "wiki/roadmap.json"
+  },
+  "health": {
+    "color": "green",
+    "errors": 0,
+    "warnings": 0,
+    "total_issues": 0
+  },
+  "summary": {
+    "total_specs": 8,
+    "mapped_specs": 4,
+    "aligned_specs": 4,
+    "tracked_specs": 0,
+    "untracked_specs": 0,
+    "blocked_specs": 0,
+    "unmapped_specs": 4,
+    "task_count": 18,
+    "open_task_count": 0,
+    "done_task_count": 18
+  },
+  "bars": {
+    "tracked_drift": {
+      "label": "Tracked drift",
+      "value": 0,
+      "total": 0,
+      "percent": 100
+    },
+    "roadmap_done": {
+      "label": "Roadmap done",
+      "value": 18,
+      "total": 18,
+      "percent": 100
+    },
+    "spec_mapping": {
+      "label": "Spec mapping",
+      "value": 4,
+      "total": 8,
+      "percent": 50
+    }
+  },
+  "views": {
+    "risky_spec_paths": [
+      "wiki/specs/package/overview.md",
+      "wiki/specs/product.md",
+      "wiki/specs/shared/overview.md",
+      "wiki/specs/system/overview.md",
+      "wiki/specs/extension/overview.md",
+      "wiki/specs/extension/roadmap-ui.md",
+      "wiki/specs/extension/status-dock.md",
+      "wiki/specs/templates/overview.md"
+    ],
+    "top_risky_spec_paths": [
+      "wiki/specs/package/overview.md",
+      "wiki/specs/product.md",
+      "wiki/specs/shared/overview.md",
+      "wiki/specs/system/overview.md",
+      "wiki/specs/extension/overview.md"
+    ],
+    "open_task_ids": []
+  },
+  "specs": [
+    {
+      "path": "wiki/specs/package/overview.md",
+      "title": "Package Surface",
+      "summary": "codewiki ships one extension and one skill as globally installable Pi package surface with repo-local wiki data.",
+      "drift_status": "unmapped",
+      "code_paths": [],
+      "code_area": "\u2014",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-008",
+        "TASK-018",
+        "TASK-010",
+        "TASK-012",
+        "TASK-016",
+        "TASK-017",
+        "TASK-007",
+        "TASK-015"
+      ],
+      "primary_task": null,
+      "note": "no mapped code area"
+    },
+    {
+      "path": "wiki/specs/product.md",
+      "title": "Product",
+      "summary": "codewiki gives Pi a repo-local, docs-first navigation and drift contract for development projects.",
+      "drift_status": "unmapped",
+      "code_paths": [],
+      "code_area": "\u2014",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-001"
+      ],
+      "primary_task": null,
+      "note": "no mapped code area"
+    },
+    {
+      "path": "wiki/specs/shared/overview.md",
+      "title": "Shared Rules",
+      "summary": "Shared documentation contract for maintaining codewiki itself with research, specs, and roadmap.",
+      "drift_status": "unmapped",
+      "code_paths": [],
+      "code_area": "\u2014",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-001",
+        "TASK-018",
+        "TASK-003",
+        "TASK-006",
+        "TASK-014",
+        "TASK-004",
+        "TASK-013"
+      ],
+      "primary_task": null,
+      "note": "no mapped code area"
+    },
+    {
+      "path": "wiki/specs/system/overview.md",
+      "title": "System Overview",
+      "summary": "codewiki is organized around package surface, extension runtime, starter templates, and generated metadata.",
+      "drift_status": "unmapped",
+      "code_paths": [],
+      "code_area": "\u2014",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-008",
+        "TASK-002",
+        "TASK-010",
+        "TASK-011",
+        "TASK-012"
+      ],
+      "primary_task": null,
+      "note": "no mapped code area"
+    },
+    {
+      "path": "wiki/specs/extension/overview.md",
+      "title": "Extension Runtime",
+      "summary": "Extension owns intelligent bootstrap, fix, review, status-dock rendering, and internal roadmap/session operations for repo-local codebase wikis discovered from current cwd or targeted explicitly by repo path/picker.",
+      "drift_status": "aligned",
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/bootstrap.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "code_area": "extensions +2 more",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-008",
+        "TASK-018",
+        "TASK-003",
+        "TASK-006",
+        "TASK-010",
+        "TASK-011",
+        "TASK-012",
+        "TASK-014",
+        "TASK-016",
+        "TASK-017",
+        "TASK-005",
+        "TASK-007",
+        "TASK-009",
+        "TASK-015"
+      ],
+      "primary_task": {
+        "id": "TASK-008",
+        "status": "done",
+        "title": "Support global install with cwd-based wiki discovery"
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": "wiki/specs/extension/roadmap-ui.md",
+      "title": "Roadmap State and TUI",
+      "summary": "Derived status and roadmap read models plus first-party Pi status-dock rules for compact drift and task visibility inside codewiki.",
+      "drift_status": "aligned",
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "code_area": "extensions, scripts",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-018",
+        "TASK-011",
+        "TASK-016",
+        "TASK-015"
+      ],
+      "primary_task": {
+        "id": "TASK-018",
+        "status": "done",
+        "title": "Design and implement status dock v1"
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": "wiki/specs/extension/status-dock.md",
+      "title": "Status Dock v1",
+      "summary": "Unified status dock and expanded inspector rules for showing spec drift, roadmap coverage, and next action from one status read model.",
+      "drift_status": "aligned",
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "code_area": "extensions, scripts",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-018"
+      ],
+      "primary_task": {
+        "id": "TASK-018",
+        "status": "done",
+        "title": "Design and implement status dock v1"
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": "wiki/specs/templates/overview.md",
+      "title": "Templates and Rebuild",
+      "summary": "Starter templates and rebuild script define canonical on-disk contract for bootstrapped repos.",
+      "drift_status": "aligned",
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "code_area": "extensions, scripts",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-001",
+        "TASK-018",
+        "TASK-002",
+        "TASK-003",
+        "TASK-006",
+        "TASK-011",
+        "TASK-014",
+        "TASK-004",
+        "TASK-005"
+      ],
+      "primary_task": {
+        "id": "TASK-001",
+        "status": "done",
+        "title": "Finish simplified research/specs/roadmap refactor"
+      },
+      "note": "no deterministic drift signals"
+    }
+  ],
+  "next_step": {
+    "kind": "observe",
+    "command": "Observe \u2014 roadmap clear",
+    "reason": "No open deterministic drift requires action right now."
+  },
+  "direction": [
+    "No open deterministic drift requires action right now.",
+    "Mapped specs: 4/8.",
+    "No tracked spec drift is open."
+  ]
+}

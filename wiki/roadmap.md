@@ -10,7 +10,7 @@ updated: '2026-04-18'
 
 # Roadmap
 
-Generated: 2026-04-18T05:26:11Z
+Generated: 2026-04-18T08:12:15Z
 
 Canonical source: [roadmap.json](roadmap.json)
 
@@ -360,6 +360,31 @@ _None._
 - Desired: Internal codewiki tools can target the intended repo explicitly even when Pi is running from outside that repo.
 - Current: Setup, bootstrap, rebuild, status, roadmap append/update, and task-session link now accept optional repoPath and smoke coverage verifies explicit cross-cwd targeting.
 - Closure: Done by adding optional repoPath fields to internal tool schemas, resolving target repos from repoPath when provided, documenting the behavior, and extending smoke tests across explicit tool targeting flows.
+
+### TASK-018 — Design and implement status dock v1
+
+- Status: done
+- Priority: critical
+- Kind: agent-workflow
+- Summary: Replace the flat wiki-status experience with a status-state read model and a unified persistent dock that highlights spec drift, roadmap coverage, and next action at a glance.
+- Specs:
+  - [wiki/specs/package/overview.md](specs/package/overview.md)
+  - [wiki/specs/extension/overview.md](specs/extension/overview.md)
+  - [wiki/specs/extension/roadmap-ui.md](specs/extension/roadmap-ui.md)
+  - [wiki/specs/extension/status-dock.md](specs/extension/status-dock.md)
+  - [wiki/specs/templates/overview.md](specs/templates/overview.md)
+  - [wiki/specs/shared/overview.md](specs/shared/overview.md)
+- Code:
+  - extensions/codewiki/index.ts
+  - extensions/codewiki/bootstrap.ts
+  - extensions/codewiki/templates.ts
+  - scripts/rebuild_docs_meta.py
+  - scripts/smoke-test.mjs
+  - README.md
+- Labels: status-dock, ux, drift, roadmap
+- Desired: Codewiki exposes one primary status dock UX backed by a reusable status read model, with compact bars, spec drift rows, roadmap coverage, persistent dock configuration, and a clear next step.
+- Current: Codewiki now generates `.wiki/status-state.json`, renders one persistent status dock above the editor, lets `/wiki-status` act as expanded inspector plus dock control surface, and shows drift/roadmap/next-step data from one shared read model.
+- Closure: Done by drafting Status Dock v1 spec, generating status-state during rebuild, replacing the old roadmap-only widget with the persistent status dock, adding dock auto|pin|off|minimal|standard|full controls, updating docs/templates, and extending smoke coverage for the new UX.
 
 ## Related docs
 

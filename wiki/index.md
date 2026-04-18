@@ -1,10 +1,10 @@
 # codewiki Index
 
-Generated: 2026-04-18T05:26:11Z
+Generated: 2026-04-18T08:12:15Z
 
 ## Roadmap
 
-- [Roadmap](roadmap.md) — 17 task(s); done=17
+- [Roadmap](roadmap.md) — 18 task(s); done=18
 
 ## Specs — Root
 
@@ -12,8 +12,9 @@ Generated: 2026-04-18T05:26:11Z
 
 ## Specs — Extension
 
-- [Extension Runtime](specs/extension/overview.md) — Extension owns intelligent bootstrap, status, fix, review, and internal roadmap/session operations for repo-local codebase wikis discovered from current cwd or targeted explicitly by repo path/picker.
-- [Roadmap State and TUI](specs/extension/roadmap-ui.md) — Derived roadmap-state metadata and first-party Pi widget rules for compact roadmap and task visibility inside codewiki.
+- [Extension Runtime](specs/extension/overview.md) — Extension owns intelligent bootstrap, fix, review, status-dock rendering, and internal roadmap/session operations for repo-local codebase wikis discovered from current cwd or targeted explicitly by repo path/picker.
+- [Roadmap State and TUI](specs/extension/roadmap-ui.md) — Derived status and roadmap read models plus first-party Pi status-dock rules for compact drift and task visibility inside codewiki.
+- [Status Dock v1](specs/extension/status-dock.md) — Unified status dock and expanded inspector rules for showing spec drift, roadmap coverage, and next action from one status read model.
 
 ## Specs — Package
 

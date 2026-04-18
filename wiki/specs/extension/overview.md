@@ -2,7 +2,7 @@
 id: spec.extension.overview
 title: Extension Runtime
 state: active
-summary: Extension owns intelligent bootstrap, status, fix, review, and internal roadmap/session operations for repo-local codebase wikis discovered from current cwd or targeted explicitly by repo path/picker.
+summary: Extension owns intelligent bootstrap, fix, review, status-dock rendering, and internal roadmap/session operations for repo-local codebase wikis discovered from current cwd or targeted explicitly by repo path/picker.
 owners:
 - engineering
 updated: '2026-04-17'
@@ -36,6 +36,8 @@ Internal agent tools may remain more granular:
 
 Those internal tools may also accept explicit `repoPath` targeting so global package installs can mutate the intended repo without relying on current cwd alone.
 
+Status presentation should unify around `.wiki/status-state.json` plus live Pi session focus, not around separate ad hoc command text and widget logic.
+
 ## Runtime responsibilities
 
 - resolve wiki root from the nearest ancestor containing `.wiki/config.json`
@@ -54,7 +56,7 @@ Those internal tools may also accept explicit `repoPath` targeting so global pac
 
 ## Drift and fix expectation
 
-`/wiki-status` should classify wiki health as green, yellow, or red and list per-spec drift signals. `wiki-fix` should use repo evidence first, ask only high-value clarifying questions when needed, emit structured roadmap tasks through `codewiki_roadmap_append` only when unresolved work is genuinely new, and use `codewiki_roadmap_update` when an existing task already covers the delta but needs mutation. These public commands should stay globally available in Pi while targeting a repo-local wiki by nearest ancestor, explicit repo path, or UI picker fallback.
+The primary status experience should live in the persistent status dock. `/wiki-status` should act as the expanded inspector and dock control surface, classify wiki health as green, yellow, or red, show spec drift against code area plus roadmap coverage, and recommend the next action. `wiki-fix` should use repo evidence first, ask only high-value clarifying questions when needed, emit structured roadmap tasks through `codewiki_roadmap_append` only when unresolved work is genuinely new, and use `codewiki_roadmap_update` when an existing task already covers the delta but needs mutation. These public commands should stay globally available in Pi while targeting a repo-local wiki by nearest ancestor, explicit repo path, or UI picker fallback.
 
 `/wiki-code` should resume implementation from the current focused roadmap task when possible, otherwise pick the next actionable open task, then queue implementation grounded in roadmap + spec truth without requiring a separate user-facing wiki mutation command.
 
@@ -66,6 +68,7 @@ When a Pi session starts, focuses, progresses, blocks, or completes task work, t
 
 - [Product](../product.md)
 - [Package Surface](../package/overview.md)
+- [Status Dock v1](status-dock.md)
 - [Roadmap State and TUI](roadmap-ui.md)
 - [Templates and Rebuild](../templates/overview.md)
 - [Shared Rules](../shared/overview.md)

@@ -36,6 +36,7 @@ Rebuild should deterministically produce:
 - `.wiki/backlinks.json`
 - `.wiki/lint.json`
 - `.wiki/roadmap-state.json` as a generated read-only roadmap/task UI model
+- `.wiki/status-state.json` as a generated read-only status-dock UI model
 
 ## History strategy
 
@@ -47,7 +48,7 @@ Runtime should be able to append new roadmap tasks, update existing tasks, close
 
 ## Session link support
 
-Runtime should be able to append Pi custom session entries for task work, read active task context from Pi at runtime, generate `.wiki/roadmap-state.json`, and surface current-session focus in widgets without changing Pi's native session JSONL schema. Generated roadmap and widget flows should tolerate legacy `ROADMAP-###` task ids while repos migrate to canonical `TASK-###` ids.
+Runtime should be able to append Pi custom session entries for task work, read active task context from Pi at runtime, generate `.wiki/roadmap-state.json` plus `.wiki/status-state.json`, and surface current-session focus in the status dock without changing Pi's native session JSONL schema. Generated roadmap and dock flows should tolerate legacy `ROADMAP-###` task ids while repos migrate to canonical `TASK-###` ids.
 
 ## Lint responsibilities
 

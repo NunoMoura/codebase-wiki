@@ -18,6 +18,7 @@ updated: '2026-04-17'
 - `wiki/index.md`: generated navigation surface
 - `wiki/roadmap.md`: generated roadmap view
 - `.wiki/roadmap-state.json`: derived roadmap/task UI read model
+- `.wiki/status-state.json`: derived status-dock UI read model
 - `.wiki/`: generated metadata and event log
 
 ## Responsibility split

@@ -16,6 +16,7 @@ const GENERATED_OUTPUTS = [
   ".wiki/backlinks.json",
   ".wiki/lint.json",
   ".wiki/roadmap-state.json",
+  ".wiki/status-state.json",
 ] as const;
 const CONTAINER_DIR_NAMES = new Set(["apps", "components", "domains", "extensions", "libs", "modules", "packages", "services", "skills", "surfaces"]);
 const EXCLUDED_DIR_NAMES = new Set([

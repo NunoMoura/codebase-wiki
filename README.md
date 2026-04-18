@@ -22,6 +22,7 @@ Public command surface is intentionally small:
 
 - `/wiki-bootstrap [project name] [--force]`
 - `/wiki-status [docs|code|both] [repo-path]`
+  - also controls dock modes: `dock auto|pin|off|minimal|standard|full [repo-path]`
 - `/wiki-fix [docs|code|both] [repo-path]`
 - `/wiki-review [idea|architecture] [repo-path]`
 - `/wiki-code [TASK-###] [repo-path]`
@@ -67,13 +68,15 @@ Generated navigation stays separate:
 - `.wiki/backlinks.json`
 - `.wiki/lint.json`
 - `.wiki/roadmap-state.json`
+- `.wiki/status-state.json`
 
 Pi session linkage stays local and operational:
 
 - Pi session JSONL remains Pi-owned
 - codewiki appends custom session entries linking tasks to sessions
 - current task focus is read live from Pi session state at runtime
-- `.wiki/roadmap-state.json` is the denormalized roadmap/task read model used by the built-in roadmap widget and any future third-party UI readers
+- `.wiki/roadmap-state.json` is the denormalized roadmap/task read model
+- `.wiki/status-state.json` is the denormalized status-dock read model used by the built-in dock and any future third-party UI readers
 
 Task identity and compatibility:
 
@@ -206,6 +209,7 @@ The rebuild command should update at least:
 - `.wiki/registry.json`
 - `.wiki/lint.json`
 - `.wiki/roadmap-state.json`
+- `.wiki/status-state.json`
 
 ## Recommended dogfooding workflow
 
@@ -218,6 +222,7 @@ Recommended loop:
 
 ```text
 /wiki-status both
+/wiki-status dock pin /home/nunoc/projects/codewiki
 ```
 
 3. If status comes back yellow or red, run:
@@ -291,11 +296,13 @@ Starter bootstrap includes:
 - inferred first-pass boundary `overview.md` files under `wiki/specs/` when brownfield structure is detected
 - `wiki/research/inspiration.jsonl`
 - `wiki/roadmap.json`
-- generated outputs like `wiki/index.md`, `wiki/roadmap.md`, `.wiki/registry.json`, `.wiki/backlinks.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`
+- generated outputs like `wiki/index.md`, `wiki/roadmap.md`, `.wiki/registry.json`, `.wiki/backlinks.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`
 
 ### Status, fix, and review
 
-`/wiki-status` is the main health command. It rebuilds metadata, reports deterministic preflight state, lists specs with mapped code paths and drift signals, includes a compact roadmap working set, and queues a semantic review for `docs`, `code`, or `both`.
+The status dock is now the primary status UX. It stays above the editor when enabled, reads `.wiki/status-state.json`, highlights tracked vs untracked drift, shows roadmap completion, and recommends the next command at a glance.
+
+`/wiki-status` is now the expanded inspector and dock control surface. It rebuilds metadata, renders the same drift-first model in text form for `docs`, `code`, or `both`, and queues a concise direction review instead of acting like the only status surface.
 
 `/wiki-fix` is the corrective command. It uses repo evidence first, asks only high-value clarifying questions when needed, then fixes drift in `docs`, `code`, or `both`.
 
@@ -305,9 +312,15 @@ Starter bootstrap includes:
 
 `/wiki-code` is the implementation segue. With no argument it resumes the current focused roadmap task when one exists, otherwise it picks the next open task from the roadmap working set. Pass `TASK-###` to force a specific open task.
 
-### Roadmap TUI
+### Status dock
 
-The extension also renders a compact roadmap widget above the editor. It reads `.wiki/roadmap-state.json`, shows health and counts, prefers the current session's focused task when known, then shows in-progress and next todo work instead of dumping the entire roadmap by default.
+The extension renders a persistent status dock above the editor. It reads `.wiki/status-state.json` plus `.wiki/roadmap-state.json`, prefers the current repo under cwd, can fall back to a pinned repo when Pi is running from a more global path, and supports three densities:
+
+- `minimal`
+- `standard`
+- `full`
+
+Use `/wiki-status dock auto|pin|off|minimal|standard|full [repo-path]` to configure it.
 
 ### Runtime operations
 
@@ -318,6 +331,7 @@ Runtime rule:
 - first resolve the nearest ancestor containing `.wiki/config.json` from current cwd
 - if no repo-local wiki exists from current cwd, `/wiki-status`, `/wiki-fix`, `/wiki-review`, and `/wiki-code` may target an explicit repo path instead
 - in UI mode, those commands may offer a picker across candidate repos discovered below current cwd
+- dock visibility and pinned-repo fallback are user-owned UI preferences, not repo-owned wiki files
 - if no wiki exists yet, `/wiki-bootstrap` targets the enclosing git repo root when present, else the current working directory
 
 It then uses that repo config to:
@@ -330,7 +344,7 @@ It then uses that repo config to:
 - update or close existing roadmap tasks through package-native mutation tools instead of manual JSON edits
 - append Pi custom session entries that link current session to roadmap tasks
 - read active task context from Pi session state at runtime
-- maintain `.wiki/roadmap-state.json` so the first-party roadmap widget and any future third-party UI can read compact roadmap/task state without mutating canonical files
+- maintain `.wiki/roadmap-state.json` and `.wiki/status-state.json` so the first-party status dock and any future third-party UI can read compact roadmap/task/status state without mutating canonical files
 
 That means one global package install can operate across many repos, while each repo keeps its own `wiki/`, `.wiki/`, and rebuild contract.
 

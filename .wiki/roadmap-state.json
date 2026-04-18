@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-04-18T05:26:11Z",
+  "generated_at": "2026-04-18T08:12:15Z",
   "health": {
     "color": "green",
     "errors": 0,
@@ -8,13 +8,13 @@
     "total_issues": 0
   },
   "summary": {
-    "task_count": 17,
+    "task_count": 18,
     "open_count": 0,
     "status_counts": {
-      "done": 17
+      "done": 18
     },
     "priority_counts": {
-      "critical": 2,
+      "critical": 3,
       "high": 9,
       "medium": 6
     }
@@ -37,7 +37,8 @@
       "TASK-014",
       "TASK-015",
       "TASK-016",
-      "TASK-017"
+      "TASK-017",
+      "TASK-018"
     ],
     "open_task_ids": [],
     "in_progress_task_ids": [],
@@ -46,6 +47,7 @@
     "done_task_ids": [
       "TASK-001",
       "TASK-008",
+      "TASK-018",
       "TASK-002",
       "TASK-003",
       "TASK-006",
@@ -64,6 +66,7 @@
     ],
     "cancelled_task_ids": [],
     "recent_task_ids": [
+      "TASK-018",
       "TASK-017",
       "TASK-016",
       "TASK-015",
@@ -488,6 +491,37 @@
       "code_paths": [
         "extensions/codewiki/bootstrap.ts",
         "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs",
+        "README.md"
+      ],
+      "updated": "2026-04-18"
+    },
+    "TASK-018": {
+      "id": "TASK-018",
+      "title": "Design and implement status dock v1",
+      "status": "done",
+      "priority": "critical",
+      "kind": "agent-workflow",
+      "summary": "Replace the flat wiki-status experience with a status-state read model and a unified persistent dock that highlights spec drift, roadmap coverage, and next action at a glance.",
+      "labels": [
+        "status-dock",
+        "ux",
+        "drift",
+        "roadmap"
+      ],
+      "spec_paths": [
+        "wiki/specs/package/overview.md",
+        "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/roadmap-ui.md",
+        "wiki/specs/extension/status-dock.md",
+        "wiki/specs/templates/overview.md",
+        "wiki/specs/shared/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/bootstrap.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
         "scripts/smoke-test.mjs",
         "README.md"
       ],

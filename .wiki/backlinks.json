@@ -1,10 +1,11 @@
 {
-  "generated_at": "2026-04-18T05:26:11Z",
+  "generated_at": "2026-04-18T08:12:15Z",
   "by_path": {
     "wiki/specs/extension/overview.md": {
       "inbound": [
         "wiki/roadmap.md",
         "wiki/specs/extension/roadmap-ui.md",
+        "wiki/specs/extension/status-dock.md",
         "wiki/specs/package/overview.md",
         "wiki/specs/product.md",
         "wiki/specs/shared/overview.md",
@@ -14,6 +15,7 @@
       "outbound": [
         "wiki/roadmap.md",
         "wiki/specs/extension/roadmap-ui.md",
+        "wiki/specs/extension/status-dock.md",
         "wiki/specs/package/overview.md",
         "wiki/specs/product.md",
         "wiki/specs/shared/overview.md",
@@ -23,20 +25,36 @@
     "wiki/specs/extension/roadmap-ui.md": {
       "inbound": [
         "wiki/roadmap.md",
-        "wiki/specs/extension/overview.md"
+        "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/status-dock.md"
       ],
       "outbound": [
         "wiki/roadmap.md",
         "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/status-dock.md",
         "wiki/specs/product.md",
         "wiki/specs/system/overview.md",
         "wiki/specs/templates/overview.md"
+      ]
+    },
+    "wiki/specs/extension/status-dock.md": {
+      "inbound": [
+        "wiki/roadmap.md",
+        "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/roadmap-ui.md"
+      ],
+      "outbound": [
+        "wiki/roadmap.md",
+        "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/roadmap-ui.md",
+        "wiki/specs/package/overview.md"
       ]
     },
     "wiki/specs/package/overview.md": {
       "inbound": [
         "wiki/roadmap.md",
         "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/status-dock.md",
         "wiki/specs/product.md",
         "wiki/specs/shared/overview.md",
         "wiki/specs/system/overview.md"
@@ -125,6 +143,7 @@
       "inbound": [
         "wiki/specs/extension/overview.md",
         "wiki/specs/extension/roadmap-ui.md",
+        "wiki/specs/extension/status-dock.md",
         "wiki/specs/package/overview.md",
         "wiki/specs/product.md",
         "wiki/specs/shared/overview.md",
@@ -134,6 +153,7 @@
       "outbound": [
         "wiki/specs/extension/overview.md",
         "wiki/specs/extension/roadmap-ui.md",
+        "wiki/specs/extension/status-dock.md",
         "wiki/specs/package/overview.md",
         "wiki/specs/product.md",
         "wiki/specs/shared/overview.md",

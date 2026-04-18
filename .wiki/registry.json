@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T05:26:11Z",
+  "generated_at": "2026-04-18T08:12:15Z",
   "docs": [
     {
       "id": "roadmap.live",
@@ -18,6 +18,7 @@
         "wiki/roadmap.json",
         "wiki/specs/extension/overview.md",
         "wiki/specs/extension/roadmap-ui.md",
+        "wiki/specs/extension/status-dock.md",
         "wiki/specs/package/overview.md",
         "wiki/specs/product.md",
         "wiki/specs/shared/overview.md",
@@ -31,7 +32,7 @@
       "title": "Extension Runtime",
       "doc_type": "spec",
       "state": "active",
-      "summary": "Extension owns intelligent bootstrap, status, fix, review, and internal roadmap/session operations for repo-local codebase wikis discovered from current cwd or targeted explicitly by repo path/picker.",
+      "summary": "Extension owns intelligent bootstrap, fix, review, status-dock rendering, and internal roadmap/session operations for repo-local codebase wikis discovered from current cwd or targeted explicitly by repo path/picker.",
       "owners": [
         "engineering"
       ],
@@ -44,6 +45,7 @@
       "links_out": [
         "wiki/roadmap.md",
         "wiki/specs/extension/roadmap-ui.md",
+        "wiki/specs/extension/status-dock.md",
         "wiki/specs/package/overview.md",
         "wiki/specs/product.md",
         "wiki/specs/shared/overview.md",
@@ -56,7 +58,7 @@
       "title": "Roadmap State and TUI",
       "doc_type": "spec",
       "state": "active",
-      "summary": "Derived roadmap-state metadata and first-party Pi widget rules for compact roadmap and task visibility inside codewiki.",
+      "summary": "Derived status and roadmap read models plus first-party Pi status-dock rules for compact drift and task visibility inside codewiki.",
       "owners": [
         "engineering"
       ],
@@ -69,9 +71,33 @@
       "links_out": [
         "wiki/roadmap.md",
         "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/status-dock.md",
         "wiki/specs/product.md",
         "wiki/specs/system/overview.md",
         "wiki/specs/templates/overview.md"
+      ]
+    },
+    {
+      "id": "spec.extension.status-dock",
+      "path": "wiki/specs/extension/status-dock.md",
+      "title": "Status Dock v1",
+      "doc_type": "spec",
+      "state": "active",
+      "summary": "Unified status dock and expanded inspector rules for showing spec drift, roadmap coverage, and next action from one status read model.",
+      "owners": [
+        "engineering"
+      ],
+      "tags": [],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "links_out": [
+        "wiki/roadmap.md",
+        "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/roadmap-ui.md",
+        "wiki/specs/package/overview.md"
       ]
     },
     {
@@ -188,9 +214,9 @@
     }
   ],
   "roadmap": {
-    "entry_count": 17,
+    "entry_count": 18,
     "counts": {
-      "done": 17
+      "done": 18
     }
   }
 }

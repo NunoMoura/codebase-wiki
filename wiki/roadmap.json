@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-04-18T05:20:00Z",
+  "updated": "2026-04-18T08:12:02Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -18,7 +18,8 @@
     "TASK-014",
     "TASK-015",
     "TASK-016",
-    "TASK-017"
+    "TASK-017",
+    "TASK-018"
   ],
   "tasks": {
     "TASK-001": {
@@ -553,6 +554,44 @@
         "desired": "Internal codewiki tools can target the intended repo explicitly even when Pi is running from outside that repo.",
         "current": "Setup, bootstrap, rebuild, status, roadmap append/update, and task-session link now accept optional repoPath and smoke coverage verifies explicit cross-cwd targeting.",
         "closure": "Done by adding optional repoPath fields to internal tool schemas, resolving target repos from repoPath when provided, documenting the behavior, and extending smoke tests across explicit tool targeting flows."
+      },
+      "created": "2026-04-18",
+      "updated": "2026-04-18"
+    },
+    "TASK-018": {
+      "id": "TASK-018",
+      "title": "Design and implement status dock v1",
+      "status": "done",
+      "priority": "critical",
+      "kind": "agent-workflow",
+      "summary": "Replace the flat wiki-status experience with a status-state read model and a unified persistent dock that highlights spec drift, roadmap coverage, and next action at a glance.",
+      "spec_paths": [
+        "wiki/specs/package/overview.md",
+        "wiki/specs/extension/overview.md",
+        "wiki/specs/extension/roadmap-ui.md",
+        "wiki/specs/extension/status-dock.md",
+        "wiki/specs/templates/overview.md",
+        "wiki/specs/shared/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/bootstrap.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs",
+        "README.md"
+      ],
+      "research_ids": [],
+      "labels": [
+        "status-dock",
+        "ux",
+        "drift",
+        "roadmap"
+      ],
+      "delta": {
+        "desired": "Codewiki exposes one primary status dock UX backed by a reusable status read model, with compact bars, spec drift rows, roadmap coverage, persistent dock configuration, and a clear next step.",
+        "current": "Codewiki now generates `.wiki/status-state.json`, renders one persistent status dock above the editor, lets `/wiki-status` act as expanded inspector plus dock control surface, and shows drift/roadmap/next-step data from one shared read model.",
+        "closure": "Done by drafting Status Dock v1 spec, generating status-state during rebuild, replacing the old roadmap-only widget with the persistent status dock, adding dock auto|pin|off|minimal|standard|full controls, updating docs/templates, and extending smoke coverage for the new UX."
       },
       "created": "2026-04-18",
       "updated": "2026-04-18"

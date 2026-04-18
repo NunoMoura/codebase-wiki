@@ -1,5 +1,5 @@
-import { access, appendFile, readFile, writeFile } from "node:fs/promises";
-import { basename, resolve } from "node:path";
+import { access, appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { basename, dirname, resolve } from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import type { ExtensionAPI, ExtensionCommandContext, ExtensionContext } from "@mariozechner/pi-coding-agent";
@@ -20,15 +20,20 @@ const DEFAULT_ROADMAP_DOC_PATH = "wiki/roadmap.md";
 const DEFAULT_ROADMAP_EVENTS_PATH = ".wiki/roadmap-events.jsonl";
 const DEFAULT_META_ROOT = ".wiki";
 const DEFAULT_REBUILD_SCRIPT = "scripts/rebuild_docs_meta.py";
-const GENERATED_METADATA_FILES = ["registry.json", "backlinks.json", "lint.json", "roadmap-state.json"] as const;
+const GENERATED_METADATA_FILES = ["registry.json", "backlinks.json", "lint.json", "roadmap-state.json", "status-state.json"] as const;
 const TASK_SESSION_LINK_CUSTOM_TYPE = "codewiki.task-link";
-const ROADMAP_WIDGET_KEY = "codewiki-roadmap";
-const ROADMAP_WIDGET_MAX_VISIBLE_ITEMS = 4;
+const STATUS_DOCK_WIDGET_KEY = "codewiki-status-dock";
+const STATUS_DOCK_MAX_VISIBLE_SPECS = 3;
+const STATUS_DOCK_MAX_VISIBLE_TASKS = 2;
+const STATUS_DOCK_PREFS_VERSION = 1;
+const STATUS_DOCK_PREFS_ENV = "PI_CODEWIKI_STATUS_PREFS_PATH";
 const ROADMAP_STATUS_VALUES = ["todo", "in_progress", "blocked", "done", "cancelled"] as const;
 const ROADMAP_PRIORITY_VALUES = ["critical", "high", "medium", "low"] as const;
 const TASK_SESSION_ACTION_VALUES = ["focus", "progress", "blocked", "done", "spawn"] as const;
 const STATUS_SCOPE_VALUES = ["docs", "code", "both"] as const;
 const REVIEW_MODE_VALUES = ["idea", "architecture"] as const;
+const STATUS_DOCK_MODE_VALUES = ["auto", "pin", "off"] as const;
+const STATUS_DOCK_DENSITY_VALUES = ["minimal", "standard", "full"] as const;
 const COMMAND_PREFIX = "wiki";
 const CANONICAL_TASK_ID_PREFIX = "TASK";
 const LEGACY_TASK_ID_PREFIX = "ROADMAP";
@@ -233,6 +238,74 @@ interface RoadmapStateFile {
   tasks: Record<string, RoadmapStateTaskSummary>;
 }
 
+interface StatusStateBar {
+  label: string;
+  value: number;
+  total: number;
+  percent: number;
+}
+
+interface StatusStateSpecRow {
+  path: string;
+  title: string;
+  summary: string;
+  drift_status: "aligned" | "tracked" | "untracked" | "blocked" | "unmapped";
+  code_paths: string[];
+  code_area: string;
+  issue_counts: { errors: number; warnings: number; total: number };
+  related_task_ids: string[];
+  primary_task: { id: string; status: string; title: string } | null;
+  note: string;
+}
+
+interface StatusStateFile {
+  version: number;
+  generated_at: string;
+  project: { name: string; docs_root: string; roadmap_path: string };
+  health: RoadmapStateHealth;
+  summary: {
+    total_specs: number;
+    mapped_specs: number;
+    aligned_specs: number;
+    tracked_specs: number;
+    untracked_specs: number;
+    blocked_specs: number;
+    unmapped_specs: number;
+    task_count: number;
+    open_task_count: number;
+    done_task_count: number;
+  };
+  bars: {
+    tracked_drift: StatusStateBar;
+    roadmap_done: StatusStateBar;
+    spec_mapping: StatusStateBar;
+  };
+  views: {
+    risky_spec_paths: string[];
+    top_risky_spec_paths: string[];
+    open_task_ids: string[];
+  };
+  specs: StatusStateSpecRow[];
+  next_step: { kind: string; command: string; reason: string };
+  direction: string[];
+}
+
+type StatusDockMode = (typeof STATUS_DOCK_MODE_VALUES)[number];
+type StatusDockDensity = (typeof STATUS_DOCK_DENSITY_VALUES)[number];
+
+interface StatusDockPrefs {
+  version: number;
+  mode: StatusDockMode;
+  density: StatusDockDensity;
+  pinnedRepoPath?: string;
+}
+
+interface ResolvedStatusDockProject {
+  project: WikiProject;
+  statusState: StatusStateFile | null;
+  source: "cwd" | "pinned";
+}
+
 interface WikiProject {
   root: string;
   label: string;
@@ -250,6 +323,7 @@ interface WikiProject {
   eventsPath: string;
   roadmapEventsPath: string;
   roadmapStatePath: string;
+  statusStatePath: string;
 }
 
 const roadmapStatusSchema = Type.Union(ROADMAP_STATUS_VALUES.map((value) => Type.Literal(value)));
@@ -314,21 +388,21 @@ export default function codewikiExtension(pi: ExtensionAPI) {
   registerBootstrapFeatures(pi);
 
   pi.on("turn_start", async (_event, ctx) => {
-    const project = await maybeLoadProject(ctx.cwd);
-    if (!project) {
-      clearRoadmapWidget(ctx);
+    const resolved = await resolveStatusDockProject(ctx);
+    if (!resolved) {
+      clearStatusDock(ctx);
       return;
     }
     await withUiErrorHandling(ctx, async () => {
-      await refreshRoadmapWidget(project, ctx);
+      await refreshStatusDock(resolved.project, ctx, currentTaskLink(ctx), resolved);
     });
   });
 
   pi.on("session_start", async (_event, ctx) => {
-    const project = await maybeLoadProject(ctx.cwd);
-    if (!project) {
+    const resolved = await resolveStatusDockProject(ctx);
+    if (!resolved) {
       ctx.ui.setStatus("codewiki-task", undefined);
-      clearRoadmapWidget(ctx);
+      clearStatusDock(ctx);
       return;
     }
 
@@ -336,29 +410,65 @@ export default function codewikiExtension(pi: ExtensionAPI) {
       const active = currentTaskLink(ctx);
       if (!active) {
         ctx.ui.setStatus("codewiki-task", undefined);
-        await refreshRoadmapWidget(project, ctx);
+        await refreshStatusDock(resolved.project, ctx, active, resolved);
         return;
       }
-      const task = await readRoadmapTask(project, active.taskId);
+      const task = await readRoadmapTask(resolved.project, active.taskId);
       if (task) setTaskSessionStatus(ctx, task.id, task.title, active.action);
-      await refreshRoadmapWidget(project, ctx, active);
+      await refreshStatusDock(resolved.project, ctx, active, resolved);
     });
   });
 
   pi.registerCommand(`${COMMAND_PREFIX}-status`, {
-    description: "Review wiki health and drift across docs, code, or both. Usage: /wiki-status [docs|code|both] [repo-path]",
+    description: "Inspect or configure the status dock. Usage: /wiki-status [docs|code|both] [repo-path] | /wiki-status dock auto|pin|off|minimal|standard|full [repo-path]",
     getArgumentCompletions: (prefix) => completeCommandOptions(prefix, STATUS_SCOPE_VALUES),
     handler: async (args, ctx) => {
       await withUiErrorHandling(ctx, async () => {
-        const { scope, pathArg } = normalizeStatusArgs(args);
-        const project = await resolveCommandProject(ctx, pathArg, `${COMMAND_PREFIX}-status`);
+        const input = parseStatusCommandInput(args);
+        if (input.kind === "dock") {
+          const prefs = await readStatusDockPrefs();
+          if (input.density) {
+            const nextPrefs = { ...prefs, density: input.density };
+            await writeStatusDockPrefs(nextPrefs);
+            const resolved = await resolveStatusDockProject(ctx);
+            if (resolved) await refreshStatusDock(resolved.project, ctx, currentTaskLink(ctx), resolved);
+            else clearStatusDock(ctx);
+            ctx.ui.notify(`Status dock density set to ${input.density}.`, "info");
+            return;
+          }
+          if (input.dockMode === "off") {
+            const nextPrefs = { ...prefs, mode: "off" as StatusDockMode };
+            await writeStatusDockPrefs(nextPrefs);
+            clearStatusDock(ctx);
+            ctx.ui.notify("Status dock hidden.", "info");
+            return;
+          }
+          if (input.dockMode === "auto") {
+            const nextPrefs = { ...prefs, mode: "auto" as StatusDockMode };
+            await writeStatusDockPrefs(nextPrefs);
+            const resolved = await resolveStatusDockProject(ctx);
+            if (resolved) await refreshStatusDock(resolved.project, ctx, currentTaskLink(ctx), resolved);
+            else clearStatusDock(ctx);
+            ctx.ui.notify("Status dock set to auto mode.", "info");
+            return;
+          }
+          const project = await resolveCommandProject(ctx, input.pathArg, `${COMMAND_PREFIX}-status`);
+          const nextPrefs = { ...prefs, mode: "pin" as StatusDockMode, pinnedRepoPath: project.root };
+          await writeStatusDockPrefs(nextPrefs);
+          await refreshStatusDock(project, ctx, currentTaskLink(ctx), { project, statusState: await maybeReadStatusState(project.statusStatePath), source: "pinned" });
+          ctx.ui.notify(`Status dock pinned to ${project.root}.`, "success");
+          return;
+        }
+        const project = await resolveCommandProject(ctx, input.pathArg, `${COMMAND_PREFIX}-status`);
         const summary = await rebuildAndSummarize(project);
         const registry = await maybeReadJson<RegistryFile>(project.registryPath);
         const roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
-        const text = buildStatusText(project, registry, summary.report, scope, roadmapState, currentTaskLink(ctx));
+        const statusState = await maybeReadStatusState(project.statusStatePath);
+        if (!statusState) throw new Error(`Missing status-state.json at ${project.statusStatePath}. Rebuild then retry.`);
+        const text = buildStatusText(project, statusState, summary.report, input.scope, roadmapState, currentTaskLink(ctx));
         ctx.ui.notify(text, statusLevel(summary.report));
-        await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
-        await queueAudit(pi, ctx, statusPrompt(project, registry, summary.report, scope));
+        await refreshStatusDock(project, ctx, currentTaskLink(ctx), { project, statusState, source: "cwd" });
+        await queueAudit(pi, ctx, statusPrompt(project, registry, summary.report, input.scope, statusState));
       });
     },
   });
@@ -373,7 +483,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
         const summary = await rebuildAndSummarize(project);
         const registry = await maybeReadJson<RegistryFile>(project.registryPath);
         ctx.ui.notify(`${project.label}: queued ${scope} wiki-fix flow. Deterministic preflight is ${statusColor(summary.report)}.`, statusLevel(summary.report));
-        await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
+        await refreshStatusDock(project, ctx, currentTaskLink(ctx));
         await queueAudit(pi, ctx, fixPrompt(project, registry, summary.report, scope));
       });
     },
@@ -389,7 +499,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
         const summary = await rebuildAndSummarize(project);
         const registry = await maybeReadJson<RegistryFile>(project.registryPath);
         ctx.ui.notify(`${project.label}: queued ${mode} review. Deterministic preflight is ${statusColor(summary.report)}.`, statusLevel(summary.report));
-        await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
+        await refreshStatusDock(project, ctx, currentTaskLink(ctx));
         await queueAudit(pi, ctx, reviewPrompt(project, registry, summary.report, mode));
       });
     },
@@ -407,7 +517,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
         const task = resolveImplementationTask(roadmap, currentTaskLink(ctx), requestedTaskId);
         if (!task) {
           ctx.ui.notify(`${project.label}: no open roadmap task available for /wiki-code. Run /wiki-status or /wiki-review if you need a new direction.`, "warning");
-          await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
+          await refreshStatusDock(project, ctx, currentTaskLink(ctx));
           return;
         }
         const action: TaskSessionAction = requestedTaskId || currentTaskLink(ctx)?.taskId !== task.id ? "focus" : "progress";
@@ -430,7 +540,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
           timestamp: nowIso(),
         };
         ctx.ui.notify(`${project.label}: queued implementation for ${task.id} — ${task.title}. Deterministic preflight is ${statusColor(summary.report)}.`, statusLevel(summary.report));
-        await refreshRoadmapWidget(project, ctx, activeLink);
+        await refreshStatusDock(project, ctx, activeLink);
         await queueAudit(pi, ctx, codePrompt(project, registry, summary.report, task));
       });
     },
@@ -450,7 +560,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_rebuild");
       const summary = await rebuildAndSummarize(project);
-      await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
+      await refreshStatusDock(project, ctx, currentTaskLink(ctx));
       return {
         content: [{ type: "text", text: summary.text }],
         details: summary,
@@ -470,11 +580,11 @@ export default function codewikiExtension(pi: ExtensionAPI) {
       const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_status");
       const roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
       const report = await maybeReadJson<LintReport>(project.lintPath);
-      const registry = await maybeReadJson<RegistryFile>(project.registryPath);
-      const text = report
-        ? buildStatusText(project, registry, report, "both", roadmapState, currentTaskLink(ctx))
+      const statusState = await maybeReadStatusState(project.statusStatePath);
+      const text = report && statusState
+        ? buildStatusText(project, statusState, report, "both", roadmapState, currentTaskLink(ctx))
         : await readStatus(project);
-      await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
+      await refreshStatusDock(project, ctx, currentTaskLink(ctx));
       return {
         content: [{ type: "text", text }],
         details: {},
@@ -496,7 +606,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_roadmap_append");
       const result = await appendRoadmapTasks(pi, project, ctx, params.tasks);
-      await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
+      await refreshStatusDock(project, ctx, currentTaskLink(ctx));
       return {
         content: [{ type: "text", text: formatRoadmapAppendSummary(project, result.created) }],
         details: result,
@@ -519,7 +629,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
       const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_roadmap_update");
       const { repoPath: _repoPath, ...updateParams } = params;
       const result = await updateRoadmapTask(project, updateParams);
-      await refreshRoadmapWidget(project, ctx, currentTaskLink(ctx));
+      await refreshStatusDock(project, ctx, currentTaskLink(ctx));
       return {
         content: [{ type: "text", text: formatRoadmapUpdateSummary(project, result.task, result.action) }],
         details: result,
@@ -542,7 +652,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
       const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_task_session_link");
       const { repoPath: _repoPath, ...linkParams } = params;
       const result = await linkTaskSession(pi, project, ctx, linkParams);
-      await refreshRoadmapWidget(project, ctx, { taskId: result.taskId, action: result.action, summary: "", filesTouched: [], spawnedTaskIds: [], timestamp: nowIso() });
+      await refreshStatusDock(project, ctx, { taskId: result.taskId, action: result.action, summary: "", filesTouched: [], spawnedTaskIds: [], timestamp: nowIso() });
       return {
         content: [{ type: "text", text: formatTaskSessionLinkSummary(result) }],
         details: result,
@@ -579,6 +689,23 @@ function completeCommandOptions(prefix: string, options: readonly string[]): { v
 function normalizeStatusArgs(args: string): { scope: StatusScope; pathArg: string | null } {
   const parsed = parseEnumAndPath(args, STATUS_SCOPE_VALUES, "both");
   return { scope: parsed.value as StatusScope, pathArg: parsed.pathArg };
+}
+
+function parseStatusCommandInput(args: string):
+  | { kind: "inspect"; scope: StatusScope; pathArg: string | null }
+  | { kind: "dock"; dockMode?: StatusDockMode; density?: StatusDockDensity; pathArg: string | null } {
+  const tokens = splitCommandArgs(args);
+  if (tokens[0] !== "dock") return { kind: "inspect", ...normalizeStatusArgs(args) };
+  const option = tokens[1] as StatusDockMode | StatusDockDensity | undefined;
+  if (!option) throw new Error("Invalid wiki-status dock usage. Use /wiki-status dock auto|pin|off|minimal|standard|full [repo-path].");
+  const rest = joinCommandArgs(tokens.slice(2));
+  if (STATUS_DOCK_MODE_VALUES.includes(option as StatusDockMode)) {
+    return { kind: "dock", dockMode: option as StatusDockMode, pathArg: rest };
+  }
+  if (STATUS_DOCK_DENSITY_VALUES.includes(option as StatusDockDensity)) {
+    return { kind: "dock", density: option as StatusDockDensity, pathArg: rest };
+  }
+  throw new Error("Invalid wiki-status dock option. Use auto, pin, off, minimal, standard, or full.");
 }
 
 function normalizeReviewArgs(args: string): { mode: ReviewMode; pathArg: string | null } {
@@ -629,28 +756,12 @@ function statusLevel(report: LintReport): "success" | "warning" | "error" {
   return "success";
 }
 
-function buildSpecStatusLines(registry: RegistryFile, report: LintReport): string[] {
-  const specs = registry.docs
-    .filter((doc) => doc.doc_type === "spec")
-    .sort((a, b) => a.path.localeCompare(b.path));
-  if (specs.length === 0) return ["- none"];
-
-  const lines: string[] = [];
-  for (const spec of specs) {
-    const codePaths = unique(spec.code_paths ?? []);
-    const relatedIssues = report.issues.filter((issue) => issue.path === spec.path || issue.path === spec.path.replace(/^docs\//, ""));
-    const issueSummary = relatedIssues.length > 0
-      ? relatedIssues.map((issue) => `${issue.severity}:${issue.kind}`).join(", ")
-      : "none";
-    lines.push(`- ${spec.title ?? spec.path} — ${spec.path}`);
-    lines.push(`  code: ${codePaths.length > 0 ? codePaths.join(", ") : "none mapped"}`);
-    lines.push(`  drift signals: ${issueSummary}`);
-  }
-  return lines;
-}
-
 async function maybeReadRoadmapState(path: string): Promise<RoadmapStateFile | null> {
   return maybeReadJson<RoadmapStateFile>(path);
+}
+
+async function maybeReadStatusState(path: string): Promise<StatusStateFile | null> {
+  return maybeReadJson<StatusStateFile>(path);
 }
 
 function currentTaskLink(ctx: ExtensionContext | ExtensionCommandContext): TaskSessionLinkRecord | null {
@@ -715,92 +826,193 @@ function buildRoadmapWorkingSetLines(state: RoadmapStateFile | null, activeLink:
   return lines;
 }
 
-function renderRoadmapWidgetLines(state: RoadmapStateFile, activeLink: TaskSessionLinkRecord | null, theme: { fg: (color: string, text: string) => string; bold: (text: string) => string }, width: number): string[] {
-  const statusCounts = state.summary.status_counts ?? {};
+function driftThemeColor(status: StatusStateSpecRow["drift_status"]): "success" | "warning" | "error" | "muted" {
+  if (status === "aligned") return "success";
+  if (status === "tracked") return "warning";
+  if (status === "untracked") return "error";
+  if (status === "blocked") return "warning";
+  return "muted";
+}
+
+function driftIcon(status: StatusStateSpecRow["drift_status"]): string {
+  if (status === "aligned") return "🟢";
+  if (status === "tracked") return "🟡";
+  if (status === "untracked") return "🔴";
+  if (status === "blocked") return "⏸";
+  return "⚪";
+}
+
+function barThemeColor(kind: keyof StatusStateFile["bars"], bar: StatusStateBar): "success" | "warning" | "error" {
+  if (kind === "tracked_drift") {
+    if (bar.total === 0 || bar.percent >= 100) return "success";
+    if (bar.value === 0) return "error";
+    return "warning";
+  }
+  if (bar.total === 0 || bar.percent >= 80) return "success";
+  if (bar.percent >= 50) return "warning";
+  return "error";
+}
+
+function renderProgressBar(theme: { fg: (color: string, text: string) => string }, label: string, bar: StatusStateBar, width: number, kind: keyof StatusStateFile["bars"]): string {
+  const color = barThemeColor(kind, bar);
+  const meterWidth = 10;
+  const filled = Math.max(0, Math.min(meterWidth, Math.round((bar.percent / 100) * meterWidth)));
+  const meter = `${"█".repeat(filled)}${"░".repeat(meterWidth - filled)}`;
+  const line = `${label.padEnd(14)} [ ${String(bar.percent).padStart(3)}% ${meter} ] ${bar.value}/${bar.total}`;
+  return truncateToWidth(theme.fg(color, line), width);
+}
+
+function resolvedNextStep(state: StatusStateFile, roadmapState: RoadmapStateFile | null, activeLink: TaskSessionLinkRecord | null): { command: string; reason: string } {
+  const activeId = roadmapState ? resolveRoadmapStateTaskId(roadmapState, activeLink?.taskId) : null;
+  const activeTask = activeId && roadmapState ? roadmapState.tasks[activeId] : null;
+  if (activeTask && isOpenRoadmapTask(activeTask)) {
+    return {
+      command: `/wiki-code ${activeTask.id}`,
+      reason: `Current session already focuses ${activeTask.id}.`,
+    };
+  }
+  return state.next_step;
+}
+
+function statusDockHeaderLabel(project: WikiProject, source: "cwd" | "pinned", health: RoadmapStateHealth["color"]): string {
+  const sourceLabel = source === "pinned" ? ` @ ${project.root}` : "";
+  return `${project.label}${sourceLabel}`.trimEnd() + `  ${health.toUpperCase()}`;
+}
+
+function topRiskSpecs(state: StatusStateFile, limit: number): StatusStateSpecRow[] {
+  return state.specs.filter((spec) => spec.drift_status !== "aligned").slice(0, limit);
+}
+
+function renderDockRiskLines(state: StatusStateFile, theme: { fg: (color: string, text: string) => string }, width: number, limit: number): string[] {
+  const specs = topRiskSpecs(state, limit);
+  if (specs.length === 0) return [truncateToWidth(theme.fg("success", "Risks          none"), width)];
+  return specs.map((spec) => {
+    const taskLabel = spec.primary_task?.id ?? "—";
+    const text = `${driftIcon(spec.drift_status)} ${spec.title}  |  ${spec.code_area}  |  ${taskLabel}`;
+    return truncateToWidth(theme.fg(driftThemeColor(spec.drift_status), text), width);
+  });
+}
+
+function renderDockTaskLines(state: RoadmapStateFile | null, activeLink: TaskSessionLinkRecord | null, theme: { fg: (color: string, text: string) => string }, width: number, limit: number): string[] {
+  const lines = buildRoadmapWorkingSetLines(state, activeLink, limit);
+  return lines.map((line) => truncateToWidth(theme.fg("muted", line.replace(/^- /, "")), width));
+}
+
+function renderStatusDockLines(project: WikiProject, state: StatusStateFile, roadmapState: RoadmapStateFile | null, activeLink: TaskSessionLinkRecord | null, prefs: StatusDockPrefs, source: "cwd" | "pinned", theme: { fg: (color: string, text: string) => string; bold: (text: string) => string }, width: number): string[] {
   const color = roadmapHealthThemeColor(state.health.color);
-  const header = `Wiki ${state.health.color} • ${state.summary.open_count} open • ${statusCounts.in_progress ?? 0} in progress • ${statusCounts.blocked ?? 0} blocked`;
-  const lines = [truncateToWidth(`${theme.fg(color, "●")} ${theme.bold(theme.fg(color, header))}`, width)];
-  const activeId = resolveRoadmapStateTaskId(state, activeLink?.taskId);
-  const ids = roadmapWorkingSetTaskIds(state, activeLink);
+  const nextStep = resolvedNextStep(state, roadmapState, activeLink);
+  const lines = [truncateToWidth(`${theme.fg(color, "●")} ${theme.bold(theme.fg(color, statusDockHeaderLabel(project, source, state.health.color)))}`, width)];
 
-  if (ids.length === 0) {
-    const doneCount = statusCounts.done ?? 0;
-    lines.push(truncateToWidth(theme.fg("success", `  ✔ Roadmap clear${doneCount > 0 ? ` (${doneCount} done)` : ""}`), width));
-    return lines;
+  if (prefs.density !== "minimal") {
+    lines.push(renderProgressBar(theme, "Tracked drift", state.bars.tracked_drift, width, "tracked_drift"));
+    lines.push(renderProgressBar(theme, "Roadmap done", state.bars.roadmap_done, width, "roadmap_done"));
+    if (prefs.density === "full") lines.push(renderProgressBar(theme, "Spec mapping", state.bars.spec_mapping, width, "spec_mapping"));
+    lines.push(...renderDockRiskLines(state, theme, width, STATUS_DOCK_MAX_VISIBLE_SPECS));
+    if (prefs.density === "full") lines.push(...renderDockTaskLines(roadmapState, activeLink, theme, width, STATUS_DOCK_MAX_VISIBLE_TASKS));
   }
 
-  const visible = ids.slice(0, ROADMAP_WIDGET_MAX_VISIBLE_ITEMS).map((taskId) => state.tasks[taskId]).filter(Boolean) as RoadmapStateTaskSummary[];
-  for (let index = 0; index < visible.length; index += 1) {
-    const task = visible[index];
-    const prefix = task.id === activeId && isOpenRoadmapTask(task)
-      ? theme.fg("accent", "✳")
-      : task.status === "in_progress"
-        ? theme.fg("accent", "◼")
-        : task.status === "blocked"
-          ? theme.fg("warning", "◻")
-          : "◻";
-    const label = task.id === activeId && isOpenRoadmapTask(task)
-      ? `${task.id} ${task.title}`
-      : task.status === "todo" && index === 0 && !activeId && !visible.some((candidate) => candidate.status === "in_progress")
-        ? `Next: ${task.id} ${task.title}`
-        : `${task.id} ${task.title}`;
-    lines.push(truncateToWidth(`  ${prefix} ${label}`, width));
+  lines.push(truncateToWidth(theme.fg("accent", `Next           ${nextStep.command}`), width));
+  if (prefs.density === "full") {
+    for (const item of state.direction.slice(0, 2)) lines.push(truncateToWidth(theme.fg("muted", item), width));
   }
-
-  const overflow = ids.length - visible.length;
-  if (overflow > 0) lines.push(truncateToWidth(theme.fg("dim", `  … and ${overflow} more open tasks`), width));
   return lines;
 }
 
-function clearRoadmapWidget(ctx: ExtensionContext | ExtensionCommandContext): void {
+function clearStatusDock(ctx: ExtensionContext | ExtensionCommandContext): void {
   const ui = ctx.ui as { setWidget?: (key: string, content: undefined, options?: { placement?: "aboveEditor" | "belowEditor" }) => void };
-  if (typeof ui.setWidget === "function") ui.setWidget(ROADMAP_WIDGET_KEY, undefined);
+  if (typeof ui.setWidget === "function") ui.setWidget(STATUS_DOCK_WIDGET_KEY, undefined);
 }
 
-async function refreshRoadmapWidget(project: WikiProject, ctx: ExtensionContext | ExtensionCommandContext, activeLink: TaskSessionLinkRecord | null = currentTaskLink(ctx)): Promise<void> {
+async function refreshStatusDock(project: WikiProject, ctx: ExtensionContext | ExtensionCommandContext, activeLink: TaskSessionLinkRecord | null = currentTaskLink(ctx), resolved: ResolvedStatusDockProject | null = null): Promise<void> {
   const ui = ctx.ui as { setWidget?: (key: string, content: ((tui: any, theme: any) => { render(): string[]; invalidate(): void }) | undefined, options?: { placement?: "aboveEditor" | "belowEditor" }) => void };
   if (typeof ui.setWidget !== "function") return;
-  const state = await maybeReadRoadmapState(project.roadmapStatePath);
-  if (!state) {
-    ui.setWidget(ROADMAP_WIDGET_KEY, undefined);
+  const prefs = await readStatusDockPrefs();
+  if (prefs.mode === "off") {
+    ui.setWidget(STATUS_DOCK_WIDGET_KEY, undefined);
     return;
   }
-  ui.setWidget(ROADMAP_WIDGET_KEY, (tui, theme) => ({
-    render: () => renderRoadmapWidgetLines(state, activeLink, theme, tui?.terminal?.columns ?? 120),
+  const dockState = resolved?.statusState ?? await maybeReadStatusState(project.statusStatePath);
+  const roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
+  if (!dockState) {
+    ui.setWidget(STATUS_DOCK_WIDGET_KEY, undefined);
+    return;
+  }
+  const source = resolved?.source ?? "cwd";
+  ui.setWidget(STATUS_DOCK_WIDGET_KEY, (tui, theme) => ({
+    render: () => renderStatusDockLines(project, dockState, roadmapState, activeLink, prefs, source, theme, tui?.terminal?.columns ?? 120),
     invalidate: () => {},
   }), { placement: "aboveEditor" });
 }
 
-function buildStatusText(project: WikiProject, registry: RegistryFile | null, report: LintReport, scope: StatusScope, roadmapState: RoadmapStateFile | null = null, activeLink: TaskSessionLinkRecord | null = null): string {
+function formatStatusSpecRow(spec: StatusStateSpecRow): string {
+  const task = spec.primary_task ? `${spec.primary_task.id} ${spec.primary_task.status}` : "—";
+  return `${(spec.title || spec.path).padEnd(28).slice(0, 28)} | ${`${driftIcon(spec.drift_status)} ${spec.drift_status}`.padEnd(12).slice(0, 12)} | ${spec.code_area.padEnd(24).slice(0, 24)} | ${task}`;
+}
+
+function buildStatusText(project: WikiProject, state: StatusStateFile, report: LintReport, scope: StatusScope, roadmapState: RoadmapStateFile | null = null, activeLink: TaskSessionLinkRecord | null = null): string {
+  const nextStep = resolvedNextStep(state, roadmapState, activeLink);
   const lines = [
     `Wiki: ${project.label}`,
     `Root: ${project.root}`,
     `Scope: ${scope}`,
-    `Preflight: ${statusColor(report)} (errors=${countIssuesBySeverity(report, "error")} warnings=${countIssuesBySeverity(report, "warning")} total=${report.issues.length})`,
+    `Health: ${state.health.color} (errors=${countIssuesBySeverity(report, "error")} warnings=${countIssuesBySeverity(report, "warning")} total=${report.issues.length})`,
+    `Tracked drift: ${state.bars.tracked_drift.value}/${state.bars.tracked_drift.total} (${state.bars.tracked_drift.percent}%)`,
+    `Roadmap done: ${state.bars.roadmap_done.value}/${state.bars.roadmap_done.total} (${state.bars.roadmap_done.percent}%)`,
+    `Spec mapping: ${state.bars.spec_mapping.value}/${state.bars.spec_mapping.total} (${state.bars.spec_mapping.percent}%)`,
+    "",
+    "Spec                         | Drift        | Code area                | Task",
+    ...state.specs.slice(0, 8).map((spec) => formatStatusSpecRow(spec)),
   ];
-
-  if (!registry) {
-    lines.push("Generated metadata missing. Run /wiki-bootstrap first, then retry /wiki-status.");
-    return lines.join("\n");
-  }
-
-  const live = registry.docs.filter((doc) => doc.path !== project.indexPath);
-  const byType = countBy(live.map((doc) => doc.doc_type));
-  const researchFiles = registry.research ?? [];
-  const researchEntries = researchFiles.reduce((sum, item) => sum + item.entry_count, 0);
-  const roadmap = registry.roadmap;
-  lines.push(`Docs generated: ${registry.generated_at}`);
-  lines.push(`Live docs: ${live.length}`);
-  lines.push(`Types: ${Object.entries(byType).map(([key, value]) => `${key}=${value}`).join(" ") || "none"}`);
-  lines.push(`Research: files=${researchFiles.length} entries=${researchEntries}`);
-  if (roadmap) lines.push(`Roadmap: tasks=${roadmap.entry_count} ${Object.entries(roadmap.counts).map(([key, value]) => `${key}=${value}`).join(" ")}`.trim());
-  if (roadmapState) {
-    lines.push(`Roadmap widget state: health=${roadmapState.health.color} open=${roadmapState.summary.open_count}`);
-    lines.push("", "Roadmap working set:", ...buildRoadmapWorkingSetLines(roadmapState, activeLink));
-  }
-  lines.push("", "Specs and mapped drift signals:", ...buildSpecStatusLines(registry, report));
-  lines.push("", `Semantic ${scope} review queued. If the result is yellow/red, prefer /wiki-fix ${scope}.`);
+  if (state.specs.length > 8) lines.push(`... ${state.specs.length - 8} more spec row(s)`);
+  lines.push("", "Roadmap working set:", ...buildRoadmapWorkingSetLines(roadmapState, activeLink), "", "Direction:", ...state.direction.map((item) => `- ${item}`), `- Next: ${nextStep.command}`, "", `Semantic ${scope} direction review queued.`);
   return lines.join("\n");
+}
+
+function defaultStatusDockPrefs(): StatusDockPrefs {
+  return { version: STATUS_DOCK_PREFS_VERSION, mode: "auto", density: "standard" };
+}
+
+function resolveStatusDockPrefsPath(): string {
+  const override = process.env[STATUS_DOCK_PREFS_ENV]?.trim();
+  if (override) return resolve(override);
+  const home = process.env.HOME?.trim();
+  if (home) return resolve(home, ".pi", "agent", "codewiki-status.json");
+  return resolve(".pi", "agent", "codewiki-status.json");
+}
+
+async function readStatusDockPrefs(): Promise<StatusDockPrefs> {
+  const path = resolveStatusDockPrefsPath();
+  if (!(await pathExists(path))) return defaultStatusDockPrefs();
+  try {
+    const raw = JSON.parse(await readFile(path, "utf8")) as Partial<StatusDockPrefs>;
+    const mode = STATUS_DOCK_MODE_VALUES.includes(raw.mode as StatusDockMode) ? raw.mode as StatusDockMode : "auto";
+    const density = STATUS_DOCK_DENSITY_VALUES.includes(raw.density as StatusDockDensity) ? raw.density as StatusDockDensity : "standard";
+    const pinnedRepoPath = typeof raw.pinnedRepoPath === "string" && raw.pinnedRepoPath.trim() ? raw.pinnedRepoPath.trim() : undefined;
+    return { version: STATUS_DOCK_PREFS_VERSION, mode, density, pinnedRepoPath };
+  } catch {
+    return defaultStatusDockPrefs();
+  }
+}
+
+async function writeStatusDockPrefs(prefs: StatusDockPrefs): Promise<void> {
+  const path = resolveStatusDockPrefsPath();
+  await mkdir(dirname(path), { recursive: true });
+  await writeFile(path, `${JSON.stringify({ ...prefs, version: STATUS_DOCK_PREFS_VERSION }, null, 2)}\n`, "utf8");
+}
+
+async function resolveStatusDockProject(ctx: ExtensionContext | ExtensionCommandContext): Promise<ResolvedStatusDockProject | null> {
+  const prefs = await readStatusDockPrefs();
+  if (prefs.mode === "off") return null;
+  const localProject = await maybeLoadProject(ctx.cwd);
+  if (localProject) {
+    return { project: localProject, statusState: await maybeReadStatusState(localProject.statusStatePath), source: "cwd" };
+  }
+  if (prefs.mode === "pin" && prefs.pinnedRepoPath) {
+    const pinnedProject = await maybeLoadProject(prefs.pinnedRepoPath);
+    if (!pinnedProject) return null;
+    return { project: pinnedProject, statusState: await maybeReadStatusState(pinnedProject.statusStatePath), source: "pinned" };
+  }
+  return null;
 }
 
 function promptContextFiles(project: WikiProject): string[] {
@@ -812,6 +1024,7 @@ function promptContextFiles(project: WikiProject): string[] {
     `- ${project.registryPath.replace(`${project.root}/`, "")}`,
     `- ${project.lintPath.replace(`${project.root}/`, "")}`,
     `- ${project.roadmapStatePath.replace(`${project.root}/`, "")}`,
+    `- ${project.statusStatePath.replace(`${project.root}/`, "")}`,
   ];
 }
 
@@ -837,8 +1050,8 @@ function renderScopeForPrompt(scope: StatusScope, drift: DriftContext): string[]
   if (scope === "code") {
     return [
       "Docs scope:",
-      ...renderScope("Include", drift.wikiScope),
-      ...renderScope("Exclude", drift.wikiExclude),
+      ...renderScope("Include", drift.docsScope),
+      ...renderScope("Exclude", drift.docsExclude),
       "Additional repository docs:",
       ...renderList(drift.repoDocs),
       "Implementation scope:",
@@ -850,8 +1063,8 @@ function renderScopeForPrompt(scope: StatusScope, drift: DriftContext): string[]
     ...renderScope("Include", drift.selfInclude),
     ...renderScope("Exclude", drift.selfExclude),
     "Code comparison scope:",
-    ...renderScope("Docs include", drift.wikiScope),
-    ...renderScope("Docs exclude", drift.wikiExclude),
+    ...renderScope("Docs include", drift.docsScope),
+    ...renderScope("Docs exclude", drift.docsExclude),
     "Additional repository docs:",
     ...renderList(drift.repoDocs),
     "Implementation scope:",
@@ -859,30 +1072,32 @@ function renderScopeForPrompt(scope: StatusScope, drift: DriftContext): string[]
   ];
 }
 
-function statusPrompt(project: WikiProject, registry: RegistryFile | null, report: LintReport, scope: StatusScope): string {
+function statusPrompt(project: WikiProject, registry: RegistryFile | null, report: LintReport, scope: StatusScope, statusState: StatusStateFile | null = null): string {
   const drift = buildDriftContext(project, registry);
   return [
-    `Review current wiki status for ${project.label}.`,
+    `Review current wiki direction for ${project.label}.`,
     `Requested scope: ${scope}.`,
     `Deterministic preflight color: ${statusColor(report)}.`,
     `Deterministic lint counts: errors=${countIssuesBySeverity(report, "error")} warnings=${countIssuesBySeverity(report, "warning")} total=${report.issues.length}.`,
+    ...(statusState ? [
+      `Status dock snapshot: tracked=${statusState.summary.tracked_specs} untracked=${statusState.summary.untracked_specs} blocked=${statusState.summary.blocked_specs} unmapped=${statusState.summary.unmapped_specs}.`,
+      `Deterministic next step: ${statusState.next_step.command}.`,
+    ] : []),
     ...renderScopeForPrompt(scope, drift),
     "Context files:",
     ...promptContextFiles(project),
     "Spec map:",
     ...renderSpecPromptMap(registry),
     "Tasks:",
-    "1. Infer project shape from evidence first: greenfield vs brownfield, app vs library vs service vs monorepo, and major ownership seams.",
-    "2. Use repo evidence first and ask at most 3 high-value user questions only if ambiguity materially changes the conclusion or edit scope.",
-    "3. Classify the project as green, yellow, or red from a wiki-health standpoint.",
-    "4. For each spec, describe mapped code, likely drift, and concrete evidence.",
-    "5. Recommend the next step. If the repo is yellow or red, suggest /wiki-fix with the right scope.",
+    "1. Infer project shape from repo evidence first.",
+    "2. Validate the dock's top risky specs and whether roadmap coverage truly represents the live delta.",
+    "3. Explain the next best direction for the project in concise operational language.",
+    "4. Ask at most 3 high-value questions only if ambiguity materially changes the recommendation.",
     "Output format:",
     "- Overall status: green|yellow|red with confidence",
-    "- Inferred project shape",
-    "- Per-spec drift summary",
-    "- Questions for the user only if blocking",
-    "- Recommended next step",
+    "- Top risks: max 5 bullets tied to specs/code/roadmap",
+    "- Roadmap coverage: what delta is tracked vs missing",
+    "- Direction: short next-step recommendation",
     "Do not edit files yet.",
   ].join("\n");
 }
@@ -1109,11 +1324,11 @@ async function rebuildAndSummarize(projectOrCwd: WikiProject | string): Promise<
 
 async function readStatus(projectOrCwd: WikiProject | string): Promise<string> {
   const project = typeof projectOrCwd === "string" ? await loadProject(projectOrCwd) : projectOrCwd;
-  const registry = await maybeReadJson<RegistryFile>(project.registryPath);
+  const statusState = await maybeReadStatusState(project.statusStatePath);
   const report = await maybeReadJson<LintReport>(project.lintPath);
   const roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
-  if (!report) return `Wiki: ${project.label}\nRoot: ${project.root}\nGenerated metadata missing. Run /wiki-bootstrap first, then retry /wiki-status.`;
-  return buildStatusText(project, registry, report, "both", roadmapState);
+  if (!report || !statusState) return `Wiki: ${project.label}\nRoot: ${project.root}\nGenerated metadata missing. Run /wiki-bootstrap first, then retry /wiki-status.`;
+  return buildStatusText(project, statusState, report, "both", roadmapState);
 }
 
 async function browseRoadmap(project: WikiProject, roadmap: RoadmapFile, ctx: ExtensionCommandContext): Promise<void> {
@@ -1453,6 +1668,7 @@ async function loadProject(startDir: string): Promise<WikiProject> {
     eventsPath: resolve(root, metaRoot, "events.jsonl"),
     roadmapEventsPath,
     roadmapStatePath: resolve(root, metaRoot, "roadmap-state.json"),
+    statusStatePath: resolve(root, metaRoot, "status-state.json"),
   };
 }
 

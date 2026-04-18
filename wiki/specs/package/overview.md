@@ -36,6 +36,7 @@ Discovery rule:
 - resolve the nearest ancestor containing `.wiki/config.json` from current cwd
 - if no repo-local wiki is found from current cwd, public commands may accept an explicit repo path
 - in UI mode, public commands may offer a repo picker across candidate repos found below current cwd
+- dock visibility preferences are user-owned UI state, not repo-owned wiki truth
 - if no wiki exists yet, `/wiki-bootstrap` targets enclosing git repo root when present, else current working directory
 
 ## Brownfield bootstrap goal
@@ -47,6 +48,7 @@ Bootstrap should be able to infer first-pass `wiki/specs/**` ownership docs from
 - public commands stay limited to `/wiki-bootstrap`, `/wiki-status`, `/wiki-fix`, `/wiki-review`, and `/wiki-code`
 - deeper composability lives in internal tools and prompts, rather than exposing separate user-facing wiki mutation commands
 - internal `codewiki_*` tools may accept an explicit `repoPath` so global installs can still target the intended repo safely when cwd is elsewhere
+- status UX should unify around `.wiki/status-state.json` plus a persistent dock, while `/wiki-status` acts as expanded inspector and dock control surface
 
 ## Model naming
 

@@ -65,6 +65,7 @@ ROADMAP_DOC_PATH = ROOT / str(CONFIG.get("roadmap_doc_path", "wiki/roadmap.md"))
 ROADMAP_EVENTS_PATH = ROOT / str(CONFIG.get("roadmap_events_path", ".wiki/roadmap-events.jsonl"))
 META_ROOT = ROOT / str(CONFIG.get("meta_root", ".wiki"))
 ROADMAP_STATE_PATH = META_ROOT / "roadmap-state.json"
+STATUS_STATE_PATH = META_ROOT / "status-state.json"
 INDEX_PATH = ROOT / str(CONFIG.get("index_path", "wiki/index.md"))
 DEFAULT_INDEX_TITLE = f"{PROJECT_NAME} Index" if PROJECT_NAME.lower().endswith("wiki") else f"{PROJECT_NAME} Wiki Index"
 INDEX_TITLE = str(CONFIG.get("index_title", DEFAULT_INDEX_TITLE))
@@ -549,6 +550,205 @@ def build_roadmap_state(entries: list[dict[str, Any]], lint_report: dict[str, An
     }
 
 
+def compact_code_area(code_paths: list[str]) -> str:
+    cleaned = [str(value).strip() for value in code_paths if str(value).strip()]
+    if not cleaned:
+        return "—"
+    if len(cleaned) == 1:
+        return cleaned[0]
+    areas: list[str] = []
+    for path in cleaned:
+        head = path.split("/", 1)[0]
+        if head not in areas:
+            areas.append(head)
+    if len(areas) == 1:
+        return f"{areas[0]} +{len(cleaned) - 1} more"
+    visible = areas[:2]
+    suffix = f" +{len(areas) - len(visible)} more" if len(areas) > len(visible) else ""
+    return ", ".join(visible) + suffix
+
+
+def bar_state(label: str, value: int, total: int) -> dict[str, Any]:
+    safe_total = total if total > 0 else 0
+    percent = int(round((value / safe_total) * 100)) if safe_total > 0 else 100
+    return {
+        "label": label,
+        "value": int(value),
+        "total": int(total),
+        "percent": percent,
+    }
+
+
+def build_status_state(docs: list[dict[str, Any]], roadmap_entries: list[dict[str, Any]], lint_report: dict[str, Any], roadmap_state: dict[str, Any]) -> dict[str, Any]:
+    health = lint_health(lint_report)
+    spec_docs = sorted([doc for doc in docs if doc.get("doc_type") == "spec"], key=lambda doc: str(doc.get("path", "")))
+    issues = lint_report.get("issues") if isinstance(lint_report.get("issues"), list) else []
+    open_tasks_by_spec: dict[str, list[dict[str, Any]]] = {}
+    blocked_tasks_by_spec: dict[str, list[dict[str, Any]]] = {}
+    done_tasks_by_spec: dict[str, list[dict[str, Any]]] = {}
+
+    for task in roadmap_entries:
+        spec_paths = [str(value) for value in task.get("spec_paths", []) if str(value).strip()]
+        status = str(task.get("status", "todo"))
+        for spec_path in spec_paths:
+            if status == "blocked":
+                blocked_tasks_by_spec.setdefault(spec_path, []).append(task)
+            elif status in {"todo", "in_progress"}:
+                open_tasks_by_spec.setdefault(spec_path, []).append(task)
+            elif status == "done":
+                done_tasks_by_spec.setdefault(spec_path, []).append(task)
+
+    spec_rows: list[dict[str, Any]] = []
+    counts = Counter()
+    risky_paths: list[str] = []
+
+    for doc in spec_docs:
+        path = str(doc.get("path", "")).strip()
+        code_paths = [str(value) for value in doc.get("code_paths", []) if str(value).strip()]
+        related_issues = [
+            issue
+            for issue in issues
+            if str(issue.get("path", "")).strip() in {path, path.replace("wiki/", "docs/", 1)}
+        ]
+        issue_errors = sum(1 for issue in related_issues if str(issue.get("severity", "")) == "error")
+        issue_warnings = sum(1 for issue in related_issues if str(issue.get("severity", "")) == "warning")
+        open_tasks = sorted(open_tasks_by_spec.get(path, []), key=roadmap_sort_key)
+        blocked_tasks = sorted(blocked_tasks_by_spec.get(path, []), key=roadmap_sort_key)
+        done_tasks = sorted(done_tasks_by_spec.get(path, []), key=roadmap_sort_key)
+
+        if blocked_tasks and not open_tasks:
+            drift_status = "blocked"
+            primary_task = blocked_tasks[0]
+            note = f"blocked by {primary_task.get('id', 'task')}"
+        elif open_tasks:
+            drift_status = "tracked"
+            primary_task = open_tasks[0]
+            note = f"tracked by {primary_task.get('id', 'task')}"
+        elif not code_paths:
+            drift_status = "unmapped"
+            primary_task = None
+            note = "no mapped code area"
+        elif related_issues:
+            drift_status = "untracked"
+            primary_task = None
+            issue_total = issue_errors + issue_warnings
+            note = f"{issue_total} deterministic issue{'s' if issue_total != 1 else ''} with no open roadmap task"
+        else:
+            drift_status = "aligned"
+            primary_task = done_tasks[0] if done_tasks else None
+            note = "no deterministic drift signals"
+
+        counts[drift_status] += 1
+        if drift_status != "aligned":
+            risky_paths.append(path)
+        spec_rows.append(
+            {
+                "path": path,
+                "title": str(doc.get("title", path)).strip(),
+                "summary": str(doc.get("summary", "")).strip(),
+                "drift_status": drift_status,
+                "code_paths": code_paths,
+                "code_area": compact_code_area(code_paths),
+                "issue_counts": {
+                    "errors": issue_errors,
+                    "warnings": issue_warnings,
+                    "total": issue_errors + issue_warnings,
+                },
+                "related_task_ids": [str(item.get("id", "")).strip() for item in [*open_tasks, *blocked_tasks, *done_tasks] if str(item.get("id", "")).strip()],
+                "primary_task": {
+                    "id": str(primary_task.get("id", "")).strip(),
+                    "status": str(primary_task.get("status", "")).strip(),
+                    "title": str(primary_task.get("title", "")).strip(),
+                } if isinstance(primary_task, dict) else None,
+                "note": note,
+            }
+        )
+
+    status_order = {"untracked": 0, "blocked": 1, "tracked": 2, "unmapped": 3, "aligned": 4}
+    risky_specs = sorted(spec_rows, key=lambda item: (status_order.get(str(item.get("drift_status", "aligned")), 99), str(item.get("path", ""))))
+    total_specs = len(spec_rows)
+    mapped_specs = total_specs - counts.get("unmapped", 0)
+    drift_total = counts.get("tracked", 0) + counts.get("untracked", 0) + counts.get("blocked", 0)
+    tracked_total = counts.get("tracked", 0) + counts.get("blocked", 0)
+    task_summary = roadmap_state.get("summary", {}) if isinstance(roadmap_state.get("summary"), dict) else {}
+    task_status_counts = task_summary.get("status_counts", {}) if isinstance(task_summary.get("status_counts"), dict) else {}
+
+    if counts.get("untracked", 0) > 0:
+        next_step = {
+            "kind": "fix",
+            "command": "/wiki-fix both",
+            "reason": f"{counts.get('untracked', 0)} untracked spec drift requires roadmap-backed correction.",
+        }
+    elif counts.get("blocked", 0) > 0 or int(task_status_counts.get("blocked", 0)) > 0:
+        next_step = {
+            "kind": "review",
+            "command": "/wiki-review architecture",
+            "reason": "Blocked drift exists; review constraints before resuming implementation.",
+        }
+    elif isinstance(roadmap_state.get("views"), dict) and roadmap_state["views"].get("in_progress_task_ids"):
+        task_id = str(roadmap_state["views"]["in_progress_task_ids"][0])
+        next_step = {
+            "kind": "code",
+            "command": f"/wiki-code {task_id}",
+            "reason": "Roadmap already covers current delta; continue in-progress implementation.",
+        }
+    elif isinstance(roadmap_state.get("views"), dict) and roadmap_state["views"].get("todo_task_ids"):
+        task_id = str(roadmap_state["views"]["todo_task_ids"][0])
+        next_step = {
+            "kind": "code",
+            "command": f"/wiki-code {task_id}",
+            "reason": "Roadmap is ready; continue with the next open task.",
+        }
+    else:
+        next_step = {
+            "kind": "observe",
+            "command": "Observe — roadmap clear",
+            "reason": "No open deterministic drift requires action right now.",
+        }
+
+    direction = [
+        next_step["reason"],
+        f"Mapped specs: {mapped_specs}/{total_specs}.",
+        f"Tracked drift coverage: {tracked_total}/{drift_total}." if drift_total > 0 else "No tracked spec drift is open.",
+    ]
+
+    return {
+        "version": 1,
+        "generated_at": now_iso(),
+        "project": {
+            "name": PROJECT_NAME,
+            "docs_root": DOCS_ROOT.relative_to(ROOT).as_posix(),
+            "roadmap_path": ROADMAP_PATH.relative_to(ROOT).as_posix(),
+        },
+        "health": health,
+        "summary": {
+            "total_specs": total_specs,
+            "mapped_specs": mapped_specs,
+            "aligned_specs": counts.get("aligned", 0),
+            "tracked_specs": counts.get("tracked", 0),
+            "untracked_specs": counts.get("untracked", 0),
+            "blocked_specs": counts.get("blocked", 0),
+            "unmapped_specs": counts.get("unmapped", 0),
+            "task_count": int(task_summary.get("task_count", len(roadmap_entries))),
+            "open_task_count": int(task_summary.get("open_count", 0)),
+            "done_task_count": int(task_status_counts.get("done", 0)),
+        },
+        "bars": {
+            "tracked_drift": bar_state("Tracked drift", tracked_total, drift_total),
+            "roadmap_done": bar_state("Roadmap done", int(task_status_counts.get("done", 0)), int(task_summary.get("task_count", len(roadmap_entries)))),
+            "spec_mapping": bar_state("Spec mapping", mapped_specs, total_specs),
+        },
+        "views": {
+            "risky_spec_paths": [str(item.get("path", "")) for item in risky_specs if str(item.get("path", ""))],
+            "top_risky_spec_paths": [str(item.get("path", "")) for item in risky_specs[:5] if str(item.get("path", ""))],
+            "open_task_ids": [str(value) for value in (((roadmap_state.get("views") or {}).get("open_task_ids")) or []) if str(value).strip()],
+        },
+        "specs": risky_specs,
+        "next_step": next_step,
+        "direction": direction,
+    }
+
+
 def docs_relative_link(root_relative_path: str) -> str:
     abs_path = ROOT / root_relative_path
     try:
@@ -747,7 +947,9 @@ def main() -> None:
     INDEX_PATH.write_text(index_text, encoding="utf-8")
     lint_report = lint(docs, roadmap_items, research_collections)
     write_json(META_ROOT / "lint.json", lint_report)
-    write_json(ROADMAP_STATE_PATH, build_roadmap_state(roadmap_items, lint_report))
+    roadmap_state = build_roadmap_state(roadmap_items, lint_report)
+    write_json(ROADMAP_STATE_PATH, roadmap_state)
+    write_json(STATUS_STATE_PATH, build_status_state(docs, roadmap_items, lint_report, roadmap_state))
 
 
 if __name__ == "__main__":
