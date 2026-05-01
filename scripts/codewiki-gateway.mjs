@@ -14,6 +14,7 @@ import {
 
 function usage() {
 	return `Usage:
+  node scripts/codewiki-gateway.mjs manifest [repo]
   node scripts/codewiki-gateway.mjs tree [repo]
   node scripts/codewiki-gateway.mjs pack [TASK-###] [repo]
   node scripts/codewiki-gateway.mjs apply <transaction.json> [repo]
@@ -87,6 +88,81 @@ function makeApi(repo, gateway) {
 	};
 }
 
+function capabilityManifest() {
+	return {
+		version: 1,
+		capabilities: [
+			{
+				name: "codewiki.state",
+				class: "read",
+				summary:
+					"Read compact repo, health, roadmap, session, and task context state.",
+				args_schema: "codewikiStateToolInputSchema",
+				result_schema: "CodeWiki state snapshot",
+				writes: [],
+				audit: ["repo", "sections", "taskId", "refresh"],
+			},
+			{
+				name: "codewiki.task",
+				class: "semantic-write",
+				summary:
+					"Create, update, close, cancel, or append evidence to roadmap tasks.",
+				args_schema: "codewikiTaskToolInputSchema",
+				result_schema: "CodeWiki task mutation result",
+				writes: [
+					".wiki/roadmap.json",
+					".wiki/roadmap/events.jsonl",
+					".wiki/evidence/*.jsonl",
+				],
+				audit: [
+					"repo",
+					"action",
+					"taskId",
+					"evidence",
+					"files_touched",
+					"issues",
+				],
+			},
+			{
+				name: "codewiki.session",
+				class: "session-write",
+				summary:
+					"Record Pi session focus and runtime notes linked to roadmap tasks.",
+				args_schema: "codewikiSessionToolInputSchema",
+				result_schema: "CodeWiki session link result",
+				writes: ["Pi session JSONL", ".wiki/events.jsonl"],
+				audit: ["repo", "action", "taskId", "session"],
+			},
+			{
+				name: "codewiki.transaction",
+				class: "validated-write",
+				summary:
+					"Apply exact-text knowledge patches or append-only evidence transactions.",
+				args_schema: "transaction v1 JSON",
+				result_schema: "transaction apply result",
+				writes: [".wiki/knowledge/**/*.md", ".wiki/evidence/*.jsonl"],
+				audit: ["repo", "summary", "ops", "paths"],
+			},
+			{
+				name: "codewiki.rebuild",
+				class: "derived-write",
+				summary:
+					"Regenerate graph, lint, status, roadmap state, and task context read models.",
+				args_schema: "rebuild command config",
+				result_schema: "rebuild result",
+				writes: [
+					".wiki/graph.json",
+					".wiki/lint.json",
+					".wiki/roadmap-state.json",
+					".wiki/status-state.json",
+					".wiki/roadmap/tasks/*/context.json",
+				],
+				audit: ["repo", "command", "exitCode"],
+			},
+		],
+	};
+}
+
 function currentTaskPack(repo, taskId) {
 	const status = readJson(path.join(repo, ".wiki", "status-state.json"), {});
 	const roadmap = readJson(path.join(repo, ".wiki", "roadmap-state.json"), {});
@@ -147,7 +223,10 @@ async function main() {
 	if (!gateway.enabled)
 		throw new Error("Codewiki gateway disabled in .wiki/config.json");
 	let output;
-	if (command === "tree") output = JSON.stringify(walk(repo, gateway), null, 2);
+	if (command === "manifest")
+		output = JSON.stringify(capabilityManifest(), null, 2);
+	else if (command === "tree")
+		output = JSON.stringify(walk(repo, gateway), null, 2);
 	else if (command === "pack")
 		output = JSON.stringify(
 			currentTaskPack(repo, first?.startsWith("TASK-") ? first : undefined),

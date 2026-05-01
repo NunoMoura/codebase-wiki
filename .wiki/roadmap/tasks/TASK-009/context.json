@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-01T04:55:24Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-009/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-009",
+    "title": "Add automatic fresh-context verifier agent workflow",
+    "status": "done",
+    "phase": "done",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Design and implement an automatic verifier stage that spawns a read-only agent when task execution reaches verification, while retaining a manual command only as an override/debug entrypoint.",
+    "labels": [
+      "verification",
+      "subagent",
+      "pi-extension"
+    ],
+    "goal": {
+      "outcome": "CodeWiki automatically verifies task completion through a separate read-only Pi agent as part of the inner loop before closure.",
+      "acceptance": [
+        "Inner loop invokes verifier automatically when a task is ready for closure or explicit verification evidence is missing.",
+        "Verifier stage accepts a task id internally and builds a compact verification brief from task context, linked specs, diff/status, and acceptance criteria.",
+        "Verifier runs in a separate Pi process or SDK/RPC session with read-only tools plus allowed check commands.",
+        "Verifier returns deterministic JSON verdict with pass/fail/block, checks, issues, and rationale.",
+        "Parent CodeWiki flow appends verifier output as task evidence without automatically mutating code.",
+        "Auto-close is gated by verifier pass plus local checks plus no unresolved issues and user/project policy.",
+        "Manual `/wiki-verify` or equivalent, if present, is a debug/override entrypoint rather than the primary workflow."
+      ],
+      "non_goals": [
+        "Give verifier write/edit/apply authority.",
+        "Replace human review for security-sensitive or product-sensitive changes.",
+        "Require verifier for every tiny docs typo when policy says skip."
+      ],
+      "verification": [
+        "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+        "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+        "Confirm verifier cannot write files or mutate roadmap directly."
+      ]
+    },
+    "delta": {
+      "desired": "Task closure automatically uses independent fresh-context verification rather than relying on users to trigger a command.",
+      "current": "Skill guidance recommends fresh verification, but no automatic verifier stage exists.",
+      "closure": "Add automatic verifier stage, verifier prompt/protocol, evidence append path, and optional manual override."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "68cec46123899a2653cd9a45a0136eeb6bbd8c2b565e371bb4ff13eaf6c79319"
+    },
+    "git": {
+      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/roadmap.json",
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "paths": {
+        ".wiki/knowledge/clients/overview.md": "0d12c87f000a",
+        ".wiki/knowledge/system/runtime/overview.md": "0d12c87f000a",
+        ".wiki/roadmap.json": "0d12c87f000a",
+        "extensions/codewiki/index.ts": "0d12c87f000a",
+        "scripts/smoke-test.mjs": "0d12c87f000a",
+        "skills/codewiki-verify/SKILL.md": ""
+      }
+    },
+    "spec_digest": "313360e360959c8c8b4426e3808af6b1bb109a0a0234bad66129f1e22d08cff0",
+    "code_digest": "9476e6ee2f2e9212ae864dc9d216d4881d7c097861cfa8598008bcf0e56f6a7e",
+    "graph": {
+      "git": {
+        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "dirty": true
+      },
+      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/clients/overview.md",
+      "title": "Clients Overview",
+      "summary": "User-facing workflow and status-surface expectations for codewiki.",
+      "state": "active",
+      "owners": [
+        "design"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "221fff22b045303dcf71f0b2d3e70718075a06f1d5882509e1653c8a18a3d46d"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/clients/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "summary": "Policy boundary for codewiki runtime access in codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "d08fc444bcad24e82b0621363104d6bd4ff20c821bc6f79da877af66f7577800"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/runtime/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/index.ts",
+      "skills/codewiki-verify/SKILL.md",
+      "scripts/smoke-test.mjs"
+    ],
+    "digest": "9476e6ee2f2e9212ae864dc9d216d4881d7c097861cfa8598008bcf0e56f6a7e",
+    "expand": [
+      {
+        "read": "extensions/codewiki/index.ts"
+      },
+      {
+        "read": "skills/codewiki-verify/SKILL.md"
+      },
+      {
+        "read": "scripts/smoke-test.mjs"
+      }
+    ]
+  },
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Implemented automatic fresh verifier stage for explicit task close: builds compact verifier prompt from task/context, spawns read-only `pi --mode json --no-session` with read/grep/find/ls tools, parses deterministic JSON verdict, appends verifier evidence, and blocks closure on non-pass; smoke tests disable nested verifier via env.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "npm test",
+      "grep maybeRunAutomaticTaskVerifier extensions/codewiki/index.ts"
+    ],
+    "files_touched": [
+      "extensions/codewiki/index.ts",
+      "scripts/smoke-test.mjs",
+      ".wiki/knowledge/system/runtime/overview.md",
+      ".wiki/knowledge/clients/overview.md"
+    ],
+    "issues": [
+      "Automatic verifier currently runs on explicit `codewiki_task` close; lifecycle `update` pass path remains a follow-up if strict auto-verify is required there too."
+    ],
+    "updated_at": "2026-05-01T03:01:12Z"
+  },
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-009/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

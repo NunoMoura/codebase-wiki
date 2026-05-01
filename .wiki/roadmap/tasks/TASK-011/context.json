@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-01T04:55:24Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-011/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-011",
+    "title": "Record curated global agent skills decision",
+    "status": "done",
+    "phase": "done",
+    "priority": "medium",
+    "kind": "docs",
+    "summary": "Document which general engineering skills should be installed or adapted globally for Pi without conflicting with CodeWiki-specific workflows.",
+    "labels": [
+      "global-agent-skills",
+      "compatibility"
+    ],
+    "goal": {
+      "outcome": "There is a durable CodeWiki decision record for global Pi skills versus CodeWiki-specific skills.",
+      "acceptance": [
+        "Global candidates are tdd, diagnose, grill-me, zoom-out, and write-a-skill.",
+        "Excluded or adapt-first skills are documented with reasons.",
+        "Notes include Pi package security and skill discovery behavior.",
+        "No global Pi settings are changed without explicit user approval."
+      ],
+      "non_goals": [
+        "Install all external skills immediately.",
+        "Replace CodeWiki roadmap with external issue skills."
+      ],
+      "verification": [
+        "Review decision text against Pi docs and existing global packages.",
+        "Confirm no repo-specific conventions are forced globally."
+      ]
+    },
+    "delta": {
+      "desired": "Global skills are curated with compatibility rationale.",
+      "current": "Decision exists only in chat.",
+      "closure": "Add durable decision guidance before installation or packaging."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "2ef8688d1605abdc540e0381841ea8177e98e52cb461994c5de36ecd05423c4a"
+    },
+    "git": {
+      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/roadmap.json"
+      ],
+      "paths": {
+        ".wiki/knowledge/clients/agent-skills.md": "",
+        ".wiki/knowledge/clients/overview.md": "0d12c87f000a",
+        ".wiki/roadmap.json": "0d12c87f000a"
+      }
+    },
+    "spec_digest": "bdf447be14cbe7b19795862b36f42b24f1573e3a3fbfb180732b6a9481f5c816",
+    "code_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "graph": {
+      "git": {
+        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "dirty": true
+      },
+      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/clients/agent-skills.md",
+      "title": "Agent Skills",
+      "summary": "Compatibility guidance for global Pi skills alongside CodeWiki-specific workflow skills.",
+      "state": "active",
+      "owners": [
+        "design"
+      ],
+      "code_paths": [
+        "skills",
+        "README.md"
+      ],
+      "revision": {
+        "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/clients/agent-skills.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/clients/overview.md",
+      "title": "Clients Overview",
+      "summary": "User-facing workflow and status-surface expectations for codewiki.",
+      "state": "active",
+      "owners": [
+        "design"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "221fff22b045303dcf71f0b2d3e70718075a06f1d5882509e1653c8a18a3d46d"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/clients/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [],
+    "digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "expand": []
+  },
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Recorded curated global skills decision as CodeWiki knowledge, including recommended global skills, adapt-first/excluded skills, and compatibility rules with Pi packages and CodeWiki semantics.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "npm test"
+    ],
+    "files_touched": [
+      ".wiki/knowledge/clients/agent-skills.md",
+      ".wiki/knowledge/clients/overview.md"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-01T03:05:41Z"
+  },
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-011/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

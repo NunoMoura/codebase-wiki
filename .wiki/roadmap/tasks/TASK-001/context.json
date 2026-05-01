@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-04-29T21:35:27Z",
+  "generated_at": "2026-05-01T04:55:24Z",
   "context_path": ".wiki/roadmap/tasks/TASK-001/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -9,8 +9,8 @@
   "task": {
     "id": "TASK-001",
     "title": "Lock product intent in specs",
-    "status": "todo",
-    "phase": "implement",
+    "status": "done",
+    "phase": "done",
     "priority": "high",
     "kind": "docs",
     "summary": "Turn codewiki intent into explicit product and system docs.",
@@ -40,10 +40,10 @@
   },
   "revision": {
     "task": {
-      "digest": "8873f0abe6dc7eb1abfbe4c7ea53d0ae35169be7f03b9f1d5008b21f65bd888b"
+      "digest": "8f54e65f96e1e17b88ae79b76bd1add029c9148b3951baa0cf4c5171d2c383d1"
     },
     "git": {
-      "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
       "dirty": true,
       "dirty_paths": [
         ".wiki/knowledge/product/overview.md",
@@ -51,21 +51,21 @@
         ".wiki/roadmap.json"
       ],
       "paths": {
-        ".wiki/knowledge/product/overview.md": "8be5b61bd6e3",
-        ".wiki/knowledge/system/overview.md": "8be5b61bd6e3",
-        ".wiki/roadmap.json": "8be5b61bd6e3"
+        ".wiki/knowledge/product/overview.md": "0d12c87f000a",
+        ".wiki/knowledge/system/overview.md": "0d12c87f000a",
+        ".wiki/roadmap.json": "0d12c87f000a"
       }
     },
-    "spec_digest": "aea3a62dd8e69468e7b2d2bb4ecb881ced6ee113e3c3a7478d2ba19c2e14809f",
+    "spec_digest": "edce54ed4a4547bff0929b11583f9a140973cc701a235599570ebe610d1d0903",
     "code_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
     "graph": {
       "git": {
-        "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
         "dirty": true
       },
-      "spec_digest": "76e0c026a9b4690c83c2f7ef7e5ff2dec0ebcb26eeafa9da3a4b800513debcfd",
-      "task_digest": "64bf370a6372453c8920b88dddbc8257ed7ef9ad037fffda92b6c904002a99d5",
-      "evidence_digest": "f9b77809b7fdd935bcdd357cd1126bad9373fd4ca249653a37c353b8d89159d1"
+      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
     }
   },
   "specs": [
@@ -79,7 +79,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "616b473ab875f14493bccecd7b5a110a81f59715bcf35ace56ac12e10c6e8986"
+        "digest": "f8babb01e47c832dded1bfa7d78a9cea833b807845b6ec8182d2b6ef60a4a695"
       },
       "expand": {
         "read": ".wiki/knowledge/product/overview.md"
@@ -93,9 +93,13 @@
       "owners": [
         "architecture"
       ],
-      "code_paths": [],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
       "revision": {
-        "digest": "f386b890187194ca049deab04850e30ba5be05cf0f49c750712ad69c48c81fc5"
+        "digest": "f2cd2d2621b1cd60fee1b1f264cf58e2377073dd1ddbbb132024d0f345a7eb11"
       },
       "expand": {
         "read": ".wiki/knowledge/system/overview.md"
@@ -107,7 +111,24 @@
     "digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
     "expand": []
   },
-  "evidence": null,
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Foundational product and system specs now describe CodeWiki intent, users, success criteria, non-goals, ownership seams, runtime boundary, evidence model, planning/task loops, and architecture review rule. Roadmap tasks link back to these specs.",
+    "checks_run": [
+      "codewiki_state refresh",
+      "npm run typecheck -- --pretty false",
+      "npm test"
+    ],
+    "files_touched": [
+      ".wiki/knowledge/product/overview.md",
+      ".wiki/knowledge/system/overview.md",
+      ".wiki/knowledge/system/runtime/overview.md",
+      ".wiki/knowledge/clients/overview.md",
+      ".wiki/roadmap.json"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-01T03:08:37Z"
+  },
   "expansion": {
     "task_json": ".wiki/roadmap/tasks/TASK-001/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",

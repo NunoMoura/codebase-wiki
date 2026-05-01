@@ -1,0 +1,46 @@
+{
+  "id": "TASK-008",
+  "title": "Model research evidence as support for wiki knowledge",
+  "status": "done",
+  "priority": "medium",
+  "kind": "research",
+  "summary": "Separate external/source research from task execution so research evidence supports `.wiki/knowledge` claims rather than becoming part of every implementation loop.",
+  "spec_paths": [
+    ".wiki/knowledge/product/overview.md",
+    ".wiki/knowledge/system/runtime/overview.md"
+  ],
+  "code_paths": [
+    "skills/codewiki-research/SKILL.md",
+    "skills/codewiki-task/SKILL.md"
+  ],
+  "research_ids": [],
+  "labels": [
+    "research",
+    "evidence",
+    "knowledge"
+  ],
+  "goal": {
+    "outcome": "CodeWiki distinguishes research evidence for intended knowledge from execution evidence for task closure.",
+    "acceptance": [
+      "Research workflow records cited findings as support for knowledge updates and design decisions.",
+      "Task execution loop treats research as optional only when uncertainty blocks implementation or claims need support.",
+      "Evidence schema or conventions distinguish source/research evidence from checks/execution evidence.",
+      "The research skill explains when to use web/code research versus local code inspection."
+    ],
+    "non_goals": [
+      "Require web research for routine code changes.",
+      "Create a separate ADR system outside `.wiki/knowledge`."
+    ],
+    "verification": [
+      "Review evidence entries produced by sample research and sample task execution for clear classification.",
+      "Run codewiki state refresh and confirm no generated state is hand-edited."
+    ]
+  },
+  "delta": {
+    "desired": "Research strengthens canonical knowledge without bloating task execution.",
+    "current": "Research is described as optional evidence but not modeled as a distinct workflow.",
+    "closure": "Add research-specific workflow guidance and evidence classification."
+  },
+  "created": "2026-05-01",
+  "updated": "2026-05-01"
+}

@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-01T04:55:24Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-004/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-004",
+    "title": "Expose CodeWiki capability manifest and think-code boundary",
+    "status": "done",
+    "phase": "done",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Define the typed CodeWiki capabilities that Pi runtimes such as think-code can call without bypassing .wiki semantics, including optional executor/fallback boundaries.",
+    "labels": [
+      "think-code",
+      "capabilities",
+      "runtime-boundary"
+    ],
+    "goal": {
+      "outcome": "CodeWiki exposes a clear capability/transaction surface for reads, task mutations, evidence appends, graph rebuilds, and validated wiki edits while composing with think-code as an optional bounded executor.",
+      "acceptance": [
+        "Runtime policy spec names the capability classes CodeWiki owns.",
+        "Manifest shape includes capability name, args schema, result schema, read/write classification, and audit fields.",
+        "Raw writes to generated state remain out of scope for external runtimes.",
+        "Plan covers behavior when think-code is not installed.",
+        "Plan covers project .wiki read access and write delegation rules."
+      ],
+      "non_goals": [
+        "Implement a general sandbox.",
+        "Duplicate telemetry or eval extension behavior.",
+        "Make think-code a hard dependency before the integration contract is stable."
+      ],
+      "verification": [
+        "Review against think-code capability boundary task",
+        "Run codewiki state refresh after spec changes",
+        "Compare intended behavior in Pi sessions with and without think-code installed"
+      ]
+    },
+    "delta": {
+      "desired": "External runtimes call CodeWiki through explicit semantic capabilities and can optionally delegate bounded execution to think-code.",
+      "current": "CodeWiki has a gateway script and transaction schema, but no formal capability manifest or optional think-code integration boundary.",
+      "closure": "Specify the manifest, fallback behavior, and follow-up implementation tasks."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "e0b44e9e07f33d59f518e66511d84251cef9a772c937e15f96fafda5dbc3444e"
+    },
+    "git": {
+      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/roadmap.json",
+        "README.md",
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "paths": {
+        ".wiki/knowledge/product/overview.md": "0d12c87f000a",
+        ".wiki/knowledge/system/overview.md": "0d12c87f000a",
+        ".wiki/knowledge/system/runtime/overview.md": "0d12c87f000a",
+        ".wiki/roadmap.json": "0d12c87f000a",
+        "README.md": "0d12c87f000a",
+        "extensions/codewiki": "0d12c87f000a",
+        "scripts/codewiki-gateway.mjs": "0d12c87f000a"
+      }
+    },
+    "spec_digest": "78053b3a67f12c993b4877e425150eb9ae225fc65053fdd6658e45c414b7a5f8",
+    "code_digest": "82bae916b9ff5bf9113ad3e4eb332342d711300bce16b365664a8cf576a8ba8b",
+    "graph": {
+      "git": {
+        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "dirty": true
+      },
+      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "summary": "Product intent, users, and value boundaries for codewiki.",
+      "state": "active",
+      "owners": [
+        "product"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "f8babb01e47c832dded1bfa7d78a9cea833b807845b6ec8182d2b6ef60a4a695"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/product/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "summary": "Main runtime areas and ownership boundaries for codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "f2cd2d2621b1cd60fee1b1f264cf58e2377073dd1ddbbb132024d0f345a7eb11"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "summary": "Policy boundary for codewiki runtime access in codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "d08fc444bcad24e82b0621363104d6bd4ff20c821bc6f79da877af66f7577800"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/runtime/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "scripts/codewiki-gateway.mjs",
+      "extensions/codewiki",
+      "README.md"
+    ],
+    "digest": "82bae916b9ff5bf9113ad3e4eb332342d711300bce16b365664a8cf576a8ba8b",
+    "expand": [
+      {
+        "read": "scripts/codewiki-gateway.mjs"
+      },
+      {
+        "read": "extensions/codewiki"
+      },
+      {
+        "read": "README.md"
+      }
+    ]
+  },
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Implemented CodeWiki capability manifest in gateway and runtime spec. Manifest names semantic capability classes for state, task mutation, session notes, validated transactions, and derived rebuilds with args/result schema names, read/write classification, affected writes, and audit fields. Spec documents think-code fallback and generated-state write delegation rules.",
+    "checks_run": [
+      "node scripts/codewiki-gateway.mjs manifest | node -e JSON.parse validation",
+      "npm run typecheck -- --pretty false",
+      "npm test",
+      "codewiki_state refresh"
+    ],
+    "files_touched": [
+      "scripts/codewiki-gateway.mjs",
+      ".wiki/knowledge/system/runtime/overview.md",
+      "README.md"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-01T03:16:47Z"
+  },
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-004/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

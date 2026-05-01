@@ -1,16 +1,24 @@
 {
   "version": 1,
-  "updated": "2026-04-29",
+  "updated": "2026-05-01T03:17:22Z",
   "order": [
     "TASK-001",
     "TASK-002",
-    "TASK-003"
+    "TASK-003",
+    "TASK-004",
+    "TASK-005",
+    "TASK-006",
+    "TASK-007",
+    "TASK-008",
+    "TASK-009",
+    "TASK-010",
+    "TASK-011"
   ],
   "tasks": {
     "TASK-001": {
       "id": "TASK-001",
       "title": "Lock product intent in specs",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "kind": "docs",
       "summary": "Turn codewiki intent into explicit product and system docs.",
@@ -44,19 +52,24 @@
         "closure": "Replace placeholders with concrete intended behavior and ownership boundaries."
       },
       "created": "2026-04-29",
-      "updated": "2026-04-29"
+      "updated": "2026-05-01"
     },
     "TASK-002": {
       "id": "TASK-002",
       "title": "Map code ownership into spec hierarchy",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "kind": "architecture",
       "summary": "Refine the inferred boundary docs until wiki/system mirrors the repo's real ownership seams without creating doc sprawl.",
       "spec_paths": [
-        ".wiki/knowledge/system/overview.md"
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
       ],
-      "code_paths": [],
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs"
+      ],
       "research_ids": [],
       "labels": [
         "brownfield",
@@ -82,17 +95,18 @@
         "closure": "Add, remove, or rewrite inferred spec folders until they match real stable ownership seams."
       },
       "created": "2026-04-29",
-      "updated": "2026-04-29"
+      "updated": "2026-05-01"
     },
     "TASK-003": {
       "id": "TASK-003",
       "title": "Keep roadmap as freshest delta log",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "kind": "process",
       "summary": "Move drift and plan tracking into structured roadmap tasks instead of separate prose buckets.",
       "spec_paths": [
-        ".wiki/knowledge/clients/overview.md"
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
       ],
       "code_paths": [],
       "research_ids": [],
@@ -120,7 +134,389 @@
         "closure": "Convert each active mismatch or sequence into a scoped roadmap task."
       },
       "created": "2026-04-29",
-      "updated": "2026-04-29"
+      "updated": "2026-05-01"
+    },
+    "TASK-004": {
+      "id": "TASK-004",
+      "title": "Expose CodeWiki capability manifest and think-code boundary",
+      "status": "done",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Define the typed CodeWiki capabilities that Pi runtimes such as think-code can call without bypassing .wiki semantics, including optional executor/fallback boundaries.",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "extensions/codewiki",
+        "README.md"
+      ],
+      "research_ids": [],
+      "labels": [
+        "think-code",
+        "capabilities",
+        "runtime-boundary"
+      ],
+      "goal": {
+        "outcome": "CodeWiki exposes a clear capability/transaction surface for reads, task mutations, evidence appends, graph rebuilds, and validated wiki edits while composing with think-code as an optional bounded executor.",
+        "acceptance": [
+          "Runtime policy spec names the capability classes CodeWiki owns.",
+          "Manifest shape includes capability name, args schema, result schema, read/write classification, and audit fields.",
+          "Raw writes to generated state remain out of scope for external runtimes.",
+          "Plan covers behavior when think-code is not installed.",
+          "Plan covers project .wiki read access and write delegation rules."
+        ],
+        "non_goals": [
+          "Implement a general sandbox.",
+          "Duplicate telemetry or eval extension behavior.",
+          "Make think-code a hard dependency before the integration contract is stable."
+        ],
+        "verification": [
+          "Review against think-code capability boundary task",
+          "Run codewiki state refresh after spec changes",
+          "Compare intended behavior in Pi sessions with and without think-code installed"
+        ]
+      },
+      "delta": {
+        "desired": "External runtimes call CodeWiki through explicit semantic capabilities and can optionally delegate bounded execution to think-code.",
+        "current": "CodeWiki has a gateway script and transaction schema, but no formal capability manifest or optional think-code integration boundary.",
+        "closure": "Specify the manifest, fallback behavior, and follow-up implementation tasks."
+      },
+      "created": "2026-04-30",
+      "updated": "2026-05-01"
+    },
+    "TASK-005": {
+      "id": "TASK-005",
+      "title": "Split CodeWiki skills into focused outer and inner workflows",
+      "status": "done",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Replace the single monolithic CodeWiki skill with a package-level router plus focused CodeWiki skills for planning, task execution, research, and verification.",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki/SKILL.md",
+        "package.json"
+      ],
+      "research_ids": [],
+      "labels": [
+        "skills",
+        "workflow",
+        "pocock-adaptation"
+      ],
+      "goal": {
+        "outcome": "Agents load only the CodeWiki workflow instructions needed for the current job while preserving shared CodeWiki invariants.",
+        "acceptance": [
+          "A small `codewiki` router skill states package invariants and when to load each focused skill.",
+          "Focused skills exist for `codewiki-plan`, `codewiki-task`, `codewiki-research`, and `codewiki-verify`.",
+          "Skill descriptions are precise enough for Pi progressive disclosure and do not duplicate large workflow text.",
+          "All focused skills preserve `.wiki/knowledge` as canonical intent and roadmap/evidence as machine-managed operational truth."
+        ],
+        "non_goals": [
+          "Install unrelated global skills as part of this repo task.",
+          "Replace CodeWiki tools or roadmap schema."
+        ],
+        "verification": [
+          "Run package typecheck/tests after skill/package changes.",
+          "Use Pi startup or package listing to confirm focused skills are discoverable.",
+          "Review each skill for overlap and conflicting instructions."
+        ]
+      },
+      "delta": {
+        "desired": "CodeWiki package exposes composable workflow skills optimized for planning, execution, research, and verification.",
+        "current": "One CodeWiki skill contains all guidance and is growing into a monolith.",
+        "closure": "Split skill files and keep a compact router/invariants skill."
+      },
+      "created": "2026-05-01",
+      "updated": "2026-05-01"
+    },
+    "TASK-006": {
+      "id": "TASK-006",
+      "title": "Define CodeWiki outer planning loop",
+      "status": "done",
+      "priority": "high",
+      "kind": "process",
+      "summary": "Specify the automatic outer loop that turns user intent into wiki knowledge updates and roadmap tasks before task execution begins, with user approval only at decision checkpoints.",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-plan/SKILL.md",
+        "skills/codewiki/SKILL.md"
+      ],
+      "research_ids": [],
+      "labels": [
+        "outer-loop",
+        "planning",
+        "roadmap"
+      ],
+      "goal": {
+        "outcome": "CodeWiki has an automatic planning workflow for clarifying intent, gathering evidence when needed, updating knowledge, and creating roadmap tasks.",
+        "acceptance": [
+          "Planning loop is documented as clarify/inspect/research-if-needed/update-knowledge/create-roadmap-tasks with automatic progression where safe.",
+          "Research is explicitly outside normal task execution and supports knowledge claims.",
+          "Roadmap tasks are created only after intended behavior and acceptance criteria are clear enough.",
+          "User-facing commands/prompts can start the outer loop, but the user does not manually trigger each stage.",
+          "The loop pauses for user input only when ambiguity, product choice, destructive change, or approval policy requires it."
+        ],
+        "non_goals": [
+          "Implement every planned task.",
+          "Turn CodeWiki roadmap into an external issue tracker.",
+          "Remove human approval from material product or architecture decisions."
+        ],
+        "verification": [
+          "Review generated roadmap tasks for spec links, outcomes, acceptance, non-goals, and verification.",
+          "Run codewiki state refresh and confirm roadmap summary remains healthy.",
+          "Dry-run a planning request and confirm stages advance without manual command choreography."
+        ]
+      },
+      "delta": {
+        "desired": "Planning automatically creates durable knowledge and an executable roadmap before implementation starts.",
+        "current": "Workflow guidance exists but outer-loop responsibilities are not isolated or automated.",
+        "closure": "Add planning-specific skill/spec guidance and ensure new tasks follow it with minimal user command choreography."
+      },
+      "created": "2026-05-01",
+      "updated": "2026-05-01"
+    },
+    "TASK-007": {
+      "id": "TASK-007",
+      "title": "Define CodeWiki task execution inner loop",
+      "status": "done",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Specify the automatic per-task loop that uses think-code context packets, implementation, local checks, fresh verification, and evidence before closure without requiring user-triggered verification commands.",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md"
+      ],
+      "research_ids": [],
+      "labels": [
+        "inner-loop",
+        "implement-verify",
+        "think-code"
+      ],
+      "goal": {
+        "outcome": "Each roadmap task has an automatic implement→verify loop grounded in task context, tests, and evidence.",
+        "acceptance": [
+          "Task loop is documented as load task/context, create compact context with think-code when useful, implement, run local checks, automatically invoke fresh verification when ready, append evidence, then close/block/follow-up.",
+          "Local verification and fresh-context verification have distinct responsibilities.",
+          "Task evidence captures checks run, files touched, issues, and verifier verdict.",
+          "Closure criteria require acceptance criteria and verification evidence, not just model confidence.",
+          "User command/manual trigger is treated as override/debug, not normal flow."
+        ],
+        "non_goals": [
+          "Force TDD for every trivial documentation-only task.",
+          "Make think-code a hard dependency when unavailable."
+        ],
+        "verification": [
+          "Run a sample task through the documented automatic loop or dry-run the workflow with an existing task.",
+          "Confirm task history/evidence records contain enough data to resume or audit work.",
+          "Confirm task closure cannot skip required verifier stage unless policy explicitly allows it."
+        ]
+      },
+      "delta": {
+        "desired": "Task execution is automatic, evidence-backed, and resumable from implementation through verification.",
+        "current": "Implement→verify guidance exists but is not formalized as an automatic focused inner loop skill.",
+        "closure": "Add inner-loop skill/spec guidance and link it to CodeWiki task/session tools and automatic verifier stage."
+      },
+      "created": "2026-05-01",
+      "updated": "2026-05-01"
+    },
+    "TASK-008": {
+      "id": "TASK-008",
+      "title": "Model research evidence as support for wiki knowledge",
+      "status": "done",
+      "priority": "medium",
+      "kind": "research",
+      "summary": "Separate external/source research from task execution so research evidence supports `.wiki/knowledge` claims rather than becoming part of every implementation loop.",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "research_ids": [],
+      "labels": [
+        "research",
+        "evidence",
+        "knowledge"
+      ],
+      "goal": {
+        "outcome": "CodeWiki distinguishes research evidence for intended knowledge from execution evidence for task closure.",
+        "acceptance": [
+          "Research workflow records cited findings as support for knowledge updates and design decisions.",
+          "Task execution loop treats research as optional only when uncertainty blocks implementation or claims need support.",
+          "Evidence schema or conventions distinguish source/research evidence from checks/execution evidence.",
+          "The research skill explains when to use web/code research versus local code inspection."
+        ],
+        "non_goals": [
+          "Require web research for routine code changes.",
+          "Create a separate ADR system outside `.wiki/knowledge`."
+        ],
+        "verification": [
+          "Review evidence entries produced by sample research and sample task execution for clear classification.",
+          "Run codewiki state refresh and confirm no generated state is hand-edited."
+        ]
+      },
+      "delta": {
+        "desired": "Research strengthens canonical knowledge without bloating task execution.",
+        "current": "Research is described as optional evidence but not modeled as a distinct workflow.",
+        "closure": "Add research-specific workflow guidance and evidence classification."
+      },
+      "created": "2026-05-01",
+      "updated": "2026-05-01"
+    },
+    "TASK-009": {
+      "id": "TASK-009",
+      "title": "Add automatic fresh-context verifier agent workflow",
+      "status": "done",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Design and implement an automatic verifier stage that spawns a read-only agent when task execution reaches verification, while retaining a manual command only as an override/debug entrypoint.",
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/smoke-test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "verification",
+        "subagent",
+        "pi-extension"
+      ],
+      "goal": {
+        "outcome": "CodeWiki automatically verifies task completion through a separate read-only Pi agent as part of the inner loop before closure.",
+        "acceptance": [
+          "Inner loop invokes verifier automatically when a task is ready for closure or explicit verification evidence is missing.",
+          "Verifier stage accepts a task id internally and builds a compact verification brief from task context, linked specs, diff/status, and acceptance criteria.",
+          "Verifier runs in a separate Pi process or SDK/RPC session with read-only tools plus allowed check commands.",
+          "Verifier returns deterministic JSON verdict with pass/fail/block, checks, issues, and rationale.",
+          "Parent CodeWiki flow appends verifier output as task evidence without automatically mutating code.",
+          "Auto-close is gated by verifier pass plus local checks plus no unresolved issues and user/project policy.",
+          "Manual `/wiki-verify` or equivalent, if present, is a debug/override entrypoint rather than the primary workflow."
+        ],
+        "non_goals": [
+          "Give verifier write/edit/apply authority.",
+          "Replace human review for security-sensitive or product-sensitive changes.",
+          "Require verifier for every tiny docs typo when policy says skip."
+        ],
+        "verification": [
+          "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+          "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+          "Confirm verifier cannot write files or mutate roadmap directly."
+        ]
+      },
+      "delta": {
+        "desired": "Task closure automatically uses independent fresh-context verification rather than relying on users to trigger a command.",
+        "current": "Skill guidance recommends fresh verification, but no automatic verifier stage exists.",
+        "closure": "Add automatic verifier stage, verifier prompt/protocol, evidence append path, and optional manual override."
+      },
+      "created": "2026-05-01",
+      "updated": "2026-05-01"
+    },
+    "TASK-010": {
+      "id": "TASK-010",
+      "title": "Add CodeWiki architecture review workflow adapted from deep-module heuristics",
+      "status": "done",
+      "priority": "medium",
+      "kind": "architecture",
+      "summary": "Adapt deep-module and shared-language architecture review ideas into a `.wiki`-aware workflow for finding seams, locality problems, and roadmap-worthy refactors.",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-architecture/SKILL.md"
+      ],
+      "research_ids": [],
+      "labels": [
+        "architecture",
+        "deep-modules",
+        "pocock-adaptation"
+      ],
+      "goal": {
+        "outcome": "CodeWiki can run architecture reviews that produce knowledge updates and roadmap tasks rather than ad hoc refactor suggestions.",
+        "acceptance": [
+          "Workflow uses CodeWiki vocabulary and `.wiki/knowledge` instead of `CONTEXT.md`/ADR assumptions.",
+          "Review rubric includes module/interface/implementation, seam, adapter, locality, leverage, and deletion test.",
+          "Findings become either knowledge clarifications, roadmap tasks, or explicitly deferred non-goals.",
+          "Architecture review does not propose interfaces before presenting friction candidates and asking user to pick."
+        ],
+        "non_goals": [
+          "Create a separate ADR tree outside `.wiki/knowledge`.",
+          "Automatically refactor architecture during review."
+        ],
+        "verification": [
+          "Run the workflow on the CodeWiki repo and produce at least one candidate or documented no-op result.",
+          "Confirm any resulting tasks link to owning specs and acceptance criteria."
+        ]
+      },
+      "delta": {
+        "desired": "Architecture improvement becomes a first-class CodeWiki planning input.",
+        "current": "General architecture heuristics are useful but not adapted to CodeWiki's knowledge/roadmap model.",
+        "closure": "Add CodeWiki-specific architecture review skill or section and validate against the repo."
+      },
+      "created": "2026-05-01",
+      "updated": "2026-05-01"
+    },
+    "TASK-011": {
+      "id": "TASK-011",
+      "title": "Record curated global agent skills decision",
+      "status": "done",
+      "priority": "medium",
+      "kind": "docs",
+      "summary": "Document which general engineering skills should be installed or adapted globally for Pi without conflicting with CodeWiki-specific workflows.",
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/clients/overview.md"
+      ],
+      "code_paths": [],
+      "research_ids": [],
+      "labels": [
+        "global-agent-skills",
+        "compatibility"
+      ],
+      "goal": {
+        "outcome": "There is a durable CodeWiki decision record for global Pi skills versus CodeWiki-specific skills.",
+        "acceptance": [
+          "Global candidates are tdd, diagnose, grill-me, zoom-out, and write-a-skill.",
+          "Excluded or adapt-first skills are documented with reasons.",
+          "Notes include Pi package security and skill discovery behavior.",
+          "No global Pi settings are changed without explicit user approval."
+        ],
+        "non_goals": [
+          "Install all external skills immediately.",
+          "Replace CodeWiki roadmap with external issue skills."
+        ],
+        "verification": [
+          "Review decision text against Pi docs and existing global packages.",
+          "Confirm no repo-specific conventions are forced globally."
+        ]
+      },
+      "delta": {
+        "desired": "Global skills are curated with compatibility rationale.",
+        "current": "Decision exists only in chat.",
+        "closure": "Add durable decision guidance before installation or packaging."
+      },
+      "created": "2026-05-01",
+      "updated": "2026-05-01"
     }
   }
 }

@@ -1,40 +1,92 @@
 {
   "version": 1,
-  "generated_at": "2026-04-29T21:35:27Z",
+  "generated_at": "2026-05-01T04:55:24Z",
   "revision": {
     "git": {
-      "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
       "dirty": true,
       "dirty_paths": [
         ".wiki/knowledge/clients/overview.md",
         ".wiki/knowledge/clients/surfaces/roadmap.md",
         ".wiki/knowledge/clients/surfaces/status-panel.md",
         ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
         ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
         ".wiki/roadmap.json",
-        "extensions/codewiki/bootstrap.ts",
-        "extensions/codewiki/contracts.ts",
+        "README.md",
         "extensions/codewiki/index.ts",
-        "extensions/codewiki/project-root.ts",
-        "extensions/codewiki/templates.ts"
+        "package.json",
+        "scripts/codewiki-gateway.mjs",
+        "scripts/smoke-test.mjs",
+        "skills/codewiki/SKILL.md"
       ],
       "paths": {
-        ".wiki/knowledge/clients/overview.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-        ".wiki/knowledge/clients/surfaces/roadmap.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-        ".wiki/knowledge/clients/surfaces/status-panel.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-        ".wiki/knowledge/product/overview.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-        ".wiki/knowledge/system/extensions/codewiki/overview.md": "",
-        ".wiki/knowledge/system/overview.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-        ".wiki/knowledge/system/runtime/overview.md": "",
-        ".wiki/roadmap.json": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-        "extensions/codewiki": "2771a351e64bdd1b39996b9872fd8513865b8c69"
+        ".wiki/knowledge/clients/agent-skills.md": "",
+        ".wiki/knowledge/clients/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        ".wiki/knowledge/clients/surfaces/roadmap.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        ".wiki/knowledge/clients/surfaces/status-panel.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        ".wiki/knowledge/product/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        ".wiki/knowledge/system/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        ".wiki/knowledge/system/runtime/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        ".wiki/roadmap.json": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "README.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "extensions/codewiki": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "extensions/codewiki/index.ts": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "package.json": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "scripts/codewiki-gateway.mjs": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "scripts/rebuild_docs_meta.py": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "scripts/smoke-test.mjs": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "skills": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "skills/codewiki-architecture/SKILL.md": "",
+        "skills/codewiki-plan/SKILL.md": "",
+        "skills/codewiki-research/SKILL.md": "",
+        "skills/codewiki-task/SKILL.md": "",
+        "skills/codewiki-verify/SKILL.md": "",
+        "skills/codewiki/SKILL.md": "0d12c87f000aedcf818ece8c88819b938a8d881e"
       }
     },
-    "spec_digest": "76e0c026a9b4690c83c2f7ef7e5ff2dec0ebcb26eeafa9da3a4b800513debcfd",
-    "task_digest": "64bf370a6372453c8920b88dddbc8257ed7ef9ad037fffda92b6c904002a99d5",
-    "evidence_digest": "f9b77809b7fdd935bcdd357cd1126bad9373fd4ca249653a37c353b8d89159d1"
+    "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+    "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+    "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
   },
   "nodes": [
+    {
+      "id": "doc:.wiki/knowledge/clients/agent-skills.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/clients/agent-skills.md",
+      "title": "Agent Skills",
+      "doc_type": "spec",
+      "state": "active",
+      "group": "clients",
+      "summary": "Compatibility guidance for global Pi skills alongside CodeWiki-specific workflow skills.",
+      "owners": [
+        "design"
+      ],
+      "tags": [],
+      "revision": {
+        "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
+        "git": {
+          "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/clients/agent-skills.md": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "code:skills",
+      "kind": "code_path",
+      "path": "skills"
+    },
+    {
+      "id": "code:README.md",
+      "kind": "code_path",
+      "path": "README.md"
+    },
     {
       "id": "doc:.wiki/knowledge/clients/overview.md",
       "kind": "doc",
@@ -49,15 +101,15 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "40fc1265e254f351ecbd38d6282003e76cb50f2c458ed34a310e98dac1a882df",
+        "digest": "221fff22b045303dcf71f0b2d3e70718075a06f1d5882509e1653c8a18a3d46d",
         "git": {
-          "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+          "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
           "dirty": true,
           "dirty_paths": [
             ".wiki/knowledge/clients/overview.md"
           ],
           "paths": {
-            ".wiki/knowledge/clients/overview.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d"
+            ".wiki/knowledge/clients/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e"
           }
         }
       }
@@ -76,15 +128,15 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "e3711159c134454153719b291ab8ab24f2019e6c06efd5224d095172006dda50",
+        "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
         "git": {
-          "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+          "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
           "dirty": true,
           "dirty_paths": [
             ".wiki/knowledge/clients/surfaces/roadmap.md"
           ],
           "paths": {
-            ".wiki/knowledge/clients/surfaces/roadmap.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d"
+            ".wiki/knowledge/clients/surfaces/roadmap.md": "0d12c87f000aedcf818ece8c88819b938a8d881e"
           }
         }
       }
@@ -103,18 +155,23 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "a315ef5cd259e30411edfd329df71c3f6b3acd0fba874cfa7383c0a9344bb42c",
+        "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
         "git": {
-          "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+          "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
           "dirty": true,
           "dirty_paths": [
             ".wiki/knowledge/clients/surfaces/status-panel.md"
           ],
           "paths": {
-            ".wiki/knowledge/clients/surfaces/status-panel.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d"
+            ".wiki/knowledge/clients/surfaces/status-panel.md": "0d12c87f000aedcf818ece8c88819b938a8d881e"
           }
         }
       }
+    },
+    {
+      "id": "code:extensions/codewiki/index.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/index.ts"
     },
     {
       "id": "doc:.wiki/knowledge/product/overview.md",
@@ -130,15 +187,15 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "616b473ab875f14493bccecd7b5a110a81f59715bcf35ace56ac12e10c6e8986",
+        "digest": "f8babb01e47c832dded1bfa7d78a9cea833b807845b6ec8182d2b6ef60a4a695",
         "git": {
-          "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+          "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
           "dirty": true,
           "dirty_paths": [
             ".wiki/knowledge/product/overview.md"
           ],
           "paths": {
-            ".wiki/knowledge/product/overview.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d"
+            ".wiki/knowledge/product/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e"
           }
         }
       }
@@ -151,19 +208,21 @@
       "doc_type": "spec",
       "state": "active",
       "group": "system",
-      "summary": "Inferred first-pass ownership boundary for extensions/codewiki in codewiki.",
+      "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
       "owners": [
         "engineering"
       ],
       "tags": [],
       "revision": {
-        "digest": "eb09a44fb70b67bf8925c6d5920eade69bc74e5e00e11179615f0e5c4f3ce938",
+        "digest": "8e198fb5f2332459640a7cf09067f99a6a7f2e09eacb5e9dcee82dfd3bbe5605",
         "git": {
-          "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/extensions/codewiki/overview.md"
+          ],
           "paths": {
-            ".wiki/knowledge/system/extensions/codewiki/overview.md": ""
+            ".wiki/knowledge/system/extensions/codewiki/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e"
           }
         }
       }
@@ -172,6 +231,11 @@
       "id": "code:extensions/codewiki",
       "kind": "code_path",
       "path": "extensions/codewiki"
+    },
+    {
+      "id": "code:scripts/smoke-test.mjs",
+      "kind": "code_path",
+      "path": "scripts/smoke-test.mjs"
     },
     {
       "id": "doc:.wiki/knowledge/system/overview.md",
@@ -187,18 +251,23 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "f386b890187194ca049deab04850e30ba5be05cf0f49c750712ad69c48c81fc5",
+        "digest": "f2cd2d2621b1cd60fee1b1f264cf58e2377073dd1ddbbb132024d0f345a7eb11",
         "git": {
-          "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+          "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
           "dirty": true,
           "dirty_paths": [
             ".wiki/knowledge/system/overview.md"
           ],
           "paths": {
-            ".wiki/knowledge/system/overview.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d"
+            ".wiki/knowledge/system/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e"
           }
         }
       }
+    },
+    {
+      "id": "code:scripts/rebuild_docs_meta.py",
+      "kind": "code_path",
+      "path": "scripts/rebuild_docs_meta.py"
     },
     {
       "id": "doc:.wiki/knowledge/system/runtime/overview.md",
@@ -214,13 +283,15 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "7d523657090c596a3f761664cc384903b32b9e711f15351b80017f716450672d",
+        "digest": "d08fc444bcad24e82b0621363104d6bd4ff20c821bc6f79da877af66f7577800",
         "git": {
-          "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/runtime/overview.md"
+          ],
           "paths": {
-            ".wiki/knowledge/system/runtime/overview.md": ""
+            ".wiki/knowledge/system/runtime/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e"
           }
         }
       }
@@ -245,13 +316,11 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/evidence/inspiration.jsonl"
-          ],
+          "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/evidence/inspiration.jsonl": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d"
+            ".wiki/evidence/inspiration.jsonl": "0d12c87f000aedcf818ece8c88819b938a8d881e"
           }
         }
       }
@@ -261,17 +330,17 @@
       "kind": "roadmap_task",
       "task_id": "TASK-001",
       "title": "Lock product intent in specs",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "task_kind": "docs",
       "summary": "Turn codewiki intent into explicit product and system docs.",
-      "updated": "2026-04-29",
+      "updated": "2026-05-01",
       "labels": [
         "foundation",
         "specs"
       ],
       "revision": {
-        "digest": "8873f0abe6dc7eb1abfbe4c7ea53d0ae35169be7f03b9f1d5008b21f65bd888b"
+        "digest": "8f54e65f96e1e17b88ae79b76bd1add029c9148b3951baa0cf4c5171d2c383d1"
       }
     },
     {
@@ -279,17 +348,17 @@
       "kind": "roadmap_task",
       "task_id": "TASK-002",
       "title": "Map code ownership into spec hierarchy",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "task_kind": "architecture",
       "summary": "Refine the inferred boundary docs until wiki/system mirrors the repo's real ownership seams without creating doc sprawl.",
-      "updated": "2026-04-29",
+      "updated": "2026-05-01",
       "labels": [
         "brownfield",
         "mapping"
       ],
       "revision": {
-        "digest": "1f81fd253e119a29cca4bcd43f20570a594a60f6debcbc86eaec4012a5f11940"
+        "digest": "ce7cf418f288fc3ba4a317fbe1442130ca0a995e06499eb096279d3995ff8f85"
       }
     },
     {
@@ -297,21 +366,242 @@
       "kind": "roadmap_task",
       "task_id": "TASK-003",
       "title": "Keep roadmap as freshest delta log",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "task_kind": "process",
       "summary": "Move drift and plan tracking into structured roadmap tasks instead of separate prose buckets.",
-      "updated": "2026-04-29",
+      "updated": "2026-05-01",
       "labels": [
         "roadmap",
         "process"
       ],
       "revision": {
-        "digest": "9f1bed7411936c01c9c26d0885bdfdb0d3aa9f6fe72dcca057926fcb13bdcd2c"
+        "digest": "48b11a308b41ada35286fa4e0ba178177dffacb4c955d1af8d3fa4c1d91102e7"
+      }
+    },
+    {
+      "id": "task:TASK-004",
+      "kind": "roadmap_task",
+      "task_id": "TASK-004",
+      "title": "Expose CodeWiki capability manifest and think-code boundary",
+      "status": "done",
+      "priority": "high",
+      "task_kind": "architecture",
+      "summary": "Define the typed CodeWiki capabilities that Pi runtimes such as think-code can call without bypassing .wiki semantics, including optional executor/fallback boundaries.",
+      "updated": "2026-05-01",
+      "labels": [
+        "think-code",
+        "capabilities",
+        "runtime-boundary"
+      ],
+      "revision": {
+        "digest": "e0b44e9e07f33d59f518e66511d84251cef9a772c937e15f96fafda5dbc3444e"
+      }
+    },
+    {
+      "id": "code:scripts/codewiki-gateway.mjs",
+      "kind": "code_path",
+      "path": "scripts/codewiki-gateway.mjs"
+    },
+    {
+      "id": "task:TASK-005",
+      "kind": "roadmap_task",
+      "task_id": "TASK-005",
+      "title": "Split CodeWiki skills into focused outer and inner workflows",
+      "status": "done",
+      "priority": "high",
+      "task_kind": "agent-workflow",
+      "summary": "Replace the single monolithic CodeWiki skill with a package-level router plus focused CodeWiki skills for planning, task execution, research, and verification.",
+      "updated": "2026-05-01",
+      "labels": [
+        "skills",
+        "workflow",
+        "pocock-adaptation"
+      ],
+      "revision": {
+        "digest": "f61f7848fb6b72f7e9ba182db4e89831c84588a4a991d36a124fa5c4fbe2b69e"
+      }
+    },
+    {
+      "id": "code:skills/codewiki/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki/SKILL.md"
+    },
+    {
+      "id": "code:package.json",
+      "kind": "code_path",
+      "path": "package.json"
+    },
+    {
+      "id": "task:TASK-006",
+      "kind": "roadmap_task",
+      "task_id": "TASK-006",
+      "title": "Define CodeWiki outer planning loop",
+      "status": "done",
+      "priority": "high",
+      "task_kind": "process",
+      "summary": "Specify the automatic outer loop that turns user intent into wiki knowledge updates and roadmap tasks before task execution begins, with user approval only at decision checkpoints.",
+      "updated": "2026-05-01",
+      "labels": [
+        "outer-loop",
+        "planning",
+        "roadmap"
+      ],
+      "revision": {
+        "digest": "90ef99faeb76873c5259dae52b22494c6f86f144b2e3a434303b0cdc4778d986"
+      }
+    },
+    {
+      "id": "code:skills/codewiki-plan/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki-plan/SKILL.md"
+    },
+    {
+      "id": "task:TASK-007",
+      "kind": "roadmap_task",
+      "task_id": "TASK-007",
+      "title": "Define CodeWiki task execution inner loop",
+      "status": "done",
+      "priority": "high",
+      "task_kind": "agent-workflow",
+      "summary": "Specify the automatic per-task loop that uses think-code context packets, implementation, local checks, fresh verification, and evidence before closure without requiring user-triggered verification commands.",
+      "updated": "2026-05-01",
+      "labels": [
+        "inner-loop",
+        "implement-verify",
+        "think-code"
+      ],
+      "revision": {
+        "digest": "d54a5756f3a0f1134c91d71d98ef56ec11b253fc1061ce8bf871d4f19d8565b3"
+      }
+    },
+    {
+      "id": "code:skills/codewiki-task/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki-task/SKILL.md"
+    },
+    {
+      "id": "code:skills/codewiki-verify/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki-verify/SKILL.md"
+    },
+    {
+      "id": "task:TASK-008",
+      "kind": "roadmap_task",
+      "task_id": "TASK-008",
+      "title": "Model research evidence as support for wiki knowledge",
+      "status": "done",
+      "priority": "medium",
+      "task_kind": "research",
+      "summary": "Separate external/source research from task execution so research evidence supports `.wiki/knowledge` claims rather than becoming part of every implementation loop.",
+      "updated": "2026-05-01",
+      "labels": [
+        "research",
+        "evidence",
+        "knowledge"
+      ],
+      "revision": {
+        "digest": "fa31f27a9766c4fea5334b67189b16c97e160df3275f0c230c80b08d535cd9f7"
+      }
+    },
+    {
+      "id": "code:skills/codewiki-research/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki-research/SKILL.md"
+    },
+    {
+      "id": "task:TASK-009",
+      "kind": "roadmap_task",
+      "task_id": "TASK-009",
+      "title": "Add automatic fresh-context verifier agent workflow",
+      "status": "done",
+      "priority": "high",
+      "task_kind": "agent-workflow",
+      "summary": "Design and implement an automatic verifier stage that spawns a read-only agent when task execution reaches verification, while retaining a manual command only as an override/debug entrypoint.",
+      "updated": "2026-05-01",
+      "labels": [
+        "verification",
+        "subagent",
+        "pi-extension"
+      ],
+      "revision": {
+        "digest": "68cec46123899a2653cd9a45a0136eeb6bbd8c2b565e371bb4ff13eaf6c79319"
+      }
+    },
+    {
+      "id": "task:TASK-010",
+      "kind": "roadmap_task",
+      "task_id": "TASK-010",
+      "title": "Add CodeWiki architecture review workflow adapted from deep-module heuristics",
+      "status": "done",
+      "priority": "medium",
+      "task_kind": "architecture",
+      "summary": "Adapt deep-module and shared-language architecture review ideas into a `.wiki`-aware workflow for finding seams, locality problems, and roadmap-worthy refactors.",
+      "updated": "2026-05-01",
+      "labels": [
+        "architecture",
+        "deep-modules",
+        "pocock-adaptation"
+      ],
+      "revision": {
+        "digest": "be4ee62488b0b94c30609006747277ae1f1c12246734cb7fbb3ed9e6641d2488"
+      }
+    },
+    {
+      "id": "code:skills/codewiki-architecture/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki-architecture/SKILL.md"
+    },
+    {
+      "id": "task:TASK-011",
+      "kind": "roadmap_task",
+      "task_id": "TASK-011",
+      "title": "Record curated global agent skills decision",
+      "status": "done",
+      "priority": "medium",
+      "task_kind": "docs",
+      "summary": "Document which general engineering skills should be installed or adapted globally for Pi without conflicting with CodeWiki-specific workflows.",
+      "updated": "2026-05-01",
+      "labels": [
+        "global-agent-skills",
+        "compatibility"
+      ],
+      "revision": {
+        "digest": "2ef8688d1605abdc540e0381841ea8177e98e52cb461994c5de36ecd05423c4a"
       }
     }
   ],
   "edges": [
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/clients/agent-skills.md",
+      "to": "doc:.wiki/knowledge/clients/overview.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/clients/agent-skills.md",
+      "to": "doc:.wiki/knowledge/clients/surfaces/roadmap.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/clients/agent-skills.md",
+      "to": "doc:.wiki/knowledge/product/overview.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/clients/agent-skills.md",
+      "to": "code:skills"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/clients/agent-skills.md",
+      "to": "code:README.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/clients/overview.md",
+      "to": "doc:.wiki/knowledge/clients/agent-skills.md"
+    },
     {
       "kind": "doc_link",
       "from": "doc:.wiki/knowledge/clients/overview.md",
@@ -361,6 +651,11 @@
       "kind": "doc_link",
       "from": "doc:.wiki/knowledge/clients/surfaces/status-panel.md",
       "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/clients/surfaces/status-panel.md",
+      "to": "code:extensions/codewiki/index.ts"
     },
     {
       "kind": "doc_link",
@@ -393,6 +688,16 @@
       "to": "code:extensions/codewiki"
     },
     {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "to": "code:skills"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "to": "code:scripts/smoke-test.mjs"
+    },
+    {
       "kind": "doc_link",
       "from": "doc:.wiki/knowledge/system/overview.md",
       "to": "doc:.wiki/knowledge/clients/overview.md"
@@ -406,6 +711,26 @@
       "kind": "doc_link",
       "from": "doc:.wiki/knowledge/system/overview.md",
       "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/overview.md",
+      "to": "doc:.wiki/knowledge/system/runtime/overview.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/overview.md",
+      "to": "code:extensions/codewiki"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/overview.md",
+      "to": "code:scripts/rebuild_docs_meta.py"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/overview.md",
+      "to": "code:skills"
     },
     {
       "kind": "doc_link",
@@ -439,13 +764,209 @@
     },
     {
       "kind": "task_spec",
+      "from": "task:TASK-002",
+      "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-002",
+      "to": "code:extensions/codewiki"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-002",
+      "to": "code:skills"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-002",
+      "to": "code:scripts/smoke-test.mjs"
+    },
+    {
+      "kind": "task_spec",
       "from": "task:TASK-003",
+      "to": "doc:.wiki/knowledge/clients/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-003",
+      "to": "doc:.wiki/knowledge/clients/surfaces/roadmap.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-004",
+      "to": "doc:.wiki/knowledge/product/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-004",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-004",
+      "to": "doc:.wiki/knowledge/system/runtime/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-004",
+      "to": "code:scripts/codewiki-gateway.mjs"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-004",
+      "to": "code:extensions/codewiki"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-004",
+      "to": "code:README.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-005",
+      "to": "doc:.wiki/knowledge/product/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-005",
+      "to": "doc:.wiki/knowledge/clients/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-005",
+      "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-005",
+      "to": "code:skills/codewiki/SKILL.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-005",
+      "to": "code:package.json"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-006",
+      "to": "doc:.wiki/knowledge/product/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-006",
+      "to": "doc:.wiki/knowledge/clients/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-006",
+      "to": "doc:.wiki/knowledge/clients/surfaces/roadmap.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-006",
+      "to": "code:skills/codewiki-plan/SKILL.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-006",
+      "to": "code:skills/codewiki/SKILL.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-007",
+      "to": "doc:.wiki/knowledge/system/runtime/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-007",
+      "to": "doc:.wiki/knowledge/clients/surfaces/roadmap.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-007",
+      "to": "code:skills/codewiki-task/SKILL.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-007",
+      "to": "code:skills/codewiki-verify/SKILL.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-008",
+      "to": "doc:.wiki/knowledge/product/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-008",
+      "to": "doc:.wiki/knowledge/system/runtime/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-008",
+      "to": "code:skills/codewiki-research/SKILL.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-008",
+      "to": "code:skills/codewiki-task/SKILL.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-009",
+      "to": "doc:.wiki/knowledge/clients/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-009",
+      "to": "doc:.wiki/knowledge/system/runtime/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-009",
+      "to": "code:extensions/codewiki/index.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-009",
+      "to": "code:skills/codewiki-verify/SKILL.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-009",
+      "to": "code:scripts/smoke-test.mjs"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-010",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-010",
+      "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-010",
+      "to": "code:skills/codewiki-architecture/SKILL.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-011",
+      "to": "doc:.wiki/knowledge/clients/agent-skills.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-011",
       "to": "doc:.wiki/knowledge/clients/overview.md"
     }
   ],
   "views": {
     "docs": {
       "all_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
         ".wiki/knowledge/clients/overview.md",
         ".wiki/knowledge/clients/surfaces/roadmap.md",
         ".wiki/knowledge/clients/surfaces/status-panel.md",
@@ -455,6 +976,7 @@
         ".wiki/knowledge/system/runtime/overview.md"
       ],
       "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
         ".wiki/knowledge/clients/overview.md",
         ".wiki/knowledge/clients/surfaces/roadmap.md",
         ".wiki/knowledge/clients/surfaces/status-panel.md",
@@ -473,6 +995,7 @@
           ".wiki/knowledge/system/runtime/overview.md"
         ],
         "clients": [
+          ".wiki/knowledge/clients/agent-skills.md",
           ".wiki/knowledge/clients/overview.md",
           ".wiki/knowledge/clients/surfaces/roadmap.md",
           ".wiki/knowledge/clients/surfaces/status-panel.md"
@@ -480,6 +1003,7 @@
       },
       "by_type": {
         "spec": [
+          ".wiki/knowledge/clients/agent-skills.md",
           ".wiki/knowledge/clients/overview.md",
           ".wiki/knowledge/clients/surfaces/roadmap.md",
           ".wiki/knowledge/clients/surfaces/status-panel.md",
@@ -496,29 +1020,49 @@
       "task_ids": [
         "TASK-001",
         "TASK-002",
-        "TASK-003"
+        "TASK-003",
+        "TASK-004",
+        "TASK-005",
+        "TASK-006",
+        "TASK-007",
+        "TASK-008",
+        "TASK-009",
+        "TASK-010",
+        "TASK-011"
       ],
-      "open_task_ids": [
-        "TASK-001",
-        "TASK-002",
-        "TASK-003"
-      ],
+      "open_task_ids": [],
       "in_progress_task_ids": [],
-      "todo_task_ids": [
+      "todo_task_ids": [],
+      "blocked_task_ids": [],
+      "done_task_ids": [
         "TASK-001",
         "TASK-002",
-        "TASK-003"
+        "TASK-003",
+        "TASK-004",
+        "TASK-005",
+        "TASK-006",
+        "TASK-007",
+        "TASK-008",
+        "TASK-009",
+        "TASK-010",
+        "TASK-011"
       ],
-      "blocked_task_ids": [],
-      "done_task_ids": [],
       "cancelled_task_ids": [],
       "recent_task_ids": [
+        "TASK-011",
+        "TASK-010",
+        "TASK-009",
+        "TASK-008",
+        "TASK-007",
+        "TASK-006",
+        "TASK-005",
+        "TASK-004",
         "TASK-003",
         "TASK-002",
         "TASK-001"
       ],
       "status_counts": {
-        "todo": 3
+        "done": 11
       }
     },
     "research": {
@@ -531,7 +1075,20 @@
     },
     "code": {
       "paths": [
-        "extensions/codewiki"
+        "README.md",
+        "extensions/codewiki",
+        "extensions/codewiki/index.ts",
+        "package.json",
+        "scripts/codewiki-gateway.mjs",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs",
+        "skills",
+        "skills/codewiki-architecture/SKILL.md",
+        "skills/codewiki-plan/SKILL.md",
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md",
+        "skills/codewiki/SKILL.md"
       ]
     }
   }

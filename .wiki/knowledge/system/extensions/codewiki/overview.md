@@ -2,26 +2,49 @@
 id: spec.extensions.codewiki.overview
 title: Extensions / Codewiki
 state: active
-summary: Inferred first-pass ownership boundary for extensions/codewiki in codewiki.
+summary: Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.
 owners:
-- engineering
-updated: '2026-04-29'
+  - engineering
+updated: "2026-05-01"
 code_paths:
-- extensions/codewiki
+  - extensions/codewiki
+  - skills
+  - scripts/smoke-test.mjs
 ---
 
 # Extensions / Codewiki
 
 ## Boundary intent
 
-This overview was inferred during setup from the repo structure at `extensions/codewiki`. Replace the starter language with the real responsibilities, invariants, and collaborators for this boundary.
+This boundary owns the Pi-facing CodeWiki package surface: extension registration, commands, internal tools, status/config UI, packaged skills, bootstrap templates, smoke coverage for resource discovery, and project-root resolution.
 
-## Refinement prompts
+It translates Pi interactions into CodeWiki semantic operations while keeping canonical meaning in `.wiki/knowledge`, roadmap tasks, evidence, and generated state. It should not become the general sandbox or long-running execution runtime; those responsibilities belong to Pi and optional runtimes such as `think-code`.
 
-- describe what this boundary owns
-- name the upstream and downstream collaborators
-- record invariants that should remain stable even as implementation details change
-- collapse or split this spec only when the codebase has a real ownership seam
+## Owned code areas
+
+- `extensions/codewiki/index.ts` registers commands, tools, status panel behavior, task/session operations, and automatic verifier orchestration.
+- `extensions/codewiki/bootstrap.ts` owns repo adoption/bootstrap behavior.
+- `extensions/codewiki/templates.ts` owns starter wiki templates.
+- `extensions/codewiki/contracts.ts` owns typed package contracts and tool schemas.
+- `extensions/codewiki/project-root.ts` owns wiki-root discovery.
+- `extensions/codewiki/mutation-queue.ts` owns local mutation serialization.
+- `skills/**` owns progressive-disclosure agent workflow guidance shipped with the package.
+- `scripts/smoke-test.mjs` verifies package resource loading and basic end-to-end bootstrap behavior.
+
+## Collaborators
+
+- Product, client, and system specs define intent and constraints.
+- Runtime Policy defines the transaction/verifier/think-code boundary.
+- Pi provides extension APIs, sessions, package discovery, commands, tools, UI, and subprocess execution.
+- `think-code` may provide bounded programmatic context creation but does not own CodeWiki semantics.
+
+## Invariants
+
+- Keep public command surface small and Pi-native.
+- Keep internal roadmap/session mutations behind CodeWiki tools and task APIs.
+- Keep generated state read-only outside rebuild paths.
+- Keep packaged skills focused and composable instead of one monolithic prompt.
+- Preserve safe fallback behavior when optional runtimes are unavailable.
 
 ## Related docs
 

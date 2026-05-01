@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-01T04:55:24Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-005/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-005",
+    "title": "Split CodeWiki skills into focused outer and inner workflows",
+    "status": "done",
+    "phase": "done",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Replace the single monolithic CodeWiki skill with a package-level router plus focused CodeWiki skills for planning, task execution, research, and verification.",
+    "labels": [
+      "skills",
+      "workflow",
+      "pocock-adaptation"
+    ],
+    "goal": {
+      "outcome": "Agents load only the CodeWiki workflow instructions needed for the current job while preserving shared CodeWiki invariants.",
+      "acceptance": [
+        "A small `codewiki` router skill states package invariants and when to load each focused skill.",
+        "Focused skills exist for `codewiki-plan`, `codewiki-task`, `codewiki-research`, and `codewiki-verify`.",
+        "Skill descriptions are precise enough for Pi progressive disclosure and do not duplicate large workflow text.",
+        "All focused skills preserve `.wiki/knowledge` as canonical intent and roadmap/evidence as machine-managed operational truth."
+      ],
+      "non_goals": [
+        "Install unrelated global skills as part of this repo task.",
+        "Replace CodeWiki tools or roadmap schema."
+      ],
+      "verification": [
+        "Run package typecheck/tests after skill/package changes.",
+        "Use Pi startup or package listing to confirm focused skills are discoverable.",
+        "Review each skill for overlap and conflicting instructions."
+      ]
+    },
+    "delta": {
+      "desired": "CodeWiki package exposes composable workflow skills optimized for planning, execution, research, and verification.",
+      "current": "One CodeWiki skill contains all guidance and is growing into a monolith.",
+      "closure": "Split skill files and keep a compact router/invariants skill."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "f61f7848fb6b72f7e9ba182db4e89831c84588a4a991d36a124fa5c4fbe2b69e"
+    },
+    "git": {
+      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/roadmap.json",
+        "package.json",
+        "skills/codewiki/SKILL.md"
+      ],
+      "paths": {
+        ".wiki/knowledge/clients/overview.md": "0d12c87f000a",
+        ".wiki/knowledge/product/overview.md": "0d12c87f000a",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "0d12c87f000a",
+        ".wiki/roadmap.json": "0d12c87f000a",
+        "package.json": "0d12c87f000a",
+        "skills/codewiki/SKILL.md": "0d12c87f000a"
+      }
+    },
+    "spec_digest": "f659e4cfc7d6bb90d36a8fc6dc73186c66a940829cf3b1cd672bbc652bdc1cc7",
+    "code_digest": "09f23a59f6d6aee6c209e9556642114036d04ee5c1773b4f68c5f1d0ad107c9f",
+    "graph": {
+      "git": {
+        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "dirty": true
+      },
+      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "summary": "Product intent, users, and value boundaries for codewiki.",
+      "state": "active",
+      "owners": [
+        "product"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "f8babb01e47c832dded1bfa7d78a9cea833b807845b6ec8182d2b6ef60a4a695"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/product/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/clients/overview.md",
+      "title": "Clients Overview",
+      "summary": "User-facing workflow and status-surface expectations for codewiki.",
+      "state": "active",
+      "owners": [
+        "design"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "221fff22b045303dcf71f0b2d3e70718075a06f1d5882509e1653c8a18a3d46d"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/clients/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "state": "active",
+      "owners": [
+        "engineering"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs"
+      ],
+      "revision": {
+        "digest": "8e198fb5f2332459640a7cf09067f99a6a7f2e09eacb5e9dcee82dfd3bbe5605"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "skills/codewiki/SKILL.md",
+      "package.json"
+    ],
+    "digest": "09f23a59f6d6aee6c209e9556642114036d04ee5c1773b4f68c5f1d0ad107c9f",
+    "expand": [
+      {
+        "read": "skills/codewiki/SKILL.md"
+      },
+      {
+        "read": "package.json"
+      }
+    ]
+  },
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Re-verified TASK-005 after correcting stale spec path; focused skill split remains implemented and verified.",
+    "checks_run": [
+      "codewiki_state refresh"
+    ],
+    "files_touched": [
+      ".wiki/roadmap.json"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-01T03:17:22Z"
+  },
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-005/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

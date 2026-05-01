@@ -120,6 +120,7 @@ async function main() {
 		pathToFileURL(resolve(piRoot, "dist", "index.js")).href
 	);
 	initTheme("dark", false);
+	process.env.PI_CODEWIKI_SKIP_VERIFIER = "1";
 
 	assert.equal(packageJson.name, "codewiki", "Unexpected package name");
 	assert.ok(
@@ -247,20 +248,29 @@ async function main() {
 		const skills = skillResult.skills.filter((skill) =>
 			skill.filePath.startsWith(repoRoot),
 		);
-		assert.equal(
-			skills.length,
-			1,
-			`Expected exactly one package skill, found ${skills.length}`,
+		const expectedSkillNames = [
+			"codewiki",
+			"codewiki-architecture",
+			"codewiki-plan",
+			"codewiki-research",
+			"codewiki-task",
+			"codewiki-verify",
+		];
+		assert.deepEqual(
+			skills.map((skill) => skill.name).sort(),
+			expectedSkillNames,
+			`Unexpected package skills: ${skills.map((skill) => skill.name).join(", ")}`,
 		);
-		assert.equal(skills[0].name, "codewiki", "Unexpected skill name");
-		assert.equal(
-			skills[0].sourceInfo.origin,
-			"package",
-			"Skill should load as a package resource",
-		);
+		for (const skill of skills) {
+			assert.equal(
+				skill.sourceInfo.origin,
+				"package",
+				"Skill should load as a package resource",
+			);
+		}
 	});
 	console.log(
-		"✓ package loads through DefaultResourceLoader with one extension and one skill",
+		"✓ package loads through DefaultResourceLoader with one extension and focused skills",
 	);
 
 	await withTempDir("codewiki-bootstrap-", async (projectDir) => {

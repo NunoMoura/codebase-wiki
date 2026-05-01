@@ -7,12 +7,12 @@ Inspired by Karpathy's [LLM Wiki pattern](https://gist.github.com/karpathy/442a6
 This package now ships:
 
 - **one Pi extension**: `codewiki`
-- **one Pi skill**: `codewiki`
+- **focused Pi skills**: `codewiki` plus workflow skills for planning, task execution, research, verification, and architecture review
 
 That is the right shape for this package:
 
 - the **extension** provides commands, tools, and runtime behavior
-- the **skill** teaches the agent when and how to use the package
+- the **skills** teach the agent the minimum workflow needed for each CodeWiki job
 
 ## What you get
 
@@ -38,16 +38,23 @@ Public command surface is intentionally small:
 
 All internal `codewiki_*` tools accept optional `repoPath` so agents can target a repo explicitly when Pi is running outside that repo. Day-to-day execution should center on one read entrypoint (`codewiki_state`), one canonical task mutation entrypoint (`codewiki_task`), and one runtime session entrypoint (`codewiki_session`).
 
-### Skill
+### Skills
 
 - `/skill:codewiki`
+- `/skill:codewiki-plan`
+- `/skill:codewiki-task`
+- `/skill:codewiki-research`
+- `/skill:codewiki-verify`
+- `/skill:codewiki-architecture`
 
-The skill tells Pi when to use the package for:
+The router skill covers package invariants and points the agent to focused workflow skills for:
 
 - intelligent bootstrap/onboarding of a repo-local wiki
-- wiki bootstrap and configuration
-- status inspection and roadmap resumption
-- internal roadmap/task/session operations behind the simplified UX
+- automatic outer planning from intent to knowledge and roadmap tasks
+- automatic inner task execution from implementation to verification evidence
+- research evidence that supports `.wiki/knowledge`
+- fresh-context task verification
+- architecture review grounded in CodeWiki specs and roadmap tasks
 
 ## Simplified model
 
@@ -254,7 +261,7 @@ Working rule for this repo:
 - rebuild generated outputs after changes
 - do not hand-edit generated outputs under `.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, or `.wiki/status-state.json`
 
-## Why one extension and one skill
+## Why one extension and focused skills
 
 ### One extension
 
@@ -270,19 +277,19 @@ One extension is simpler because:
 
 Internally, the code can still be modular. In this repo, bootstrap logic is implemented as helper modules behind one extension entrypoint.
 
-### One skill
+### Focused skills
 
-A skill is better than telling users to patch `AGENTS.md` for package behavior.
+Skills are better than telling users to patch `AGENTS.md` for package behavior.
 
 Why:
 
 - skills are the native Pi mechanism for reusable, on-demand task instructions
-- the package can ship the skill with the extension
-- the skill is portable across repos
-- the skill describes when to use the package, not just what files exist
+- Pi keeps descriptions in context and loads full skill files only when needed
+- the package can ship workflow guidance with the extension
+- focused skills avoid one monolithic prompt while preserving shared CodeWiki invariants
 - `AGENTS.md` is better for repo-specific local policy layered on top
 
-Use `AGENTS.md` for project conventions. Use the packaged skill for package behavior.
+Use `AGENTS.md` for project conventions. Use packaged skills for package behavior.
 
 ## How it works
 
@@ -365,8 +372,8 @@ That means one global package install can operate across many repos, while each 
 codewiki's local gateway is a transitional adapter, not the long-term generic sandbox. The intended split is:
 
 - `.wiki/config.json` declares codewiki policy: readable paths, direct writable paths, generated read-only paths, caps, and runtime adapter metadata.
-- `scripts/codewiki-gateway.mjs` validates and applies codewiki transactions today.
-- a future `think-code` executor can provide generic sandbox isolation while reusing the same repo-local policy and transaction schema.
+- `scripts/codewiki-gateway.mjs` validates and applies codewiki transactions today and can print the semantic capability manifest with `node scripts/codewiki-gateway.mjs manifest [repo]`.
+- a future `think-code` executor can provide generic sandbox isolation while reusing the same repo-local policy, capability manifest, and transaction schema.
 
 Current transaction shape:
 
@@ -419,6 +426,16 @@ extensions/
     templates.ts
 skills/
   codewiki/
+    SKILL.md
+  codewiki-plan/
+    SKILL.md
+  codewiki-task/
+    SKILL.md
+  codewiki-research/
+    SKILL.md
+  codewiki-verify/
+    SKILL.md
+  codewiki-architecture/
     SKILL.md
 LICENSE
 README.md

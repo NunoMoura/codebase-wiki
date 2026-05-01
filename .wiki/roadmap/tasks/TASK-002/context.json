@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-04-29T21:35:27Z",
+  "generated_at": "2026-05-01T04:55:24Z",
   "context_path": ".wiki/roadmap/tasks/TASK-002/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -9,8 +9,8 @@
   "task": {
     "id": "TASK-002",
     "title": "Map code ownership into spec hierarchy",
-    "status": "todo",
-    "phase": "implement",
+    "status": "done",
+    "phase": "done",
     "priority": "high",
     "kind": "architecture",
     "summary": "Refine the inferred boundary docs until wiki/system mirrors the repo's real ownership seams without creating doc sprawl.",
@@ -40,30 +40,38 @@
   },
   "revision": {
     "task": {
-      "digest": "1f81fd253e119a29cca4bcd43f20570a594a60f6debcbc86eaec4012a5f11940"
+      "digest": "ce7cf418f288fc3ba4a317fbe1442130ca0a995e06499eb096279d3995ff8f85"
     },
     "git": {
-      "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
         ".wiki/knowledge/system/overview.md",
-        ".wiki/roadmap.json"
+        ".wiki/roadmap.json",
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs",
+        "skills/codewiki/SKILL.md"
       ],
       "paths": {
-        ".wiki/knowledge/system/overview.md": "8be5b61bd6e3",
-        ".wiki/roadmap.json": "8be5b61bd6e3"
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "0d12c87f000a",
+        ".wiki/knowledge/system/overview.md": "0d12c87f000a",
+        ".wiki/roadmap.json": "0d12c87f000a",
+        "extensions/codewiki": "0d12c87f000a",
+        "scripts/smoke-test.mjs": "0d12c87f000a",
+        "skills": "0d12c87f000a"
       }
     },
-    "spec_digest": "df8c952d652531f50a492b9815b47cb93b785be484b38c2b3d4e9b994a64fd33",
-    "code_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "spec_digest": "d999c1486e1afe65392552042a94fab93c6c6b1efc04198b97cca010136cbff9",
+    "code_digest": "ea39b265d1cb97a0b4d3ccc0f727fd4c783a1245726b56c5f7afa807990d75fa",
     "graph": {
       "git": {
-        "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
         "dirty": true
       },
-      "spec_digest": "76e0c026a9b4690c83c2f7ef7e5ff2dec0ebcb26eeafa9da3a4b800513debcfd",
-      "task_digest": "64bf370a6372453c8920b88dddbc8257ed7ef9ad037fffda92b6c904002a99d5",
-      "evidence_digest": "f9b77809b7fdd935bcdd357cd1126bad9373fd4ca249653a37c353b8d89159d1"
+      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
     }
   },
   "specs": [
@@ -75,21 +83,73 @@
       "owners": [
         "architecture"
       ],
-      "code_paths": [],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
       "revision": {
-        "digest": "f386b890187194ca049deab04850e30ba5be05cf0f49c750712ad69c48c81fc5"
+        "digest": "f2cd2d2621b1cd60fee1b1f264cf58e2377073dd1ddbbb132024d0f345a7eb11"
       },
       "expand": {
         "read": ".wiki/knowledge/system/overview.md"
       }
+    },
+    {
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "state": "active",
+      "owners": [
+        "engineering"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs"
+      ],
+      "revision": {
+        "digest": "8e198fb5f2332459640a7cf09067f99a6a7f2e09eacb5e9dcee82dfd3bbe5605"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      }
     }
   ],
   "code": {
-    "paths": [],
-    "digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-    "expand": []
+    "paths": [
+      "extensions/codewiki",
+      "skills",
+      "scripts/smoke-test.mjs"
+    ],
+    "digest": "ea39b265d1cb97a0b4d3ccc0f727fd4c783a1245726b56c5f7afa807990d75fa",
+    "expand": [
+      {
+        "read": "extensions/codewiki"
+      },
+      {
+        "read": "skills"
+      },
+      {
+        "read": "scripts/smoke-test.mjs"
+      }
+    ]
   },
-  "evidence": null,
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Mapped real package ownership seams into system specs: extension/package surface owns commands, tools, status UI, packaged skills, bootstrap templates, smoke tests, and root discovery; runtime policy owns transaction/verifier/capability boundary.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "npm test",
+      "codewiki_state refresh"
+    ],
+    "files_touched": [
+      ".wiki/knowledge/system/overview.md",
+      ".wiki/knowledge/system/extensions/codewiki/overview.md"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-01T03:11:02Z"
+  },
   "expansion": {
     "task_json": ".wiki/roadmap/tasks/TASK-002/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",

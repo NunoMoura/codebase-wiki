@@ -4714,6 +4714,181 @@ function summarizeCodewikiTaskAction(result: {
 	return `codewiki task: ${result.task.id} -> ${result.task.status}${phase}${evidence}`;
 }
 
+type TaskVerifierVerdict = "pass" | "fail" | "block";
+
+type TaskVerifierIssue = {
+	severity: "high" | "medium" | "low";
+	summary: string;
+	evidence?: string;
+};
+
+type TaskVerifierResult = {
+	verdict: TaskVerifierVerdict;
+	taskId: string;
+	checks: string[];
+	issues: TaskVerifierIssue[];
+	rationale: string;
+};
+
+function buildTaskVerifierPrompt(
+	task: RoadmapTaskRecord,
+	contextPacket: RoadmapTaskContextPacket | null,
+): string {
+	return [
+		"You are the CodeWiki fresh-context verifier.",
+		"Verify this task independently. Do not mutate files, roadmap, or evidence.",
+		"Use only read-only inspection. Return one JSON object and no prose.",
+		"",
+		"Verdict schema:",
+		'{"verdict":"pass|fail|block","taskId":"TASK-###","checks":["..."],"issues":[{"severity":"high|medium|low","summary":"...","evidence":"..."}],"rationale":"..."}',
+		"",
+		"Pass only if acceptance criteria are satisfied, non-goals are respected, and no unresolved high/medium issues remain.",
+		"Block if required context or checks are unavailable.",
+		"",
+		"Task:",
+		JSON.stringify(
+			{
+				id: task.id,
+				title: task.title,
+				status: task.status,
+				priority: task.priority,
+				kind: task.kind,
+				summary: task.summary,
+				spec_paths: task.spec_paths,
+				code_paths: task.code_paths,
+				goal: task.goal,
+				delta: task.delta,
+			},
+			null,
+			2,
+		),
+		"",
+		"Compact context packet:",
+		JSON.stringify(contextPacket ?? { unavailable: true }, null, 2),
+	].join("\n");
+}
+
+function extractVerifierJson(text: string): TaskVerifierResult {
+	const trimmed = text.trim();
+	const jsonText = trimmed.startsWith("{")
+		? trimmed
+		: (trimmed.match(/```json\s*([\s\S]*?)```/)?.[1] ??
+			trimmed.match(/\{[\s\S]*\}/)?.[0]);
+	if (!jsonText) throw new Error("Verifier output did not contain JSON.");
+	const parsed = JSON.parse(jsonText) as Partial<TaskVerifierResult>;
+	const verdict = parsed.verdict;
+	if (verdict !== "pass" && verdict !== "fail" && verdict !== "block") {
+		throw new Error("Verifier JSON has invalid verdict.");
+	}
+	return {
+		verdict,
+		taskId: typeof parsed.taskId === "string" ? parsed.taskId : "",
+		checks: Array.isArray(parsed.checks)
+			? parsed.checks.filter((item): item is string => typeof item === "string")
+			: [],
+		issues: Array.isArray(parsed.issues)
+			? parsed.issues
+					.filter((item): item is TaskVerifierIssue => {
+						if (!item || typeof item !== "object") return false;
+						const issue = item as Partial<TaskVerifierIssue>;
+						return (
+							(issue.severity === "high" ||
+								issue.severity === "medium" ||
+								issue.severity === "low") &&
+							typeof issue.summary === "string"
+						);
+					})
+					.map((issue) => ({
+						severity: issue.severity,
+						summary: issue.summary,
+						evidence:
+							typeof issue.evidence === "string" ? issue.evidence : undefined,
+					}))
+			: [],
+		rationale:
+			typeof parsed.rationale === "string"
+				? parsed.rationale
+				: "Verifier did not provide rationale.",
+	};
+}
+
+function extractFinalAssistantTextFromJsonMode(stdout: string): string {
+	let latest = "";
+	for (const line of stdout.split(/\r?\n/)) {
+		if (!line.trim()) continue;
+		try {
+			const event = JSON.parse(line) as any;
+			const message = event.message;
+			if (event.type !== "message_end" || message?.role !== "assistant") {
+				continue;
+			}
+			for (const part of message.content ?? []) {
+				if (part?.type === "text" && typeof part.text === "string") {
+					latest = part.text;
+				}
+			}
+		} catch {
+			// Ignore non-JSON noise.
+		}
+	}
+	return latest;
+}
+
+async function maybeRunAutomaticTaskVerifier(
+	project: WikiProject,
+	task: RoadmapTaskRecord,
+): Promise<TaskVerifierResult | null> {
+	if (process.env.PI_CODEWIKI_SKIP_VERIFIER === "1") return null;
+	if (process.env.PI_CODEWIKI_VERIFIER_MODE === "off") return null;
+	const state = await maybeReadRoadmapState(project.roadmapStatePath);
+	const runtimeTask = state?.tasks?.[task.id] ?? null;
+	const contextPacket = await maybeReadTaskContext(
+		project,
+		task.id,
+		runtimeTask,
+	);
+	const prompt = buildTaskVerifierPrompt(task, contextPacket);
+	try {
+		const { stdout } = await execFileAsync(
+			"pi",
+			[
+				"--mode",
+				"json",
+				"-p",
+				"--no-session",
+				"--no-extensions",
+				"--no-prompt-templates",
+				"--no-themes",
+				"--no-context-files",
+				"--tools",
+				"read,grep,find,ls",
+				prompt,
+			],
+			{
+				cwd: project.root,
+				timeout: 120_000,
+				maxBuffer: 2 * 1024 * 1024,
+			},
+		);
+		const text = extractFinalAssistantTextFromJsonMode(stdout);
+		return extractVerifierJson(text);
+	} catch (error) {
+		return {
+			verdict: "block",
+			taskId: task.id,
+			checks: ["automatic verifier subprocess"],
+			issues: [
+				{
+					severity: "medium",
+					summary: `Automatic verifier could not complete: ${formatError(error)}`,
+				},
+			],
+			rationale:
+				"Automatic verifier subprocess failed or produced invalid output.",
+		};
+	}
+}
+
 async function executeCodewikiTask(
 	pi: ExtensionAPI,
 	project: WikiProject,
@@ -4810,6 +4985,33 @@ async function executeCodewikiTask(
 	let evidenceRecorded = false;
 
 	if (input.action === "close") {
+		const verifier = await maybeRunAutomaticTaskVerifier(project, latestTask);
+		if (verifier) {
+			await appendCodewikiTaskEvidence(
+				project,
+				latestTask,
+				{
+					summary: `Fresh verifier ${verifier.verdict}: ${verifier.rationale}`,
+					result:
+						verifier.verdict === "pass"
+							? "pass"
+							: verifier.verdict === "fail"
+								? "fail"
+								: "block",
+					checks_run: verifier.checks,
+					files_touched: [],
+					issues: verifier.issues.map((issue) => issue.summary),
+				},
+				false,
+			);
+			evidenceRecorded = true;
+			if (verifier.verdict !== "pass") {
+				if (refresh) await runRebuild(project);
+				throw new Error(
+					`Task ${latestTask.id} cannot close: fresh verifier returned ${verifier.verdict}. ${verifier.rationale}`,
+				);
+			}
+		}
 		const closeResult = await updateRoadmapTask(
 			project,
 			{

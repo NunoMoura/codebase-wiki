@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-01T04:55:24Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-008/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-008",
+    "title": "Model research evidence as support for wiki knowledge",
+    "status": "done",
+    "phase": "verify",
+    "priority": "medium",
+    "kind": "research",
+    "summary": "Separate external/source research from task execution so research evidence supports `.wiki/knowledge` claims rather than becoming part of every implementation loop.",
+    "labels": [
+      "research",
+      "evidence",
+      "knowledge"
+    ],
+    "goal": {
+      "outcome": "CodeWiki distinguishes research evidence for intended knowledge from execution evidence for task closure.",
+      "acceptance": [
+        "Research workflow records cited findings as support for knowledge updates and design decisions.",
+        "Task execution loop treats research as optional only when uncertainty blocks implementation or claims need support.",
+        "Evidence schema or conventions distinguish source/research evidence from checks/execution evidence.",
+        "The research skill explains when to use web/code research versus local code inspection."
+      ],
+      "non_goals": [
+        "Require web research for routine code changes.",
+        "Create a separate ADR system outside `.wiki/knowledge`."
+      ],
+      "verification": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ]
+    },
+    "delta": {
+      "desired": "Research strengthens canonical knowledge without bloating task execution.",
+      "current": "Research is described as optional evidence but not modeled as a distinct workflow.",
+      "closure": "Add research-specific workflow guidance and evidence classification."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "fa31f27a9766c4fea5334b67189b16c97e160df3275f0c230c80b08d535cd9f7"
+    },
+    "git": {
+      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/roadmap.json"
+      ],
+      "paths": {
+        ".wiki/knowledge/product/overview.md": "0d12c87f000a",
+        ".wiki/knowledge/system/runtime/overview.md": "0d12c87f000a",
+        ".wiki/roadmap.json": "0d12c87f000a",
+        "skills/codewiki-research/SKILL.md": "",
+        "skills/codewiki-task/SKILL.md": ""
+      }
+    },
+    "spec_digest": "76abcfeb01cb9e4ed0002761ff8a1beea9b5e1853f43dc0cd39e2c8180eabe55",
+    "code_digest": "d0686470e0747484740e4e70249b2911518d5e00025628485582f85baa7c0415",
+    "graph": {
+      "git": {
+        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "dirty": true
+      },
+      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "summary": "Product intent, users, and value boundaries for codewiki.",
+      "state": "active",
+      "owners": [
+        "product"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "f8babb01e47c832dded1bfa7d78a9cea833b807845b6ec8182d2b6ef60a4a695"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/product/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "summary": "Policy boundary for codewiki runtime access in codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "d08fc444bcad24e82b0621363104d6bd4ff20c821bc6f79da877af66f7577800"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/runtime/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "skills/codewiki-research/SKILL.md",
+      "skills/codewiki-task/SKILL.md"
+    ],
+    "digest": "d0686470e0747484740e4e70249b2911518d5e00025628485582f85baa7c0415",
+    "expand": [
+      {
+        "read": "skills/codewiki-research/SKILL.md"
+      },
+      {
+        "read": "skills/codewiki-task/SKILL.md"
+      }
+    ]
+  },
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Verified research evidence model implementation after final checks.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "npm test"
+    ],
+    "files_touched": [
+      "skills/codewiki-research/SKILL.md",
+      "skills/codewiki-task/SKILL.md",
+      ".wiki/knowledge/product/overview.md"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-01T02:24:01Z"
+  },
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-008/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

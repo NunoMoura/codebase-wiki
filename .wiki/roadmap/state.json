@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-04-29T21:35:27Z",
+  "generated_at": "2026-05-01T04:55:24Z",
   "health": {
     "color": "green",
     "errors": 0,
@@ -9,75 +9,112 @@
   },
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-04-29T21:35:27Z",
+    "graph_generated_at": "2026-05-01T04:55:24Z",
     "revision": {
       "git": {
-        "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
         "dirty": true,
         "dirty_paths": [
           ".wiki/knowledge/clients/overview.md",
           ".wiki/knowledge/clients/surfaces/roadmap.md",
           ".wiki/knowledge/clients/surfaces/status-panel.md",
           ".wiki/knowledge/product/overview.md",
+          ".wiki/knowledge/system/extensions/codewiki/overview.md",
           ".wiki/knowledge/system/overview.md",
+          ".wiki/knowledge/system/runtime/overview.md",
           ".wiki/roadmap.json",
-          "extensions/codewiki/bootstrap.ts",
-          "extensions/codewiki/contracts.ts",
+          "README.md",
           "extensions/codewiki/index.ts",
-          "extensions/codewiki/project-root.ts",
-          "extensions/codewiki/templates.ts"
+          "package.json",
+          "scripts/codewiki-gateway.mjs",
+          "scripts/smoke-test.mjs",
+          "skills/codewiki/SKILL.md"
         ],
         "paths": {
-          ".wiki/knowledge/clients/overview.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-          ".wiki/knowledge/clients/surfaces/roadmap.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-          ".wiki/knowledge/clients/surfaces/status-panel.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-          ".wiki/knowledge/product/overview.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md": "",
-          ".wiki/knowledge/system/overview.md": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-          ".wiki/knowledge/system/runtime/overview.md": "",
-          ".wiki/roadmap.json": "8be5b61bd6e3b40685c7ef72de7fe64fefe5663d",
-          "extensions/codewiki": "2771a351e64bdd1b39996b9872fd8513865b8c69"
+          ".wiki/knowledge/clients/agent-skills.md": "",
+          ".wiki/knowledge/clients/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          ".wiki/knowledge/clients/surfaces/roadmap.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          ".wiki/knowledge/clients/surfaces/status-panel.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          ".wiki/knowledge/product/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          ".wiki/knowledge/system/extensions/codewiki/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          ".wiki/knowledge/system/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          ".wiki/knowledge/system/runtime/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          ".wiki/roadmap.json": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "README.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "extensions/codewiki": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "extensions/codewiki/index.ts": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "package.json": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "scripts/codewiki-gateway.mjs": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "scripts/rebuild_docs_meta.py": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "scripts/smoke-test.mjs": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "skills": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "skills/codewiki-architecture/SKILL.md": "",
+          "skills/codewiki-plan/SKILL.md": "",
+          "skills/codewiki-research/SKILL.md": "",
+          "skills/codewiki-task/SKILL.md": "",
+          "skills/codewiki-verify/SKILL.md": "",
+          "skills/codewiki/SKILL.md": "0d12c87f000aedcf818ece8c88819b938a8d881e"
         }
       },
-      "spec_digest": "76e0c026a9b4690c83c2f7ef7e5ff2dec0ebcb26eeafa9da3a4b800513debcfd",
-      "task_digest": "64bf370a6372453c8920b88dddbc8257ed7ef9ad037fffda92b6c904002a99d5",
-      "evidence_digest": "f9b77809b7fdd935bcdd357cd1126bad9373fd4ca249653a37c353b8d89159d1"
+      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
     },
     "roadmap_folder": ".wiki/roadmap",
     "task_context_root": ".wiki/roadmap/tasks"
   },
   "summary": {
-    "task_count": 3,
-    "open_count": 3,
+    "task_count": 11,
+    "open_count": 0,
     "status_counts": {
-      "todo": 3
+      "done": 11
     },
     "priority_counts": {
-      "high": 2,
-      "medium": 1
+      "high": 7,
+      "medium": 4
     }
   },
   "views": {
     "ordered_task_ids": [
       "TASK-001",
       "TASK-002",
-      "TASK-003"
+      "TASK-003",
+      "TASK-004",
+      "TASK-005",
+      "TASK-006",
+      "TASK-007",
+      "TASK-008",
+      "TASK-009",
+      "TASK-010",
+      "TASK-011"
     ],
-    "open_task_ids": [
-      "TASK-001",
-      "TASK-002",
-      "TASK-003"
-    ],
+    "open_task_ids": [],
     "in_progress_task_ids": [],
-    "todo_task_ids": [
+    "todo_task_ids": [],
+    "blocked_task_ids": [],
+    "done_task_ids": [
       "TASK-001",
       "TASK-002",
-      "TASK-003"
+      "TASK-003",
+      "TASK-004",
+      "TASK-005",
+      "TASK-006",
+      "TASK-007",
+      "TASK-008",
+      "TASK-009",
+      "TASK-010",
+      "TASK-011"
     ],
-    "blocked_task_ids": [],
-    "done_task_ids": [],
     "cancelled_task_ids": [],
     "recent_task_ids": [
+      "TASK-011",
+      "TASK-010",
+      "TASK-009",
+      "TASK-008",
+      "TASK-007",
+      "TASK-006",
+      "TASK-005",
+      "TASK-004",
       "TASK-003",
       "TASK-002",
       "TASK-001"
@@ -87,7 +124,7 @@
     "TASK-001": {
       "id": "TASK-001",
       "title": "Lock product intent in specs",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "kind": "docs",
       "summary": "Turn codewiki intent into explicit product and system docs.",
@@ -114,21 +151,38 @@
         ".wiki/knowledge/system/overview.md"
       ],
       "code_paths": [],
-      "updated": "2026-04-29",
+      "updated": "2026-05-01",
       "revision": {
-        "digest": "8873f0abe6dc7eb1abfbe4c7ea53d0ae35169be7f03b9f1d5008b21f65bd888b"
+        "digest": "8f54e65f96e1e17b88ae79b76bd1add029c9148b3951baa0cf4c5171d2c383d1"
       },
       "context_path": ".wiki/roadmap/tasks/TASK-001/context.json",
       "loop": {
-        "phase": "implement",
-        "updated_at": "",
-        "evidence": null
+        "phase": "done",
+        "updated_at": "2026-05-01T03:08:37Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Foundational product and system specs now describe CodeWiki intent, users, success criteria, non-goals, ownership seams, runtime boundary, evidence model, planning/task loops, and architecture review rule. Roadmap tasks link back to these specs.",
+          "checks_run": [
+            "codewiki_state refresh",
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            ".wiki/knowledge/product/overview.md",
+            ".wiki/knowledge/system/overview.md",
+            ".wiki/knowledge/system/runtime/overview.md",
+            ".wiki/knowledge/clients/overview.md",
+            ".wiki/roadmap.json"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T03:08:37Z"
+        }
       }
     },
     "TASK-002": {
       "id": "TASK-002",
       "title": "Map code ownership into spec hierarchy",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "kind": "architecture",
       "summary": "Refine the inferred boundary docs until wiki/system mirrors the repo's real ownership seams without creating doc sprawl.",
@@ -151,24 +205,43 @@
         ]
       },
       "spec_paths": [
-        ".wiki/knowledge/system/overview.md"
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
       ],
-      "code_paths": [],
-      "updated": "2026-04-29",
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs"
+      ],
+      "updated": "2026-05-01",
       "revision": {
-        "digest": "1f81fd253e119a29cca4bcd43f20570a594a60f6debcbc86eaec4012a5f11940"
+        "digest": "ce7cf418f288fc3ba4a317fbe1442130ca0a995e06499eb096279d3995ff8f85"
       },
       "context_path": ".wiki/roadmap/tasks/TASK-002/context.json",
       "loop": {
-        "phase": "implement",
-        "updated_at": "",
-        "evidence": null
+        "phase": "done",
+        "updated_at": "2026-05-01T03:11:02Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Mapped real package ownership seams into system specs: extension/package surface owns commands, tools, status UI, packaged skills, bootstrap templates, smoke tests, and root discovery; runtime policy owns transaction/verifier/capability boundary.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test",
+            "codewiki_state refresh"
+          ],
+          "files_touched": [
+            ".wiki/knowledge/system/overview.md",
+            ".wiki/knowledge/system/extensions/codewiki/overview.md"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T03:11:02Z"
+        }
       }
     },
     "TASK-003": {
       "id": "TASK-003",
       "title": "Keep roadmap as freshest delta log",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "kind": "process",
       "summary": "Move drift and plan tracking into structured roadmap tasks instead of separate prose buckets.",
@@ -191,18 +264,545 @@
         ]
       },
       "spec_paths": [
-        ".wiki/knowledge/clients/overview.md"
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
       ],
       "code_paths": [],
-      "updated": "2026-04-29",
+      "updated": "2026-05-01",
       "revision": {
-        "digest": "9f1bed7411936c01c9c26d0885bdfdb0d3aa9f6fe72dcca057926fcb13bdcd2c"
+        "digest": "48b11a308b41ada35286fa4e0ba178177dffacb4c955d1af8d3fa4c1d91102e7"
       },
       "context_path": ".wiki/roadmap/tasks/TASK-003/context.json",
       "loop": {
-        "phase": "implement",
-        "updated_at": "",
-        "evidence": null
+        "phase": "done",
+        "updated_at": "2026-05-01T03:13:14Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Roadmap surface and client overview now define roadmap tasks as the freshest delta log for planning notes, drift findings, architecture candidates, verification failures, and next actions; active brainstormed work has been converted into structured TASK records.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test",
+            "codewiki_state refresh"
+          ],
+          "files_touched": [
+            ".wiki/knowledge/clients/overview.md",
+            ".wiki/knowledge/clients/surfaces/roadmap.md",
+            ".wiki/roadmap.json"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T03:13:14Z"
+        }
+      }
+    },
+    "TASK-004": {
+      "id": "TASK-004",
+      "title": "Expose CodeWiki capability manifest and think-code boundary",
+      "status": "done",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Define the typed CodeWiki capabilities that Pi runtimes such as think-code can call without bypassing .wiki semantics, including optional executor/fallback boundaries.",
+      "labels": [
+        "think-code",
+        "capabilities",
+        "runtime-boundary"
+      ],
+      "goal": {
+        "outcome": "CodeWiki exposes a clear capability/transaction surface for reads, task mutations, evidence appends, graph rebuilds, and validated wiki edits while composing with think-code as an optional bounded executor.",
+        "acceptance": [
+          "Runtime policy spec names the capability classes CodeWiki owns.",
+          "Manifest shape includes capability name, args schema, result schema, read/write classification, and audit fields.",
+          "Raw writes to generated state remain out of scope for external runtimes.",
+          "Plan covers behavior when think-code is not installed.",
+          "Plan covers project .wiki read access and write delegation rules."
+        ],
+        "non_goals": [
+          "Implement a general sandbox.",
+          "Duplicate telemetry or eval extension behavior.",
+          "Make think-code a hard dependency before the integration contract is stable."
+        ],
+        "verification": [
+          "Review against think-code capability boundary task",
+          "Run codewiki state refresh after spec changes",
+          "Compare intended behavior in Pi sessions with and without think-code installed"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "extensions/codewiki",
+        "README.md"
+      ],
+      "updated": "2026-05-01",
+      "revision": {
+        "digest": "e0b44e9e07f33d59f518e66511d84251cef9a772c937e15f96fafda5dbc3444e"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-004/context.json",
+      "loop": {
+        "phase": "done",
+        "updated_at": "2026-05-01T03:16:47Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Implemented CodeWiki capability manifest in gateway and runtime spec. Manifest names semantic capability classes for state, task mutation, session notes, validated transactions, and derived rebuilds with args/result schema names, read/write classification, affected writes, and audit fields. Spec documents think-code fallback and generated-state write delegation rules.",
+          "checks_run": [
+            "node scripts/codewiki-gateway.mjs manifest | node -e JSON.parse validation",
+            "npm run typecheck -- --pretty false",
+            "npm test",
+            "codewiki_state refresh"
+          ],
+          "files_touched": [
+            "scripts/codewiki-gateway.mjs",
+            ".wiki/knowledge/system/runtime/overview.md",
+            "README.md"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T03:16:47Z"
+        }
+      }
+    },
+    "TASK-005": {
+      "id": "TASK-005",
+      "title": "Split CodeWiki skills into focused outer and inner workflows",
+      "status": "done",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Replace the single monolithic CodeWiki skill with a package-level router plus focused CodeWiki skills for planning, task execution, research, and verification.",
+      "labels": [
+        "skills",
+        "workflow",
+        "pocock-adaptation"
+      ],
+      "goal": {
+        "outcome": "Agents load only the CodeWiki workflow instructions needed for the current job while preserving shared CodeWiki invariants.",
+        "acceptance": [
+          "A small `codewiki` router skill states package invariants and when to load each focused skill.",
+          "Focused skills exist for `codewiki-plan`, `codewiki-task`, `codewiki-research`, and `codewiki-verify`.",
+          "Skill descriptions are precise enough for Pi progressive disclosure and do not duplicate large workflow text.",
+          "All focused skills preserve `.wiki/knowledge` as canonical intent and roadmap/evidence as machine-managed operational truth."
+        ],
+        "non_goals": [
+          "Install unrelated global skills as part of this repo task.",
+          "Replace CodeWiki tools or roadmap schema."
+        ],
+        "verification": [
+          "Run package typecheck/tests after skill/package changes.",
+          "Use Pi startup or package listing to confirm focused skills are discoverable.",
+          "Review each skill for overlap and conflicting instructions."
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki/SKILL.md",
+        "package.json"
+      ],
+      "updated": "2026-05-01",
+      "revision": {
+        "digest": "f61f7848fb6b72f7e9ba182db4e89831c84588a4a991d36a124fa5c4fbe2b69e"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-005/context.json",
+      "loop": {
+        "phase": "done",
+        "updated_at": "2026-05-01T03:17:22Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Re-verified TASK-005 after correcting stale spec path; focused skill split remains implemented and verified.",
+          "checks_run": [
+            "codewiki_state refresh"
+          ],
+          "files_touched": [
+            ".wiki/roadmap.json"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T03:17:22Z"
+        }
+      }
+    },
+    "TASK-006": {
+      "id": "TASK-006",
+      "title": "Define CodeWiki outer planning loop",
+      "status": "done",
+      "priority": "high",
+      "kind": "process",
+      "summary": "Specify the automatic outer loop that turns user intent into wiki knowledge updates and roadmap tasks before task execution begins, with user approval only at decision checkpoints.",
+      "labels": [
+        "outer-loop",
+        "planning",
+        "roadmap"
+      ],
+      "goal": {
+        "outcome": "CodeWiki has an automatic planning workflow for clarifying intent, gathering evidence when needed, updating knowledge, and creating roadmap tasks.",
+        "acceptance": [
+          "Planning loop is documented as clarify/inspect/research-if-needed/update-knowledge/create-roadmap-tasks with automatic progression where safe.",
+          "Research is explicitly outside normal task execution and supports knowledge claims.",
+          "Roadmap tasks are created only after intended behavior and acceptance criteria are clear enough.",
+          "User-facing commands/prompts can start the outer loop, but the user does not manually trigger each stage.",
+          "The loop pauses for user input only when ambiguity, product choice, destructive change, or approval policy requires it."
+        ],
+        "non_goals": [
+          "Implement every planned task.",
+          "Turn CodeWiki roadmap into an external issue tracker.",
+          "Remove human approval from material product or architecture decisions."
+        ],
+        "verification": [
+          "Review generated roadmap tasks for spec links, outcomes, acceptance, non-goals, and verification.",
+          "Run codewiki state refresh and confirm roadmap summary remains healthy.",
+          "Dry-run a planning request and confirm stages advance without manual command choreography."
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-plan/SKILL.md",
+        "skills/codewiki/SKILL.md"
+      ],
+      "updated": "2026-05-01",
+      "revision": {
+        "digest": "90ef99faeb76873c5259dae52b22494c6f86f144b2e3a434303b0cdc4778d986"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-006/context.json",
+      "loop": {
+        "phase": "verify",
+        "updated_at": "2026-05-01T02:20:30Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Verified automatic outer planning loop implementation in focused skill and client roadmap specs after final checks.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "skills/codewiki-plan/SKILL.md",
+            ".wiki/knowledge/clients/overview.md",
+            ".wiki/knowledge/clients/surfaces/roadmap.md"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T02:20:30Z"
+        }
+      }
+    },
+    "TASK-007": {
+      "id": "TASK-007",
+      "title": "Define CodeWiki task execution inner loop",
+      "status": "done",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Specify the automatic per-task loop that uses think-code context packets, implementation, local checks, fresh verification, and evidence before closure without requiring user-triggered verification commands.",
+      "labels": [
+        "inner-loop",
+        "implement-verify",
+        "think-code"
+      ],
+      "goal": {
+        "outcome": "Each roadmap task has an automatic implement\u2192verify loop grounded in task context, tests, and evidence.",
+        "acceptance": [
+          "Task loop is documented as load task/context, create compact context with think-code when useful, implement, run local checks, automatically invoke fresh verification when ready, append evidence, then close/block/follow-up.",
+          "Local verification and fresh-context verification have distinct responsibilities.",
+          "Task evidence captures checks run, files touched, issues, and verifier verdict.",
+          "Closure criteria require acceptance criteria and verification evidence, not just model confidence.",
+          "User command/manual trigger is treated as override/debug, not normal flow."
+        ],
+        "non_goals": [
+          "Force TDD for every trivial documentation-only task.",
+          "Make think-code a hard dependency when unavailable."
+        ],
+        "verification": [
+          "Run a sample task through the documented automatic loop or dry-run the workflow with an existing task.",
+          "Confirm task history/evidence records contain enough data to resume or audit work.",
+          "Confirm task closure cannot skip required verifier stage unless policy explicitly allows it."
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md"
+      ],
+      "updated": "2026-05-01",
+      "revision": {
+        "digest": "d54a5756f3a0f1134c91d71d98ef56ec11b253fc1061ce8bf871d4f19d8565b3"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-007/context.json",
+      "loop": {
+        "phase": "verify",
+        "updated_at": "2026-05-01T02:22:16Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Verified automatic inner task loop implementation after final checks.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "skills/codewiki-task/SKILL.md",
+            "skills/codewiki-verify/SKILL.md",
+            ".wiki/knowledge/system/runtime/overview.md"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T02:22:16Z"
+        }
+      }
+    },
+    "TASK-008": {
+      "id": "TASK-008",
+      "title": "Model research evidence as support for wiki knowledge",
+      "status": "done",
+      "priority": "medium",
+      "kind": "research",
+      "summary": "Separate external/source research from task execution so research evidence supports `.wiki/knowledge` claims rather than becoming part of every implementation loop.",
+      "labels": [
+        "research",
+        "evidence",
+        "knowledge"
+      ],
+      "goal": {
+        "outcome": "CodeWiki distinguishes research evidence for intended knowledge from execution evidence for task closure.",
+        "acceptance": [
+          "Research workflow records cited findings as support for knowledge updates and design decisions.",
+          "Task execution loop treats research as optional only when uncertainty blocks implementation or claims need support.",
+          "Evidence schema or conventions distinguish source/research evidence from checks/execution evidence.",
+          "The research skill explains when to use web/code research versus local code inspection."
+        ],
+        "non_goals": [
+          "Require web research for routine code changes.",
+          "Create a separate ADR system outside `.wiki/knowledge`."
+        ],
+        "verification": [
+          "Review evidence entries produced by sample research and sample task execution for clear classification.",
+          "Run codewiki state refresh and confirm no generated state is hand-edited."
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "updated": "2026-05-01",
+      "revision": {
+        "digest": "fa31f27a9766c4fea5334b67189b16c97e160df3275f0c230c80b08d535cd9f7"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-008/context.json",
+      "loop": {
+        "phase": "verify",
+        "updated_at": "2026-05-01T02:24:01Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Verified research evidence model implementation after final checks.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "skills/codewiki-research/SKILL.md",
+            "skills/codewiki-task/SKILL.md",
+            ".wiki/knowledge/product/overview.md"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T02:24:01Z"
+        }
+      }
+    },
+    "TASK-009": {
+      "id": "TASK-009",
+      "title": "Add automatic fresh-context verifier agent workflow",
+      "status": "done",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Design and implement an automatic verifier stage that spawns a read-only agent when task execution reaches verification, while retaining a manual command only as an override/debug entrypoint.",
+      "labels": [
+        "verification",
+        "subagent",
+        "pi-extension"
+      ],
+      "goal": {
+        "outcome": "CodeWiki automatically verifies task completion through a separate read-only Pi agent as part of the inner loop before closure.",
+        "acceptance": [
+          "Inner loop invokes verifier automatically when a task is ready for closure or explicit verification evidence is missing.",
+          "Verifier stage accepts a task id internally and builds a compact verification brief from task context, linked specs, diff/status, and acceptance criteria.",
+          "Verifier runs in a separate Pi process or SDK/RPC session with read-only tools plus allowed check commands.",
+          "Verifier returns deterministic JSON verdict with pass/fail/block, checks, issues, and rationale.",
+          "Parent CodeWiki flow appends verifier output as task evidence without automatically mutating code.",
+          "Auto-close is gated by verifier pass plus local checks plus no unresolved issues and user/project policy.",
+          "Manual `/wiki-verify` or equivalent, if present, is a debug/override entrypoint rather than the primary workflow."
+        ],
+        "non_goals": [
+          "Give verifier write/edit/apply authority.",
+          "Replace human review for security-sensitive or product-sensitive changes.",
+          "Require verifier for every tiny docs typo when policy says skip."
+        ],
+        "verification": [
+          "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+          "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+          "Confirm verifier cannot write files or mutate roadmap directly."
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/smoke-test.mjs"
+      ],
+      "updated": "2026-05-01",
+      "revision": {
+        "digest": "68cec46123899a2653cd9a45a0136eeb6bbd8c2b565e371bb4ff13eaf6c79319"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-009/context.json",
+      "loop": {
+        "phase": "done",
+        "updated_at": "2026-05-01T03:01:12Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Implemented automatic fresh verifier stage for explicit task close: builds compact verifier prompt from task/context, spawns read-only `pi --mode json --no-session` with read/grep/find/ls tools, parses deterministic JSON verdict, appends verifier evidence, and blocks closure on non-pass; smoke tests disable nested verifier via env.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test",
+            "grep maybeRunAutomaticTaskVerifier extensions/codewiki/index.ts"
+          ],
+          "files_touched": [
+            "extensions/codewiki/index.ts",
+            "scripts/smoke-test.mjs",
+            ".wiki/knowledge/system/runtime/overview.md",
+            ".wiki/knowledge/clients/overview.md"
+          ],
+          "issues": [
+            "Automatic verifier currently runs on explicit `codewiki_task` close; lifecycle `update` pass path remains a follow-up if strict auto-verify is required there too."
+          ],
+          "updated_at": "2026-05-01T03:01:12Z"
+        }
+      }
+    },
+    "TASK-010": {
+      "id": "TASK-010",
+      "title": "Add CodeWiki architecture review workflow adapted from deep-module heuristics",
+      "status": "done",
+      "priority": "medium",
+      "kind": "architecture",
+      "summary": "Adapt deep-module and shared-language architecture review ideas into a `.wiki`-aware workflow for finding seams, locality problems, and roadmap-worthy refactors.",
+      "labels": [
+        "architecture",
+        "deep-modules",
+        "pocock-adaptation"
+      ],
+      "goal": {
+        "outcome": "CodeWiki can run architecture reviews that produce knowledge updates and roadmap tasks rather than ad hoc refactor suggestions.",
+        "acceptance": [
+          "Workflow uses CodeWiki vocabulary and `.wiki/knowledge` instead of `CONTEXT.md`/ADR assumptions.",
+          "Review rubric includes module/interface/implementation, seam, adapter, locality, leverage, and deletion test.",
+          "Findings become either knowledge clarifications, roadmap tasks, or explicitly deferred non-goals.",
+          "Architecture review does not propose interfaces before presenting friction candidates and asking user to pick."
+        ],
+        "non_goals": [
+          "Create a separate ADR tree outside `.wiki/knowledge`.",
+          "Automatically refactor architecture during review."
+        ],
+        "verification": [
+          "Run the workflow on the CodeWiki repo and produce at least one candidate or documented no-op result.",
+          "Confirm any resulting tasks link to owning specs and acceptance criteria."
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-architecture/SKILL.md"
+      ],
+      "updated": "2026-05-01",
+      "revision": {
+        "digest": "be4ee62488b0b94c30609006747277ae1f1c12246734cb7fbb3ed9e6641d2488"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-010/context.json",
+      "loop": {
+        "phase": "done",
+        "updated_at": "2026-05-01T03:03:22Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Implemented CodeWiki architecture review workflow with deep-module vocabulary, friction candidate process, and system spec guidance that turns findings into knowledge updates, roadmap tasks, or non-goals.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "skills/codewiki-architecture/SKILL.md",
+            ".wiki/knowledge/system/overview.md"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T03:03:22Z"
+        }
+      }
+    },
+    "TASK-011": {
+      "id": "TASK-011",
+      "title": "Record curated global agent skills decision",
+      "status": "done",
+      "priority": "medium",
+      "kind": "docs",
+      "summary": "Document which general engineering skills should be installed or adapted globally for Pi without conflicting with CodeWiki-specific workflows.",
+      "labels": [
+        "global-agent-skills",
+        "compatibility"
+      ],
+      "goal": {
+        "outcome": "There is a durable CodeWiki decision record for global Pi skills versus CodeWiki-specific skills.",
+        "acceptance": [
+          "Global candidates are tdd, diagnose, grill-me, zoom-out, and write-a-skill.",
+          "Excluded or adapt-first skills are documented with reasons.",
+          "Notes include Pi package security and skill discovery behavior.",
+          "No global Pi settings are changed without explicit user approval."
+        ],
+        "non_goals": [
+          "Install all external skills immediately.",
+          "Replace CodeWiki roadmap with external issue skills."
+        ],
+        "verification": [
+          "Review decision text against Pi docs and existing global packages.",
+          "Confirm no repo-specific conventions are forced globally."
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/clients/overview.md"
+      ],
+      "code_paths": [],
+      "updated": "2026-05-01",
+      "revision": {
+        "digest": "2ef8688d1605abdc540e0381841ea8177e98e52cb461994c5de36ecd05423c4a"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-011/context.json",
+      "loop": {
+        "phase": "done",
+        "updated_at": "2026-05-01T03:05:41Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Recorded curated global skills decision as CodeWiki knowledge, including recommended global skills, adapt-first/excluded skills, and compatibility rules with Pi packages and CodeWiki semantics.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            ".wiki/knowledge/clients/agent-skills.md",
+            ".wiki/knowledge/clients/overview.md"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T03:05:41Z"
+        }
       }
     }
   }

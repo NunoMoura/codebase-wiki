@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-04-29T21:35:27Z",
+  "generated_at": "2026-05-01T04:55:24Z",
   "context_path": ".wiki/roadmap/tasks/TASK-003/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -9,8 +9,8 @@
   "task": {
     "id": "TASK-003",
     "title": "Keep roadmap as freshest delta log",
-    "status": "todo",
-    "phase": "implement",
+    "status": "done",
+    "phase": "done",
     "priority": "medium",
     "kind": "process",
     "summary": "Move drift and plan tracking into structured roadmap tasks instead of separate prose buckets.",
@@ -40,30 +40,32 @@
   },
   "revision": {
     "task": {
-      "digest": "9f1bed7411936c01c9c26d0885bdfdb0d3aa9f6fe72dcca057926fcb13bdcd2c"
+      "digest": "48b11a308b41ada35286fa4e0ba178177dffacb4c955d1af8d3fa4c1d91102e7"
     },
     "git": {
-      "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
       "dirty": true,
       "dirty_paths": [
         ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md",
         ".wiki/roadmap.json"
       ],
       "paths": {
-        ".wiki/knowledge/clients/overview.md": "8be5b61bd6e3",
-        ".wiki/roadmap.json": "8be5b61bd6e3"
+        ".wiki/knowledge/clients/overview.md": "0d12c87f000a",
+        ".wiki/knowledge/clients/surfaces/roadmap.md": "0d12c87f000a",
+        ".wiki/roadmap.json": "0d12c87f000a"
       }
     },
-    "spec_digest": "b5001c7c489d8a10aec019c267df8621c3adbf29ef7dd0dc93a8daea1c73d706",
+    "spec_digest": "ebeee3f7b71a520b3095f7454027d9b65fa5a92e07196af7c33014c3da083fd1",
     "code_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
     "graph": {
       "git": {
-        "head": "2771a351e64bdd1b39996b9872fd8513865b8c69",
+        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
         "dirty": true
       },
-      "spec_digest": "76e0c026a9b4690c83c2f7ef7e5ff2dec0ebcb26eeafa9da3a4b800513debcfd",
-      "task_digest": "64bf370a6372453c8920b88dddbc8257ed7ef9ad037fffda92b6c904002a99d5",
-      "evidence_digest": "f9b77809b7fdd935bcdd357cd1126bad9373fd4ca249653a37c353b8d89159d1"
+      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
     }
   },
   "specs": [
@@ -77,10 +79,26 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "40fc1265e254f351ecbd38d6282003e76cb50f2c458ed34a310e98dac1a882df"
+        "digest": "221fff22b045303dcf71f0b2d3e70718075a06f1d5882509e1653c8a18a3d46d"
       },
       "expand": {
         "read": ".wiki/knowledge/clients/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/clients/surfaces/roadmap.md",
+      "title": "Roadmap Surface",
+      "summary": "TUI-first roadmap and inferred-delta experience for codewiki.",
+      "state": "active",
+      "owners": [
+        "design"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/clients/surfaces/roadmap.md"
       }
     }
   ],
@@ -89,7 +107,22 @@
     "digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
     "expand": []
   },
-  "evidence": null,
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Roadmap surface and client overview now define roadmap tasks as the freshest delta log for planning notes, drift findings, architecture candidates, verification failures, and next actions; active brainstormed work has been converted into structured TASK records.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "npm test",
+      "codewiki_state refresh"
+    ],
+    "files_touched": [
+      ".wiki/knowledge/clients/overview.md",
+      ".wiki/knowledge/clients/surfaces/roadmap.md",
+      ".wiki/roadmap.json"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-01T03:13:14Z"
+  },
   "expansion": {
     "task_json": ".wiki/roadmap/tasks/TASK-003/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",

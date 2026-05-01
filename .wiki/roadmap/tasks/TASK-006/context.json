@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-01T04:55:24Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-006/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-006",
+    "title": "Define CodeWiki outer planning loop",
+    "status": "done",
+    "phase": "verify",
+    "priority": "high",
+    "kind": "process",
+    "summary": "Specify the automatic outer loop that turns user intent into wiki knowledge updates and roadmap tasks before task execution begins, with user approval only at decision checkpoints.",
+    "labels": [
+      "outer-loop",
+      "planning",
+      "roadmap"
+    ],
+    "goal": {
+      "outcome": "CodeWiki has an automatic planning workflow for clarifying intent, gathering evidence when needed, updating knowledge, and creating roadmap tasks.",
+      "acceptance": [
+        "Planning loop is documented as clarify/inspect/research-if-needed/update-knowledge/create-roadmap-tasks with automatic progression where safe.",
+        "Research is explicitly outside normal task execution and supports knowledge claims.",
+        "Roadmap tasks are created only after intended behavior and acceptance criteria are clear enough.",
+        "User-facing commands/prompts can start the outer loop, but the user does not manually trigger each stage.",
+        "The loop pauses for user input only when ambiguity, product choice, destructive change, or approval policy requires it."
+      ],
+      "non_goals": [
+        "Implement every planned task.",
+        "Turn CodeWiki roadmap into an external issue tracker.",
+        "Remove human approval from material product or architecture decisions."
+      ],
+      "verification": [
+        "Review generated roadmap tasks for spec links, outcomes, acceptance, non-goals, and verification.",
+        "Run codewiki state refresh and confirm roadmap summary remains healthy.",
+        "Dry-run a planning request and confirm stages advance without manual command choreography."
+      ]
+    },
+    "delta": {
+      "desired": "Planning automatically creates durable knowledge and an executable roadmap before implementation starts.",
+      "current": "Workflow guidance exists but outer-loop responsibilities are not isolated or automated.",
+      "closure": "Add planning-specific skill/spec guidance and ensure new tasks follow it with minimal user command choreography."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "90ef99faeb76873c5259dae52b22494c6f86f144b2e3a434303b0cdc4778d986"
+    },
+    "git": {
+      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/roadmap.json",
+        "skills/codewiki/SKILL.md"
+      ],
+      "paths": {
+        ".wiki/knowledge/clients/overview.md": "0d12c87f000a",
+        ".wiki/knowledge/clients/surfaces/roadmap.md": "0d12c87f000a",
+        ".wiki/knowledge/product/overview.md": "0d12c87f000a",
+        ".wiki/roadmap.json": "0d12c87f000a",
+        "skills/codewiki-plan/SKILL.md": "",
+        "skills/codewiki/SKILL.md": "0d12c87f000a"
+      }
+    },
+    "spec_digest": "2baa100a8028cbb55e506c2e447f834114387eda3b6c2bfb0aa9924bab5d52c9",
+    "code_digest": "c34bd995336e6938091858c01ee75d70d613bffe870d369bdd7420366d936771",
+    "graph": {
+      "git": {
+        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "dirty": true
+      },
+      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
+      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
+      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "summary": "Product intent, users, and value boundaries for codewiki.",
+      "state": "active",
+      "owners": [
+        "product"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "f8babb01e47c832dded1bfa7d78a9cea833b807845b6ec8182d2b6ef60a4a695"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/product/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/clients/overview.md",
+      "title": "Clients Overview",
+      "summary": "User-facing workflow and status-surface expectations for codewiki.",
+      "state": "active",
+      "owners": [
+        "design"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "221fff22b045303dcf71f0b2d3e70718075a06f1d5882509e1653c8a18a3d46d"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/clients/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/clients/surfaces/roadmap.md",
+      "title": "Roadmap Surface",
+      "summary": "TUI-first roadmap and inferred-delta experience for codewiki.",
+      "state": "active",
+      "owners": [
+        "design"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/clients/surfaces/roadmap.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "skills/codewiki-plan/SKILL.md",
+      "skills/codewiki/SKILL.md"
+    ],
+    "digest": "c34bd995336e6938091858c01ee75d70d613bffe870d369bdd7420366d936771",
+    "expand": [
+      {
+        "read": "skills/codewiki-plan/SKILL.md"
+      },
+      {
+        "read": "skills/codewiki/SKILL.md"
+      }
+    ]
+  },
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Verified automatic outer planning loop implementation in focused skill and client roadmap specs after final checks.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "npm test"
+    ],
+    "files_touched": [
+      "skills/codewiki-plan/SKILL.md",
+      ".wiki/knowledge/clients/overview.md",
+      ".wiki/knowledge/clients/surfaces/roadmap.md"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-01T02:20:30Z"
+  },
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-006/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

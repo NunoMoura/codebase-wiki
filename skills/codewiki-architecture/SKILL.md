@@ -1,0 +1,61 @@
+---
+name: codewiki-architecture
+description: CodeWiki-aware architecture review using deep-module heuristics. Use when looking for seams, ownership friction, testability gaps, doc/code drift, or roadmap-worthy refactors under `.wiki/knowledge`.
+---
+
+# CodeWiki Architecture
+
+Use this workflow during outer planning, not as an automatic refactor pass.
+
+## Vocabulary
+
+- **Module** — anything with an interface and implementation.
+- **Interface** — everything a caller must know: types, invariants, errors, ordering, config.
+- **Implementation** — code behind the interface.
+- **Seam** — where behavior can change without editing callers in place.
+- **Adapter** — concrete implementation behind a seam.
+- **Depth** — lots of behavior behind a small interface.
+- **Leverage** — what callers gain from depth.
+- **Locality** — change, bugs, and knowledge concentrated in one place.
+
+## Heuristics
+
+- Deletion test: if deleting a module removes complexity, it was pass-through; if complexity reappears across callers, it earned its keep.
+- Interface is the test surface.
+- One adapter is a hypothetical seam; two adapters make a real seam.
+- Architecture findings should become knowledge updates, roadmap tasks, or explicit non-goals.
+
+## Workflow
+
+1. **Read CodeWiki state**
+   - Start with `codewiki_state` and relevant `.wiki/knowledge/system/**` specs.
+   - Use repo tools or think-code to inspect code ownership seams.
+
+2. **Find friction**
+   Look for:
+   - concepts spread across many shallow modules,
+   - interfaces as complex as implementations,
+   - extracted functions that improve tests but hurt locality,
+   - seams without real adapters,
+   - hard-to-test behavior hidden behind poor interfaces,
+   - code/spec ownership mismatch.
+
+3. **Present candidates**
+   For each candidate:
+   - files/modules,
+   - problem,
+   - proposed direction,
+   - benefits in locality/leverage/testability,
+   - affected knowledge specs,
+   - possible roadmap task.
+
+4. **Ask before design**
+   - Do not propose final interfaces immediately.
+   - Ask the user which candidate to explore.
+   - Then run planning loop to capture decisions and tasks.
+
+## Non-goals
+
+- Do not create a separate ADR tree outside `.wiki/knowledge`.
+- Do not refactor automatically during review.
+- Do not relitigate settled knowledge unless real friction justifies it.
