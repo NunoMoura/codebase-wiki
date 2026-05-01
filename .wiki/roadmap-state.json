@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-05-01T04:55:24Z",
+  "generated_at": "2026-05-01T06:27:27Z",
   "health": {
     "color": "green",
     "errors": 0,
@@ -9,68 +9,62 @@
   },
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-01T04:55:24Z",
+    "graph_generated_at": "2026-05-01T06:27:27Z",
     "revision": {
       "git": {
-        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
         "dirty": true,
         "dirty_paths": [
-          ".wiki/knowledge/clients/overview.md",
-          ".wiki/knowledge/clients/surfaces/roadmap.md",
-          ".wiki/knowledge/clients/surfaces/status-panel.md",
-          ".wiki/knowledge/product/overview.md",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md",
           ".wiki/knowledge/system/overview.md",
           ".wiki/knowledge/system/runtime/overview.md",
           ".wiki/roadmap.json",
           "README.md",
+          "extensions/codewiki/contracts.ts",
           "extensions/codewiki/index.ts",
           "package.json",
-          "scripts/codewiki-gateway.mjs",
-          "scripts/smoke-test.mjs",
-          "skills/codewiki/SKILL.md"
+          "scripts/smoke-test.mjs"
         ],
         "paths": {
-          ".wiki/knowledge/clients/agent-skills.md": "",
-          ".wiki/knowledge/clients/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          ".wiki/knowledge/clients/surfaces/roadmap.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          ".wiki/knowledge/clients/surfaces/status-panel.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          ".wiki/knowledge/product/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          ".wiki/knowledge/system/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          ".wiki/knowledge/system/runtime/overview.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          ".wiki/roadmap.json": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          "README.md": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          "extensions/codewiki": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          "extensions/codewiki/index.ts": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          "package.json": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          "scripts/codewiki-gateway.mjs": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/knowledge/clients/overview.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/knowledge/product/overview.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/knowledge/system/extensions/codewiki/overview.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/knowledge/system/overview.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/knowledge/system/runtime/overview.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/roadmap.json": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "README.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "extensions/codewiki": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "extensions/codewiki/index.ts": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "package.json": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
           "scripts/rebuild_docs_meta.py": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          "scripts/smoke-test.mjs": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          "skills": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          "skills/codewiki-architecture/SKILL.md": "",
-          "skills/codewiki-plan/SKILL.md": "",
-          "skills/codewiki-research/SKILL.md": "",
-          "skills/codewiki-task/SKILL.md": "",
-          "skills/codewiki-verify/SKILL.md": "",
-          "skills/codewiki/SKILL.md": "0d12c87f000aedcf818ece8c88819b938a8d881e"
+          "scripts/smoke-test.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "skills": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "skills/codewiki-architecture/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "skills/codewiki-plan/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "skills/codewiki-research/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "skills/codewiki-task/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "skills/codewiki-verify/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "skills/codewiki/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
         }
       },
-      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
-      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
-      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
+      "spec_digest": "755fe900c93b1f0937e01d7b455e1e15a1d92846006b1f96d9561c9542175e3f",
+      "task_digest": "804f3ab22cad6fffcb05736fa39d0ca59d5fe35cd02aeed436dab4407d09130d",
+      "evidence_digest": "4e3c6700498f6c1597ab67de41b61627b1e276b937c410e4e8d2949071a101b2"
     },
     "roadmap_folder": ".wiki/roadmap",
     "task_context_root": ".wiki/roadmap/tasks"
   },
   "summary": {
-    "task_count": 11,
+    "task_count": 13,
     "open_count": 0,
     "status_counts": {
-      "done": 11
+      "done": 13
     },
     "priority_counts": {
-      "high": 7,
+      "high": 9,
       "medium": 4
     }
   },
@@ -86,7 +80,9 @@
       "TASK-008",
       "TASK-009",
       "TASK-010",
-      "TASK-011"
+      "TASK-011",
+      "TASK-012",
+      "TASK-013"
     ],
     "open_task_ids": [],
     "in_progress_task_ids": [],
@@ -103,10 +99,14 @@
       "TASK-008",
       "TASK-009",
       "TASK-010",
-      "TASK-011"
+      "TASK-011",
+      "TASK-012",
+      "TASK-013"
     ],
     "cancelled_task_ids": [],
     "recent_task_ids": [
+      "TASK-013",
+      "TASK-012",
       "TASK-011",
       "TASK-010",
       "TASK-009",
@@ -802,6 +802,139 @@
           ],
           "issues": [],
           "updated_at": "2026-05-01T03:05:41Z"
+        }
+      }
+    },
+    "TASK-012": {
+      "id": "TASK-012",
+      "title": "Reduce canonical surface and projection write amplification",
+      "status": "done",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Projection firewall first slice completed: canonical/generated contract documented and refresh=false paths now avoid projection locks/rebuilds where safe.",
+      "labels": [
+        "projection-firewall",
+        "token-efficiency",
+        "drift-control"
+      ],
+      "goal": {
+        "outcome": "Normal CodeWiki updates write only canonical truth while generated graph/status/lint/roadmap views are rebuilt as disposable projections.",
+        "acceptance": [
+          "Canonical and generated file classes are documented in system knowledge.",
+          "Generated projection files are marked or described as tool-owned/read-only for agents.",
+          "At least one mutator path avoids unnecessary generated projection writes unless refresh is explicitly requested.",
+          "codewiki_state still returns current status after refresh.",
+          "Typecheck and tests pass."
+        ],
+        "non_goals": [
+          "Remove all generated files from the repository.",
+          "Implement the architecture diagram projection.",
+          "Rewrite the whole roadmap storage model."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/config.json",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "updated": "2026-05-01",
+      "revision": {
+        "digest": "7ac29d42e41454246e772ff7120b07643e731fd75a729c21469ff929ec01d295"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-012/context.json",
+      "loop": {
+        "phase": "verify",
+        "updated_at": "2026-05-01T05:42:26Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Closed after typecheck and smoke/package tests passed.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "README.md",
+            ".wiki/knowledge/system/overview.md",
+            ".wiki/knowledge/system/runtime/overview.md",
+            "extensions/codewiki/index.ts",
+            "extensions/codewiki/contracts.ts"
+          ],
+          "issues": [
+            "Further slices should decouple close/archive retention from rebuild before changing codewiki_task default refresh."
+          ],
+          "updated_at": "2026-05-01T05:42:26Z"
+        }
+      }
+    },
+    "TASK-013": {
+      "id": "TASK-013",
+      "title": "Decouple closed-task retention from projection rebuild",
+      "status": "done",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Closed-task retention no longer depends on generated projection rebuilds; refresh=false close path preserves archive retention.",
+      "labels": [
+        "projection-firewall",
+        "roadmap-retention",
+        "write-amplification"
+      ],
+      "goal": {
+        "outcome": "Closing tasks can enforce roadmap archive retention through the canonical task mutation path without depending on rebuild side effects.",
+        "acceptance": [
+          "Task close with closed_task_limit=0 archives the closed task even when projection refresh is false.",
+          "Generated projection rebuild remains available and does not become the only retention mechanism.",
+          "Smoke coverage verifies archive retention for refresh=false or equivalent minimal-write close path.",
+          "Typecheck and tests pass."
+        ],
+        "non_goals": [
+          "Remove Python rebuild retention immediately.",
+          "Change archive file format.",
+          "Change default retention policy."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs"
+      ],
+      "updated": "2026-05-01",
+      "revision": {
+        "digest": "ce9e06cb15739353d0b8269334141ad9d62905e45c9d49cc25c23ee0bdd48f20"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-013/context.json",
+      "loop": {
+        "phase": "verify",
+        "updated_at": "2026-05-01T06:19:30Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Closed after typecheck, smoke, and pack tests passed.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "extensions/codewiki/index.ts",
+            "scripts/smoke-test.mjs"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-01T06:19:30Z"
         }
       }
     }

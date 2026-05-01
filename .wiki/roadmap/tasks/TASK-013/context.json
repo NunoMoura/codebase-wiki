@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-01T06:27:28Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-013/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-013",
+    "title": "Decouple closed-task retention from projection rebuild",
+    "status": "done",
+    "phase": "verify",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Closed-task retention no longer depends on generated projection rebuilds; refresh=false close path preserves archive retention.",
+    "labels": [
+      "projection-firewall",
+      "roadmap-retention",
+      "write-amplification"
+    ],
+    "goal": {
+      "outcome": "Closing tasks can enforce roadmap archive retention through the canonical task mutation path without depending on rebuild side effects.",
+      "acceptance": [
+        "Task close with closed_task_limit=0 archives the closed task even when projection refresh is false.",
+        "Generated projection rebuild remains available and does not become the only retention mechanism.",
+        "Smoke coverage verifies archive retention for refresh=false or equivalent minimal-write close path.",
+        "Typecheck and tests pass."
+      ],
+      "non_goals": [
+        "Remove Python rebuild retention immediately.",
+        "Change archive file format.",
+        "Change default retention policy."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Retention belongs to canonical roadmap mutation; generated projection rebuilds are no longer required for correct archive preservation.",
+      "current": "Roadmap archive retention is enforced by rebuild, so codewiki_task keeps refresh=true by default for compatibility.",
+      "closure": "Task close retention is implemented in extension code and covered by smoke tests."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "ce9e06cb15739353d0b8269334141ad9d62905e45c9d49cc25c23ee0bdd48f20"
+    },
+    "git": {
+      "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/roadmap.json",
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/overview.md": "a6fc64223df3",
+        ".wiki/knowledge/system/runtime/overview.md": "a6fc64223df3",
+        ".wiki/roadmap.json": "a6fc64223df3",
+        "extensions/codewiki/index.ts": "a6fc64223df3",
+        "scripts/rebuild_docs_meta.py": "0d12c87f000a",
+        "scripts/smoke-test.mjs": "a6fc64223df3"
+      }
+    },
+    "spec_digest": "e9f357fe9b158c7bf7253060e67206cc3253377c8dfd8dc2ab95937eb541cb44",
+    "code_digest": "9a61d0b31aaa398899e361883def3661babf9e3173ed3788bae98edde366185c",
+    "graph": {
+      "git": {
+        "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+        "dirty": true
+      },
+      "spec_digest": "755fe900c93b1f0937e01d7b455e1e15a1d92846006b1f96d9561c9542175e3f",
+      "task_digest": "804f3ab22cad6fffcb05736fa39d0ca59d5fe35cd02aeed436dab4407d09130d",
+      "evidence_digest": "4e3c6700498f6c1597ab67de41b61627b1e276b937c410e4e8d2949071a101b2"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "summary": "Main runtime areas and ownership boundaries for codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "39ad3012eefb6a09ae5424f3fdcbd06e7acc1a471d97e20004d4a9c65be4f1c8"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "summary": "Policy boundary for codewiki runtime access in codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "a83c8a954d1bf73308cf8d7f8cf10aa8a06cded0b1dc13d525e61721e3e28c88"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/runtime/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/index.ts",
+      "scripts/rebuild_docs_meta.py",
+      "scripts/smoke-test.mjs"
+    ],
+    "digest": "9a61d0b31aaa398899e361883def3661babf9e3173ed3788bae98edde366185c",
+    "expand": [
+      {
+        "read": "extensions/codewiki/index.ts"
+      },
+      {
+        "read": "scripts/rebuild_docs_meta.py"
+      },
+      {
+        "read": "scripts/smoke-test.mjs"
+      }
+    ]
+  },
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Closed after typecheck, smoke, and pack tests passed.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "npm test"
+    ],
+    "files_touched": [
+      "extensions/codewiki/index.ts",
+      "scripts/smoke-test.mjs"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-01T06:19:30Z"
+  },
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-013/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

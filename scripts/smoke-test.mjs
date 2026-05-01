@@ -1941,6 +1941,7 @@ async function main() {
 				action: "close",
 				taskId: archiveTaskId,
 				summary: "Close archive smoke task.",
+				refresh: false,
 			},
 			undefined,
 			undefined,

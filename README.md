@@ -67,14 +67,16 @@ Codewiki now centers on a hidden `.wiki` knowledge system plus derived views:
 - **events** — portable mutation history in `.wiki/events.jsonl`
 - **task** — atomic work unit inside roadmap, canonically named `TASK-###`
 
-Derived navigation and UI views stay hidden under `.wiki/`:
+Derived navigation and UI views stay hidden under `.wiki/` and are tool-owned projections:
 
 - `.wiki/graph.json` as the primary derived relationship graph and shared view substrate
 - `.wiki/lint.json`
 - `.wiki/roadmap-state.json`
 - `.wiki/status-state.json`
-- `.wiki/graph.json` is the shared derived relationship substrate; no separate registry/backlinks compatibility layer is required
+- `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, and task context shards
 - top-level generated `wiki/**` files are no longer emitted by default
+
+Projection firewall rule: agents edit canonical truth and append evidence/events; generated projections are rebuilt by tools only. Session mutation avoids projection rebuilds, and task mutation can defer them with `refresh=false` when fresh read models are not needed immediately.
 
 Pi session linkage stays local and operational:
 
@@ -258,8 +260,8 @@ Recommended loop:
 Working rule for this repo:
 
 - edit canonical sources (`README.md`, knowledge docs under `.wiki/knowledge/`, `.wiki/roadmap.json`, runtime code)
-- rebuild generated outputs after changes
-- do not hand-edit generated outputs under `.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, or `.wiki/status-state.json`
+- rebuild generated outputs when fresh projections are needed, not after every small canonical mutation
+- do not hand-edit generated outputs under `.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`, `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, or task context shards
 
 ## Why one extension and focused skills
 

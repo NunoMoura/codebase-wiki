@@ -22,6 +22,29 @@ CodeWiki has one core responsibility: maintain the repository-local `.wiki` cont
 - **Pi package and extension surface** owns commands, status panels, session integration, packaged skills, bootstrap templates, smoke coverage, and resource discovery.
 - **Runtime gateway boundary** owns CodeWiki-specific transactions, verifier orchestration, and capability descriptors, but delegates sandboxed execution to `think-code` or Pi's active runtime tools.
 
+## Projection firewall
+
+CodeWiki separates durable intent from generated read models so normal agent work stays token-efficient and drift-resistant.
+
+Canonical truth that agents and semantic tools may mutate:
+
+- `.wiki/config.json` for repo-local contract and runtime policy.
+- `.wiki/knowledge/**/*.md` for product, client, and system intent.
+- `.wiki/roadmap.json` plus per-task records for planned delta.
+- `.wiki/events.jsonl`, `.wiki/roadmap-events.jsonl`, and evidence JSONL files for append-only history.
+
+Generated projections that are tool-owned caches:
+
+- `.wiki/graph.json`
+- `.wiki/lint.json`
+- `.wiki/roadmap-state.json`
+- `.wiki/status-state.json`
+- `.wiki/roadmap/index.json`
+- `.wiki/roadmap/state.json`
+- `.wiki/roadmap/tasks/*/context.json`
+
+Agents should not hand-edit generated projections. Mutation tools should keep canonical writes separate from projection rebuilds. Session updates write canonical state without rebuilding projections; task updates can use `refresh=false` for the same minimal-write path when current read models are not needed immediately. `codewiki_state refresh=true` or the rebuild capability refreshes generated views on demand.
+
 ## Ownership seams
 
 - [Extensions / Codewiki](extensions/codewiki/overview.md) owns the Pi extension surface under `extensions/codewiki`.

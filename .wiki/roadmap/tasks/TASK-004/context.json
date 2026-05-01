@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-01T04:55:24Z",
+  "generated_at": "2026-05-01T06:27:28Z",
   "context_path": ".wiki/roadmap/tasks/TASK-004/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -50,37 +50,36 @@
       "digest": "e0b44e9e07f33d59f518e66511d84251cef9a772c937e15f96fafda5dbc3444e"
     },
     "git": {
-      "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+      "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
       "dirty": true,
       "dirty_paths": [
-        ".wiki/knowledge/product/overview.md",
         ".wiki/knowledge/system/overview.md",
         ".wiki/knowledge/system/runtime/overview.md",
         ".wiki/roadmap.json",
         "README.md",
-        "extensions/codewiki/index.ts",
-        "scripts/codewiki-gateway.mjs"
+        "extensions/codewiki/contracts.ts",
+        "extensions/codewiki/index.ts"
       ],
       "paths": {
-        ".wiki/knowledge/product/overview.md": "0d12c87f000a",
-        ".wiki/knowledge/system/overview.md": "0d12c87f000a",
-        ".wiki/knowledge/system/runtime/overview.md": "0d12c87f000a",
-        ".wiki/roadmap.json": "0d12c87f000a",
-        "README.md": "0d12c87f000a",
-        "extensions/codewiki": "0d12c87f000a",
-        "scripts/codewiki-gateway.mjs": "0d12c87f000a"
+        ".wiki/knowledge/product/overview.md": "a6fc64223df3",
+        ".wiki/knowledge/system/overview.md": "a6fc64223df3",
+        ".wiki/knowledge/system/runtime/overview.md": "a6fc64223df3",
+        ".wiki/roadmap.json": "a6fc64223df3",
+        "README.md": "a6fc64223df3",
+        "extensions/codewiki": "a6fc64223df3",
+        "scripts/codewiki-gateway.mjs": "a6fc64223df3"
       }
     },
-    "spec_digest": "78053b3a67f12c993b4877e425150eb9ae225fc65053fdd6658e45c414b7a5f8",
-    "code_digest": "82bae916b9ff5bf9113ad3e4eb332342d711300bce16b365664a8cf576a8ba8b",
+    "spec_digest": "db753fc3f67920dba4ad8cc477fcae0b308a2b5fecf847affca353f747fd4242",
+    "code_digest": "2ca7418fc56bd2d572b8472959da172fe26e2bfd4942fdf1536dec8574cc0f91",
     "graph": {
       "git": {
-        "head": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+        "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
         "dirty": true
       },
-      "spec_digest": "a84fa1093e34426a7c16261d26440de2e4e4d8c49b17a51bfdd25d1a1b990dbd",
-      "task_digest": "47752c0244e67af07960f3db7096ce14c19bd716eb2a4541d67830abb3b963b6",
-      "evidence_digest": "9c762851540046ad86ff80706a3cd11fb7031cb32b499cccf23b0da37800ac1d"
+      "spec_digest": "755fe900c93b1f0937e01d7b455e1e15a1d92846006b1f96d9561c9542175e3f",
+      "task_digest": "804f3ab22cad6fffcb05736fa39d0ca59d5fe35cd02aeed436dab4407d09130d",
+      "evidence_digest": "4e3c6700498f6c1597ab67de41b61627b1e276b937c410e4e8d2949071a101b2"
     }
   },
   "specs": [
@@ -114,7 +113,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "f2cd2d2621b1cd60fee1b1f264cf58e2377073dd1ddbbb132024d0f345a7eb11"
+        "digest": "39ad3012eefb6a09ae5424f3fdcbd06e7acc1a471d97e20004d4a9c65be4f1c8"
       },
       "expand": {
         "read": ".wiki/knowledge/system/overview.md"
@@ -130,7 +129,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "d08fc444bcad24e82b0621363104d6bd4ff20c821bc6f79da877af66f7577800"
+        "digest": "a83c8a954d1bf73308cf8d7f8cf10aa8a06cded0b1dc13d525e61721e3e28c88"
       },
       "expand": {
         "read": ".wiki/knowledge/system/runtime/overview.md"
@@ -143,7 +142,7 @@
       "extensions/codewiki",
       "README.md"
     ],
-    "digest": "82bae916b9ff5bf9113ad3e4eb332342d711300bce16b365664a8cf576a8ba8b",
+    "digest": "2ca7418fc56bd2d572b8472959da172fe26e2bfd4942fdf1536dec8574cc0f91",
     "expand": [
       {
         "read": "scripts/codewiki-gateway.mjs"

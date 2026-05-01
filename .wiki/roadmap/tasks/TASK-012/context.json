@@ -1,0 +1,178 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-01T06:27:28Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-012/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-012",
+    "title": "Reduce canonical surface and projection write amplification",
+    "status": "done",
+    "phase": "verify",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Projection firewall first slice completed: canonical/generated contract documented and refresh=false paths now avoid projection locks/rebuilds where safe.",
+    "labels": [
+      "projection-firewall",
+      "token-efficiency",
+      "drift-control"
+    ],
+    "goal": {
+      "outcome": "Normal CodeWiki updates write only canonical truth while generated graph/status/lint/roadmap views are rebuilt as disposable projections.",
+      "acceptance": [
+        "Canonical and generated file classes are documented in system knowledge.",
+        "Generated projection files are marked or described as tool-owned/read-only for agents.",
+        "At least one mutator path avoids unnecessary generated projection writes unless refresh is explicitly requested.",
+        "codewiki_state still returns current status after refresh.",
+        "Typecheck and tests pass."
+      ],
+      "non_goals": [
+        "Remove all generated files from the repository.",
+        "Implement the architecture diagram projection.",
+        "Rewrite the whole roadmap storage model."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Agents see a small canonical write surface and projection files become generated, tool-owned caches.",
+      "current": "Task/session workflows can rewrite multiple roadmap/state/graph/lint/status projection files, increasing token cost and drift surface.",
+      "closure": "Projection firewall documented and first write-amplification reduction implemented."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "7ac29d42e41454246e772ff7120b07643e731fd75a729c21469ff929ec01d295"
+    },
+    "git": {
+      "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/roadmap.json",
+        "extensions/codewiki/index.ts"
+      ],
+      "paths": {
+        ".wiki/config.json": "0d12c87f000a",
+        ".wiki/knowledge/system/overview.md": "a6fc64223df3",
+        ".wiki/knowledge/system/runtime/overview.md": "a6fc64223df3",
+        ".wiki/roadmap.json": "a6fc64223df3",
+        "extensions/codewiki/index.ts": "a6fc64223df3",
+        "scripts/codewiki-gateway.mjs": "a6fc64223df3",
+        "scripts/rebuild_docs_meta.py": "0d12c87f000a"
+      }
+    },
+    "spec_digest": "1ee912bedb59d1d465b9e347856b24c2621de6680fc1d7fbdde97b4ad34d2bda",
+    "code_digest": "b372f5879ff374e9040158adca281590d227b2719bab80bd2b7d7199f0db535b",
+    "graph": {
+      "git": {
+        "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+        "dirty": true
+      },
+      "spec_digest": "755fe900c93b1f0937e01d7b455e1e15a1d92846006b1f96d9561c9542175e3f",
+      "task_digest": "804f3ab22cad6fffcb05736fa39d0ca59d5fe35cd02aeed436dab4407d09130d",
+      "evidence_digest": "4e3c6700498f6c1597ab67de41b61627b1e276b937c410e4e8d2949071a101b2"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/config.json",
+      "title": "config",
+      "summary": "",
+      "state": "",
+      "owners": [],
+      "code_paths": [],
+      "revision": {
+        "digest": ""
+      },
+      "expand": {
+        "read": ".wiki/config.json"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "summary": "Main runtime areas and ownership boundaries for codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "39ad3012eefb6a09ae5424f3fdcbd06e7acc1a471d97e20004d4a9c65be4f1c8"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "summary": "Policy boundary for codewiki runtime access in codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "a83c8a954d1bf73308cf8d7f8cf10aa8a06cded0b1dc13d525e61721e3e28c88"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/runtime/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/index.ts",
+      "scripts/codewiki-gateway.mjs",
+      "scripts/rebuild_docs_meta.py"
+    ],
+    "digest": "b372f5879ff374e9040158adca281590d227b2719bab80bd2b7d7199f0db535b",
+    "expand": [
+      {
+        "read": "extensions/codewiki/index.ts"
+      },
+      {
+        "read": "scripts/codewiki-gateway.mjs"
+      },
+      {
+        "read": "scripts/rebuild_docs_meta.py"
+      }
+    ]
+  },
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Closed after typecheck and smoke/package tests passed.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "npm test"
+    ],
+    "files_touched": [
+      "README.md",
+      ".wiki/knowledge/system/overview.md",
+      ".wiki/knowledge/system/runtime/overview.md",
+      "extensions/codewiki/index.ts",
+      "extensions/codewiki/contracts.ts"
+    ],
+    "issues": [
+      "Further slices should decouple close/archive retention from rebuild before changing codewiki_task default refresh."
+    ],
+    "updated_at": "2026-05-01T05:42:26Z"
+  },
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-012/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

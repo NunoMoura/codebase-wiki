@@ -482,6 +482,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
 			"Use this for all canonical roadmap task mutation: create tasks, update metadata, append evidence, close work, or cancel work.",
 			"Prefer evidence.result='pass'|'fail'|'block' when advancing lifecycle with structured execution evidence.",
 			"Use action='close' or action='cancel' instead of patching status directly when intent is final closure.",
+			"Set refresh=false when you need a minimal canonical write and can defer generated graph/status/roadmap projection rebuilds.",
 		],
 		parameters: codewikiTaskToolInputSchema,
 		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
@@ -5181,7 +5182,7 @@ async function executeCodewikiSession(
 					`Cleared current Pi session focus from ${active.taskId}.`,
 				setSessionName: false,
 			},
-			{ refresh: true },
+			{ refresh: false },
 		);
 		const result = {
 			action: "clear" as const,
@@ -5220,7 +5221,7 @@ async function executeCodewikiSession(
 			setSessionName:
 				input.action === "focus" ? (input.setSessionName ?? false) : false,
 		},
-		{ refresh: true },
+		{ refresh: false },
 	);
 	const sessionResult = {
 		action: input.action,
@@ -5833,12 +5834,16 @@ function rebuildTargetPaths(project: WikiProject): string[] {
 	];
 }
 
-function roadmapMutationTargetPaths(project: WikiProject): string[] {
+function roadmapMutationTargetPaths(
+	project: WikiProject,
+	options: { refresh?: boolean } = {},
+): string[] {
 	return [
 		resolve(project.root, project.roadmapPath),
 		resolve(project.root, project.eventsPath),
 		resolve(project.root, project.roadmapEventsPath),
-		...rebuildTargetPaths(project),
+		roadmapArchivePath(project),
+		...((options.refresh ?? true) ? rebuildTargetPaths(project) : []),
 	];
 }
 
@@ -5912,6 +5917,13 @@ async function loadProject(startDir: string): Promise<WikiProject> {
 	};
 }
 
+async function reloadProjectConfig(project: WikiProject): Promise<WikiProject> {
+	return {
+		...project,
+		config: await readJson<DocsConfig>(project.configPath),
+	};
+}
+
 async function appendRoadmapTasks(
 	pi: ExtensionAPI,
 	project: WikiProject,
@@ -5921,72 +5933,75 @@ async function appendRoadmapTasks(
 ): Promise<{ created: RoadmapTaskRecord[]; reused: RoadmapTaskRecord[] }> {
 	if (tasks.length === 0) throw new Error("No roadmap tasks provided.");
 
-	return withLockedPaths(roadmapMutationTargetPaths(project), async () => {
-		const roadmapPath = resolve(project.root, project.roadmapPath);
-		const roadmap = await readRoadmapFile(roadmapPath);
-		const createdAt = todayIso();
-		const nextId = createTaskIdAllocator(Object.keys(roadmap.tasks));
-		const created: RoadmapTaskRecord[] = [];
-		const reused: RoadmapTaskRecord[] = [];
+	return withLockedPaths(
+		roadmapMutationTargetPaths(project, options),
+		async () => {
+			const roadmapPath = resolve(project.root, project.roadmapPath);
+			const roadmap = await readRoadmapFile(roadmapPath);
+			const createdAt = todayIso();
+			const nextId = createTaskIdAllocator(Object.keys(roadmap.tasks));
+			const created: RoadmapTaskRecord[] = [];
+			const reused: RoadmapTaskRecord[] = [];
 
-		for (const input of tasks) {
-			const duplicate = findLikelyDuplicateRoadmapTask(roadmap, input);
-			if (duplicate) {
-				const coordinated = isClosedRoadmapStatus(duplicate.status)
-					? applyRoadmapTaskUpdate(
-							duplicate,
-							{ taskId: duplicate.id, status: "todo" },
-							createdAt,
-						)
-					: duplicate;
-				roadmap.tasks[coordinated.id] = coordinated;
-				reused.push(coordinated);
-				continue;
+			for (const input of tasks) {
+				const duplicate = findLikelyDuplicateRoadmapTask(roadmap, input);
+				if (duplicate) {
+					const coordinated = isClosedRoadmapStatus(duplicate.status)
+						? applyRoadmapTaskUpdate(
+								duplicate,
+								{ taskId: duplicate.id, status: "todo" },
+								createdAt,
+							)
+						: duplicate;
+					roadmap.tasks[coordinated.id] = coordinated;
+					reused.push(coordinated);
+					continue;
+				}
+				const task = normalizeRoadmapTask(input, nextId, createdAt);
+				roadmap.tasks[task.id] = task;
+				roadmap.order.push(task.id);
+				created.push(task);
 			}
-			const task = normalizeRoadmapTask(input, nextId, createdAt);
-			roadmap.tasks[task.id] = task;
-			roadmap.order.push(task.id);
-			created.push(task);
-		}
-		roadmap.updated = nowIso();
+			roadmap.updated = nowIso();
 
-		await writeJsonFile(roadmapPath, roadmap);
-		if (created.length > 0) {
-			await appendRoadmapHistoryEvent(project, "append", created);
-			await appendRoadmapEvent(project, "append", created);
-		}
-		if (reused.length > 0) {
-			await appendRoadmapHistoryEvent(project, "update", reused);
-			await appendRoadmapEvent(project, "update", reused);
-		}
-		const sessionId = currentSessionId(ctx);
-		for (const task of created) {
-			const link: TaskSessionLinkRecord = {
-				taskId: task.id,
-				action: "spawn",
-				summary: `Spawned task ${task.id} in current Pi session.`,
-				filesTouched: [],
-				spawnedTaskIds: [],
-				timestamp: nowIso(),
-			};
-			await recordTaskSessionLinkUnlocked(pi, ctx, task, link);
-			await appendTaskSessionEvent(project, task, link, sessionId);
-		}
-		for (const task of reused) {
-			const link: TaskSessionLinkRecord = {
-				taskId: task.id,
-				action: "focus",
-				summary: `Reused tracked roadmap task ${task.id} instead of creating duplicate work.`,
-				filesTouched: [],
-				spawnedTaskIds: [],
-				timestamp: nowIso(),
-			};
-			await recordTaskSessionLinkUnlocked(pi, ctx, task, link);
-			await appendTaskSessionEvent(project, task, link, sessionId);
-		}
-		if (options.refresh ?? true) await runRebuildUnlocked(project);
-		return { created, reused };
-	});
+			await writeJsonFile(roadmapPath, roadmap);
+			if (created.length > 0) {
+				await appendRoadmapHistoryEvent(project, "append", created);
+				await appendRoadmapEvent(project, "append", created);
+			}
+			if (reused.length > 0) {
+				await appendRoadmapHistoryEvent(project, "update", reused);
+				await appendRoadmapEvent(project, "update", reused);
+			}
+			const sessionId = currentSessionId(ctx);
+			for (const task of created) {
+				const link: TaskSessionLinkRecord = {
+					taskId: task.id,
+					action: "spawn",
+					summary: `Spawned task ${task.id} in current Pi session.`,
+					filesTouched: [],
+					spawnedTaskIds: [],
+					timestamp: nowIso(),
+				};
+				await recordTaskSessionLinkUnlocked(pi, ctx, task, link);
+				await appendTaskSessionEvent(project, task, link, sessionId);
+			}
+			for (const task of reused) {
+				const link: TaskSessionLinkRecord = {
+					taskId: task.id,
+					action: "focus",
+					summary: `Reused tracked roadmap task ${task.id} instead of creating duplicate work.`,
+					filesTouched: [],
+					spawnedTaskIds: [],
+					timestamp: nowIso(),
+				};
+				await recordTaskSessionLinkUnlocked(pi, ctx, task, link);
+				await appendTaskSessionEvent(project, task, link, sessionId);
+			}
+			if (options.refresh ?? true) await runRebuildUnlocked(project);
+			return { created, reused };
+		},
+	);
 }
 
 async function updateRoadmapTask(
@@ -5997,44 +6012,50 @@ async function updateRoadmapTask(
 	if (!hasRoadmapTaskUpdateFields(input))
 		throw new Error("No roadmap task changes provided.");
 
-	return withLockedPaths(roadmapMutationTargetPaths(project), async () => {
-		const roadmapPath = resolve(project.root, project.roadmapPath);
-		const roadmap = await readRoadmapFile(roadmapPath);
-		const existing = resolveRoadmapTask(roadmap, input.taskId);
-		if (!existing) throw new Error(`Roadmap task not found: ${input.taskId}`);
+	return withLockedPaths(
+		roadmapMutationTargetPaths(project, options),
+		async () => {
+			const roadmapPath = resolve(project.root, project.roadmapPath);
+			const roadmap = await readRoadmapFile(roadmapPath);
+			const existing = resolveRoadmapTask(roadmap, input.taskId);
+			if (!existing) throw new Error(`Roadmap task not found: ${input.taskId}`);
 
-		const updatedTask = applyRoadmapTaskUpdate(existing, input, todayIso());
-		const action =
-			isClosedRoadmapStatus(existing.status) ||
-			!isClosedRoadmapStatus(updatedTask.status)
-				? "update"
-				: "close";
+			const updatedTask = applyRoadmapTaskUpdate(existing, input, todayIso());
+			const action =
+				isClosedRoadmapStatus(existing.status) ||
+				!isClosedRoadmapStatus(updatedTask.status)
+					? "update"
+					: "close";
 
-		if (action === "close") {
-			await assertTaskCloseable(project, updatedTask.id);
-		}
+			if (action === "close") {
+				await assertTaskCloseable(project, updatedTask.id);
+			}
 
-		roadmap.tasks[updatedTask.id] = updatedTask;
-		roadmap.updated = nowIso();
+			roadmap.tasks[updatedTask.id] = updatedTask;
+			roadmap.updated = nowIso();
+			if (isClosedRoadmapStatus(updatedTask.status)) {
+				await compactRoadmapHotSet(await reloadProjectConfig(project), roadmap);
+			}
 
-		await writeJsonFile(roadmapPath, roadmap);
-		if (action === "close") {
-			await appendTaskEvidenceEvent(project, updatedTask, {
-				verdict: "pass",
-				summary:
-					input.summary?.trim() ||
-					updatedTask.summary ||
-					`Closed ${updatedTask.id}.`,
-				checks_run: updatedTask.goal.verification,
-				files_touched: updatedTask.code_paths,
-				issues: [],
-			});
-		}
-		await appendRoadmapHistoryEvent(project, action, [updatedTask]);
-		await appendRoadmapEvent(project, action, [updatedTask]);
-		if (options.refresh ?? true) await runRebuildUnlocked(project);
-		return { action, task: updatedTask };
-	});
+			await writeJsonFile(roadmapPath, roadmap);
+			if (action === "close") {
+				await appendTaskEvidenceEvent(project, updatedTask, {
+					verdict: "pass",
+					summary:
+						input.summary?.trim() ||
+						updatedTask.summary ||
+						`Closed ${updatedTask.id}.`,
+					checks_run: updatedTask.goal.verification,
+					files_touched: updatedTask.code_paths,
+					issues: [],
+				});
+			}
+			await appendRoadmapHistoryEvent(project, action, [updatedTask]);
+			await appendRoadmapEvent(project, action, [updatedTask]);
+			if (options.refresh ?? true) await runRebuildUnlocked(project);
+			return { action, task: updatedTask };
+		},
+	);
 }
 
 function overlapCount(
@@ -6400,90 +6421,98 @@ async function updateTaskLoop(
 	const task = await readRoadmapTask(project, input.taskId);
 	if (!task) throw new Error(`Roadmap task not found: ${input.taskId}`);
 
-	return withLockedPaths(roadmapMutationTargetPaths(project), async () => {
-		const roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
-		const runtimeTask = roadmapState?.tasks?.[task.id] ?? null;
-		const phase = normalizeTaskPhaseValue(
-			input.phase ?? taskLoopPhase(runtimeTask),
-			"implement",
-		);
-		const driver = TASK_PHASE_DRIVERS[phase];
-		const action = input.action;
-		const kind =
-			action === "pass"
-				? "task_phase_passed"
-				: action === "fail"
-					? "task_phase_failed"
-					: "task_phase_blocked";
-		const nextPhase =
-			action === "pass"
-				? driver.passTo
-				: action === "fail"
-					? driver.failTo
-					: driver.blockTo;
+	return withLockedPaths(
+		roadmapMutationTargetPaths(project, options),
+		async () => {
+			const roadmapState = await maybeReadRoadmapState(
+				project.roadmapStatePath,
+			);
+			const runtimeTask = roadmapState?.tasks?.[task.id] ?? null;
+			const phase = normalizeTaskPhaseValue(
+				input.phase ?? taskLoopPhase(runtimeTask),
+				"implement",
+			);
+			const driver = TASK_PHASE_DRIVERS[phase];
+			const action = input.action;
+			const kind =
+				action === "pass"
+					? "task_phase_passed"
+					: action === "fail"
+						? "task_phase_failed"
+						: "task_phase_blocked";
+			const nextPhase =
+				action === "pass"
+					? driver.passTo
+					: action === "fail"
+						? driver.failTo
+						: driver.blockTo;
 
-		const roadmapPath = resolve(project.root, project.roadmapPath);
-		const roadmap = await readRoadmapFile(roadmapPath);
-		const existing = resolveRoadmapTask(roadmap, task.id);
-		if (!existing) throw new Error(`Roadmap task not found: ${task.id}`);
-		const currentStage = roadmapTaskStage(
-			existing.status,
-			runtimeTask?.loop?.phase,
-		);
-		const nextStatus: RoadmapStatus =
-			action === "pass"
-				? nextPhase === "done"
-					? "done"
-					: nextPhase
-				: action === "fail"
-					? nextPhase
-					: currentStage === "todo"
-						? phase
-						: currentStage;
-		const syncedTask =
-			existing.status === nextStatus
-				? existing
-				: applyRoadmapTaskUpdate(
-						existing,
-						{ taskId: existing.id, status: nextStatus },
-						todayIso(),
-					);
-		roadmap.tasks[syncedTask.id] = syncedTask;
-		roadmap.updated = nowIso();
-		await writeJsonFile(roadmapPath, roadmap);
-		if (syncedTask !== existing) {
-			await appendRoadmapHistoryEvent(project, "update", [syncedTask]);
-			await appendRoadmapEvent(project, "update", [syncedTask]);
-		}
+			const roadmapPath = resolve(project.root, project.roadmapPath);
+			const roadmap = await readRoadmapFile(roadmapPath);
+			const existing = resolveRoadmapTask(roadmap, task.id);
+			if (!existing) throw new Error(`Roadmap task not found: ${task.id}`);
+			const currentStage = roadmapTaskStage(
+				existing.status,
+				runtimeTask?.loop?.phase,
+			);
+			const nextStatus: RoadmapStatus =
+				action === "pass"
+					? nextPhase === "done"
+						? "done"
+						: nextPhase
+					: action === "fail"
+						? nextPhase
+						: currentStage === "todo"
+							? phase
+							: currentStage;
+			const syncedTask =
+				existing.status === nextStatus
+					? existing
+					: applyRoadmapTaskUpdate(
+							existing,
+							{ taskId: existing.id, status: nextStatus },
+							todayIso(),
+						);
+			roadmap.tasks[syncedTask.id] = syncedTask;
+			roadmap.updated = nowIso();
+			if (isClosedRoadmapStatus(syncedTask.status)) {
+				await compactRoadmapHotSet(await reloadProjectConfig(project), roadmap);
+			}
+			await writeJsonFile(roadmapPath, roadmap);
+			if (syncedTask !== existing) {
+				await appendRoadmapHistoryEvent(project, "update", [syncedTask]);
+				await appendRoadmapEvent(project, "update", [syncedTask]);
+			}
 
-		await appendTaskPhaseEvent(project, syncedTask, kind, phase, {
-			summary: input.summary?.trim() ?? "",
-			issues: unique(input.issues ?? []),
-		});
-		if (
-			input.summary ||
-			(input.checks_run?.length ?? 0) > 0 ||
-			(input.files_touched?.length ?? 0) > 0 ||
-			(input.issues?.length ?? 0) > 0
-		) {
-			await appendTaskEvidenceEvent(project, syncedTask, {
-				verdict: action === "block" ? "blocked" : action,
-				summary: input.summary?.trim() ?? `${phaseLabel(phase)} ${action}`,
-				checks_run: unique(input.checks_run ?? []),
-				files_touched: unique(input.files_touched ?? []),
+			await appendTaskPhaseEvent(project, syncedTask, kind, phase, {
+				summary: input.summary?.trim() ?? "",
 				issues: unique(input.issues ?? []),
 			});
-		}
-		if (options.refresh ?? true) await runRebuildUnlocked(project);
-		return {
-			taskId: syncedTask.id,
-			title: syncedTask.title,
-			action,
-			phase,
-			nextPhase,
-			roadmapStatus: syncedTask.status,
-		};
-	});
+			if (
+				input.summary ||
+				(input.checks_run?.length ?? 0) > 0 ||
+				(input.files_touched?.length ?? 0) > 0 ||
+				(input.issues?.length ?? 0) > 0
+			) {
+				await appendTaskEvidenceEvent(project, syncedTask, {
+					verdict: action === "block" ? "blocked" : action,
+					summary: input.summary?.trim() ?? `${phaseLabel(phase)} ${action}`,
+					checks_run: unique(input.checks_run ?? []),
+					files_touched: unique(input.files_touched ?? []),
+					issues: unique(input.issues ?? []),
+				});
+			}
+			if (options.refresh ?? true) await runRebuildUnlocked(project);
+			return {
+				taskId: syncedTask.id,
+				title: syncedTask.title,
+				action,
+				phase,
+				nextPhase,
+				roadmapStatus: syncedTask.status,
+			};
+		},
+	);
 }
 
 function normalizeTaskSessionLinkInput(
@@ -6956,6 +6985,77 @@ function roadmapArchivePath(project: WikiProject): string {
 		archivePath = `${archivePath}.gz`;
 	}
 	return resolve(project.root, archivePath);
+}
+
+function roadmapClosedTaskRetentionLimit(project: WikiProject): number {
+	const raw = project.config.roadmap_retention?.closed_task_limit;
+	const parsed = typeof raw === "number" ? raw : Number(raw ?? 50);
+	return Math.max(0, Number.isFinite(parsed) ? Math.floor(parsed) : 50);
+}
+
+function roadmapClosedTaskSortKey(
+	taskId: string,
+	task: RoadmapTaskRecord,
+): string {
+	return [task.updated ?? "", task.created ?? "", taskId].join("\u0000");
+}
+
+async function appendArchivedRoadmapTasks(
+	project: WikiProject,
+	records: Array<{
+		archived_at: string;
+		reason: string;
+		task: RoadmapTaskRecord;
+	}>,
+): Promise<void> {
+	if (records.length === 0) return;
+	const archivePath = roadmapArchivePath(project);
+	const text = records
+		.map((record) => JSON.stringify(record))
+		.join("\n")
+		.concat("\n");
+	await mkdir(dirname(archivePath), { recursive: true });
+	await appendFile(
+		archivePath,
+		project.config.roadmap_retention?.compress_archive ? gzipSync(text) : text,
+	);
+}
+
+async function compactRoadmapHotSet(
+	project: WikiProject,
+	roadmap: RoadmapFile,
+): Promise<boolean> {
+	const limit = roadmapClosedTaskRetentionLimit(project);
+	const closedIds = roadmap.order.filter((taskId) => {
+		const task = roadmap.tasks[taskId];
+		return task ? isClosedRoadmapStatus(task.status) : false;
+	});
+	if (closedIds.length <= limit) return false;
+
+	const keepClosed = new Set(
+		[...closedIds]
+			.sort((left, right) =>
+				roadmapClosedTaskSortKey(right, roadmap.tasks[right]).localeCompare(
+					roadmapClosedTaskSortKey(left, roadmap.tasks[left]),
+				),
+			)
+			.slice(0, limit),
+	);
+	const archiveIds = closedIds.filter((taskId) => !keepClosed.has(taskId));
+	const archivedAt = nowIso();
+	await appendArchivedRoadmapTasks(
+		project,
+		archiveIds.map((taskId) => ({
+			archived_at: archivedAt,
+			reason: "closed_task_retention",
+			task: roadmap.tasks[taskId],
+		})),
+	);
+	const archiveSet = new Set(archiveIds);
+	for (const taskId of archiveIds) delete roadmap.tasks[taskId];
+	roadmap.order = roadmap.order.filter((taskId) => !archiveSet.has(taskId));
+	roadmap.updated = archivedAt;
+	return true;
 }
 
 function optionalRelativePath(path: string | null | undefined): string | null {

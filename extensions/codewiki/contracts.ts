@@ -808,7 +808,8 @@ export const codewikiTaskToolInputSchema = Type.Object({
 	refresh: Type.Optional(
 		Type.Boolean({
 			default: true,
-			description: "Refresh derived state after mutation.",
+			description:
+				"When true, rebuild generated projection files after mutation.",
 		}),
 	),
 	taskId: Type.Optional(toolTaskIdField),

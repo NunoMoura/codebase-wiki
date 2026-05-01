@@ -20,7 +20,7 @@ The runtime policy keeps agent-facing wiki operations small, inspectable, and bo
 - `scripts/codewiki-gateway.mjs` is the current adapter for compact reads and validated transaction application.
 - `think-code` should be the preferred generic executor for agent-written analysis programs when it is available in Pi.
 - Pi owns the host runtime, project working directory, session state, package loading, and any optional outer sandbox extension.
-- CodeWiki owns domain semantics: generated files stay read-only, evidence is append-only, roadmap/task state goes through canonical mutation APIs, and generated state is rebuilt after accepted writes.
+- CodeWiki owns domain semantics: generated files stay read-only, evidence is append-only, roadmap/task state goes through canonical mutation APIs, and generated state is rebuilt only when fresh projections are explicitly requested or a rebuild command runs.
 
 ## Capability boundary
 
@@ -81,7 +81,7 @@ CodeWiki-owned capability classes:
 - `codewiki.transaction` applies validated exact-text knowledge patches and append-only evidence writes.
 - `codewiki.rebuild` regenerates derived state files.
 
-External runtimes may read `.wiki/**` only when policy permits. Writes to generated state (`.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`, task context shards) remain out of scope except through the rebuild capability. If `think-code` is not installed, CodeWiki continues to use its native tools, gateway `pack/tree/manifest`, and normal Pi read/search tools.
+External runtimes may read `.wiki/**` only when policy permits. Writes to generated state (`.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`, `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, and task context shards) remain out of scope except through the rebuild capability. Session mutators default to canonical writes without projection rebuilds. Task mutators preserve fresh read models by default for compatibility, but callers may set `refresh=false` when they need a minimal canonical write and can defer projections to `codewiki_state refresh=true` or `codewiki.rebuild`. If `think-code` is not installed, CodeWiki continues to use its native tools, gateway `pack/tree/manifest`, and normal Pi read/search tools.
 
 ## Transaction v1
 
