@@ -13,7 +13,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -24,57 +24,6 @@
     }
   ],
   "events": [
-    {
-      "ts": "2026-05-02T00:37:53Z",
-      "kind": "roadmap_update",
-      "title": "Updated 1 roadmap task(s)",
-      "summary": "TASK-017 Render architecture graph in status panel"
-    },
-    {
-      "ts": "2026-05-02T00:37:53Z",
-      "kind": "task_phase_passed",
-      "task_id": "TASK-017",
-      "phase": "verify",
-      "title": "Render architecture graph in status panel",
-      "summary": "Implemented architecture fallback display and richer wiki detail cards; ready for verification.",
-      "issues": [
-        "Generated architecture JSON/Mermaid remains TASK-020; panel degrades to system-doc fallback until that view exists."
-      ]
-    },
-    {
-      "ts": "2026-05-02T00:37:53Z",
-      "kind": "task_evidence_recorded",
-      "task_id": "TASK-017",
-      "verdict": "pass",
-      "summary": "Implemented architecture fallback display and richer wiki detail cards; ready for verification.",
-      "checks_run": [
-        "npm run typecheck -- --pretty false",
-        "npm test"
-      ],
-      "files_touched": [
-        "extensions/codewiki/index.ts"
-      ],
-      "issues": [
-        "Generated architecture JSON/Mermaid remains TASK-020; panel degrades to system-doc fallback until that view exists."
-      ]
-    },
-    {
-      "ts": "2026-05-02T00:38:37Z",
-      "kind": "task_session_link",
-      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
-      "task_id": "TASK-018",
-      "action": "focus",
-      "title": "Implement context memory policy in skills and loops",
-      "summary": "Implement context memory policy in skills and loops.",
-      "files_touched": [],
-      "spawned_task_ids": []
-    },
-    {
-      "ts": "2026-05-02T00:41:45Z",
-      "kind": "roadmap_update",
-      "title": "Updated 1 roadmap task(s)",
-      "summary": "TASK-018 Implement context memory policy in skills and loops"
-    },
     {
       "ts": "2026-05-02T00:41:45Z",
       "kind": "roadmap_update",
@@ -244,16 +193,71 @@
         ".wiki/views/evidence/recent.json"
       ],
       "issues": []
+    },
+    {
+      "ts": "2026-05-02T01:13:20Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-020",
+      "action": "focus",
+      "title": "Architecture manifest and Mermaid view generator",
+      "summary": "Implement architecture manifest and Mermaid generator.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T01:19:45Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-020 Architecture manifest and Mermaid view generator"
+    },
+    {
+      "ts": "2026-05-02T01:19:45Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-020 Architecture manifest and Mermaid view generator"
+    },
+    {
+      "ts": "2026-05-02T01:19:45Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-020",
+      "phase": "verify",
+      "title": "Architecture manifest and Mermaid view generator",
+      "summary": "Added canonical system architecture manifest, component/flow docs, architecture view generation, Mermaid rendering, validation for missing/orphan component and flow docs, and bootstrap smoke coverage.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T01:19:45Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-020",
+      "verdict": "pass",
+      "summary": "Added canonical system architecture manifest, component/flow docs, architecture view generation, Mermaid rendering, validation for missing/orphan component and flow docs, and bootstrap smoke coverage.",
+      "checks_run": [
+        "python scripts/rebuild_docs_meta.py",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs",
+        ".wiki/knowledge/system/architecture.json",
+        ".wiki/knowledge/system/components/*.md",
+        ".wiki/knowledge/system/flows/*.md",
+        ".wiki/views/system/architecture.json",
+        ".wiki/views/system/architecture.mmd"
+      ],
+      "issues": []
     }
   ],
   "meta": {
     "version": 1,
     "name": "evidence.recent",
-    "generated_at": "2026-05-02T01:12:02Z",
+    "generated_at": "2026-05-02T01:21:15Z",
     "revision": {
-      "digest": "7f532be63cc8fddfcee18ceb6ce753cb74b38b32ee3778d89446808b2ea40a10",
+      "digest": "d7538fd474091367a5febbd9dbc04ea76845a3e105eb62b0a950944bb749018d",
       "git": {
-        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        "head": "015a460fb124251738494ea655d2081769e124f1",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",

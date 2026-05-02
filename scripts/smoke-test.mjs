@@ -1073,6 +1073,10 @@ async function main() {
 				"utf8",
 			),
 		);
+		const architectureMermaid = readFileSync(
+			resolve(projectDir, ".wiki", "views", "system", "architecture.mmd"),
+			"utf8",
+		);
 		const starterTaskContext = JSON.parse(
 			readFileSync(
 				resolve(
@@ -1094,8 +1098,8 @@ async function main() {
 
 		assert.equal(
 			first.created.length,
-			19,
-			`Expected 19 created starter files including lexicon, product split, runtime policy, client surfaces, and inferred boundary specs, got ${first.created.length}`,
+			25,
+			`Expected 25 created starter files including lexicon, product split, architecture manifest, runtime policy, client surfaces, and inferred boundary specs, got ${first.created.length}`,
 		);
 		assert.equal(
 			first.updated.length,
@@ -1114,8 +1118,8 @@ async function main() {
 		);
 		assert.equal(
 			second.skipped.length,
-			19,
-			`Expected 19 skipped starter files, got ${second.skipped.length}`,
+			25,
+			`Expected 25 skipped starter files, got ${second.skipped.length}`,
 		);
 		assert.equal(
 			lint.issues.length,
@@ -1150,6 +1154,20 @@ async function main() {
 		assert.ok(
 			systemArchitectureView.components.length >= 1,
 			"System architecture view should expose components",
+		);
+		assert.ok(
+			systemArchitectureView.flows.length >= 1,
+			"System architecture view should expose flows",
+		);
+		assert.equal(
+			systemArchitectureView.validation.issues.length,
+			0,
+			"Starter architecture manifest should validate cleanly",
+		);
+		assert.match(
+			architectureMermaid,
+			/flowchart TD[\s\S]*CodeWiki Extension[\s\S]*Generated Views/,
+			"Architecture Mermaid view should render component graph",
 		);
 		const graphDocNodes = Array.isArray(graph.nodes)
 			? graph.nodes.filter((node) => node.kind === "doc")

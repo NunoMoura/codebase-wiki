@@ -1,15 +1,54 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T01:12:02Z",
+  "generated_at": "2026-05-02T01:21:15Z",
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-02T01:12:01Z",
+    "graph_generated_at": "2026-05-02T01:21:13Z",
     "revision": {
       "git": {
-        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        "head": "015a460fb124251738494ea655d2081769e124f1",
         "dirty": true,
         "dirty_paths": [
           ".wiki/roadmap.json",
+          ".wiki/views/drift.json",
+          ".wiki/views/evidence/recent.json",
+          ".wiki/views/graph.json",
+          ".wiki/views/lint.json",
+          ".wiki/views/product/brief.json",
+          ".wiki/views/roadmap-state.json",
+          ".wiki/views/roadmap/index.json",
+          ".wiki/views/roadmap/queue.json",
+          ".wiki/views/roadmap/state.json",
+          ".wiki/views/roadmap/tasks/TASK-001/context.json",
+          ".wiki/views/roadmap/tasks/TASK-002/context.json",
+          ".wiki/views/roadmap/tasks/TASK-003/context.json",
+          ".wiki/views/roadmap/tasks/TASK-004/context.json",
+          ".wiki/views/roadmap/tasks/TASK-005/context.json",
+          ".wiki/views/roadmap/tasks/TASK-006/context.json",
+          ".wiki/views/roadmap/tasks/TASK-007/context.json",
+          ".wiki/views/roadmap/tasks/TASK-008/context.json",
+          ".wiki/views/roadmap/tasks/TASK-009/context.json",
+          ".wiki/views/roadmap/tasks/TASK-010/context.json",
+          ".wiki/views/roadmap/tasks/TASK-011/context.json",
+          ".wiki/views/roadmap/tasks/TASK-012/context.json",
+          ".wiki/views/roadmap/tasks/TASK-013/context.json",
+          ".wiki/views/roadmap/tasks/TASK-014/context.json",
+          ".wiki/views/roadmap/tasks/TASK-015/context.json",
+          ".wiki/views/roadmap/tasks/TASK-016/context.json",
+          ".wiki/views/roadmap/tasks/TASK-017/context.json",
+          ".wiki/views/roadmap/tasks/TASK-018/context.json",
+          ".wiki/views/roadmap/tasks/TASK-019/context.json",
+          ".wiki/views/roadmap/tasks/TASK-020/context.json",
+          ".wiki/views/roadmap/tasks/TASK-021/context.json",
+          ".wiki/views/roadmap/tasks/TASK-022/context.json",
+          ".wiki/views/roadmap/tasks/TASK-023/context.json",
+          ".wiki/views/roadmap/tasks/TASK-024/context.json",
+          ".wiki/views/roadmap/tasks/TASK-025/context.json",
+          ".wiki/views/roadmap/tasks/TASK-026/context.json",
+          ".wiki/views/status-state.json",
+          ".wiki/views/status.json",
+          ".wiki/views/system/architecture.json",
+          "extensions/codewiki/templates.ts",
           "scripts/rebuild_docs_meta.py",
           "scripts/smoke-test.mjs"
         ],
@@ -24,13 +63,23 @@
           ".wiki/knowledge/product/stories.md": "3c0906e38572fca7352aa3e820369391069c26b1",
           ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/system/components/extension.md": "",
+          ".wiki/knowledge/system/components/knowledge.md": "",
+          ".wiki/knowledge/system/components/roadmap.md": "",
+          ".wiki/knowledge/system/components/runtime-gateway.md": "",
+          ".wiki/knowledge/system/components/view-rebuild.md": "",
+          ".wiki/knowledge/system/components/views.md": "",
           ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/system/flows/runtime-transaction.md": "",
           ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+          ".wiki/knowledge/system/flows/task-loop.md": "",
+          ".wiki/knowledge/system/flows/view-rebuild.md": "",
           ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/runtime/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/v2-operating-model.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-          ".wiki/roadmap.json": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/roadmap.json": "015a460fb124251738494ea655d2081769e124f1",
+          ".wiki/views": "015a460fb124251738494ea655d2081769e124f1",
           "README.md": "53578e465699177d1945148075b98a9fc539da26",
           "extensions/codewiki": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "extensions/codewiki/contracts.ts": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
@@ -38,8 +87,8 @@
           "extensions/codewiki/templates.ts": "3c0906e38572fca7352aa3e820369391069c26b1",
           "package.json": "53578e465699177d1945148075b98a9fc539da26",
           "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "scripts/rebuild_docs_meta.py": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          "scripts/smoke-test.mjs": "3c0906e38572fca7352aa3e820369391069c26b1",
+          "scripts/rebuild_docs_meta.py": "015a460fb124251738494ea655d2081769e124f1",
+          "scripts/smoke-test.mjs": "015a460fb124251738494ea655d2081769e124f1",
           "skills": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "skills/codewiki-architecture/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "skills/codewiki-plan/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
@@ -49,9 +98,9 @@
           "skills/codewiki/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
         }
       },
-      "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
-      "task_digest": "3a541083ff96689c95ef8b1c4659d1858cf6ed139b70f6568098230e656868fd",
-      "evidence_digest": "3648e610ce0109637174d05a19ae815ecfb16c3c40d41ca6857202c6c43f9d9f"
+      "spec_digest": "8772fbc0c36dc2bdeab15a13ec21d052086f67f1322a42342d50a4ee308d82be",
+      "task_digest": "b24e00a6942ea77d7c12678bb213a6583879629d981d52d937200c7f0c0cde98",
+      "evidence_digest": "18a20646f080f72de0d002dd7dadb6065882b3015e0d5db2ab19e951d2a25bad"
     }
   },
   "project": {
@@ -66,16 +115,16 @@
     "total_issues": 3
   },
   "summary": {
-    "total_specs": 5,
-    "mapped_specs": 5,
-    "aligned_specs": 10,
+    "total_specs": 14,
+    "mapped_specs": 14,
+    "aligned_specs": 19,
     "tracked_specs": 5,
     "untracked_specs": 0,
     "blocked_specs": 0,
     "unmapped_specs": 0,
     "task_count": 26,
-    "open_task_count": 6,
-    "done_task_count": 20
+    "open_task_count": 5,
+    "done_task_count": 21
   },
   "bars": {
     "tracked_drift": {
@@ -86,14 +135,14 @@
     },
     "roadmap_done": {
       "label": "Roadmap done",
-      "value": 20,
+      "value": 21,
       "total": 26,
-      "percent": 77
+      "percent": 81
     },
     "spec_mapping": {
       "label": "Spec mapping",
-      "value": 5,
-      "total": 5,
+      "value": 14,
+      "total": 14,
       "percent": 100
     }
   },
@@ -112,7 +161,16 @@
       ".wiki/knowledge/product/overview.md",
       ".wiki/knowledge/product/surfaces.md",
       ".wiki/knowledge/product/users.md",
+      ".wiki/knowledge/system/components/extension.md",
+      ".wiki/knowledge/system/components/knowledge.md",
+      ".wiki/knowledge/system/components/roadmap.md",
+      ".wiki/knowledge/system/components/runtime-gateway.md",
+      ".wiki/knowledge/system/components/view-rebuild.md",
+      ".wiki/knowledge/system/components/views.md",
       ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      ".wiki/knowledge/system/flows/runtime-transaction.md",
+      ".wiki/knowledge/system/flows/task-loop.md",
+      ".wiki/knowledge/system/flows/view-rebuild.md",
       ".wiki/knowledge/system/overview.md"
     ],
     "top_risky_spec_paths": [
@@ -123,7 +181,6 @@
       ".wiki/knowledge/system/v2-operating-model.md"
     ],
     "open_task_ids": [
-      "TASK-020",
       "TASK-021",
       "TASK-022",
       "TASK-023",
@@ -132,7 +189,7 @@
     ]
   },
   "heartbeat": {
-    "generated_at": "2026-05-02T01:12:02Z",
+    "generated_at": "2026-05-02T01:21:15Z",
     "summary": {
       "lane_count": 3,
       "freshness_basis": "work-first",
@@ -160,43 +217,95 @@
           "task_close:architecture",
           "manual_review"
         ],
-        "checked_at": "2026-05-02T01:12:02Z",
+        "checked_at": "2026-05-02T01:21:14Z",
         "revision": {
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": true,
             "dirty_paths": [
               ".wiki/roadmap.json",
+              ".wiki/views/drift.json",
+              ".wiki/views/evidence/recent.json",
+              ".wiki/views/graph.json",
+              ".wiki/views/lint.json",
+              ".wiki/views/product/brief.json",
+              ".wiki/views/roadmap-state.json",
+              ".wiki/views/roadmap/index.json",
+              ".wiki/views/roadmap/queue.json",
+              ".wiki/views/roadmap/state.json",
+              ".wiki/views/roadmap/tasks/TASK-001/context.json",
+              ".wiki/views/roadmap/tasks/TASK-002/context.json",
+              ".wiki/views/roadmap/tasks/TASK-003/context.json",
+              ".wiki/views/roadmap/tasks/TASK-004/context.json",
+              ".wiki/views/roadmap/tasks/TASK-005/context.json",
+              ".wiki/views/roadmap/tasks/TASK-006/context.json",
+              ".wiki/views/roadmap/tasks/TASK-007/context.json",
+              ".wiki/views/roadmap/tasks/TASK-008/context.json",
+              ".wiki/views/roadmap/tasks/TASK-009/context.json",
+              ".wiki/views/roadmap/tasks/TASK-010/context.json",
+              ".wiki/views/roadmap/tasks/TASK-011/context.json",
+              ".wiki/views/roadmap/tasks/TASK-012/context.json",
+              ".wiki/views/roadmap/tasks/TASK-013/context.json",
+              ".wiki/views/roadmap/tasks/TASK-014/context.json",
+              ".wiki/views/roadmap/tasks/TASK-015/context.json",
+              ".wiki/views/roadmap/tasks/TASK-016/context.json",
+              ".wiki/views/roadmap/tasks/TASK-017/context.json",
+              ".wiki/views/roadmap/tasks/TASK-018/context.json",
+              ".wiki/views/roadmap/tasks/TASK-019/context.json",
+              ".wiki/views/roadmap/tasks/TASK-020/context.json",
+              ".wiki/views/roadmap/tasks/TASK-021/context.json",
+              ".wiki/views/roadmap/tasks/TASK-022/context.json",
+              ".wiki/views/roadmap/tasks/TASK-023/context.json",
+              ".wiki/views/roadmap/tasks/TASK-024/context.json",
+              ".wiki/views/roadmap/tasks/TASK-025/context.json",
+              ".wiki/views/roadmap/tasks/TASK-026/context.json",
+              ".wiki/views/status-state.json",
+              ".wiki/views/status.json",
+              ".wiki/views/system/architecture.json",
+              "extensions/codewiki/templates.ts",
               "scripts/rebuild_docs_meta.py",
               "scripts/smoke-test.mjs"
             ],
             "paths": {
+              ".wiki/knowledge": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/product/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/product/stories.md": "3c0906e38572fca7352aa3e820369391069c26b1",
               ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/components/extension.md": "",
+              ".wiki/knowledge/system/components/knowledge.md": "",
+              ".wiki/knowledge/system/components/roadmap.md": "",
+              ".wiki/knowledge/system/components/runtime-gateway.md": "",
+              ".wiki/knowledge/system/components/view-rebuild.md": "",
+              ".wiki/knowledge/system/components/views.md": "",
               ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/flows/runtime-transaction.md": "",
               ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+              ".wiki/knowledge/system/flows/task-loop.md": "",
+              ".wiki/knowledge/system/flows/view-rebuild.md": "",
               ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/runtime/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/v2-operating-model.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-              ".wiki/roadmap.json": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/roadmap.json": "015a460fb124251738494ea655d2081769e124f1",
+              ".wiki/views": "015a460fb124251738494ea655d2081769e124f1",
               "extensions/codewiki": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-              "scripts/rebuild_docs_meta.py": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-              "scripts/smoke-test.mjs": "3c0906e38572fca7352aa3e820369391069c26b1",
+              "extensions/codewiki/index.ts": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
+              "scripts/rebuild_docs_meta.py": "015a460fb124251738494ea655d2081769e124f1",
+              "scripts/smoke-test.mjs": "015a460fb124251738494ea655d2081769e124f1",
               "skills": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
             }
           },
-          "spec_digest": "b6a779f2999ef9ecf327fc25995229418fdb4fac842c772110eb9f5553f5f485",
-          "task_digest": "0893a1a8421c7583892411d42ae97e6ed3c2a374972dbe0a730d1a4c5ebb092e",
-          "code_digest": "1164502bbb00483374a1809254c52afe685e521f1ae7062dab63b6dff43cedbd",
-          "digest": "9173a297a16b4d9d08859ddc1c12290f9d54e8e3e4b6e27a00d8f3f2c96cea75"
+          "spec_digest": "fc98e83c676763b0de5f373d5679ade997333862f1a618060bd726098d2aae1c",
+          "task_digest": "55adfc1caec68147819c37cb2ebb26dd9a0986f31489267380e785a63b0c8458",
+          "code_digest": "12fd7238d5a94fd90bdd4f0be04d503c062d08b20490e212c2342225e50d2884",
+          "digest": "fb4b1c9756494fe460944126aadde9887938385dda8dc909866cd80b3b7d5b97"
         },
         "freshness": {
           "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-02T01:12:02Z",
+          "checked_at": "2026-05-02T01:21:14Z",
           "reason": "revision anchors unchanged since previous heartbeat",
           "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
@@ -205,22 +314,35 @@
           ".wiki/knowledge/product/stories.md",
           ".wiki/knowledge/product/surfaces.md",
           ".wiki/knowledge/product/users.md",
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/knowledge.md",
+          ".wiki/knowledge/system/components/roadmap.md",
+          ".wiki/knowledge/system/components/runtime-gateway.md",
+          ".wiki/knowledge/system/components/view-rebuild.md",
+          ".wiki/knowledge/system/components/views.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
           ".wiki/knowledge/system/flows/context-memory.md",
+          ".wiki/knowledge/system/flows/runtime-transaction.md",
           ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/flows/view-rebuild.md",
           ".wiki/knowledge/system/overview.md",
           ".wiki/knowledge/system/runtime/overview.md",
           ".wiki/knowledge/system/v2-operating-model.md"
         ],
         "code_paths": [
+          "extensions/codewiki/index.ts",
+          ".wiki/knowledge",
+          ".wiki/roadmap.json",
+          "scripts/codewiki-gateway.mjs",
+          "scripts/rebuild_docs_meta.py",
+          ".wiki/views",
           "extensions/codewiki",
           "skills",
-          "scripts/smoke-test.mjs",
-          "scripts/rebuild_docs_meta.py"
+          "scripts/smoke-test.mjs"
         ],
-        "code_area": "extensions, skills +1 more",
+        "code_area": "extensions, .wiki +2 more",
         "open_task_ids": [
-          "TASK-020",
           "TASK-021",
           "TASK-022",
           "TASK-023",
@@ -234,8 +356,8 @@
           ".wiki/knowledge/system/v2-operating-model.md"
         ],
         "stats": {
-          "total_specs": 10,
-          "aligned_specs": 5,
+          "total_specs": 19,
+          "aligned_specs": 14,
           "tracked_specs": 5,
           "untracked_specs": 0,
           "blocked_specs": 0,
@@ -261,59 +383,124 @@
           "rebuild_complete",
           "pre_close_check"
         ],
-        "checked_at": "2026-05-02T01:12:02Z",
+        "checked_at": "2026-05-02T01:21:15Z",
         "revision": {
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": true,
             "dirty_paths": [
               ".wiki/roadmap.json",
+              ".wiki/views/drift.json",
+              ".wiki/views/evidence/recent.json",
+              ".wiki/views/graph.json",
+              ".wiki/views/lint.json",
+              ".wiki/views/product/brief.json",
+              ".wiki/views/roadmap-state.json",
+              ".wiki/views/roadmap/index.json",
+              ".wiki/views/roadmap/queue.json",
+              ".wiki/views/roadmap/state.json",
+              ".wiki/views/roadmap/tasks/TASK-001/context.json",
+              ".wiki/views/roadmap/tasks/TASK-002/context.json",
+              ".wiki/views/roadmap/tasks/TASK-003/context.json",
+              ".wiki/views/roadmap/tasks/TASK-004/context.json",
+              ".wiki/views/roadmap/tasks/TASK-005/context.json",
+              ".wiki/views/roadmap/tasks/TASK-006/context.json",
+              ".wiki/views/roadmap/tasks/TASK-007/context.json",
+              ".wiki/views/roadmap/tasks/TASK-008/context.json",
+              ".wiki/views/roadmap/tasks/TASK-009/context.json",
+              ".wiki/views/roadmap/tasks/TASK-010/context.json",
+              ".wiki/views/roadmap/tasks/TASK-011/context.json",
+              ".wiki/views/roadmap/tasks/TASK-012/context.json",
+              ".wiki/views/roadmap/tasks/TASK-013/context.json",
+              ".wiki/views/roadmap/tasks/TASK-014/context.json",
+              ".wiki/views/roadmap/tasks/TASK-015/context.json",
+              ".wiki/views/roadmap/tasks/TASK-016/context.json",
+              ".wiki/views/roadmap/tasks/TASK-017/context.json",
+              ".wiki/views/roadmap/tasks/TASK-018/context.json",
+              ".wiki/views/roadmap/tasks/TASK-019/context.json",
+              ".wiki/views/roadmap/tasks/TASK-020/context.json",
+              ".wiki/views/roadmap/tasks/TASK-021/context.json",
+              ".wiki/views/roadmap/tasks/TASK-022/context.json",
+              ".wiki/views/roadmap/tasks/TASK-023/context.json",
+              ".wiki/views/roadmap/tasks/TASK-024/context.json",
+              ".wiki/views/roadmap/tasks/TASK-025/context.json",
+              ".wiki/views/roadmap/tasks/TASK-026/context.json",
+              ".wiki/views/status-state.json",
+              ".wiki/views/status.json",
+              ".wiki/views/system/architecture.json",
+              "extensions/codewiki/templates.ts",
               "scripts/rebuild_docs_meta.py",
               "scripts/smoke-test.mjs"
             ],
             "paths": {
+              ".wiki/knowledge": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/components/extension.md": "",
+              ".wiki/knowledge/system/components/knowledge.md": "",
+              ".wiki/knowledge/system/components/roadmap.md": "",
+              ".wiki/knowledge/system/components/runtime-gateway.md": "",
+              ".wiki/knowledge/system/components/view-rebuild.md": "",
+              ".wiki/knowledge/system/components/views.md": "",
               ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/flows/runtime-transaction.md": "",
               ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+              ".wiki/knowledge/system/flows/task-loop.md": "",
+              ".wiki/knowledge/system/flows/view-rebuild.md": "",
               ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/runtime/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/v2-operating-model.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-              ".wiki/roadmap.json": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/roadmap.json": "015a460fb124251738494ea655d2081769e124f1",
+              ".wiki/views": "015a460fb124251738494ea655d2081769e124f1",
               "extensions/codewiki": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-              "scripts/rebuild_docs_meta.py": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-              "scripts/smoke-test.mjs": "3c0906e38572fca7352aa3e820369391069c26b1",
+              "extensions/codewiki/index.ts": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
+              "scripts/rebuild_docs_meta.py": "015a460fb124251738494ea655d2081769e124f1",
+              "scripts/smoke-test.mjs": "015a460fb124251738494ea655d2081769e124f1",
               "skills": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
             }
           },
-          "spec_digest": "d62f384553f4225be226432a6bb9b7d0ea69e591956a5a662de75f70e408713f",
-          "task_digest": "0893a1a8421c7583892411d42ae97e6ed3c2a374972dbe0a730d1a4c5ebb092e",
-          "code_digest": "1164502bbb00483374a1809254c52afe685e521f1ae7062dab63b6dff43cedbd",
-          "digest": "fd812ba14815090c466bedc3e336c7744a97426e1094a8c5dd12e0f9b638ffac"
+          "spec_digest": "431992c7b606713e7a3e7dfc29f537d89b3ef0218b1695ba716a5335135d0a26",
+          "task_digest": "55adfc1caec68147819c37cb2ebb26dd9a0986f31489267380e785a63b0c8458",
+          "code_digest": "12fd7238d5a94fd90bdd4f0be04d503c062d08b20490e212c2342225e50d2884",
+          "digest": "872178abacbda7d32590af5bb141faa8564263afc4301b783613bc01f9aad13f"
         },
         "freshness": {
           "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-02T01:12:02Z",
+          "checked_at": "2026-05-02T01:21:15Z",
           "reason": "revision anchors unchanged since previous heartbeat",
           "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
         "spec_paths": [
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/knowledge.md",
+          ".wiki/knowledge/system/components/roadmap.md",
+          ".wiki/knowledge/system/components/runtime-gateway.md",
+          ".wiki/knowledge/system/components/view-rebuild.md",
+          ".wiki/knowledge/system/components/views.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
           ".wiki/knowledge/system/flows/context-memory.md",
+          ".wiki/knowledge/system/flows/runtime-transaction.md",
           ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/flows/view-rebuild.md",
           ".wiki/knowledge/system/overview.md",
           ".wiki/knowledge/system/runtime/overview.md",
           ".wiki/knowledge/system/v2-operating-model.md"
         ],
         "code_paths": [
+          "extensions/codewiki/index.ts",
+          ".wiki/knowledge",
+          ".wiki/roadmap.json",
+          "scripts/codewiki-gateway.mjs",
+          "scripts/rebuild_docs_meta.py",
+          ".wiki/views",
           "extensions/codewiki",
           "skills",
-          "scripts/smoke-test.mjs",
-          "scripts/rebuild_docs_meta.py"
+          "scripts/smoke-test.mjs"
         ],
-        "code_area": "extensions, skills +1 more",
+        "code_area": "extensions, .wiki +2 more",
         "open_task_ids": [
-          "TASK-020",
           "TASK-021",
           "TASK-022",
           "TASK-023",
@@ -326,8 +513,8 @@
           ".wiki/knowledge/system/v2-operating-model.md"
         ],
         "stats": {
-          "total_specs": 6,
-          "aligned_specs": 2,
+          "total_specs": 15,
+          "aligned_specs": 11,
           "tracked_specs": 4,
           "untracked_specs": 0,
           "blocked_specs": 0,
@@ -353,17 +540,57 @@
           "code_change:ux_surface",
           "manual_review"
         ],
-        "checked_at": "2026-05-02T01:12:02Z",
+        "checked_at": "2026-05-02T01:21:15Z",
         "revision": {
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": true,
             "dirty_paths": [
               ".wiki/roadmap.json",
+              ".wiki/views/drift.json",
+              ".wiki/views/evidence/recent.json",
+              ".wiki/views/graph.json",
+              ".wiki/views/lint.json",
+              ".wiki/views/product/brief.json",
+              ".wiki/views/roadmap-state.json",
+              ".wiki/views/roadmap/index.json",
+              ".wiki/views/roadmap/queue.json",
+              ".wiki/views/roadmap/state.json",
+              ".wiki/views/roadmap/tasks/TASK-001/context.json",
+              ".wiki/views/roadmap/tasks/TASK-002/context.json",
+              ".wiki/views/roadmap/tasks/TASK-003/context.json",
+              ".wiki/views/roadmap/tasks/TASK-004/context.json",
+              ".wiki/views/roadmap/tasks/TASK-005/context.json",
+              ".wiki/views/roadmap/tasks/TASK-006/context.json",
+              ".wiki/views/roadmap/tasks/TASK-007/context.json",
+              ".wiki/views/roadmap/tasks/TASK-008/context.json",
+              ".wiki/views/roadmap/tasks/TASK-009/context.json",
+              ".wiki/views/roadmap/tasks/TASK-010/context.json",
+              ".wiki/views/roadmap/tasks/TASK-011/context.json",
+              ".wiki/views/roadmap/tasks/TASK-012/context.json",
+              ".wiki/views/roadmap/tasks/TASK-013/context.json",
+              ".wiki/views/roadmap/tasks/TASK-014/context.json",
+              ".wiki/views/roadmap/tasks/TASK-015/context.json",
+              ".wiki/views/roadmap/tasks/TASK-016/context.json",
+              ".wiki/views/roadmap/tasks/TASK-017/context.json",
+              ".wiki/views/roadmap/tasks/TASK-018/context.json",
+              ".wiki/views/roadmap/tasks/TASK-019/context.json",
+              ".wiki/views/roadmap/tasks/TASK-020/context.json",
+              ".wiki/views/roadmap/tasks/TASK-021/context.json",
+              ".wiki/views/roadmap/tasks/TASK-022/context.json",
+              ".wiki/views/roadmap/tasks/TASK-023/context.json",
+              ".wiki/views/roadmap/tasks/TASK-024/context.json",
+              ".wiki/views/roadmap/tasks/TASK-025/context.json",
+              ".wiki/views/roadmap/tasks/TASK-026/context.json",
+              ".wiki/views/status-state.json",
+              ".wiki/views/status.json",
+              ".wiki/views/system/architecture.json",
+              "extensions/codewiki/templates.ts",
               "scripts/rebuild_docs_meta.py",
               "scripts/smoke-test.mjs"
             ],
             "paths": {
+              ".wiki/knowledge": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
               ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
               ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
@@ -372,30 +599,41 @@
               ".wiki/knowledge/product/stories.md": "3c0906e38572fca7352aa3e820369391069c26b1",
               ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/components/extension.md": "",
+              ".wiki/knowledge/system/components/knowledge.md": "",
+              ".wiki/knowledge/system/components/roadmap.md": "",
+              ".wiki/knowledge/system/components/runtime-gateway.md": "",
+              ".wiki/knowledge/system/components/view-rebuild.md": "",
+              ".wiki/knowledge/system/components/views.md": "",
               ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/flows/runtime-transaction.md": "",
               ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+              ".wiki/knowledge/system/flows/task-loop.md": "",
+              ".wiki/knowledge/system/flows/view-rebuild.md": "",
               ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/runtime/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/v2-operating-model.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-              ".wiki/roadmap.json": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/roadmap.json": "015a460fb124251738494ea655d2081769e124f1",
+              ".wiki/views": "015a460fb124251738494ea655d2081769e124f1",
               "README.md": "53578e465699177d1945148075b98a9fc539da26",
               "extensions/codewiki": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               "extensions/codewiki/index.ts": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-              "scripts/rebuild_docs_meta.py": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-              "scripts/smoke-test.mjs": "3c0906e38572fca7352aa3e820369391069c26b1",
+              "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
+              "scripts/rebuild_docs_meta.py": "015a460fb124251738494ea655d2081769e124f1",
+              "scripts/smoke-test.mjs": "015a460fb124251738494ea655d2081769e124f1",
               "skills": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
             }
           },
-          "spec_digest": "e9cd11297573028e52338616c2621da493ef8db4bf3f626ba7fac5e2f4908e78",
-          "task_digest": "7b5dcabfbf228f83d33d5150d113b33517b726abddb1ef333d3148cbf3af7acc",
-          "code_digest": "1cfe41ea40cfba3c91636524df12b1ec85fa34efea7cbc68424ac8e52ab88f94",
-          "digest": "62b4aa486a573e7c1982c4c995f323e351ac947cbdc2ca1d8f4375f034b07fb3"
+          "spec_digest": "a06f3c0917aa0f2a82948895578452bab559f79f344cdc1a7268254a2e079eff",
+          "task_digest": "78f8284f0fc5ba1b643fbfa3d4692950ae3ac9581cd85ad823d7ffc4d2f9a62a",
+          "code_digest": "de39ebe3cf1da8f7ae63adfc2d2277f151dd9e74c8306b4a30d31f31f1b564bc",
+          "digest": "40e675011cb7f8be17d5bbae9262937cf11f994f3c73381e18e60e9c783bec00"
         },
         "freshness": {
           "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-02T01:12:02Z",
+          "checked_at": "2026-05-02T01:21:15Z",
           "reason": "revision anchors unchanged since previous heartbeat",
           "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
@@ -404,9 +642,18 @@
           ".wiki/knowledge/product/stories.md",
           ".wiki/knowledge/product/surfaces.md",
           ".wiki/knowledge/product/users.md",
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/knowledge.md",
+          ".wiki/knowledge/system/components/roadmap.md",
+          ".wiki/knowledge/system/components/runtime-gateway.md",
+          ".wiki/knowledge/system/components/view-rebuild.md",
+          ".wiki/knowledge/system/components/views.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
           ".wiki/knowledge/system/flows/context-memory.md",
+          ".wiki/knowledge/system/flows/runtime-transaction.md",
           ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/flows/view-rebuild.md",
           ".wiki/knowledge/system/overview.md",
           ".wiki/knowledge/system/runtime/overview.md",
           ".wiki/knowledge/system/v2-operating-model.md",
@@ -416,16 +663,19 @@
           ".wiki/knowledge/clients/surfaces/status-panel.md"
         ],
         "code_paths": [
+          "extensions/codewiki/index.ts",
+          ".wiki/knowledge",
+          ".wiki/roadmap.json",
+          "scripts/codewiki-gateway.mjs",
+          "scripts/rebuild_docs_meta.py",
+          ".wiki/views",
           "extensions/codewiki",
           "skills",
           "scripts/smoke-test.mjs",
-          "scripts/rebuild_docs_meta.py",
-          "README.md",
-          "extensions/codewiki/index.ts"
+          "README.md"
         ],
-        "code_area": "extensions, skills +2 more",
+        "code_area": "extensions, .wiki +3 more",
         "open_task_ids": [
-          "TASK-020",
           "TASK-021",
           "TASK-022",
           "TASK-023",
@@ -440,8 +690,8 @@
           ".wiki/knowledge/system/v2-operating-model.md"
         ],
         "stats": {
-          "total_specs": 14,
-          "aligned_specs": 9,
+          "total_specs": 23,
+          "aligned_specs": 18,
           "tracked_specs": 5,
           "untracked_specs": 0,
           "blocked_specs": 0,
@@ -456,17 +706,17 @@
     ]
   },
   "parallel": {
-    "generated_at": "2026-05-02T01:12:02Z",
+    "generated_at": "2026-05-02T01:21:15Z",
     "active_session_count": 2,
     "collision_task_ids": [],
     "sessions": [
       {
         "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
-        "task_id": "TASK-019",
+        "task_id": "TASK-020",
         "action": "focus",
-        "timestamp": "2026-05-02T01:08:47Z",
-        "title": "View schema generator for status queue drift and briefs",
-        "summary": "Implement optimized v2 view schemas.",
+        "timestamp": "2026-05-02T01:13:20Z",
+        "title": "Architecture manifest and Mermaid view generator",
+        "summary": "Implement architecture manifest and Mermaid generator.",
         "agent_name": "Lynx"
       },
       {
@@ -482,10 +732,10 @@
   },
   "resume": {
     "source": "task",
-    "task_id": "TASK-020",
+    "task_id": "TASK-021",
     "lane_id": "",
-    "heading": "TASK-020 \u2014 Architecture manifest and Mermaid view generator",
-    "command": "/wiki-resume TASK-020",
+    "heading": "TASK-021 \u2014 Subagent JSON worker contracts",
+    "command": "/wiki-resume TASK-021",
     "reason": "Resume roadmap task (todo \u00b7 implement).",
     "phase": "implement",
     "verification": "npm run typecheck -- --pretty false",
@@ -518,7 +768,7 @@
         "revision": {
           "digest": "bf5df626b45e5c6e75c51c34774efb3cb7fb10eac687439ba02efad48e5b747a",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -541,21 +791,21 @@
           "total": 1
         },
         "related_task_ids": [
-          "TASK-020",
           "TASK-021",
           "TASK-018",
           "TASK-019",
+          "TASK-020",
           "TASK-026"
         ],
         "primary_task": {
-          "id": "TASK-020",
+          "id": "TASK-021",
           "status": "todo",
-          "title": "Architecture manifest and Mermaid view generator"
+          "title": "Subagent JSON worker contracts"
         },
         "revision": {
           "digest": "bdba7c2d093054f8d6b5fd321864985aaf5880f8e35096e466e4e0bc84259757",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -563,7 +813,7 @@
             }
           }
         },
-        "note": "tracked by TASK-020"
+        "note": "tracked by TASK-021"
       },
       {
         "path": ".wiki/knowledge/system/flows/sanitation-release.md",
@@ -588,7 +838,7 @@
         "revision": {
           "digest": "ae71918429dfed645a09b629449c5151035a6be3c044f4f8cf6fca56a1cd9a5d",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -628,7 +878,7 @@
         "revision": {
           "digest": "ea5704df88c164838f0c246bf4b2a6892144270ca858e77f1a2d941d0ff36e93",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -655,7 +905,6 @@
           "total": 1
         },
         "related_task_ids": [
-          "TASK-020",
           "TASK-021",
           "TASK-022",
           "TASK-023",
@@ -663,17 +912,18 @@
           "TASK-015",
           "TASK-018",
           "TASK-019",
+          "TASK-020",
           "TASK-017"
         ],
         "primary_task": {
-          "id": "TASK-020",
+          "id": "TASK-021",
           "status": "todo",
-          "title": "Architecture manifest and Mermaid view generator"
+          "title": "Subagent JSON worker contracts"
         },
         "revision": {
           "digest": "162a0895ac926785fa69defdb5e329cad1f70e943a1e6e35b65c4afb99e73473",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -681,7 +931,7 @@
             }
           }
         },
-        "note": "tracked by TASK-020"
+        "note": "tracked by TASK-021"
       },
       {
         "path": ".wiki/knowledge/clients/agent-skills.md",
@@ -709,7 +959,7 @@
         "revision": {
           "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -746,7 +996,7 @@
         "revision": {
           "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -781,7 +1031,7 @@
         "revision": {
           "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -810,7 +1060,7 @@
         "revision": {
           "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -845,7 +1095,7 @@
         "revision": {
           "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -883,7 +1133,7 @@
         "revision": {
           "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -917,7 +1167,7 @@
         "revision": {
           "digest": "bf45a1bdaf0cd6ff4064bf79b259c4f2bc3468fe4d1b53a4caf485de9a66ca3e",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -950,11 +1200,185 @@
         "revision": {
           "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
               ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+            }
+          }
+        },
+        "note": "no deterministic drift signals"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/extension.md",
+        "title": "CodeWiki Extension",
+        "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools.",
+        "drift_status": "aligned",
+        "code_paths": [
+          "extensions/codewiki/index.ts"
+        ],
+        "code_area": "extensions/codewiki/index.ts",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [],
+        "primary_task": null,
+        "revision": {
+          "digest": "0d1babfa8f1bb1b3cc3a0f0232c2f32e570710ec9335c39e6b7270fd9d7897a7",
+          "git": {
+            "head": "015a460fb124251738494ea655d2081769e124f1",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/components/extension.md": ""
+            }
+          }
+        },
+        "note": "no deterministic drift signals"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/knowledge.md",
+        "title": "Canonical Knowledge",
+        "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
+        "drift_status": "aligned",
+        "code_paths": [
+          ".wiki/knowledge"
+        ],
+        "code_area": ".wiki/knowledge",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [],
+        "primary_task": null,
+        "revision": {
+          "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
+          "git": {
+            "head": "015a460fb124251738494ea655d2081769e124f1",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/components/knowledge.md": ""
+            }
+          }
+        },
+        "note": "no deterministic drift signals"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/roadmap.md",
+        "title": "Roadmap Tasks",
+        "summary": "Canonical active delta between intended knowledge and current implementation reality.",
+        "drift_status": "aligned",
+        "code_paths": [
+          ".wiki/roadmap.json"
+        ],
+        "code_area": ".wiki/roadmap.json",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [],
+        "primary_task": null,
+        "revision": {
+          "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
+          "git": {
+            "head": "015a460fb124251738494ea655d2081769e124f1",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/components/roadmap.md": ""
+            }
+          }
+        },
+        "note": "no deterministic drift signals"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+        "title": "Runtime Gateway",
+        "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
+        "drift_status": "aligned",
+        "code_paths": [
+          "scripts/codewiki-gateway.mjs"
+        ],
+        "code_area": "scripts/codewiki-gateway.mjs",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [],
+        "primary_task": null,
+        "revision": {
+          "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
+          "git": {
+            "head": "015a460fb124251738494ea655d2081769e124f1",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/components/runtime-gateway.md": ""
+            }
+          }
+        },
+        "note": "no deterministic drift signals"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/view-rebuild.md",
+        "title": "View Rebuild",
+        "summary": "Generator that derives graph, lint, roadmap, status, and v2 views from canonical truth.",
+        "drift_status": "aligned",
+        "code_paths": [
+          "scripts/rebuild_docs_meta.py"
+        ],
+        "code_area": "scripts/rebuild_docs_meta.py",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [],
+        "primary_task": null,
+        "revision": {
+          "digest": "bdb2bfdc759e203b38dab3eeb8320ae332e8122204e6eb3c234777bfd98f526c",
+          "git": {
+            "head": "015a460fb124251738494ea655d2081769e124f1",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/components/view-rebuild.md": ""
+            }
+          }
+        },
+        "note": "no deterministic drift signals"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/views.md",
+        "title": "Generated Views",
+        "summary": "Tool-owned optimized read models consumed by agents and UI.",
+        "drift_status": "aligned",
+        "code_paths": [
+          ".wiki/views"
+        ],
+        "code_area": ".wiki/views",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [],
+        "primary_task": null,
+        "revision": {
+          "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
+          "git": {
+            "head": "015a460fb124251738494ea655d2081769e124f1",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/components/views.md": ""
             }
           }
         },
@@ -989,11 +1413,98 @@
         "revision": {
           "digest": "6b317db7c37fdc05d08d3fd1f464f95b3f10eee715a10d77d6dd82c82f4d75c3",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
               ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+            }
+          }
+        },
+        "note": "no deterministic drift signals"
+      },
+      {
+        "path": ".wiki/knowledge/system/flows/runtime-transaction.md",
+        "title": "Runtime Transaction Flow",
+        "summary": "Runtime operations use CodeWiki semantic transaction boundaries instead of mutating generated state directly.",
+        "drift_status": "aligned",
+        "code_paths": [
+          "scripts/rebuild_docs_meta.py"
+        ],
+        "code_area": "scripts/rebuild_docs_meta.py",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [],
+        "primary_task": null,
+        "revision": {
+          "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
+          "git": {
+            "head": "015a460fb124251738494ea655d2081769e124f1",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/flows/runtime-transaction.md": ""
+            }
+          }
+        },
+        "note": "no deterministic drift signals"
+      },
+      {
+        "path": ".wiki/knowledge/system/flows/task-loop.md",
+        "title": "Task Loop Flow",
+        "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
+        "drift_status": "aligned",
+        "code_paths": [
+          "scripts/rebuild_docs_meta.py"
+        ],
+        "code_area": "scripts/rebuild_docs_meta.py",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [],
+        "primary_task": null,
+        "revision": {
+          "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
+          "git": {
+            "head": "015a460fb124251738494ea655d2081769e124f1",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/flows/task-loop.md": ""
+            }
+          }
+        },
+        "note": "no deterministic drift signals"
+      },
+      {
+        "path": ".wiki/knowledge/system/flows/view-rebuild.md",
+        "title": "View Rebuild Flow",
+        "summary": "Canonical knowledge and roadmap state become generated views for efficient navigation.",
+        "drift_status": "aligned",
+        "code_paths": [
+          "scripts/rebuild_docs_meta.py"
+        ],
+        "code_area": "scripts/rebuild_docs_meta.py",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [],
+        "primary_task": null,
+        "revision": {
+          "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
+          "git": {
+            "head": "015a460fb124251738494ea655d2081769e124f1",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/flows/view-rebuild.md": ""
             }
           }
         },
@@ -1033,7 +1544,7 @@
         "revision": {
           "digest": "e518ec2537ade265f09ae825d85debee1b150f509658239f13938c71a36a670c",
           "git": {
-            "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+            "head": "015a460fb124251738494ea655d2081769e124f1",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1073,7 +1584,7 @@
             "revision": {
               "digest": "bf5df626b45e5c6e75c51c34774efb3cb7fb10eac687439ba02efad48e5b747a",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1111,7 +1622,7 @@
             "revision": {
               "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1145,7 +1656,7 @@
             "revision": {
               "digest": "bf45a1bdaf0cd6ff4064bf79b259c4f2bc3468fe4d1b53a4caf485de9a66ca3e",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1178,7 +1689,7 @@
             "revision": {
               "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1207,21 +1718,21 @@
               "total": 1
             },
             "related_task_ids": [
-              "TASK-020",
               "TASK-021",
               "TASK-018",
               "TASK-019",
+              "TASK-020",
               "TASK-026"
             ],
             "primary_task": {
-              "id": "TASK-020",
+              "id": "TASK-021",
               "status": "todo",
-              "title": "Architecture manifest and Mermaid view generator"
+              "title": "Subagent JSON worker contracts"
             },
             "revision": {
               "digest": "bdba7c2d093054f8d6b5fd321864985aaf5880f8e35096e466e4e0bc84259757",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1229,7 +1740,7 @@
                 }
               }
             },
-            "note": "tracked by TASK-020"
+            "note": "tracked by TASK-021"
           },
           {
             "path": ".wiki/knowledge/system/flows/sanitation-release.md",
@@ -1254,7 +1765,7 @@
             "revision": {
               "digest": "ae71918429dfed645a09b629449c5151035a6be3c044f4f8cf6fca56a1cd9a5d",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1294,7 +1805,7 @@
             "revision": {
               "digest": "ea5704df88c164838f0c246bf4b2a6892144270ca858e77f1a2d941d0ff36e93",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1321,7 +1832,6 @@
               "total": 1
             },
             "related_task_ids": [
-              "TASK-020",
               "TASK-021",
               "TASK-022",
               "TASK-023",
@@ -1329,17 +1839,18 @@
               "TASK-015",
               "TASK-018",
               "TASK-019",
+              "TASK-020",
               "TASK-017"
             ],
             "primary_task": {
-              "id": "TASK-020",
+              "id": "TASK-021",
               "status": "todo",
-              "title": "Architecture manifest and Mermaid view generator"
+              "title": "Subagent JSON worker contracts"
             },
             "revision": {
               "digest": "162a0895ac926785fa69defdb5e329cad1f70e943a1e6e35b65c4afb99e73473",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1347,7 +1858,7 @@
                 }
               }
             },
-            "note": "tracked by TASK-020"
+            "note": "tracked by TASK-021"
           },
           {
             "path": ".wiki/knowledge/lexicon.md",
@@ -1374,11 +1885,185 @@
             "revision": {
               "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+                }
+              }
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/extension.md",
+            "title": "CodeWiki Extension",
+            "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "extensions/codewiki/index.ts"
+            ],
+            "code_area": "extensions/codewiki/index.ts",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "0d1babfa8f1bb1b3cc3a0f0232c2f32e570710ec9335c39e6b7270fd9d7897a7",
+              "git": {
+                "head": "015a460fb124251738494ea655d2081769e124f1",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/components/extension.md": ""
+                }
+              }
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/knowledge.md",
+            "title": "Canonical Knowledge",
+            "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
+            "drift_status": "aligned",
+            "code_paths": [
+              ".wiki/knowledge"
+            ],
+            "code_area": ".wiki/knowledge",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
+              "git": {
+                "head": "015a460fb124251738494ea655d2081769e124f1",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/components/knowledge.md": ""
+                }
+              }
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/roadmap.md",
+            "title": "Roadmap Tasks",
+            "summary": "Canonical active delta between intended knowledge and current implementation reality.",
+            "drift_status": "aligned",
+            "code_paths": [
+              ".wiki/roadmap.json"
+            ],
+            "code_area": ".wiki/roadmap.json",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
+              "git": {
+                "head": "015a460fb124251738494ea655d2081769e124f1",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/components/roadmap.md": ""
+                }
+              }
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+            "title": "Runtime Gateway",
+            "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "scripts/codewiki-gateway.mjs"
+            ],
+            "code_area": "scripts/codewiki-gateway.mjs",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
+              "git": {
+                "head": "015a460fb124251738494ea655d2081769e124f1",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/components/runtime-gateway.md": ""
+                }
+              }
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/view-rebuild.md",
+            "title": "View Rebuild",
+            "summary": "Generator that derives graph, lint, roadmap, status, and v2 views from canonical truth.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "scripts/rebuild_docs_meta.py"
+            ],
+            "code_area": "scripts/rebuild_docs_meta.py",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "bdb2bfdc759e203b38dab3eeb8320ae332e8122204e6eb3c234777bfd98f526c",
+              "git": {
+                "head": "015a460fb124251738494ea655d2081769e124f1",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/components/view-rebuild.md": ""
+                }
+              }
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/views.md",
+            "title": "Generated Views",
+            "summary": "Tool-owned optimized read models consumed by agents and UI.",
+            "drift_status": "aligned",
+            "code_paths": [
+              ".wiki/views"
+            ],
+            "code_area": ".wiki/views",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
+              "git": {
+                "head": "015a460fb124251738494ea655d2081769e124f1",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/components/views.md": ""
                 }
               }
             },
@@ -1413,11 +2098,98 @@
             "revision": {
               "digest": "6b317db7c37fdc05d08d3fd1f464f95b3f10eee715a10d77d6dd82c82f4d75c3",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+                }
+              }
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".wiki/knowledge/system/flows/runtime-transaction.md",
+            "title": "Runtime Transaction Flow",
+            "summary": "Runtime operations use CodeWiki semantic transaction boundaries instead of mutating generated state directly.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "scripts/rebuild_docs_meta.py"
+            ],
+            "code_area": "scripts/rebuild_docs_meta.py",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
+              "git": {
+                "head": "015a460fb124251738494ea655d2081769e124f1",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/flows/runtime-transaction.md": ""
+                }
+              }
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".wiki/knowledge/system/flows/task-loop.md",
+            "title": "Task Loop Flow",
+            "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "scripts/rebuild_docs_meta.py"
+            ],
+            "code_area": "scripts/rebuild_docs_meta.py",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
+              "git": {
+                "head": "015a460fb124251738494ea655d2081769e124f1",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/flows/task-loop.md": ""
+                }
+              }
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".wiki/knowledge/system/flows/view-rebuild.md",
+            "title": "View Rebuild Flow",
+            "summary": "Canonical knowledge and roadmap state become generated views for efficient navigation.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "scripts/rebuild_docs_meta.py"
+            ],
+            "code_area": "scripts/rebuild_docs_meta.py",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
+              "git": {
+                "head": "015a460fb124251738494ea655d2081769e124f1",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/flows/view-rebuild.md": ""
                 }
               }
             },
@@ -1457,7 +2229,7 @@
             "revision": {
               "digest": "e518ec2537ade265f09ae825d85debee1b150f509658239f13938c71a36a670c",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1499,7 +2271,7 @@
             "revision": {
               "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1536,7 +2308,7 @@
             "revision": {
               "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1571,7 +2343,7 @@
             "revision": {
               "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1600,7 +2372,7 @@
             "revision": {
               "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
               "git": {
-                "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+                "head": "015a460fb124251738494ea655d2081769e124f1",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1615,16 +2387,15 @@
     ]
   },
   "roadmap": {
-    "focused_task_id": "TASK-020",
+    "focused_task_id": "TASK-021",
     "blocked_task_ids": [],
     "in_progress_task_ids": [],
-    "next_task_id": "TASK-020",
+    "next_task_id": "TASK-021",
     "columns": [
       {
         "id": "todo",
         "label": "Todo",
         "task_ids": [
-          "TASK-020",
           "TASK-021",
           "TASK-022",
           "TASK-023",
@@ -1670,6 +2441,7 @@
           "TASK-017",
           "TASK-018",
           "TASK-019",
+          "TASK-020",
           "TASK-026"
         ]
       }
@@ -1681,11 +2453,11 @@
         "id": "session:019dd670-522d-726f-9e98-9d5dffb13551",
         "label": "Lynx",
         "name": "Lynx",
-        "task_id": "TASK-019",
-        "task_title": "View schema generator for status queue drift and briefs",
+        "task_id": "TASK-020",
+        "task_title": "Architecture manifest and Mermaid view generator",
         "mode": "manual",
         "status": "active",
-        "last_action": "Implement optimized v2 view schemas.",
+        "last_action": "Implement architecture manifest and Mermaid generator.",
         "constraint": "Pi session-linked execution",
         "session_id": "019dd670-522d-726f-9e98-9d5dffb13551"
       },
@@ -1732,7 +2504,7 @@
       "revision": {
         "digest": "bf5df626b45e5c6e75c51c34774efb3cb7fb10eac687439ba02efad48e5b747a",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -1755,21 +2527,21 @@
         "total": 1
       },
       "related_task_ids": [
-        "TASK-020",
         "TASK-021",
         "TASK-018",
         "TASK-019",
+        "TASK-020",
         "TASK-026"
       ],
       "primary_task": {
-        "id": "TASK-020",
+        "id": "TASK-021",
         "status": "todo",
-        "title": "Architecture manifest and Mermaid view generator"
+        "title": "Subagent JSON worker contracts"
       },
       "revision": {
         "digest": "bdba7c2d093054f8d6b5fd321864985aaf5880f8e35096e466e4e0bc84259757",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -1777,7 +2549,7 @@
           }
         }
       },
-      "note": "tracked by TASK-020"
+      "note": "tracked by TASK-021"
     },
     {
       "path": ".wiki/knowledge/system/flows/sanitation-release.md",
@@ -1802,7 +2574,7 @@
       "revision": {
         "digest": "ae71918429dfed645a09b629449c5151035a6be3c044f4f8cf6fca56a1cd9a5d",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -1842,7 +2614,7 @@
       "revision": {
         "digest": "ea5704df88c164838f0c246bf4b2a6892144270ca858e77f1a2d941d0ff36e93",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -1869,7 +2641,6 @@
         "total": 1
       },
       "related_task_ids": [
-        "TASK-020",
         "TASK-021",
         "TASK-022",
         "TASK-023",
@@ -1877,17 +2648,18 @@
         "TASK-015",
         "TASK-018",
         "TASK-019",
+        "TASK-020",
         "TASK-017"
       ],
       "primary_task": {
-        "id": "TASK-020",
+        "id": "TASK-021",
         "status": "todo",
-        "title": "Architecture manifest and Mermaid view generator"
+        "title": "Subagent JSON worker contracts"
       },
       "revision": {
         "digest": "162a0895ac926785fa69defdb5e329cad1f70e943a1e6e35b65c4afb99e73473",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -1895,7 +2667,7 @@
           }
         }
       },
-      "note": "tracked by TASK-020"
+      "note": "tracked by TASK-021"
     },
     {
       "path": ".wiki/knowledge/clients/agent-skills.md",
@@ -1923,7 +2695,7 @@
       "revision": {
         "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -1960,7 +2732,7 @@
       "revision": {
         "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -1995,7 +2767,7 @@
       "revision": {
         "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2024,7 +2796,7 @@
       "revision": {
         "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2059,7 +2831,7 @@
       "revision": {
         "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2097,7 +2869,7 @@
       "revision": {
         "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2131,7 +2903,7 @@
       "revision": {
         "digest": "bf45a1bdaf0cd6ff4064bf79b259c4f2bc3468fe4d1b53a4caf485de9a66ca3e",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2164,11 +2936,185 @@
       "revision": {
         "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
             ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+          }
+        }
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/extension.md",
+      "title": "CodeWiki Extension",
+      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools.",
+      "drift_status": "aligned",
+      "code_paths": [
+        "extensions/codewiki/index.ts"
+      ],
+      "code_area": "extensions/codewiki/index.ts",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [],
+      "primary_task": null,
+      "revision": {
+        "digest": "0d1babfa8f1bb1b3cc3a0f0232c2f32e570710ec9335c39e6b7270fd9d7897a7",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/extension.md": ""
+          }
+        }
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/knowledge.md",
+      "title": "Canonical Knowledge",
+      "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
+      "drift_status": "aligned",
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "code_area": ".wiki/knowledge",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [],
+      "primary_task": null,
+      "revision": {
+        "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/knowledge.md": ""
+          }
+        }
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/roadmap.md",
+      "title": "Roadmap Tasks",
+      "summary": "Canonical active delta between intended knowledge and current implementation reality.",
+      "drift_status": "aligned",
+      "code_paths": [
+        ".wiki/roadmap.json"
+      ],
+      "code_area": ".wiki/roadmap.json",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [],
+      "primary_task": null,
+      "revision": {
+        "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/roadmap.md": ""
+          }
+        }
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+      "title": "Runtime Gateway",
+      "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
+      "drift_status": "aligned",
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "code_area": "scripts/codewiki-gateway.mjs",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [],
+      "primary_task": null,
+      "revision": {
+        "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/runtime-gateway.md": ""
+          }
+        }
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/view-rebuild.md",
+      "title": "View Rebuild",
+      "summary": "Generator that derives graph, lint, roadmap, status, and v2 views from canonical truth.",
+      "drift_status": "aligned",
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "code_area": "scripts/rebuild_docs_meta.py",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [],
+      "primary_task": null,
+      "revision": {
+        "digest": "bdb2bfdc759e203b38dab3eeb8320ae332e8122204e6eb3c234777bfd98f526c",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/view-rebuild.md": ""
+          }
+        }
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/views.md",
+      "title": "Generated Views",
+      "summary": "Tool-owned optimized read models consumed by agents and UI.",
+      "drift_status": "aligned",
+      "code_paths": [
+        ".wiki/views"
+      ],
+      "code_area": ".wiki/views",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [],
+      "primary_task": null,
+      "revision": {
+        "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/views.md": ""
           }
         }
       },
@@ -2203,11 +3149,98 @@
       "revision": {
         "digest": "6b317db7c37fdc05d08d3fd1f464f95b3f10eee715a10d77d6dd82c82f4d75c3",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
             ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+          }
+        }
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/runtime-transaction.md",
+      "title": "Runtime Transaction Flow",
+      "summary": "Runtime operations use CodeWiki semantic transaction boundaries instead of mutating generated state directly.",
+      "drift_status": "aligned",
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "code_area": "scripts/rebuild_docs_meta.py",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [],
+      "primary_task": null,
+      "revision": {
+        "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/flows/runtime-transaction.md": ""
+          }
+        }
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/task-loop.md",
+      "title": "Task Loop Flow",
+      "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
+      "drift_status": "aligned",
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "code_area": "scripts/rebuild_docs_meta.py",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [],
+      "primary_task": null,
+      "revision": {
+        "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/flows/task-loop.md": ""
+          }
+        }
+      },
+      "note": "no deterministic drift signals"
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/view-rebuild.md",
+      "title": "View Rebuild Flow",
+      "summary": "Canonical knowledge and roadmap state become generated views for efficient navigation.",
+      "drift_status": "aligned",
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "code_area": "scripts/rebuild_docs_meta.py",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [],
+      "primary_task": null,
+      "revision": {
+        "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/flows/view-rebuild.md": ""
           }
         }
       },
@@ -2247,7 +3280,7 @@
       "revision": {
         "digest": "e518ec2537ade265f09ae825d85debee1b150f509658239f13938c71a36a670c",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2260,14 +3293,14 @@
   ],
   "next_step": {
     "kind": "code",
-    "command": "/wiki-resume TASK-020",
+    "command": "/wiki-resume TASK-021",
     "reason": "Roadmap is ready; continue with the next open task."
   },
   "direction": [
     "Roadmap is ready; continue with the next open task.",
     "Parallel sessions: 2 active, 0 collision task(s).",
     "Heartbeat lanes: 3 work-first (high=1, medium=1, low=1).",
-    "Mapped specs: 5/5.",
+    "Mapped specs: 14/14.",
     "Tracked drift coverage: 5/5."
   ]
 }

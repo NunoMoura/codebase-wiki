@@ -1,12 +1,51 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T01:12:01Z",
+  "generated_at": "2026-05-02T01:21:13Z",
   "revision": {
     "git": {
-      "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+      "head": "015a460fb124251738494ea655d2081769e124f1",
       "dirty": true,
       "dirty_paths": [
         ".wiki/roadmap.json",
+        ".wiki/views/drift.json",
+        ".wiki/views/evidence/recent.json",
+        ".wiki/views/graph.json",
+        ".wiki/views/lint.json",
+        ".wiki/views/product/brief.json",
+        ".wiki/views/roadmap-state.json",
+        ".wiki/views/roadmap/index.json",
+        ".wiki/views/roadmap/queue.json",
+        ".wiki/views/roadmap/state.json",
+        ".wiki/views/roadmap/tasks/TASK-001/context.json",
+        ".wiki/views/roadmap/tasks/TASK-002/context.json",
+        ".wiki/views/roadmap/tasks/TASK-003/context.json",
+        ".wiki/views/roadmap/tasks/TASK-004/context.json",
+        ".wiki/views/roadmap/tasks/TASK-005/context.json",
+        ".wiki/views/roadmap/tasks/TASK-006/context.json",
+        ".wiki/views/roadmap/tasks/TASK-007/context.json",
+        ".wiki/views/roadmap/tasks/TASK-008/context.json",
+        ".wiki/views/roadmap/tasks/TASK-009/context.json",
+        ".wiki/views/roadmap/tasks/TASK-010/context.json",
+        ".wiki/views/roadmap/tasks/TASK-011/context.json",
+        ".wiki/views/roadmap/tasks/TASK-012/context.json",
+        ".wiki/views/roadmap/tasks/TASK-013/context.json",
+        ".wiki/views/roadmap/tasks/TASK-014/context.json",
+        ".wiki/views/roadmap/tasks/TASK-015/context.json",
+        ".wiki/views/roadmap/tasks/TASK-016/context.json",
+        ".wiki/views/roadmap/tasks/TASK-017/context.json",
+        ".wiki/views/roadmap/tasks/TASK-018/context.json",
+        ".wiki/views/roadmap/tasks/TASK-019/context.json",
+        ".wiki/views/roadmap/tasks/TASK-020/context.json",
+        ".wiki/views/roadmap/tasks/TASK-021/context.json",
+        ".wiki/views/roadmap/tasks/TASK-022/context.json",
+        ".wiki/views/roadmap/tasks/TASK-023/context.json",
+        ".wiki/views/roadmap/tasks/TASK-024/context.json",
+        ".wiki/views/roadmap/tasks/TASK-025/context.json",
+        ".wiki/views/roadmap/tasks/TASK-026/context.json",
+        ".wiki/views/status-state.json",
+        ".wiki/views/status.json",
+        ".wiki/views/system/architecture.json",
+        "extensions/codewiki/templates.ts",
         "scripts/rebuild_docs_meta.py",
         "scripts/smoke-test.mjs"
       ],
@@ -21,13 +60,23 @@
         ".wiki/knowledge/product/stories.md": "3c0906e38572fca7352aa3e820369391069c26b1",
         ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        ".wiki/knowledge/system/components/extension.md": "",
+        ".wiki/knowledge/system/components/knowledge.md": "",
+        ".wiki/knowledge/system/components/roadmap.md": "",
+        ".wiki/knowledge/system/components/runtime-gateway.md": "",
+        ".wiki/knowledge/system/components/view-rebuild.md": "",
+        ".wiki/knowledge/system/components/views.md": "",
         ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        ".wiki/knowledge/system/flows/runtime-transaction.md": "",
         ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+        ".wiki/knowledge/system/flows/task-loop.md": "",
+        ".wiki/knowledge/system/flows/view-rebuild.md": "",
         ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         ".wiki/knowledge/system/runtime/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         ".wiki/knowledge/system/v2-operating-model.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-        ".wiki/roadmap.json": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        ".wiki/roadmap.json": "015a460fb124251738494ea655d2081769e124f1",
+        ".wiki/views": "015a460fb124251738494ea655d2081769e124f1",
         "README.md": "53578e465699177d1945148075b98a9fc539da26",
         "extensions/codewiki": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         "extensions/codewiki/contracts.ts": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
@@ -35,8 +84,8 @@
         "extensions/codewiki/templates.ts": "3c0906e38572fca7352aa3e820369391069c26b1",
         "package.json": "53578e465699177d1945148075b98a9fc539da26",
         "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
-        "scripts/rebuild_docs_meta.py": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-        "scripts/smoke-test.mjs": "3c0906e38572fca7352aa3e820369391069c26b1",
+        "scripts/rebuild_docs_meta.py": "015a460fb124251738494ea655d2081769e124f1",
+        "scripts/smoke-test.mjs": "015a460fb124251738494ea655d2081769e124f1",
         "skills": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         "skills/codewiki-architecture/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         "skills/codewiki-plan/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
@@ -46,9 +95,9 @@
         "skills/codewiki/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
       }
     },
-    "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
-    "task_digest": "3a541083ff96689c95ef8b1c4659d1858cf6ed139b70f6568098230e656868fd",
-    "evidence_digest": "3648e610ce0109637174d05a19ae815ecfb16c3c40d41ca6857202c6c43f9d9f"
+    "spec_digest": "8772fbc0c36dc2bdeab15a13ec21d052086f67f1322a42342d50a4ee308d82be",
+    "task_digest": "b24e00a6942ea77d7c12678bb213a6583879629d981d52d937200c7f0c0cde98",
+    "evidence_digest": "18a20646f080f72de0d002dd7dadb6065882b3015e0d5db2ab19e951d2a25bad"
   },
   "nodes": [
     {
@@ -67,7 +116,7 @@
       "revision": {
         "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -102,7 +151,7 @@
       "revision": {
         "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -127,7 +176,7 @@
       "revision": {
         "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -152,7 +201,7 @@
       "revision": {
         "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -183,7 +232,7 @@
       "revision": {
         "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -208,7 +257,7 @@
       "revision": {
         "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -233,7 +282,7 @@
       "revision": {
         "digest": "bf5df626b45e5c6e75c51c34774efb3cb7fb10eac687439ba02efad48e5b747a",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -259,7 +308,7 @@
       "revision": {
         "digest": "bf45a1bdaf0cd6ff4064bf79b259c4f2bc3468fe4d1b53a4caf485de9a66ca3e",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -284,7 +333,7 @@
       "revision": {
         "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -292,6 +341,181 @@
           }
         }
       }
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/extension.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/extension.md",
+      "title": "CodeWiki Extension",
+      "doc_type": "spec",
+      "state": "active",
+      "group": "system",
+      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools.",
+      "owners": [
+        "architecture"
+      ],
+      "tags": [],
+      "revision": {
+        "digest": "0d1babfa8f1bb1b3cc3a0f0232c2f32e570710ec9335c39e6b7270fd9d7897a7",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/extension.md": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/knowledge.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/knowledge.md",
+      "title": "Canonical Knowledge",
+      "doc_type": "spec",
+      "state": "active",
+      "group": "system",
+      "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
+      "owners": [
+        "architecture"
+      ],
+      "tags": [],
+      "revision": {
+        "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/knowledge.md": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "code:.wiki/knowledge",
+      "kind": "code_path",
+      "path": ".wiki/knowledge"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/roadmap.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/roadmap.md",
+      "title": "Roadmap Tasks",
+      "doc_type": "spec",
+      "state": "active",
+      "group": "system",
+      "summary": "Canonical active delta between intended knowledge and current implementation reality.",
+      "owners": [
+        "architecture"
+      ],
+      "tags": [],
+      "revision": {
+        "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/roadmap.md": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "code:.wiki/roadmap.json",
+      "kind": "code_path",
+      "path": ".wiki/roadmap.json"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/runtime-gateway.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+      "title": "Runtime Gateway",
+      "doc_type": "spec",
+      "state": "active",
+      "group": "system",
+      "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
+      "owners": [
+        "architecture"
+      ],
+      "tags": [],
+      "revision": {
+        "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/runtime-gateway.md": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "code:scripts/codewiki-gateway.mjs",
+      "kind": "code_path",
+      "path": "scripts/codewiki-gateway.mjs"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/view-rebuild.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/view-rebuild.md",
+      "title": "View Rebuild",
+      "doc_type": "spec",
+      "state": "active",
+      "group": "system",
+      "summary": "Generator that derives graph, lint, roadmap, status, and v2 views from canonical truth.",
+      "owners": [
+        "architecture"
+      ],
+      "tags": [],
+      "revision": {
+        "digest": "bdb2bfdc759e203b38dab3eeb8320ae332e8122204e6eb3c234777bfd98f526c",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/view-rebuild.md": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "code:scripts/rebuild_docs_meta.py",
+      "kind": "code_path",
+      "path": "scripts/rebuild_docs_meta.py"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/views.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/views.md",
+      "title": "Generated Views",
+      "doc_type": "spec",
+      "state": "active",
+      "group": "system",
+      "summary": "Tool-owned optimized read models consumed by agents and UI.",
+      "owners": [
+        "architecture"
+      ],
+      "tags": [],
+      "revision": {
+        "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/views.md": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "code:.wiki/views",
+      "kind": "code_path",
+      "path": ".wiki/views"
     },
     {
       "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
@@ -309,7 +533,7 @@
       "revision": {
         "digest": "6b317db7c37fdc05d08d3fd1f464f95b3f10eee715a10d77d6dd82c82f4d75c3",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -344,11 +568,36 @@
       "revision": {
         "digest": "bdba7c2d093054f8d6b5fd321864985aaf5880f8e35096e466e4e0bc84259757",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
             ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+          }
+        }
+      }
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/flows/runtime-transaction.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/runtime-transaction.md",
+      "title": "Runtime Transaction Flow",
+      "doc_type": "spec",
+      "state": "active",
+      "group": "system",
+      "summary": "Runtime operations use CodeWiki semantic transaction boundaries instead of mutating generated state directly.",
+      "owners": [
+        "architecture"
+      ],
+      "tags": [],
+      "revision": {
+        "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/flows/runtime-transaction.md": ""
           }
         }
       }
@@ -369,11 +618,61 @@
       "revision": {
         "digest": "ae71918429dfed645a09b629449c5151035a6be3c044f4f8cf6fca56a1cd9a5d",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
             ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa"
+          }
+        }
+      }
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/flows/task-loop.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/task-loop.md",
+      "title": "Task Loop Flow",
+      "doc_type": "spec",
+      "state": "active",
+      "group": "system",
+      "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
+      "owners": [
+        "architecture"
+      ],
+      "tags": [],
+      "revision": {
+        "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/flows/task-loop.md": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/flows/view-rebuild.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/view-rebuild.md",
+      "title": "View Rebuild Flow",
+      "doc_type": "spec",
+      "state": "active",
+      "group": "system",
+      "summary": "Canonical knowledge and roadmap state become generated views for efficient navigation.",
+      "owners": [
+        "architecture"
+      ],
+      "tags": [],
+      "revision": {
+        "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
+        "git": {
+          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/flows/view-rebuild.md": ""
           }
         }
       }
@@ -394,7 +693,7 @@
       "revision": {
         "digest": "e518ec2537ade265f09ae825d85debee1b150f509658239f13938c71a36a670c",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -402,11 +701,6 @@
           }
         }
       }
-    },
-    {
-      "id": "code:scripts/rebuild_docs_meta.py",
-      "kind": "code_path",
-      "path": "scripts/rebuild_docs_meta.py"
     },
     {
       "id": "doc:.wiki/knowledge/system/runtime/overview.md",
@@ -424,7 +718,7 @@
       "revision": {
         "digest": "ea5704df88c164838f0c246bf4b2a6892144270ca858e77f1a2d941d0ff36e93",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -450,7 +744,7 @@
       "revision": {
         "digest": "162a0895ac926785fa69defdb5e329cad1f70e943a1e6e35b65c4afb99e73473",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -479,7 +773,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "head": "015a460fb124251738494ea655d2081769e124f1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -560,11 +854,6 @@
       "revision": {
         "digest": "e0b44e9e07f33d59f518e66511d84251cef9a772c937e15f96fafda5dbc3444e"
       }
-    },
-    {
-      "id": "code:scripts/codewiki-gateway.mjs",
-      "kind": "code_path",
-      "path": "scripts/codewiki-gateway.mjs"
     },
     {
       "id": "task:TASK-005",
@@ -792,11 +1081,6 @@
       }
     },
     {
-      "id": "code:.wiki/knowledge",
-      "kind": "code_path",
-      "path": ".wiki/knowledge"
-    },
-    {
       "id": "task:TASK-015",
       "kind": "roadmap_task",
       "task_id": "TASK-015",
@@ -908,7 +1192,7 @@
       "kind": "roadmap_task",
       "task_id": "TASK-020",
       "title": "Architecture manifest and Mermaid view generator",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "task_kind": "architecture",
       "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
@@ -920,7 +1204,7 @@
         "mermaid-view"
       ],
       "revision": {
-        "digest": "e0f81aa7e32d68d951a62c2a328f4dea28cf20e23d7a5caef9ac23c6878297e4"
+        "digest": "3a8c6aa2b8dc0bd2db509505c88bb9bad1ffcb058b2fd0dbe600f13914c2f3b3"
       }
     },
     {
@@ -1219,6 +1503,96 @@
     },
     {
       "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/extension.md",
+      "to": "doc:.wiki/knowledge/system/architecture.json"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/extension.md",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/components/extension.md",
+      "to": "code:extensions/codewiki/index.ts"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/knowledge.md",
+      "to": "doc:.wiki/knowledge/system/architecture.json"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/knowledge.md",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/components/knowledge.md",
+      "to": "code:.wiki/knowledge"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/roadmap.md",
+      "to": "doc:.wiki/knowledge/system/architecture.json"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/roadmap.md",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/components/roadmap.md",
+      "to": "code:.wiki/roadmap.json"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/runtime-gateway.md",
+      "to": "doc:.wiki/knowledge/system/architecture.json"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/runtime-gateway.md",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/components/runtime-gateway.md",
+      "to": "code:scripts/codewiki-gateway.mjs"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/view-rebuild.md",
+      "to": "doc:.wiki/knowledge/system/architecture.json"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/view-rebuild.md",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/components/view-rebuild.md",
+      "to": "code:scripts/rebuild_docs_meta.py"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/views.md",
+      "to": "doc:.wiki/knowledge/system/architecture.json"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/views.md",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/components/views.md",
+      "to": "code:.wiki/views"
+    },
+    {
+      "kind": "doc_link",
       "from": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
       "to": "doc:.wiki/knowledge/clients/overview.md"
     },
@@ -1246,6 +1620,51 @@
       "kind": "doc_code_path",
       "from": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
       "to": "code:scripts/smoke-test.mjs"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/flows/runtime-transaction.md",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/flows/runtime-transaction.md",
+      "to": "doc:.wiki/knowledge/system/v2-operating-model.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/flows/runtime-transaction.md",
+      "to": "code:scripts/rebuild_docs_meta.py"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/flows/task-loop.md",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/flows/task-loop.md",
+      "to": "doc:.wiki/knowledge/system/v2-operating-model.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/flows/task-loop.md",
+      "to": "code:scripts/rebuild_docs_meta.py"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/flows/view-rebuild.md",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/flows/view-rebuild.md",
+      "to": "doc:.wiki/knowledge/system/v2-operating-model.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/flows/view-rebuild.md",
+      "to": "code:scripts/rebuild_docs_meta.py"
     },
     {
       "kind": "doc_link",
@@ -1905,9 +2324,18 @@
         ".wiki/knowledge/product/stories.md",
         ".wiki/knowledge/product/surfaces.md",
         ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/system/components/extension.md",
+        ".wiki/knowledge/system/components/knowledge.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/components/runtime-gateway.md",
+        ".wiki/knowledge/system/components/view-rebuild.md",
+        ".wiki/knowledge/system/components/views.md",
         ".wiki/knowledge/system/extensions/codewiki/overview.md",
         ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/flows/runtime-transaction.md",
         ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/view-rebuild.md",
         ".wiki/knowledge/system/overview.md",
         ".wiki/knowledge/system/runtime/overview.md",
         ".wiki/knowledge/system/v2-operating-model.md"
@@ -1922,9 +2350,18 @@
         ".wiki/knowledge/product/stories.md",
         ".wiki/knowledge/product/surfaces.md",
         ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/system/components/extension.md",
+        ".wiki/knowledge/system/components/knowledge.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/components/runtime-gateway.md",
+        ".wiki/knowledge/system/components/view-rebuild.md",
+        ".wiki/knowledge/system/components/views.md",
         ".wiki/knowledge/system/extensions/codewiki/overview.md",
         ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/flows/runtime-transaction.md",
         ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/view-rebuild.md",
         ".wiki/knowledge/system/overview.md",
         ".wiki/knowledge/system/runtime/overview.md",
         ".wiki/knowledge/system/v2-operating-model.md"
@@ -1937,9 +2374,18 @@
           ".wiki/knowledge/product/users.md"
         ],
         "system": [
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/knowledge.md",
+          ".wiki/knowledge/system/components/roadmap.md",
+          ".wiki/knowledge/system/components/runtime-gateway.md",
+          ".wiki/knowledge/system/components/view-rebuild.md",
+          ".wiki/knowledge/system/components/views.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
           ".wiki/knowledge/system/flows/context-memory.md",
+          ".wiki/knowledge/system/flows/runtime-transaction.md",
           ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/flows/view-rebuild.md",
           ".wiki/knowledge/system/overview.md",
           ".wiki/knowledge/system/runtime/overview.md",
           ".wiki/knowledge/system/v2-operating-model.md"
@@ -1962,9 +2408,18 @@
           ".wiki/knowledge/product/stories.md",
           ".wiki/knowledge/product/surfaces.md",
           ".wiki/knowledge/product/users.md",
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/knowledge.md",
+          ".wiki/knowledge/system/components/roadmap.md",
+          ".wiki/knowledge/system/components/runtime-gateway.md",
+          ".wiki/knowledge/system/components/view-rebuild.md",
+          ".wiki/knowledge/system/components/views.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
           ".wiki/knowledge/system/flows/context-memory.md",
+          ".wiki/knowledge/system/flows/runtime-transaction.md",
           ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/flows/view-rebuild.md",
           ".wiki/knowledge/system/overview.md",
           ".wiki/knowledge/system/runtime/overview.md",
           ".wiki/knowledge/system/v2-operating-model.md"
@@ -2003,7 +2458,6 @@
         "TASK-026"
       ],
       "open_task_ids": [
-        "TASK-020",
         "TASK-021",
         "TASK-022",
         "TASK-023",
@@ -2012,7 +2466,6 @@
       ],
       "in_progress_task_ids": [],
       "todo_task_ids": [
-        "TASK-020",
         "TASK-021",
         "TASK-022",
         "TASK-023",
@@ -2040,6 +2493,7 @@
         "TASK-017",
         "TASK-018",
         "TASK-019",
+        "TASK-020",
         "TASK-026"
       ],
       "cancelled_task_ids": [],
@@ -2072,8 +2526,8 @@
         "TASK-001"
       ],
       "status_counts": {
-        "done": 20,
-        "todo": 6
+        "done": 21,
+        "todo": 5
       }
     },
     "research": {
@@ -2087,6 +2541,8 @@
     "code": {
       "paths": [
         ".wiki/knowledge",
+        ".wiki/roadmap.json",
+        ".wiki/views",
         "README.md",
         "extensions/codewiki",
         "extensions/codewiki/contracts.ts",

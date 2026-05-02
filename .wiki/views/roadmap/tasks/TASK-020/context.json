@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T01:12:02Z",
+  "generated_at": "2026-05-02T01:21:14Z",
   "context_path": ".wiki/roadmap/tasks/TASK-020/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -9,8 +9,8 @@
   "task": {
     "id": "TASK-020",
     "title": "Architecture manifest and Mermaid view generator",
-    "status": "todo",
-    "phase": "implement",
+    "status": "done",
+    "phase": "done",
     "priority": "high",
     "kind": "architecture",
     "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
@@ -47,35 +47,36 @@
   },
   "revision": {
     "task": {
-      "digest": "e0f81aa7e32d68d951a62c2a328f4dea28cf20e23d7a5caef9ac23c6878297e4"
+      "digest": "3a8c6aa2b8dc0bd2db509505c88bb9bad1ffcb058b2fd0dbe600f13914c2f3b3"
     },
     "git": {
-      "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+      "head": "015a460fb124251738494ea655d2081769e124f1",
       "dirty": true,
       "dirty_paths": [
         ".wiki/roadmap.json",
+        "extensions/codewiki/templates.ts",
         "scripts/rebuild_docs_meta.py",
         "scripts/smoke-test.mjs"
       ],
       "paths": {
         ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca",
         ".wiki/knowledge/system/v2-operating-model.md": "643c940fa1ca",
-        ".wiki/roadmap.json": "643c940fa1ca",
+        ".wiki/roadmap.json": "015a460fb124",
         "extensions/codewiki/templates.ts": "3c0906e38572",
-        "scripts/rebuild_docs_meta.py": "a6f94f94cbc0",
-        "scripts/smoke-test.mjs": "3c0906e38572"
+        "scripts/rebuild_docs_meta.py": "015a460fb124",
+        "scripts/smoke-test.mjs": "015a460fb124"
       }
     },
     "spec_digest": "3523c462044c682ff134ade6e2571ddd53d0d0991db6ce117742647f791dd6dc",
-    "code_digest": "80e289e86b0a100fb62ee3f6d2186d96deb88eb0217c8ef56f500a06dc281909",
+    "code_digest": "272b35606a810fb38dd689b449015030f7a1102d36771c5fc6dd041ad493a83e",
     "graph": {
       "git": {
-        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        "head": "015a460fb124251738494ea655d2081769e124f1",
         "dirty": true
       },
-      "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
-      "task_digest": "3a541083ff96689c95ef8b1c4659d1858cf6ed139b70f6568098230e656868fd",
-      "evidence_digest": "3648e610ce0109637174d05a19ae815ecfb16c3c40d41ca6857202c6c43f9d9f"
+      "spec_digest": "8772fbc0c36dc2bdeab15a13ec21d052086f67f1322a42342d50a4ee308d82be",
+      "task_digest": "b24e00a6942ea77d7c12678bb213a6583879629d981d52d937200c7f0c0cde98",
+      "evidence_digest": "18a20646f080f72de0d002dd7dadb6065882b3015e0d5db2ab19e951d2a25bad"
     }
   },
   "specs": [
@@ -123,7 +124,7 @@
       "extensions/codewiki/templates.ts",
       "scripts/smoke-test.mjs"
     ],
-    "digest": "80e289e86b0a100fb62ee3f6d2186d96deb88eb0217c8ef56f500a06dc281909",
+    "digest": "272b35606a810fb38dd689b449015030f7a1102d36771c5fc6dd041ad493a83e",
     "expand": [
       {
         "read": "scripts/rebuild_docs_meta.py"
@@ -136,7 +137,27 @@
       }
     ]
   },
-  "evidence": null,
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Added canonical system architecture manifest, component/flow docs, architecture view generation, Mermaid rendering, validation for missing/orphan component and flow docs, and bootstrap smoke coverage.",
+    "checks_run": [
+      "python scripts/rebuild_docs_meta.py",
+      "npm run typecheck -- --pretty false",
+      "npm test"
+    ],
+    "files_touched": [
+      "scripts/rebuild_docs_meta.py",
+      "extensions/codewiki/templates.ts",
+      "scripts/smoke-test.mjs",
+      ".wiki/knowledge/system/architecture.json",
+      ".wiki/knowledge/system/components/*.md",
+      ".wiki/knowledge/system/flows/*.md",
+      ".wiki/views/system/architecture.json",
+      ".wiki/views/system/architecture.mmd"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-02T01:19:45Z"
+  },
   "expansion": {
     "task_json": ".wiki/roadmap/tasks/TASK-020/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",

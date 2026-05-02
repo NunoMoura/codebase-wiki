@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "updated": "2026-05-02",
+  "components": [
+    {
+      "id": "system.extension",
+      "label": "CodeWiki Extension",
+      "path": ".wiki/knowledge/system/components/extension.md",
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "depends_on": [
+        "system.rebuild",
+        "system.roadmap"
+      ]
+    },
+    {
+      "id": "system.rebuild",
+      "label": "View Rebuild",
+      "path": ".wiki/knowledge/system/components/view-rebuild.md",
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "depends_on": [
+        "system.knowledge",
+        "system.roadmap"
+      ]
+    },
+    {
+      "id": "system.roadmap",
+      "label": "Roadmap Tasks",
+      "path": ".wiki/knowledge/system/components/roadmap.md",
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        ".wiki/roadmap.json"
+      ],
+      "depends_on": [
+        "system.knowledge"
+      ]
+    },
+    {
+      "id": "system.knowledge",
+      "label": "Canonical Knowledge",
+      "path": ".wiki/knowledge/system/components/knowledge.md",
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "system.views",
+      "label": "Generated Views",
+      "path": ".wiki/knowledge/system/components/views.md",
+      "code_paths": [
+        ".wiki/views",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "depends_on": [
+        "system.rebuild"
+      ]
+    },
+    {
+      "id": "system.runtime",
+      "label": "Runtime Gateway",
+      "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "scripts/codewiki-transaction.mjs"
+      ],
+      "depends_on": [
+        "system.knowledge",
+        "system.roadmap"
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "id": "flow.context-memory",
+      "from": "system.views",
+      "to": "system.extension",
+      "kind": "read-model",
+      "label": "agent/UI navigation",
+      "path": ".wiki/knowledge/system/flows/context-memory.md"
+    },
+    {
+      "id": "flow.view-rebuild",
+      "from": "system.knowledge",
+      "to": "system.rebuild",
+      "kind": "input",
+      "label": "canonical docs",
+      "path": ".wiki/knowledge/system/flows/view-rebuild.md"
+    },
+    {
+      "id": "flow.view-output",
+      "from": "system.rebuild",
+      "to": "system.views",
+      "kind": "generates",
+      "label": "optimized views",
+      "path": ".wiki/knowledge/system/flows/view-rebuild.md"
+    },
+    {
+      "id": "flow.task-loop",
+      "from": "system.roadmap",
+      "to": "system.extension",
+      "kind": "control",
+      "label": "task context and phase",
+      "path": ".wiki/knowledge/system/flows/task-loop.md"
+    },
+    {
+      "id": "flow.runtime-transaction",
+      "from": "system.extension",
+      "to": "system.runtime",
+      "kind": "transaction",
+      "label": "validated runtime writes",
+      "path": ".wiki/knowledge/system/flows/runtime-transaction.md"
+    }
+  ]
+}

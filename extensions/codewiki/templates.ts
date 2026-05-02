@@ -68,6 +68,46 @@ export function starterFiles(
 			date,
 			brownfieldHints.boundaries,
 		),
+		".wiki/knowledge/system/architecture.json": architectureManifestJson(projectName, date),
+		".wiki/knowledge/system/components/extension.md": architectureComponentDoc(
+			projectName,
+			date,
+			"extension",
+			"CodeWiki Extension",
+			"Pi package extension surface for commands, status panel, skills, and agent tools.",
+			["scripts/rebuild_docs_meta.py"],
+		),
+		".wiki/knowledge/system/components/knowledge.md": architectureComponentDoc(
+			projectName,
+			date,
+			"knowledge",
+			"Canonical Knowledge",
+			"Durable product and system truth maintained by agents.",
+			[".wiki/knowledge"],
+		),
+		".wiki/knowledge/system/components/views.md": architectureComponentDoc(
+			projectName,
+			date,
+			"views",
+			"Generated Views",
+			"Tool-owned optimized read models consumed by agents and UI.",
+			[".wiki/views", "scripts/rebuild_docs_meta.py"],
+		),
+		".wiki/knowledge/system/components/rebuild.md": architectureComponentDoc(
+			projectName,
+			date,
+			"rebuild",
+			"View Rebuild",
+			"Generator that derives views from canonical truth.",
+			["scripts/rebuild_docs_meta.py"],
+		),
+		".wiki/knowledge/system/flows/view-rebuild.md": architectureFlowDoc(
+			projectName,
+			date,
+			"view-rebuild",
+			"View Rebuild Flow",
+			"Canonical knowledge and roadmap state become generated views for efficient navigation.",
+		),
 		".wiki/knowledge/system/runtime/overview.md": runtimePolicyDoc(
 			projectName,
 			date,
@@ -538,6 +578,140 @@ function uxStatusPanelDoc(projectName: string, date: string): string {
 		"- [Clients Overview](../overview.md)",
 		"- [Roadmap Surface](roadmap.md)",
 		"- [System Overview](../../system/overview.md)",
+		"",
+	].join("\n");
+}
+
+
+function architectureManifestJson(_projectName: string, date: string): string {
+	return `${JSON.stringify(
+		{
+			version: 1,
+			updated: date,
+			components: [
+				{
+					id: "system.extension",
+					label: "CodeWiki Extension",
+					path: ".wiki/knowledge/system/components/extension.md",
+					code_paths: ["extensions/codewiki/index.ts"],
+					depends_on: ["system.knowledge", "system.views"],
+				},
+				{
+					id: "system.knowledge",
+					label: "Canonical Knowledge",
+					path: ".wiki/knowledge/system/components/knowledge.md",
+					code_paths: [".wiki/knowledge"],
+					depends_on: [],
+				},
+				{
+					id: "system.views",
+					label: "Generated Views",
+					path: ".wiki/knowledge/system/components/views.md",
+					code_paths: [".wiki/views", "scripts/rebuild_docs_meta.py"],
+					depends_on: ["system.rebuild"],
+				},
+				{
+					id: "system.rebuild",
+					label: "View Rebuild",
+					path: ".wiki/knowledge/system/components/rebuild.md",
+					code_paths: ["scripts/rebuild_docs_meta.py"],
+					depends_on: ["system.knowledge"],
+				},
+			],
+			flows: [
+				{
+					id: "flow.view-rebuild",
+					from: "system.knowledge",
+					to: "system.rebuild",
+					kind: "input",
+					label: "canonical truth",
+					path: ".wiki/knowledge/system/flows/view-rebuild.md",
+				},
+				{
+					id: "flow.view-output",
+					from: "system.rebuild",
+					to: "system.views",
+					kind: "generates",
+					label: "optimized views",
+					path: ".wiki/knowledge/system/flows/view-rebuild.md",
+				},
+			],
+		},
+		null,
+		2,
+	)}\n`;
+}
+
+function architectureComponentDoc(
+	_projectName: string,
+	date: string,
+	slug: string,
+	title: string,
+	summary: string,
+	codePaths: string[],
+): string {
+	return [
+		"---",
+		`id: system.components.${slug}`,
+		`title: ${title}`,
+		"state: active",
+		`summary: ${summary}`,
+		"owners:",
+		"- architecture",
+		`updated: '${date}'`,
+		"code_paths:",
+		...codePaths.map((path) => `- ${path}`),
+		"---",
+		"",
+		`# ${title}`,
+		"",
+		"## Responsibilities",
+		"",
+		summary,
+		"",
+		"## Invariants",
+		"",
+		"- Canonical changes flow through knowledge, roadmap tasks, or evidence before views are rebuilt.",
+		"- Generated views are read models and must not be hand-edited.",
+		"",
+		"## Related docs",
+		"",
+		"- [System Overview](../overview.md)",
+		"- [Architecture Manifest](../architecture.json)",
+		"",
+	].join("\n");
+}
+
+function architectureFlowDoc(
+	_projectName: string,
+	date: string,
+	slug: string,
+	title: string,
+	summary: string,
+): string {
+	return [
+		"---",
+		`id: system.flows.${slug}`,
+		`title: ${title}`,
+		"state: active",
+		`summary: ${summary}`,
+		"owners:",
+		"- architecture",
+		`updated: '${date}'`,
+		"code_paths:",
+		"- scripts/rebuild_docs_meta.py",
+		"---",
+		"",
+		`# ${title}`,
+		"",
+		"## Flow",
+		"",
+		summary,
+		"",
+		"## Related docs",
+		"",
+		"- [System Overview](../overview.md)",
+		"- [System Overview](../overview.md)",
 		"",
 	].join("\n");
 }

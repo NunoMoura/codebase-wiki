@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-05-02T01:12:01Z",
+  "generated_at": "2026-05-02T01:21:13Z",
   "health": {
     "color": "yellow",
     "errors": 0,
@@ -9,13 +9,52 @@
   },
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-02T01:12:01Z",
+    "graph_generated_at": "2026-05-02T01:21:13Z",
     "revision": {
       "git": {
-        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        "head": "015a460fb124251738494ea655d2081769e124f1",
         "dirty": true,
         "dirty_paths": [
           ".wiki/roadmap.json",
+          ".wiki/views/drift.json",
+          ".wiki/views/evidence/recent.json",
+          ".wiki/views/graph.json",
+          ".wiki/views/lint.json",
+          ".wiki/views/product/brief.json",
+          ".wiki/views/roadmap-state.json",
+          ".wiki/views/roadmap/index.json",
+          ".wiki/views/roadmap/queue.json",
+          ".wiki/views/roadmap/state.json",
+          ".wiki/views/roadmap/tasks/TASK-001/context.json",
+          ".wiki/views/roadmap/tasks/TASK-002/context.json",
+          ".wiki/views/roadmap/tasks/TASK-003/context.json",
+          ".wiki/views/roadmap/tasks/TASK-004/context.json",
+          ".wiki/views/roadmap/tasks/TASK-005/context.json",
+          ".wiki/views/roadmap/tasks/TASK-006/context.json",
+          ".wiki/views/roadmap/tasks/TASK-007/context.json",
+          ".wiki/views/roadmap/tasks/TASK-008/context.json",
+          ".wiki/views/roadmap/tasks/TASK-009/context.json",
+          ".wiki/views/roadmap/tasks/TASK-010/context.json",
+          ".wiki/views/roadmap/tasks/TASK-011/context.json",
+          ".wiki/views/roadmap/tasks/TASK-012/context.json",
+          ".wiki/views/roadmap/tasks/TASK-013/context.json",
+          ".wiki/views/roadmap/tasks/TASK-014/context.json",
+          ".wiki/views/roadmap/tasks/TASK-015/context.json",
+          ".wiki/views/roadmap/tasks/TASK-016/context.json",
+          ".wiki/views/roadmap/tasks/TASK-017/context.json",
+          ".wiki/views/roadmap/tasks/TASK-018/context.json",
+          ".wiki/views/roadmap/tasks/TASK-019/context.json",
+          ".wiki/views/roadmap/tasks/TASK-020/context.json",
+          ".wiki/views/roadmap/tasks/TASK-021/context.json",
+          ".wiki/views/roadmap/tasks/TASK-022/context.json",
+          ".wiki/views/roadmap/tasks/TASK-023/context.json",
+          ".wiki/views/roadmap/tasks/TASK-024/context.json",
+          ".wiki/views/roadmap/tasks/TASK-025/context.json",
+          ".wiki/views/roadmap/tasks/TASK-026/context.json",
+          ".wiki/views/status-state.json",
+          ".wiki/views/status.json",
+          ".wiki/views/system/architecture.json",
+          "extensions/codewiki/templates.ts",
           "scripts/rebuild_docs_meta.py",
           "scripts/smoke-test.mjs"
         ],
@@ -30,13 +69,23 @@
           ".wiki/knowledge/product/stories.md": "3c0906e38572fca7352aa3e820369391069c26b1",
           ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/system/components/extension.md": "",
+          ".wiki/knowledge/system/components/knowledge.md": "",
+          ".wiki/knowledge/system/components/roadmap.md": "",
+          ".wiki/knowledge/system/components/runtime-gateway.md": "",
+          ".wiki/knowledge/system/components/view-rebuild.md": "",
+          ".wiki/knowledge/system/components/views.md": "",
           ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/system/flows/runtime-transaction.md": "",
           ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+          ".wiki/knowledge/system/flows/task-loop.md": "",
+          ".wiki/knowledge/system/flows/view-rebuild.md": "",
           ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/runtime/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/v2-operating-model.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-          ".wiki/roadmap.json": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/roadmap.json": "015a460fb124251738494ea655d2081769e124f1",
+          ".wiki/views": "015a460fb124251738494ea655d2081769e124f1",
           "README.md": "53578e465699177d1945148075b98a9fc539da26",
           "extensions/codewiki": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "extensions/codewiki/contracts.ts": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
@@ -44,8 +93,8 @@
           "extensions/codewiki/templates.ts": "3c0906e38572fca7352aa3e820369391069c26b1",
           "package.json": "53578e465699177d1945148075b98a9fc539da26",
           "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "scripts/rebuild_docs_meta.py": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          "scripts/smoke-test.mjs": "3c0906e38572fca7352aa3e820369391069c26b1",
+          "scripts/rebuild_docs_meta.py": "015a460fb124251738494ea655d2081769e124f1",
+          "scripts/smoke-test.mjs": "015a460fb124251738494ea655d2081769e124f1",
           "skills": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "skills/codewiki-architecture/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "skills/codewiki-plan/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
@@ -55,19 +104,19 @@
           "skills/codewiki/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
         }
       },
-      "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
-      "task_digest": "3a541083ff96689c95ef8b1c4659d1858cf6ed139b70f6568098230e656868fd",
-      "evidence_digest": "3648e610ce0109637174d05a19ae815ecfb16c3c40d41ca6857202c6c43f9d9f"
+      "spec_digest": "8772fbc0c36dc2bdeab15a13ec21d052086f67f1322a42342d50a4ee308d82be",
+      "task_digest": "b24e00a6942ea77d7c12678bb213a6583879629d981d52d937200c7f0c0cde98",
+      "evidence_digest": "18a20646f080f72de0d002dd7dadb6065882b3015e0d5db2ab19e951d2a25bad"
     },
     "roadmap_folder": ".wiki/roadmap",
     "task_context_root": ".wiki/roadmap/tasks"
   },
   "summary": {
     "task_count": 26,
-    "open_count": 6,
+    "open_count": 5,
     "status_counts": {
-      "done": 20,
-      "todo": 6
+      "done": 21,
+      "todo": 5
     },
     "priority_counts": {
       "high": 16,
@@ -104,7 +153,6 @@
       "TASK-026"
     ],
     "open_task_ids": [
-      "TASK-020",
       "TASK-021",
       "TASK-022",
       "TASK-023",
@@ -113,7 +161,6 @@
     ],
     "in_progress_task_ids": [],
     "todo_task_ids": [
-      "TASK-020",
       "TASK-021",
       "TASK-022",
       "TASK-023",
@@ -141,6 +188,7 @@
       "TASK-017",
       "TASK-018",
       "TASK-019",
+      "TASK-020",
       "TASK-026"
     ],
     "cancelled_task_ids": [],
@@ -1404,7 +1452,7 @@
     "TASK-020": {
       "id": "TASK-020",
       "title": "Architecture manifest and Mermaid view generator",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "kind": "architecture",
       "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
@@ -1444,13 +1492,33 @@
       ],
       "updated": "2026-05-02",
       "revision": {
-        "digest": "e0f81aa7e32d68d951a62c2a328f4dea28cf20e23d7a5caef9ac23c6878297e4"
+        "digest": "3a8c6aa2b8dc0bd2db509505c88bb9bad1ffcb058b2fd0dbe600f13914c2f3b3"
       },
       "context_path": ".wiki/roadmap/tasks/TASK-020/context.json",
       "loop": {
-        "phase": "implement",
-        "updated_at": "",
-        "evidence": null
+        "phase": "done",
+        "updated_at": "2026-05-02T01:19:45Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Added canonical system architecture manifest, component/flow docs, architecture view generation, Mermaid rendering, validation for missing/orphan component and flow docs, and bootstrap smoke coverage.",
+          "checks_run": [
+            "python scripts/rebuild_docs_meta.py",
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "scripts/rebuild_docs_meta.py",
+            "extensions/codewiki/templates.ts",
+            "scripts/smoke-test.mjs",
+            ".wiki/knowledge/system/architecture.json",
+            ".wiki/knowledge/system/components/*.md",
+            ".wiki/knowledge/system/flows/*.md",
+            ".wiki/views/system/architecture.json",
+            ".wiki/views/system/architecture.mmd"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-02T01:19:45Z"
+        }
       }
     },
     "TASK-021": {

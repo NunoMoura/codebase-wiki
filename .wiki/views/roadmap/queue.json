@@ -1,20 +1,6 @@
 {
   "tasks": [
     {
-      "id": "TASK-020",
-      "title": "Architecture manifest and Mermaid view generator",
-      "status": "todo",
-      "phase": "implement",
-      "priority": "high",
-      "kind": "architecture",
-      "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
-      "context_path": ".wiki/views/roadmap/tasks/TASK-020/context.json",
-      "spec_paths": [
-        ".wiki/knowledge/system/v2-operating-model.md",
-        ".wiki/knowledge/system/flows/context-memory.md"
-      ]
-    },
-    {
       "id": "TASK-021",
       "title": "Subagent JSON worker contracts",
       "status": "todo",
@@ -84,15 +70,15 @@
       ]
     }
   ],
-  "next_task_id": "TASK-020",
+  "next_task_id": "TASK-021",
   "meta": {
     "version": 1,
     "name": "roadmap.queue",
-    "generated_at": "2026-05-02T01:12:02Z",
+    "generated_at": "2026-05-02T01:21:15Z",
     "revision": {
-      "digest": "f8b2f23693eeab4c0970f7775e0b6f03e14949e6557a61f79fa0dfcebe81950f",
+      "digest": "1d8300ea3db80f281448e33b703796ea0c8dacf77d66aa978b918deddb06abac",
       "git": {
-        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        "head": "015a460fb124251738494ea655d2081769e124f1",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
@@ -116,7 +102,7 @@
       "target_bytes": 12000
     },
     "recommended_next_reads": [
-      ".wiki/views/roadmap/tasks/TASK-020/context.json"
+      ".wiki/views/roadmap/tasks/TASK-021/context.json"
     ]
   }
 }

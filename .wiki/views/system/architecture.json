@@ -1,93 +1,202 @@
 {
+  "source": ".wiki/knowledge/system/architecture.json",
+  "manifest_revision": {
+    "digest": "4d3e7eaf1292c534b3321ba3443303f8b682fa576cb526a8b4a89af4abab0866",
+    "git": {
+      "head": "015a460fb124251738494ea655d2081769e124f1",
+      "dirty": false,
+      "dirty_paths": [],
+      "paths": {
+        ".wiki/knowledge/system/architecture.json": ""
+      }
+    }
+  },
   "components": [
     {
-      "id": "spec.extensions.codewiki.overview",
-      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
-      "title": "Extensions / Codewiki",
-      "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "id": "system.extension",
+      "label": "CodeWiki Extension",
+      "path": ".wiki/knowledge/system/components/extension.md",
+      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools.",
       "code_paths": [
-        "extensions/codewiki",
-        "skills",
-        "scripts/smoke-test.mjs"
-      ]
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "depends_on": [
+        "system.rebuild",
+        "system.roadmap"
+      ],
+      "doc_revision": {
+        "digest": "0d1babfa8f1bb1b3cc3a0f0232c2f32e570710ec9335c39e6b7270fd9d7897a7"
+      }
     },
     {
-      "id": "spec.system.flows.context-memory",
-      "path": ".wiki/knowledge/system/flows/context-memory.md",
-      "title": "Context Memory Flow",
-      "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and optional bounded context tools.",
-      "code_paths": []
-    },
-    {
-      "id": "spec.system.flows.sanitation-release",
-      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
-      "title": "Sanitation and Release Flow",
-      "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
-      "code_paths": []
-    },
-    {
-      "id": "spec.system.overview",
-      "path": ".wiki/knowledge/system/overview.md",
-      "title": "System Overview",
-      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
+      "id": "system.rebuild",
+      "label": "View Rebuild",
+      "path": ".wiki/knowledge/system/components/view-rebuild.md",
+      "summary": "Generator that derives graph, lint, roadmap, status, and v2 views from canonical truth.",
       "code_paths": [
-        "extensions/codewiki",
-        "scripts/rebuild_docs_meta.py",
-        "skills"
-      ]
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "depends_on": [
+        "system.knowledge",
+        "system.roadmap"
+      ],
+      "doc_revision": {
+        "digest": "bdb2bfdc759e203b38dab3eeb8320ae332e8122204e6eb3c234777bfd98f526c"
+      }
     },
     {
-      "id": "spec.system.runtime",
-      "path": ".wiki/knowledge/system/runtime/overview.md",
-      "title": "Runtime Policy",
-      "summary": "Policy boundary for codewiki runtime access in codewiki.",
-      "code_paths": []
-    },
-    {
-      "id": "spec.system.v2-operating-model",
-      "path": ".wiki/knowledge/system/v2-operating-model.md",
-      "title": "CodeWiki v2 Operating Model",
-      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
+      "id": "system.roadmap",
+      "label": "Roadmap Tasks",
+      "path": ".wiki/knowledge/system/components/roadmap.md",
+      "summary": "Canonical active delta between intended knowledge and current implementation reality.",
       "code_paths": [
-        "extensions/codewiki",
-        "scripts/rebuild_docs_meta.py",
-        "skills"
-      ]
+        "extensions/codewiki/index.ts",
+        ".wiki/roadmap.json"
+      ],
+      "depends_on": [
+        "system.knowledge"
+      ],
+      "doc_revision": {
+        "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653"
+      }
+    },
+    {
+      "id": "system.knowledge",
+      "label": "Canonical Knowledge",
+      "path": ".wiki/knowledge/system/components/knowledge.md",
+      "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "depends_on": [],
+      "doc_revision": {
+        "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b"
+      }
+    },
+    {
+      "id": "system.views",
+      "label": "Generated Views",
+      "path": ".wiki/knowledge/system/components/views.md",
+      "summary": "Tool-owned optimized read models consumed by agents and UI.",
+      "code_paths": [
+        ".wiki/views",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "depends_on": [
+        "system.rebuild"
+      ],
+      "doc_revision": {
+        "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5"
+      }
+    },
+    {
+      "id": "system.runtime",
+      "label": "Runtime Gateway",
+      "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+      "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "scripts/codewiki-transaction.mjs"
+      ],
+      "depends_on": [
+        "system.knowledge",
+        "system.roadmap"
+      ],
+      "doc_revision": {
+        "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc"
+      }
     }
   ],
   "flows": [
     {
-      "id": "spec.system.flows.context-memory",
+      "id": "flow.context-memory",
+      "from": "system.views",
+      "to": "system.extension",
+      "kind": "read-model",
+      "label": "agent/UI navigation",
       "path": ".wiki/knowledge/system/flows/context-memory.md",
-      "title": "Context Memory Flow",
       "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and optional bounded context tools.",
-      "code_paths": []
+      "doc_revision": {
+        "digest": "bdba7c2d093054f8d6b5fd321864985aaf5880f8e35096e466e4e0bc84259757"
+      }
     },
     {
-      "id": "spec.system.flows.sanitation-release",
-      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
-      "title": "Sanitation and Release Flow",
-      "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
-      "code_paths": []
+      "id": "flow.view-rebuild",
+      "from": "system.knowledge",
+      "to": "system.rebuild",
+      "kind": "input",
+      "label": "canonical docs",
+      "path": ".wiki/knowledge/system/flows/view-rebuild.md",
+      "summary": "Canonical knowledge and roadmap state become generated views for efficient navigation.",
+      "doc_revision": {
+        "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb"
+      }
+    },
+    {
+      "id": "flow.view-output",
+      "from": "system.rebuild",
+      "to": "system.views",
+      "kind": "generates",
+      "label": "optimized views",
+      "path": ".wiki/knowledge/system/flows/view-rebuild.md",
+      "summary": "Canonical knowledge and roadmap state become generated views for efficient navigation.",
+      "doc_revision": {
+        "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb"
+      }
+    },
+    {
+      "id": "flow.task-loop",
+      "from": "system.roadmap",
+      "to": "system.extension",
+      "kind": "control",
+      "label": "task context and phase",
+      "path": ".wiki/knowledge/system/flows/task-loop.md",
+      "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
+      "doc_revision": {
+        "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde"
+      }
+    },
+    {
+      "id": "flow.runtime-transaction",
+      "from": "system.extension",
+      "to": "system.runtime",
+      "kind": "transaction",
+      "label": "validated runtime writes",
+      "path": ".wiki/knowledge/system/flows/runtime-transaction.md",
+      "summary": "Runtime operations use CodeWiki semantic transaction boundaries instead of mutating generated state directly.",
+      "doc_revision": {
+        "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7"
+      }
     }
   ],
+  "validation": {
+    "issues": [
+      {
+        "severity": "warning",
+        "kind": "orphan-flow-doc",
+        "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+        "message": "System flow doc is not referenced by architecture.json."
+      }
+    ]
+  },
   "graph_revision": {
     "git": {
-      "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+      "head": "015a460fb124251738494ea655d2081769e124f1",
       "dirty": true
     },
-    "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
-    "task_digest": "3a541083ff96689c95ef8b1c4659d1858cf6ed139b70f6568098230e656868fd",
-    "evidence_digest": "3648e610ce0109637174d05a19ae815ecfb16c3c40d41ca6857202c6c43f9d9f"
+    "spec_digest": "8772fbc0c36dc2bdeab15a13ec21d052086f67f1322a42342d50a4ee308d82be",
+    "task_digest": "b24e00a6942ea77d7c12678bb213a6583879629d981d52d937200c7f0c0cde98",
+    "evidence_digest": "18a20646f080f72de0d002dd7dadb6065882b3015e0d5db2ab19e951d2a25bad"
   },
   "meta": {
     "version": 1,
     "name": "system.architecture",
-    "generated_at": "2026-05-02T01:12:02Z",
+    "generated_at": "2026-05-02T01:21:15Z",
     "revision": {
-      "digest": "8808822c53b8bca4dedfd7ac2d859c7ff0d48467ed131ea059ffb4bcd0a8671d",
+      "digest": "0c8b1c06d65d11f4f6ad0663baef2f57ab180f3dd1bfbff2e92bcc137624f3c1",
       "git": {
-        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        "head": "015a460fb124251738494ea655d2081769e124f1",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
@@ -111,11 +220,11 @@
       "target_bytes": 20000
     },
     "recommended_next_reads": [
-      ".wiki/knowledge/system/extensions/codewiki/overview.md",
-      ".wiki/knowledge/system/flows/context-memory.md",
-      ".wiki/knowledge/system/flows/sanitation-release.md",
-      ".wiki/knowledge/system/overview.md",
-      ".wiki/knowledge/system/runtime/overview.md"
+      ".wiki/knowledge/system/components/extension.md",
+      ".wiki/knowledge/system/components/view-rebuild.md",
+      ".wiki/knowledge/system/components/roadmap.md",
+      ".wiki/knowledge/system/components/knowledge.md",
+      ".wiki/knowledge/system/components/views.md"
     ]
   }
 }
