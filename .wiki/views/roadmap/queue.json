@@ -1,20 +1,6 @@
 {
   "tasks": [
     {
-      "id": "TASK-021",
-      "title": "Subagent JSON worker contracts",
-      "status": "todo",
-      "phase": "implement",
-      "priority": "medium",
-      "kind": "agent-workflow",
-      "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
-      "context_path": ".wiki/views/roadmap/tasks/TASK-021/context.json",
-      "spec_paths": [
-        ".wiki/knowledge/system/v2-operating-model.md",
-        ".wiki/knowledge/system/flows/context-memory.md"
-      ]
-    },
-    {
       "id": "TASK-022",
       "title": "Heartbeat modes budgets and stop conditions",
       "status": "todo",
@@ -70,18 +56,19 @@
       ]
     }
   ],
-  "next_task_id": "TASK-021",
+  "next_task_id": "TASK-022",
   "meta": {
     "version": 1,
     "name": "roadmap.queue",
-    "generated_at": "2026-05-02T01:21:15Z",
+    "generated_at": "2026-05-02T01:44:12Z",
     "revision": {
-      "digest": "1d8300ea3db80f281448e33b703796ea0c8dacf77d66aa978b918deddb06abac",
+      "digest": "abb085e2db46e8e4f891e71b3eafac567fa386149aa914e9a11c20ffefd37405",
       "git": {
-        "head": "015a460fb124251738494ea655d2081769e124f1",
+        "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
+          ".wiki/knowledge/system/flows/context-memory.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
@@ -91,8 +78,7 @@
           ".wiki/roadmap/state.json",
           ".wiki/roadmap/tasks/TASK-001/context.json",
           ".wiki/roadmap/tasks/TASK-002/context.json",
-          ".wiki/roadmap/tasks/TASK-003/context.json",
-          ".wiki/roadmap/tasks/TASK-004/context.json"
+          ".wiki/roadmap/tasks/TASK-003/context.json"
         ],
         "paths": {}
       }
@@ -102,7 +88,7 @@
       "target_bytes": 12000
     },
     "recommended_next_reads": [
-      ".wiki/views/roadmap/tasks/TASK-021/context.json"
+      ".wiki/views/roadmap/tasks/TASK-022/context.json"
     ]
   }
 }

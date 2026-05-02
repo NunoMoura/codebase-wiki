@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-05-02T01:21:13Z",
+  "generated_at": "2026-05-02T01:44:11Z",
   "health": {
     "color": "yellow",
     "errors": 0,
@@ -9,12 +9,13 @@
   },
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-02T01:21:13Z",
+    "graph_generated_at": "2026-05-02T01:44:11Z",
     "revision": {
       "git": {
-        "head": "015a460fb124251738494ea655d2081769e124f1",
+        "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         "dirty": true,
         "dirty_paths": [
+          ".wiki/knowledge/system/flows/context-memory.md",
           ".wiki/roadmap.json",
           ".wiki/views/drift.json",
           ".wiki/views/evidence/recent.json",
@@ -54,12 +55,15 @@
           ".wiki/views/status-state.json",
           ".wiki/views/status.json",
           ".wiki/views/system/architecture.json",
-          "extensions/codewiki/templates.ts",
-          "scripts/rebuild_docs_meta.py",
-          "scripts/smoke-test.mjs"
+          "extensions/codewiki/contracts.ts",
+          "scripts/smoke-test.mjs",
+          "skills/codewiki-architecture/SKILL.md",
+          "skills/codewiki-plan/SKILL.md",
+          "skills/codewiki-research/SKILL.md",
+          "skills/codewiki/SKILL.md"
         ],
         "paths": {
-          ".wiki/knowledge": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
@@ -69,32 +73,32 @@
           ".wiki/knowledge/product/stories.md": "3c0906e38572fca7352aa3e820369391069c26b1",
           ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-          ".wiki/knowledge/system/components/extension.md": "",
-          ".wiki/knowledge/system/components/knowledge.md": "",
-          ".wiki/knowledge/system/components/roadmap.md": "",
-          ".wiki/knowledge/system/components/runtime-gateway.md": "",
-          ".wiki/knowledge/system/components/view-rebuild.md": "",
-          ".wiki/knowledge/system/components/views.md": "",
+          ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-          ".wiki/knowledge/system/flows/runtime-transaction.md": "",
+          ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/knowledge/system/flows/task-loop.md": "",
-          ".wiki/knowledge/system/flows/view-rebuild.md": "",
+          ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/runtime/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/v2-operating-model.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-          ".wiki/roadmap.json": "015a460fb124251738494ea655d2081769e124f1",
-          ".wiki/views": "015a460fb124251738494ea655d2081769e124f1",
+          ".wiki/roadmap.json": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/views": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           "README.md": "53578e465699177d1945148075b98a9fc539da26",
-          "extensions/codewiki": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "extensions/codewiki": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           "extensions/codewiki/contracts.ts": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           "extensions/codewiki/index.ts": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-          "extensions/codewiki/templates.ts": "3c0906e38572fca7352aa3e820369391069c26b1",
+          "extensions/codewiki/templates.ts": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           "package.json": "53578e465699177d1945148075b98a9fc539da26",
           "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "scripts/rebuild_docs_meta.py": "015a460fb124251738494ea655d2081769e124f1",
-          "scripts/smoke-test.mjs": "015a460fb124251738494ea655d2081769e124f1",
+          "scripts/rebuild_docs_meta.py": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          "scripts/smoke-test.mjs": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           "skills": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "skills/codewiki-architecture/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "skills/codewiki-plan/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
@@ -104,19 +108,19 @@
           "skills/codewiki/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
         }
       },
-      "spec_digest": "8772fbc0c36dc2bdeab15a13ec21d052086f67f1322a42342d50a4ee308d82be",
-      "task_digest": "b24e00a6942ea77d7c12678bb213a6583879629d981d52d937200c7f0c0cde98",
-      "evidence_digest": "18a20646f080f72de0d002dd7dadb6065882b3015e0d5db2ab19e951d2a25bad"
+      "spec_digest": "b800321a1649e91f4531344f9ad934714b5a3f2702baf12ba5bf4505afe0b1f4",
+      "task_digest": "d81688ae62251ef604c6ec1bfe460371e0191ab91025aef360586987b82255e6",
+      "evidence_digest": "179a791316d9a89eee9de5a5d9006d650c2944ce8bd9b80fb449e1447b4188a4"
     },
     "roadmap_folder": ".wiki/roadmap",
     "task_context_root": ".wiki/roadmap/tasks"
   },
   "summary": {
     "task_count": 26,
-    "open_count": 5,
+    "open_count": 4,
     "status_counts": {
-      "done": 21,
-      "todo": 5
+      "done": 22,
+      "todo": 4
     },
     "priority_counts": {
       "high": 16,
@@ -153,7 +157,6 @@
       "TASK-026"
     ],
     "open_task_ids": [
-      "TASK-021",
       "TASK-022",
       "TASK-023",
       "TASK-024",
@@ -161,7 +164,6 @@
     ],
     "in_progress_task_ids": [],
     "todo_task_ids": [
-      "TASK-021",
       "TASK-022",
       "TASK-023",
       "TASK-024",
@@ -189,6 +191,7 @@
       "TASK-018",
       "TASK-019",
       "TASK-020",
+      "TASK-021",
       "TASK-026"
     ],
     "cancelled_task_ids": [],
@@ -1524,7 +1527,7 @@
     "TASK-021": {
       "id": "TASK-021",
       "title": "Subagent JSON worker contracts",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "kind": "agent-workflow",
       "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
@@ -1560,13 +1563,33 @@
       ],
       "updated": "2026-05-02",
       "revision": {
-        "digest": "54aded7e22fd8291b4aaf0a7a22d5b693fff3f42711a397e909d83b72739fd40"
+        "digest": "ccce18b82ba322e8f78261d337f9609c9a665e723c71a4e17f73d56b1a000b57"
       },
       "context_path": ".wiki/roadmap/tasks/TASK-021/context.json",
       "loop": {
-        "phase": "implement",
-        "updated_at": "",
-        "evidence": null
+        "phase": "done",
+        "updated_at": "2026-05-02T01:42:33Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Added shared SubagentBrief/SubagentResult contracts plus role-specific contracts for verifier, researcher, planner, architecture reviewer, and view auditor. Added view-audit skill and smoke coverage for package skill loading.",
+          "checks_run": [
+            "python scripts/rebuild_docs_meta.py",
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "extensions/codewiki/contracts.ts",
+            "skills/codewiki/SKILL.md",
+            "skills/codewiki-plan/SKILL.md",
+            "skills/codewiki-research/SKILL.md",
+            "skills/codewiki-architecture/SKILL.md",
+            "skills/codewiki-view-audit/SKILL.md",
+            "scripts/smoke-test.mjs",
+            ".wiki/knowledge/system/flows/context-memory.md"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-02T01:42:33Z"
+        }
       }
     },
     "TASK-022": {

@@ -31,7 +31,7 @@ Use this workflow during outer planning, not as an automatic refactor pass.
    - Start with `codewiki_state` and the smallest architecture/system view available.
    - Expand relevant `.wiki/knowledge/system/**` component or flow specs only after the view points there.
    - Use repo tools or an available bounded context tool to inspect code ownership seams; avoid loading broad source trees into parent RAM.
-   - Use an architecture-review subagent for large cross-cutting reviews and return compact findings.
+   - Use an architecture-review subagent for large cross-cutting reviews. Send `SubagentBrief` with `role: "architecture_reviewer"`; require `SubagentResult` findings and proposals only.
 
 2. **Find friction**
    Look for:
@@ -55,6 +55,12 @@ Use this workflow during outer planning, not as an automatic refactor pass.
    - Do not propose final interfaces immediately.
    - Ask the user which candidate to explore.
    - Then run planning loop to capture decisions and tasks.
+
+## Architecture reviewer subagent contract
+
+Input: `SubagentBrief` with `role: "architecture_reviewer"`, focused seams/flows/components, linked system views, and code paths.
+
+Output: `SubagentResult` with findings about ownership, locality, leverage, testability, drift, and proposals of kind `task_delta`, `knowledge_patch`, or `follow_up`. Parent decides which findings become roadmap tasks or knowledge updates.
 
 ## Non-goals
 

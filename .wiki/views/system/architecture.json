@@ -3,11 +3,11 @@
   "manifest_revision": {
     "digest": "4d3e7eaf1292c534b3321ba3443303f8b682fa576cb526a8b4a89af4abab0866",
     "git": {
-      "head": "015a460fb124251738494ea655d2081769e124f1",
+      "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
       "dirty": false,
       "dirty_paths": [],
       "paths": {
-        ".wiki/knowledge/system/architecture.json": ""
+        ".wiki/knowledge/system/architecture.json": "ce607eba2ff9"
       }
     }
   },
@@ -118,7 +118,7 @@
       "path": ".wiki/knowledge/system/flows/context-memory.md",
       "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and optional bounded context tools.",
       "doc_revision": {
-        "digest": "bdba7c2d093054f8d6b5fd321864985aaf5880f8e35096e466e4e0bc84259757"
+        "digest": "f56863e477c22312a6e23ccf8d67c19833c1c85f9aea2e090be33e53a2c6a872"
       }
     },
     {
@@ -182,24 +182,25 @@
   },
   "graph_revision": {
     "git": {
-      "head": "015a460fb124251738494ea655d2081769e124f1",
+      "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
       "dirty": true
     },
-    "spec_digest": "8772fbc0c36dc2bdeab15a13ec21d052086f67f1322a42342d50a4ee308d82be",
-    "task_digest": "b24e00a6942ea77d7c12678bb213a6583879629d981d52d937200c7f0c0cde98",
-    "evidence_digest": "18a20646f080f72de0d002dd7dadb6065882b3015e0d5db2ab19e951d2a25bad"
+    "spec_digest": "b800321a1649e91f4531344f9ad934714b5a3f2702baf12ba5bf4505afe0b1f4",
+    "task_digest": "d81688ae62251ef604c6ec1bfe460371e0191ab91025aef360586987b82255e6",
+    "evidence_digest": "179a791316d9a89eee9de5a5d9006d650c2944ce8bd9b80fb449e1447b4188a4"
   },
   "meta": {
     "version": 1,
     "name": "system.architecture",
-    "generated_at": "2026-05-02T01:21:15Z",
+    "generated_at": "2026-05-02T01:44:12Z",
     "revision": {
-      "digest": "0c8b1c06d65d11f4f6ad0663baef2f57ab180f3dd1bfbff2e92bcc137624f3c1",
+      "digest": "370a9d58023cb3c84273ff3433a9ef8c3a7770a80098881c6441186b7c1c5805",
       "git": {
-        "head": "015a460fb124251738494ea655d2081769e124f1",
+        "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
+          ".wiki/knowledge/system/flows/context-memory.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
@@ -209,8 +210,7 @@
           ".wiki/roadmap/state.json",
           ".wiki/roadmap/tasks/TASK-001/context.json",
           ".wiki/roadmap/tasks/TASK-002/context.json",
-          ".wiki/roadmap/tasks/TASK-003/context.json",
-          ".wiki/roadmap/tasks/TASK-004/context.json"
+          ".wiki/roadmap/tasks/TASK-003/context.json"
         ],
         "paths": {}
       }

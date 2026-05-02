@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T01:21:14Z",
+  "generated_at": "2026-05-02T01:44:11Z",
   "context_path": ".wiki/roadmap/tasks/TASK-019/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -48,30 +48,31 @@
       "digest": "d258060c587c57eae1e2fc34d6c4526f3b2722f7e1b6afd7427559436e5ae28e"
     },
     "git": {
-      "head": "015a460fb124251738494ea655d2081769e124f1",
+      "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
         ".wiki/roadmap.json",
-        "scripts/rebuild_docs_meta.py"
+        "extensions/codewiki/contracts.ts"
       ],
       "paths": {
         ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca",
         ".wiki/knowledge/system/v2-operating-model.md": "643c940fa1ca",
-        ".wiki/roadmap.json": "015a460fb124",
+        ".wiki/roadmap.json": "ce607eba2ff9",
         "extensions/codewiki/contracts.ts": "a6f94f94cbc0",
-        "scripts/rebuild_docs_meta.py": "015a460fb124"
+        "scripts/rebuild_docs_meta.py": "ce607eba2ff9"
       }
     },
-    "spec_digest": "3523c462044c682ff134ade6e2571ddd53d0d0991db6ce117742647f791dd6dc",
-    "code_digest": "3f735934a459bc3d45cb80f79a85b9257cbd2d1d21bb10f7fd0965488de80289",
+    "spec_digest": "b90c9885061008181f6b2a29782edcc38c429bf1bcafc5340d2277b762632e6d",
+    "code_digest": "1f930b286e6245b9fc3e71a3069803c010948d29615da45995850985b1547ac1",
     "graph": {
       "git": {
-        "head": "015a460fb124251738494ea655d2081769e124f1",
+        "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         "dirty": true
       },
-      "spec_digest": "8772fbc0c36dc2bdeab15a13ec21d052086f67f1322a42342d50a4ee308d82be",
-      "task_digest": "b24e00a6942ea77d7c12678bb213a6583879629d981d52d937200c7f0c0cde98",
-      "evidence_digest": "18a20646f080f72de0d002dd7dadb6065882b3015e0d5db2ab19e951d2a25bad"
+      "spec_digest": "b800321a1649e91f4531344f9ad934714b5a3f2702baf12ba5bf4505afe0b1f4",
+      "task_digest": "d81688ae62251ef604c6ec1bfe460371e0191ab91025aef360586987b82255e6",
+      "evidence_digest": "179a791316d9a89eee9de5a5d9006d650c2944ce8bd9b80fb449e1447b4188a4"
     }
   },
   "specs": [
@@ -104,9 +105,12 @@
       "owners": [
         "architecture"
       ],
-      "code_paths": [],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
       "revision": {
-        "digest": "bdba7c2d093054f8d6b5fd321864985aaf5880f8e35096e466e4e0bc84259757"
+        "digest": "f56863e477c22312a6e23ccf8d67c19833c1c85f9aea2e090be33e53a2c6a872"
       },
       "expand": {
         "read": ".wiki/knowledge/system/flows/context-memory.md"
@@ -118,7 +122,7 @@
       "scripts/rebuild_docs_meta.py",
       "extensions/codewiki/contracts.ts"
     ],
-    "digest": "3f735934a459bc3d45cb80f79a85b9257cbd2d1d21bb10f7fd0965488de80289",
+    "digest": "1f930b286e6245b9fc3e71a3069803c010948d29615da45995850985b1547ac1",
     "expand": [
       {
         "read": "scripts/rebuild_docs_meta.py"

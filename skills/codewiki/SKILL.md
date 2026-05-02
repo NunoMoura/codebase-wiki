@@ -12,6 +12,7 @@ Use this as the package router. Load a focused skill when the task matches a spe
 - `codewiki-research` — gather cited/source evidence that supports `.wiki/knowledge`.
 - `codewiki-verify` — verify task completion from fresh context.
 - `codewiki-architecture` — review seams, locality, leverage, and roadmap-worthy architecture friction.
+- `codewiki-view-audit` — verify generated views against canonical sources and view budgets.
 
 ## Package surface
 
@@ -37,7 +38,7 @@ Internal agent tools:
 - Treat `.wiki/views/**` and legacy generated state files as optimized read models. Consume views first; do not hand-edit them.
 - Default first read is `codewiki_state`/status view. Expand task context, product/system views, canonical docs, and code paths only when the loaded view points there or exact source is required.
 - Track loaded view revisions in session RAM when available. If a view revision is unchanged and enough for the question, do not reread it.
-- Use subagents for fresh-context verification, research, architecture review, or planning review. Require compact JSON/prose summaries back to the parent.
+- Use subagents for fresh-context verification, research, planning review, architecture review, or view auditing. Parent sends `SubagentBrief`; worker returns `SubagentResult`. Parent remains responsible for canonical writes.
 - Use whichever bounded context tool is available for programmatic filtering, validation, and context packets when raw repo/wiki output would be noisy. ThinkCode is optional and governed by its own skill when installed.
 
 ## Invariants

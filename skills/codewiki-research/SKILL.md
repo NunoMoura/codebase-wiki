@@ -40,13 +40,16 @@ Research supports canonical knowledge. It is not part of every implementation lo
    - Create or update roadmap tasks if research exposes implementation delta.
    - Append research/source evidence using CodeWiki evidence conventions when available.
 
-## Output shape
+## Subagent contract
 
-Return concise findings:
+Input: `SubagentBrief` with `role: "researcher"`, a bounded `question`, linked specs/tasks, source budget, and constraints.
 
-- claim/question
-- sources consulted
-- findings
-- implication for `.wiki/knowledge`
-- roadmap delta, if any
-- uncertainty or follow-up research
+Output: `SubagentResult`:
+
+- `verdict`: `pass` when evidence supports useful findings, `fail` when evidence contradicts the claim, `block` when sources or access are insufficient
+- `findings`: sourced compact facts
+- `issues`: conflicts, weak evidence, or missing citations
+- `proposals`: `knowledge_patch`, `task_delta`, or `follow_up` only; parent applies any canonical writes
+- `rationale`: uncertainty and recommendation
+
+Do not mutate `.wiki` from researcher worker context.

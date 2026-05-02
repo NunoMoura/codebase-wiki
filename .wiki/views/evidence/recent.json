@@ -13,7 +13,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "015a460fb124251738494ea655d2081769e124f1",
+          "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -24,59 +24,6 @@
     }
   ],
   "events": [
-    {
-      "ts": "2026-05-02T00:41:45Z",
-      "kind": "roadmap_update",
-      "title": "Updated 1 roadmap task(s)",
-      "summary": "TASK-018 Implement context memory policy in skills and loops"
-    },
-    {
-      "ts": "2026-05-02T00:41:45Z",
-      "kind": "task_phase_passed",
-      "task_id": "TASK-018",
-      "phase": "verify",
-      "title": "Implement context memory policy in skills and loops",
-      "summary": "Updated memory policy across skills and prompts; ready for closure after passing checks.",
-      "issues": []
-    },
-    {
-      "ts": "2026-05-02T00:41:45Z",
-      "kind": "task_evidence_recorded",
-      "task_id": "TASK-018",
-      "verdict": "pass",
-      "summary": "Updated memory policy across skills and prompts; ready for closure after passing checks.",
-      "checks_run": [
-        "npm run typecheck -- --pretty false",
-        "npm test"
-      ],
-      "files_touched": [
-        "skills/codewiki/SKILL.md",
-        "skills/codewiki-plan/SKILL.md",
-        "skills/codewiki-task/SKILL.md",
-        "skills/codewiki-research/SKILL.md",
-        "skills/codewiki-verify/SKILL.md",
-        "skills/codewiki-architecture/SKILL.md",
-        "extensions/codewiki/index.ts"
-      ],
-      "issues": []
-    },
-    {
-      "ts": "2026-05-02T00:49:53Z",
-      "kind": "roadmap_append",
-      "title": "Appended 1 roadmap task(s)",
-      "summary": "TASK-026 Decouple ThinkCode from CodeWiki memory policy"
-    },
-    {
-      "ts": "2026-05-02T00:49:53Z",
-      "kind": "task_session_link",
-      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
-      "task_id": "TASK-026",
-      "action": "spawn",
-      "title": "Decouple ThinkCode from CodeWiki memory policy",
-      "summary": "Spawned task TASK-026 in current Pi session.",
-      "files_touched": [],
-      "spawned_task_ids": []
-    },
     {
       "ts": "2026-05-02T00:49:58Z",
       "kind": "task_session_link",
@@ -248,19 +195,75 @@
         ".wiki/views/system/architecture.mmd"
       ],
       "issues": []
+    },
+    {
+      "ts": "2026-05-02T01:36:52Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-021",
+      "action": "focus",
+      "title": "Subagent JSON worker contracts",
+      "summary": "Continue next roadmap task.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T01:42:33Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-021 Subagent JSON worker contracts"
+    },
+    {
+      "ts": "2026-05-02T01:42:33Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-021 Subagent JSON worker contracts"
+    },
+    {
+      "ts": "2026-05-02T01:42:33Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-021",
+      "phase": "verify",
+      "title": "Subagent JSON worker contracts",
+      "summary": "Added shared SubagentBrief/SubagentResult contracts plus role-specific contracts for verifier, researcher, planner, architecture reviewer, and view auditor. Added view-audit skill and smoke coverage for package skill loading.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T01:42:33Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-021",
+      "verdict": "pass",
+      "summary": "Added shared SubagentBrief/SubagentResult contracts plus role-specific contracts for verifier, researcher, planner, architecture reviewer, and view auditor. Added view-audit skill and smoke coverage for package skill loading.",
+      "checks_run": [
+        "python scripts/rebuild_docs_meta.py",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/contracts.ts",
+        "skills/codewiki/SKILL.md",
+        "skills/codewiki-plan/SKILL.md",
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-architecture/SKILL.md",
+        "skills/codewiki-view-audit/SKILL.md",
+        "scripts/smoke-test.mjs",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "issues": []
     }
   ],
   "meta": {
     "version": 1,
     "name": "evidence.recent",
-    "generated_at": "2026-05-02T01:21:15Z",
+    "generated_at": "2026-05-02T01:44:12Z",
     "revision": {
-      "digest": "d7538fd474091367a5febbd9dbc04ea76845a3e105eb62b0a950944bb749018d",
+      "digest": "15632a1face8038438d2e5aaa77495e19eea5cfd45426dd4f7ee9d118e874a19",
       "git": {
-        "head": "015a460fb124251738494ea655d2081769e124f1",
+        "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
+          ".wiki/knowledge/system/flows/context-memory.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
@@ -270,8 +273,7 @@
           ".wiki/roadmap/state.json",
           ".wiki/roadmap/tasks/TASK-001/context.json",
           ".wiki/roadmap/tasks/TASK-002/context.json",
-          ".wiki/roadmap/tasks/TASK-003/context.json",
-          ".wiki/roadmap/tasks/TASK-004/context.json"
+          ".wiki/roadmap/tasks/TASK-003/context.json"
         ],
         "paths": {}
       }

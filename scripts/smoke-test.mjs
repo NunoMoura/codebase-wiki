@@ -255,6 +255,7 @@ async function main() {
 			"codewiki-research",
 			"codewiki-task",
 			"codewiki-verify",
+			"codewiki-view-audit",
 		];
 		assert.deepEqual(
 			skills.map((skill) => skill.name).sort(),

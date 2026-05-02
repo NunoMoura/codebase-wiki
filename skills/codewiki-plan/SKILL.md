@@ -22,7 +22,7 @@ Pause only for ambiguity, product/architecture choice, destructive action, or ap
 - Use `codewiki_state` first; treat its status/view revisions as the parent session's RAM anchors.
 - Expand raw wiki files only when a view recommends them, a decision needs exact canonical source, or drift cannot be resolved from views.
 - For outer-loop planning, read the smallest useful path: status view → roadmap queue/task packet → linked product/system/flow docs.
-- Use a planning-review subagent when intent, architecture, and roadmap interactions exceed the parent context budget; ask for compact task deltas only.
+- Use a planner subagent when intent, architecture, and roadmap interactions exceed the parent context budget. Send `SubagentBrief` with `role: "planner"`; require `SubagentResult` proposals only. Parent creates or updates tasks.
 - Use available bounded context tools for repo-wide inventory, graph checks, or diff summarization instead of loading broad raw output. ThinkCode is optional and governed by its own skill when installed.
 - Use `codewiki_task` for task creation/update. Do not edit roadmap JSON manually.
 
@@ -49,6 +49,12 @@ Pause only for ambiguity, product/architecture choice, destructive action, or ap
    - Each task needs outcome, acceptance, non-goals, verification, spec links, and code paths when known.
    - Prefer thin vertical slices that are independently verifiable.
    - Mark human decision gates explicitly.
+
+## Planner subagent contract
+
+Input: `SubagentBrief` with `role: "planner"`, user intent, relevant views/specs, current roadmap queue, and constraints.
+
+Output: `SubagentResult` with `verdict: "pass" | "fail" | "block"`, compact findings, issues, and `proposals` of kind `knowledge_patch`, `task_delta`, or `follow_up`. Planner workers never write canonical `.wiki` files directly.
 
 ## Verification
 

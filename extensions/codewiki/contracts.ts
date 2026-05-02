@@ -56,6 +56,21 @@ export const STATUS_DOCK_DENSITY_VALUES = [
 	"full",
 ] as const;
 
+export const SUBAGENT_ROLE_VALUES = [
+	"verifier",
+	"researcher",
+	"planner",
+	"architecture_reviewer",
+	"view_auditor",
+] as const;
+export const SUBAGENT_VERDICT_VALUES = ["pass", "fail", "block"] as const;
+export const SUBAGENT_PROPOSAL_VALUES = [
+	"none",
+	"knowledge_patch",
+	"task_delta",
+	"follow_up",
+] as const;
+
 export interface ScopeConfig {
 	include?: string[];
 	exclude?: string[];
@@ -117,6 +132,57 @@ export type TaskEvidenceResult = (typeof TASK_EVIDENCE_RESULT_VALUES)[number];
 export type CodewikiStateSection =
 	(typeof CODEWIKI_STATE_SECTION_VALUES)[number];
 export type StatusScope = (typeof STATUS_SCOPE_VALUES)[number];
+export type SubagentRole = (typeof SUBAGENT_ROLE_VALUES)[number];
+export type SubagentVerdict = (typeof SUBAGENT_VERDICT_VALUES)[number];
+export type SubagentProposalKind =
+	(typeof SUBAGENT_PROPOSAL_VALUES)[number];
+
+export interface SubagentBrief {
+	role: SubagentRole;
+	taskId?: string;
+	question?: string;
+	intent?: string;
+	budget?: { targetTokens?: number; maxFiles?: number };
+	inputs: {
+		views?: string[];
+		spec_paths?: string[];
+		code_paths?: string[];
+		evidence_paths?: string[];
+		checks?: string[];
+	};
+	constraints?: string[];
+}
+
+export interface SubagentIssue {
+	severity: "high" | "medium" | "low";
+	summary: string;
+	evidence?: string;
+}
+
+export interface SubagentAcceptanceResult {
+	criterion: string;
+	status: "pass" | "fail" | "unknown";
+	reason: string;
+}
+
+export interface SubagentProposal {
+	kind: SubagentProposalKind;
+	summary: string;
+	paths?: string[];
+	task?: Partial<RoadmapTaskInput>;
+}
+
+export interface SubagentResult {
+	role: SubagentRole;
+	verdict: SubagentVerdict;
+	taskId?: string;
+	checks: string[];
+	acceptance?: SubagentAcceptanceResult[];
+	findings: string[];
+	issues: SubagentIssue[];
+	proposals: SubagentProposal[];
+	rationale: string;
+}
 
 export interface LintIssue {
 	severity: string;
@@ -676,6 +742,75 @@ export interface WikiProject {
 	roadmapStatePath: string;
 	statusStatePath: string;
 }
+
+export const subagentRoleSchema = Type.Union(
+	SUBAGENT_ROLE_VALUES.map((value) => Type.Literal(value)),
+);
+export const subagentVerdictSchema = Type.Union(
+	SUBAGENT_VERDICT_VALUES.map((value) => Type.Literal(value)),
+);
+export const subagentProposalKindSchema = Type.Union(
+	SUBAGENT_PROPOSAL_VALUES.map((value) => Type.Literal(value)),
+);
+export const subagentBriefSchema = Type.Object({
+	role: subagentRoleSchema,
+	taskId: Type.Optional(Type.String({ minLength: 1 })),
+	question: Type.Optional(Type.String({ minLength: 1 })),
+	intent: Type.Optional(Type.String({ minLength: 1 })),
+	budget: Type.Optional(
+		Type.Object({
+			targetTokens: Type.Optional(Type.Number()),
+			maxFiles: Type.Optional(Type.Number()),
+		}),
+	),
+	inputs: Type.Object({
+		views: Type.Optional(Type.Array(Type.String())),
+		spec_paths: Type.Optional(Type.Array(Type.String())),
+		code_paths: Type.Optional(Type.Array(Type.String())),
+		evidence_paths: Type.Optional(Type.Array(Type.String())),
+		checks: Type.Optional(Type.Array(Type.String())),
+	}),
+	constraints: Type.Optional(Type.Array(Type.String())),
+});
+export const subagentResultSchema = Type.Object({
+	role: subagentRoleSchema,
+	verdict: subagentVerdictSchema,
+	taskId: Type.Optional(Type.String({ minLength: 1 })),
+	checks: Type.Array(Type.String()),
+	acceptance: Type.Optional(
+		Type.Array(
+			Type.Object({
+				criterion: Type.String(),
+				status: Type.Union([
+					Type.Literal("pass"),
+					Type.Literal("fail"),
+					Type.Literal("unknown"),
+				]),
+				reason: Type.String(),
+			}),
+		),
+	),
+	findings: Type.Array(Type.String()),
+	issues: Type.Array(
+		Type.Object({
+			severity: Type.Union([
+				Type.Literal("high"),
+				Type.Literal("medium"),
+				Type.Literal("low"),
+			]),
+			summary: Type.String(),
+			evidence: Type.Optional(Type.String()),
+		}),
+	),
+	proposals: Type.Array(
+		Type.Object({
+			kind: subagentProposalKindSchema,
+			summary: Type.String(),
+			paths: Type.Optional(Type.Array(Type.String())),
+		}),
+	),
+	rationale: Type.String(),
+});
 
 export const roadmapPrioritySchema = Type.Union(
 	ROADMAP_PRIORITY_VALUES.map((value) => Type.Literal(value)),

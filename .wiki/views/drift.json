@@ -2,6 +2,14 @@
   "summary": {},
   "rows": [
     {
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "drift_status": "untracked",
+      "note": "1 deterministic issue with no open roadmap task",
+      "primary_task": null,
+      "code_area": "extensions, skills"
+    },
+    {
       "path": ".wiki/knowledge/product/stories.md",
       "title": "Product Stories",
       "drift_status": "tracked",
@@ -10,18 +18,6 @@
         "id": "TASK-022",
         "status": "todo",
         "title": "Heartbeat modes budgets and stop conditions"
-      },
-      "code_area": "\u2014"
-    },
-    {
-      "path": ".wiki/knowledge/system/flows/context-memory.md",
-      "title": "Context Memory Flow",
-      "drift_status": "tracked",
-      "note": "tracked by TASK-021",
-      "primary_task": {
-        "id": "TASK-021",
-        "status": "todo",
-        "title": "Subagent JSON worker contracts"
       },
       "code_area": "\u2014"
     },
@@ -53,11 +49,11 @@
       "path": ".wiki/knowledge/system/v2-operating-model.md",
       "title": "CodeWiki v2 Operating Model",
       "drift_status": "tracked",
-      "note": "tracked by TASK-021",
+      "note": "tracked by TASK-022",
       "primary_task": {
-        "id": "TASK-021",
+        "id": "TASK-022",
         "status": "todo",
-        "title": "Subagent JSON worker contracts"
+        "title": "Heartbeat modes budgets and stop conditions"
       },
       "code_area": "extensions, scripts +1 more"
     }
@@ -85,14 +81,15 @@
   "meta": {
     "version": 1,
     "name": "drift",
-    "generated_at": "2026-05-02T01:21:15Z",
+    "generated_at": "2026-05-02T01:44:12Z",
     "revision": {
-      "digest": "e1f4c1e2f89c5ee09fb9311acb56c3d961c612d9ef2a7d7826e8a2a4eddd0c14",
+      "digest": "048d8e72afa9bc25c3d8f65300624cce1fb01f6505e79381aa0f97407cfc23c8",
       "git": {
-        "head": "015a460fb124251738494ea655d2081769e124f1",
+        "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
+          ".wiki/knowledge/system/flows/context-memory.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
@@ -102,8 +99,7 @@
           ".wiki/roadmap/state.json",
           ".wiki/roadmap/tasks/TASK-001/context.json",
           ".wiki/roadmap/tasks/TASK-002/context.json",
-          ".wiki/roadmap/tasks/TASK-003/context.json",
-          ".wiki/roadmap/tasks/TASK-004/context.json"
+          ".wiki/roadmap/tasks/TASK-003/context.json"
         ],
         "paths": {}
       }
@@ -113,8 +109,8 @@
       "target_bytes": 16000
     },
     "recommended_next_reads": [
-      ".wiki/knowledge/product/stories.md",
       ".wiki/knowledge/system/flows/context-memory.md",
+      ".wiki/knowledge/product/stories.md",
       ".wiki/knowledge/system/flows/sanitation-release.md",
       ".wiki/knowledge/system/runtime/overview.md",
       ".wiki/knowledge/system/v2-operating-model.md"
