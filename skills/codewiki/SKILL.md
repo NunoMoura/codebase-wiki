@@ -35,7 +35,7 @@ Internal agent tools:
 
 - Treat the parent Pi context window as expensive session RAM: keep current user intent, focused task, loaded view revisions, and small decisions only.
 - Treat `.wiki/knowledge/**`, roadmap tasks, and evidence as persistent canonical memory. Write durable changes there, not into chat-only plans.
-- Treat `.wiki/views/**` and legacy generated state files as optimized read models. Consume views first; do not hand-edit them.
+- Treat `.wiki/views/**` and legacy generated state files as views. Consume views first; do not hand-edit them.
 - Default first read is `codewiki_state`/status view. Expand task context, product/system views, canonical docs, and code paths only when the loaded view points there or exact source is required.
 - Track loaded view revisions in session RAM when available. If a view revision is unchanged and enough for the question, do not reread it.
 - Use subagents for fresh-context verification, research, planning review, architecture review, or view auditing. Parent sends `SubagentBrief`; worker returns `SubagentResult`. Parent remains responsible for canonical writes.
@@ -48,7 +48,7 @@ Internal agent tools:
 - Evidence is compact machine-managed validation or research support.
 - Pi sessions are execution history linked to tasks, not roadmap truth.
 - Prefer `codewiki_state` for reads, `codewiki_task` for roadmap mutation, and `codewiki_session` for runtime focus/notes.
-- Do not hand-edit generated read models: `.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`.
+- Do not hand-edit views: `.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`.
 - Do not hand-edit roadmap/event state when package tools can mutate it.
 - Use `AGENTS.md` only for repo-specific policy layered on top of this package.
 

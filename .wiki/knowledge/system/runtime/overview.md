@@ -20,7 +20,7 @@ The runtime policy keeps agent-facing wiki operations small, inspectable, and bo
 - `scripts/codewiki-gateway.mjs` is the current adapter for compact reads and validated transaction application.
 - Optional bounded context tools may execute agent-written analysis programs when available in Pi.
 - Pi owns the host runtime, project working directory, session state, package loading, and any optional outer sandbox extension.
-- CodeWiki owns domain semantics: views stay read-only, evidence is append-only, roadmap/task state goes through canonical mutation APIs, and views are rebuilt only when fresh read models are explicitly requested or a rebuild command runs.
+- CodeWiki owns domain semantics: views stay read-only, evidence is append-only, roadmap/task state goes through canonical mutation APIs, and views are rebuilt only when fresh views are explicitly requested or a rebuild command runs.
 
 ## Capability boundary
 
@@ -81,7 +81,7 @@ CodeWiki-owned capability classes:
 - `codewiki.transaction` applies validated exact-text knowledge patches and append-only evidence writes.
 - `codewiki.rebuild` regenerates views.
 
-External runtimes may read `.wiki/**` only when policy permits. Writes to views (`.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`, `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, and task context shards today; `.wiki/views/**` in v2) remain out of scope except through the rebuild capability. Session mutators default to canonical writes without rebuilding views. Task mutators preserve fresh read models by default for compatibility, but callers may set `refresh=false` when they need a minimal canonical write and can defer views to `codewiki_state refresh=true` or `codewiki.rebuild`. If `think-code` is not installed, CodeWiki continues to use its native tools, gateway `pack/tree/manifest`, generated views, and normal Pi read/search tools. ThinkCode staged writes are proposals until `think_code_apply` validates them, and CodeWiki-managed writes still flow through CodeWiki task/session/transaction/rebuild capabilities.
+External runtimes may read `.wiki/**` only when policy permits. Writes to views (`.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`, `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, and task context shards today; `.wiki/views/**` in v2) remain out of scope except through the rebuild capability. Session mutators default to canonical writes without rebuilding views. Task mutators preserve fresh views by default for compatibility, but callers may set `refresh=false` when they need a minimal canonical write and can defer views to `codewiki_state refresh=true` or `codewiki.rebuild`. If `think-code` is not installed, CodeWiki continues to use its native tools, gateway `pack/tree/manifest`, generated views, and normal Pi read/search tools. ThinkCode staged writes are proposals until `think_code_apply` validates them, and CodeWiki-managed writes still flow through CodeWiki task/session/transaction/rebuild capabilities.
 
 ## Transaction v1
 

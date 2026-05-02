@@ -987,7 +987,7 @@ export const codewikiTaskToolInputSchema = Type.Object({
 		Type.Boolean({
 			default: true,
 			description:
-				"When true, rebuild generated projection files after mutation.",
+				"When true, rebuild generated view files after mutation.",
 		}),
 	),
 	taskId: Type.Optional(toolTaskIdField),

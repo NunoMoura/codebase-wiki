@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T04:05:05Z",
+  "generated_at": "2026-05-02T04:33:06Z",
   "context_path": ".wiki/roadmap/tasks/TASK-004/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -50,33 +50,37 @@
       "digest": "e0b44e9e07f33d59f518e66511d84251cef9a772c937e15f96fafda5dbc3444e"
     },
     "git": {
-      "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+      "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
         ".wiki/roadmap.json",
+        "README.md",
         "extensions/codewiki/contracts.ts",
-        "extensions/codewiki/index.ts"
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/codewiki-gateway.mjs"
       ],
       "paths": {
         ".wiki/knowledge/product/overview.md": "643c940fa1ca",
         ".wiki/knowledge/system/overview.md": "643c940fa1ca",
         ".wiki/knowledge/system/runtime/overview.md": "fd4a7696e99e",
-        ".wiki/roadmap.json": "fd4a7696e99e",
+        ".wiki/roadmap.json": "7e122a3091d4",
         "README.md": "fd4a7696e99e",
-        "extensions/codewiki": "fd4a7696e99e",
+        "extensions/codewiki": "7e122a3091d4",
         "scripts/codewiki-gateway.mjs": "a6fc64223df3"
       }
     },
-    "spec_digest": "1a139d351eabce3e889066da6b89e2c454fa5850692ff00dd402c96c57364a10",
-    "code_digest": "fe9f49ef21ddb3657fabc6f975f0f6020f3367045d8e40fca0d26d72ebfeb042",
+    "spec_digest": "86afab5b1768d244444a94610b2fd556faed0a64d8121f263cd4bcd62ad59f10",
+    "code_digest": "d2fdf0bee8cddef1384b435ad420859413ff5dda291913fbe99dd569aac4f3d4",
     "graph": {
       "git": {
-        "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+        "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
         "dirty": true
       },
-      "spec_digest": "e821ea1ba359af574cf2077cf9b1e345815c705c48e321675e0fb7b11cca035c",
-      "task_digest": "bfec6cb96c5f80611e257d649583e3aecbd5d0a92e8cb86250945faa743700bd",
-      "evidence_digest": "911dde4ccb8be65f6fc0c850feed3ea2886f4fa390c7e0cf37907148a4d9bb83"
+      "spec_digest": "22abeba49013922d7521fbbab908a725331c7a026ec53a06971cac66557f57b2",
+      "task_digest": "333e2dd1bb0d93bcbef429bc7121b7777503015afddbf981ebef7c69e000b70f",
+      "evidence_digest": "19cd43783695390610f8744a93376d57879f974835b1e088eafdd3b910356b84"
     }
   },
   "specs": [
@@ -126,7 +130,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "0a80df16800b2f25e88980a27f7268c0d27c4d08ece9dc6b4b01bb53571e9ab5"
+        "digest": "f0306aa864ab75eef3e989a6819add03232c7a7df3e95a442eaac6d4b688b332"
       },
       "expand": {
         "read": ".wiki/knowledge/system/runtime/overview.md"
@@ -139,7 +143,7 @@
       "extensions/codewiki",
       "README.md"
     ],
-    "digest": "fe9f49ef21ddb3657fabc6f975f0f6020f3367045d8e40fca0d26d72ebfeb042",
+    "digest": "d2fdf0bee8cddef1384b435ad420859413ff5dda291913fbe99dd569aac4f3d4",
     "expand": [
       {
         "read": "scripts/codewiki-gateway.mjs"

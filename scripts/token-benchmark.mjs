@@ -218,8 +218,8 @@ function main() {
 		},
 		{
 			id: "generated-state",
-			label: "Generated status + roadmap state",
-			notes: "Current generated read models agents/status UI can consume.",
+			label: "Generated status + roadmap views",
+			notes: "Current generated views agents/status UI can consume.",
 			...bundle(repo, stateFiles),
 		},
 		{

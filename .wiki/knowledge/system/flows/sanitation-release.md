@@ -42,3 +42,7 @@ Recommended boundaries:
 - Closed work remains discoverable through compact summaries.
 - Full historical details can be recovered from git commits, tags, and remote history.
 - Heartbeat never pushes, versions, or archives unless policy and checks allow it.
+
+## Related docs
+
+- [CodeWiki v2 Operating Model](../v2-operating-model.md)

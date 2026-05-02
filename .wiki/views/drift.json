@@ -1,73 +1,29 @@
 {
   "summary": {},
-  "rows": [
-    {
-      "path": ".wiki/knowledge/system/flows/context-memory.md",
-      "title": "Context Memory Flow",
-      "drift_status": "untracked",
-      "note": "1 deterministic issue with no open roadmap task",
-      "primary_task": null,
-      "code_area": "extensions, skills"
-    },
-    {
-      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
-      "title": "Sanitation and Release Flow",
-      "drift_status": "untracked",
-      "note": "1 deterministic issue with no open roadmap task",
-      "primary_task": null,
-      "code_area": "scripts/rebuild_docs_meta.py"
-    },
-    {
-      "path": ".wiki/knowledge/system/v2-operating-model.md",
-      "title": "CodeWiki v2 Operating Model",
-      "drift_status": "untracked",
-      "note": "1 deterministic issue with no open roadmap task",
-      "primary_task": null,
-      "code_area": "extensions, scripts +1 more"
-    }
-  ],
-  "issues": [
-    {
-      "severity": "warning",
-      "kind": "missing-related-docs",
-      "path": ".wiki/knowledge/system/flows/context-memory.md",
-      "message": "Live doc should end with '## Related docs'."
-    },
-    {
-      "severity": "warning",
-      "kind": "missing-related-docs",
-      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
-      "message": "Live doc should end with '## Related docs'."
-    },
-    {
-      "severity": "warning",
-      "kind": "missing-related-docs",
-      "path": ".wiki/knowledge/system/v2-operating-model.md",
-      "message": "Live doc should end with '## Related docs'."
-    }
-  ],
+  "rows": [],
+  "issues": [],
   "meta": {
     "version": 1,
     "name": "drift",
-    "generated_at": "2026-05-02T04:05:06Z",
+    "generated_at": "2026-05-02T04:33:07Z",
     "revision": {
-      "digest": "28ec6eeb3b7e51b2727be1dfcded4072bc785a2cb70d61d09c22a99155abeb30",
+      "digest": "d7e3e8d0b855a7d4d80ff98e2d699b053289ab1cefec5da3ebdfb370d120ae43",
       "git": {
-        "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+        "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
+          ".wiki/knowledge/system/flows/context-memory.md",
           ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
           ".wiki/roadmap/events.jsonl",
           ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json",
-          ".wiki/roadmap/tasks/TASK-001/context.json",
-          ".wiki/roadmap/tasks/TASK-002/context.json",
-          ".wiki/roadmap/tasks/TASK-003/context.json"
+          ".wiki/roadmap/state.json"
         ],
         "paths": {}
       }
@@ -76,10 +32,6 @@
     "budget": {
       "target_bytes": 16000
     },
-    "recommended_next_reads": [
-      ".wiki/knowledge/system/flows/context-memory.md",
-      ".wiki/knowledge/system/flows/sanitation-release.md",
-      ".wiki/knowledge/system/v2-operating-model.md"
-    ]
+    "recommended_next_reads": []
   }
 }

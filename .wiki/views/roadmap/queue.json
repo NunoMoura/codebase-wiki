@@ -1,42 +1,28 @@
 {
-  "tasks": [
-    {
-      "id": "TASK-025",
-      "title": "Audit read model wording in README skills and tools",
-      "status": "todo",
-      "phase": "implement",
-      "priority": "medium",
-      "kind": "docs",
-      "summary": "Align public package language so generated read models are called views and source-of-truth files are called canonical truth.",
-      "context_path": ".wiki/views/roadmap/tasks/TASK-025/context.json",
-      "spec_paths": [
-        "README.md"
-      ]
-    }
-  ],
-  "next_task_id": "TASK-025",
+  "tasks": [],
+  "next_task_id": "",
   "meta": {
     "version": 1,
     "name": "roadmap.queue",
-    "generated_at": "2026-05-02T04:05:06Z",
+    "generated_at": "2026-05-02T04:33:07Z",
     "revision": {
-      "digest": "4f772cda1ad0b8fb160a6121ca85aa8f4a55b2b827a4d2b684e6fd6dc6bab1eb",
+      "digest": "b62e44f9da35d428635c4110d413527a0217849dc618aeab5ab8f32695a2bf10",
       "git": {
-        "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+        "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
+          ".wiki/knowledge/system/flows/context-memory.md",
           ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
           ".wiki/roadmap/events.jsonl",
           ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json",
-          ".wiki/roadmap/tasks/TASK-001/context.json",
-          ".wiki/roadmap/tasks/TASK-002/context.json",
-          ".wiki/roadmap/tasks/TASK-003/context.json"
+          ".wiki/roadmap/state.json"
         ],
         "paths": {}
       }
@@ -46,7 +32,7 @@
       "target_bytes": 12000
     },
     "recommended_next_reads": [
-      ".wiki/views/roadmap/tasks/TASK-025/context.json"
+      ".wiki/views/drift.json"
     ]
   }
 }

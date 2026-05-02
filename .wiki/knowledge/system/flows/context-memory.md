@@ -101,3 +101,7 @@ Role contracts:
 - `planner`: converts intent, drift, or research into candidate knowledge/task deltas. Returns proposal semantics; parent creates tasks.
 - `architecture_reviewer`: inspects seams, ownership, and graph/doc/code alignment. Returns findings plus possible task deltas; parent chooses design direction.
 - `view_auditor`: compares generated views against canonical docs/tasks/evidence and reports stale, missing, or noisy views. Returns `fail` for view-contract drift, `block` for insufficient canonical context.
+
+## Related docs
+
+- [CodeWiki v2 Operating Model](../v2-operating-model.md)

@@ -98,3 +98,8 @@ Recommended boundaries:
 - patch versions for small user-visible changes
 - minor versions for roadmap sprint or schema/view-contract changes
 - release checkpoints record version, git sha, closed task summaries, canonical digest, and view schema version
+
+## Related docs
+
+- [System Overview](overview.md)
+- [Sanitation and Release Flow](flows/sanitation-release.md)

@@ -13,7 +13,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+          "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -24,61 +24,6 @@
     }
   ],
   "events": [
-    {
-      "ts": "2026-05-02T01:36:52Z",
-      "kind": "task_session_link",
-      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
-      "task_id": "TASK-021",
-      "action": "focus",
-      "title": "Subagent JSON worker contracts",
-      "summary": "Continue next roadmap task.",
-      "files_touched": [],
-      "spawned_task_ids": []
-    },
-    {
-      "ts": "2026-05-02T01:42:33Z",
-      "kind": "roadmap_update",
-      "title": "Updated 1 roadmap task(s)",
-      "summary": "TASK-021 Subagent JSON worker contracts"
-    },
-    {
-      "ts": "2026-05-02T01:42:33Z",
-      "kind": "roadmap_update",
-      "title": "Updated 1 roadmap task(s)",
-      "summary": "TASK-021 Subagent JSON worker contracts"
-    },
-    {
-      "ts": "2026-05-02T01:42:33Z",
-      "kind": "task_phase_passed",
-      "task_id": "TASK-021",
-      "phase": "verify",
-      "title": "Subagent JSON worker contracts",
-      "summary": "Added shared SubagentBrief/SubagentResult contracts plus role-specific contracts for verifier, researcher, planner, architecture reviewer, and view auditor. Added view-audit skill and smoke coverage for package skill loading.",
-      "issues": []
-    },
-    {
-      "ts": "2026-05-02T01:42:33Z",
-      "kind": "task_evidence_recorded",
-      "task_id": "TASK-021",
-      "verdict": "pass",
-      "summary": "Added shared SubagentBrief/SubagentResult contracts plus role-specific contracts for verifier, researcher, planner, architecture reviewer, and view auditor. Added view-audit skill and smoke coverage for package skill loading.",
-      "checks_run": [
-        "python scripts/rebuild_docs_meta.py",
-        "npm run typecheck -- --pretty false",
-        "npm test"
-      ],
-      "files_touched": [
-        "extensions/codewiki/contracts.ts",
-        "skills/codewiki/SKILL.md",
-        "skills/codewiki-plan/SKILL.md",
-        "skills/codewiki-research/SKILL.md",
-        "skills/codewiki-architecture/SKILL.md",
-        "skills/codewiki-view-audit/SKILL.md",
-        "scripts/smoke-test.mjs",
-        ".wiki/knowledge/system/flows/context-memory.md"
-      ],
-      "issues": []
-    },
     {
       "ts": "2026-05-02T01:49:03Z",
       "kind": "task_session_link",
@@ -239,30 +184,84 @@
         "skills/codewiki-task/SKILL.md"
       ],
       "issues": []
+    },
+    {
+      "ts": "2026-05-02T04:09:10Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-025",
+      "action": "focus",
+      "title": "Audit read model wording in README skills and tools",
+      "summary": "Continue next roadmap task.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T04:26:05Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-025 Audit read model wording in README skills and tools"
+    },
+    {
+      "ts": "2026-05-02T04:26:05Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-025 Audit read model wording in README skills and tools"
+    },
+    {
+      "ts": "2026-05-02T04:26:05Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-025",
+      "phase": "verify",
+      "title": "Audit read model wording in README skills and tools",
+      "summary": "Audited and aligned read model wording across README, skills, and tools. Replaced \"projection\", \"derived state\", \"generated state\", and \"read model\" with \"view\", and \"source of truth\" with \"canonical truth\".",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T04:26:05Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-025",
+      "verdict": "pass",
+      "summary": "Audited and aligned read model wording across README, skills, and tools. Replaced \"projection\", \"derived state\", \"generated state\", and \"read model\" with \"view\", and \"source of truth\" with \"canonical truth\".",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/codewiki-gateway.mjs",
+        "scripts/token-benchmark.mjs",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "issues": []
     }
   ],
   "meta": {
     "version": 1,
     "name": "evidence.recent",
-    "generated_at": "2026-05-02T04:05:06Z",
+    "generated_at": "2026-05-02T04:33:07Z",
     "revision": {
-      "digest": "d90d278fec052090e2093bd783cdbff05817d777680ff3ed865850c683f168f9",
+      "digest": "a5b9f391e6c6fc6497c96c8c6d352503c4ae24b24cc90a5ac1912ac9c790044e",
       "git": {
-        "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+        "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
+          ".wiki/knowledge/system/flows/context-memory.md",
           ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
           ".wiki/roadmap/events.jsonl",
           ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json",
-          ".wiki/roadmap/tasks/TASK-001/context.json",
-          ".wiki/roadmap/tasks/TASK-002/context.json",
-          ".wiki/roadmap/tasks/TASK-003/context.json"
+          ".wiki/roadmap/state.json"
         ],
         "paths": {}
       }

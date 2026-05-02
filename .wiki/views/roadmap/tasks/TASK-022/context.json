@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T04:05:06Z",
+  "generated_at": "2026-05-02T04:33:06Z",
   "context_path": ".wiki/roadmap/tasks/TASK-022/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -47,34 +47,35 @@
       "digest": "9ad42e9bc336b2ace11b4e2d47ad39096c79de86e49047200a6bfb3b9d0b0c13"
     },
     "git": {
-      "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+      "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
         ".wiki/roadmap.json",
         "extensions/codewiki/contracts.ts",
         "extensions/codewiki/index.ts",
-        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-view-audit/SKILL.md",
         "skills/codewiki/SKILL.md"
       ],
       "paths": {
         ".wiki/knowledge/product/stories.md": "ac992065707d",
         ".wiki/knowledge/system/v2-operating-model.md": "fd4a7696e99e",
-        ".wiki/roadmap.json": "fd4a7696e99e",
-        "extensions/codewiki/contracts.ts": "ac992065707d",
-        "extensions/codewiki/index.ts": "fd4a7696e99e",
-        "skills": "fd4a7696e99e"
+        ".wiki/roadmap.json": "7e122a3091d4",
+        "extensions/codewiki/contracts.ts": "7e122a3091d4",
+        "extensions/codewiki/index.ts": "7e122a3091d4",
+        "skills": "7e122a3091d4"
       }
     },
-    "spec_digest": "d21c89ed209a8429e6426ee7f9d6e2f99be102f3d7c4286c155a8361312b6163",
-    "code_digest": "0f9112d1494c73eca2a389d5ca641870cef03ec09ac1d1b63642611d8c47df27",
+    "spec_digest": "39eb15d6a2c185ddaad6085b6d90e7313852edc918734f42aa509d9419dfb9cd",
+    "code_digest": "857ea540ef5b419056dd37a130392c83755a10897fea90d7cc31d31ce03eb8b1",
     "graph": {
       "git": {
-        "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+        "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
         "dirty": true
       },
-      "spec_digest": "e821ea1ba359af574cf2077cf9b1e345815c705c48e321675e0fb7b11cca035c",
-      "task_digest": "bfec6cb96c5f80611e257d649583e3aecbd5d0a92e8cb86250945faa743700bd",
-      "evidence_digest": "911dde4ccb8be65f6fc0c850feed3ea2886f4fa390c7e0cf37907148a4d9bb83"
+      "spec_digest": "22abeba49013922d7521fbbab908a725331c7a026ec53a06971cac66557f57b2",
+      "task_digest": "333e2dd1bb0d93bcbef429bc7121b7777503015afddbf981ebef7c69e000b70f",
+      "evidence_digest": "19cd43783695390610f8744a93376d57879f974835b1e088eafdd3b910356b84"
     }
   },
   "specs": [
@@ -93,7 +94,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "729ab9d846d779e42edee514be499238e7107b56e131364ac539d7d450660e34"
+        "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485"
       },
       "expand": {
         "read": ".wiki/knowledge/system/v2-operating-model.md"
@@ -122,7 +123,7 @@
       "extensions/codewiki/contracts.ts",
       "skills"
     ],
-    "digest": "0f9112d1494c73eca2a389d5ca641870cef03ec09ac1d1b63642611d8c47df27",
+    "digest": "857ea540ef5b419056dd37a130392c83755a10897fea90d7cc31d31ce03eb8b1",
     "expand": [
       {
         "read": "extensions/codewiki/index.ts"

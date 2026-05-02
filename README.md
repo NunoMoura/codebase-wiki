@@ -68,7 +68,7 @@ Codewiki now centers on a hidden `.wiki` knowledge system plus derived views:
 - **events** — portable mutation history in `.wiki/events.jsonl`
 - **task** — atomic work unit inside roadmap, canonically named `TASK-###`
 
-Derived navigation and UI views stay hidden under `.wiki/` and are tool-owned projections:
+Generated navigation and UI views stay hidden under `.wiki/views/` and are tool-owned views:
 
 - `.wiki/graph.json` as the primary derived relationship graph and shared view substrate
 - `.wiki/lint.json`
@@ -77,7 +77,7 @@ Derived navigation and UI views stay hidden under `.wiki/` and are tool-owned pr
 - `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, and task context shards
 - top-level generated `wiki/**` files are no longer emitted by default
 
-Projection firewall rule: agents edit canonical truth and append evidence/events; generated projections are rebuilt by tools only. Session mutation avoids projection rebuilds, and task mutation can defer them with `refresh=false` when fresh read models are not needed immediately.
+View boundary rule: agents edit canonical truth and append evidence/events; views are rebuilt by tools only. Session mutation avoids view rebuilds, and task mutation can defer them with `refresh=false` when fresh views are not needed immediately.
 
 Pi session linkage stays local and operational:
 
@@ -85,8 +85,8 @@ Pi session linkage stays local and operational:
 - codewiki appends custom session entries linking tasks to sessions
 - current task focus is read live from Pi session state at runtime
 - `.wiki/graph.json` is the derived relationship graph and shared view substrate compiled from knowledge, evidence, and roadmap truth
-- `.wiki/roadmap-state.json` is the denormalized roadmap/task read model
-- `.wiki/status-state.json` is the denormalized status read model used by the built-in summary/panel surfaces and any future third-party UI readers
+- `.wiki/roadmap-state.json` is the denormalized roadmap/task view
+- `.wiki/status-state.json` is the denormalized status view used by the built-in summary/panel surfaces and any future third-party UI readers
 
 Task identity and compatibility:
 
@@ -261,7 +261,7 @@ Recommended loop:
 Working rule for this repo:
 
 - edit canonical sources (`README.md`, knowledge docs under `.wiki/knowledge/`, `.wiki/roadmap.json`, runtime code)
-- rebuild generated outputs when fresh projections are needed, not after every small canonical mutation
+- rebuild generated outputs when fresh views are needed, not after every small canonical mutation
 - do not hand-edit generated outputs under `.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`, `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, or task context shards
 
 ## Why one extension and focused skills
@@ -366,7 +366,7 @@ It then uses that repo config to:
 - update or close existing roadmap tasks through package-native mutation tools instead of manual JSON edits
 - append Pi custom session entries that link current session to roadmap tasks
 - read active task context from Pi session state at runtime
-- maintain `.wiki/graph.json`, `.wiki/roadmap-state.json`, and `.wiki/status-state.json` so the first-party summary/panel surfaces and any future third-party UI can read compact derived state without mutating canonical files
+- maintain `.wiki/graph.json`, `.wiki/roadmap-state.json`, and `.wiki/status-state.json` so the first-party summary/panel surfaces and any future third-party UI can read compact views without mutating canonical files
 
 That means one global package install can operate across many repos, while each repo keeps its own hidden `.wiki/` contract.
 
@@ -400,20 +400,20 @@ Current transaction shape:
 }
 ```
 
-The gateway applies only validated writes under configured `.wiki` paths and rebuilds generated state after successful writes. Generated files such as `.wiki/graph.json`, `.wiki/status-state.json`, `.wiki/roadmap-state.json`, and `.wiki/roadmap/**` are read-only transaction targets.
+The gateway applies only validated writes under configured `.wiki` paths and rebuilds views after successful writes. Generated files such as `.wiki/graph.json`, `.wiki/status-state.json`, `.wiki/roadmap-state.json`, and `.wiki/roadmap/**` are read-only transaction targets.
 
 ## Philosophy
 
 This package assumes:
 
-- `.wiki/knowledge/` is source of truth for intended product, clients, and system design
+- `.wiki/knowledge/` is canonical truth for intended product, clients, and system design
 - `.wiki/evidence/` is compact machine-managed validation output, not longform archive by default
 - `.wiki/roadmap.json` is freshest tracked delta between authored docs and code, kept as a hot working set rather than unbounded history
 - closed tasks older than the configured retention window move losslessly to `.wiki/roadmap-archive.jsonl` by default
 - Pi sessions are execution history, not canonical roadmap truth
 - history defaults to git for full diffs, `.wiki/events.jsonl` for compact lifecycle events, `.wiki/roadmap-events.jsonl` for roadmap mutations, and the optional roadmap archive for closed-task snapshots; package does not generate a separate compact-history file by default
 - code is implementation evidence
-- generated read models replace top-level markdown index exports by default
+- generated views replace top-level markdown index exports by default
 - machine metadata stays hidden under `.wiki/`
 - plans and drift are better modeled as roadmap tasks than as separate top-level doc buckets
 - archive clearing is explicit only; normal compaction never deletes archived closed-task snapshots
@@ -485,7 +485,7 @@ npm run benchmark:tokens
 npm run benchmark:tokens -- --json
 ```
 
-The benchmark compares raw wiki truth, raw implementation/verification lifecycle artifacts, generated read models, task context shards, and a synthetic compact agent-default packet. Use it to keep optimizing normal agent paths toward lower context usage without requiring users to define explicit token budgets.
+The benchmark compares raw wiki truth, raw implementation/verification lifecycle artifacts, generated views, task context shards, and a synthetic compact agent-default packet. Use it to keep optimizing normal agent paths toward lower context usage without requiring users to define explicit token budgets.
 
 If `pi-coding-agent` is not installed in a standard local/global location, set:
 

@@ -5,7 +5,7 @@ description: Fresh-context audit for generated CodeWiki views. Use when checking
 
 # CodeWiki View Audit
 
-View auditor is a read-only subagent role. It verifies generated read models, not product behavior.
+View auditor is a read-only subagent role. It verifies views, not product behavior.
 
 ## Contract
 

@@ -147,7 +147,7 @@ function capabilityManifest() {
 				name: "codewiki.rebuild",
 				class: "derived-write",
 				summary:
-					"Regenerate graph, lint, status, roadmap state, and task context read models.",
+					"Regenerate graph, lint, status, roadmap state, and task context views.",
 				args_schema: "rebuild command config",
 				result_schema: "rebuild result",
 				writes: [

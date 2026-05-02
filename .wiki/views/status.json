@@ -1,17 +1,16 @@
 {
   "health": {
-    "color": "yellow",
+    "color": "green",
     "errors": 0,
-    "warnings": 3,
-    "total_issues": 3
+    "warnings": 0,
+    "total_issues": 0
   },
   "roadmap": {
-    "open_count": 1,
+    "open_count": 0,
     "active_task_ids": [],
-    "next_task_id": "TASK-025",
+    "next_task_id": "",
     "status_counts": {
-      "done": 25,
-      "todo": 1
+      "done": 26
     }
   },
   "views": {
@@ -21,48 +20,29 @@
     "system_architecture": ".wiki/views/system/architecture.json",
     "recent_evidence": ".wiki/views/evidence/recent.json"
   },
-  "issues": [
-    {
-      "severity": "warning",
-      "kind": "missing-related-docs",
-      "path": ".wiki/knowledge/system/flows/context-memory.md",
-      "message": "Live doc should end with '## Related docs'."
-    },
-    {
-      "severity": "warning",
-      "kind": "missing-related-docs",
-      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
-      "message": "Live doc should end with '## Related docs'."
-    },
-    {
-      "severity": "warning",
-      "kind": "missing-related-docs",
-      "path": ".wiki/knowledge/system/v2-operating-model.md",
-      "message": "Live doc should end with '## Related docs'."
-    }
-  ],
+  "issues": [],
   "meta": {
     "version": 1,
     "name": "status",
-    "generated_at": "2026-05-02T04:05:06Z",
+    "generated_at": "2026-05-02T04:33:07Z",
     "revision": {
-      "digest": "d58f86fe1c6b1d4228895b5cda9a8d163758c20505cb773adc857f3b5826c00c",
+      "digest": "ca0fe28c79012f8d54f63ce247b2a497ed7832af0e92f8d4a7a975fcc91bcf74",
       "git": {
-        "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+        "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
+          ".wiki/knowledge/system/flows/context-memory.md",
           ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
           ".wiki/roadmap/events.jsonl",
           ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json",
-          ".wiki/roadmap/tasks/TASK-001/context.json",
-          ".wiki/roadmap/tasks/TASK-002/context.json",
-          ".wiki/roadmap/tasks/TASK-003/context.json"
+          ".wiki/roadmap/state.json"
         ],
         "paths": {}
       }
@@ -72,7 +52,7 @@
       "target_bytes": 8000
     },
     "recommended_next_reads": [
-      ".wiki/views/roadmap/queue.json"
+      ".wiki/views/drift.json"
     ]
   }
 }

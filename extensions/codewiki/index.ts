@@ -494,7 +494,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
 			"Use this for all canonical roadmap task mutation: create tasks, update metadata, append evidence, close work, or cancel work.",
 			"Prefer evidence.result='pass'|'fail'|'block' when advancing lifecycle with structured execution evidence.",
 			"Use action='close' or action='cancel' instead of patching status directly when intent is final closure.",
-			"Set refresh=false when you need a minimal canonical write and can defer generated graph/status/roadmap projection rebuilds.",
+			"Set refresh=false when you need a minimal canonical write and can defer generated graph/status/roadmap view rebuilds.",
 		],
 		parameters: codewikiTaskToolInputSchema,
 		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
@@ -4521,7 +4521,7 @@ async function readStatus(projectOrCwd: WikiProject | string): Promise<string> {
 	const report = await maybeReadJson<LintReport>(project.lintPath);
 	const roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
 	if (!report || !statusState)
-		return `Wiki: ${project.label}\nRoot: ${project.root}\nGenerated metadata missing. Run /wiki-bootstrap first, then /wiki-status to regenerate derived state.`;
+		return `Wiki: ${project.label}\nRoot: ${project.root}\nGenerated metadata missing. Run /wiki-bootstrap first, then /wiki-status to regenerate views.`;
 	return buildStatusText(project, statusState, report, "both", roadmapState);
 }
 

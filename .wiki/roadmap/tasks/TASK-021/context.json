@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T04:05:06Z",
+  "generated_at": "2026-05-02T04:33:06Z",
   "context_path": ".wiki/roadmap/tasks/TASK-021/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -47,32 +47,34 @@
       "digest": "ccce18b82ba322e8f78261d337f9609c9a665e723c71a4e17f73d56b1a000b57"
     },
     "git": {
-      "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+      "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
         ".wiki/roadmap.json",
         "extensions/codewiki/contracts.ts",
-        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-view-audit/SKILL.md",
         "skills/codewiki/SKILL.md"
       ],
       "paths": {
         ".wiki/knowledge/system/flows/context-memory.md": "b89c737a9201",
         ".wiki/knowledge/system/v2-operating-model.md": "fd4a7696e99e",
-        ".wiki/roadmap.json": "fd4a7696e99e",
-        "extensions/codewiki/contracts.ts": "ac992065707d",
-        "skills": "fd4a7696e99e"
+        ".wiki/roadmap.json": "7e122a3091d4",
+        "extensions/codewiki/contracts.ts": "7e122a3091d4",
+        "skills": "7e122a3091d4"
       }
     },
-    "spec_digest": "3d36a3769d9841956f26dc282b2782d4225b5d3b23db1d8e0c5d4200ac5481bc",
-    "code_digest": "c707786cd56ec601b0d74acd9a136af7ad476c9b33709c3bc93f050300a5c123",
+    "spec_digest": "4e7040d721595f956d61abe3aec5ae33bb917d523ae4c3dbd2c729290abf5247",
+    "code_digest": "2571701b7f129b969f0c9e55c2d8c05fbb3486a036e2636906b7c97220f623fc",
     "graph": {
       "git": {
-        "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
+        "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
         "dirty": true
       },
-      "spec_digest": "e821ea1ba359af574cf2077cf9b1e345815c705c48e321675e0fb7b11cca035c",
-      "task_digest": "bfec6cb96c5f80611e257d649583e3aecbd5d0a92e8cb86250945faa743700bd",
-      "evidence_digest": "911dde4ccb8be65f6fc0c850feed3ea2886f4fa390c7e0cf37907148a4d9bb83"
+      "spec_digest": "22abeba49013922d7521fbbab908a725331c7a026ec53a06971cac66557f57b2",
+      "task_digest": "333e2dd1bb0d93bcbef429bc7121b7777503015afddbf981ebef7c69e000b70f",
+      "evidence_digest": "19cd43783695390610f8744a93376d57879f974835b1e088eafdd3b910356b84"
     }
   },
   "specs": [
@@ -91,7 +93,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "729ab9d846d779e42edee514be499238e7107b56e131364ac539d7d450660e34"
+        "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485"
       },
       "expand": {
         "read": ".wiki/knowledge/system/v2-operating-model.md"
@@ -110,7 +112,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "f56863e477c22312a6e23ccf8d67c19833c1c85f9aea2e090be33e53a2c6a872"
+        "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543"
       },
       "expand": {
         "read": ".wiki/knowledge/system/flows/context-memory.md"
@@ -122,7 +124,7 @@
       "extensions/codewiki/contracts.ts",
       "skills"
     ],
-    "digest": "c707786cd56ec601b0d74acd9a136af7ad476c9b33709c3bc93f050300a5c123",
+    "digest": "2571701b7f129b969f0c9e55c2d8c05fbb3486a036e2636906b7c97220f623fc",
     "expand": [
       {
         "read": "extensions/codewiki/contracts.ts"
