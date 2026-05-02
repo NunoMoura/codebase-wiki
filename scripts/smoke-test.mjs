@@ -453,6 +453,20 @@ async function main() {
 			),
 			"Heartbeat stop conditions should include ambiguity/destructive guard",
 		);
+		assert.equal(
+			heartbeatResult.details.bounded_context.preferred_executor,
+			"think_code_run",
+			"Heartbeat should expose optional ThinkCode context executor plan",
+		);
+		assert.equal(
+			heartbeatResult.details.bounded_context.availability,
+			"optional",
+			"ThinkCode must remain optional for CodeWiki",
+		);
+		assert.ok(
+			heartbeatResult.details.bounded_context.fallback.steps.length >= 1,
+			"Heartbeat should expose native fallback context steps",
+		);
 
 		const taskTool = extension.tools.get("codewiki_task");
 		assert.ok(

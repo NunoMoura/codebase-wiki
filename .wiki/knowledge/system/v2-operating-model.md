@@ -85,6 +85,8 @@ Push, version bump, and archive behavior require policy permission plus green ve
 
 Views are persistent common context. CodeWiki should not require a specific sandbox/runtime package for programmatic context work. Optional tools such as ThinkCode may help build temporary context packets, filter large searches, validate architecture graphs, compute stale hashes, or stage safe edits under their own policy and skill.
 
+When ThinkCode is available, CodeWiki workflows may ask it to run bounded analysis scripts over `.wiki/views/**`, roadmap task shards, graph state, and linked code paths. The returned packet is advisory context for the parent agent. If ThinkCode is unavailable, the same workflow falls back to `codewiki_state`, generated views, `scripts/codewiki-gateway.mjs pack/tree/manifest`, and normal Pi read/search tools.
+
 ## Sanitation and git
 
 Knowledge should stay fresh, views should stay current, and git should be the full historical recovery mechanism. CodeWiki should keep only compact semantic archives for closed tasks and release checkpoints. Old raw evidence and event history should not be part of default agent context.

@@ -22,26 +22,14 @@
       "code_area": "\u2014"
     },
     {
-      "path": ".wiki/knowledge/system/runtime/overview.md",
-      "title": "Runtime Policy",
-      "drift_status": "tracked",
-      "note": "tracked by TASK-023",
-      "primary_task": {
-        "id": "TASK-023",
-        "status": "todo",
-        "title": "ThinkCode query executor integration"
-      },
-      "code_area": "\u2014"
-    },
-    {
       "path": ".wiki/knowledge/system/v2-operating-model.md",
       "title": "CodeWiki v2 Operating Model",
       "drift_status": "tracked",
-      "note": "tracked by TASK-023",
+      "note": "tracked by TASK-024",
       "primary_task": {
-        "id": "TASK-023",
+        "id": "TASK-024",
         "status": "todo",
-        "title": "ThinkCode query executor integration"
+        "title": "Sanitation checkpoints and git history policy"
       },
       "code_area": "extensions, scripts +1 more"
     }
@@ -69,15 +57,15 @@
   "meta": {
     "version": 1,
     "name": "drift",
-    "generated_at": "2026-05-02T01:54:30Z",
+    "generated_at": "2026-05-02T02:34:17Z",
     "revision": {
-      "digest": "488e11eb70adc3a56facceefd05dd9487634f908afb48d5257da918e1dcb26b9",
+      "digest": "f9e7985592975fa938f9ea2964734e81bbe4d3caf659a52cb5dc34d5e8425794",
       "git": {
-        "head": "b89c737a9201f997dfab4559020744016884d537",
+        "head": "ac992065707d76fe55b83b5755e7067e4ab6166d",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/product/stories.md",
+          ".wiki/knowledge/system/runtime/overview.md",
           ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
@@ -99,7 +87,6 @@
     "recommended_next_reads": [
       ".wiki/knowledge/system/flows/context-memory.md",
       ".wiki/knowledge/system/flows/sanitation-release.md",
-      ".wiki/knowledge/system/runtime/overview.md",
       ".wiki/knowledge/system/v2-operating-model.md"
     ]
   }

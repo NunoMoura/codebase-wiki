@@ -16,7 +16,7 @@ load task → create context → implement → local verify → fresh verify →
 - Use `codewiki_session` when starting or continuing a task; keep task id, loaded view revisions, and current decision state in parent RAM.
 - Use `codewiki_state`/task context before reading raw wiki files.
 - Read only linked specs, flows, evidence, and code paths unless task context proves broader context is needed.
-- Use task context views first, then targeted repo tools or an available bounded context tool for compact project packets when exploration would be token-heavy.
+- Use task context views first, then targeted repo tools or an available bounded context tool for compact project packets when exploration would be token-heavy. If ThinkCode is installed, `think_code_run` may produce bounded context/validation packets; otherwise use CodeWiki views, gateway `pack/tree/manifest`, and normal Pi tools.
 - Spawn subagents for fresh verification or bounded research; parent consumes their compact result, then writes canonical task/evidence updates.
 - Use short local feedback loops during implementation: typecheck, tests, lint, runtime smoke, or targeted scripts.
 - Verification evidence, not confidence, controls closure.

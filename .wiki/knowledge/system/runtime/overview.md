@@ -45,7 +45,7 @@ CodeWiki task execution should progress automatically once a task is selected or
 load task → create context → implement → local verify → fresh verify → evidence → close/block/follow-up
 ```
 
-Optional bounded context tools can create compact project context for token-heavy exploration when available, but CodeWiki must keep a fallback path through normal Pi tools and CodeWiki views. Local verification handles mechanical feedback such as typecheck, tests, lint, and smoke scripts. Fresh verification is a separate read-only stage that checks alignment from a clean context before closure.
+Optional bounded context tools can create compact project context for token-heavy exploration when available, but CodeWiki must keep a fallback path through normal Pi tools and CodeWiki views. When ThinkCode is installed, CodeWiki may provide a bounded script plan for `think_code_run` that reads views, task shards, and graph cues and returns a compact packet. If it is not installed, agents use `codewiki_state`, `scripts/codewiki-gateway.mjs pack/tree/manifest`, and normal Pi read/search tools. Local verification handles mechanical feedback such as typecheck, tests, lint, and smoke scripts. Fresh verification is a separate read-only stage that checks alignment from a clean context before closure.
 
 Task closure requires evidence: checks run, files touched, unresolved issues, and verifier verdict when policy requires it. If verification fails or blocks, CodeWiki should record evidence and create follow-up roadmap tasks or keep the current task open instead of silently closing it.
 
@@ -81,7 +81,7 @@ CodeWiki-owned capability classes:
 - `codewiki.transaction` applies validated exact-text knowledge patches and append-only evidence writes.
 - `codewiki.rebuild` regenerates views.
 
-External runtimes may read `.wiki/**` only when policy permits. Writes to views (`.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`, `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, and task context shards today; `.wiki/views/**` in v2) remain out of scope except through the rebuild capability. Session mutators default to canonical writes without rebuilding views. Task mutators preserve fresh read models by default for compatibility, but callers may set `refresh=false` when they need a minimal canonical write and can defer views to `codewiki_state refresh=true` or `codewiki.rebuild`. If `think-code` is not installed, CodeWiki continues to use its native tools, gateway `pack/tree/manifest`, and normal Pi read/search tools.
+External runtimes may read `.wiki/**` only when policy permits. Writes to views (`.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`, `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, and task context shards today; `.wiki/views/**` in v2) remain out of scope except through the rebuild capability. Session mutators default to canonical writes without rebuilding views. Task mutators preserve fresh read models by default for compatibility, but callers may set `refresh=false` when they need a minimal canonical write and can defer views to `codewiki_state refresh=true` or `codewiki.rebuild`. If `think-code` is not installed, CodeWiki continues to use its native tools, gateway `pack/tree/manifest`, generated views, and normal Pi read/search tools. ThinkCode staged writes are proposals until `think_code_apply` validates them, and CodeWiki-managed writes still flow through CodeWiki task/session/transaction/rebuild capabilities.
 
 ## Transaction v1
 
