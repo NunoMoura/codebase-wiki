@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T00:41:51Z",
+  "generated_at": "2026-05-02T00:53:20Z",
   "context_path": ".wiki/roadmap/tasks/TASK-024/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -47,31 +47,32 @@
       "digest": "4571cfd146c60399d148e28663ab3e0e438ddc20a677aeeae0a0b11fb8b38d50"
     },
     "git": {
-      "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+      "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
         ".wiki/roadmap.json",
         "extensions/codewiki/index.ts"
       ],
       "paths": {
         ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc0",
         ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc0",
-        ".wiki/roadmap.json": "21ea883c25d7",
-        "extensions/codewiki/index.ts": "21ea883c25d7",
+        ".wiki/roadmap.json": "2f8e9ab9d5db",
+        "extensions/codewiki/index.ts": "2f8e9ab9d5db",
         "extensions/codewiki/templates.ts": "3c0906e38572",
         "scripts/rebuild_docs_meta.py": "a6f94f94cbc0"
       }
     },
-    "spec_digest": "651ac5fd8155d919ef4ffa331bbef1664265da4469a766087dcbd38ae6741427",
-    "code_digest": "886ae40f27d6dea767013d4130900b11721dd151b7c981d9a6baa7e939798cb1",
+    "spec_digest": "2954d3ee26fef8651d5f4ebd81d20d02e85e2fda962f2b152f5bbc89dfcaab61",
+    "code_digest": "143a2fa82e9116496f0dae2064b0c57162d079130bfa106e197309dbccef657d",
     "graph": {
       "git": {
-        "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+        "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
         "dirty": true
       },
-      "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
-      "task_digest": "1b73beb669e07602af203469934c301d502f8cd30ca12a47e33ed972fbb1848a",
-      "evidence_digest": "f532e219c4f26eae068c9f7a3f03332130a59b2dc5cec75a9bc95ac3faa9d0c0"
+      "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
+      "task_digest": "417e709f7cba69b53d78e61ce95fa471bb8d4da34cb877e55f689b36c6dd3455",
+      "evidence_digest": "53e942125b4c28beb7057ab94d9af09681959475b7fd524d02d1153b87893bce"
     }
   },
   "specs": [
@@ -94,7 +95,7 @@
     {
       "path": ".wiki/knowledge/system/v2-operating-model.md",
       "title": "CodeWiki v2 Operating Model",
-      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
       "state": "proposed",
       "owners": [
         "architecture",
@@ -106,7 +107,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165"
+        "digest": "162a0895ac926785fa69defdb5e329cad1f70e943a1e6e35b65c4afb99e73473"
       },
       "expand": {
         "read": ".wiki/knowledge/system/v2-operating-model.md"
@@ -119,7 +120,7 @@
       "extensions/codewiki/index.ts",
       "extensions/codewiki/templates.ts"
     ],
-    "digest": "886ae40f27d6dea767013d4130900b11721dd151b7c981d9a6baa7e939798cb1",
+    "digest": "143a2fa82e9116496f0dae2064b0c57162d079130bfa106e197309dbccef657d",
     "expand": [
       {
         "read": "scripts/rebuild_docs_meta.py"

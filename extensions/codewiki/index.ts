@@ -4108,7 +4108,7 @@ function codePrompt(
 		`- follow the deterministic task phase: ${TASK_PHASE_DRIVERS.implement.guidance} ${TASK_PHASE_DRIVERS.verify.guidance}`,
 		"- treat parent context as expensive RAM: keep focused task, loaded view revisions, and small decisions; do not load raw wiki trees by default",
 		"- consume status/task views first, expand linked canonical docs/code only when the view points there or exact source is required",
-		"- use subagents for fresh verification/research/architecture review and ThinkCode for bounded programmatic context packets",
+		"- use subagents for fresh verification/research/architecture review and available bounded context tools for programmatic context packets; ThinkCode is optional and governed by its own skill",
 		"- if current phase is implement, build context through the gateway or compact task packet first, then change code or wiki surgically against specs and roadmap truth",
 		"- during implement, use lint, typecheck, tests, runtime feedback, and Pi-lens as short-cycle correction signals for mechanical code quality",
 		"- if current phase is verify, use fresh-context alignment validation: check user intent, knowledge, architecture, code, evidence, and intra-layer coherence before recommending done",

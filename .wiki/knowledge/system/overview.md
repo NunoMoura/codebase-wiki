@@ -20,7 +20,7 @@ CodeWiki has one core responsibility: maintain the repository-local `.wiki` cont
 
 - **Knowledge and roadmap semantics** own product specs, system specs, client surfaces, tasks, evidence, views, and rebuild rules.
 - **Pi package and extension surface** owns commands, status panels, session integration, packaged skills, bootstrap templates, smoke coverage, and resource discovery.
-- **Runtime gateway boundary** owns CodeWiki-specific transactions, verifier orchestration, and capability descriptors, but delegates sandboxed execution to `think-code` or Pi's active runtime tools.
+- **Runtime gateway boundary** owns CodeWiki-specific transactions, verifier orchestration, and capability descriptors, while any sandboxed execution belongs to Pi or optional runtime packages.
 
 ## Canonical/view boundary
 
@@ -55,7 +55,7 @@ agent writes canonical, consumes views
 
 The context window is volatile RAM. The `.wiki` is persistent memory. Views are materialized navigation packets that help agents choose the next targeted read without loading the full wiki into session context.
 
-See [CodeWiki v2 Operating Model](v2-operating-model.md) for the target structure, memory policy, subagent roles, heartbeat loop, ThinkCode role, and sanitation/versioning policy.
+See [CodeWiki v2 Operating Model](v2-operating-model.md) for the target structure, memory policy, subagent roles, heartbeat loop, optional runtime role, and sanitation/versioning policy.
 
 ## Ownership seams
 

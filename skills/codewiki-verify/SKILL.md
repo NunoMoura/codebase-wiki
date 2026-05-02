@@ -28,7 +28,7 @@ Horizontal coherence:
 
 Verifier should be read-only by default:
 
-- allowed: read, grep, find, ls, safe check commands, think-code read/context runs
+- allowed: read, grep, find, ls, safe check commands, available bounded read/context tools
 - denied: write, edit, apply staged ops, roadmap mutation, generated-state edits
 
 ## Workflow

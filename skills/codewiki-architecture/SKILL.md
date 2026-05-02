@@ -30,7 +30,7 @@ Use this workflow during outer planning, not as an automatic refactor pass.
 1. **Read CodeWiki state**
    - Start with `codewiki_state` and the smallest architecture/system view available.
    - Expand relevant `.wiki/knowledge/system/**` component or flow specs only after the view points there.
-   - Use repo tools or think-code to inspect code ownership seams; avoid loading broad source trees into parent RAM.
+   - Use repo tools or an available bounded context tool to inspect code ownership seams; avoid loading broad source trees into parent RAM.
    - Use an architecture-review subagent for large cross-cutting reviews and return compact findings.
 
 2. **Find friction**

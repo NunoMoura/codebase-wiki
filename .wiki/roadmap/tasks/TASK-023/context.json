@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T00:41:51Z",
+  "generated_at": "2026-05-02T00:53:20Z",
   "context_path": ".wiki/roadmap/tasks/TASK-023/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -47,14 +47,15 @@
       "digest": "a70fd9c639911613e63a677d05f65959d65e0e14a3118e48f4701b4a2e228e5f"
     },
     "git": {
-      "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+      "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
         ".wiki/roadmap.json",
         "extensions/codewiki/index.ts",
         "skills/codewiki-architecture/SKILL.md",
         "skills/codewiki-plan/SKILL.md",
-        "skills/codewiki-research/SKILL.md",
         "skills/codewiki-task/SKILL.md",
         "skills/codewiki-verify/SKILL.md",
         "skills/codewiki/SKILL.md"
@@ -62,29 +63,29 @@
       "paths": {
         ".wiki/knowledge/system/runtime/overview.md": "a6f94f94cbc0",
         ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc0",
-        ".wiki/roadmap.json": "21ea883c25d7",
-        "extensions/codewiki/index.ts": "21ea883c25d7",
+        ".wiki/roadmap.json": "2f8e9ab9d5db",
+        "extensions/codewiki/index.ts": "2f8e9ab9d5db",
         "scripts/codewiki-gateway.mjs": "a6fc64223df3",
-        "skills": "a6fc64223df3"
+        "skills": "2f8e9ab9d5db"
       }
     },
-    "spec_digest": "c83c6b7b5450a0dbb49f8f402a16ee5b797d164d3a3a2b2023b0fdaaa48d7ee2",
-    "code_digest": "065f01e912dc1dfeea128185fe8c424f06a570a6c3a172f6b45807b5af2ae795",
+    "spec_digest": "f6095d9467d1e31d5e1f5ad0ef259132773930abe8582937435381e9738d4a03",
+    "code_digest": "bdc2ac610db65548fc843931304812e7021563b26ae4ab6126ffc375399fc33e",
     "graph": {
       "git": {
-        "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+        "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
         "dirty": true
       },
-      "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
-      "task_digest": "1b73beb669e07602af203469934c301d502f8cd30ca12a47e33ed972fbb1848a",
-      "evidence_digest": "f532e219c4f26eae068c9f7a3f03332130a59b2dc5cec75a9bc95ac3faa9d0c0"
+      "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
+      "task_digest": "417e709f7cba69b53d78e61ce95fa471bb8d4da34cb877e55f689b36c6dd3455",
+      "evidence_digest": "53e942125b4c28beb7057ab94d9af09681959475b7fd524d02d1153b87893bce"
     }
   },
   "specs": [
     {
       "path": ".wiki/knowledge/system/v2-operating-model.md",
       "title": "CodeWiki v2 Operating Model",
-      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
       "state": "proposed",
       "owners": [
         "architecture",
@@ -96,7 +97,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165"
+        "digest": "162a0895ac926785fa69defdb5e329cad1f70e943a1e6e35b65c4afb99e73473"
       },
       "expand": {
         "read": ".wiki/knowledge/system/v2-operating-model.md"
@@ -112,7 +113,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "1cbae979918e62d03b30fb5fd08fe8db1933ea2eb9fc52722809b95f3a9b5c28"
+        "digest": "ea5704df88c164838f0c246bf4b2a6892144270ca858e77f1a2d941d0ff36e93"
       },
       "expand": {
         "read": ".wiki/knowledge/system/runtime/overview.md"
@@ -125,7 +126,7 @@
       "scripts/codewiki-gateway.mjs",
       "skills"
     ],
-    "digest": "065f01e912dc1dfeea128185fe8c424f06a570a6c3a172f6b45807b5af2ae795",
+    "digest": "bdc2ac610db65548fc843931304812e7021563b26ae4ab6126ffc375399fc33e",
     "expand": [
       {
         "read": "extensions/codewiki/index.ts"

@@ -23,7 +23,7 @@ The product model is split into focused knowledge files instead of one large ove
 
 CodeWiki owns the `.wiki` contract, canonical knowledge, roadmap tasks, evidence, generated views, and Pi-native workflows around them. It should not become a general-purpose sandbox, telemetry stack, evaluation framework, or monolithic runtime.
 
-Programmatic execution belongs to runtimes such as `think-code`. CodeWiki should expose semantic capabilities and views that those runtimes can use without bypassing wiki rules.
+Programmatic execution belongs to Pi or optional runtime packages. CodeWiki should expose semantic capabilities and views that those runtimes can use without bypassing wiki rules.
 
 ## Success signals
 

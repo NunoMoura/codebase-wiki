@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-05-02T00:41:50Z",
+  "generated_at": "2026-05-02T00:53:19Z",
   "health": {
     "color": "yellow",
     "errors": 0,
@@ -9,17 +9,25 @@
   },
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-02T00:41:50Z",
+    "graph_generated_at": "2026-05-02T00:53:18Z",
     "revision": {
       "git": {
-        "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+        "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
         "dirty": true,
         "dirty_paths": [
+          ".wiki/knowledge/lexicon.md",
+          ".wiki/knowledge/product/overview.md",
+          ".wiki/knowledge/product/surfaces.md",
+          ".wiki/knowledge/product/users.md",
+          ".wiki/knowledge/system/extensions/codewiki/overview.md",
+          ".wiki/knowledge/system/flows/context-memory.md",
+          ".wiki/knowledge/system/overview.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/roadmap.json",
           "extensions/codewiki/index.ts",
           "skills/codewiki-architecture/SKILL.md",
           "skills/codewiki-plan/SKILL.md",
-          "skills/codewiki-research/SKILL.md",
           "skills/codewiki-task/SKILL.md",
           "skills/codewiki-verify/SKILL.md",
           "skills/codewiki/SKILL.md"
@@ -41,41 +49,41 @@
           ".wiki/knowledge/system/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/system/runtime/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/roadmap.json": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+          ".wiki/roadmap.json": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
           "README.md": "53578e465699177d1945148075b98a9fc539da26",
-          "extensions/codewiki": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+          "extensions/codewiki": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
           "extensions/codewiki/contracts.ts": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          "extensions/codewiki/index.ts": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+          "extensions/codewiki/index.ts": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
           "extensions/codewiki/templates.ts": "3c0906e38572fca7352aa3e820369391069c26b1",
           "package.json": "53578e465699177d1945148075b98a9fc539da26",
           "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
           "scripts/rebuild_docs_meta.py": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           "scripts/smoke-test.mjs": "3c0906e38572fca7352aa3e820369391069c26b1",
-          "skills": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "skills/codewiki-architecture/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "skills/codewiki-plan/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "skills/codewiki-research/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "skills/codewiki-task/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "skills/codewiki-verify/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "skills/codewiki/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
+          "skills": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "skills/codewiki-architecture/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "skills/codewiki-plan/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "skills/codewiki-research/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "skills/codewiki-task/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "skills/codewiki-verify/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "skills/codewiki/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371"
         }
       },
-      "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
-      "task_digest": "1b73beb669e07602af203469934c301d502f8cd30ca12a47e33ed972fbb1848a",
-      "evidence_digest": "f532e219c4f26eae068c9f7a3f03332130a59b2dc5cec75a9bc95ac3faa9d0c0"
+      "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
+      "task_digest": "417e709f7cba69b53d78e61ce95fa471bb8d4da34cb877e55f689b36c6dd3455",
+      "evidence_digest": "53e942125b4c28beb7057ab94d9af09681959475b7fd524d02d1153b87893bce"
     },
     "roadmap_folder": ".wiki/roadmap",
     "task_context_root": ".wiki/roadmap/tasks"
   },
   "summary": {
-    "task_count": 25,
+    "task_count": 26,
     "open_count": 7,
     "status_counts": {
-      "done": 18,
+      "done": 19,
       "todo": 7
     },
     "priority_counts": {
-      "high": 15,
+      "high": 16,
       "medium": 10
     }
   },
@@ -105,7 +113,8 @@
       "TASK-022",
       "TASK-023",
       "TASK-024",
-      "TASK-025"
+      "TASK-025",
+      "TASK-026"
     ],
     "open_task_ids": [
       "TASK-019",
@@ -145,10 +154,12 @@
       "TASK-015",
       "TASK-016",
       "TASK-017",
-      "TASK-018"
+      "TASK-018",
+      "TASK-026"
     ],
     "cancelled_task_ids": [],
     "recent_task_ids": [
+      "TASK-026",
       "TASK-025",
       "TASK-024",
       "TASK-023",
@@ -1674,6 +1685,81 @@
         "phase": "implement",
         "updated_at": "",
         "evidence": null
+      }
+    },
+    "TASK-026": {
+      "id": "TASK-026",
+      "title": "Decouple ThinkCode from CodeWiki memory policy",
+      "status": "done",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Remove wording that frames ThinkCode as an enforced CodeWiki runtime and describe it only as optional compatible tooling.",
+      "labels": [
+        "v2",
+        "decoupling",
+        "think-code"
+      ],
+      "goal": {
+        "outcome": "CodeWiki operates independently as a Pi package while allowing ThinkCode or other tools to integrate optionally.",
+        "acceptance": [
+          "Skills do not require ThinkCode for CodeWiki workflows.",
+          "Code/task/verifier prompts frame programmatic context executors as optional/replaceable.",
+          "Knowledge and lexicon describe ThinkCode as compatible external tooling, not CodeWiki runtime.",
+          "Checks pass."
+        ],
+        "non_goals": [
+          "Change ThinkCode package behavior.",
+          "Remove all mentions of ThinkCode where optional integration is useful."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "1cededd63a2e7b21b57ad085190f4db4dc868beba3258ad4e13b1d4a9f009760"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-026/context.json",
+      "loop": {
+        "phase": "done",
+        "updated_at": "2026-05-02T00:53:12Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Removed ThinkCode-as-required-runtime wording from skills, prompts, and knowledge; now framed as optional external/compatible tooling governed by its own skill.",
+          "checks_run": [
+            "python scripts/rebuild_docs_meta.py",
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "skills/codewiki/SKILL.md",
+            "skills/codewiki-plan/SKILL.md",
+            "skills/codewiki-task/SKILL.md",
+            "skills/codewiki-verify/SKILL.md",
+            "skills/codewiki-architecture/SKILL.md",
+            "extensions/codewiki/index.ts",
+            ".wiki/knowledge/system/flows/context-memory.md",
+            ".wiki/knowledge/lexicon.md",
+            ".wiki/knowledge/system/v2-operating-model.md",
+            ".wiki/knowledge/system/runtime/overview.md",
+            ".wiki/knowledge/system/overview.md",
+            ".wiki/knowledge/product/overview.md",
+            ".wiki/knowledge/product/users.md",
+            ".wiki/knowledge/product/surfaces.md",
+            ".wiki/knowledge/system/extensions/codewiki/overview.md"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-02T00:53:12Z"
+        }
       }
     }
   }

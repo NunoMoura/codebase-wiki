@@ -23,7 +23,7 @@ Pause only for ambiguity, product/architecture choice, destructive action, or ap
 - Expand raw wiki files only when a view recommends them, a decision needs exact canonical source, or drift cannot be resolved from views.
 - For outer-loop planning, read the smallest useful path: status view → roadmap queue/task packet → linked product/system/flow docs.
 - Use a planning-review subagent when intent, architecture, and roadmap interactions exceed the parent context budget; ask for compact task deltas only.
-- Use ThinkCode for repo-wide inventory, graph checks, or diff summarization instead of loading broad raw output.
+- Use available bounded context tools for repo-wide inventory, graph checks, or diff summarization instead of loading broad raw output. ThinkCode is optional and governed by its own skill when installed.
 - Use `codewiki_task` for task creation/update. Do not edit roadmap JSON manually.
 
 ## Workflow
@@ -34,7 +34,7 @@ Pause only for ambiguity, product/architecture choice, destructive action, or ap
 
 2. **Inspect current repo/wiki**
    - Read compact CodeWiki state first.
-   - Use think-code or targeted repo tools for programmatic context creation when raw output would be noisy.
+   - Use targeted repo tools or an available bounded context tool for programmatic context creation when raw output would be noisy.
    - Surface drift instead of silently choosing between code and wiki.
 
 3. **Research if needed**

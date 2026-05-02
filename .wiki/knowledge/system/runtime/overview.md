@@ -18,24 +18,24 @@ The runtime policy keeps agent-facing wiki operations small, inspectable, and bo
 
 - `.wiki/config.json` declares readable paths, direct writable paths, generated read-only paths, byte caps, and runtime adapter metadata.
 - `scripts/codewiki-gateway.mjs` is the current adapter for compact reads and validated transaction application.
-- `think-code` should be the preferred generic executor for agent-written analysis programs when it is available in Pi.
+- Optional bounded context tools may execute agent-written analysis programs when available in Pi.
 - Pi owns the host runtime, project working directory, session state, package loading, and any optional outer sandbox extension.
 - CodeWiki owns domain semantics: views stay read-only, evidence is append-only, roadmap/task state goes through canonical mutation APIs, and views are rebuilt only when fresh read models are explicitly requested or a rebuild command runs.
 
 ## Capability boundary
 
-CodeWiki should expose its own typed capabilities instead of asking runtimes to mutate `.wiki` internals directly. A `think-code` script may read project files, including `.wiki/**` when policy permits, but writes to CodeWiki-managed state should flow through CodeWiki transactions or task APIs.
+CodeWiki should expose its own typed capabilities instead of asking runtimes to mutate `.wiki` internals directly. External tools may read project files, including `.wiki/**` when policy permits, but writes to CodeWiki-managed state should flow through CodeWiki transactions or task APIs.
 
 The desired composition is:
 
 ```text
 Pi host runtime
   └─ optional Pi sandbox extension
-      └─ think-code gated programmatic runtime
+      └─ optional bounded programmatic runtime
           └─ CodeWiki capability or transaction surface
 ```
 
-This keeps CodeWiki responsible for meaning and validation while allowing `think-code` to specialize in bounded programmatic execution and staged filesystem operations.
+This keeps CodeWiki responsible for meaning and validation while allowing optional runtime tools to specialize in bounded programmatic execution and staged filesystem operations.
 
 ## Task execution loop
 
@@ -45,7 +45,7 @@ CodeWiki task execution should progress automatically once a task is selected or
 load task → create context → implement → local verify → fresh verify → evidence → close/block/follow-up
 ```
 
-`think-code` is the preferred way to create compact project context for token-heavy exploration when it is available, but CodeWiki must keep a fallback path through normal Pi tools and CodeWiki views. Local verification handles mechanical feedback such as typecheck, tests, lint, and smoke scripts. Fresh verification is a separate read-only stage that checks alignment from a clean context before closure.
+Optional bounded context tools can create compact project context for token-heavy exploration when available, but CodeWiki must keep a fallback path through normal Pi tools and CodeWiki views. Local verification handles mechanical feedback such as typecheck, tests, lint, and smoke scripts. Fresh verification is a separate read-only stage that checks alignment from a clean context before closure.
 
 Task closure requires evidence: checks run, files touched, unresolved issues, and verifier verdict when policy requires it. If verification fails or blocks, CodeWiki should record evidence and create follow-up roadmap tasks or keep the current task open instead of silently closing it.
 

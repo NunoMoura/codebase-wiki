@@ -27,9 +27,9 @@ Skills encode workflow policy for planning, task execution, research, verificati
 
 Views are the main navigation surface for agents and UI. They should be small, revisioned, and purpose-specific: status, roadmap queue, task context, product brief, system architecture, drift, and recent evidence.
 
-## ThinkCode programs
+## Optional runtime programs
 
-`think-code` programs are a programmatic surface for ad hoc context creation, filtering, graph validation, and temporary analysis. They should use CodeWiki views and capabilities rather than editing `.wiki` internals directly.
+Optional runtime programs can provide ad hoc context creation, filtering, graph validation, and temporary analysis. They should use CodeWiki views and capabilities rather than editing `.wiki` internals directly.
 
 ## Future adapters
 

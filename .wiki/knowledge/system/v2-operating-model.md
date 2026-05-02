@@ -2,7 +2,7 @@
 id: spec.system.v2-operating-model
 title: CodeWiki v2 Operating Model
 state: proposed
-summary: Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.
+summary: Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.
 owners:
   - architecture
   - product
@@ -63,7 +63,7 @@ Canonical truth is durable project memory. Views are generated navigation and re
 
 ## Memory policy
 
-The context window is expensive RAM. The `.wiki` is persistent memory. A parent agent should keep only the current user intent, focused task, loaded view revisions, and small decisions in session context. Heavy context creation should happen through views, targeted canonical reads, subagents, or `think-code` programs.
+The context window is expensive RAM. The `.wiki` is persistent memory. A parent agent should keep only the current user intent, focused task, loaded view revisions, and small decisions in session context. Heavy context creation should happen through views, targeted canonical reads, subagents, or optional bounded context tools when available.
 
 ## Subagents
 
@@ -73,9 +73,9 @@ Subagents should run context-heavy or bias-sensitive work in fresh sessions. Goo
 
 Heartbeat is a bounded autonomous loop. It reads status, rebuilds stale views, chooses inner-loop or outer-loop work, spawns subagents for heavy checks, writes canonical truth, rebuilds views, and stops on budget, risk, or ambiguity. Modes should include observe, maintain, and work.
 
-## ThinkCode role
+## Optional bounded context tools
 
-Views are persistent common context. ThinkCode is an ad hoc programmatic query and ETL executor. It should help build temporary context packets, filter large searches, validate architecture graphs, compute stale hashes, and stage safe edits under policy.
+Views are persistent common context. CodeWiki should not require a specific sandbox/runtime package for programmatic context work. Optional tools such as ThinkCode may help build temporary context packets, filter large searches, validate architecture graphs, compute stale hashes, or stage safe edits under their own policy and skill.
 
 ## Sanitation and git
 

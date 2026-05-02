@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-02T00:41:45Z",
+  "updated": "2026-05-02T00:53:12Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -26,7 +26,8 @@
     "TASK-022",
     "TASK-023",
     "TASK-024",
-    "TASK-025"
+    "TASK-025",
+    "TASK-026"
   ],
   "tasks": {
     "TASK-001": {
@@ -1192,6 +1193,52 @@
         "desired": "Public and agent instructions use view vocabulary consistently.",
         "current": "Some package text still says projection, derived state, or generated state in places where v2 wants view terminology.",
         "closure": "README, skills, and tool descriptions match the lexicon."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-026": {
+      "id": "TASK-026",
+      "title": "Decouple ThinkCode from CodeWiki memory policy",
+      "status": "done",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Remove wording that frames ThinkCode as an enforced CodeWiki runtime and describe it only as optional compatible tooling.",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "research_ids": [],
+      "labels": [
+        "v2",
+        "decoupling",
+        "think-code"
+      ],
+      "goal": {
+        "outcome": "CodeWiki operates independently as a Pi package while allowing ThinkCode or other tools to integrate optionally.",
+        "acceptance": [
+          "Skills do not require ThinkCode for CodeWiki workflows.",
+          "Code/task/verifier prompts frame programmatic context executors as optional/replaceable.",
+          "Knowledge and lexicon describe ThinkCode as compatible external tooling, not CodeWiki runtime.",
+          "Checks pass."
+        ],
+        "non_goals": [
+          "Change ThinkCode package behavior.",
+          "Remove all mentions of ThinkCode where optional integration is useful."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "delta": {
+        "desired": "CodeWiki is standalone and stack-agnostic; ThinkCode is optional external tooling enforced only by its own skill.",
+        "current": "Recent memory-policy wording overstates ThinkCode as CodeWiki context/query executor.",
+        "closure": "Wording changed to optional/compatible tool language."
       },
       "created": "2026-05-02",
       "updated": "2026-05-02"

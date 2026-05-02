@@ -38,7 +38,7 @@ Internal agent tools:
 - Default first read is `codewiki_state`/status view. Expand task context, product/system views, canonical docs, and code paths only when the loaded view points there or exact source is required.
 - Track loaded view revisions in session RAM when available. If a view revision is unchanged and enough for the question, do not reread it.
 - Use subagents for fresh-context verification, research, architecture review, or planning review. Require compact JSON/prose summaries back to the parent.
-- Use ThinkCode for bounded programmatic filtering, validation, and context packets when raw repo/wiki output would be noisy.
+- Use whichever bounded context tool is available for programmatic filtering, validation, and context packets when raw repo/wiki output would be noisy. ThinkCode is optional and governed by its own skill when installed.
 
 ## Invariants
 

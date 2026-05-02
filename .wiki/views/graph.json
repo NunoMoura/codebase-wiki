@@ -1,16 +1,24 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T00:41:50Z",
+  "generated_at": "2026-05-02T00:53:18Z",
   "revision": {
     "git": {
-      "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+      "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
         ".wiki/roadmap.json",
         "extensions/codewiki/index.ts",
         "skills/codewiki-architecture/SKILL.md",
         "skills/codewiki-plan/SKILL.md",
-        "skills/codewiki-research/SKILL.md",
         "skills/codewiki-task/SKILL.md",
         "skills/codewiki-verify/SKILL.md",
         "skills/codewiki/SKILL.md"
@@ -32,28 +40,28 @@
         ".wiki/knowledge/system/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
         ".wiki/knowledge/system/runtime/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
         ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-        ".wiki/roadmap.json": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+        ".wiki/roadmap.json": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
         "README.md": "53578e465699177d1945148075b98a9fc539da26",
-        "extensions/codewiki": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+        "extensions/codewiki": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
         "extensions/codewiki/contracts.ts": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-        "extensions/codewiki/index.ts": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+        "extensions/codewiki/index.ts": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
         "extensions/codewiki/templates.ts": "3c0906e38572fca7352aa3e820369391069c26b1",
         "package.json": "53578e465699177d1945148075b98a9fc539da26",
         "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
         "scripts/rebuild_docs_meta.py": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
         "scripts/smoke-test.mjs": "3c0906e38572fca7352aa3e820369391069c26b1",
-        "skills": "a6fc64223df319b53cd863958c062c28180ebbd8",
-        "skills/codewiki-architecture/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-        "skills/codewiki-plan/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-        "skills/codewiki-research/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-        "skills/codewiki-task/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-        "skills/codewiki-verify/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-        "skills/codewiki/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
+        "skills": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+        "skills/codewiki-architecture/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+        "skills/codewiki-plan/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+        "skills/codewiki-research/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+        "skills/codewiki-task/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+        "skills/codewiki-verify/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+        "skills/codewiki/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371"
       }
     },
-    "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
-    "task_digest": "1b73beb669e07602af203469934c301d502f8cd30ca12a47e33ed972fbb1848a",
-    "evidence_digest": "f532e219c4f26eae068c9f7a3f03332130a59b2dc5cec75a9bc95ac3faa9d0c0"
+    "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
+    "task_digest": "417e709f7cba69b53d78e61ce95fa471bb8d4da34cb877e55f689b36c6dd3455",
+    "evidence_digest": "53e942125b4c28beb7057ab94d9af09681959475b7fd524d02d1153b87893bce"
   },
   "nodes": [
     {
@@ -72,7 +80,7 @@
       "revision": {
         "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -107,7 +115,7 @@
       "revision": {
         "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -132,7 +140,7 @@
       "revision": {
         "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -157,7 +165,7 @@
       "revision": {
         "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -186,11 +194,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "1724453888b0f6729ac7dd68de6d1f84ed170f2fd60a59b70edc0c5c3026b9f4",
+        "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/lexicon.md"
+          ],
           "paths": {
             ".wiki/knowledge/lexicon.md": "3c0906e38572fca7352aa3e820369391069c26b1"
           }
@@ -211,11 +221,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "e568e6153cf6ab262a884c952091f4e2b341aa3a5677112843886466ab8220a1",
+        "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/product/overview.md"
+          ],
           "paths": {
             ".wiki/knowledge/product/overview.md": "3c0906e38572fca7352aa3e820369391069c26b1"
           }
@@ -238,7 +250,7 @@
       "revision": {
         "digest": "bf5df626b45e5c6e75c51c34774efb3cb7fb10eac687439ba02efad48e5b747a",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -262,11 +274,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "7d056152f6dfdb1235a566edc8610fa772945aee8626196e1159ce9817ed1fc5",
+        "digest": "bf45a1bdaf0cd6ff4064bf79b259c4f2bc3468fe4d1b53a4caf485de9a66ca3e",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/product/surfaces.md"
+          ],
           "paths": {
             ".wiki/knowledge/product/surfaces.md": "3c0906e38572fca7352aa3e820369391069c26b1"
           }
@@ -287,11 +301,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "ebe297e5547d5eb7418ce259bd559cbf5a42bd371216ff8e5fc0d26b058819fb",
+        "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/product/users.md"
+          ],
           "paths": {
             ".wiki/knowledge/product/users.md": "3c0906e38572fca7352aa3e820369391069c26b1"
           }
@@ -312,11 +328,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "e3e6634c22ca3feb6a596874ed66d9102f5bac438f74382dab4aca895fa4773c",
+        "digest": "6b317db7c37fdc05d08d3fd1f464f95b3f10eee715a10d77d6dd82c82f4d75c3",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/extensions/codewiki/overview.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/extensions/codewiki/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa"
           }
@@ -341,17 +359,19 @@
       "doc_type": "spec",
       "state": "proposed",
       "group": "system",
-      "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and ThinkCode.",
+      "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and optional bounded context tools.",
       "owners": [
         "architecture"
       ],
       "tags": [],
       "revision": {
-        "digest": "270df6adf5c4e4b488dac81088f6794647b5c493d94f95841e2769e77c55bae8",
+        "digest": "bdba7c2d093054f8d6b5fd321864985aaf5880f8e35096e466e4e0bc84259757",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/flows/context-memory.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/flows/context-memory.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa"
           }
@@ -374,7 +394,7 @@
       "revision": {
         "digest": "ae71918429dfed645a09b629449c5151035a6be3c044f4f8cf6fca56a1cd9a5d",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -397,11 +417,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "6b7bee61cbea40d1a9bdce6604cfe65f336af9dfaf74e35f9c03e78f08854e76",
+        "digest": "e518ec2537ade265f09ae825d85debee1b150f509658239f13938c71a36a670c",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/overview.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa"
           }
@@ -427,11 +449,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "1cbae979918e62d03b30fb5fd08fe8db1933ea2eb9fc52722809b95f3a9b5c28",
+        "digest": "ea5704df88c164838f0c246bf4b2a6892144270ca858e77f1a2d941d0ff36e93",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/runtime/overview.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/runtime/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa"
           }
@@ -446,18 +470,20 @@
       "doc_type": "spec",
       "state": "proposed",
       "group": "system",
-      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
       "owners": [
         "architecture",
         "product"
       ],
       "tags": [],
       "revision": {
-        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165",
+        "digest": "162a0895ac926785fa69defdb5e329cad1f70e943a1e6e35b65c4afb99e73473",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/v2-operating-model.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa"
           }
@@ -484,7 +510,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+          "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -1019,6 +1045,25 @@
       ],
       "revision": {
         "digest": "8e6bde5228ac24b7a663179e3018e65fc014bff2bc48cdc678ed73e8256d41f8"
+      }
+    },
+    {
+      "id": "task:TASK-026",
+      "kind": "roadmap_task",
+      "task_id": "TASK-026",
+      "title": "Decouple ThinkCode from CodeWiki memory policy",
+      "status": "done",
+      "priority": "high",
+      "task_kind": "agent-workflow",
+      "summary": "Remove wording that frames ThinkCode as an enforced CodeWiki runtime and describe it only as optional compatible tooling.",
+      "updated": "2026-05-02",
+      "labels": [
+        "v2",
+        "decoupling",
+        "think-code"
+      ],
+      "revision": {
+        "digest": "1cededd63a2e7b21b57ad085190f4db4dc868beba3258ad4e13b1d4a9f009760"
       }
     }
   ],
@@ -1857,6 +1902,26 @@
       "kind": "task_code_path",
       "from": "task:TASK-025",
       "to": "code:extensions/codewiki/contracts.ts"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-026",
+      "to": "doc:.wiki/knowledge/system/flows/context-memory.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-026",
+      "to": "doc:.wiki/knowledge/lexicon.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-026",
+      "to": "code:skills"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-026",
+      "to": "code:extensions/codewiki/index.ts"
     }
   ],
   "views": {
@@ -1965,7 +2030,8 @@
         "TASK-022",
         "TASK-023",
         "TASK-024",
-        "TASK-025"
+        "TASK-025",
+        "TASK-026"
       ],
       "open_task_ids": [
         "TASK-019",
@@ -2005,10 +2071,12 @@
         "TASK-015",
         "TASK-016",
         "TASK-017",
-        "TASK-018"
+        "TASK-018",
+        "TASK-026"
       ],
       "cancelled_task_ids": [],
       "recent_task_ids": [
+        "TASK-026",
         "TASK-025",
         "TASK-024",
         "TASK-023",
@@ -2036,7 +2104,7 @@
         "TASK-001"
       ],
       "status_counts": {
-        "done": 18,
+        "done": 19,
         "todo": 7
       }
     },

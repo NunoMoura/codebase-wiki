@@ -28,7 +28,7 @@ Package authors use CodeWiki's structure and capability contracts without adopti
 
 ## Future external clients
 
-Future clients may include CLI, TUI, MCP, editor panels, service agents, and `think-code` programs. These clients should read views and call typed capabilities instead of editing generated files or internal state directly.
+Future clients may include CLI, TUI, MCP, editor panels, service agents, and optional runtime programs. These clients should read views and call typed capabilities instead of editing generated files or internal state directly.
 
 ## Related docs
 

@@ -49,7 +49,7 @@ A bounded autonomous CodeWiki loop that reads views, chooses the next safe actio
 
 ## ThinkCode
 
-A generic project-scoped sandbox runtime for agent-written programs. In CodeWiki it is an ad hoc query, validation, and context-building executor, not the persistent memory layer.
+An optional project-scoped sandbox runtime for agent-written programs. CodeWiki may interoperate with ThinkCode when installed, but CodeWiki does not require it and should remain usable with other Pi stacks.
 
 ## Surface
 

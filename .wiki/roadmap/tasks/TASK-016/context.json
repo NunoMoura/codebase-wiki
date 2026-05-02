@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T00:41:51Z",
+  "generated_at": "2026-05-02T00:53:19Z",
   "context_path": ".wiki/roadmap/tasks/TASK-016/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -48,9 +48,12 @@
       "digest": "cf564cd4346331e234c923e5b2c43b89425f15d92faa7204323f930fb1f41833"
     },
     "git": {
-      "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+      "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/product/users.md",
         ".wiki/roadmap.json"
       ],
       "paths": {
@@ -58,21 +61,21 @@
         ".wiki/knowledge/product/stories.md": "3c0906e38572",
         ".wiki/knowledge/product/surfaces.md": "3c0906e38572",
         ".wiki/knowledge/product/users.md": "3c0906e38572",
-        ".wiki/roadmap.json": "21ea883c25d7",
+        ".wiki/roadmap.json": "2f8e9ab9d5db",
         "extensions/codewiki/templates.ts": "3c0906e38572",
         "scripts/smoke-test.mjs": "3c0906e38572"
       }
     },
-    "spec_digest": "2e165060c2852047bb3fad390191d4bda9cecace2ba9c2b9a5c32fed1f26a5c2",
+    "spec_digest": "151b0ca0a13570791a910b35deda823493fc3dcf4d57e9ebd7c73733dce46a6c",
     "code_digest": "f51e18d50328109280e2cb3dd558cdbee77eba242e485c1ac89efd33f4bd1b81",
     "graph": {
       "git": {
-        "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
+        "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
         "dirty": true
       },
-      "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
-      "task_digest": "1b73beb669e07602af203469934c301d502f8cd30ca12a47e33ed972fbb1848a",
-      "evidence_digest": "f532e219c4f26eae068c9f7a3f03332130a59b2dc5cec75a9bc95ac3faa9d0c0"
+      "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
+      "task_digest": "417e709f7cba69b53d78e61ce95fa471bb8d4da34cb877e55f689b36c6dd3455",
+      "evidence_digest": "53e942125b4c28beb7057ab94d9af09681959475b7fd524d02d1153b87893bce"
     }
   },
   "specs": [
@@ -86,7 +89,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "ebe297e5547d5eb7418ce259bd559cbf5a42bd371216ff8e5fc0d26b058819fb"
+        "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc"
       },
       "expand": {
         "read": ".wiki/knowledge/product/users.md"
@@ -119,7 +122,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "7d056152f6dfdb1235a566edc8610fa772945aee8626196e1159ce9817ed1fc5"
+        "digest": "bf45a1bdaf0cd6ff4064bf79b259c4f2bc3468fe4d1b53a4caf485de9a66ca3e"
       },
       "expand": {
         "read": ".wiki/knowledge/product/surfaces.md"
@@ -136,7 +139,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "1724453888b0f6729ac7dd68de6d1f84ed170f2fd60a59b70edc0c5c3026b9f4"
+        "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e"
       },
       "expand": {
         "read": ".wiki/knowledge/lexicon.md"
