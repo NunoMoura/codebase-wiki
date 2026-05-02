@@ -1,0 +1,122 @@
+{
+  "tasks": [
+    {
+      "id": "TASK-020",
+      "title": "Architecture manifest and Mermaid view generator",
+      "status": "todo",
+      "phase": "implement",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-020/context.json",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ]
+    },
+    {
+      "id": "TASK-021",
+      "title": "Subagent JSON worker contracts",
+      "status": "todo",
+      "phase": "implement",
+      "priority": "medium",
+      "kind": "agent-workflow",
+      "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-021/context.json",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ]
+    },
+    {
+      "id": "TASK-022",
+      "title": "Heartbeat modes budgets and stop conditions",
+      "status": "todo",
+      "phase": "implement",
+      "priority": "medium",
+      "kind": "agent-workflow",
+      "summary": "Add bounded observe, maintain, and work heartbeat modes that use views, subagents, and canonical writes safely.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-022/context.json",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ]
+    },
+    {
+      "id": "TASK-023",
+      "title": "ThinkCode query executor integration",
+      "status": "todo",
+      "phase": "implement",
+      "priority": "medium",
+      "kind": "integration",
+      "summary": "Use ThinkCode for ad hoc programmatic context creation, view validation, graph checks, and staged edits without making it CodeWiki's memory layer.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-023/context.json",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ]
+    },
+    {
+      "id": "TASK-024",
+      "title": "Sanitation checkpoints and git history policy",
+      "status": "todo",
+      "phase": "implement",
+      "priority": "medium",
+      "kind": "architecture",
+      "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-024/context.json",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ]
+    },
+    {
+      "id": "TASK-025",
+      "title": "Audit read model wording in README skills and tools",
+      "status": "todo",
+      "phase": "implement",
+      "priority": "medium",
+      "kind": "docs",
+      "summary": "Align public package language so generated read models are called views and source-of-truth files are called canonical truth.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-025/context.json",
+      "spec_paths": [
+        "README.md"
+      ]
+    }
+  ],
+  "next_task_id": "TASK-020",
+  "meta": {
+    "version": 1,
+    "name": "roadmap.queue",
+    "generated_at": "2026-05-02T01:12:02Z",
+    "revision": {
+      "digest": "f8b2f23693eeab4c0970f7775e0b6f03e14949e6557a61f79fa0dfcebe81950f",
+      "git": {
+        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        "dirty": true,
+        "dirty_paths": [
+          ".wiki/graph.json",
+          ".wiki/lint.json",
+          ".wiki/roadmap-events.jsonl",
+          ".wiki/roadmap-state.json",
+          ".wiki/roadmap.json",
+          ".wiki/roadmap/events.jsonl",
+          ".wiki/roadmap/index.json",
+          ".wiki/roadmap/state.json",
+          ".wiki/roadmap/tasks/TASK-001/context.json",
+          ".wiki/roadmap/tasks/TASK-002/context.json",
+          ".wiki/roadmap/tasks/TASK-003/context.json",
+          ".wiki/roadmap/tasks/TASK-004/context.json"
+        ],
+        "paths": {}
+      }
+    },
+    "stale": false,
+    "budget": {
+      "target_bytes": 12000
+    },
+    "recommended_next_reads": [
+      ".wiki/views/roadmap/tasks/TASK-020/context.json"
+    ]
+  }
+}

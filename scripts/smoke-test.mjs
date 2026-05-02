@@ -1040,6 +1040,39 @@ async function main() {
 				"utf8",
 			),
 		);
+		const statusV2View = JSON.parse(
+			readFileSync(
+				resolve(projectDir, ".wiki", "views", "status.json"),
+				"utf8",
+			),
+		);
+		const queueV2View = JSON.parse(
+			readFileSync(
+				resolve(projectDir, ".wiki", "views", "roadmap", "queue.json"),
+				"utf8",
+			),
+		);
+		const driftV2View = JSON.parse(
+			readFileSync(resolve(projectDir, ".wiki", "views", "drift.json"), "utf8"),
+		);
+		const productBriefView = JSON.parse(
+			readFileSync(
+				resolve(projectDir, ".wiki", "views", "product", "brief.json"),
+				"utf8",
+			),
+		);
+		const systemArchitectureView = JSON.parse(
+			readFileSync(
+				resolve(projectDir, ".wiki", "views", "system", "architecture.json"),
+				"utf8",
+			),
+		);
+		const recentEvidenceView = JSON.parse(
+			readFileSync(
+				resolve(projectDir, ".wiki", "views", "evidence", "recent.json"),
+				"utf8",
+			),
+		);
 		const starterTaskContext = JSON.parse(
 			readFileSync(
 				resolve(
@@ -1092,6 +1125,32 @@ async function main() {
 		assert.equal(config.views_root, ".wiki/views");
 		assert.equal(statusView.version, statusState.version);
 		assert.equal(roadmapQueueView.version, roadmapFolderIndex.version);
+		for (const generatedView of [
+			statusV2View,
+			queueV2View,
+			driftV2View,
+			productBriefView,
+			systemArchitectureView,
+			recentEvidenceView,
+		]) {
+			assert.ok(generatedView.meta?.revision?.digest, "v2 view missing digest");
+			assert.ok(
+				generatedView.meta?.budget?.target_bytes,
+				"v2 view missing budget",
+			);
+			assert.ok(
+				Array.isArray(generatedView.meta?.recommended_next_reads),
+				"v2 view missing recommended next reads",
+			);
+		}
+		assert.ok(
+			queueV2View.tasks.length >= 1,
+			"Queue view should list open tasks",
+		);
+		assert.ok(
+			systemArchitectureView.components.length >= 1,
+			"System architecture view should expose components",
+		);
 		const graphDocNodes = Array.isArray(graph.nodes)
 			? graph.nodes.filter((node) => node.kind === "doc")
 			: [];

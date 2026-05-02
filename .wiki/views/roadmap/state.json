@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-05-02T00:53:19Z",
+  "generated_at": "2026-05-02T01:12:01Z",
   "health": {
     "color": "yellow",
     "errors": 0,
@@ -9,78 +9,65 @@
   },
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-02T00:53:18Z",
+    "graph_generated_at": "2026-05-02T01:12:01Z",
     "revision": {
       "git": {
-        "head": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         "dirty": true,
         "dirty_paths": [
-          ".wiki/knowledge/lexicon.md",
-          ".wiki/knowledge/product/overview.md",
-          ".wiki/knowledge/product/surfaces.md",
-          ".wiki/knowledge/product/users.md",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md",
-          ".wiki/knowledge/system/flows/context-memory.md",
-          ".wiki/knowledge/system/overview.md",
-          ".wiki/knowledge/system/runtime/overview.md",
-          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/roadmap.json",
-          "extensions/codewiki/index.ts",
-          "skills/codewiki-architecture/SKILL.md",
-          "skills/codewiki-plan/SKILL.md",
-          "skills/codewiki-task/SKILL.md",
-          "skills/codewiki-verify/SKILL.md",
-          "skills/codewiki/SKILL.md"
+          "scripts/rebuild_docs_meta.py",
+          "scripts/smoke-test.mjs"
         ],
         "paths": {
-          ".wiki/knowledge": "3c0906e38572fca7352aa3e820369391069c26b1",
+          ".wiki/knowledge": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          ".wiki/knowledge/lexicon.md": "3c0906e38572fca7352aa3e820369391069c26b1",
-          ".wiki/knowledge/product/overview.md": "3c0906e38572fca7352aa3e820369391069c26b1",
+          ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/product/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/product/stories.md": "3c0906e38572fca7352aa3e820369391069c26b1",
-          ".wiki/knowledge/product/surfaces.md": "3c0906e38572fca7352aa3e820369391069c26b1",
-          ".wiki/knowledge/product/users.md": "3c0906e38572fca7352aa3e820369391069c26b1",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/knowledge/system/flows/context-memory.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+          ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/system/flows/context-memory.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/knowledge/system/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/knowledge/system/runtime/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/roadmap.json": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/system/runtime/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/system/v2-operating-model.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/roadmap.json": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "README.md": "53578e465699177d1945148075b98a9fc539da26",
-          "extensions/codewiki": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "extensions/codewiki": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "extensions/codewiki/contracts.ts": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          "extensions/codewiki/index.ts": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "extensions/codewiki/index.ts": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "extensions/codewiki/templates.ts": "3c0906e38572fca7352aa3e820369391069c26b1",
           "package.json": "53578e465699177d1945148075b98a9fc539da26",
           "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
           "scripts/rebuild_docs_meta.py": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           "scripts/smoke-test.mjs": "3c0906e38572fca7352aa3e820369391069c26b1",
-          "skills": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
-          "skills/codewiki-architecture/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
-          "skills/codewiki-plan/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
+          "skills": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "skills/codewiki-architecture/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "skills/codewiki-plan/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           "skills/codewiki-research/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
-          "skills/codewiki-task/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
-          "skills/codewiki-verify/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371",
-          "skills/codewiki/SKILL.md": "2f8e9ab9d5db4cd961f7935474b1a0c83dfa8371"
+          "skills/codewiki-task/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "skills/codewiki-verify/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          "skills/codewiki/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
         }
       },
       "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
-      "task_digest": "417e709f7cba69b53d78e61ce95fa471bb8d4da34cb877e55f689b36c6dd3455",
-      "evidence_digest": "53e942125b4c28beb7057ab94d9af09681959475b7fd524d02d1153b87893bce"
+      "task_digest": "3a541083ff96689c95ef8b1c4659d1858cf6ed139b70f6568098230e656868fd",
+      "evidence_digest": "3648e610ce0109637174d05a19ae815ecfb16c3c40d41ca6857202c6c43f9d9f"
     },
     "roadmap_folder": ".wiki/roadmap",
     "task_context_root": ".wiki/roadmap/tasks"
   },
   "summary": {
     "task_count": 26,
-    "open_count": 7,
+    "open_count": 6,
     "status_counts": {
-      "done": 19,
-      "todo": 7
+      "done": 20,
+      "todo": 6
     },
     "priority_counts": {
       "high": 16,
@@ -117,7 +104,6 @@
       "TASK-026"
     ],
     "open_task_ids": [
-      "TASK-019",
       "TASK-020",
       "TASK-021",
       "TASK-022",
@@ -127,7 +113,6 @@
     ],
     "in_progress_task_ids": [],
     "todo_task_ids": [
-      "TASK-019",
       "TASK-020",
       "TASK-021",
       "TASK-022",
@@ -155,6 +140,7 @@
       "TASK-016",
       "TASK-017",
       "TASK-018",
+      "TASK-019",
       "TASK-026"
     ],
     "cancelled_task_ids": [],
@@ -1349,7 +1335,7 @@
     "TASK-019": {
       "id": "TASK-019",
       "title": "View schema generator for status queue drift and briefs",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "kind": "architecture",
       "summary": "Define and generate the small, revisioned read models agents and UI consume for status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence.",
@@ -1386,13 +1372,33 @@
       ],
       "updated": "2026-05-02",
       "revision": {
-        "digest": "6b646490093f898ee530190560f957c8cf1ab1a643ccb0e448938a3c36cda675"
+        "digest": "d258060c587c57eae1e2fc34d6c4526f3b2722f7e1b6afd7427559436e5ae28e"
       },
       "context_path": ".wiki/roadmap/tasks/TASK-019/context.json",
       "loop": {
-        "phase": "implement",
-        "updated_at": "",
-        "evidence": null
+        "phase": "done",
+        "updated_at": "2026-05-02T01:11:56Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Generated v2 views for status, roadmap queue, drift, product brief, system architecture, recent evidence, and mirrored task contexts with revision metadata, budgets, and recommended next reads.",
+          "checks_run": [
+            "python scripts/rebuild_docs_meta.py",
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "scripts/rebuild_docs_meta.py",
+            "scripts/smoke-test.mjs",
+            ".wiki/views/status.json",
+            ".wiki/views/roadmap/queue.json",
+            ".wiki/views/drift.json",
+            ".wiki/views/product/brief.json",
+            ".wiki/views/system/architecture.json",
+            ".wiki/views/evidence/recent.json"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-02T01:11:56Z"
+        }
       }
     },
     "TASK-020": {

@@ -1,0 +1,99 @@
+{
+  "sections": [
+    {
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "summary": "Product intent and navigation for CodeWiki's users, stories, and surfaces.",
+      "bullets": [
+        "[Users](users.md) defines who CodeWiki serves.",
+        "[Stories](stories.md) defines the jobs and outcomes CodeWiki must support.",
+        "[Surfaces](surfaces.md) defines the human and AI access surfaces.",
+        "[Lexicon](../lexicon.md) defines shared project vocabulary.",
+        "User intent is captured before implementation expands.",
+        "Product stories map to roadmap tasks and system components."
+      ],
+      "revision": {
+        "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/product/stories.md",
+      "title": "Product Stories",
+      "summary": "Core jobs and outcomes CodeWiki should support.",
+      "bullets": [
+        "Product and system knowledge describe the desired current state.",
+        "Obsolete details are removed or converted into compact historical summaries.",
+        "Roadmap tasks capture planned delta instead of mixing plans into long prose docs.",
+        "A tiny status view is the default first read.",
+        "Views include revision metadata and recommended next reads.",
+        "Task context views route agents to only the linked knowledge, code, and evidence needed for the current phase."
+      ],
+      "revision": {
+        "digest": "bf5df626b45e5c6e75c51c34774efb3cb7fb10eac687439ba02efad48e5b747a"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/product/surfaces.md",
+      "title": "Product Surfaces",
+      "summary": "Human and AI interaction surfaces for CodeWiki.",
+      "bullets": [
+        "[Product](overview.md)",
+        "[Users](users.md)",
+        "[Stories](stories.md)",
+        "[Clients Overview](../clients/overview.md)"
+      ],
+      "revision": {
+        "digest": "bf45a1bdaf0cd6ff4064bf79b259c4f2bc3468fe4d1b53a4caf485de9a66ca3e"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/product/users.md",
+      "title": "Product Users",
+      "summary": "User classes CodeWiki must serve.",
+      "bullets": [
+        "[Product](overview.md)",
+        "[Stories](stories.md)",
+        "[Surfaces](surfaces.md)"
+      ],
+      "revision": {
+        "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc"
+      }
+    }
+  ],
+  "meta": {
+    "version": 1,
+    "name": "product.brief",
+    "generated_at": "2026-05-02T01:12:02Z",
+    "revision": {
+      "digest": "08079aefe539c5807d74202eb87815b45a2b88bfd0bfbd323724b624e0448725",
+      "git": {
+        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        "dirty": true,
+        "dirty_paths": [
+          ".wiki/graph.json",
+          ".wiki/lint.json",
+          ".wiki/roadmap-events.jsonl",
+          ".wiki/roadmap-state.json",
+          ".wiki/roadmap.json",
+          ".wiki/roadmap/events.jsonl",
+          ".wiki/roadmap/index.json",
+          ".wiki/roadmap/state.json",
+          ".wiki/roadmap/tasks/TASK-001/context.json",
+          ".wiki/roadmap/tasks/TASK-002/context.json",
+          ".wiki/roadmap/tasks/TASK-003/context.json",
+          ".wiki/roadmap/tasks/TASK-004/context.json"
+        ],
+        "paths": {}
+      }
+    },
+    "stale": false,
+    "budget": {
+      "target_bytes": 12000
+    },
+    "recommended_next_reads": [
+      ".wiki/knowledge/product/overview.md",
+      ".wiki/knowledge/product/stories.md",
+      ".wiki/knowledge/product/surfaces.md"
+    ]
+  }
+}

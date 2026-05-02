@@ -1,0 +1,121 @@
+{
+  "components": [
+    {
+      "id": "spec.extensions.codewiki.overview",
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs"
+      ]
+    },
+    {
+      "id": "spec.system.flows.context-memory",
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and optional bounded context tools.",
+      "code_paths": []
+    },
+    {
+      "id": "spec.system.flows.sanitation-release",
+      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+      "title": "Sanitation and Release Flow",
+      "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
+      "code_paths": []
+    },
+    {
+      "id": "spec.system.overview",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ]
+    },
+    {
+      "id": "spec.system.runtime",
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "summary": "Policy boundary for codewiki runtime access in codewiki.",
+      "code_paths": []
+    },
+    {
+      "id": "spec.system.v2-operating-model",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "id": "spec.system.flows.context-memory",
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and optional bounded context tools.",
+      "code_paths": []
+    },
+    {
+      "id": "spec.system.flows.sanitation-release",
+      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+      "title": "Sanitation and Release Flow",
+      "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
+      "code_paths": []
+    }
+  ],
+  "graph_revision": {
+    "git": {
+      "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+      "dirty": true
+    },
+    "spec_digest": "717f6bc8324d15fd37d0ec0ac7c3e0c9f25b3a3b763d83331e7e5a32d25c89be",
+    "task_digest": "3a541083ff96689c95ef8b1c4659d1858cf6ed139b70f6568098230e656868fd",
+    "evidence_digest": "3648e610ce0109637174d05a19ae815ecfb16c3c40d41ca6857202c6c43f9d9f"
+  },
+  "meta": {
+    "version": 1,
+    "name": "system.architecture",
+    "generated_at": "2026-05-02T01:12:02Z",
+    "revision": {
+      "digest": "8808822c53b8bca4dedfd7ac2d859c7ff0d48467ed131ea059ffb4bcd0a8671d",
+      "git": {
+        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        "dirty": true,
+        "dirty_paths": [
+          ".wiki/graph.json",
+          ".wiki/lint.json",
+          ".wiki/roadmap-events.jsonl",
+          ".wiki/roadmap-state.json",
+          ".wiki/roadmap.json",
+          ".wiki/roadmap/events.jsonl",
+          ".wiki/roadmap/index.json",
+          ".wiki/roadmap/state.json",
+          ".wiki/roadmap/tasks/TASK-001/context.json",
+          ".wiki/roadmap/tasks/TASK-002/context.json",
+          ".wiki/roadmap/tasks/TASK-003/context.json",
+          ".wiki/roadmap/tasks/TASK-004/context.json"
+        ],
+        "paths": {}
+      }
+    },
+    "stale": false,
+    "budget": {
+      "target_bytes": 20000
+    },
+    "recommended_next_reads": [
+      ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      ".wiki/knowledge/system/flows/context-memory.md",
+      ".wiki/knowledge/system/flows/sanitation-release.md",
+      ".wiki/knowledge/system/overview.md",
+      ".wiki/knowledge/system/runtime/overview.md"
+    ]
+  }
+}

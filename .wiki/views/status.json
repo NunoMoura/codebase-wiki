@@ -1,0 +1,78 @@
+{
+  "health": {
+    "color": "yellow",
+    "errors": 0,
+    "warnings": 3,
+    "total_issues": 3
+  },
+  "roadmap": {
+    "open_count": 6,
+    "active_task_ids": [],
+    "next_task_id": "TASK-020",
+    "status_counts": {
+      "done": 20,
+      "todo": 6
+    }
+  },
+  "views": {
+    "roadmap_queue": ".wiki/views/roadmap/queue.json",
+    "drift": ".wiki/views/drift.json",
+    "product_brief": ".wiki/views/product/brief.json",
+    "system_architecture": ".wiki/views/system/architecture.json",
+    "recent_evidence": ".wiki/views/evidence/recent.json"
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "kind": "missing-related-docs",
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "message": "Live doc should end with '## Related docs'."
+    },
+    {
+      "severity": "warning",
+      "kind": "missing-related-docs",
+      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+      "message": "Live doc should end with '## Related docs'."
+    },
+    {
+      "severity": "warning",
+      "kind": "missing-related-docs",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "message": "Live doc should end with '## Related docs'."
+    }
+  ],
+  "meta": {
+    "version": 1,
+    "name": "status",
+    "generated_at": "2026-05-02T01:12:02Z",
+    "revision": {
+      "digest": "d8ce5cb36c34528198ecc1f2470f7d340b81db42e99b22930c8bcb0eb4db5ac2",
+      "git": {
+        "head": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        "dirty": true,
+        "dirty_paths": [
+          ".wiki/graph.json",
+          ".wiki/lint.json",
+          ".wiki/roadmap-events.jsonl",
+          ".wiki/roadmap-state.json",
+          ".wiki/roadmap.json",
+          ".wiki/roadmap/events.jsonl",
+          ".wiki/roadmap/index.json",
+          ".wiki/roadmap/state.json",
+          ".wiki/roadmap/tasks/TASK-001/context.json",
+          ".wiki/roadmap/tasks/TASK-002/context.json",
+          ".wiki/roadmap/tasks/TASK-003/context.json",
+          ".wiki/roadmap/tasks/TASK-004/context.json"
+        ],
+        "paths": {}
+      }
+    },
+    "stale": false,
+    "budget": {
+      "target_bytes": 8000
+    },
+    "recommended_next_reads": [
+      ".wiki/views/roadmap/queue.json"
+    ]
+  }
+}

@@ -2037,6 +2037,127 @@ def write_roadmap_folder_view(roadmap_items: list[dict[str, Any]], roadmap_state
     (ROADMAP_FOLDER_PATH / "events.jsonl").write_text(events_text, encoding="utf-8")
 
 
+
+def view_meta(name: str, payload: Any, target_bytes: int, recommended_next_reads: list[str] | None = None, stale: bool = False) -> dict[str, Any]:
+    return {
+        "version": 1,
+        "name": name,
+        "generated_at": now_iso(),
+        "revision": {"digest": canonical_digest(payload), "git": compact_git_anchor([])},
+        "stale": stale,
+        "budget": {"target_bytes": target_bytes},
+        "recommended_next_reads": recommended_next_reads or [],
+    }
+
+
+def build_status_view(status_state: dict[str, Any], roadmap_state: dict[str, Any], lint_report: dict[str, Any]) -> dict[str, Any]:
+    summary = roadmap_state.get("summary", {}) if isinstance(roadmap_state.get("summary"), dict) else {}
+    views = roadmap_state.get("views", {}) if isinstance(roadmap_state.get("views"), dict) else {}
+    next_ids = [str(v) for v in views.get("todo_task_ids", []) if str(v).strip()]
+    active_ids = [str(v) for v in views.get("in_progress_task_ids", []) if str(v).strip()]
+    payload = {
+        "health": status_state.get("health", lint_health(lint_report)),
+        "roadmap": {
+            "open_count": int(summary.get("open_count", 0) or 0),
+            "active_task_ids": active_ids[:5],
+            "next_task_id": (active_ids or next_ids or [""])[0],
+            "status_counts": summary.get("status_counts", {}),
+        },
+        "views": {
+            "roadmap_queue": ".wiki/views/roadmap/queue.json",
+            "drift": ".wiki/views/drift.json",
+            "product_brief": ".wiki/views/product/brief.json",
+            "system_architecture": ".wiki/views/system/architecture.json",
+            "recent_evidence": ".wiki/views/evidence/recent.json",
+        },
+        "issues": (lint_report.get("issues", []) if isinstance(lint_report.get("issues"), list) else [])[:8],
+    }
+    payload["meta"] = view_meta("status", payload, 8000, [".wiki/views/roadmap/queue.json"] if next_ids or active_ids else [".wiki/views/drift.json"])
+    return payload
+
+
+def build_roadmap_queue_view(roadmap_items: list[dict[str, Any]], roadmap_state: dict[str, Any]) -> dict[str, Any]:
+    runtime_tasks = roadmap_state.get("tasks", {}) if isinstance(roadmap_state.get("tasks"), dict) else {}
+    queue = []
+    for task in sorted([t for t in roadmap_items if is_open_task_status(t.get("status", "todo"))], key=roadmap_sort_key):
+        task_id = str(task.get("id", "")).strip()
+        runtime = runtime_tasks.get(task_id, {}) if isinstance(runtime_tasks.get(task_id), dict) else {}
+        queue.append({
+            "id": task_id,
+            "title": str(task.get("title", task_id)).strip(),
+            "status": str(task.get("status", "todo")).strip(),
+            "phase": str(((runtime.get("loop") or {}).get("phase") if isinstance(runtime.get("loop"), dict) else "") or default_task_phase(task.get("status", "todo"))).strip(),
+            "priority": str(task.get("priority", "medium")).strip(),
+            "kind": str(task.get("kind", "task")).strip(),
+            "summary": str(task.get("summary", "")).strip(),
+            "context_path": f".wiki/views/roadmap/tasks/{task_id}/context.json",
+            "spec_paths": [str(v) for v in task.get("spec_paths", []) if str(v).strip()] if isinstance(task.get("spec_paths"), list) else [],
+        })
+    payload = {"tasks": queue, "next_task_id": queue[0]["id"] if queue else ""}
+    payload["meta"] = view_meta("roadmap.queue", payload, 12000, [queue[0]["context_path"]] if queue else [".wiki/views/drift.json"])
+    return payload
+
+
+def build_drift_view(status_state: dict[str, Any], lint_report: dict[str, Any]) -> dict[str, Any]:
+    rows = status_state.get("specs", []) if isinstance(status_state.get("specs"), list) else []
+    drift_rows = [row for row in rows if isinstance(row, dict) and str(row.get("drift_status", "aligned")) != "aligned"][:40]
+    payload = {
+        "summary": status_state.get("drift", {}),
+        "rows": [{k: row.get(k) for k in ["path", "title", "drift_status", "note", "primary_task", "code_area"]} for row in drift_rows],
+        "issues": (lint_report.get("issues", []) if isinstance(lint_report.get("issues"), list) else [])[:40],
+    }
+    payload["meta"] = view_meta("drift", payload, 16000, [str(row.get("path")) for row in drift_rows[:5] if row.get("path")])
+    return payload
+
+
+def build_product_brief_view(docs: list[dict[str, Any]]) -> dict[str, Any]:
+    product_docs = [doc for doc in docs if str(doc.get("path", "")).startswith(PRODUCT_SPEC_PREFIX)]
+    sections = []
+    for doc in sorted(product_docs, key=lambda item: str(item.get("path", ""))):
+        body = str(doc.get("body", "")).strip().splitlines()
+        bullets = [line.strip("- ").strip() for line in body if line.strip().startswith("-")][:6]
+        sections.append({"path": doc.get("path"), "title": doc.get("title"), "summary": doc.get("summary"), "bullets": bullets, "revision": compact_revision_digest(doc.get("revision", {}))})
+    payload = {"sections": sections}
+    payload["meta"] = view_meta("product.brief", payload, 12000, [str(s.get("path")) for s in sections[:3] if s.get("path")])
+    return payload
+
+
+def build_system_architecture_view(docs: list[dict[str, Any]], graph: dict[str, Any]) -> dict[str, Any]:
+    system_docs = [doc for doc in docs if str(doc.get("path", "")).startswith(SYSTEM_SPEC_PREFIX)]
+    components = [{"id": str(doc.get("id", doc.get("path"))), "path": doc.get("path"), "title": doc.get("title"), "summary": doc.get("summary"), "code_paths": doc.get("code_paths", [])} for doc in sorted(system_docs, key=lambda item: str(item.get("path", "")))[:80]]
+    flows = [doc for doc in components if "/flows/" in str(doc.get("path", ""))]
+    payload = {"components": components, "flows": flows, "graph_revision": compact_graph_revision(graph)}
+    payload["meta"] = view_meta("system.architecture", payload, 20000, [str(c.get("path")) for c in components[:5] if c.get("path")])
+    return payload
+
+
+def build_recent_evidence_view(research_collections: list[dict[str, Any]], events: list[dict[str, Any]]) -> dict[str, Any]:
+    entries = []
+    for collection in research_collections:
+        for entry in collection.get("entries", []) if isinstance(collection.get("entries"), list) else []:
+            entries.append({"source": collection.get("path"), **entry})
+    entries = sorted(entries, key=lambda item: str(item.get("updated", "")), reverse=True)[:20]
+    event_tail = [event for event in events if isinstance(event, dict)][-20:]
+    payload = {"research": entries, "events": event_tail}
+    payload["meta"] = view_meta("evidence.recent", payload, 16000, [])
+    return payload
+
+
+def write_v2_views(docs: list[dict[str, Any]], research_collections: list[dict[str, Any]], graph: dict[str, Any], roadmap_items: list[dict[str, Any]], lint_report: dict[str, Any], roadmap_state: dict[str, Any], status_state: dict[str, Any], events: list[dict[str, Any]]) -> None:
+    write_view("status.json", build_status_view(status_state, roadmap_state, lint_report))
+    write_view("roadmap/queue.json", build_roadmap_queue_view(roadmap_items, roadmap_state))
+    write_view("drift.json", build_drift_view(status_state, lint_report))
+    write_view("product/brief.json", build_product_brief_view(docs))
+    write_view("system/architecture.json", build_system_architecture_view(docs, graph))
+    write_view("evidence/recent.json", build_recent_evidence_view(research_collections, events))
+    for task in roadmap_items:
+        task_id = str(task.get("id", "")).strip()
+        if not task_id:
+            continue
+        source = ROADMAP_TASKS_PATH / task_id / "context.json"
+        if source.exists():
+            write_view(f"roadmap/tasks/{task_id}/context.json", json.loads(source.read_text(encoding="utf-8")))
+
 def main() -> None:
     META_ROOT.mkdir(parents=True, exist_ok=True)
     roadmap = read_roadmap_file(ROADMAP_PATH)
@@ -2073,6 +2194,7 @@ def main() -> None:
     status_state = build_status_state(docs, graph, roadmap_items, lint_report, roadmap_state, events)
     write_json(STATUS_STATE_PATH, status_state)
     write_view("status-state.json", status_state)
+    write_v2_views(docs, research_collections, graph, roadmap_items, lint_report, roadmap_state, status_state, events)
 
 
 if __name__ == "__main__":
