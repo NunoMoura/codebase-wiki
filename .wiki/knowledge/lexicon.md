@@ -58,3 +58,9 @@ A way humans or AI users interact with CodeWiki, such as Pi tools, commands, sta
 ## Sanitation
 
 The policy that keeps hot wiki state small. Knowledge stays fresh, views stay current, closed history moves to compact semantic summaries, and full recovery relies on git.
+
+## Related docs
+
+- [Product](product/overview.md)
+- [System Overview](system/overview.md)
+- [V2 Operating Model](system/v2-operating-model.md)

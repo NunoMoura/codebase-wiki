@@ -34,3 +34,10 @@ Views are the main navigation surface for agents and UI. They should be small, r
 ## Future adapters
 
 Future surfaces may include CLI, TUI, MCP, editor integrations, package APIs, and service agents. All adapters should preserve the canonical/view boundary and use typed CodeWiki capabilities for semantic writes.
+
+## Related docs
+
+- [Product](overview.md)
+- [Users](users.md)
+- [Stories](stories.md)
+- [Clients Overview](../clients/overview.md)

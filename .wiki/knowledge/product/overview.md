@@ -32,3 +32,11 @@ Programmatic execution belongs to runtimes such as `think-code`. CodeWiki should
 - Agents consume compact views instead of rereading the entire wiki.
 - Knowledge remains fresh while historical recovery relies on git and compact summaries.
 - Pi sessions can resume work through roadmap tasks and generated task context views.
+
+## Related docs
+
+- [Users](users.md)
+- [Stories](stories.md)
+- [Surfaces](surfaces.md)
+- [Lexicon](../lexicon.md)
+- [System Overview](../system/overview.md)

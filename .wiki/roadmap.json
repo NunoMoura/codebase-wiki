@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-02T00:21:45Z",
+  "updated": "2026-05-02T00:34:26Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -728,10 +728,10 @@
     "TASK-016": {
       "id": "TASK-016",
       "title": "Bake product split and lexicon into templates",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "kind": "docs",
-      "summary": "Make product users, stories, surfaces, and lexicon part of the starter CodeWiki structure instead of a repo-local experiment.",
+      "summary": "Starter templates now include the v2 product split and shared lexicon, with smoke coverage for the new files.",
       "spec_paths": [
         ".wiki/knowledge/product/users.md",
         ".wiki/knowledge/product/stories.md",

@@ -59,3 +59,10 @@ Acceptance signals:
 - Git is the full historical recovery mechanism.
 - Closed tasks retain compact semantic summaries.
 - Views do not include cold history unless explicitly requested.
+
+## Related docs
+
+- [Product](overview.md)
+- [Users](users.md)
+- [Surfaces](surfaces.md)
+- [Context Memory Flow](../system/flows/context-memory.md)

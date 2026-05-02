@@ -1061,8 +1061,8 @@ async function main() {
 
 		assert.equal(
 			first.created.length,
-			15,
-			`Expected 15 created starter files including runtime policy, client surfaces, and inferred boundary specs, got ${first.created.length}`,
+			19,
+			`Expected 19 created starter files including lexicon, product split, runtime policy, client surfaces, and inferred boundary specs, got ${first.created.length}`,
 		);
 		assert.equal(
 			first.updated.length,
@@ -1081,13 +1081,13 @@ async function main() {
 		);
 		assert.equal(
 			second.skipped.length,
-			15,
-			`Expected 15 skipped starter files, got ${second.skipped.length}`,
+			19,
+			`Expected 19 skipped starter files, got ${second.skipped.length}`,
 		);
 		assert.equal(
 			lint.issues.length,
 			0,
-			`Expected zero lint issues, got ${lint.issues.length}`,
+			`Expected zero lint issues, got ${lint.issues.length}: ${JSON.stringify(lint.issues)}`,
 		);
 		assert.equal(config.views_root, ".wiki/views");
 		assert.equal(statusView.version, statusState.version);
@@ -1275,6 +1275,17 @@ async function main() {
 			undefined,
 			"Default config should not emit roadmap_doc_path",
 		);
+		for (const productFile of [
+			"lexicon.md",
+			"product/users.md",
+			"product/stories.md",
+			"product/surfaces.md",
+		]) {
+			assert.ok(
+				existsSync(resolve(projectDir, ".wiki", "knowledge", productFile)),
+				`Expected starter product file ${productFile}`,
+			);
+		}
 		assert.match(
 			systemText,
 			/Inferred brownfield boundaries/,

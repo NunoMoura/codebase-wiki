@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T00:21:50Z",
+  "generated_at": "2026-05-02T00:34:33Z",
   "context_path": ".wiki/roadmap/tasks/TASK-020/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -50,33 +50,32 @@
       "digest": "e0f81aa7e32d68d951a62c2a328f4dea28cf20e23d7a5caef9ac23c6878297e4"
     },
     "git": {
-      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "head": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
       "dirty": true,
       "dirty_paths": [
         ".wiki/roadmap.json",
         "extensions/codewiki/templates.ts",
-        "scripts/rebuild_docs_meta.py",
         "scripts/smoke-test.mjs"
       ],
       "paths": {
-        ".wiki/knowledge/system/flows/context-memory.md": "",
-        ".wiki/knowledge/system/v2-operating-model.md": "",
-        ".wiki/roadmap.json": "53578e465699",
-        "extensions/codewiki/templates.ts": "0d12c87f000a",
-        "scripts/rebuild_docs_meta.py": "0d12c87f000a",
-        "scripts/smoke-test.mjs": "53578e465699"
+        ".wiki/knowledge/system/flows/context-memory.md": "a6f94f94cbc0",
+        ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc0",
+        ".wiki/roadmap.json": "a6f94f94cbc0",
+        "extensions/codewiki/templates.ts": "a6f94f94cbc0",
+        "scripts/rebuild_docs_meta.py": "a6f94f94cbc0",
+        "scripts/smoke-test.mjs": "a6f94f94cbc0"
       }
     },
     "spec_digest": "d465ec3da201f681a14fc41eb1907f5d9f7a08dcdda50e6ca7fd2947114f3619",
-    "code_digest": "8fd0d94dce7367df6a836e51d5ee69fd7edb0a7a1ac7306b3e2e13816ab35218",
+    "code_digest": "e7c7ceb7ee991f1235152906444600f2e79f2a1504b9d8ad81e64fa2d5e1243a",
     "graph": {
       "git": {
-        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "head": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
         "dirty": true
       },
-      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
-      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
-      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+      "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
+      "task_digest": "54045676adaa22373e885991a13a5f2aa75959244ac997e4df048dd4fe09d70f",
+      "evidence_digest": "03bf7173bb53abcb2cb386630c48dce38853fe1c05bc3f036ac3423bc592d037"
     }
   },
   "specs": [
@@ -124,7 +123,7 @@
       "extensions/codewiki/templates.ts",
       "scripts/smoke-test.mjs"
     ],
-    "digest": "8fd0d94dce7367df6a836e51d5ee69fd7edb0a7a1ac7306b3e2e13816ab35218",
+    "digest": "e7c7ceb7ee991f1235152906444600f2e79f2a1504b9d8ad81e64fa2d5e1243a",
     "expand": [
       {
         "read": "scripts/rebuild_docs_meta.py"
