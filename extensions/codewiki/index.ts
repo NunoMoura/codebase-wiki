@@ -5167,7 +5167,56 @@ async function executeCodewikiTask(
 			summary: `codewiki task: cleared roadmap archive ${archivePath.replace(`${project.root}/`, "")}`,
 		};
 	}
-	if (input.action === "create") {
+		if (input.action === "checkpoint") {
+		if (!input.summary?.trim()) {
+			throw new Error("codewiki_task checkpoint requires summary as version or label.");
+		}
+		let gitSha = "unknown";
+		try {
+			const { stdout } = await execFileAsync("git", ["rev-parse", "HEAD"], { cwd: project.root });
+			gitSha = stdout.trim();
+		} catch {}
+		let gitDirty = false;
+		try {
+			const { stdout } = await execFileAsync("git", ["status", "--porcelain"], { cwd: project.root });
+			gitDirty = stdout.trim().length > 0;
+		} catch {}
+		const graph = await maybeReadGraph(project.graphPath);
+		const canonicalDigest = graph?.views?.docs?.spec_paths ? "computed-from-graph-but-omitted" : "unknown"; // simplistic for now
+		const state = await maybeReadRoadmapState(project.roadmapStatePath);
+		const closedTasks = Object.values(state?.tasks ?? {}).filter(t => ["done", "cancelled"].includes(t.status)).map(t => ({
+			id: t.id,
+			title: t.title,
+			status: t.status,
+			closed_at: t.updated,
+		}));
+		const checkpointPath = resolve(project.root, ".wiki/release-checkpoints.jsonl");
+		await withLockedPaths([checkpointPath], async () => {
+			const record = {
+				ts: nowIso(),
+				version_label: input.summary.trim(),
+				git_sha: gitSha,
+				git_dirty: gitDirty,
+				canonical_digest: (graph as any)?.spec_digest ?? "unknown",
+				view_schema_version: state?.version ?? 1,
+				closed_tasks: closedTasks,
+			};
+			await appendFile(checkpointPath, JSON.stringify(record) + "\n", "utf8");
+		});
+		await appendProjectEvent(project, {
+			ts: nowIso(),
+			kind: "release_checkpoint_created",
+			title: "Created release checkpoint",
+			summary: input.summary.trim(),
+			path: ".wiki/release-checkpoints.jsonl",
+		});
+		return {
+			action: "checkpoint" as const,
+			changed: true,
+			summary: `codewiki task: created release checkpoint ${input.summary.trim()}`,
+		};
+	}
+if (input.action === "create") {
 		if (!input.tasks?.length)
 			throw new Error("codewiki_task create requires tasks.");
 		const result = await appendRoadmapTasks(pi, project, ctx, input.tasks, {

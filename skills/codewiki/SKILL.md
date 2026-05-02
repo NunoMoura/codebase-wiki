@@ -52,6 +52,15 @@ Internal agent tools:
 - Do not hand-edit roadmap/event state when package tools can mutate it.
 - Use `AGENTS.md` only for repo-specific policy layered on top of this package.
 
+## History and version boundaries
+
+- Git is the full history mechanism; do not duplicate raw history in the `.wiki`.
+- Closed tasks are automatically archived as compact semantic summaries without raw logs.
+- Generated views explicitly exclude cold history.
+- Commit one coherent change per closed task.
+- Use `codewiki_task` `action="checkpoint"` to record a release checkpoint (records version label, git sha, canonical digest, view schema version, and closed task summaries).
+- Push, version bump, and release checkpoints require explicit policy permission and green checks.
+
 ## Heartbeat policy
 
 Heartbeat modes are bounded:

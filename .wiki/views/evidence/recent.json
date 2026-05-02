@@ -13,7 +13,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "ac992065707d76fe55b83b5755e7067e4ab6166d",
+          "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -24,61 +24,6 @@
     }
   ],
   "events": [
-    {
-      "ts": "2026-05-02T01:13:20Z",
-      "kind": "task_session_link",
-      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
-      "task_id": "TASK-020",
-      "action": "focus",
-      "title": "Architecture manifest and Mermaid view generator",
-      "summary": "Implement architecture manifest and Mermaid generator.",
-      "files_touched": [],
-      "spawned_task_ids": []
-    },
-    {
-      "ts": "2026-05-02T01:19:45Z",
-      "kind": "roadmap_update",
-      "title": "Updated 1 roadmap task(s)",
-      "summary": "TASK-020 Architecture manifest and Mermaid view generator"
-    },
-    {
-      "ts": "2026-05-02T01:19:45Z",
-      "kind": "roadmap_update",
-      "title": "Updated 1 roadmap task(s)",
-      "summary": "TASK-020 Architecture manifest and Mermaid view generator"
-    },
-    {
-      "ts": "2026-05-02T01:19:45Z",
-      "kind": "task_phase_passed",
-      "task_id": "TASK-020",
-      "phase": "verify",
-      "title": "Architecture manifest and Mermaid view generator",
-      "summary": "Added canonical system architecture manifest, component/flow docs, architecture view generation, Mermaid rendering, validation for missing/orphan component and flow docs, and bootstrap smoke coverage.",
-      "issues": []
-    },
-    {
-      "ts": "2026-05-02T01:19:45Z",
-      "kind": "task_evidence_recorded",
-      "task_id": "TASK-020",
-      "verdict": "pass",
-      "summary": "Added canonical system architecture manifest, component/flow docs, architecture view generation, Mermaid rendering, validation for missing/orphan component and flow docs, and bootstrap smoke coverage.",
-      "checks_run": [
-        "python scripts/rebuild_docs_meta.py",
-        "npm run typecheck -- --pretty false",
-        "npm test"
-      ],
-      "files_touched": [
-        "scripts/rebuild_docs_meta.py",
-        "extensions/codewiki/templates.ts",
-        "scripts/smoke-test.mjs",
-        ".wiki/knowledge/system/architecture.json",
-        ".wiki/knowledge/system/components/*.md",
-        ".wiki/knowledge/system/flows/*.md",
-        ".wiki/views/system/architecture.json",
-        ".wiki/views/system/architecture.mmd"
-      ],
-      "issues": []
-    },
     {
       "ts": "2026-05-02T01:36:52Z",
       "kind": "task_session_link",
@@ -241,21 +186,73 @@
         ".wiki/knowledge/system/runtime/overview.md"
       ],
       "issues": []
+    },
+    {
+      "ts": "2026-05-02T03:36:04Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-024",
+      "action": "focus",
+      "title": "Sanitation checkpoints and git history policy",
+      "summary": "Continue next roadmap task.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T04:00:05Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-024 Sanitation checkpoints and git history policy"
+    },
+    {
+      "ts": "2026-05-02T04:00:05Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-024 Sanitation checkpoints and git history policy"
+    },
+    {
+      "ts": "2026-05-02T04:00:05Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-024",
+      "phase": "verify",
+      "title": "Sanitation checkpoints and git history policy",
+      "summary": "Updated roadmap closed-task retention to store compact semantic summaries instead of full raw context. Added checkpoint action to codewiki_task to snapshot release milestones with version labels, git shas, and canonical digests. Documented commit, push, and version boundaries in SKILL files. Verified behavior through new smoke tests.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T04:00:05Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-024",
+      "verdict": "pass",
+      "summary": "Updated roadmap closed-task retention to store compact semantic summaries instead of full raw context. Added checkpoint action to codewiki_task to snapshot release milestones with version labels, git shas, and canonical digests. Documented commit, push, and version boundaries in SKILL files. Verified behavior through new smoke tests.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "python scripts/rebuild_docs_meta.py"
+      ],
+      "files_touched": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "scripts/smoke-test.mjs",
+        "skills/codewiki/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "issues": []
     }
   ],
   "meta": {
     "version": 1,
     "name": "evidence.recent",
-    "generated_at": "2026-05-02T02:34:17Z",
+    "generated_at": "2026-05-02T04:05:06Z",
     "revision": {
-      "digest": "6bc0990b3e74e2fb9f4422af6021661ac82dc0d5d9ea5d306452dd9bc0f6a367",
+      "digest": "d90d278fec052090e2093bd783cdbff05817d777680ff3ed865850c683f168f9",
       "git": {
-        "head": "ac992065707d76fe55b83b5755e7067e4ab6166d",
+        "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/system/runtime/overview.md",
-          ".wiki/knowledge/system/v2-operating-model.md",
+          ".wiki/knowledge/system/flows/sanitation-release.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
@@ -264,7 +261,8 @@
           ".wiki/roadmap/index.json",
           ".wiki/roadmap/state.json",
           ".wiki/roadmap/tasks/TASK-001/context.json",
-          ".wiki/roadmap/tasks/TASK-002/context.json"
+          ".wiki/roadmap/tasks/TASK-002/context.json",
+          ".wiki/roadmap/tasks/TASK-003/context.json"
         ],
         "paths": {}
       }

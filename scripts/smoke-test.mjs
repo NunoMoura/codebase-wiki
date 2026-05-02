@@ -2107,6 +2107,31 @@ async function main() {
 			new RegExp(`"id":"${archiveTaskId}"`),
 			"Closed task should be preserved losslessly in roadmap archive JSONL",
 		);
+		const checkpointResult = await taskTool.definition.execute(
+			"task_checkpoint_smoke",
+			{
+				repoPath: projectDir,
+				action: "checkpoint",
+				summary: "v1.0.0-smoke",
+			},
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		assert.match(
+			checkpointResult.content?.[0]?.text ?? "",
+			/created release checkpoint/i,
+			"Checkpoint action should report success",
+		);
+		const checkpointText = readFileSync(
+			resolve(projectDir, ".wiki", "release-checkpoints.jsonl"),
+			"utf8",
+		);
+		assert.match(
+			checkpointText,
+			/v1\.0\.0-smoke/,
+			"Checkpoint JSONL should contain the provided label",
+		);
 		const clearArchiveResult = await taskTool.definition.execute(
 			"task_clear_archive_smoke",
 			{

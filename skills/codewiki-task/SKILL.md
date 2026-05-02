@@ -60,3 +60,9 @@ A task may close only when:
 - required checks pass or exceptions are documented,
 - fresh verifier passes or policy explicitly allows skipping,
 - unresolved issues are either fixed, out of scope, or tracked as follow-ups.
+
+After closing:
+
+- Commit the coherent change with a single commit per closed task when practical.
+- Push the changes when checks are green and policy permits.
+- Use `codewiki_task` `action="checkpoint"` to snapshot closed sprint tasks when reaching a release or version milestone.

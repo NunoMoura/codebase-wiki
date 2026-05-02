@@ -12,25 +12,17 @@
     {
       "path": ".wiki/knowledge/system/flows/sanitation-release.md",
       "title": "Sanitation and Release Flow",
-      "drift_status": "tracked",
-      "note": "tracked by TASK-024",
-      "primary_task": {
-        "id": "TASK-024",
-        "status": "todo",
-        "title": "Sanitation checkpoints and git history policy"
-      },
-      "code_area": "\u2014"
+      "drift_status": "untracked",
+      "note": "1 deterministic issue with no open roadmap task",
+      "primary_task": null,
+      "code_area": "scripts/rebuild_docs_meta.py"
     },
     {
       "path": ".wiki/knowledge/system/v2-operating-model.md",
       "title": "CodeWiki v2 Operating Model",
-      "drift_status": "tracked",
-      "note": "tracked by TASK-024",
-      "primary_task": {
-        "id": "TASK-024",
-        "status": "todo",
-        "title": "Sanitation checkpoints and git history policy"
-      },
+      "drift_status": "untracked",
+      "note": "1 deterministic issue with no open roadmap task",
+      "primary_task": null,
       "code_area": "extensions, scripts +1 more"
     }
   ],
@@ -57,16 +49,15 @@
   "meta": {
     "version": 1,
     "name": "drift",
-    "generated_at": "2026-05-02T02:34:17Z",
+    "generated_at": "2026-05-02T04:05:06Z",
     "revision": {
-      "digest": "f9e7985592975fa938f9ea2964734e81bbe4d3caf659a52cb5dc34d5e8425794",
+      "digest": "28ec6eeb3b7e51b2727be1dfcded4072bc785a2cb70d61d09c22a99155abeb30",
       "git": {
-        "head": "ac992065707d76fe55b83b5755e7067e4ab6166d",
+        "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/system/runtime/overview.md",
-          ".wiki/knowledge/system/v2-operating-model.md",
+          ".wiki/knowledge/system/flows/sanitation-release.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
@@ -75,7 +66,8 @@
           ".wiki/roadmap/index.json",
           ".wiki/roadmap/state.json",
           ".wiki/roadmap/tasks/TASK-001/context.json",
-          ".wiki/roadmap/tasks/TASK-002/context.json"
+          ".wiki/roadmap/tasks/TASK-002/context.json",
+          ".wiki/roadmap/tasks/TASK-003/context.json"
         ],
         "paths": {}
       }

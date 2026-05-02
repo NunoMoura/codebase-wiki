@@ -384,7 +384,7 @@ export interface CodewikiStateToolInput {
 
 export interface CodewikiTaskToolInput {
 	repoPath?: string;
-	action: "create" | "update" | "close" | "cancel" | "clear-archive";
+	action: "create" | "update" | "close" | "cancel" | "clear-archive" | "checkpoint";
 	refresh?: boolean;
 	taskId?: string;
 	tasks?: RoadmapTaskInput[];
@@ -981,6 +981,7 @@ export const codewikiTaskToolInputSchema = Type.Object({
 		Type.Literal("close"),
 		Type.Literal("cancel"),
 		Type.Literal("clear-archive"),
+		Type.Literal("checkpoint"),
 	]),
 	refresh: Type.Optional(
 		Type.Boolean({

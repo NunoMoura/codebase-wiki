@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T02:34:17Z",
+  "generated_at": "2026-05-02T04:05:06Z",
   "context_path": ".wiki/roadmap/tasks/TASK-024/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -9,8 +9,8 @@
   "task": {
     "id": "TASK-024",
     "title": "Sanitation checkpoints and git history policy",
-    "status": "todo",
-    "phase": "implement",
+    "status": "done",
+    "phase": "done",
     "priority": "medium",
     "kind": "architecture",
     "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
@@ -44,35 +44,36 @@
   },
   "revision": {
     "task": {
-      "digest": "4571cfd146c60399d148e28663ab3e0e438ddc20a677aeeae0a0b11fb8b38d50"
+      "digest": "010a98e241701f0bcacacd546706668fdd4509571a7da929924d7a9682b62d97"
     },
     "git": {
-      "head": "ac992065707d76fe55b83b5755e7067e4ab6166d",
+      "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
       "dirty": true,
       "dirty_paths": [
-        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
         ".wiki/roadmap.json",
-        "extensions/codewiki/index.ts"
+        "extensions/codewiki/index.ts",
+        "scripts/rebuild_docs_meta.py"
       ],
       "paths": {
         ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc0",
-        ".wiki/knowledge/system/v2-operating-model.md": "ac992065707d",
-        ".wiki/roadmap.json": "ac992065707d",
-        "extensions/codewiki/index.ts": "ac992065707d",
+        ".wiki/knowledge/system/v2-operating-model.md": "fd4a7696e99e",
+        ".wiki/roadmap.json": "fd4a7696e99e",
+        "extensions/codewiki/index.ts": "fd4a7696e99e",
         "extensions/codewiki/templates.ts": "ce607eba2ff9",
         "scripts/rebuild_docs_meta.py": "ce607eba2ff9"
       }
     },
-    "spec_digest": "5bc943e4948a8b6631bd1a2fab253053a5271620c17b66d7bf9b47cb91b45e37",
-    "code_digest": "e3ecc4883021998d8b5e901c8ddd97a589eacb951dd3437ddb37b9e242c0a0b5",
+    "spec_digest": "37bc1552d72fec55f88559ead11f7c33f2731322ba14b7e5fd35dc5a83698b77",
+    "code_digest": "b1981e1a7d3d7efeb2522bd9116465b176c6e0b5aaccaffa2c9a3b0eebd9a0a5",
     "graph": {
       "git": {
-        "head": "ac992065707d76fe55b83b5755e7067e4ab6166d",
+        "head": "fd4a7696e99e0a0e01635eca894a6818f1f5a49e",
         "dirty": true
       },
-      "spec_digest": "daecbd4ef741b761c82419890db257100291ed8ad680405e93419ecd8f6bc438",
-      "task_digest": "cd9393b73adeb2c53f5cba76ab2a665ec9e47c5c9a98b77020ae61419369443f",
-      "evidence_digest": "56f3a1dc33db5834d6433fa9c8d5f4dd7a7f9e90a5c11b80ad84c833794a6317"
+      "spec_digest": "e821ea1ba359af574cf2077cf9b1e345815c705c48e321675e0fb7b11cca035c",
+      "task_digest": "bfec6cb96c5f80611e257d649583e3aecbd5d0a92e8cb86250945faa743700bd",
+      "evidence_digest": "911dde4ccb8be65f6fc0c850feed3ea2886f4fa390c7e0cf37907148a4d9bb83"
     }
   },
   "specs": [
@@ -84,9 +85,11 @@
       "owners": [
         "architecture"
       ],
-      "code_paths": [],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
       "revision": {
-        "digest": "ae71918429dfed645a09b629449c5151035a6be3c044f4f8cf6fca56a1cd9a5d"
+        "digest": "24d3d265e16c52360bba6ff25e115c1266e8958478b32b401517b7334234eb49"
       },
       "expand": {
         "read": ".wiki/knowledge/system/flows/sanitation-release.md"
@@ -120,7 +123,7 @@
       "extensions/codewiki/index.ts",
       "extensions/codewiki/templates.ts"
     ],
-    "digest": "e3ecc4883021998d8b5e901c8ddd97a589eacb951dd3437ddb37b9e242c0a0b5",
+    "digest": "b1981e1a7d3d7efeb2522bd9116465b176c6e0b5aaccaffa2c9a3b0eebd9a0a5",
     "expand": [
       {
         "read": "scripts/rebuild_docs_meta.py"
@@ -133,7 +136,25 @@
       }
     ]
   },
-  "evidence": null,
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Updated roadmap closed-task retention to store compact semantic summaries instead of full raw context. Added checkpoint action to codewiki_task to snapshot release milestones with version labels, git shas, and canonical digests. Documented commit, push, and version boundaries in SKILL files. Verified behavior through new smoke tests.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "npm test",
+      "python scripts/rebuild_docs_meta.py"
+    ],
+    "files_touched": [
+      "scripts/rebuild_docs_meta.py",
+      "extensions/codewiki/index.ts",
+      "extensions/codewiki/contracts.ts",
+      "scripts/smoke-test.mjs",
+      "skills/codewiki/SKILL.md",
+      "skills/codewiki-task/SKILL.md"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-02T04:00:05Z"
+  },
   "expansion": {
     "task_json": ".wiki/roadmap/tasks/TASK-024/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",

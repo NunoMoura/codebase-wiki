@@ -318,15 +318,24 @@ def compact_roadmap_hot_set(roadmap: dict[str, Any]) -> bool:
     archive_ids = [task_id for task_id in closed_ids if task_id not in keep_closed]
     existing_archive_ids = archive_existing_task_ids(ROADMAP_ARCHIVE_PATH)
     archived_at = now_iso()
-    archive_records = [
-        {
+    archive_records = []
+    for task_id in archive_ids:
+        if task_id in existing_archive_ids:
+            continue
+        task = tasks[task_id]
+        archive_records.append({
             "archived_at": archived_at,
             "reason": "closed_task_retention",
-            "task": tasks[task_id],
-        }
-        for task_id in archive_ids
-        if task_id not in existing_archive_ids
-    ]
+            "task": {
+                "id": str(task.get("id", task_id)),
+                "title": str(task.get("title", "")),
+                "status": str(task.get("status", "")),
+                "resolution": str(task.get("resolution", "")),
+                "closed_at": str(task.get("updated", "")),
+                "summary": str(task.get("summary", "")),
+            }
+        })
+
     append_archived_tasks(ROADMAP_ARCHIVE_PATH, archive_records)
     for task_id in archive_ids:
         tasks.pop(task_id, None)

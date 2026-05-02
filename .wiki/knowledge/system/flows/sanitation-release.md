@@ -5,7 +5,9 @@ state: proposed
 summary: How CodeWiki keeps hot state small while using git for historical recovery.
 owners:
   - architecture
-updated: "2026-05-01"
+updated: "2026-05-02"
+code_paths:
+  - scripts/rebuild_docs_meta.py
 ---
 
 # Sanitation and Release Flow
