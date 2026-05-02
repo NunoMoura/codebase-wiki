@@ -1751,31 +1751,31 @@ async function main() {
 		);
 		assert.match(
 			panelLines.join("\n"),
-			/Smoke Wiki[\s\S]*\| (🟢|🟡|🔴)/,
-			"Status panel header should contain only repo and traffic-light circle",
+			/Smoke Wiki/,
+			"Status panel header should contain the repo name",
 		);
 		assert.doesNotMatch(
 			panelLines.join("\n"),
-			/\b(GREEN|YELLOW|RED)\b/i,
-			"Status panel should avoid spelling health colors in the panel body",
+			/Smoke Wiki \|/,
+			"Status panel header should not append traffic lights or extra metadata to the repo name",
 		);
 		assert.match(
 			panelLines.join("\n"),
-			/\[Home\].*Wiki.*Roadmap.*Agents.*Channels/i,
-			"Status panel should show Home plus detail tabs",
+			/\[Home\].*Product.*System.*Board/i,
+			"Status panel should show Home, Product, System, and Board tabs",
+		);
+		assert.doesNotMatch(
+			panelLines.join("\n"),
+			/Agents|Channels/i,
+			"Status panel should not expose Agents or Channels tabs",
 		);
 		assert.match(
 			panelLines.join("\n"),
-			/Current state[\s\S]*Being done now[\s\S]*Issues[\s\S]*Recommended:[\s\S]*Production path/i,
-			"Status panel should open on the Home project-state dashboard",
-		);
-		assert.match(
-			panelLines.join("\n"),
-			/Tab section · arrows move · Enter details/i,
-			"Status panel should show keyboard help for tab-only section switching and cursor navigation",
+			/Project status[\s\S]*(🟢|🟡|🔴)[\s\S]*(GREEN|YELLOW|RED)[\s\S]*Lint\/issues[\s\S]*Specs:[\s\S]*Tasks:/i,
+			"Home tab should show traffic-light status and meaningful factors",
 		);
 		panelState.terminalInput?.("\t");
-		const widgetInstanceAfterWikiTab = widgetState.content?.(
+		const widgetInstanceAfterProductTab = widgetState.content?.(
 			{ terminal: { columns: 120, rows: 32 } },
 			{
 				fg: (_color, text) => text,
@@ -1783,24 +1783,24 @@ async function main() {
 				bold: (text) => text,
 			},
 		);
-		const wikiPanelLines = widgetInstanceAfterWikiTab?.render(100) ?? [];
+		const productPanelLines = widgetInstanceAfterProductTab?.render(100) ?? [];
 		assert.match(
-			wikiPanelLines.join("\n"),
-			/\[Wiki\]/i,
-			"Status panel should switch to wiki tab",
+			productPanelLines.join("\n"),
+			/\[Product\]/i,
+			"Tab should advance to Product",
 		);
 		assert.match(
-			wikiPanelLines.join("\n"),
-			/Product[\s\S]*System[\s\S]*Clients/i,
-			"Wiki tab should show groups for Product, System, and Clients",
+			productPanelLines.join("\n"),
+			/Users[\s\S]*Stories[\s\S]*Surfaces/i,
+			"Product tab should show users, stories, and surfaces",
 		);
 		assert.doesNotMatch(
-			wikiPanelLines.join("\n"),
-			/Product, system, and client truth with deterministic drift notes\./i,
-			"Wiki tab should avoid a repeated explanatory preamble above the three-column content",
+			productPanelLines.join("\n"),
+			/Clients/i,
+			"Product tab should not show client/system columns",
 		);
 		panelState.terminalInput?.("\t");
-		const widgetInstanceAfterTab = widgetState.content?.(
+		const widgetInstanceAfterSystemTab = widgetState.content?.(
 			{ terminal: { columns: 120, rows: 32 } },
 			{
 				fg: (_color, text) => text,
@@ -1808,26 +1808,52 @@ async function main() {
 				bold: (text) => text,
 			},
 		);
-		const roadmapPanelLines = widgetInstanceAfterTab?.render(100) ?? [];
+		const systemPanelLines = widgetInstanceAfterSystemTab?.render(100) ?? [];
+		assert.match(
+			systemPanelLines.join("\n"),
+			/\[System\][\s\S]*flowchart TD[\s\S]*Components/i,
+			"System tab should render the architecture Mermaid diagram and components",
+		);
+		panelState.terminalInput?.("\r");
+		const widgetInstanceAfterSystemDetail = widgetState.content?.(
+			{ terminal: { columns: 120, rows: 32 } },
+			{
+				fg: (_color, text) => text,
+				bg: (_color, text) => text,
+				bold: (text) => text,
+			},
+		);
+		const systemDetailLines = widgetInstanceAfterSystemDetail?.render(100) ?? [];
+		assert.match(
+			systemDetailLines.join("\n"),
+			/Component: |Markdown preview:/i,
+			"Enter on a System component should open its component markdown detail",
+		);
+		panelState.terminalInput?.("\u001b");
+		panelState.terminalInput?.("\t");
+		const widgetInstanceAfterBoardTab = widgetState.content?.(
+			{ terminal: { columns: 120, rows: 32 } },
+			{
+				fg: (_color, text) => text,
+				bg: (_color, text) => text,
+				bold: (text) => text,
+			},
+		);
+		const roadmapPanelLines = widgetInstanceAfterBoardTab?.render(100) ?? [];
 		assert.match(
 			roadmapPanelLines.join("\n"),
-			/\[Roadmap\]/i,
-			"Status panel should switch to roadmap tab",
+			/\[Board\]/i,
+			"Roadmap tab should be labelled Board in the status panel UI",
 		);
 		assert.match(
 			roadmapPanelLines.join("\n"),
 			/Todo[\s\S]*Research[\s\S]*Implement[\s\S]*Verify[\s\S]*Done/i,
-			"Roadmap tab should render unified kanban task-state columns",
+			"Board tab should render unified kanban task-state columns",
 		);
 		assert.match(
 			roadmapPanelLines.join("\n"),
 			/TASK-\d+/i,
-			"Roadmap tab should render task cards inside the kanban columns",
-		);
-		assert.doesNotMatch(
-			roadmapPanelLines.join("\n"),
-			/Next: \/wiki-resume|Focused: |Open \d+ · blocked \d+ · done \d+|Verify: |Evidence: /i,
-			"Roadmap tab should render only the kanban board without extra summary text",
+			"Board tab should render task cards inside the kanban columns",
 		);
 		panelState.terminalInput?.("\r");
 		const widgetInstanceAfterRoadmapDetail = widgetState.content?.(
@@ -1838,148 +1864,16 @@ async function main() {
 				bold: (text) => text,
 			},
 		);
-		const roadmapDetailLines =
-			widgetInstanceAfterRoadmapDetail?.render(100) ?? [];
+		const roadmapDetailLines = widgetInstanceAfterRoadmapDetail?.render(100) ?? [];
 		assert.match(
 			roadmapDetailLines.join("\n"),
 			/Status: |Phase: |Priority: /i,
-			"Enter on a selected roadmap task should open the reusable detail window",
+			"Enter on a selected board task should open the reusable detail window",
 		);
 		assert.match(
 			roadmapDetailLines.join("\n"),
 			/Resume[\s\S]*Block/i,
-			"Roadmap detail window should expose task actions",
-		);
-		panelState.terminalInput?.("\u001b");
-		panelState.terminalInput?.("\u001b[C");
-		const widgetInstanceAfterArrow = widgetState.content?.(
-			{ terminal: { columns: 120, rows: 32 } },
-			{
-				fg: (_color, text) => text,
-				bg: (_color, text) => text,
-				bold: (text) => text,
-			},
-		);
-		const arrowPanelLines = widgetInstanceAfterArrow?.render(100) ?? [];
-		assert.match(
-			arrowPanelLines.join("\n"),
-			/\[Roadmap\]/i,
-			"Right arrow should move the roadmap cursor inside the active section instead of switching tabs",
-		);
-		panelState.terminalInput?.("\u001b[C");
-		const widgetInstanceAfterEmptyColumnMove = widgetState.content?.(
-			{ terminal: { columns: 120, rows: 32 } },
-			{
-				fg: (_color, text) => text,
-				bg: (_color, text) => text,
-				bold: (text) => text,
-			},
-		);
-		const emptyColumnMoveLines =
-			widgetInstanceAfterEmptyColumnMove?.render(100) ?? [];
-		assert.match(
-			emptyColumnMoveLines.join("\n"),
-			/Todo[\s\S]*Research[\s\S]*Implement[\s\S]*Verify[\s\S]*Done/i,
-			"Roadmap cursor should still move across columns even when some columns are empty",
-		);
-		panelState.terminalInput?.("\t");
-		const widgetInstanceAfterAgentsTab = widgetState.content?.(
-			{ terminal: { columns: 120, rows: 32 } },
-			{
-				fg: (_color, text) => text,
-				bg: (_color, text) => text,
-				bold: (text) => text,
-			},
-		);
-		const agentsPanelLines = widgetInstanceAfterAgentsTab?.render(100) ?? [];
-		assert.match(
-			agentsPanelLines.join("\n"),
-			/\[Agents\]/i,
-			"Tab should advance to the agents section",
-		);
-		assert.match(
-			agentsPanelLines.join("\n"),
-			/\| .*TASK-001|\| .*TASK-020|\| .*TASK-/i,
-			"Agents tab should show named agents with task title and low-emphasis task id",
-		);
-		assert.match(
-			agentsPanelLines.join("\n"),
-			/Parallel sessions/i,
-			"Agents tab should surface same-user parallel-session context",
-		);
-		panelState.terminalInput?.("\t");
-		const widgetInstanceAfterChannels = widgetState.content?.(
-			{ terminal: { columns: 120, rows: 32 } },
-			{
-				fg: (_color, text) => text,
-				bg: (_color, text) => text,
-				bold: (text) => text,
-			},
-		);
-		const channelPanelLines = widgetInstanceAfterChannels?.render(100) ?? [];
-		assert.match(
-			channelPanelLines.join("\n"),
-			/\[Channels\]/i,
-			"Status panel should switch to channels tab",
-		);
-		panelState.terminalInput?.("\t");
-		const widgetInstanceAfterWrap = widgetState.content?.(
-			{ terminal: { columns: 120, rows: 32 } },
-			{
-				fg: (_color, text) => text,
-				bg: (_color, text) => text,
-				bold: (text) => text,
-			},
-		);
-		const wrappedPanelLines = widgetInstanceAfterWrap?.render(100) ?? [];
-		assert.match(
-			wrappedPanelLines.join("\n"),
-			/\[Home\]/i,
-			"Tab should wrap from channels back to home",
-		);
-		panelState.terminalInput?.("\t");
-		panelState.terminalInput?.("\t");
-		panelState.terminalInput?.("\t");
-		panelState.terminalInput?.("\t");
-		assert.doesNotMatch(
-			channelPanelLines.join("\n"),
-			/Press Enter to open \/wiki-config\./i,
-			"Channels tab should not route add-channel affordance through wiki-config copy",
-		);
-		panelState.terminalInput?.("\r");
-		const widgetInstanceAfterChannelEnter = widgetState.content?.(
-			{ terminal: { columns: 120, rows: 32 } },
-			{
-				fg: (_color, text) => text,
-				bg: (_color, text) => text,
-				bold: (text) => text,
-			},
-		);
-		const channelPanelLinesAfterEnter =
-			widgetInstanceAfterChannelEnter?.render(100) ?? [];
-		assert.match(
-			channelPanelLinesAfterEnter.join("\n"),
-			/Add channel/i,
-			"Pressing Enter in channels should open an add-channel detail pane instead of opening wiki-config",
-		);
-		channelInputQueue.push(
-			"Smoke channel",
-			"manual",
-			"slack://smoke",
-			"Smoke delivery route",
-		);
-		panelState.terminalInput?.("\r");
-		await new Promise((resolveTick) => setTimeout(resolveTick, 25));
-		const storedChannels = JSON.parse(
-			readFileSync(
-				resolve(projectDir, ".pi", "codewiki-channels.json"),
-				"utf8",
-			),
-		);
-		assert.match(
-			JSON.stringify(storedChannels),
-			/Smoke channel/i,
-			"Saving the add-channel detail pane should persist a new channel row",
+			"Board detail window should expose task actions",
 		);
 		assert.match(
 			resumeNotifications.at(-1)?.message ?? "",

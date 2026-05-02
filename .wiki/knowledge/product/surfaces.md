@@ -17,7 +17,7 @@ Internal `codewiki_*` tools are the primary AI-facing surface. Agents should use
 
 ## Pi commands and status panel
 
-Human-facing commands and the status panel expose current state, task focus, and eventually the system architecture diagram. The panel should render generated views and open detail cards for selected tasks, components, and flows.
+Human-facing commands and the status panel expose current state, product intent, system architecture, and work board focus. The status panel header shows only the repo name. Its tabs are Home, Product, System, and Board: Home shows the overall traffic-light status and influencing factors; Product shows users, stories, and surfaces; System renders the architecture Mermaid diagram with selectable components; Board keeps backend roadmap data but labels it in user-facing UI as a board.
 
 ## Skills
 

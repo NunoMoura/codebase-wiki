@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T04:33:06Z",
+  "generated_at": "2026-05-02T05:54:24Z",
   "context_path": ".wiki/roadmap/tasks/TASK-010/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -47,28 +47,29 @@
       "digest": "be4ee62488b0b94c30609006747277ae1f1c12246734cb7fbb3ed9e6641d2488"
     },
     "git": {
-      "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
+      "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
         ".wiki/roadmap.json"
       ],
       "paths": {
         ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca",
         ".wiki/knowledge/system/overview.md": "643c940fa1ca",
-        ".wiki/roadmap.json": "7e122a3091d4",
+        ".wiki/roadmap.json": "fe19eabf6306",
         "skills/codewiki-architecture/SKILL.md": "b89c737a9201"
       }
     },
-    "spec_digest": "1eaf22d71df6a62bb8fb5cf9f451422cb51c864410cabe8c0d86b1490bda8a4c",
+    "spec_digest": "b00e0a7bfab46c80394a9818fe91260fb80d8bc258537a1471d08761f908f91d",
     "code_digest": "87b54dd078ac7c16e5a29b3e322fac26dc8a896a3ba37cba30ae282d070ef6e1",
     "graph": {
       "git": {
-        "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
+        "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         "dirty": true
       },
-      "spec_digest": "22abeba49013922d7521fbbab908a725331c7a026ec53a06971cac66557f57b2",
-      "task_digest": "333e2dd1bb0d93bcbef429bc7121b7777503015afddbf981ebef7c69e000b70f",
-      "evidence_digest": "19cd43783695390610f8744a93376d57879f974835b1e088eafdd3b910356b84"
+      "spec_digest": "1699914a21b993bb1df96237bebd3a08a9ba886c447faeac247f7f069e281fa4",
+      "task_digest": "6f633bf2eaaddcb48106ae71f3d6ad694cde1215f25e0fb9efa4174a6aea9d22",
+      "evidence_digest": "8cc95cfb5fab95297aaed1cdb4f91770085001b3a2666b37131343b1ca0574d4"
     }
   },
   "specs": [
@@ -106,7 +107,7 @@
         "scripts/smoke-test.mjs"
       ],
       "revision": {
-        "digest": "6b317db7c37fdc05d08d3fd1f464f95b3f10eee715a10d77d6dd82c82f4d75c3"
+        "digest": "e1b3f44c42cb0979d95a8f73a7f08015a397b95cfda073e181371604557c65b5"
       },
       "expand": {
         "read": ".wiki/knowledge/system/extensions/codewiki/overview.md"

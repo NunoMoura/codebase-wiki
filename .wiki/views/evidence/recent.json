@@ -13,7 +13,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
+          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -24,77 +24,6 @@
     }
   ],
   "events": [
-    {
-      "ts": "2026-05-02T01:49:03Z",
-      "kind": "task_session_link",
-      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
-      "task_id": "TASK-022",
-      "action": "focus",
-      "title": "Heartbeat modes budgets and stop conditions",
-      "summary": "Continue next roadmap task.",
-      "files_touched": [],
-      "spawned_task_ids": []
-    },
-    {
-      "ts": "2026-05-02T01:54:21Z",
-      "kind": "roadmap_update",
-      "title": "Updated 1 roadmap task(s)",
-      "summary": "TASK-022 Heartbeat modes budgets and stop conditions"
-    },
-    {
-      "ts": "2026-05-02T01:54:21Z",
-      "kind": "roadmap_update",
-      "title": "Updated 1 roadmap task(s)",
-      "summary": "TASK-022 Heartbeat modes budgets and stop conditions"
-    },
-    {
-      "ts": "2026-05-02T01:54:21Z",
-      "kind": "task_phase_passed",
-      "task_id": "TASK-022",
-      "phase": "verify",
-      "title": "Heartbeat modes budgets and stop conditions",
-      "summary": "Added bounded codewiki_heartbeat tool contract and initial planner implementation for observe, maintain, and work modes with budgets, dry-run default, stop conditions, policy gates, and smoke coverage. Updated v2 operating model, product story, and task skill heartbeat policy.",
-      "issues": []
-    },
-    {
-      "ts": "2026-05-02T01:54:21Z",
-      "kind": "task_evidence_recorded",
-      "task_id": "TASK-022",
-      "verdict": "pass",
-      "summary": "Added bounded codewiki_heartbeat tool contract and initial planner implementation for observe, maintain, and work modes with budgets, dry-run default, stop conditions, policy gates, and smoke coverage. Updated v2 operating model, product story, and task skill heartbeat policy.",
-      "checks_run": [
-        "python scripts/rebuild_docs_meta.py",
-        "npm run typecheck -- --pretty false",
-        "npm test"
-      ],
-      "files_touched": [
-        "extensions/codewiki/contracts.ts",
-        "extensions/codewiki/index.ts",
-        "scripts/smoke-test.mjs",
-        "skills/codewiki/SKILL.md",
-        "skills/codewiki-task/SKILL.md",
-        ".wiki/knowledge/system/v2-operating-model.md",
-        ".wiki/knowledge/product/stories.md"
-      ],
-      "issues": []
-    },
-    {
-      "ts": "2026-05-02T02:29:01Z",
-      "kind": "task_session_link",
-      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
-      "task_id": "TASK-023",
-      "action": "focus",
-      "title": "ThinkCode query executor integration",
-      "summary": "Continue next roadmap task.",
-      "files_touched": [],
-      "spawned_task_ids": []
-    },
-    {
-      "ts": "2026-05-02T02:34:09Z",
-      "kind": "roadmap_update",
-      "title": "Updated 1 roadmap task(s)",
-      "summary": "TASK-023 ThinkCode query executor integration"
-    },
     {
       "ts": "2026-05-02T02:34:09Z",
       "kind": "roadmap_update",
@@ -238,30 +167,97 @@
         ".wiki/knowledge/system/runtime/overview.md"
       ],
       "issues": []
+    },
+    {
+      "ts": "2026-05-02T05:33:23Z",
+      "kind": "roadmap_append",
+      "title": "Appended 1 roadmap task(s)",
+      "summary": "TASK-027 Simplify status panel tabs and header"
+    },
+    {
+      "ts": "2026-05-02T05:33:23Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-027",
+      "action": "spawn",
+      "title": "Simplify status panel tabs and header",
+      "summary": "Spawned task TASK-027 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T05:33:29Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-027",
+      "action": "focus",
+      "title": "Simplify status panel tabs and header",
+      "summary": "Implement requested status panel UI simplification.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T05:54:23Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-027 Simplify status panel tabs and header"
+    },
+    {
+      "ts": "2026-05-02T05:54:23Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-027 Simplify status panel tabs and header"
+    },
+    {
+      "ts": "2026-05-02T05:54:23Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-027",
+      "phase": "verify",
+      "title": "Simplify status panel tabs and header",
+      "summary": "Simplified UI tabs to Home, Product, System, Board. Header simplified to repo name. Implemented traffic light status on Home tab. Product tab filters to core docs. System tab shows architecture components. Deprecated Agents and Channels tabs.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T05:54:23Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-027",
+      "verdict": "pass",
+      "summary": "Simplified UI tabs to Home, Product, System, Board. Header simplified to repo name. Implemented traffic light status on Home tab. Product tab filters to core docs. System tab shows architecture components. Deprecated Agents and Channels tabs.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "python scripts/rebuild_docs_meta.py"
+      ],
+      "files_touched": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
     }
   ],
   "meta": {
     "version": 1,
     "name": "evidence.recent",
-    "generated_at": "2026-05-02T04:33:07Z",
+    "generated_at": "2026-05-02T05:54:26Z",
     "revision": {
-      "digest": "a5b9f391e6c6fc6497c96c8c6d352503c4ae24b24cc90a5ac1912ac9c790044e",
+      "digest": "3027dce9f5b8114add3d905f8505580e398d25bb15a96a565db556d1ebedc5f0",
       "git": {
-        "head": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
+        "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/system/flows/context-memory.md",
-          ".wiki/knowledge/system/flows/sanitation-release.md",
-          ".wiki/knowledge/system/runtime/overview.md",
-          ".wiki/knowledge/system/v2-operating-model.md",
+          ".wiki/knowledge/product/surfaces.md",
+          ".wiki/knowledge/system/extensions/codewiki/overview.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
           ".wiki/roadmap/events.jsonl",
           ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json"
+          ".wiki/roadmap/state.json",
+          ".wiki/roadmap/tasks/TASK-001/context.json",
+          ".wiki/roadmap/tasks/TASK-002/context.json"
         ],
         "paths": {}
       }

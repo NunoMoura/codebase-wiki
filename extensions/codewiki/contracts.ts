@@ -689,10 +689,9 @@ export interface StatusDockPrefs {
 
 export type StatusPanelSection =
 	| "home"
-	| "wiki"
-	| "roadmap"
-	| "agents"
-	| "channels";
+	| "product"
+	| "system"
+	| "roadmap";
 
 export interface StatusPanelDetail {
 	kind: "home" | "wiki" | "roadmap" | "agent" | "channel-add" | "channel-edit";

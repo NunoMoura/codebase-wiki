@@ -22,7 +22,7 @@ It translates Pi interactions into CodeWiki semantic operations while keeping ca
 
 ## Owned code areas
 
-- `extensions/codewiki/index.ts` registers commands, tools, status panel behavior, task/session operations, and automatic verifier orchestration.
+- `extensions/codewiki/index.ts` registers commands, tools, status panel behavior, task/session operations, and automatic verifier orchestration. The status panel uses user-facing Home/Product/System/Board tabs while backend code keeps roadmap terminology for task storage and APIs.
 - `extensions/codewiki/bootstrap.ts` owns repo adoption/bootstrap behavior.
 - `extensions/codewiki/templates.ts` owns starter wiki templates.
 - `extensions/codewiki/contracts.ts` owns typed package contracts and tool schemas.

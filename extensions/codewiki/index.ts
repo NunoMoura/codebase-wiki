@@ -367,7 +367,7 @@ export default function codewikiExtension(pi: ExtensionAPI) {
 						activeStatusPanel = activeStatusPanelRef;
 						activeStatusPanelGlobal = activeStatusPanelRef;
 					},
-					"wiki",
+					"product",
 				);
 				if (!opened) {
 					const state = await maybeReadStatusState(project.statusStatePath);
@@ -818,10 +818,9 @@ function statusSectionTabs(
 ): string {
 	const tabs: Array<{ key: StatusPanelSection; label: string }> = [
 		{ key: "home", label: "Home" },
-		{ key: "wiki", label: "Wiki" },
-		{ key: "roadmap", label: "Roadmap" },
-		{ key: "agents", label: "Agents" },
-		{ key: "channels", label: "Channels" },
+		{ key: "product", label: "Product" },
+		{ key: "system", label: "System" },
+		{ key: "roadmap", label: "Board" },
 	];
 	return tabs
 		.map((tab) =>
@@ -920,10 +919,9 @@ function openStatusPanelDetail(
 function nextStatusPanelSection(
 	section: StatusPanelSection,
 ): StatusPanelSection {
-	if (section === "home") return "wiki";
-	if (section === "wiki") return "roadmap";
-	if (section === "roadmap") return "agents";
-	if (section === "agents") return "channels";
+	if (section === "home") return "product";
+	if (section === "product") return "system";
+	if (section === "system") return "roadmap";
 	return "home";
 }
 
@@ -2883,9 +2881,19 @@ function renderHomeTab(
 	const currentState = activeTask
 		? `${activeTask.title} is in ${phaseUserLabel(taskLoopPhase(activeTask)).toLowerCase()}. ${issues[0]?.title ?? "No blocking issue detected."}`
 		: `${resume.heading}. ${issues[0]?.title ?? "No blocking issue detected."}`;
+	const statusFactors = [
+		`Lint/issues: errors=${countIssuesBySeverity(report, "error")} warnings=${countIssuesBySeverity(report, "warning")}`,
+		`Specs: ${state.summary.aligned_specs}/${state.summary.total_specs} aligned · ${state.summary.untracked_specs} untracked · ${state.summary.unmapped_specs} unmapped`,
+		`Tasks: ${state.summary.open_task_count} open · ${state.summary.done_task_count} done`,
+		`Heartbeat: ${state.heartbeat?.lanes?.filter((lane) => lane.freshness?.status === "stale").length ?? 0} stale lane(s)`,
+	];
 	const lines = [
+		theme.bold(theme.fg("accent", "Project status")),
+		`${healthCircle(state.health.color)} ${state.health.color.toUpperCase()} · ${readiness}`,
+		...statusFactors.map((factor) => theme.fg("muted", `- ${factor}`)),
+		"",
 		theme.bold(theme.fg("accent", "Current state")),
-		truncatePlain(`${readiness}. ${currentState}`, Math.max(20, width - 4)),
+		truncatePlain(currentState, Math.max(20, width - 4)),
 		"",
 		theme.bold(theme.fg("accent", "Being done now")),
 		activeTask ? activeTask.title : resume.heading,
@@ -2976,6 +2984,46 @@ function architectureFallbackLines(
 	return lines;
 }
 
+
+interface ArchitecturePanelComponent {
+	id: string;
+	label: string;
+	path: string;
+	summary: string;
+}
+
+function readArchitecturePanelData(project: WikiProject): {
+	mermaid: string[];
+	components: ArchitecturePanelComponent[];
+} {
+	const mermaidPath = resolve(project.root, ".wiki/views/system/architecture.mmd");
+	const viewPath = resolve(project.root, ".wiki/views/system/architecture.json");
+	let mermaid: string[] = [];
+	try {
+		mermaid = readFileSync(mermaidPath, "utf8")
+			.split(/\r?\n/)
+			.map((line) => line.trimEnd())
+			.filter(Boolean);
+	} catch {
+		mermaid = [];
+	}
+	let components: ArchitecturePanelComponent[] = [];
+	try {
+		const view = JSON.parse(readFileSync(viewPath, "utf8")) as {
+			components?: Array<Record<string, unknown>>;
+		};
+		components = (view.components ?? []).map((component) => ({
+			id: String(component.id ?? ""),
+			label: String(component.label ?? component.title ?? component.id ?? ""),
+			path: String(component.path ?? ""),
+			summary: String(component.summary ?? ""),
+		}));
+	} catch {
+		components = [];
+	}
+	return { mermaid, components };
+}
+
 function renderStatusPanelLines(
 	project: WikiProject,
 	state: StatusStateFile,
@@ -3003,7 +3051,7 @@ function renderStatusPanelLines(
 	);
 	const channelRows = liveChannelRows(state);
 	const wikiSections = liveWikiSections(state);
-	const title = `${project.label} | ${healthCircle(state.health.color)}`;
+	const title = project.label;
 	const body: string[] = [];
 	const perColumnLimit = 5;
 
@@ -3032,110 +3080,61 @@ function renderStatusPanelLines(
 		);
 	}
 
-	if (section === "wiki") {
-		panelState.wikiColumnIndex = Math.min(
-			Math.max(0, panelState.wikiColumnIndex),
-			Math.max(0, wikiSections.length - 1),
-		);
-		const activeSection = wikiSections[panelState.wikiColumnIndex];
-		const activeRows = activeSection?.rows ?? [];
+	if (section === "product") {
+		const productPathOrder = [
+			".wiki/knowledge/product/users.md",
+			".wiki/knowledge/product/stories.md",
+			".wiki/knowledge/product/surfaces.md",
+		];
+		const productRows = productPathOrder
+			.map((path) => state.specs.find((row) => row.path === path))
+			.filter((row): row is StatusStateSpecRow => Boolean(row));
 		panelState.wikiRowIndex = Math.min(
 			Math.max(0, panelState.wikiRowIndex),
-			Math.max(0, activeRows.length - 1),
+			Math.max(0, productRows.length - 1),
 		);
-		const rowOffset = Math.max(
-			0,
-			panelState.wikiRowIndex - (perColumnLimit - 1),
-		);
-		const columnWidth = Math.max(
-			24,
-			Math.floor((Math.max(72, width) - 10) / 3),
-		);
-		const columnSeparator = theme.fg("muted", " │ ");
-		const headerRow = wikiSections
-			.map((wikiSection, columnIndex) =>
-				padToWidth(
-					theme.bold(theme.fg("accent", wikiSection.label)),
-					columnWidth,
-				),
-			)
-			.join(columnSeparator);
-		const dividerRow = wikiSections
-			.map(() =>
-				padToWidth(
-					theme.fg("muted", "─".repeat(Math.max(8, columnWidth - 1))),
-					columnWidth,
-				),
-			)
-			.join(columnSeparator);
-		body.push(...architectureFallbackLines(wikiSections, theme, width));
-		body.push(headerRow);
-		body.push(dividerRow);
-		const columnLines = wikiSections.map((wikiSection, columnIndex) => {
-			const lines: string[] = [];
-			const visibleRows = wikiSection.rows.slice(
-				columnIndex === panelState.wikiColumnIndex ? rowOffset : 0,
-				(columnIndex === panelState.wikiColumnIndex ? rowOffset : 0) +
-					perColumnLimit,
-			);
-			if (visibleRows.length === 0) {
-				lines.push(theme.fg("muted", "—"));
-				return lines;
-			}
-			for (const [visibleIndex, row] of visibleRows.entries()) {
-				const absoluteIndex =
-					(columnIndex === panelState.wikiColumnIndex ? rowOffset : 0) +
-					visibleIndex;
-				const selected =
-					columnIndex === panelState.wikiColumnIndex &&
-					absoluteIndex === panelState.wikiRowIndex;
-				lines.push(
-					highlightSelectable(
-						theme,
-						`${selected ? "▸" : " "} ${wikiActivityMarker(row, activeLink, roadmapState, panelState.animationTick)} ${truncatePlain(row.title || row.path, Math.max(10, columnWidth - 4))}`,
-						selected,
-					),
-				);
-				lines.push(
-					theme.fg(
-						"muted",
-						truncatePlain(
-							`${row.path}${row.primary_task?.id ? ` · ${row.primary_task.id}` : ""}`,
-							columnWidth,
-						),
-					),
-				);
-				lines.push(
-					theme.fg(
-						"muted",
-						truncatePlain(
-							row.note || row.summary || "No deterministic drift note.",
-							columnWidth,
-						),
-					),
-				);
-				lines.push("");
-			}
-			if (
-				wikiSection.rows.length >
-				(columnIndex === panelState.wikiColumnIndex ? rowOffset : 0) +
-					visibleRows.length
-			)
-				lines.push(
-					theme.fg(
-						"muted",
-						`… ${wikiSection.rows.length - ((columnIndex === panelState.wikiColumnIndex ? rowOffset : 0) + visibleRows.length)} more`,
-					),
-				);
-			return lines;
-		});
-		const maxLines = Math.max(...columnLines.map((lines) => lines.length));
-		for (let index = 0; index < maxLines; index += 1)
+		body.push(theme.bold(theme.fg("accent", "Product")));
+		for (const [index, row] of productRows.entries()) {
+			const selected = index === panelState.wikiRowIndex;
 			body.push(
-				columnLines
-					.map((lines) => padToWidth(lines[index] ?? "", columnWidth))
-					.join(columnSeparator),
+				highlightSelectable(
+					theme,
+					`${selected ? "▸" : " "} ${wikiActivityMarker(row, activeLink, roadmapState, panelState.animationTick)} ${row.title || row.path}`,
+					selected,
+				),
 			);
+			body.push(theme.fg("muted", row.path));
+			body.push(theme.fg("muted", truncatePlain(row.summary || row.note || "—", Math.max(12, width - 4))));
+			body.push("");
+		}
+	}
+
+	if (section === "system") {
+		const architecture = readArchitecturePanelData(project);
+		panelState.wikiRowIndex = Math.min(
+			Math.max(0, panelState.wikiRowIndex),
+			Math.max(0, architecture.components.length - 1),
+		);
+		body.push(theme.bold(theme.fg("accent", "Architecture")));
+		if (architecture.mermaid.length > 0) {
+			body.push(...architecture.mermaid.slice(0, 14).map((line) => theme.fg("text", truncatePlain(line, Math.max(20, width - 4)))));
+		} else {
+			body.push(theme.fg("muted", "Architecture Mermaid view not generated yet."));
+		}
+		body.push("");
+		body.push(theme.bold(theme.fg("accent", "Components")));
+		if (architecture.components.length === 0) body.push(theme.fg("muted", "No architecture components found."));
+		for (const [index, component] of architecture.components.slice(0, 10).entries()) {
+			const selected = index === panelState.wikiRowIndex;
+			body.push(
+				highlightSelectable(
+					theme,
+					`${selected ? "▸" : " "} ${component.label || component.id}`,
+					selected,
+				),
+			);
+			body.push(theme.fg("muted", truncatePlain(`${component.path || "—"}${component.summary ? ` · ${component.summary}` : ""}`, Math.max(12, width - 4))));
+		}
 	}
 
 	if (section === "roadmap") {
@@ -3244,7 +3243,7 @@ function renderStatusPanelLines(
 			);
 	}
 
-	if (section === "agents") {
+	if ((section as string) === "agents") {
 		panelState.agentRowIndex = Math.min(
 			Math.max(0, panelState.agentRowIndex),
 			Math.max(0, agentRows.length - 1),
@@ -3277,7 +3276,7 @@ function renderStatusPanelLines(
 		);
 	}
 
-	if (section === "channels") {
+	if ((section as string) === "channels") {
 		const channelItems = [
 			{
 				id: "__add__",
@@ -3369,10 +3368,9 @@ async function openStatusPanel(
 	const prefs = await readStatusDockPrefs();
 	const sections: StatusPanelSection[] = [
 		"home",
-		"wiki",
+		"product",
+		"system",
 		"roadmap",
-		"agents",
-		"channels",
 	];
 	const panelState: ActiveStatusPanel = {
 		project,
@@ -3407,7 +3405,7 @@ async function openStatusPanel(
 				panelState.density = livePrefs.density;
 				if (!snapshot) {
 					return renderPinnedTopPanel(
-						`${panelState.project.label} | ⚪`,
+						panelState.project.label,
 						statusSectionTabs(theme, panelState.section),
 						[
 							theme.fg(
@@ -3554,22 +3552,11 @@ async function openStatusPanel(
 							Math.max(0, issueCount - 1),
 							panelState.homeIssueIndex + 1,
 						);
-				} else if (panelState.section === "wiki") {
-					if (matchesKey(data, "left"))
-						panelState.wikiColumnIndex = cycleIndex(
-							Math.max(1, wikiSections.length),
-							panelState.wikiColumnIndex,
-							-1,
-						);
-					if (matchesKey(data, "right"))
-						panelState.wikiColumnIndex = cycleIndex(
-							Math.max(1, wikiSections.length),
-							panelState.wikiColumnIndex,
-							1,
-						);
-					if (matchesKey(data, "up"))
+				} else if (panelState.section === "product" || panelState.section === "system") {
+					if (matchesKey(data, "up") || matchesKey(data, "left"))
 						panelState.wikiRowIndex = Math.max(0, panelState.wikiRowIndex - 1);
-					if (matchesKey(data, "down")) panelState.wikiRowIndex += 1;
+					if (matchesKey(data, "down") || matchesKey(data, "right"))
+						panelState.wikiRowIndex += 1;
 				} else if (panelState.section === "roadmap") {
 					if (matchesKey(data, "left"))
 						panelState.roadmapColumnIndex = cycleIndex(
@@ -3589,7 +3576,7 @@ async function openStatusPanel(
 							panelState.roadmapRowIndex - 1,
 						);
 					if (matchesKey(data, "down")) panelState.roadmapRowIndex += 1;
-				} else if (panelState.section === "agents") {
+				} else if ((panelState.section as string) === "agents") {
 					if (matchesKey(data, "up"))
 						panelState.agentRowIndex = Math.max(
 							0,
@@ -3600,7 +3587,7 @@ async function openStatusPanel(
 							Math.max(0, agentRows.length - 1),
 							panelState.agentRowIndex + 1,
 						);
-				} else if (panelState.section === "channels") {
+				} else if ((panelState.section as string) === "channels") {
 					if (matchesKey(data, "up"))
 						panelState.channelRowIndex = Math.max(
 							0,
@@ -3748,24 +3735,31 @@ async function openStatusPanel(
 								...issue.detail,
 							],
 						});
-				} else if (panelState.section === "wiki") {
-					const selectedSection = wikiSections[panelState.wikiColumnIndex];
-					const row = selectedSection?.rows?.[panelState.wikiRowIndex];
+				} else if (panelState.section === "product") {
+					const productRows = [
+						".wiki/knowledge/product/users.md",
+						".wiki/knowledge/product/stories.md",
+						".wiki/knowledge/product/surfaces.md",
+					]
+						.map((path) => snapshot.state.specs.find((row) => row.path === path))
+						.filter((row): row is StatusStateSpecRow => Boolean(row));
+					const row = productRows[panelState.wikiRowIndex];
 					if (row) {
 						const preview = wikiMarkdownPreview(panelState.project, row.path);
 						openStatusPanelDetail(panelState, {
 							kind: "wiki",
 							title: row.title || row.path,
-							lines: [
-								`Spec: ${row.path}`,
-								`Task: ${row.primary_task?.id ?? "—"}`,
-								`Code: ${row.code_area || "—"}`,
-								"",
-								row.summary || row.note || "No extra detail.",
-								...(preview.length
-									? ["", "Markdown preview:", ...preview]
-									: []),
-							],
+							lines: [`Spec: ${row.path}`, "", row.summary || row.note || "No extra detail.", ...(preview.length ? ["", "Markdown preview:", ...preview] : [])],
+						});
+					}
+				} else if (panelState.section === "system") {
+					const component = readArchitecturePanelData(panelState.project).components[panelState.wikiRowIndex];
+					if (component?.path) {
+						const preview = wikiMarkdownPreview(panelState.project, component.path);
+						openStatusPanelDetail(panelState, {
+							kind: "wiki",
+							title: component.label || component.id,
+							lines: [`Component: ${component.id}`, `Spec: ${component.path}`, "", component.summary || "No summary.", ...(preview.length ? ["", "Markdown preview:", ...preview] : [])],
 						});
 					}
 				} else if (panelState.section === "roadmap") {
@@ -3776,7 +3770,7 @@ async function openStatusPanel(
 					const task = taskId ? snapshot.roadmapState?.tasks?.[taskId] : null;
 					if (task)
 						openStatusPanelDetail(panelState, buildRoadmapTaskDetail(task));
-				} else if (panelState.section === "agents") {
+				} else if ((panelState.section as string) === "agents") {
 					const row = agentRows[panelState.agentRowIndex];
 					if (row)
 						openStatusPanelDetail(panelState, {
@@ -3792,7 +3786,7 @@ async function openStatusPanel(
 								row.constraint || "No explicit constraint.",
 							],
 						});
-				} else if (panelState.section === "channels") {
+				} else if ((panelState.section as string) === "channels") {
 					if (panelState.channelRowIndex === 0)
 						openStatusPanelDetail(panelState, {
 							kind: "channel-add",
