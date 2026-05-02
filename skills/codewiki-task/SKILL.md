@@ -13,9 +13,11 @@ load task → create context → implement → local verify → fresh verify →
 
 ## Rules
 
-- Use `codewiki_session` when starting or continuing a task.
+- Use `codewiki_session` when starting or continuing a task; keep task id, loaded view revisions, and current decision state in parent RAM.
 - Use `codewiki_state`/task context before reading raw wiki files.
+- Read only linked specs, flows, evidence, and code paths unless task context proves broader context is needed.
 - Use think-code for compact project context packets when exploration would be token-heavy.
+- Spawn subagents for fresh verification or bounded research; parent consumes their compact result, then writes canonical task/evidence updates.
 - Use short local feedback loops during implementation: typecheck, tests, lint, runtime smoke, or targeted scripts.
 - Verification evidence, not confidence, controls closure.
 - Use `codewiki_task` for evidence, close, block, or follow-up task creation.

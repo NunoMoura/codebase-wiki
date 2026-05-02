@@ -9,7 +9,7 @@ Verification is an automatic inner-loop stage. Manual commands are debug/overrid
 
 ## Verifier role
 
-Act as an independent reviewer with fresh context. Do not trust the implementer's rationale. Verify vertical and horizontal alignment.
+Act as an independent reviewer with fresh context. Do not trust the implementer's rationale. Verify vertical and horizontal alignment. Keep verifier RAM small: start from status/task context, then expand only linked canonical docs, evidence summaries, and touched code paths.
 
 Vertical alignment:
 

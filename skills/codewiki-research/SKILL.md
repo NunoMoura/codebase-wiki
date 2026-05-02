@@ -5,6 +5,10 @@ description: Research workflow for CodeWiki knowledge support. Use when external
 
 # CodeWiki Research
 
+## Memory policy
+
+Run research in a fresh or bounded context when possible. Parent session should pass the question, linked specs/tasks, and budget; research returns compact findings, citations, implications for canonical knowledge, and task deltas. Do not paste broad source dumps into parent RAM.
+
 Research supports canonical knowledge. It is not part of every implementation loop.
 
 ## Rules

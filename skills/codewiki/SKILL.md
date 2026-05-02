@@ -30,6 +30,16 @@ Internal agent tools:
 - `codewiki_task`
 - `codewiki_session`
 
+## Memory policy
+
+- Treat the parent Pi context window as expensive session RAM: keep current user intent, focused task, loaded view revisions, and small decisions only.
+- Treat `.wiki/knowledge/**`, roadmap tasks, and evidence as persistent canonical memory. Write durable changes there, not into chat-only plans.
+- Treat `.wiki/views/**` and legacy generated state files as optimized read models. Consume views first; do not hand-edit them.
+- Default first read is `codewiki_state`/status view. Expand task context, product/system views, canonical docs, and code paths only when the loaded view points there or exact source is required.
+- Track loaded view revisions in session RAM when available. If a view revision is unchanged and enough for the question, do not reread it.
+- Use subagents for fresh-context verification, research, architecture review, or planning review. Require compact JSON/prose summaries back to the parent.
+- Use ThinkCode for bounded programmatic filtering, validation, and context packets when raw repo/wiki output would be noisy.
+
 ## Invariants
 
 - `.wiki/knowledge/**` is canonical intended behavior.

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T00:38:01Z",
+  "generated_at": "2026-05-02T00:41:51Z",
   "context_path": ".wiki/roadmap/tasks/TASK-018/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -9,8 +9,8 @@
   "task": {
     "id": "TASK-018",
     "title": "Implement context memory policy in skills and loops",
-    "status": "todo",
-    "phase": "implement",
+    "status": "done",
+    "phase": "done",
     "priority": "high",
     "kind": "agent-workflow",
     "summary": "Teach agents when to use session RAM, views, canonical docs, subagents, and ThinkCode so default workflows minimize repeated token load.",
@@ -45,34 +45,40 @@
   },
   "revision": {
     "task": {
-      "digest": "3c9364c8d846e1779037b758d47b59ed576a5d1c1f311abce28e333bda417c1a"
+      "digest": "77b8abed0c301d6e397f3baae35ee6f2e1a13290e8112af2affd23e5e99b0ee4"
     },
     "git": {
-      "head": "3c0906e38572fca7352aa3e820369391069c26b1",
+      "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
       "dirty": true,
       "dirty_paths": [
         ".wiki/roadmap.json",
-        "extensions/codewiki/index.ts"
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-architecture/SKILL.md",
+        "skills/codewiki-plan/SKILL.md",
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md",
+        "skills/codewiki/SKILL.md"
       ],
       "paths": {
         ".wiki/knowledge/lexicon.md": "3c0906e38572",
         ".wiki/knowledge/system/flows/context-memory.md": "a6f94f94cbc0",
         ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc0",
-        ".wiki/roadmap.json": "3c0906e38572",
-        "extensions/codewiki/index.ts": "a6f94f94cbc0",
+        ".wiki/roadmap.json": "21ea883c25d7",
+        "extensions/codewiki/index.ts": "21ea883c25d7",
         "skills": "a6fc64223df3"
       }
     },
     "spec_digest": "55f3dd6a84bcb738ca22a67fcdc361e980eb23dc2c2df1beb6a5a0d68ad6835c",
-    "code_digest": "6ae591bd7874c5164fe67a500d0be86da7f75ea2dcc68874abcce995fe07b520",
+    "code_digest": "c597b330c77a581cb5211caa3b20567716e2f303ba8504a79a62b4a6b71ee1fe",
     "graph": {
       "git": {
-        "head": "3c0906e38572fca7352aa3e820369391069c26b1",
+        "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
         "dirty": true
       },
       "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
-      "task_digest": "17a93f2fa8fc5e6cf791a8bddf04ea1f7deb5ad60e3b1110012ebaabf6cfe356",
-      "evidence_digest": "ab9a94045610c11a363238b1bbb50e1635da1e4bf1d2a51825d96d3e6f47b68b"
+      "task_digest": "1b73beb669e07602af203469934c301d502f8cd30ca12a47e33ed972fbb1848a",
+      "evidence_digest": "f532e219c4f26eae068c9f7a3f03332130a59b2dc5cec75a9bc95ac3faa9d0c0"
     }
   },
   "specs": [
@@ -136,7 +142,7 @@
       "skills",
       "extensions/codewiki/index.ts"
     ],
-    "digest": "6ae591bd7874c5164fe67a500d0be86da7f75ea2dcc68874abcce995fe07b520",
+    "digest": "c597b330c77a581cb5211caa3b20567716e2f303ba8504a79a62b4a6b71ee1fe",
     "expand": [
       {
         "read": "skills"
@@ -146,7 +152,25 @@
       }
     ]
   },
-  "evidence": null,
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Updated memory policy across skills and prompts; ready for closure after passing checks.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "npm test"
+    ],
+    "files_touched": [
+      "skills/codewiki/SKILL.md",
+      "skills/codewiki-plan/SKILL.md",
+      "skills/codewiki-task/SKILL.md",
+      "skills/codewiki-research/SKILL.md",
+      "skills/codewiki-verify/SKILL.md",
+      "skills/codewiki-architecture/SKILL.md",
+      "extensions/codewiki/index.ts"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-02T00:41:45Z"
+  },
   "expansion": {
     "task_json": ".wiki/roadmap/tasks/TASK-018/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",

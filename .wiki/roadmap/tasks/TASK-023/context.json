@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T00:38:01Z",
+  "generated_at": "2026-05-02T00:41:51Z",
   "context_path": ".wiki/roadmap/tasks/TASK-023/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -47,31 +47,37 @@
       "digest": "a70fd9c639911613e63a677d05f65959d65e0e14a3118e48f4701b4a2e228e5f"
     },
     "git": {
-      "head": "3c0906e38572fca7352aa3e820369391069c26b1",
+      "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
       "dirty": true,
       "dirty_paths": [
         ".wiki/roadmap.json",
-        "extensions/codewiki/index.ts"
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-architecture/SKILL.md",
+        "skills/codewiki-plan/SKILL.md",
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md",
+        "skills/codewiki/SKILL.md"
       ],
       "paths": {
         ".wiki/knowledge/system/runtime/overview.md": "a6f94f94cbc0",
         ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc0",
-        ".wiki/roadmap.json": "3c0906e38572",
-        "extensions/codewiki/index.ts": "a6f94f94cbc0",
+        ".wiki/roadmap.json": "21ea883c25d7",
+        "extensions/codewiki/index.ts": "21ea883c25d7",
         "scripts/codewiki-gateway.mjs": "a6fc64223df3",
         "skills": "a6fc64223df3"
       }
     },
     "spec_digest": "c83c6b7b5450a0dbb49f8f402a16ee5b797d164d3a3a2b2023b0fdaaa48d7ee2",
-    "code_digest": "0572f2fb2f4648285239795b6e5b848762b6e27ac072e1ccc1b71735cb263155",
+    "code_digest": "065f01e912dc1dfeea128185fe8c424f06a570a6c3a172f6b45807b5af2ae795",
     "graph": {
       "git": {
-        "head": "3c0906e38572fca7352aa3e820369391069c26b1",
+        "head": "21ea883c25d72bdbadeea3138dd2f3431ee3dd67",
         "dirty": true
       },
       "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
-      "task_digest": "17a93f2fa8fc5e6cf791a8bddf04ea1f7deb5ad60e3b1110012ebaabf6cfe356",
-      "evidence_digest": "ab9a94045610c11a363238b1bbb50e1635da1e4bf1d2a51825d96d3e6f47b68b"
+      "task_digest": "1b73beb669e07602af203469934c301d502f8cd30ca12a47e33ed972fbb1848a",
+      "evidence_digest": "f532e219c4f26eae068c9f7a3f03332130a59b2dc5cec75a9bc95ac3faa9d0c0"
     }
   },
   "specs": [
@@ -119,7 +125,7 @@
       "scripts/codewiki-gateway.mjs",
       "skills"
     ],
-    "digest": "0572f2fb2f4648285239795b6e5b848762b6e27ac072e1ccc1b71735cb263155",
+    "digest": "065f01e912dc1dfeea128185fe8c424f06a570a6c3a172f6b45807b5af2ae795",
     "expand": [
       {
         "read": "extensions/codewiki/index.ts"
