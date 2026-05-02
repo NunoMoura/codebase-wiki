@@ -124,6 +124,14 @@ const GENERATED_METADATA_FILES = [
 	"roadmap/state.json",
 	"roadmap/events.jsonl",
 ] as const;
+const GENERATED_VIEW_FILES = [
+	"graph.json",
+	"lint.json",
+	"roadmap-state.json",
+	"status-state.json",
+	"roadmap/index.json",
+	"roadmap/state.json",
+] as const;
 const TASK_SESSION_LINK_CUSTOM_TYPE = "codewiki.task-link";
 const STATUS_DOCK_WIDGET_KEY = "codewiki-status-dock";
 const STATUS_SUMMARY_STATUS_KEY = "codewiki-status";
@@ -5831,6 +5839,9 @@ function rebuildTargetPaths(project: WikiProject): string[] {
 		...GENERATED_METADATA_FILES.map((fileName) =>
 			resolve(project.root, project.metaRoot, fileName),
 		),
+		...GENERATED_VIEW_FILES.map((fileName) =>
+			resolve(project.root, project.viewsRoot, fileName),
+		),
 	];
 }
 
@@ -5894,6 +5905,7 @@ async function loadProject(startDir: string): Promise<WikiProject> {
 		config.roadmap_events_path ?? DEFAULT_ROADMAP_EVENTS_PATH,
 	);
 	const metaRoot = normalizeRelativePath(config.meta_root ?? DEFAULT_META_ROOT);
+	const viewsRoot = normalizeRelativePath(config.views_root ?? ".wiki/views");
 	const label = config.codewiki?.name ?? config.project_name ?? basename(root);
 
 	return {
@@ -5907,6 +5919,7 @@ async function loadProject(startDir: string): Promise<WikiProject> {
 		roadmapPath,
 		roadmapDocPath,
 		metaRoot,
+		viewsRoot,
 		configPath,
 		lintPath: resolve(root, metaRoot, "lint.json"),
 		graphPath: resolve(root, metaRoot, "graph.json"),

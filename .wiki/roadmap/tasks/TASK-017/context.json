@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-02T00:21:50Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-017/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-017",
+    "title": "Render architecture graph in status panel",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "ui",
+    "summary": "Update the CodeWiki status panel to render the generated architecture view and show component or flow details when selected.",
+    "labels": [
+      "v2",
+      "status-panel",
+      "architecture-graph"
+    ],
+    "goal": {
+      "outcome": "Humans and agents can inspect system architecture visually through the status panel and zoom into component or flow detail cards.",
+      "acceptance": [
+        "Status panel renders the generated architecture graph or a fallback graph view.",
+        "Selecting a component opens linked component markdown/details.",
+        "Selecting a flow opens linked flow markdown/details.",
+        "Health colors use strict legend semantics from roadmap/drift/view state.",
+        "Panel degrades gracefully when architecture views are stale or absent."
+      ],
+      "non_goals": [
+        "Make the panel a full diagram editor.",
+        "Hand-edit Mermaid in the UI."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Architecture graph becomes an interactive navigation surface.",
+      "current": "Status panel focuses on status and roadmap, not architecture graph navigation.",
+      "closure": "Panel can render graph and detail cards from generated views."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "37775318e72c24d70871fc69518e2c2e263d80aa5e342748a67466d607542136"
+    },
+    "git": {
+      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/roadmap.json",
+        "extensions/codewiki/contracts.ts",
+        "extensions/codewiki/index.ts"
+      ],
+      "paths": {
+        ".wiki/knowledge/product/surfaces.md": "",
+        ".wiki/knowledge/system/v2-operating-model.md": "",
+        ".wiki/roadmap.json": "53578e465699",
+        "extensions/codewiki/contracts.ts": "53578e465699",
+        "extensions/codewiki/index.ts": "53578e465699"
+      }
+    },
+    "spec_digest": "6a6050799e72651a7e785df748f96f502935690c18537b743f77c4693f258f48",
+    "code_digest": "bd4692a2226e37c8a7a42bd43199ee75a7e3f5b001d91867cf7bd50eea762446",
+    "graph": {
+      "git": {
+        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "dirty": true
+      },
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/product/surfaces.md",
+      "title": "Product Surfaces",
+      "summary": "Human and AI interaction surfaces for CodeWiki.",
+      "state": "active",
+      "owners": [
+        "product",
+        "clients"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "06f92c9ba0a0738dcbc3527cc1fc4204922f1aedfebc7efd95e55371b566f982"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/product/surfaces.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/index.ts",
+      "extensions/codewiki/contracts.ts"
+    ],
+    "digest": "bd4692a2226e37c8a7a42bd43199ee75a7e3f5b001d91867cf7bd50eea762446",
+    "expand": [
+      {
+        "read": "extensions/codewiki/index.ts"
+      },
+      {
+        "read": "extensions/codewiki/contracts.ts"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-017/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

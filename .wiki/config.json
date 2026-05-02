@@ -18,12 +18,19 @@
     "compress_archive": false
   },
   "meta_root": ".wiki",
+  "views_root": ".wiki/views",
   "sources_root": ".wiki/sources",
   "generated_files": [
     ".wiki/graph.json",
     ".wiki/lint.json",
     ".wiki/roadmap-state.json",
-    ".wiki/status-state.json"
+    ".wiki/status-state.json",
+    ".wiki/views/graph.json",
+    ".wiki/views/lint.json",
+    ".wiki/views/roadmap-state.json",
+    ".wiki/views/status-state.json",
+    ".wiki/views/roadmap/index.json",
+    ".wiki/views/roadmap/state.json"
   ],
   "lint": {
     "repo_markdown": [

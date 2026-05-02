@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-02T00:21:50Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-021/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-021",
+    "title": "Subagent JSON worker contracts",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
+    "labels": [
+      "subagent-workers",
+      "json-contracts",
+      "fresh-ram"
+    ],
+    "goal": {
+      "outcome": "Context-heavy or bias-sensitive CodeWiki work can run in fresh subagent sessions and return bounded results to the parent agent.",
+      "acceptance": [
+        "Verifier, researcher, planner, architecture reviewer, and view auditor roles have documented input/output contracts.",
+        "Parent agent remains responsible for canonical writes.",
+        "Subagent outputs are compact JSON with pass/fail/block or proposal semantics as appropriate.",
+        "Existing fresh verifier behavior aligns with the shared subagent model."
+      ],
+      "non_goals": [
+        "Let subagents freely mutate `.wiki` canonical truth.",
+        "Replace all parent-agent work with subagents."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Subagents become reusable context-management workers.",
+      "current": "Fresh verifier exists, but broader subagent roles and contracts are underexplored.",
+      "closure": "Contracts and at least one additional subagent workflow are implemented or stubbed with tests."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "54aded7e22fd8291b4aaf0a7a22d5b693fff3f42711a397e909d83b72739fd40"
+    },
+    "git": {
+      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/roadmap.json",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/flows/context-memory.md": "",
+        ".wiki/knowledge/system/v2-operating-model.md": "",
+        ".wiki/roadmap.json": "53578e465699",
+        "extensions/codewiki/contracts.ts": "53578e465699",
+        "skills": "a6fc64223df3"
+      }
+    },
+    "spec_digest": "d465ec3da201f681a14fc41eb1907f5d9f7a08dcdda50e6ca7fd2947114f3619",
+    "code_digest": "aeca53872c6d7ed1afa1d14b30c7e8e8ae0a2068c56c59eefbb3cd49906f9ffa",
+    "graph": {
+      "git": {
+        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "dirty": true
+      },
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and ThinkCode.",
+      "state": "proposed",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "270df6adf5c4e4b488dac81088f6794647b5c493d94f95841e2769e77c55bae8"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/flows/context-memory.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/contracts.ts",
+      "skills"
+    ],
+    "digest": "aeca53872c6d7ed1afa1d14b30c7e8e8ae0a2068c56c59eefbb3cd49906f9ffa",
+    "expand": [
+      {
+        "read": "extensions/codewiki/contracts.ts"
+      },
+      {
+        "read": "skills"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-021/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

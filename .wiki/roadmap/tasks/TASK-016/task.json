@@ -1,0 +1,49 @@
+{
+  "id": "TASK-016",
+  "title": "Bake product split and lexicon into templates",
+  "status": "todo",
+  "priority": "high",
+  "kind": "docs",
+  "summary": "Make product users, stories, surfaces, and lexicon part of the starter CodeWiki structure instead of a repo-local experiment.",
+  "spec_paths": [
+    ".wiki/knowledge/product/users.md",
+    ".wiki/knowledge/product/stories.md",
+    ".wiki/knowledge/product/surfaces.md",
+    ".wiki/knowledge/lexicon.md"
+  ],
+  "code_paths": [
+    "extensions/codewiki/templates.ts",
+    "scripts/smoke-test.mjs"
+  ],
+  "research_ids": [],
+  "labels": [
+    "v2",
+    "product",
+    "lexicon",
+    "templates"
+  ],
+  "goal": {
+    "outcome": "New wikis start with focused product knowledge and a shared lexicon rather than one large product overview.",
+    "acceptance": [
+      "Bootstrap templates include lexicon, users, stories, and surfaces docs.",
+      "Product overview is short navigation plus boundaries.",
+      "Smoke tests cover expected starter files.",
+      "Existing clients docs link cleanly to the product split."
+    ],
+    "non_goals": [
+      "Delete all client surface docs.",
+      "Implement system architecture graph generation."
+    ],
+    "verification": [
+      "npm run typecheck -- --pretty false",
+      "npm test"
+    ]
+  },
+  "delta": {
+    "desired": "Every new CodeWiki repo gets the v2 product/lexicon structure.",
+    "current": "This repo has the new product split, but package templates still need to adopt it.",
+    "closure": "Templates and smoke tests reflect product split and lexicon."
+  },
+  "created": "2026-05-02",
+  "updated": "2026-05-02"
+}

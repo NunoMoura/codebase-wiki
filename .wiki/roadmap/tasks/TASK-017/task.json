@@ -1,0 +1,47 @@
+{
+  "id": "TASK-017",
+  "title": "Render architecture graph in status panel",
+  "status": "todo",
+  "priority": "medium",
+  "kind": "ui",
+  "summary": "Update the CodeWiki status panel to render the generated architecture view and show component or flow details when selected.",
+  "spec_paths": [
+    ".wiki/knowledge/product/surfaces.md",
+    ".wiki/knowledge/system/v2-operating-model.md"
+  ],
+  "code_paths": [
+    "extensions/codewiki/index.ts",
+    "extensions/codewiki/contracts.ts"
+  ],
+  "research_ids": [],
+  "labels": [
+    "v2",
+    "status-panel",
+    "architecture-graph"
+  ],
+  "goal": {
+    "outcome": "Humans and agents can inspect system architecture visually through the status panel and zoom into component or flow detail cards.",
+    "acceptance": [
+      "Status panel renders the generated architecture graph or a fallback graph view.",
+      "Selecting a component opens linked component markdown/details.",
+      "Selecting a flow opens linked flow markdown/details.",
+      "Health colors use strict legend semantics from roadmap/drift/view state.",
+      "Panel degrades gracefully when architecture views are stale or absent."
+    ],
+    "non_goals": [
+      "Make the panel a full diagram editor.",
+      "Hand-edit Mermaid in the UI."
+    ],
+    "verification": [
+      "npm run typecheck -- --pretty false",
+      "npm test"
+    ]
+  },
+  "delta": {
+    "desired": "Architecture graph becomes an interactive navigation surface.",
+    "current": "Status panel focuses on status and roadmap, not architecture graph navigation.",
+    "closure": "Panel can render graph and detail cards from generated views."
+  },
+  "created": "2026-05-02",
+  "updated": "2026-05-02"
+}

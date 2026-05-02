@@ -20,7 +20,7 @@ The runtime policy keeps agent-facing wiki operations small, inspectable, and bo
 - `scripts/codewiki-gateway.mjs` is the current adapter for compact reads and validated transaction application.
 - `think-code` should be the preferred generic executor for agent-written analysis programs when it is available in Pi.
 - Pi owns the host runtime, project working directory, session state, package loading, and any optional outer sandbox extension.
-- CodeWiki owns domain semantics: generated files stay read-only, evidence is append-only, roadmap/task state goes through canonical mutation APIs, and generated state is rebuilt only when fresh projections are explicitly requested or a rebuild command runs.
+- CodeWiki owns domain semantics: views stay read-only, evidence is append-only, roadmap/task state goes through canonical mutation APIs, and views are rebuilt only when fresh read models are explicitly requested or a rebuild command runs.
 
 ## Capability boundary
 
@@ -45,7 +45,7 @@ CodeWiki task execution should progress automatically once a task is selected or
 load task → create context → implement → local verify → fresh verify → evidence → close/block/follow-up
 ```
 
-`think-code` is the preferred way to create compact project context for token-heavy exploration when it is available, but CodeWiki must keep a fallback path through normal Pi tools and CodeWiki state packets. Local verification handles mechanical feedback such as typecheck, tests, lint, and smoke scripts. Fresh verification is a separate read-only stage that checks alignment from a clean context before closure.
+`think-code` is the preferred way to create compact project context for token-heavy exploration when it is available, but CodeWiki must keep a fallback path through normal Pi tools and CodeWiki views. Local verification handles mechanical feedback such as typecheck, tests, lint, and smoke scripts. Fresh verification is a separate read-only stage that checks alignment from a clean context before closure.
 
 Task closure requires evidence: checks run, files touched, unresolved issues, and verifier verdict when policy requires it. If verification fails or blocks, CodeWiki should record evidence and create follow-up roadmap tasks or keep the current task open instead of silently closing it.
 
@@ -79,9 +79,9 @@ CodeWiki-owned capability classes:
 - `codewiki.task` mutates canonical roadmap task truth and task evidence.
 - `codewiki.session` records Pi session focus/notes linked to tasks.
 - `codewiki.transaction` applies validated exact-text knowledge patches and append-only evidence writes.
-- `codewiki.rebuild` regenerates derived state files.
+- `codewiki.rebuild` regenerates views.
 
-External runtimes may read `.wiki/**` only when policy permits. Writes to generated state (`.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`, `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, and task context shards) remain out of scope except through the rebuild capability. Session mutators default to canonical writes without projection rebuilds. Task mutators preserve fresh read models by default for compatibility, but callers may set `refresh=false` when they need a minimal canonical write and can defer projections to `codewiki_state refresh=true` or `codewiki.rebuild`. If `think-code` is not installed, CodeWiki continues to use its native tools, gateway `pack/tree/manifest`, and normal Pi read/search tools.
+External runtimes may read `.wiki/**` only when policy permits. Writes to views (`.wiki/graph.json`, `.wiki/lint.json`, `.wiki/roadmap-state.json`, `.wiki/status-state.json`, `.wiki/roadmap/index.json`, `.wiki/roadmap/state.json`, and task context shards today; `.wiki/views/**` in v2) remain out of scope except through the rebuild capability. Session mutators default to canonical writes without rebuilding views. Task mutators preserve fresh read models by default for compatibility, but callers may set `refresh=false` when they need a minimal canonical write and can defer views to `codewiki_state refresh=true` or `codewiki.rebuild`. If `think-code` is not installed, CodeWiki continues to use its native tools, gateway `pack/tree/manifest`, and normal Pi read/search tools.
 
 ## Transaction v1
 

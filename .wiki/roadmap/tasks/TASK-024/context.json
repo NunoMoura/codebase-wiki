@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-02T00:21:50Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-024/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-024",
+    "title": "Sanitation checkpoints and git history policy",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "architecture",
+    "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
+    "labels": [
+      "sanitation-policy",
+      "release-checkpoints",
+      "git-history"
+    ],
+    "goal": {
+      "outcome": "CodeWiki distinguishes hot current truth, generated views, compact semantic history, and full git recovery.",
+      "acceptance": [
+        "Closed task archive stores compact semantic summaries with commit/release links rather than full raw context by default.",
+        "Release checkpoint schema records version, git sha, canonical digest, view schema version, and closed task summaries.",
+        "Docs and skills describe commit/push/version boundaries.",
+        "Views exclude cold history unless explicitly requested."
+      ],
+      "non_goals": [
+        "Duplicate full git history inside `.wiki`.",
+        "Automatically push or version without policy gates."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Sanitation keeps agent hot context small while preserving semantic memory and git recovery.",
+      "current": "Retention exists but archives and release/version boundaries are not fully aligned with git as full history.",
+      "closure": "Archive/checkpoint policy is implemented and documented."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "4571cfd146c60399d148e28663ab3e0e438ddc20a677aeeae0a0b11fb8b38d50"
+    },
+    "git": {
+      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/roadmap.json",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/flows/sanitation-release.md": "",
+        ".wiki/knowledge/system/v2-operating-model.md": "",
+        ".wiki/roadmap.json": "53578e465699",
+        "extensions/codewiki/index.ts": "53578e465699",
+        "extensions/codewiki/templates.ts": "0d12c87f000a",
+        "scripts/rebuild_docs_meta.py": "0d12c87f000a"
+      }
+    },
+    "spec_digest": "651ac5fd8155d919ef4ffa331bbef1664265da4469a766087dcbd38ae6741427",
+    "code_digest": "a12509557aa173f27c8953603816ebf125fada331e95a60e08232048fe2eaa12",
+    "graph": {
+      "git": {
+        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "dirty": true
+      },
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+      "title": "Sanitation and Release Flow",
+      "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
+      "state": "proposed",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "ae71918429dfed645a09b629449c5151035a6be3c044f4f8cf6fca56a1cd9a5d"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/flows/sanitation-release.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "scripts/rebuild_docs_meta.py",
+      "extensions/codewiki/index.ts",
+      "extensions/codewiki/templates.ts"
+    ],
+    "digest": "a12509557aa173f27c8953603816ebf125fada331e95a60e08232048fe2eaa12",
+    "expand": [
+      {
+        "read": "scripts/rebuild_docs_meta.py"
+      },
+      {
+        "read": "extensions/codewiki/index.ts"
+      },
+      {
+        "read": "extensions/codewiki/templates.ts"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-024/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

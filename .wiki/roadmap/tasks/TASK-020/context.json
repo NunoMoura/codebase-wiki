@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-02T00:21:50Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-020/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-020",
+    "title": "Architecture manifest and Mermaid view generator",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
+    "labels": [
+      "architecture-manifest",
+      "component-cards",
+      "flow-docs",
+      "mermaid-view"
+    ],
+    "goal": {
+      "outcome": "System architecture is represented as a structured canonical graph with component and flow detail docs and generated visual/read views.",
+      "acceptance": [
+        "`system/architecture.json` owns component nodes and information-flow edges.",
+        "`system/components/*.md` detail component cards.",
+        "`system/flows/*.md` detail important cross-component paths.",
+        "Rebuild generates a Mermaid architecture view and agent-readable system architecture view.",
+        "Graph validation detects missing component/flow docs or orphan docs."
+      ],
+      "non_goals": [
+        "Implement status panel click interactions in this task.",
+        "Make Mermaid the source of truth."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ]
+    },
+    "delta": {
+      "desired": "Structured graph truth plus generated architecture views.",
+      "current": "System architecture is mostly prose; generated graph state is not a first-class architecture source.",
+      "closure": "Architecture graph and Mermaid generation work with validation."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "e0f81aa7e32d68d951a62c2a328f4dea28cf20e23d7a5caef9ac23c6878297e4"
+    },
+    "git": {
+      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/roadmap.json",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/flows/context-memory.md": "",
+        ".wiki/knowledge/system/v2-operating-model.md": "",
+        ".wiki/roadmap.json": "53578e465699",
+        "extensions/codewiki/templates.ts": "0d12c87f000a",
+        "scripts/rebuild_docs_meta.py": "0d12c87f000a",
+        "scripts/smoke-test.mjs": "53578e465699"
+      }
+    },
+    "spec_digest": "d465ec3da201f681a14fc41eb1907f5d9f7a08dcdda50e6ca7fd2947114f3619",
+    "code_digest": "8fd0d94dce7367df6a836e51d5ee69fd7edb0a7a1ac7306b3e2e13816ab35218",
+    "graph": {
+      "git": {
+        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "dirty": true
+      },
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and ThinkCode.",
+      "state": "proposed",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "270df6adf5c4e4b488dac81088f6794647b5c493d94f95841e2769e77c55bae8"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/flows/context-memory.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "scripts/rebuild_docs_meta.py",
+      "extensions/codewiki/templates.ts",
+      "scripts/smoke-test.mjs"
+    ],
+    "digest": "8fd0d94dce7367df6a836e51d5ee69fd7edb0a7a1ac7306b3e2e13816ab35218",
+    "expand": [
+      {
+        "read": "scripts/rebuild_docs_meta.py"
+      },
+      {
+        "read": "extensions/codewiki/templates.ts"
+      },
+      {
+        "read": "scripts/smoke-test.mjs"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-020/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

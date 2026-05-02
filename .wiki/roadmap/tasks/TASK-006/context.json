@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-01T06:27:28Z",
+  "generated_at": "2026-05-02T00:21:50Z",
   "context_path": ".wiki/roadmap/tasks/TASK-006/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -50,44 +50,46 @@
       "digest": "90ef99faeb76873c5259dae52b22494c6f86f144b2e3a434303b0cdc4778d986"
     },
     "git": {
-      "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+      "head": "53578e465699177d1945148075b98a9fc539da26",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/product/overview.md",
         ".wiki/roadmap.json"
       ],
       "paths": {
         ".wiki/knowledge/clients/overview.md": "a6fc64223df3",
         ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df3",
         ".wiki/knowledge/product/overview.md": "a6fc64223df3",
-        ".wiki/roadmap.json": "a6fc64223df3",
+        ".wiki/roadmap.json": "53578e465699",
         "skills/codewiki-plan/SKILL.md": "a6fc64223df3",
         "skills/codewiki/SKILL.md": "a6fc64223df3"
       }
     },
-    "spec_digest": "2baa100a8028cbb55e506c2e447f834114387eda3b6c2bfb0aa9924bab5d52c9",
+    "spec_digest": "2e1c5cc839bee7773218d39cf21b0da34eb227149dca9dc6377834263ca3b480",
     "code_digest": "c34bd995336e6938091858c01ee75d70d613bffe870d369bdd7420366d936771",
     "graph": {
       "git": {
-        "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+        "head": "53578e465699177d1945148075b98a9fc539da26",
         "dirty": true
       },
-      "spec_digest": "755fe900c93b1f0937e01d7b455e1e15a1d92846006b1f96d9561c9542175e3f",
-      "task_digest": "804f3ab22cad6fffcb05736fa39d0ca59d5fe35cd02aeed436dab4407d09130d",
-      "evidence_digest": "4e3c6700498f6c1597ab67de41b61627b1e276b937c410e4e8d2949071a101b2"
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
     }
   },
   "specs": [
     {
       "path": ".wiki/knowledge/product/overview.md",
       "title": "Product",
-      "summary": "Product intent, users, and value boundaries for codewiki.",
+      "summary": "Product intent and navigation for CodeWiki's users, stories, and surfaces.",
       "state": "active",
       "owners": [
         "product"
       ],
       "code_paths": [],
       "revision": {
-        "digest": "f8babb01e47c832dded1bfa7d78a9cea833b807845b6ec8182d2b6ef60a4a695"
+        "digest": "e80ea329d13f766ed8589de5023e053fe07154f37c66f114ff8404804778ee21"
       },
       "expand": {
         "read": ".wiki/knowledge/product/overview.md"
@@ -103,7 +105,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "221fff22b045303dcf71f0b2d3e70718075a06f1d5882509e1653c8a18a3d46d"
+        "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa"
       },
       "expand": {
         "read": ".wiki/knowledge/clients/overview.md"

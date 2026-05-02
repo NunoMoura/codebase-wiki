@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-02T00:21:50Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-018/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-018",
+    "title": "Implement context memory policy in skills and loops",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Teach agents when to use session RAM, views, canonical docs, subagents, and ThinkCode so default workflows minimize repeated token load.",
+    "labels": [
+      "v2",
+      "context-window",
+      "skills",
+      "token-efficiency"
+    ],
+    "goal": {
+      "outcome": "CodeWiki skills and loops default to tiny views and targeted expansion instead of reloading raw wiki state into the parent session.",
+      "acceptance": [
+        "Planning, task, verification, research, and architecture skills describe RAM vs persistent memory rules.",
+        "Default flow starts from status view and recommended next reads.",
+        "Agents track loaded view revisions and avoid rereading unchanged views when possible.",
+        "Task and outer-loop instructions explain when to spawn subagents or ThinkCode."
+      ],
+      "non_goals": [
+        "Implement full heartbeat scheduler.",
+        "Build new view schemas from scratch if TASK-018 is not done."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Agent workflow policy explicitly optimizes context-window usage.",
+      "current": "Skills mention compact state but do not fully model session RAM, views, subagents, and ThinkCode together.",
+      "closure": "Skills and loop prompts encode the memory policy."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "3c9364c8d846e1779037b758d47b59ed576a5d1c1f311abce28e333bda417c1a"
+    },
+    "git": {
+      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/roadmap.json",
+        "extensions/codewiki/index.ts"
+      ],
+      "paths": {
+        ".wiki/knowledge/lexicon.md": "",
+        ".wiki/knowledge/system/flows/context-memory.md": "",
+        ".wiki/knowledge/system/v2-operating-model.md": "",
+        ".wiki/roadmap.json": "53578e465699",
+        "extensions/codewiki/index.ts": "53578e465699",
+        "skills": "a6fc64223df3"
+      }
+    },
+    "spec_digest": "cf6f68a58b943fd9a20864bf97d97a02b4958f732b4d688713d7cf815bac76e3",
+    "code_digest": "455c51fe79ce772f4e6e4464b7627f8ccfa5c569a7bba753f2a25f652cab2b3c",
+    "graph": {
+      "git": {
+        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "dirty": true
+      },
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and ThinkCode.",
+      "state": "proposed",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "270df6adf5c4e4b488dac81088f6794647b5c493d94f95841e2769e77c55bae8"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/flows/context-memory.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, and generated views.",
+      "state": "active",
+      "owners": [
+        "product",
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "e81a451b282112e5c61ef3956630ef1c3885bbf52292639b5744f2f09385ef0a"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/lexicon.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "skills",
+      "extensions/codewiki/index.ts"
+    ],
+    "digest": "455c51fe79ce772f4e6e4464b7627f8ccfa5c569a7bba753f2a25f652cab2b3c",
+    "expand": [
+      {
+        "read": "skills"
+      },
+      {
+        "read": "extensions/codewiki/index.ts"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-018/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

@@ -104,6 +104,7 @@ export interface DocsConfig {
 	roadmap_events_path?: string;
 	roadmap_retention?: RoadmapRetentionConfig;
 	meta_root?: string;
+	views_root?: string;
 	codewiki?: CodewikiConfig;
 }
 
@@ -666,6 +667,7 @@ export interface WikiProject {
 	roadmapPath: string;
 	roadmapDocPath: string | null;
 	metaRoot: string;
+	viewsRoot: string;
 	configPath: string;
 	lintPath: string;
 	graphPath: string;

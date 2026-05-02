@@ -18,7 +18,7 @@ code_paths:
 
 This boundary owns the Pi-facing CodeWiki package surface: extension registration, commands, internal tools, status/config UI, packaged skills, bootstrap templates, smoke coverage for resource discovery, and project-root resolution.
 
-It translates Pi interactions into CodeWiki semantic operations while keeping canonical meaning in `.wiki/knowledge`, roadmap tasks, evidence, and generated state. It should not become the general sandbox or long-running execution runtime; those responsibilities belong to Pi and optional runtimes such as `think-code`.
+It translates Pi interactions into CodeWiki semantic operations while keeping canonical meaning in `.wiki/knowledge`, roadmap tasks, evidence, and generated views. It should not become the general sandbox or long-running execution runtime; those responsibilities belong to Pi and optional runtimes such as `think-code`.
 
 ## Owned code areas
 
@@ -42,7 +42,7 @@ It translates Pi interactions into CodeWiki semantic operations while keeping ca
 
 - Keep public command surface small and Pi-native.
 - Keep internal roadmap/session mutations behind CodeWiki tools and task APIs.
-- Keep generated state read-only outside rebuild paths.
+- Keep generated views read-only outside rebuild paths.
 - Keep packaged skills focused and composable instead of one monolithic prompt.
 - Preserve safe fallback behavior when optional runtimes are unavailable.
 

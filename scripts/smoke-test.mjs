@@ -1028,6 +1028,18 @@ async function main() {
 				"utf8",
 			),
 		);
+		const statusView = JSON.parse(
+			readFileSync(
+				resolve(projectDir, ".wiki", "views", "status-state.json"),
+				"utf8",
+			),
+		);
+		const roadmapQueueView = JSON.parse(
+			readFileSync(
+				resolve(projectDir, ".wiki", "views", "roadmap", "index.json"),
+				"utf8",
+			),
+		);
 		const starterTaskContext = JSON.parse(
 			readFileSync(
 				resolve(
@@ -1077,6 +1089,9 @@ async function main() {
 			0,
 			`Expected zero lint issues, got ${lint.issues.length}`,
 		);
+		assert.equal(config.views_root, ".wiki/views");
+		assert.equal(statusView.version, statusState.version);
+		assert.equal(roadmapQueueView.version, roadmapFolderIndex.version);
 		const graphDocNodes = Array.isArray(graph.nodes)
 			? graph.nodes.filter((node) => node.kind === "doc")
 			: [];

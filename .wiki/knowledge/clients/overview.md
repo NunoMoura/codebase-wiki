@@ -12,7 +12,7 @@ updated: "2026-04-29"
 
 ## Core experience
 
-Users should be able to describe intent in natural language, let CodeWiki turn that intent into canonical knowledge and roadmap tasks, and resume implementation from Pi surfaces without editing raw machine files. CodeWiki should validate intent through generated state, evidence, task context packets, and fresh verifier output.
+Users should be able to describe intent in natural language, let CodeWiki turn that intent into canonical knowledge and roadmap tasks, and resume implementation from Pi surfaces without editing raw machine files. CodeWiki should validate intent through generated views, evidence, task context packets, and fresh verifier output.
 
 ## Primary flows
 

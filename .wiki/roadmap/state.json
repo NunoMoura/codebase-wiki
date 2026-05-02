@@ -1,46 +1,59 @@
 {
   "version": 2,
-  "generated_at": "2026-05-01T06:27:27Z",
+  "generated_at": "2026-05-02T00:21:50Z",
   "health": {
-    "color": "green",
+    "color": "yellow",
     "errors": 0,
-    "warnings": 0,
-    "total_issues": 0
+    "warnings": 8,
+    "total_issues": 8
   },
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-01T06:27:27Z",
+    "graph_generated_at": "2026-05-02T00:21:50Z",
     "revision": {
       "git": {
-        "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+        "head": "53578e465699177d1945148075b98a9fc539da26",
         "dirty": true,
         "dirty_paths": [
+          ".wiki/knowledge/clients/overview.md",
+          ".wiki/knowledge/product/overview.md",
+          ".wiki/knowledge/system/extensions/codewiki/overview.md",
           ".wiki/knowledge/system/overview.md",
           ".wiki/knowledge/system/runtime/overview.md",
           ".wiki/roadmap.json",
-          "README.md",
           "extensions/codewiki/contracts.ts",
           "extensions/codewiki/index.ts",
-          "package.json",
+          "extensions/codewiki/templates.ts",
+          "scripts/rebuild_docs_meta.py",
           "scripts/smoke-test.mjs"
         ],
         "paths": {
+          ".wiki/knowledge": "53578e465699177d1945148075b98a9fc539da26",
           ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/overview.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/knowledge/lexicon.md": "",
           ".wiki/knowledge/product/overview.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/knowledge/product/stories.md": "",
+          ".wiki/knowledge/product/surfaces.md": "",
+          ".wiki/knowledge/product/users.md": "",
           ".wiki/knowledge/system/extensions/codewiki/overview.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          ".wiki/knowledge/system/overview.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          ".wiki/knowledge/system/runtime/overview.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          ".wiki/roadmap.json": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "README.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "extensions/codewiki": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "extensions/codewiki/index.ts": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          "package.json": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          ".wiki/knowledge/system/flows/context-memory.md": "",
+          ".wiki/knowledge/system/flows/sanitation-release.md": "",
+          ".wiki/knowledge/system/overview.md": "53578e465699177d1945148075b98a9fc539da26",
+          ".wiki/knowledge/system/runtime/overview.md": "53578e465699177d1945148075b98a9fc539da26",
+          ".wiki/knowledge/system/v2-operating-model.md": "",
+          ".wiki/roadmap.json": "53578e465699177d1945148075b98a9fc539da26",
+          "README.md": "53578e465699177d1945148075b98a9fc539da26",
+          "extensions/codewiki": "53578e465699177d1945148075b98a9fc539da26",
+          "extensions/codewiki/contracts.ts": "53578e465699177d1945148075b98a9fc539da26",
+          "extensions/codewiki/index.ts": "53578e465699177d1945148075b98a9fc539da26",
+          "extensions/codewiki/templates.ts": "0d12c87f000aedcf818ece8c88819b938a8d881e",
+          "package.json": "53578e465699177d1945148075b98a9fc539da26",
           "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
           "scripts/rebuild_docs_meta.py": "0d12c87f000aedcf818ece8c88819b938a8d881e",
-          "scripts/smoke-test.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
+          "scripts/smoke-test.mjs": "53578e465699177d1945148075b98a9fc539da26",
           "skills": "a6fc64223df319b53cd863958c062c28180ebbd8",
           "skills/codewiki-architecture/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           "skills/codewiki-plan/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
@@ -50,22 +63,23 @@
           "skills/codewiki/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
         }
       },
-      "spec_digest": "755fe900c93b1f0937e01d7b455e1e15a1d92846006b1f96d9561c9542175e3f",
-      "task_digest": "804f3ab22cad6fffcb05736fa39d0ca59d5fe35cd02aeed436dab4407d09130d",
-      "evidence_digest": "4e3c6700498f6c1597ab67de41b61627b1e276b937c410e4e8d2949071a101b2"
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
     },
     "roadmap_folder": ".wiki/roadmap",
     "task_context_root": ".wiki/roadmap/tasks"
   },
   "summary": {
-    "task_count": 13,
-    "open_count": 0,
+    "task_count": 25,
+    "open_count": 10,
     "status_counts": {
-      "done": 13
+      "done": 15,
+      "todo": 10
     },
     "priority_counts": {
-      "high": 9,
-      "medium": 4
+      "high": 15,
+      "medium": 10
     }
   },
   "views": {
@@ -82,11 +96,45 @@
       "TASK-010",
       "TASK-011",
       "TASK-012",
-      "TASK-013"
+      "TASK-013",
+      "TASK-014",
+      "TASK-015",
+      "TASK-016",
+      "TASK-017",
+      "TASK-018",
+      "TASK-019",
+      "TASK-020",
+      "TASK-021",
+      "TASK-022",
+      "TASK-023",
+      "TASK-024",
+      "TASK-025"
     ],
-    "open_task_ids": [],
+    "open_task_ids": [
+      "TASK-016",
+      "TASK-017",
+      "TASK-018",
+      "TASK-019",
+      "TASK-020",
+      "TASK-021",
+      "TASK-022",
+      "TASK-023",
+      "TASK-024",
+      "TASK-025"
+    ],
     "in_progress_task_ids": [],
-    "todo_task_ids": [],
+    "todo_task_ids": [
+      "TASK-016",
+      "TASK-017",
+      "TASK-018",
+      "TASK-019",
+      "TASK-020",
+      "TASK-021",
+      "TASK-022",
+      "TASK-023",
+      "TASK-024",
+      "TASK-025"
+    ],
     "blocked_task_ids": [],
     "done_task_ids": [
       "TASK-001",
@@ -101,10 +149,24 @@
       "TASK-010",
       "TASK-011",
       "TASK-012",
-      "TASK-013"
+      "TASK-013",
+      "TASK-014",
+      "TASK-015"
     ],
     "cancelled_task_ids": [],
     "recent_task_ids": [
+      "TASK-025",
+      "TASK-024",
+      "TASK-023",
+      "TASK-022",
+      "TASK-021",
+      "TASK-020",
+      "TASK-019",
+      "TASK-018",
+      "TASK-017",
+      "TASK-016",
+      "TASK-015",
+      "TASK-014",
       "TASK-013",
       "TASK-012",
       "TASK-011",
@@ -936,6 +998,637 @@
           "issues": [],
           "updated_at": "2026-05-01T06:19:30Z"
         }
+      }
+    },
+    "TASK-014": {
+      "id": "TASK-014",
+      "title": "Capture CodeWiki v2 operating model and roadmap",
+      "status": "done",
+      "priority": "high",
+      "kind": "docs",
+      "summary": "CodeWiki v2 decisions are now durable wiki knowledge and mapped to executable roadmap tasks.",
+      "labels": [
+        "v2",
+        "planning",
+        "view-boundary",
+        "memory-model"
+      ],
+      "goal": {
+        "outcome": "The wiki records the v2 canonical/view model, product split, memory policy, subagent/heartbeat/think-code roles, and sanitation/versioning policy as roadmap-backed intent.",
+        "acceptance": [
+          "V2 decisions are captured in canonical knowledge docs, not only chat history.",
+          "Product knowledge is split or prepared for users, stories, and surfaces.",
+          "The system knowledge names the canonical/view boundary and view consumption model.",
+          "Roadmap tasks cover v2 migration, views, architecture graph, subagents, heartbeat, think-code, and sanitation/release policy.",
+          "codewiki_state reports the new roadmap without drift."
+        ],
+        "non_goals": [
+          "Implement the full v2 storage migration.",
+          "Render architecture diagrams in the status panel.",
+          "Rename all code-level projection terminology immediately."
+        ],
+        "verification": [
+          "codewiki_state refresh=true"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "c1508a2dd4406694a6b7d500931cc0c3b1f4175fd02fd6890ad9819bc25c8691"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-014/context.json",
+      "loop": {
+        "phase": "verify",
+        "updated_at": "2026-05-02T00:04:52Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Closed after codewiki_state reported no unmapped specs and v2 roadmap tasks were created.",
+          "checks_run": [
+            "codewiki_state refresh=true"
+          ],
+          "files_touched": [
+            ".wiki/knowledge/lexicon.md",
+            ".wiki/knowledge/product/overview.md",
+            ".wiki/knowledge/product/users.md",
+            ".wiki/knowledge/product/stories.md",
+            ".wiki/knowledge/product/surfaces.md",
+            ".wiki/knowledge/system/overview.md",
+            ".wiki/knowledge/system/runtime/overview.md",
+            ".wiki/knowledge/system/v2-operating-model.md",
+            ".wiki/knowledge/system/flows/context-memory.md",
+            ".wiki/knowledge/system/flows/sanitation-release.md",
+            ".wiki/knowledge/system/extensions/codewiki/overview.md",
+            ".wiki/knowledge/clients/overview.md"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-02T00:04:52Z"
+        }
+      }
+    },
+    "TASK-015": {
+      "id": "TASK-015",
+      "title": "Implement v2 wiki layout and migration",
+      "status": "done",
+      "priority": "high",
+      "kind": "migration",
+      "summary": "V2 layout compatibility is implemented: `.wiki/views/**` is generated alongside legacy read models and bootstrap/rebuild understand the v2 views root.",
+      "labels": [
+        "v2",
+        "migration",
+        "wiki-layout"
+      ],
+      "goal": {
+        "outcome": "New and migrated repos use canonical knowledge/tasks/evidence plus generated views under the v2 structure without breaking legacy paths.",
+        "acceptance": [
+          "V2 target paths are represented in config/templates.",
+          "Legacy `.wiki/roadmap.json` and current generated files remain readable during migration.",
+          "Migration or bootstrap creates the v2 directory shape safely.",
+          "Rebuild can populate v2 views while preserving current tool behavior."
+        ],
+        "non_goals": [
+          "Remove all legacy paths in one release.",
+          "Rewrite every tool call to the final v2 paths immediately."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "5840148123f865991fbf9cb3108512204b3eef38ab4efa72138f0fcb0787a826"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-015/context.json",
+      "loop": {
+        "phase": "verify",
+        "updated_at": "2026-05-02T00:21:45Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Closed after typecheck, rebuild, smoke, and pack tests passed.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "python scripts/rebuild_docs_meta.py",
+            "npm test"
+          ],
+          "files_touched": [
+            ".wiki/config.json",
+            "extensions/codewiki/contracts.ts",
+            "extensions/codewiki/index.ts",
+            "extensions/codewiki/templates.ts",
+            "scripts/rebuild_docs_meta.py",
+            "scripts/smoke-test.mjs",
+            ".wiki/views/**"
+          ],
+          "issues": [],
+          "updated_at": "2026-05-02T00:21:45Z"
+        }
+      }
+    },
+    "TASK-016": {
+      "id": "TASK-016",
+      "title": "Bake product split and lexicon into templates",
+      "status": "todo",
+      "priority": "high",
+      "kind": "docs",
+      "summary": "Make product users, stories, surfaces, and lexicon part of the starter CodeWiki structure instead of a repo-local experiment.",
+      "labels": [
+        "v2",
+        "product",
+        "lexicon",
+        "templates"
+      ],
+      "goal": {
+        "outcome": "New wikis start with focused product knowledge and a shared lexicon rather than one large product overview.",
+        "acceptance": [
+          "Bootstrap templates include lexicon, users, stories, and surfaces docs.",
+          "Product overview is short navigation plus boundaries.",
+          "Smoke tests cover expected starter files.",
+          "Existing clients docs link cleanly to the product split."
+        ],
+        "non_goals": [
+          "Delete all client surface docs.",
+          "Implement system architecture graph generation."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "2cb7e8adc105b45e28462755fb3417616d40e7638c59a18528974cc84cda3c1e"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-016/context.json",
+      "loop": {
+        "phase": "implement",
+        "updated_at": "",
+        "evidence": null
+      }
+    },
+    "TASK-017": {
+      "id": "TASK-017",
+      "title": "Render architecture graph in status panel",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "ui",
+      "summary": "Update the CodeWiki status panel to render the generated architecture view and show component or flow details when selected.",
+      "labels": [
+        "v2",
+        "status-panel",
+        "architecture-graph"
+      ],
+      "goal": {
+        "outcome": "Humans and agents can inspect system architecture visually through the status panel and zoom into component or flow detail cards.",
+        "acceptance": [
+          "Status panel renders the generated architecture graph or a fallback graph view.",
+          "Selecting a component opens linked component markdown/details.",
+          "Selecting a flow opens linked flow markdown/details.",
+          "Health colors use strict legend semantics from roadmap/drift/view state.",
+          "Panel degrades gracefully when architecture views are stale or absent."
+        ],
+        "non_goals": [
+          "Make the panel a full diagram editor.",
+          "Hand-edit Mermaid in the UI."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "37775318e72c24d70871fc69518e2c2e263d80aa5e342748a67466d607542136"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-017/context.json",
+      "loop": {
+        "phase": "implement",
+        "updated_at": "",
+        "evidence": null
+      }
+    },
+    "TASK-018": {
+      "id": "TASK-018",
+      "title": "Implement context memory policy in skills and loops",
+      "status": "todo",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Teach agents when to use session RAM, views, canonical docs, subagents, and ThinkCode so default workflows minimize repeated token load.",
+      "labels": [
+        "v2",
+        "context-window",
+        "skills",
+        "token-efficiency"
+      ],
+      "goal": {
+        "outcome": "CodeWiki skills and loops default to tiny views and targeted expansion instead of reloading raw wiki state into the parent session.",
+        "acceptance": [
+          "Planning, task, verification, research, and architecture skills describe RAM vs persistent memory rules.",
+          "Default flow starts from status view and recommended next reads.",
+          "Agents track loaded view revisions and avoid rereading unchanged views when possible.",
+          "Task and outer-loop instructions explain when to spawn subagents or ThinkCode."
+        ],
+        "non_goals": [
+          "Implement full heartbeat scheduler.",
+          "Build new view schemas from scratch if TASK-018 is not done."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "3c9364c8d846e1779037b758d47b59ed576a5d1c1f311abce28e333bda417c1a"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-018/context.json",
+      "loop": {
+        "phase": "implement",
+        "updated_at": "",
+        "evidence": null
+      }
+    },
+    "TASK-019": {
+      "id": "TASK-019",
+      "title": "View schema generator for status queue drift and briefs",
+      "status": "todo",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Define and generate the small, revisioned read models agents and UI consume for status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence.",
+      "labels": [
+        "view-schema",
+        "read-models",
+        "routing-context"
+      ],
+      "goal": {
+        "outcome": "CodeWiki exposes compact generated views that route agents to the right next read without loading raw wiki state.",
+        "acceptance": [
+          "Views include revision metadata, stale flags where applicable, size budgets, and recommended next reads.",
+          "Status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence views are defined.",
+          "`codewiki_state` can expose or consume the views without increasing default token load.",
+          "Views remain rebuild-owned and read-only to agents."
+        ],
+        "non_goals": [
+          "Build status panel graph interaction.",
+          "Implement heartbeat autonomy."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test",
+          "node scripts/rebuild_docs_meta.py"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "6b646490093f898ee530190560f957c8cf1ab1a643ccb0e448938a3c36cda675"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-019/context.json",
+      "loop": {
+        "phase": "implement",
+        "updated_at": "",
+        "evidence": null
+      }
+    },
+    "TASK-020": {
+      "id": "TASK-020",
+      "title": "Architecture manifest and Mermaid view generator",
+      "status": "todo",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
+      "labels": [
+        "architecture-manifest",
+        "component-cards",
+        "flow-docs",
+        "mermaid-view"
+      ],
+      "goal": {
+        "outcome": "System architecture is represented as a structured canonical graph with component and flow detail docs and generated visual/read views.",
+        "acceptance": [
+          "`system/architecture.json` owns component nodes and information-flow edges.",
+          "`system/components/*.md` detail component cards.",
+          "`system/flows/*.md` detail important cross-component paths.",
+          "Rebuild generates a Mermaid architecture view and agent-readable system architecture view.",
+          "Graph validation detects missing component/flow docs or orphan docs."
+        ],
+        "non_goals": [
+          "Implement status panel click interactions in this task.",
+          "Make Mermaid the source of truth."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test",
+          "node scripts/rebuild_docs_meta.py"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "e0f81aa7e32d68d951a62c2a328f4dea28cf20e23d7a5caef9ac23c6878297e4"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-020/context.json",
+      "loop": {
+        "phase": "implement",
+        "updated_at": "",
+        "evidence": null
+      }
+    },
+    "TASK-021": {
+      "id": "TASK-021",
+      "title": "Subagent JSON worker contracts",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "agent-workflow",
+      "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
+      "labels": [
+        "subagent-workers",
+        "json-contracts",
+        "fresh-ram"
+      ],
+      "goal": {
+        "outcome": "Context-heavy or bias-sensitive CodeWiki work can run in fresh subagent sessions and return bounded results to the parent agent.",
+        "acceptance": [
+          "Verifier, researcher, planner, architecture reviewer, and view auditor roles have documented input/output contracts.",
+          "Parent agent remains responsible for canonical writes.",
+          "Subagent outputs are compact JSON with pass/fail/block or proposal semantics as appropriate.",
+          "Existing fresh verifier behavior aligns with the shared subagent model."
+        ],
+        "non_goals": [
+          "Let subagents freely mutate `.wiki` canonical truth.",
+          "Replace all parent-agent work with subagents."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "54aded7e22fd8291b4aaf0a7a22d5b693fff3f42711a397e909d83b72739fd40"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-021/context.json",
+      "loop": {
+        "phase": "implement",
+        "updated_at": "",
+        "evidence": null
+      }
+    },
+    "TASK-022": {
+      "id": "TASK-022",
+      "title": "Heartbeat modes budgets and stop conditions",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "agent-workflow",
+      "summary": "Add bounded observe, maintain, and work heartbeat modes that use views, subagents, and canonical writes safely.",
+      "labels": [
+        "heartbeat-loop",
+        "autonomous-budget",
+        "stop-conditions"
+      ],
+      "goal": {
+        "outcome": "Users can run CodeWiki autonomously within explicit budgets and modes without losing alignment with wiki truth or project safety.",
+        "acceptance": [
+          "Heartbeat supports observe, maintain, and work modes.",
+          "Each cycle reads status, handles stale views, selects inner or outer loop action, records evidence, and stops on budget/risk/ambiguity.",
+          "Budgets include max cycles, wall time, writes, subagents, and risk level.",
+          "Push/version/archive behavior is gated by policy and checks."
+        ],
+        "non_goals": [
+          "Run unbounded autonomous coding.",
+          "Bypass user approval for risky or destructive work."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "8f187135afd0c80aa88ff051e0a63434e6c5708b78ac3f99e381b7d9e8784a89"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-022/context.json",
+      "loop": {
+        "phase": "implement",
+        "updated_at": "",
+        "evidence": null
+      }
+    },
+    "TASK-023": {
+      "id": "TASK-023",
+      "title": "ThinkCode query executor integration",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "integration",
+      "summary": "Use ThinkCode for ad hoc programmatic context creation, view validation, graph checks, and staged edits without making it CodeWiki's memory layer.",
+      "labels": [
+        "thinkcode-query",
+        "context-etl",
+        "graph-validation"
+      ],
+      "goal": {
+        "outcome": "CodeWiki can delegate bounded query/ETL and validation tasks to ThinkCode while preserving CodeWiki semantic write boundaries.",
+        "acceptance": [
+          "ThinkCode role is documented in skills and runtime guidance.",
+          "At least one workflow uses ThinkCode for compact context creation or graph/view validation when available.",
+          "Fallback path works when ThinkCode is unavailable.",
+          "ThinkCode writes remain staged or flow through CodeWiki capabilities/transactions."
+        ],
+        "non_goals": [
+          "Make ThinkCode required for CodeWiki.",
+          "Let ThinkCode edit generated views directly."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "a70fd9c639911613e63a677d05f65959d65e0e14a3118e48f4701b4a2e228e5f"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-023/context.json",
+      "loop": {
+        "phase": "implement",
+        "updated_at": "",
+        "evidence": null
+      }
+    },
+    "TASK-024": {
+      "id": "TASK-024",
+      "title": "Sanitation checkpoints and git history policy",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "architecture",
+      "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
+      "labels": [
+        "sanitation-policy",
+        "release-checkpoints",
+        "git-history"
+      ],
+      "goal": {
+        "outcome": "CodeWiki distinguishes hot current truth, generated views, compact semantic history, and full git recovery.",
+        "acceptance": [
+          "Closed task archive stores compact semantic summaries with commit/release links rather than full raw context by default.",
+          "Release checkpoint schema records version, git sha, canonical digest, view schema version, and closed task summaries.",
+          "Docs and skills describe commit/push/version boundaries.",
+          "Views exclude cold history unless explicitly requested."
+        ],
+        "non_goals": [
+          "Duplicate full git history inside `.wiki`.",
+          "Automatically push or version without policy gates."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "4571cfd146c60399d148e28663ab3e0e438ddc20a677aeeae0a0b11fb8b38d50"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-024/context.json",
+      "loop": {
+        "phase": "implement",
+        "updated_at": "",
+        "evidence": null
+      }
+    },
+    "TASK-025": {
+      "id": "TASK-025",
+      "title": "Audit read model wording in README skills and tools",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "docs",
+      "summary": "Align public package language so generated read models are called views and source-of-truth files are called canonical truth.",
+      "labels": [
+        "read-model-language"
+      ],
+      "goal": {
+        "outcome": "User-facing and agent-facing text use the same v2 vocabulary for views and canonical truth.",
+        "acceptance": [
+          "README describes views and the canonical/view boundary.",
+          "Skills tell agents to consume views and avoid editing views.",
+          "Tool descriptions mention rebuilding views where relevant."
+        ],
+        "non_goals": [
+          "Change storage paths.",
+          "Implement new view schemas."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "spec_paths": [
+        "README.md"
+      ],
+      "code_paths": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "updated": "2026-05-02",
+      "revision": {
+        "digest": "8e6bde5228ac24b7a663179e3018e65fc014bff2bc48cdc678ed73e8256d41f8"
+      },
+      "context_path": ".wiki/roadmap/tasks/TASK-025/context.json",
+      "loop": {
+        "phase": "implement",
+        "updated_at": "",
+        "evidence": null
       }
     }
   }

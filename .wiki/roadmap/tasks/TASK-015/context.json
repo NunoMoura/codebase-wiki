@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-02T00:21:50Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-015/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-015",
+    "title": "Implement v2 wiki layout and migration",
+    "status": "done",
+    "phase": "verify",
+    "priority": "high",
+    "kind": "migration",
+    "summary": "V2 layout compatibility is implemented: `.wiki/views/**` is generated alongside legacy read models and bootstrap/rebuild understand the v2 views root.",
+    "labels": [
+      "v2",
+      "migration",
+      "wiki-layout"
+    ],
+    "goal": {
+      "outcome": "New and migrated repos use canonical knowledge/tasks/evidence plus generated views under the v2 structure without breaking legacy paths.",
+      "acceptance": [
+        "V2 target paths are represented in config/templates.",
+        "Legacy `.wiki/roadmap.json` and current generated files remain readable during migration.",
+        "Migration or bootstrap creates the v2 directory shape safely.",
+        "Rebuild can populate v2 views while preserving current tool behavior."
+      ],
+      "non_goals": [
+        "Remove all legacy paths in one release.",
+        "Rewrite every tool call to the final v2 paths immediately."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "V2 layout makes canonical truth and `.wiki/views/**` read models explicit.",
+      "current": "Current layout mixes canonical files and generated read models under several top-level `.wiki` paths.",
+      "closure": "Bootstrap/migration and rebuild understand v2 paths with legacy compatibility."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "5840148123f865991fbf9cb3108512204b3eef38ab4efa72138f0fcb0787a826"
+    },
+    "git": {
+      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/roadmap.json",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/overview.md": "53578e465699",
+        ".wiki/knowledge/system/v2-operating-model.md": "",
+        ".wiki/roadmap.json": "53578e465699",
+        "extensions/codewiki/index.ts": "53578e465699",
+        "extensions/codewiki/templates.ts": "0d12c87f000a",
+        "scripts/rebuild_docs_meta.py": "0d12c87f000a"
+      }
+    },
+    "spec_digest": "a94ac0075c07a431fcf94432723505514b0e9abc46e841628cda1cde07e07d25",
+    "code_digest": "a12509557aa173f27c8953603816ebf125fada331e95a60e08232048fe2eaa12",
+    "graph": {
+      "git": {
+        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "dirty": true
+      },
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "6b7bee61cbea40d1a9bdce6604cfe65f336af9dfaf74e35f9c03e78f08854e76"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/templates.ts",
+      "scripts/rebuild_docs_meta.py",
+      "extensions/codewiki/index.ts"
+    ],
+    "digest": "a12509557aa173f27c8953603816ebf125fada331e95a60e08232048fe2eaa12",
+    "expand": [
+      {
+        "read": "extensions/codewiki/templates.ts"
+      },
+      {
+        "read": "scripts/rebuild_docs_meta.py"
+      },
+      {
+        "read": "extensions/codewiki/index.ts"
+      }
+    ]
+  },
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Closed after typecheck, rebuild, smoke, and pack tests passed.",
+    "checks_run": [
+      "npm run typecheck -- --pretty false",
+      "python scripts/rebuild_docs_meta.py",
+      "npm test"
+    ],
+    "files_touched": [
+      ".wiki/config.json",
+      "extensions/codewiki/contracts.ts",
+      "extensions/codewiki/index.ts",
+      "extensions/codewiki/templates.ts",
+      "scripts/rebuild_docs_meta.py",
+      "scripts/smoke-test.mjs",
+      ".wiki/views/**"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-02T00:21:45Z"
+  },
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-015/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

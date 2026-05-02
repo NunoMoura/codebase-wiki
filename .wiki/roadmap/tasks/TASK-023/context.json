@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-02T00:21:50Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-023/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-023",
+    "title": "ThinkCode query executor integration",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "integration",
+    "summary": "Use ThinkCode for ad hoc programmatic context creation, view validation, graph checks, and staged edits without making it CodeWiki's memory layer.",
+    "labels": [
+      "thinkcode-query",
+      "context-etl",
+      "graph-validation"
+    ],
+    "goal": {
+      "outcome": "CodeWiki can delegate bounded query/ETL and validation tasks to ThinkCode while preserving CodeWiki semantic write boundaries.",
+      "acceptance": [
+        "ThinkCode role is documented in skills and runtime guidance.",
+        "At least one workflow uses ThinkCode for compact context creation or graph/view validation when available.",
+        "Fallback path works when ThinkCode is unavailable.",
+        "ThinkCode writes remain staged or flow through CodeWiki capabilities/transactions."
+      ],
+      "non_goals": [
+        "Make ThinkCode required for CodeWiki.",
+        "Let ThinkCode edit generated views directly."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "ThinkCode acts as a policy-bound programmatic context and validation executor.",
+      "current": "ThinkCode is documented as future runtime support but not integrated into view/context workflows.",
+      "closure": "Integration seam and first use case are implemented with fallback."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "a70fd9c639911613e63a677d05f65959d65e0e14a3118e48f4701b4a2e228e5f"
+    },
+    "git": {
+      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/roadmap.json",
+        "extensions/codewiki/index.ts"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/runtime/overview.md": "53578e465699",
+        ".wiki/knowledge/system/v2-operating-model.md": "",
+        ".wiki/roadmap.json": "53578e465699",
+        "extensions/codewiki/index.ts": "53578e465699",
+        "scripts/codewiki-gateway.mjs": "a6fc64223df3",
+        "skills": "a6fc64223df3"
+      }
+    },
+    "spec_digest": "c83c6b7b5450a0dbb49f8f402a16ee5b797d164d3a3a2b2023b0fdaaa48d7ee2",
+    "code_digest": "2e157091d7db0e813c31ac6f62ef1b25b555847729f610f8ea9f58def7686f13",
+    "graph": {
+      "git": {
+        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "dirty": true
+      },
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "summary": "Policy boundary for codewiki runtime access in codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "1cbae979918e62d03b30fb5fd08fe8db1933ea2eb9fc52722809b95f3a9b5c28"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/runtime/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/index.ts",
+      "scripts/codewiki-gateway.mjs",
+      "skills"
+    ],
+    "digest": "2e157091d7db0e813c31ac6f62ef1b25b555847729f610f8ea9f58def7686f13",
+    "expand": [
+      {
+        "read": "extensions/codewiki/index.ts"
+      },
+      {
+        "read": "scripts/codewiki-gateway.mjs"
+      },
+      {
+        "read": "skills"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-023/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

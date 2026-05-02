@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-01T06:19:30Z",
+  "updated": "2026-05-02T00:21:45Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -14,7 +14,19 @@
     "TASK-010",
     "TASK-011",
     "TASK-012",
-    "TASK-013"
+    "TASK-013",
+    "TASK-014",
+    "TASK-015",
+    "TASK-016",
+    "TASK-017",
+    "TASK-018",
+    "TASK-019",
+    "TASK-020",
+    "TASK-021",
+    "TASK-022",
+    "TASK-023",
+    "TASK-024",
+    "TASK-025"
   ],
   "tasks": {
     "TASK-001": {
@@ -617,6 +629,572 @@
       },
       "created": "2026-05-01",
       "updated": "2026-05-01"
+    },
+    "TASK-014": {
+      "id": "TASK-014",
+      "title": "Capture CodeWiki v2 operating model and roadmap",
+      "status": "done",
+      "priority": "high",
+      "kind": "docs",
+      "summary": "CodeWiki v2 decisions are now durable wiki knowledge and mapped to executable roadmap tasks.",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "research_ids": [],
+      "labels": [
+        "v2",
+        "planning",
+        "view-boundary",
+        "memory-model"
+      ],
+      "goal": {
+        "outcome": "The wiki records the v2 canonical/view model, product split, memory policy, subagent/heartbeat/think-code roles, and sanitation/versioning policy as roadmap-backed intent.",
+        "acceptance": [
+          "V2 decisions are captured in canonical knowledge docs, not only chat history.",
+          "Product knowledge is split or prepared for users, stories, and surfaces.",
+          "The system knowledge names the canonical/view boundary and view consumption model.",
+          "Roadmap tasks cover v2 migration, views, architecture graph, subagents, heartbeat, think-code, and sanitation/release policy.",
+          "codewiki_state reports the new roadmap without drift."
+        ],
+        "non_goals": [
+          "Implement the full v2 storage migration.",
+          "Render architecture diagrams in the status panel.",
+          "Rename all code-level projection terminology immediately."
+        ],
+        "verification": [
+          "codewiki_state refresh=true"
+        ]
+      },
+      "delta": {
+        "desired": "V2 direction is captured as wiki truth and mapped to concrete roadmap tasks.",
+        "current": "V2 direction exists in chat but not yet as durable wiki knowledge or executable roadmap tasks.",
+        "closure": "Knowledge docs and roadmap tasks reflect the agreed v2 operating model."
+      },
+      "created": "2026-05-01",
+      "updated": "2026-05-02"
+    },
+    "TASK-015": {
+      "id": "TASK-015",
+      "title": "Implement v2 wiki layout and migration",
+      "status": "done",
+      "priority": "high",
+      "kind": "migration",
+      "summary": "V2 layout compatibility is implemented: `.wiki/views/**` is generated alongside legacy read models and bootstrap/rebuild understand the v2 views root.",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "research_ids": [],
+      "labels": [
+        "v2",
+        "migration",
+        "wiki-layout"
+      ],
+      "goal": {
+        "outcome": "New and migrated repos use canonical knowledge/tasks/evidence plus generated views under the v2 structure without breaking legacy paths.",
+        "acceptance": [
+          "V2 target paths are represented in config/templates.",
+          "Legacy `.wiki/roadmap.json` and current generated files remain readable during migration.",
+          "Migration or bootstrap creates the v2 directory shape safely.",
+          "Rebuild can populate v2 views while preserving current tool behavior."
+        ],
+        "non_goals": [
+          "Remove all legacy paths in one release.",
+          "Rewrite every tool call to the final v2 paths immediately."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "delta": {
+        "desired": "V2 layout makes canonical truth and `.wiki/views/**` read models explicit.",
+        "current": "Current layout mixes canonical files and generated read models under several top-level `.wiki` paths.",
+        "closure": "Bootstrap/migration and rebuild understand v2 paths with legacy compatibility."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-016": {
+      "id": "TASK-016",
+      "title": "Bake product split and lexicon into templates",
+      "status": "todo",
+      "priority": "high",
+      "kind": "docs",
+      "summary": "Make product users, stories, surfaces, and lexicon part of the starter CodeWiki structure instead of a repo-local experiment.",
+      "spec_paths": [
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "v2",
+        "product",
+        "lexicon",
+        "templates"
+      ],
+      "goal": {
+        "outcome": "New wikis start with focused product knowledge and a shared lexicon rather than one large product overview.",
+        "acceptance": [
+          "Bootstrap templates include lexicon, users, stories, and surfaces docs.",
+          "Product overview is short navigation plus boundaries.",
+          "Smoke tests cover expected starter files.",
+          "Existing clients docs link cleanly to the product split."
+        ],
+        "non_goals": [
+          "Delete all client surface docs.",
+          "Implement system architecture graph generation."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "delta": {
+        "desired": "Every new CodeWiki repo gets the v2 product/lexicon structure.",
+        "current": "This repo has the new product split, but package templates still need to adopt it.",
+        "closure": "Templates and smoke tests reflect product split and lexicon."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-017": {
+      "id": "TASK-017",
+      "title": "Render architecture graph in status panel",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "ui",
+      "summary": "Update the CodeWiki status panel to render the generated architecture view and show component or flow details when selected.",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "research_ids": [],
+      "labels": [
+        "v2",
+        "status-panel",
+        "architecture-graph"
+      ],
+      "goal": {
+        "outcome": "Humans and agents can inspect system architecture visually through the status panel and zoom into component or flow detail cards.",
+        "acceptance": [
+          "Status panel renders the generated architecture graph or a fallback graph view.",
+          "Selecting a component opens linked component markdown/details.",
+          "Selecting a flow opens linked flow markdown/details.",
+          "Health colors use strict legend semantics from roadmap/drift/view state.",
+          "Panel degrades gracefully when architecture views are stale or absent."
+        ],
+        "non_goals": [
+          "Make the panel a full diagram editor.",
+          "Hand-edit Mermaid in the UI."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "delta": {
+        "desired": "Architecture graph becomes an interactive navigation surface.",
+        "current": "Status panel focuses on status and roadmap, not architecture graph navigation.",
+        "closure": "Panel can render graph and detail cards from generated views."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-018": {
+      "id": "TASK-018",
+      "title": "Implement context memory policy in skills and loops",
+      "status": "todo",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Teach agents when to use session RAM, views, canonical docs, subagents, and ThinkCode so default workflows minimize repeated token load.",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "research_ids": [],
+      "labels": [
+        "v2",
+        "context-window",
+        "skills",
+        "token-efficiency"
+      ],
+      "goal": {
+        "outcome": "CodeWiki skills and loops default to tiny views and targeted expansion instead of reloading raw wiki state into the parent session.",
+        "acceptance": [
+          "Planning, task, verification, research, and architecture skills describe RAM vs persistent memory rules.",
+          "Default flow starts from status view and recommended next reads.",
+          "Agents track loaded view revisions and avoid rereading unchanged views when possible.",
+          "Task and outer-loop instructions explain when to spawn subagents or ThinkCode."
+        ],
+        "non_goals": [
+          "Implement full heartbeat scheduler.",
+          "Build new view schemas from scratch if TASK-018 is not done."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "delta": {
+        "desired": "Agent workflow policy explicitly optimizes context-window usage.",
+        "current": "Skills mention compact state but do not fully model session RAM, views, subagents, and ThinkCode together.",
+        "closure": "Skills and loop prompts encode the memory policy."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-019": {
+      "id": "TASK-019",
+      "title": "View schema generator for status queue drift and briefs",
+      "status": "todo",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Define and generate the small, revisioned read models agents and UI consume for status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence.",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "research_ids": [],
+      "labels": [
+        "view-schema",
+        "read-models",
+        "routing-context"
+      ],
+      "goal": {
+        "outcome": "CodeWiki exposes compact generated views that route agents to the right next read without loading raw wiki state.",
+        "acceptance": [
+          "Views include revision metadata, stale flags where applicable, size budgets, and recommended next reads.",
+          "Status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence views are defined.",
+          "`codewiki_state` can expose or consume the views without increasing default token load.",
+          "Views remain rebuild-owned and read-only to agents."
+        ],
+        "non_goals": [
+          "Build status panel graph interaction.",
+          "Implement heartbeat autonomy."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test",
+          "node scripts/rebuild_docs_meta.py"
+        ]
+      },
+      "delta": {
+        "desired": "Views become the default optimized read models for inner and outer loops.",
+        "current": "Generated state exists but is not organized as purpose-specific v2 views with routing contracts.",
+        "closure": "View schemas and generation are implemented and verified."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-020": {
+      "id": "TASK-020",
+      "title": "Architecture manifest and Mermaid view generator",
+      "status": "todo",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "architecture-manifest",
+        "component-cards",
+        "flow-docs",
+        "mermaid-view"
+      ],
+      "goal": {
+        "outcome": "System architecture is represented as a structured canonical graph with component and flow detail docs and generated visual/read views.",
+        "acceptance": [
+          "`system/architecture.json` owns component nodes and information-flow edges.",
+          "`system/components/*.md` detail component cards.",
+          "`system/flows/*.md` detail important cross-component paths.",
+          "Rebuild generates a Mermaid architecture view and agent-readable system architecture view.",
+          "Graph validation detects missing component/flow docs or orphan docs."
+        ],
+        "non_goals": [
+          "Implement status panel click interactions in this task.",
+          "Make Mermaid the source of truth."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test",
+          "node scripts/rebuild_docs_meta.py"
+        ]
+      },
+      "delta": {
+        "desired": "Structured graph truth plus generated architecture views.",
+        "current": "System architecture is mostly prose; generated graph state is not a first-class architecture source.",
+        "closure": "Architecture graph and Mermaid generation work with validation."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-021": {
+      "id": "TASK-021",
+      "title": "Subagent JSON worker contracts",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "agent-workflow",
+      "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "research_ids": [],
+      "labels": [
+        "subagent-workers",
+        "json-contracts",
+        "fresh-ram"
+      ],
+      "goal": {
+        "outcome": "Context-heavy or bias-sensitive CodeWiki work can run in fresh subagent sessions and return bounded results to the parent agent.",
+        "acceptance": [
+          "Verifier, researcher, planner, architecture reviewer, and view auditor roles have documented input/output contracts.",
+          "Parent agent remains responsible for canonical writes.",
+          "Subagent outputs are compact JSON with pass/fail/block or proposal semantics as appropriate.",
+          "Existing fresh verifier behavior aligns with the shared subagent model."
+        ],
+        "non_goals": [
+          "Let subagents freely mutate `.wiki` canonical truth.",
+          "Replace all parent-agent work with subagents."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "delta": {
+        "desired": "Subagents become reusable context-management workers.",
+        "current": "Fresh verifier exists, but broader subagent roles and contracts are underexplored.",
+        "closure": "Contracts and at least one additional subagent workflow are implemented or stubbed with tests."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-022": {
+      "id": "TASK-022",
+      "title": "Heartbeat modes budgets and stop conditions",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "agent-workflow",
+      "summary": "Add bounded observe, maintain, and work heartbeat modes that use views, subagents, and canonical writes safely.",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "research_ids": [],
+      "labels": [
+        "heartbeat-loop",
+        "autonomous-budget",
+        "stop-conditions"
+      ],
+      "goal": {
+        "outcome": "Users can run CodeWiki autonomously within explicit budgets and modes without losing alignment with wiki truth or project safety.",
+        "acceptance": [
+          "Heartbeat supports observe, maintain, and work modes.",
+          "Each cycle reads status, handles stale views, selects inner or outer loop action, records evidence, and stops on budget/risk/ambiguity.",
+          "Budgets include max cycles, wall time, writes, subagents, and risk level.",
+          "Push/version/archive behavior is gated by policy and checks."
+        ],
+        "non_goals": [
+          "Run unbounded autonomous coding.",
+          "Bypass user approval for risky or destructive work."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "delta": {
+        "desired": "Heartbeat is a bounded CodeWiki loop with safe modes and stop conditions.",
+        "current": "Heartbeat is an idea but not a fully defined or implemented autonomous workflow.",
+        "closure": "Heartbeat command/tool contract and initial implementation are covered by tests."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-023": {
+      "id": "TASK-023",
+      "title": "ThinkCode query executor integration",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "integration",
+      "summary": "Use ThinkCode for ad hoc programmatic context creation, view validation, graph checks, and staged edits without making it CodeWiki's memory layer.",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ],
+      "research_ids": [],
+      "labels": [
+        "thinkcode-query",
+        "context-etl",
+        "graph-validation"
+      ],
+      "goal": {
+        "outcome": "CodeWiki can delegate bounded query/ETL and validation tasks to ThinkCode while preserving CodeWiki semantic write boundaries.",
+        "acceptance": [
+          "ThinkCode role is documented in skills and runtime guidance.",
+          "At least one workflow uses ThinkCode for compact context creation or graph/view validation when available.",
+          "Fallback path works when ThinkCode is unavailable.",
+          "ThinkCode writes remain staged or flow through CodeWiki capabilities/transactions."
+        ],
+        "non_goals": [
+          "Make ThinkCode required for CodeWiki.",
+          "Let ThinkCode edit generated views directly."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "delta": {
+        "desired": "ThinkCode acts as a policy-bound programmatic context and validation executor.",
+        "current": "ThinkCode is documented as future runtime support but not integrated into view/context workflows.",
+        "closure": "Integration seam and first use case are implemented with fallback."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-024": {
+      "id": "TASK-024",
+      "title": "Sanitation checkpoints and git history policy",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "architecture",
+      "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "research_ids": [],
+      "labels": [
+        "sanitation-policy",
+        "release-checkpoints",
+        "git-history"
+      ],
+      "goal": {
+        "outcome": "CodeWiki distinguishes hot current truth, generated views, compact semantic history, and full git recovery.",
+        "acceptance": [
+          "Closed task archive stores compact semantic summaries with commit/release links rather than full raw context by default.",
+          "Release checkpoint schema records version, git sha, canonical digest, view schema version, and closed task summaries.",
+          "Docs and skills describe commit/push/version boundaries.",
+          "Views exclude cold history unless explicitly requested."
+        ],
+        "non_goals": [
+          "Duplicate full git history inside `.wiki`.",
+          "Automatically push or version without policy gates."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "delta": {
+        "desired": "Sanitation keeps agent hot context small while preserving semantic memory and git recovery.",
+        "current": "Retention exists but archives and release/version boundaries are not fully aligned with git as full history.",
+        "closure": "Archive/checkpoint policy is implemented and documented."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
+    },
+    "TASK-025": {
+      "id": "TASK-025",
+      "title": "Audit read model wording in README skills and tools",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "docs",
+      "summary": "Align public package language so generated read models are called views and source-of-truth files are called canonical truth.",
+      "spec_paths": [
+        "README.md"
+      ],
+      "code_paths": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "research_ids": [],
+      "labels": [
+        "read-model-language"
+      ],
+      "goal": {
+        "outcome": "User-facing and agent-facing text use the same v2 vocabulary for views and canonical truth.",
+        "acceptance": [
+          "README describes views and the canonical/view boundary.",
+          "Skills tell agents to consume views and avoid editing views.",
+          "Tool descriptions mention rebuilding views where relevant."
+        ],
+        "non_goals": [
+          "Change storage paths.",
+          "Implement new view schemas."
+        ],
+        "verification": [
+          "npm run typecheck -- --pretty false",
+          "npm test"
+        ]
+      },
+      "delta": {
+        "desired": "Public and agent instructions use view vocabulary consistently.",
+        "current": "Some package text still says projection, derived state, or generated state in places where v2 wants view terminology.",
+        "closure": "README, skills, and tool descriptions match the lexicon."
+      },
+      "created": "2026-05-02",
+      "updated": "2026-05-02"
     }
   }
 }

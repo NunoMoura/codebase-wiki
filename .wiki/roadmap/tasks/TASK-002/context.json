@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-01T06:27:27Z",
+  "generated_at": "2026-05-02T00:21:50Z",
   "context_path": ".wiki/roadmap/tasks/TASK-002/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -43,41 +43,43 @@
       "digest": "ce7cf418f288fc3ba4a317fbe1442130ca0a995e06499eb096279d3995ff8f85"
     },
     "git": {
-      "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+      "head": "53578e465699177d1945148075b98a9fc539da26",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
         ".wiki/knowledge/system/overview.md",
         ".wiki/roadmap.json",
         "extensions/codewiki/contracts.ts",
         "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
         "scripts/smoke-test.mjs"
       ],
       "paths": {
         ".wiki/knowledge/system/extensions/codewiki/overview.md": "a6fc64223df3",
-        ".wiki/knowledge/system/overview.md": "a6fc64223df3",
-        ".wiki/roadmap.json": "a6fc64223df3",
-        "extensions/codewiki": "a6fc64223df3",
-        "scripts/smoke-test.mjs": "a6fc64223df3",
+        ".wiki/knowledge/system/overview.md": "53578e465699",
+        ".wiki/roadmap.json": "53578e465699",
+        "extensions/codewiki": "53578e465699",
+        "scripts/smoke-test.mjs": "53578e465699",
         "skills": "a6fc64223df3"
       }
     },
-    "spec_digest": "9df4d8f85ae4190596779e6fbb2e4567236d0377a5bb7996576861e323300525",
-    "code_digest": "aec85516d5edcbce8736413e6b9eeff7a5f55e9655ab2c0ba89a532b028016e3",
+    "spec_digest": "ceb00e313f17f25db95034a3945b1077e493211e5bf0aea3c55b4e44206b7154",
+    "code_digest": "c2d9dca1c99ba48892caa6541b5f521244fe83ed668def0683d30cfe95fa329a",
     "graph": {
       "git": {
-        "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+        "head": "53578e465699177d1945148075b98a9fc539da26",
         "dirty": true
       },
-      "spec_digest": "755fe900c93b1f0937e01d7b455e1e15a1d92846006b1f96d9561c9542175e3f",
-      "task_digest": "804f3ab22cad6fffcb05736fa39d0ca59d5fe35cd02aeed436dab4407d09130d",
-      "evidence_digest": "4e3c6700498f6c1597ab67de41b61627b1e276b937c410e4e8d2949071a101b2"
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
     }
   },
   "specs": [
     {
       "path": ".wiki/knowledge/system/overview.md",
       "title": "System Overview",
-      "summary": "Main runtime areas and ownership boundaries for codewiki.",
+      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
       "state": "active",
       "owners": [
         "architecture"
@@ -88,7 +90,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "39ad3012eefb6a09ae5424f3fdcbd06e7acc1a471d97e20004d4a9c65be4f1c8"
+        "digest": "6b7bee61cbea40d1a9bdce6604cfe65f336af9dfaf74e35f9c03e78f08854e76"
       },
       "expand": {
         "read": ".wiki/knowledge/system/overview.md"
@@ -108,7 +110,7 @@
         "scripts/smoke-test.mjs"
       ],
       "revision": {
-        "digest": "8e198fb5f2332459640a7cf09067f99a6a7f2e09eacb5e9dcee82dfd3bbe5605"
+        "digest": "e3e6634c22ca3feb6a596874ed66d9102f5bac438f74382dab4aca895fa4773c"
       },
       "expand": {
         "read": ".wiki/knowledge/system/extensions/codewiki/overview.md"
@@ -121,7 +123,7 @@
       "skills",
       "scripts/smoke-test.mjs"
     ],
-    "digest": "aec85516d5edcbce8736413e6b9eeff7a5f55e9655ab2c0ba89a532b028016e3",
+    "digest": "c2d9dca1c99ba48892caa6541b5f521244fe83ed668def0683d30cfe95fa329a",
     "expand": [
       {
         "read": "extensions/codewiki"

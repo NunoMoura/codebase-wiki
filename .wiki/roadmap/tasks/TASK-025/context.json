@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-02T00:21:50Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-025/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-025",
+    "title": "Audit read model wording in README skills and tools",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "docs",
+    "summary": "Align public package language so generated read models are called views and source-of-truth files are called canonical truth.",
+    "labels": [
+      "read-model-language"
+    ],
+    "goal": {
+      "outcome": "User-facing and agent-facing text use the same v2 vocabulary for views and canonical truth.",
+      "acceptance": [
+        "README describes views and the canonical/view boundary.",
+        "Skills tell agents to consume views and avoid editing views.",
+        "Tool descriptions mention rebuilding views where relevant."
+      ],
+      "non_goals": [
+        "Change storage paths.",
+        "Implement new view schemas."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Public and agent instructions use view vocabulary consistently.",
+      "current": "Some package text still says projection, derived state, or generated state in places where v2 wants view terminology.",
+      "closure": "README, skills, and tool descriptions match the lexicon."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "8e6bde5228ac24b7a663179e3018e65fc014bff2bc48cdc678ed73e8256d41f8"
+    },
+    "git": {
+      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/roadmap.json",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "paths": {
+        ".wiki/roadmap.json": "53578e465699",
+        "README.md": "53578e465699",
+        "extensions/codewiki/contracts.ts": "53578e465699",
+        "skills/codewiki/SKILL.md": "a6fc64223df3"
+      }
+    },
+    "spec_digest": "17f48fed7866b478c6d62b571ecc633ffc6add57d216bcf224921c195a7aa7a8",
+    "code_digest": "d85d05fd7272688a1ab1691fc7a1b4e8223cacbf2fc9515b21ab36bd634303ba",
+    "graph": {
+      "git": {
+        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "dirty": true
+      },
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+    }
+  },
+  "specs": [
+    {
+      "path": "README.md",
+      "title": "README",
+      "summary": "",
+      "state": "",
+      "owners": [],
+      "code_paths": [],
+      "revision": {
+        "digest": ""
+      },
+      "expand": {
+        "read": "README.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "README.md",
+      "skills/codewiki/SKILL.md",
+      "extensions/codewiki/contracts.ts"
+    ],
+    "digest": "d85d05fd7272688a1ab1691fc7a1b4e8223cacbf2fc9515b21ab36bd634303ba",
+    "expand": [
+      {
+        "read": "README.md"
+      },
+      {
+        "read": "skills/codewiki/SKILL.md"
+      },
+      {
+        "read": "extensions/codewiki/contracts.ts"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-025/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

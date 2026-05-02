@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-02T00:21:50Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-019/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-019",
+    "title": "View schema generator for status queue drift and briefs",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Define and generate the small, revisioned read models agents and UI consume for status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence.",
+    "labels": [
+      "view-schema",
+      "read-models",
+      "routing-context"
+    ],
+    "goal": {
+      "outcome": "CodeWiki exposes compact generated views that route agents to the right next read without loading raw wiki state.",
+      "acceptance": [
+        "Views include revision metadata, stale flags where applicable, size budgets, and recommended next reads.",
+        "Status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence views are defined.",
+        "`codewiki_state` can expose or consume the views without increasing default token load.",
+        "Views remain rebuild-owned and read-only to agents."
+      ],
+      "non_goals": [
+        "Build status panel graph interaction.",
+        "Implement heartbeat autonomy."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ]
+    },
+    "delta": {
+      "desired": "Views become the default optimized read models for inner and outer loops.",
+      "current": "Generated state exists but is not organized as purpose-specific v2 views with routing contracts.",
+      "closure": "View schemas and generation are implemented and verified."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "6b646490093f898ee530190560f957c8cf1ab1a643ccb0e448938a3c36cda675"
+    },
+    "git": {
+      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/roadmap.json",
+        "extensions/codewiki/contracts.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/flows/context-memory.md": "",
+        ".wiki/knowledge/system/v2-operating-model.md": "",
+        ".wiki/roadmap.json": "53578e465699",
+        "extensions/codewiki/contracts.ts": "53578e465699",
+        "scripts/rebuild_docs_meta.py": "0d12c87f000a"
+      }
+    },
+    "spec_digest": "d465ec3da201f681a14fc41eb1907f5d9f7a08dcdda50e6ca7fd2947114f3619",
+    "code_digest": "9eb3111a5b90014b8a03e6076fb0be72d8d920432dc21c4a7f4f5d1622c3a103",
+    "graph": {
+      "git": {
+        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "dirty": true
+      },
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, ThinkCode, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "bf6db63efeeb7c9cc99e1cb2bdc925fc22bc15c9d41d1544f5c3f9915937a165"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and ThinkCode.",
+      "state": "proposed",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "270df6adf5c4e4b488dac81088f6794647b5c493d94f95841e2769e77c55bae8"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/flows/context-memory.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "scripts/rebuild_docs_meta.py",
+      "extensions/codewiki/contracts.ts"
+    ],
+    "digest": "9eb3111a5b90014b8a03e6076fb0be72d8d920432dc21c4a7f4f5d1622c3a103",
+    "expand": [
+      {
+        "read": "scripts/rebuild_docs_meta.py"
+      },
+      {
+        "read": "extensions/codewiki/contracts.ts"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-019/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

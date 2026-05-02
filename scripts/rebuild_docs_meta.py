@@ -75,6 +75,7 @@ ROADMAP_ARCHIVE_COMPRESSED = bool(ROADMAP_RETENTION_CONFIG.get("compress_archive
 if ROADMAP_ARCHIVE_COMPRESSED and ROADMAP_ARCHIVE_PATH.suffix != ".gz":
     ROADMAP_ARCHIVE_PATH = ROADMAP_ARCHIVE_PATH.with_suffix(ROADMAP_ARCHIVE_PATH.suffix + ".gz")
 META_ROOT = ROOT / str(CONFIG.get("meta_root", ".wiki"))
+VIEWS_ROOT = ROOT / str(CONFIG.get("views_root", ".wiki/views"))
 ROADMAP_STATE_PATH = META_ROOT / "roadmap-state.json"
 STATUS_STATE_PATH = META_ROOT / "status-state.json"
 ROADMAP_FOLDER_PATH = META_ROOT / "roadmap"
@@ -1868,6 +1869,10 @@ def write_json(path: Path, data: Any) -> None:
     path.write_text(json.dumps(data, indent=2, sort_keys=False) + "\n", encoding="utf-8")
 
 
+def write_view(relative_path: str, data: Any) -> None:
+    write_json(VIEWS_ROOT / relative_path, data)
+
+
 def code_paths_digest(paths: list[str]) -> str:
     payload: dict[str, str] = {}
     for path in paths:
@@ -1910,8 +1915,10 @@ def compact_git_anchor(paths: list[str]) -> dict[str, Any]:
 
 
 def compact_graph_revision(graph: dict[str, Any]) -> dict[str, Any]:
-    revision = graph.get("revision") if isinstance(graph.get("revision"), dict) else {}
-    git = revision.get("git") if isinstance(revision.get("git"), dict) else {}
+    raw_revision = graph.get("revision")
+    revision: dict[str, Any] = raw_revision if isinstance(raw_revision, dict) else {}
+    raw_git = revision.get("git")
+    git: dict[str, Any] = raw_git if isinstance(raw_git, dict) else {}
     return {
         "git": {
             "head": str(git.get("head", "")).strip(),
@@ -2045,6 +2052,7 @@ def main() -> None:
     graph = build_graph(docs, research_collections, roadmap_items)
 
     write_json(META_ROOT / "graph.json", graph)
+    write_view("graph.json", graph)
     if not (META_ROOT / "events.jsonl").exists():
         (META_ROOT / "events.jsonl").write_text("", encoding="utf-8")
     if not ROADMAP_EVENTS_PATH.exists():
@@ -2054,11 +2062,17 @@ def main() -> None:
         INDEX_PATH.write_text(render_index(docs, research_collections, roadmap_items), encoding="utf-8")
     lint_report = lint(docs, roadmap_items, research_collections)
     write_json(META_ROOT / "lint.json", lint_report)
+    write_view("lint.json", lint_report)
     roadmap_state = build_roadmap_state(roadmap_items, graph, lint_report, read_jsonl(META_ROOT / "events.jsonl"))
     write_json(ROADMAP_STATE_PATH, roadmap_state)
+    write_view("roadmap-state.json", roadmap_state)
     write_roadmap_folder_view(roadmap_items, roadmap_state, docs, graph)
+    write_view("roadmap/index.json", json.loads((ROADMAP_FOLDER_PATH / "index.json").read_text(encoding="utf-8")))
+    write_view("roadmap/state.json", json.loads((ROADMAP_FOLDER_PATH / "state.json").read_text(encoding="utf-8")))
     events = read_jsonl(META_ROOT / "events.jsonl")
-    write_json(STATUS_STATE_PATH, build_status_state(docs, graph, roadmap_items, lint_report, roadmap_state, events))
+    status_state = build_status_state(docs, graph, roadmap_items, lint_report, roadmap_state, events)
+    write_json(STATUS_STATE_PATH, status_state)
+    write_view("status-state.json", status_state)
 
 
 if __name__ == "__main__":

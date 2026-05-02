@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-01T06:27:28Z",
+  "generated_at": "2026-05-02T00:21:50Z",
   "context_path": ".wiki/roadmap/tasks/TASK-004/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -50,50 +50,51 @@
       "digest": "e0b44e9e07f33d59f518e66511d84251cef9a772c937e15f96fafda5dbc3444e"
     },
     "git": {
-      "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+      "head": "53578e465699177d1945148075b98a9fc539da26",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/product/overview.md",
         ".wiki/knowledge/system/overview.md",
         ".wiki/knowledge/system/runtime/overview.md",
         ".wiki/roadmap.json",
-        "README.md",
         "extensions/codewiki/contracts.ts",
-        "extensions/codewiki/index.ts"
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
       ],
       "paths": {
         ".wiki/knowledge/product/overview.md": "a6fc64223df3",
-        ".wiki/knowledge/system/overview.md": "a6fc64223df3",
-        ".wiki/knowledge/system/runtime/overview.md": "a6fc64223df3",
-        ".wiki/roadmap.json": "a6fc64223df3",
-        "README.md": "a6fc64223df3",
-        "extensions/codewiki": "a6fc64223df3",
+        ".wiki/knowledge/system/overview.md": "53578e465699",
+        ".wiki/knowledge/system/runtime/overview.md": "53578e465699",
+        ".wiki/roadmap.json": "53578e465699",
+        "README.md": "53578e465699",
+        "extensions/codewiki": "53578e465699",
         "scripts/codewiki-gateway.mjs": "a6fc64223df3"
       }
     },
-    "spec_digest": "db753fc3f67920dba4ad8cc477fcae0b308a2b5fecf847affca353f747fd4242",
+    "spec_digest": "2116b72db5b6511052be0bf76af0dc1850d114758d13db4b42c2e202bc464cb6",
     "code_digest": "2ca7418fc56bd2d572b8472959da172fe26e2bfd4942fdf1536dec8574cc0f91",
     "graph": {
       "git": {
-        "head": "a6fc64223df319b53cd863958c062c28180ebbd8",
+        "head": "53578e465699177d1945148075b98a9fc539da26",
         "dirty": true
       },
-      "spec_digest": "755fe900c93b1f0937e01d7b455e1e15a1d92846006b1f96d9561c9542175e3f",
-      "task_digest": "804f3ab22cad6fffcb05736fa39d0ca59d5fe35cd02aeed436dab4407d09130d",
-      "evidence_digest": "4e3c6700498f6c1597ab67de41b61627b1e276b937c410e4e8d2949071a101b2"
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
     }
   },
   "specs": [
     {
       "path": ".wiki/knowledge/product/overview.md",
       "title": "Product",
-      "summary": "Product intent, users, and value boundaries for codewiki.",
+      "summary": "Product intent and navigation for CodeWiki's users, stories, and surfaces.",
       "state": "active",
       "owners": [
         "product"
       ],
       "code_paths": [],
       "revision": {
-        "digest": "f8babb01e47c832dded1bfa7d78a9cea833b807845b6ec8182d2b6ef60a4a695"
+        "digest": "e80ea329d13f766ed8589de5023e053fe07154f37c66f114ff8404804778ee21"
       },
       "expand": {
         "read": ".wiki/knowledge/product/overview.md"
@@ -102,7 +103,7 @@
     {
       "path": ".wiki/knowledge/system/overview.md",
       "title": "System Overview",
-      "summary": "Main runtime areas and ownership boundaries for codewiki.",
+      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
       "state": "active",
       "owners": [
         "architecture"
@@ -113,7 +114,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "39ad3012eefb6a09ae5424f3fdcbd06e7acc1a471d97e20004d4a9c65be4f1c8"
+        "digest": "6b7bee61cbea40d1a9bdce6604cfe65f336af9dfaf74e35f9c03e78f08854e76"
       },
       "expand": {
         "read": ".wiki/knowledge/system/overview.md"
@@ -129,7 +130,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "a83c8a954d1bf73308cf8d7f8cf10aa8a06cded0b1dc13d525e61721e3e28c88"
+        "digest": "1cbae979918e62d03b30fb5fd08fe8db1933ea2eb9fc52722809b95f3a9b5c28"
       },
       "expand": {
         "read": ".wiki/knowledge/system/runtime/overview.md"

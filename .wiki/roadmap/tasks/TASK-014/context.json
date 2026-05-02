@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-02T00:21:50Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-014/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-014",
+    "title": "Capture CodeWiki v2 operating model and roadmap",
+    "status": "done",
+    "phase": "verify",
+    "priority": "high",
+    "kind": "docs",
+    "summary": "CodeWiki v2 decisions are now durable wiki knowledge and mapped to executable roadmap tasks.",
+    "labels": [
+      "v2",
+      "planning",
+      "view-boundary",
+      "memory-model"
+    ],
+    "goal": {
+      "outcome": "The wiki records the v2 canonical/view model, product split, memory policy, subagent/heartbeat/think-code roles, and sanitation/versioning policy as roadmap-backed intent.",
+      "acceptance": [
+        "V2 decisions are captured in canonical knowledge docs, not only chat history.",
+        "Product knowledge is split or prepared for users, stories, and surfaces.",
+        "The system knowledge names the canonical/view boundary and view consumption model.",
+        "Roadmap tasks cover v2 migration, views, architecture graph, subagents, heartbeat, think-code, and sanitation/release policy.",
+        "codewiki_state reports the new roadmap without drift."
+      ],
+      "non_goals": [
+        "Implement the full v2 storage migration.",
+        "Render architecture diagrams in the status panel.",
+        "Rename all code-level projection terminology immediately."
+      ],
+      "verification": [
+        "codewiki_state refresh=true"
+      ]
+    },
+    "delta": {
+      "desired": "V2 direction is captured as wiki truth and mapped to concrete roadmap tasks.",
+      "current": "V2 direction exists in chat but not yet as durable wiki knowledge or executable roadmap tasks.",
+      "closure": "Knowledge docs and roadmap tasks reflect the agreed v2 operating model."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "c1508a2dd4406694a6b7d500931cc0c3b1f4175fd02fd6890ad9819bc25c8691"
+    },
+    "git": {
+      "head": "53578e465699177d1945148075b98a9fc539da26",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/roadmap.json"
+      ],
+      "paths": {
+        ".wiki/knowledge": "53578e465699",
+        ".wiki/knowledge/product/overview.md": "a6fc64223df3",
+        ".wiki/knowledge/system/overview.md": "53578e465699",
+        ".wiki/knowledge/system/runtime/overview.md": "53578e465699",
+        ".wiki/roadmap.json": "53578e465699"
+      }
+    },
+    "spec_digest": "2116b72db5b6511052be0bf76af0dc1850d114758d13db4b42c2e202bc464cb6",
+    "code_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "graph": {
+      "git": {
+        "head": "53578e465699177d1945148075b98a9fc539da26",
+        "dirty": true
+      },
+      "spec_digest": "cc0361d7c5c5495ab29922167529a58d4024087f5b37b325c1718341ae90c2e5",
+      "task_digest": "a8044e8269fdf36aa772e1b457c2228c648377188a20a57f65f0df087c4bfae0",
+      "evidence_digest": "ae9ed6de44efbedc54e3d0c5c57195e55ddd556ba9fe02d8cafe83b27c9170d7"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "summary": "Product intent and navigation for CodeWiki's users, stories, and surfaces.",
+      "state": "active",
+      "owners": [
+        "product"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "e80ea329d13f766ed8589de5023e053fe07154f37c66f114ff8404804778ee21"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/product/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "6b7bee61cbea40d1a9bdce6604cfe65f336af9dfaf74e35f9c03e78f08854e76"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "summary": "Policy boundary for codewiki runtime access in codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "1cbae979918e62d03b30fb5fd08fe8db1933ea2eb9fc52722809b95f3a9b5c28"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/runtime/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      ".wiki/knowledge"
+    ],
+    "digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "expand": [
+      {
+        "read": ".wiki/knowledge"
+      }
+    ]
+  },
+  "evidence": {
+    "verdict": "pass",
+    "summary": "Closed after codewiki_state reported no unmapped specs and v2 roadmap tasks were created.",
+    "checks_run": [
+      "codewiki_state refresh=true"
+    ],
+    "files_touched": [
+      ".wiki/knowledge/lexicon.md",
+      ".wiki/knowledge/product/overview.md",
+      ".wiki/knowledge/product/users.md",
+      ".wiki/knowledge/product/stories.md",
+      ".wiki/knowledge/product/surfaces.md",
+      ".wiki/knowledge/system/overview.md",
+      ".wiki/knowledge/system/runtime/overview.md",
+      ".wiki/knowledge/system/v2-operating-model.md",
+      ".wiki/knowledge/system/flows/context-memory.md",
+      ".wiki/knowledge/system/flows/sanitation-release.md",
+      ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      ".wiki/knowledge/clients/overview.md"
+    ],
+    "issues": [],
+    "updated_at": "2026-05-02T00:04:52Z"
+  },
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-014/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}
