@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T00:34:33Z",
+  "generated_at": "2026-05-02T00:38:00Z",
   "context_path": ".wiki/roadmap/tasks/TASK-009/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -52,31 +52,31 @@
       "digest": "68cec46123899a2653cd9a45a0136eeb6bbd8c2b565e371bb4ff13eaf6c79319"
     },
     "git": {
-      "head": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+      "head": "3c0906e38572fca7352aa3e820369391069c26b1",
       "dirty": true,
       "dirty_paths": [
         ".wiki/roadmap.json",
-        "scripts/smoke-test.mjs"
+        "extensions/codewiki/index.ts"
       ],
       "paths": {
         ".wiki/knowledge/clients/overview.md": "a6f94f94cbc0",
         ".wiki/knowledge/system/runtime/overview.md": "a6f94f94cbc0",
-        ".wiki/roadmap.json": "a6f94f94cbc0",
+        ".wiki/roadmap.json": "3c0906e38572",
         "extensions/codewiki/index.ts": "a6f94f94cbc0",
-        "scripts/smoke-test.mjs": "a6f94f94cbc0",
+        "scripts/smoke-test.mjs": "3c0906e38572",
         "skills/codewiki-verify/SKILL.md": "a6fc64223df3"
       }
     },
     "spec_digest": "8a27c82b1c8e4b1a14840f9456813f09c9aafa046f9e94f1fb3dc691e32e5ee2",
-    "code_digest": "4ba93f7cda214b5cb9ef36b1be7317d7bc44f9ff45a86476e9d721bde4bb2861",
+    "code_digest": "e9994ceff3a1076d8cb22bed4d6e5fbaeeab3e519220b7b7e3a7cc1036740a14",
     "graph": {
       "git": {
-        "head": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+        "head": "3c0906e38572fca7352aa3e820369391069c26b1",
         "dirty": true
       },
       "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
-      "task_digest": "54045676adaa22373e885991a13a5f2aa75959244ac997e4df048dd4fe09d70f",
-      "evidence_digest": "03bf7173bb53abcb2cb386630c48dce38853fe1c05bc3f036ac3423bc592d037"
+      "task_digest": "17a93f2fa8fc5e6cf791a8bddf04ea1f7deb5ad60e3b1110012ebaabf6cfe356",
+      "evidence_digest": "ab9a94045610c11a363238b1bbb50e1635da1e4bf1d2a51825d96d3e6f47b68b"
     }
   },
   "specs": [
@@ -119,7 +119,7 @@
       "skills/codewiki-verify/SKILL.md",
       "scripts/smoke-test.mjs"
     ],
-    "digest": "4ba93f7cda214b5cb9ef36b1be7317d7bc44f9ff45a86476e9d721bde4bb2861",
+    "digest": "e9994ceff3a1076d8cb22bed4d6e5fbaeeab3e519220b7b7e3a7cc1036740a14",
     "expand": [
       {
         "read": "extensions/codewiki/index.ts"

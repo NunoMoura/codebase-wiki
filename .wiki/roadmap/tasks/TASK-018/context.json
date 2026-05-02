@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T00:34:33Z",
+  "generated_at": "2026-05-02T00:38:01Z",
   "context_path": ".wiki/roadmap/tasks/TASK-018/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -48,31 +48,31 @@
       "digest": "3c9364c8d846e1779037b758d47b59ed576a5d1c1f311abce28e333bda417c1a"
     },
     "git": {
-      "head": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+      "head": "3c0906e38572fca7352aa3e820369391069c26b1",
       "dirty": true,
       "dirty_paths": [
-        ".wiki/knowledge/lexicon.md",
-        ".wiki/roadmap.json"
+        ".wiki/roadmap.json",
+        "extensions/codewiki/index.ts"
       ],
       "paths": {
-        ".wiki/knowledge/lexicon.md": "a6f94f94cbc0",
+        ".wiki/knowledge/lexicon.md": "3c0906e38572",
         ".wiki/knowledge/system/flows/context-memory.md": "a6f94f94cbc0",
         ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc0",
-        ".wiki/roadmap.json": "a6f94f94cbc0",
+        ".wiki/roadmap.json": "3c0906e38572",
         "extensions/codewiki/index.ts": "a6f94f94cbc0",
         "skills": "a6fc64223df3"
       }
     },
     "spec_digest": "55f3dd6a84bcb738ca22a67fcdc361e980eb23dc2c2df1beb6a5a0d68ad6835c",
-    "code_digest": "455c51fe79ce772f4e6e4464b7627f8ccfa5c569a7bba753f2a25f652cab2b3c",
+    "code_digest": "6ae591bd7874c5164fe67a500d0be86da7f75ea2dcc68874abcce995fe07b520",
     "graph": {
       "git": {
-        "head": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+        "head": "3c0906e38572fca7352aa3e820369391069c26b1",
         "dirty": true
       },
       "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
-      "task_digest": "54045676adaa22373e885991a13a5f2aa75959244ac997e4df048dd4fe09d70f",
-      "evidence_digest": "03bf7173bb53abcb2cb386630c48dce38853fe1c05bc3f036ac3423bc592d037"
+      "task_digest": "17a93f2fa8fc5e6cf791a8bddf04ea1f7deb5ad60e3b1110012ebaabf6cfe356",
+      "evidence_digest": "ab9a94045610c11a363238b1bbb50e1635da1e4bf1d2a51825d96d3e6f47b68b"
     }
   },
   "specs": [
@@ -136,7 +136,7 @@
       "skills",
       "extensions/codewiki/index.ts"
     ],
-    "digest": "455c51fe79ce772f4e6e4464b7627f8ccfa5c569a7bba753f2a25f652cab2b3c",
+    "digest": "6ae591bd7874c5164fe67a500d0be86da7f75ea2dcc68874abcce995fe07b520",
     "expand": [
       {
         "read": "skills"

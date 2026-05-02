@@ -2751,6 +2751,59 @@ function renderHomeTab(
 	return lines;
 }
 
+function wikiMarkdownPreview(project: WikiProject, path: string): string[] {
+	const normalizedPath = normalizeRelativePath(path);
+	if (!normalizedPath || normalizedPath.startsWith("..")) return [];
+	try {
+		const text = readFileSync(resolve(project.root, normalizedPath), "utf8");
+		const lines = text.split(/\r?\n/);
+		const body =
+			lines[0] === "---" ? lines.slice(lines.indexOf("---", 1) + 1) : lines;
+		return body
+			.map((line) => line.trimEnd())
+			.filter((line) => line && !line.startsWith("# "))
+			.slice(0, 14);
+	} catch {
+		return [];
+	}
+}
+
+function architectureFallbackLines(
+	sections: StatusStateWikiSection[],
+	theme: { fg: (color: string, text: string) => string },
+	width: number,
+): string[] {
+	const systemRows =
+		sections.find((section) => section.id === "system")?.rows ?? [];
+	const componentRows = systemRows.filter(
+		(row) => row.path.includes("/components/") || row.path.includes("/system/"),
+	);
+	const visibleRows = (componentRows.length ? componentRows : systemRows).slice(
+		0,
+		6,
+	);
+	const lines = [
+		theme.fg("accent", "Architecture graph"),
+		theme.fg(
+			"muted",
+			"Generated architecture view not found yet. Showing system-doc fallback.",
+		),
+	];
+	for (const row of visibleRows)
+		lines.push(
+			`  ${wikiActivityMarker(row, null, null, 0)} ${truncatePlain(row.title || row.path, Math.max(20, width - 12))}`,
+		);
+	if (systemRows.length > visibleRows.length)
+		lines.push(
+			theme.fg(
+				"muted",
+				`  … ${systemRows.length - visibleRows.length} more system docs`,
+			),
+		);
+	lines.push("");
+	return lines;
+}
+
 function renderStatusPanelLines(
 	project: WikiProject,
 	state: StatusStateFile,
@@ -2843,6 +2896,7 @@ function renderStatusPanelLines(
 				),
 			)
 			.join(columnSeparator);
+		body.push(...architectureFallbackLines(wikiSections, theme, width));
 		body.push(headerRow);
 		body.push(dividerRow);
 		const columnLines = wikiSections.map((wikiSection, columnIndex) => {
@@ -3525,7 +3579,8 @@ async function openStatusPanel(
 				} else if (panelState.section === "wiki") {
 					const selectedSection = wikiSections[panelState.wikiColumnIndex];
 					const row = selectedSection?.rows?.[panelState.wikiRowIndex];
-					if (row)
+					if (row) {
+						const preview = wikiMarkdownPreview(panelState.project, row.path);
 						openStatusPanelDetail(panelState, {
 							kind: "wiki",
 							title: row.title || row.path,
@@ -3535,8 +3590,12 @@ async function openStatusPanel(
 								`Code: ${row.code_area || "—"}`,
 								"",
 								row.summary || row.note || "No extra detail.",
+								...(preview.length
+									? ["", "Markdown preview:", ...preview]
+									: []),
 							],
 						});
+					}
 				} else if (panelState.section === "roadmap") {
 					const taskId =
 						roadmapColumns[panelState.roadmapColumnIndex]?.task_ids?.[

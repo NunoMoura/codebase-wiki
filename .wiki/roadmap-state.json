@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-05-02T00:34:33Z",
+  "generated_at": "2026-05-02T00:38:00Z",
   "health": {
     "color": "yellow",
     "errors": 0,
@@ -9,48 +9,42 @@
   },
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-02T00:34:33Z",
+    "graph_generated_at": "2026-05-02T00:38:00Z",
     "revision": {
       "git": {
-        "head": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+        "head": "3c0906e38572fca7352aa3e820369391069c26b1",
         "dirty": true,
         "dirty_paths": [
-          ".wiki/knowledge/lexicon.md",
-          ".wiki/knowledge/product/overview.md",
-          ".wiki/knowledge/product/stories.md",
-          ".wiki/knowledge/product/surfaces.md",
-          ".wiki/knowledge/product/users.md",
           ".wiki/roadmap.json",
-          "extensions/codewiki/templates.ts",
-          "scripts/smoke-test.mjs"
+          "extensions/codewiki/index.ts"
         ],
         "paths": {
-          ".wiki/knowledge": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+          ".wiki/knowledge": "3c0906e38572fca7352aa3e820369391069c26b1",
           ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          ".wiki/knowledge/lexicon.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/knowledge/product/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/knowledge/product/stories.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/knowledge/product/surfaces.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/knowledge/product/users.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+          ".wiki/knowledge/lexicon.md": "3c0906e38572fca7352aa3e820369391069c26b1",
+          ".wiki/knowledge/product/overview.md": "3c0906e38572fca7352aa3e820369391069c26b1",
+          ".wiki/knowledge/product/stories.md": "3c0906e38572fca7352aa3e820369391069c26b1",
+          ".wiki/knowledge/product/surfaces.md": "3c0906e38572fca7352aa3e820369391069c26b1",
+          ".wiki/knowledge/product/users.md": "3c0906e38572fca7352aa3e820369391069c26b1",
           ".wiki/knowledge/system/extensions/codewiki/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/system/flows/context-memory.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/system/flows/sanitation-release.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/system/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/system/runtime/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/system/v2-operating-model.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          ".wiki/roadmap.json": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+          ".wiki/roadmap.json": "3c0906e38572fca7352aa3e820369391069c26b1",
           "README.md": "53578e465699177d1945148075b98a9fc539da26",
-          "extensions/codewiki": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+          "extensions/codewiki": "3c0906e38572fca7352aa3e820369391069c26b1",
           "extensions/codewiki/contracts.ts": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           "extensions/codewiki/index.ts": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          "extensions/codewiki/templates.ts": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+          "extensions/codewiki/templates.ts": "3c0906e38572fca7352aa3e820369391069c26b1",
           "package.json": "53578e465699177d1945148075b98a9fc539da26",
           "scripts/codewiki-gateway.mjs": "a6fc64223df319b53cd863958c062c28180ebbd8",
           "scripts/rebuild_docs_meta.py": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
-          "scripts/smoke-test.mjs": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
+          "scripts/smoke-test.mjs": "3c0906e38572fca7352aa3e820369391069c26b1",
           "skills": "a6fc64223df319b53cd863958c062c28180ebbd8",
           "skills/codewiki-architecture/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           "skills/codewiki-plan/SKILL.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
@@ -61,18 +55,18 @@
         }
       },
       "spec_digest": "4da6b8575fde00825759bd77d469520400f205997ed220407a8861e1329768d2",
-      "task_digest": "54045676adaa22373e885991a13a5f2aa75959244ac997e4df048dd4fe09d70f",
-      "evidence_digest": "03bf7173bb53abcb2cb386630c48dce38853fe1c05bc3f036ac3423bc592d037"
+      "task_digest": "17a93f2fa8fc5e6cf791a8bddf04ea1f7deb5ad60e3b1110012ebaabf6cfe356",
+      "evidence_digest": "ab9a94045610c11a363238b1bbb50e1635da1e4bf1d2a51825d96d3e6f47b68b"
     },
     "roadmap_folder": ".wiki/roadmap",
     "task_context_root": ".wiki/roadmap/tasks"
   },
   "summary": {
     "task_count": 25,
-    "open_count": 9,
+    "open_count": 8,
     "status_counts": {
-      "done": 16,
-      "todo": 9
+      "done": 17,
+      "todo": 8
     },
     "priority_counts": {
       "high": 15,
@@ -108,7 +102,6 @@
       "TASK-025"
     ],
     "open_task_ids": [
-      "TASK-017",
       "TASK-018",
       "TASK-019",
       "TASK-020",
@@ -120,7 +113,6 @@
     ],
     "in_progress_task_ids": [],
     "todo_task_ids": [
-      "TASK-017",
       "TASK-018",
       "TASK-019",
       "TASK-020",
@@ -147,7 +139,8 @@
       "TASK-013",
       "TASK-014",
       "TASK-015",
-      "TASK-016"
+      "TASK-016",
+      "TASK-017"
     ],
     "cancelled_task_ids": [],
     "recent_task_ids": [
@@ -1209,7 +1202,7 @@
     "TASK-017": {
       "id": "TASK-017",
       "title": "Render architecture graph in status panel",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "kind": "ui",
       "summary": "Update the CodeWiki status panel to render the generated architecture view and show component or flow details when selected.",
@@ -1246,13 +1239,27 @@
       ],
       "updated": "2026-05-02",
       "revision": {
-        "digest": "37775318e72c24d70871fc69518e2c2e263d80aa5e342748a67466d607542136"
+        "digest": "18eaa71d7e26db75f80a4f9d76af2498a187c308834bd45faf6a179763a2adfa"
       },
       "context_path": ".wiki/roadmap/tasks/TASK-017/context.json",
       "loop": {
-        "phase": "implement",
-        "updated_at": "",
-        "evidence": null
+        "phase": "done",
+        "updated_at": "2026-05-02T00:37:53Z",
+        "evidence": {
+          "verdict": "pass",
+          "summary": "Implemented architecture fallback display and richer wiki detail cards; ready for verification.",
+          "checks_run": [
+            "npm run typecheck -- --pretty false",
+            "npm test"
+          ],
+          "files_touched": [
+            "extensions/codewiki/index.ts"
+          ],
+          "issues": [
+            "Generated architecture JSON/Mermaid remains TASK-020; panel degrades to system-doc fallback until that view exists."
+          ],
+          "updated_at": "2026-05-02T00:37:53Z"
+        }
       }
     },
     "TASK-018": {
