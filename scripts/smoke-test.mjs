@@ -222,6 +222,7 @@ async function main() {
 				"codewiki_state",
 				"codewiki_task",
 				"codewiki_session",
+				"codewiki_heartbeat",
 			],
 			"extension tools",
 		);
@@ -426,6 +427,31 @@ async function main() {
 			stateResult.content[0]?.text ?? "",
 			/open \d+; next/i,
 			"State tool should return compact summary text",
+		);
+		const heartbeatTool = extension.tools.get("codewiki_heartbeat");
+		assert.ok(
+			heartbeatTool && typeof heartbeatTool.definition?.execute === "function",
+			"Heartbeat tool missing execute function",
+		);
+		const heartbeatResult = await heartbeatTool.definition.execute(
+			"heartbeat-tool-smoke",
+			{
+				repoPath: projectDir,
+				mode: "maintain",
+				dryRun: true,
+				budget: { maxCycles: 2, maxWrites: 1, maxSubagents: 1, risk: "low" },
+			},
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		assert.equal(heartbeatResult.details.mode, "maintain");
+		assert.equal(heartbeatResult.details.budget.maxWrites, 1);
+		assert.ok(
+			heartbeatResult.details.stop.conditions.includes(
+				"ambiguous_or_destructive_action",
+			),
+			"Heartbeat stop conditions should include ambiguity/destructive guard",
 		);
 
 		const taskTool = extension.tools.get("codewiki_task");

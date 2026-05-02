@@ -49,6 +49,7 @@ Acceptance signals:
 - Session RAM is treated as volatile and expensive.
 - Subagents handle context-heavy verification and research.
 - Heartbeat modes have budgets, stop conditions, and write boundaries.
+- Observe mode reports only, maintain mode refreshes/audits safe generated state, and work mode resumes roadmap tasks within explicit risk limits.
 
 ## Sanitize historical state
 

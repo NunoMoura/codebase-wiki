@@ -71,7 +71,15 @@ Subagents should run context-heavy or bias-sensitive work in fresh sessions. Goo
 
 ## Heartbeat
 
-Heartbeat is a bounded autonomous loop. It reads status, rebuilds stale views, chooses inner-loop or outer-loop work, spawns subagents for heavy checks, writes canonical truth, rebuilds views, and stops on budget, risk, or ambiguity. Modes should include observe, maintain, and work.
+Heartbeat is a bounded autonomous loop. It reads status, rebuilds stale views, chooses inner-loop or outer-loop work, spawns subagents for heavy checks, writes canonical truth, rebuilds views, and stops on budget, risk, ambiguity, failed checks, or missing approval.
+
+Modes:
+
+- `observe`: read status/views and report the next action; no writes or subagents by default.
+- `maintain`: refresh generated views, audit view drift, and propose safe maintenance within a low-risk write/subagent budget.
+- `work`: resume a roadmap task or planning loop within explicit cycle, wall-time, write, subagent, and risk budgets.
+
+Push, version bump, and archive behavior require policy permission plus green verification checks.
 
 ## Optional bounded context tools
 

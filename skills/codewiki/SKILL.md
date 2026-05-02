@@ -52,6 +52,16 @@ Internal agent tools:
 - Do not hand-edit roadmap/event state when package tools can mutate it.
 - Use `AGENTS.md` only for repo-specific policy layered on top of this package.
 
+## Heartbeat policy
+
+Heartbeat modes are bounded:
+
+- `observe`: read status/views only and report next action.
+- `maintain`: refresh/audit generated views and propose safe maintenance within write/subagent budgets.
+- `work`: resume a roadmap task only inside explicit cycle, wall-time, write, subagent, and risk budgets.
+
+Stop on budget exhaustion, medium/high risk beyond budget, ambiguity, destructive action, failed checks, or missing approval. Push, version bump, and archive actions require policy permission plus green checks.
+
 ## Bootstrap/status flow
 
 1. If `.wiki/config.json` is absent, use `/wiki-bootstrap` or internal `codewiki_setup`/`codewiki_bootstrap`.

@@ -5,7 +5,7 @@ description: Automatic inner execution loop for CodeWiki roadmap tasks. Use when
 
 # CodeWiki Task
 
-Run the inner loop. The user should not manually trigger verification stages.
+Run the inner loop. The user should not manually trigger verification stages. For bounded autonomous runs, heartbeat selects whether to resume this inner loop, but this skill still owns task execution.
 
 ```text
 load task → create context → implement → local verify → fresh verify → evidence → close/block/follow-up
@@ -21,6 +21,7 @@ load task → create context → implement → local verify → fresh verify →
 - Use short local feedback loops during implementation: typecheck, tests, lint, runtime smoke, or targeted scripts.
 - Verification evidence, not confidence, controls closure.
 - Use `codewiki_task` for evidence, close, block, or follow-up task creation.
+- In heartbeat `work` mode, stop before risky/destructive changes, ambiguous product decisions, failed checks, or budget exhaustion.
 
 ## Workflow
 

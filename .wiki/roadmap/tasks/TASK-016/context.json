@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T01:44:11Z",
+  "generated_at": "2026-05-02T01:54:29Z",
   "context_path": ".wiki/roadmap/tasks/TASK-016/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -48,9 +48,10 @@
       "digest": "cf564cd4346331e234c923e5b2c43b89425f15d92faa7204323f930fb1f41833"
     },
     "git": {
-      "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+      "head": "b89c737a9201f997dfab4559020744016884d537",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/product/stories.md",
         ".wiki/roadmap.json",
         "scripts/smoke-test.mjs"
       ],
@@ -59,21 +60,21 @@
         ".wiki/knowledge/product/stories.md": "3c0906e38572",
         ".wiki/knowledge/product/surfaces.md": "643c940fa1ca",
         ".wiki/knowledge/product/users.md": "643c940fa1ca",
-        ".wiki/roadmap.json": "ce607eba2ff9",
+        ".wiki/roadmap.json": "b89c737a9201",
         "extensions/codewiki/templates.ts": "ce607eba2ff9",
-        "scripts/smoke-test.mjs": "ce607eba2ff9"
+        "scripts/smoke-test.mjs": "b89c737a9201"
       }
     },
-    "spec_digest": "151b0ca0a13570791a910b35deda823493fc3dcf4d57e9ebd7c73733dce46a6c",
-    "code_digest": "8c7cbea5e316d413490ff69a95e2c1e809e54f7d9ea1b3e8a46fddc8161ec33d",
+    "spec_digest": "f34ed7f926876b64c784fe8542d5aa516804272a6fcf496494b8db31a3e80cae",
+    "code_digest": "b8e9e22a49a319f2c0d5f58eccb0d667b3c244e523e264abb9389856b61651f3",
     "graph": {
       "git": {
-        "head": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+        "head": "b89c737a9201f997dfab4559020744016884d537",
         "dirty": true
       },
-      "spec_digest": "b800321a1649e91f4531344f9ad934714b5a3f2702baf12ba5bf4505afe0b1f4",
-      "task_digest": "d81688ae62251ef604c6ec1bfe460371e0191ab91025aef360586987b82255e6",
-      "evidence_digest": "179a791316d9a89eee9de5a5d9006d650c2944ce8bd9b80fb449e1447b4188a4"
+      "spec_digest": "2a0449fb4c6266a6d53ab68d36cdc605e3d08a78822ed4d8b2ac663b4864e24b",
+      "task_digest": "4599761cb800c48acd62582f1bf99654267ed95d953f486bb6feef87b7cd36b1",
+      "evidence_digest": "b260b3423a77022538af08fc4b0aa39db38b5ae65cd584e48b7e668d0deb0b15"
     }
   },
   "specs": [
@@ -103,7 +104,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "bf5df626b45e5c6e75c51c34774efb3cb7fb10eac687439ba02efad48e5b747a"
+        "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69"
       },
       "expand": {
         "read": ".wiki/knowledge/product/stories.md"
@@ -149,7 +150,7 @@
       "extensions/codewiki/templates.ts",
       "scripts/smoke-test.mjs"
     ],
-    "digest": "8c7cbea5e316d413490ff69a95e2c1e809e54f7d9ea1b3e8a46fddc8161ec33d",
+    "digest": "b8e9e22a49a319f2c0d5f58eccb0d667b3c244e523e264abb9389856b61651f3",
     "expand": [
       {
         "read": "extensions/codewiki/templates.ts"

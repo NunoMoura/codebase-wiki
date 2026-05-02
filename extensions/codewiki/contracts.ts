@@ -70,6 +70,23 @@ export const SUBAGENT_PROPOSAL_VALUES = [
 	"task_delta",
 	"follow_up",
 ] as const;
+export const HEARTBEAT_MODE_VALUES = ["observe", "maintain", "work"] as const;
+export const HEARTBEAT_RISK_VALUES = ["low", "medium", "high"] as const;
+
+export interface HeartbeatBudget {
+	maxCycles: number;
+	maxWallSeconds: number;
+	maxWrites: number;
+	maxSubagents: number;
+	risk: HeartbeatRisk;
+}
+
+export interface HeartbeatToolInput {
+	repoPath?: string;
+	mode?: HeartbeatMode;
+	budget?: Partial<HeartbeatBudget>;
+	dryRun?: boolean;
+}
 
 export interface ScopeConfig {
 	include?: string[];
@@ -136,6 +153,8 @@ export type SubagentRole = (typeof SUBAGENT_ROLE_VALUES)[number];
 export type SubagentVerdict = (typeof SUBAGENT_VERDICT_VALUES)[number];
 export type SubagentProposalKind =
 	(typeof SUBAGENT_PROPOSAL_VALUES)[number];
+export type HeartbeatMode = (typeof HEARTBEAT_MODE_VALUES)[number];
+export type HeartbeatRisk = (typeof HEARTBEAT_RISK_VALUES)[number];
 
 export interface SubagentBrief {
 	role: SubagentRole;
@@ -880,6 +899,27 @@ export const repoPathToolField = Type.Optional(
 			"Optional repo root, or any path inside the target repo, when the current cwd is outside that repo.",
 	}),
 );
+export const heartbeatModeSchema = Type.Union(
+	HEARTBEAT_MODE_VALUES.map((value) => Type.Literal(value)),
+);
+export const heartbeatRiskSchema = Type.Union(
+	HEARTBEAT_RISK_VALUES.map((value) => Type.Literal(value)),
+);
+export const codewikiHeartbeatToolInputSchema = Type.Object({
+	repoPath: repoPathToolField,
+	mode: Type.Optional(heartbeatModeSchema),
+	budget: Type.Optional(
+		Type.Object({
+			maxCycles: Type.Optional(Type.Number()),
+			maxWallSeconds: Type.Optional(Type.Number()),
+			maxWrites: Type.Optional(Type.Number()),
+			maxSubagents: Type.Optional(Type.Number()),
+			risk: Type.Optional(heartbeatRiskSchema),
+		}),
+	),
+	dryRun: Type.Optional(Type.Boolean()),
+});
+
 export const toolTaskIdField = Type.String({
 	minLength: 1,
 	description:
