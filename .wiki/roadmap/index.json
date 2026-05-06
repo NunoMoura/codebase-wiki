@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T05:54:25Z",
+  "generated_at": "2026-05-05T23:21:30Z",
   "source": ".wiki/roadmap.json",
   "state_path": ".wiki/roadmap/state.json",
   "events_path": ".wiki/roadmap/events.jsonl",
@@ -167,6 +167,36 @@
       "title": "Simplify status panel tabs and header",
       "status": "done",
       "context_path": ".wiki/roadmap/tasks/TASK-027/context.json"
+    },
+    {
+      "id": "TASK-28",
+      "title": "Stabilize CodeWiki refactor after partial DDD migration",
+      "status": "verify",
+      "context_path": ".wiki/roadmap/tasks/TASK-28/context.json"
+    },
+    {
+      "id": "TASK-29",
+      "title": "Add architecture boundary checks and characterization coverage",
+      "status": "verify",
+      "context_path": ".wiki/roadmap/tasks/TASK-29/context.json"
+    },
+    {
+      "id": "TASK-30",
+      "title": "Extract agent-agnostic application use cases behind ports",
+      "status": "verify",
+      "context_path": ".wiki/roadmap/tasks/TASK-30/context.json"
+    },
+    {
+      "id": "TASK-31",
+      "title": "Move Pi surface into adapters and retire legacy core structure",
+      "status": "verify",
+      "context_path": ".wiki/roadmap/tasks/TASK-31/context.json"
+    },
+    {
+      "id": "TASK-32",
+      "title": "Prove the adapter seam with a minimal CLI surface",
+      "status": "verify",
+      "context_path": ".wiki/roadmap/tasks/TASK-32/context.json"
     }
   ]
 }

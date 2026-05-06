@@ -143,7 +143,14 @@ export function applyAppendJsonl(repo, gateway, op) {
 	return { kind: "append_jsonl", path: relPath };
 }
 
+let rebuildRunner = null;
+
+export function setRebuildRunner(runner) {
+	rebuildRunner = runner;
+}
+
 export function runRebuild(repo) {
+	if (rebuildRunner) return rebuildRunner(repo);
 	for (const command of [
 		["python3", "scripts/rebuild_docs_meta.py"],
 		["python", "scripts/rebuild_docs_meta.py"],

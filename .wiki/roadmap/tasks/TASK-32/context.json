@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-05T23:21:30Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-32/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-32",
+    "title": "Prove the adapter seam with a minimal CLI surface",
+    "status": "verify",
+    "phase": "verify",
+    "priority": "low",
+    "kind": "architecture",
+    "summary": "After Pi migration is stable, add a minimal CLI adapter that calls the same application use cases to prove the agent-agnostic seam before larger MCP/Codex/Claude integrations.",
+    "labels": [
+      "architecture",
+      "cli",
+      "adapter-proof"
+    ],
+    "goal": {
+      "outcome": "A second simple adapter validates that CodeWiki workflows are no longer Pi-bound.",
+      "acceptance": [
+        "CLI exposes a minimal state read command and one task operation using application use cases.",
+        "CLI code does not duplicate domain/task/session logic from Pi tools.",
+        "Tests prove Pi and CLI paths share application behavior.",
+        "Findings from the CLI proof update future MCP/Codex/Claude adapter tasks if needed."
+      ],
+      "non_goals": [
+        "Do not build a full CLI product.",
+        "Do not implement MCP server, Codex extension, or Claude Code integration in this task."
+      ],
+      "verification": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check.",
+        "Run minimal CLI command against a temp fixture if packaged."
+      ]
+    },
+    "delta": {
+      "desired": "A tiny second adapter proves the ports/application seam with minimal complexity.",
+      "current": "Only Pi is a real adapter. Application/core seams are improved, but no CLI adapter exists yet; missing future CLI path was removed from code_paths to avoid lint noise.",
+      "closure": "CLI proof works or records seam gaps as follow-up tasks."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "76c29cd2ca8cbfbbc5b3b4fcf80abb4a28320e557de7fe525879e7008359c94f"
+    },
+    "git": {
+      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/roadmap.json",
+        "package.json"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afe",
+        ".wiki/knowledge/system/overview.md": "643c940fa1ca",
+        ".wiki/roadmap.json": "c70091881afe",
+        "extensions/codewiki/src/adapters": "",
+        "extensions/codewiki/src/application": "",
+        "extensions/codewiki/src/core": "",
+        "package.json": "53578e465699"
+      }
+    },
+    "spec_digest": "14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b",
+    "code_digest": "45a69c5e56f37e0ab14519bf511a23d9eb56595ae9fcdc6837dc8e6c92f43348",
+    "graph": {
+      "git": {
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "dirty": true
+      },
+      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
+      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
+      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "state": "active",
+      "owners": [
+        "engineering"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs"
+      ],
+      "revision": {
+        "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src/application",
+      "extensions/codewiki/src/core",
+      "extensions/codewiki/src/adapters",
+      "package.json"
+    ],
+    "digest": "45a69c5e56f37e0ab14519bf511a23d9eb56595ae9fcdc6837dc8e6c92f43348",
+    "expand": [
+      {
+        "read": "extensions/codewiki/src/application"
+      },
+      {
+        "read": "extensions/codewiki/src/core"
+      },
+      {
+        "read": "extensions/codewiki/src/adapters"
+      },
+      {
+        "read": "package.json"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-32/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

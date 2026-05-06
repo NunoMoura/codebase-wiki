@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T05:54:24Z",
+  "generated_at": "2026-05-05T23:21:30Z",
   "context_path": ".wiki/roadmap/tasks/TASK-005/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -48,31 +48,32 @@
       "digest": "f61f7848fb6b72f7e9ba182db4e89831c84588a4a991d36a124fa5c4fbe2b69e"
     },
     "git": {
-      "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
       "dirty": true,
       "dirty_paths": [
         ".wiki/knowledge/system/extensions/codewiki/overview.md",
-        ".wiki/roadmap.json"
+        ".wiki/roadmap.json",
+        "package.json"
       ],
       "paths": {
         ".wiki/knowledge/clients/overview.md": "a6f94f94cbc0",
         ".wiki/knowledge/product/overview.md": "643c940fa1ca",
-        ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca",
-        ".wiki/roadmap.json": "fe19eabf6306",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afe",
+        ".wiki/roadmap.json": "c70091881afe",
         "package.json": "53578e465699",
         "skills/codewiki/SKILL.md": "fe19eabf6306"
       }
     },
-    "spec_digest": "c921127f5c5519d317592cb452e84ec2d49f3a58835a7f9e311a19ac627e6085",
-    "code_digest": "e22222cd434f76ded9be74fd5340a35520af6413ddc2f62ee5edbe15b7cee2c4",
+    "spec_digest": "ecb751add926b580ac1d3c998bd629a8fa24937b81590785ec427264439a6c13",
+    "code_digest": "0e11b249b567c6fad664e57ff6c2bcd1166c0d446ac0baa31229541429fa2d00",
     "graph": {
       "git": {
-        "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         "dirty": true
       },
-      "spec_digest": "1699914a21b993bb1df96237bebd3a08a9ba886c447faeac247f7f069e281fa4",
-      "task_digest": "6f633bf2eaaddcb48106ae71f3d6ad694cde1215f25e0fb9efa4174a6aea9d22",
-      "evidence_digest": "8cc95cfb5fab95297aaed1cdb4f91770085001b3a2666b37131343b1ca0574d4"
+      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
+      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
+      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
     }
   },
   "specs": [
@@ -111,7 +112,7 @@
     {
       "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
       "title": "Extensions / Codewiki",
-      "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
       "state": "active",
       "owners": [
         "engineering"
@@ -119,10 +120,11 @@
       "code_paths": [
         "extensions/codewiki",
         "skills",
-        "scripts/smoke-test.mjs"
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs"
       ],
       "revision": {
-        "digest": "e1b3f44c42cb0979d95a8f73a7f08015a397b95cfda073e181371604557c65b5"
+        "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12"
       },
       "expand": {
         "read": ".wiki/knowledge/system/extensions/codewiki/overview.md"
@@ -134,7 +136,7 @@
       "skills/codewiki/SKILL.md",
       "package.json"
     ],
-    "digest": "e22222cd434f76ded9be74fd5340a35520af6413ddc2f62ee5edbe15b7cee2c4",
+    "digest": "0e11b249b567c6fad664e57ff6c2bcd1166c0d446ac0baa31229541429fa2d00",
     "expand": [
       {
         "read": "skills/codewiki/SKILL.md"

@@ -297,24 +297,13 @@ function bootstrapTargetPaths(
 }
 
 async function runRebuild(root: string): Promise<void> {
-	const commands = [
-		["python3", "scripts/rebuild_docs_meta.py"],
-		["python", "scripts/rebuild_docs_meta.py"],
-	];
-
-	let lastError: unknown;
-	for (const command of commands) {
-		try {
-			await execFileAsync(command[0], command.slice(1), {
-				cwd: root,
-				timeout: 120_000,
-			});
-			return;
-		} catch (error) {
-			lastError = error;
-		}
+	try {
+		const { CodewikiRebuilder } = await import("./src/engine/rebuild.js");
+		await new CodewikiRebuilder(root).rebuildAll();
+	} catch (error) {
+		console.error("Bootstrap rebuild failed with stack:", error);
+		throw new Error(`Bootstrap rebuild failed: ${formatError(error)}`);
 	}
-	throw new Error(`Bootstrap rebuild failed: ${formatError(lastError)}`);
 }
 
 function parseArgs(

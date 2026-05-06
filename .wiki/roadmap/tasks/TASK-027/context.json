@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T05:54:25Z",
+  "generated_at": "2026-05-05T23:21:30Z",
   "context_path": ".wiki/roadmap/tasks/TASK-027/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -50,34 +50,33 @@
       "digest": "92ba0d3bd372a2f2fdc555dd4094131a49c8037f57b5943adaf2828929a020e3"
     },
     "git": {
-      "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
       "dirty": true,
       "dirty_paths": [
-        ".wiki/knowledge/product/surfaces.md",
         ".wiki/knowledge/system/extensions/codewiki/overview.md",
         ".wiki/roadmap.json",
         "extensions/codewiki/index.ts",
         "scripts/smoke-test.mjs"
       ],
       "paths": {
-        ".wiki/knowledge/product/surfaces.md": "643c940fa1ca",
-        ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca",
-        ".wiki/roadmap.json": "fe19eabf6306",
-        "extensions/codewiki/index.ts": "fe19eabf6306",
+        ".wiki/knowledge/product/surfaces.md": "c70091881afe",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afe",
+        ".wiki/roadmap.json": "c70091881afe",
+        "extensions/codewiki/index.ts": "c70091881afe",
         "scripts/rebuild_docs_meta.py": "7e122a3091d4",
-        "scripts/smoke-test.mjs": "7e122a3091d4"
+        "scripts/smoke-test.mjs": "c70091881afe"
       }
     },
-    "spec_digest": "a0adc7757d7d696a259b2801506d8f82c637af44effc0e874fafba85e4b7d354",
-    "code_digest": "0e4e1278883aa59621e0b6ca7ae1296bf5fde9903af363ffd2bba4a5131940bf",
+    "spec_digest": "b5bdea765c441437f9f16e739ba93ba079d5e5fafbd2fd898153cfddb74a037f",
+    "code_digest": "e23e3fdd93771f6dea20eba6b051fbf847c68a4bc5fcb6bb5a4d63e1c4474865",
     "graph": {
       "git": {
-        "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         "dirty": true
       },
-      "spec_digest": "1699914a21b993bb1df96237bebd3a08a9ba886c447faeac247f7f069e281fa4",
-      "task_digest": "6f633bf2eaaddcb48106ae71f3d6ad694cde1215f25e0fb9efa4174a6aea9d22",
-      "evidence_digest": "8cc95cfb5fab95297aaed1cdb4f91770085001b3a2666b37131343b1ca0574d4"
+      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
+      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
+      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
     }
   },
   "specs": [
@@ -101,7 +100,7 @@
     {
       "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
       "title": "Extensions / Codewiki",
-      "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
       "state": "active",
       "owners": [
         "engineering"
@@ -109,10 +108,11 @@
       "code_paths": [
         "extensions/codewiki",
         "skills",
-        "scripts/smoke-test.mjs"
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs"
       ],
       "revision": {
-        "digest": "e1b3f44c42cb0979d95a8f73a7f08015a397b95cfda073e181371604557c65b5"
+        "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12"
       },
       "expand": {
         "read": ".wiki/knowledge/system/extensions/codewiki/overview.md"
@@ -125,7 +125,7 @@
       "scripts/rebuild_docs_meta.py",
       "scripts/smoke-test.mjs"
     ],
-    "digest": "0e4e1278883aa59621e0b6ca7ae1296bf5fde9903af363ffd2bba4a5131940bf",
+    "digest": "e23e3fdd93771f6dea20eba6b051fbf847c68a4bc5fcb6bb5a4d63e1c4474865",
     "expand": [
       {
         "read": "extensions/codewiki/index.ts"

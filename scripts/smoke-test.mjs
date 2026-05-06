@@ -485,7 +485,7 @@ async function main() {
 						kind: "agent-workflow",
 						summary: "Track unresolved smoke-test delta.",
 						spec_paths: [".wiki/knowledge/product/overview.md"],
-						code_paths: ["scripts/rebuild_docs_meta.py"],
+						code_paths: [],
 						research_ids: [],
 						labels: ["smoke"],
 						goal: {
@@ -540,7 +540,7 @@ async function main() {
 						summary:
 							"Duplicate smoke delta should be coordinated automatically.",
 						spec_paths: [".wiki/knowledge/product/overview.md"],
-						code_paths: ["scripts/rebuild_docs_meta.py"],
+						code_paths: [],
 						labels: ["smoke"],
 					},
 				],
@@ -707,7 +707,7 @@ async function main() {
 			"session-focus-smoke",
 			{
 				repoPath: projectDir,
-				taskId: "ROADMAP-001",
+				taskId: "TASK-001",
 				action: "focus",
 				summary: "Focused smoke session on starter task.",
 				setSessionName: true,
@@ -1140,7 +1140,7 @@ async function main() {
 		assert.equal(
 			first.created.length,
 			25,
-			`Expected 25 created starter files including lexicon, product split, architecture manifest, runtime policy, client surfaces, and inferred boundary specs, got ${first.created.length}`,
+			`Expected 25 created starter files including lexicon, product split, architecture manifest, runtime policy, client surfaces, roadmap event log, and inferred boundary specs, got ${first.created.length}`,
 		);
 		assert.equal(
 			first.updated.length,
@@ -1921,7 +1921,7 @@ async function main() {
 						kind: "testing",
 						summary: "Exercise closed-task archival.",
 						spec_paths: [".wiki/knowledge/system/rules/overview.md"],
-						code_paths: ["scripts/rebuild_docs_meta.py"],
+						code_paths: [],
 						labels: ["archive-smoke"],
 						goal: { verification: ["Close task and compact hot roadmap."] },
 					},

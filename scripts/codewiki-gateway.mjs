@@ -1,6 +1,8 @@
 #!/usr/bin/env node
+import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import {
 	applyTransactionFile,
 	assertReadable,
@@ -10,7 +12,26 @@ import {
 	matchesAny,
 	normalizeRel,
 	readJson,
+	setRebuildRunner,
 } from "./codewiki-transaction.mjs";
+
+try {
+	const { CodewikiRebuilder } = await import("../extensions/codewiki/src/engine/rebuild.ts");
+	setRebuildRunner((repo) => new CodewikiRebuilder(repo).rebuildAll());
+} catch (error) {
+	if (!process.env.CODEWIKI_TSX_READY && String(error?.code) === "ERR_UNKNOWN_FILE_EXTENSION") {
+		try {
+			execFileSync("npx", ["--yes", "tsx", fileURLToPath(import.meta.url), ...process.argv.slice(2)], {
+				stdio: "inherit",
+				env: { ...process.env, CODEWIKI_TSX_READY: "1" },
+			});
+		} catch (spawnError) {
+			process.exit(spawnError.status ?? 1);
+		}
+		process.exit(0);
+	}
+	throw error;
+}
 
 function usage() {
 	return `Usage:

@@ -1,0 +1,119 @@
+import { readFileSync } from "node:fs";
+import { basename, dirname, extname, join, relative, resolve } from "node:path";
+import yaml from "js-yaml";
+import { WikiProject } from "../core/types";
+
+const H1_RE = /^#\s+(.+)$/m;
+const LINK_RE = /\]\(([^)]+)\)/g;
+
+export interface ParsedDoc {
+	path: string; // Relative to repo root
+	frontmatter: Record<string, any>;
+	body: string;
+	title: string;
+	summary: string;
+	owners: string[];
+	tags: string[];
+	code_paths: string[];
+	doc_type: string;
+	links: string[];
+}
+
+export function splitFrontmatter(text: string): { data: Record<string, any>; body: string } {
+	if (!text.startsWith("---\n") && !text.startsWith("---\r\n")) {
+		return { data: {}, body: text };
+	}
+	const endMatch = text.match(/\r?\n---\r?\n/);
+	if (!endMatch || endMatch.index === undefined) {
+		return { data: {}, body: text };
+	}
+	const end = endMatch.index;
+	const raw = text.substring(text.indexOf("\n") + 1, end);
+	const body = text.substring(end + endMatch[0].length);
+	
+	try {
+		const loaded = yaml.load(raw);
+		const data = typeof loaded === "object" && loaded !== null ? loaded : {};
+		return { data: data as Record<string, any>, body };
+	} catch (e) {
+		return { data: {}, body };
+	}
+}
+
+export function extractTitle(filePath: string, body: string, frontmatter: Record<string, any>): string {
+	if (typeof frontmatter.title === "string" && frontmatter.title.trim()) {
+		return frontmatter.title.trim();
+	}
+	const match = H1_RE.exec(body);
+	if (match) {
+		return match[1].trim();
+	}
+	const stem = basename(filePath, extname(filePath)).replace(/[-_]/g, " ").trim();
+	if (stem) {
+		return stem.split(" ").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+	}
+	return basename(filePath);
+}
+
+export function classifyDoc(repoRoot: string, project: WikiProject, absolutePath: string): string {
+	if (project.roadmapDocPath && absolutePath === resolve(repoRoot, project.roadmapDocPath)) {
+		return "roadmap";
+	}
+	if (absolutePath.startsWith(resolve(repoRoot, project.specsRoot))) {
+		return "spec";
+	}
+	return "doc";
+}
+
+export function normalizeLocalLink(repoRoot: string, sourceRel: string, target: string): string | null {
+	const sourceDir = dirname(resolve(repoRoot, sourceRel));
+	const targetPath = resolve(sourceDir, target);
+	if (!targetPath.startsWith(resolve(repoRoot))) {
+		return null; // Escapes repo
+	}
+	// Normalizes to posix path
+	return relative(repoRoot, targetPath).split("\\").join("/");
+}
+
+export function extractLinks(repoRoot: string, body: string, relPath: string): string[] {
+	const links = new Set<string>();
+	let match;
+	while ((match = LINK_RE.exec(body)) !== null) {
+		const target = match[1].trim();
+		if (!target || target.startsWith("#") || target.includes("://") || target.startsWith("mailto:")) {
+			continue;
+		}
+		const base = target.split("#")[0];
+		if (!base) continue;
+		
+		const normalized = normalizeLocalLink(repoRoot, relPath, base);
+		if (normalized) {
+			links.add(normalized);
+		}
+	}
+	return Array.from(links).sort();
+}
+
+export function parseDoc(repoRoot: string, project: WikiProject, absolutePath: string): ParsedDoc {
+	const text = readFileSync(absolutePath, "utf8");
+	const { data: frontmatter, body } = splitFrontmatter(text);
+	
+	const relPath = relative(repoRoot, absolutePath).split("\\").join("/");
+	const title = extractTitle(absolutePath, body, frontmatter);
+	
+	const docType = classifyDoc(repoRoot, project, absolutePath);
+	const links = extractLinks(repoRoot, body, relPath);
+
+	return {
+		path: relPath,
+		frontmatter,
+		body,
+		title,
+		summary: typeof frontmatter.summary === "string" ? frontmatter.summary : "",
+		owners: Array.isArray(frontmatter.owners) ? frontmatter.owners : [],
+		tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : [],
+		code_paths: Array.isArray(frontmatter.code_paths) ? frontmatter.code_paths : [],
+		doc_type: docType,
+		links,
+	};
+}

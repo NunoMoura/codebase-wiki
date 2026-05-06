@@ -2,10 +2,8 @@ import { access, readdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 export const PREFERRED_WIKI_CONFIG_RELATIVE_PATH = ".wiki/config.json";
-export const LEGACY_WIKI_CONFIG_RELATIVE_PATH = ".docs/config.json";
 export const WIKI_CONFIG_RELATIVE_PATHS = [
 	PREFERRED_WIKI_CONFIG_RELATIVE_PATH,
-	LEGACY_WIKI_CONFIG_RELATIVE_PATH,
 ] as const;
 const GIT_MARKER_PATH = ".git";
 const DISCOVERY_EXCLUDED_DIRS = new Set([
@@ -42,13 +40,6 @@ export async function findWikiRootsBelow(
 		if (roots.length >= maxResults || seen.has(dir)) return;
 		seen.add(dir);
 
-		if (await hasAnyPath(dir, WIKI_CONFIG_RELATIVE_PATHS)) {
-			roots.push(dir);
-			return;
-		}
-
-		if (depth >= maxDepth) return;
-
 		let entries: Array<{ name: string; isDirectory(): boolean }>;
 		try {
 			entries = (await readdir(dir, { withFileTypes: true })) as Array<{
@@ -58,6 +49,14 @@ export async function findWikiRootsBelow(
 		} catch {
 			return;
 		}
+
+		const hasWikiDir = entries.some((e) => e.name === ".wiki" && e.isDirectory());
+		if (hasWikiDir && await hasAnyPath(dir, WIKI_CONFIG_RELATIVE_PATHS)) {
+			roots.push(dir);
+			return;
+		}
+
+		if (depth >= maxDepth) return;
 
 		for (const entry of entries) {
 			if (roots.length >= maxResults) return;

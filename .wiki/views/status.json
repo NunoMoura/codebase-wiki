@@ -6,11 +6,18 @@
     "total_issues": 0
   },
   "roadmap": {
-    "open_count": 0,
-    "active_task_ids": [],
-    "next_task_id": "",
+    "open_count": 5,
+    "active_task_ids": [
+      "TASK-28",
+      "TASK-29",
+      "TASK-30",
+      "TASK-31",
+      "TASK-32"
+    ],
+    "next_task_id": "TASK-28",
     "status_counts": {
-      "done": 27
+      "done": 27,
+      "verify": 5
     }
   },
   "views": {
@@ -24,25 +31,25 @@
   "meta": {
     "version": 1,
     "name": "status",
-    "generated_at": "2026-05-02T05:54:25Z",
+    "generated_at": "2026-05-05T23:21:31Z",
     "revision": {
-      "digest": "1322038d8ec0b4ff5f54135994a240d3f7b9d41b3aeb8b4d050debe289f969eb",
+      "digest": "c5e451127ef421d7ecde24c1d43183903051d3e5b1b4c8df933d366c67fcbd1c",
       "git": {
-        "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/product/surfaces.md",
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/view-rebuild.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
+          ".wiki/knowledge/system/overview.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
           ".wiki/roadmap/events.jsonl",
           ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json",
-          ".wiki/roadmap/tasks/TASK-001/context.json",
-          ".wiki/roadmap/tasks/TASK-002/context.json"
+          ".wiki/roadmap/state.json"
         ],
         "paths": {}
       }
@@ -52,7 +59,7 @@
       "target_bytes": 8000
     },
     "recommended_next_reads": [
-      ".wiki/views/drift.json"
+      ".wiki/views/roadmap/queue.json"
     ]
   }
 }

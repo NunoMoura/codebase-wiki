@@ -1,16 +1,18 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T05:54:25Z",
+  "generated_at": "2026-05-05T23:21:31Z",
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-02T05:54:24Z",
+    "graph_generated_at": "2026-05-05T23:21:29Z",
     "revision": {
       "git": {
-        "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         "dirty": true,
         "dirty_paths": [
-          ".wiki/knowledge/product/surfaces.md",
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/view-rebuild.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
+          ".wiki/knowledge/system/overview.md",
           ".wiki/roadmap.json",
           ".wiki/views/drift.json",
           ".wiki/views/evidence/recent.json",
@@ -47,15 +49,19 @@
           ".wiki/views/roadmap/tasks/TASK-024/context.json",
           ".wiki/views/roadmap/tasks/TASK-025/context.json",
           ".wiki/views/roadmap/tasks/TASK-026/context.json",
+          ".wiki/views/roadmap/tasks/TASK-027/context.json",
           ".wiki/views/status-state.json",
           ".wiki/views/status.json",
           ".wiki/views/system/architecture.json",
+          "extensions/codewiki/bootstrap.ts",
           "extensions/codewiki/contracts.ts",
           "extensions/codewiki/index.ts",
-          "scripts/smoke-test.mjs"
+          "extensions/codewiki/project-root.ts",
+          "extensions/codewiki/templates.ts",
+          "package.json"
         ],
         "paths": {
-          ".wiki/knowledge": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          ".wiki/knowledge": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
@@ -63,7 +69,7 @@
           ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/product/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d",
-          ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
@@ -71,7 +77,7 @@
           ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
@@ -80,29 +86,42 @@
           ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          ".wiki/roadmap.json": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          ".wiki/views": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          ".wiki/roadmap.json": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          ".wiki/views": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "README.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "extensions/codewiki": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "extensions/codewiki/contracts.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "extensions/codewiki/index.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "extensions/codewiki": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "extensions/codewiki/contracts.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "extensions/codewiki/index.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "extensions/codewiki/src/adapters": "",
+          "extensions/codewiki/src/adapters/pi": "",
+          "extensions/codewiki/src/application": "",
+          "extensions/codewiki/src/core": "",
+          "extensions/codewiki/src/core/ports.ts": "",
+          "extensions/codewiki/src/core/rebuild-runner.ts": "",
+          "extensions/codewiki/src/domain": "",
+          "extensions/codewiki/src/engine": "",
+          "extensions/codewiki/src/engine/rebuild.ts": "",
+          "extensions/codewiki/src/infrastructure": "",
+          "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "",
           "extensions/codewiki/templates.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           "package.json": "53578e465699177d1945148075b98a9fc539da26",
+          "scripts/check-architecture.mjs": "",
           "scripts/codewiki-gateway.mjs": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-          "scripts/smoke-test.mjs": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
+          "scripts/smoke-test.mjs": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           "skills/codewiki-architecture/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
           "skills/codewiki-plan/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
           "skills/codewiki-research/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
           "skills/codewiki-task/SKILL.md": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
           "skills/codewiki-verify/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-          "skills/codewiki/SKILL.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+          "skills/codewiki/SKILL.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "tsconfig.json": "0d12c87f000aedcf818ece8c88819b938a8d881e"
         }
       },
-      "spec_digest": "1699914a21b993bb1df96237bebd3a08a9ba886c447faeac247f7f069e281fa4",
-      "task_digest": "6f633bf2eaaddcb48106ae71f3d6ad694cde1215f25e0fb9efa4174a6aea9d22",
-      "evidence_digest": "8cc95cfb5fab95297aaed1cdb4f91770085001b3a2666b37131343b1ca0574d4"
+      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
+      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
+      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
     }
   },
   "project": {
@@ -119,27 +138,27 @@
   "summary": {
     "total_specs": 14,
     "mapped_specs": 14,
-    "aligned_specs": 24,
-    "tracked_specs": 0,
+    "aligned_specs": 22,
+    "tracked_specs": 2,
     "untracked_specs": 0,
     "blocked_specs": 0,
     "unmapped_specs": 0,
-    "task_count": 27,
-    "open_task_count": 0,
+    "task_count": 32,
+    "open_task_count": 5,
     "done_task_count": 27
   },
   "bars": {
     "tracked_drift": {
       "label": "Tracked drift",
-      "value": 0,
-      "total": 0,
+      "value": 2,
+      "total": 2,
       "percent": 100
     },
     "roadmap_done": {
       "label": "Roadmap done",
       "value": 27,
-      "total": 27,
-      "percent": 100
+      "total": 32,
+      "percent": 84
     },
     "spec_mapping": {
       "label": "Spec mapping",
@@ -150,6 +169,8 @@
   },
   "views": {
     "risky_spec_paths": [
+      ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      ".wiki/knowledge/system/overview.md",
       ".wiki/knowledge/clients/agent-skills.md",
       ".wiki/knowledge/clients/overview.md",
       ".wiki/knowledge/clients/surfaces/roadmap.md",
@@ -165,27 +186,31 @@
       ".wiki/knowledge/system/components/runtime-gateway.md",
       ".wiki/knowledge/system/components/view-rebuild.md",
       ".wiki/knowledge/system/components/views.md",
-      ".wiki/knowledge/system/extensions/codewiki/overview.md",
       ".wiki/knowledge/system/flows/context-memory.md",
       ".wiki/knowledge/system/flows/runtime-transaction.md",
       ".wiki/knowledge/system/flows/sanitation-release.md",
       ".wiki/knowledge/system/flows/task-loop.md",
       ".wiki/knowledge/system/flows/view-rebuild.md",
-      ".wiki/knowledge/system/overview.md",
       ".wiki/knowledge/system/runtime/overview.md",
       ".wiki/knowledge/system/v2-operating-model.md"
     ],
     "top_risky_spec_paths": [
+      ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      ".wiki/knowledge/system/overview.md",
       ".wiki/knowledge/clients/agent-skills.md",
       ".wiki/knowledge/clients/overview.md",
-      ".wiki/knowledge/clients/surfaces/roadmap.md",
-      ".wiki/knowledge/clients/surfaces/status-panel.md",
-      ".wiki/knowledge/lexicon.md"
+      ".wiki/knowledge/clients/surfaces/roadmap.md"
     ],
-    "open_task_ids": []
+    "open_task_ids": [
+      "TASK-28",
+      "TASK-29",
+      "TASK-30",
+      "TASK-31",
+      "TASK-32"
+    ]
   },
   "heartbeat": {
-    "generated_at": "2026-05-02T05:54:25Z",
+    "generated_at": "2026-05-05T23:21:31Z",
     "summary": {
       "lane_count": 3,
       "freshness_basis": "work-first",
@@ -213,14 +238,16 @@
           "task_close:architecture",
           "manual_review"
         ],
-        "checked_at": "2026-05-02T05:54:25Z",
+        "checked_at": "2026-05-05T23:21:30Z",
         "revision": {
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": true,
             "dirty_paths": [
-              ".wiki/knowledge/product/surfaces.md",
+              ".wiki/knowledge/system/components/extension.md",
+              ".wiki/knowledge/system/components/view-rebuild.md",
               ".wiki/knowledge/system/extensions/codewiki/overview.md",
+              ".wiki/knowledge/system/overview.md",
               ".wiki/roadmap.json",
               ".wiki/views/drift.json",
               ".wiki/views/evidence/recent.json",
@@ -257,18 +284,22 @@
               ".wiki/views/roadmap/tasks/TASK-024/context.json",
               ".wiki/views/roadmap/tasks/TASK-025/context.json",
               ".wiki/views/roadmap/tasks/TASK-026/context.json",
+              ".wiki/views/roadmap/tasks/TASK-027/context.json",
               ".wiki/views/status-state.json",
               ".wiki/views/status.json",
               ".wiki/views/system/architecture.json",
+              "extensions/codewiki/bootstrap.ts",
               "extensions/codewiki/contracts.ts",
               "extensions/codewiki/index.ts",
-              "scripts/smoke-test.mjs"
+              "extensions/codewiki/project-root.ts",
+              "extensions/codewiki/templates.ts",
+              "scripts/codewiki-gateway.mjs"
             ],
             "paths": {
-              ".wiki/knowledge": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/knowledge": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               ".wiki/knowledge/product/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d",
-              ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
@@ -276,7 +307,7 @@
               ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
@@ -285,28 +316,33 @@
               ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/roadmap.json": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/views": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki/contracts.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki/index.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/roadmap.json": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              ".wiki/views": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki/contracts.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki/index.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki/src/adapters/pi": "",
+              "extensions/codewiki/src/core/rebuild-runner.ts": "",
+              "extensions/codewiki/src/engine/rebuild.ts": "",
+              "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "",
+              "scripts/check-architecture.mjs": "",
               "scripts/codewiki-gateway.mjs": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-              "scripts/smoke-test.mjs": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
+              "scripts/smoke-test.mjs": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           },
-          "spec_digest": "a1d3f5fe30447b6b63a4c925c4e2a6771dc9fec1526c7f9d1355a50e7fdb4e44",
-          "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-          "code_digest": "12713ce9b83f69b00f88db19a95532b4994795af745a035a6b48b47b76a7979d",
-          "digest": "35acca635919c1630c1de60d98a0644fd240753b7820ae1ec4be668b1fb4ad3b"
+          "spec_digest": "1bf9d205103ac0149dbfdda32000411a6f46a86bd5b8adea634a017bcabe92e1",
+          "task_digest": "cbad91c7b48b07b69ce38aae39052fab8379992a9804387627e590e4fb93e0d6",
+          "code_digest": "8bcce4c6ce964c9ae7ac48447cb949f97fd0b45bc9db3033b5c21225b86ee701",
+          "digest": "dfd9de3ad11efd3d260a0de69a9ac4728cb2f9125d6e304407877a0b6a8595c5"
         },
         "freshness": {
-          "status": "stale",
+          "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-02T05:54:25Z",
-          "reason": "revision changed: task, code",
-          "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
+          "checked_at": "2026-05-05T23:21:30Z",
+          "reason": "revision anchors unchanged since previous heartbeat",
+          "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
         "spec_paths": [
           ".wiki/knowledge/product/overview.md",
@@ -331,23 +367,37 @@
         ],
         "code_paths": [
           "extensions/codewiki/index.ts",
+          "extensions/codewiki/src/adapters/pi",
           ".wiki/knowledge",
           ".wiki/roadmap.json",
           "scripts/codewiki-gateway.mjs",
+          "extensions/codewiki/src/core/rebuild-runner.ts",
+          "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
+          "extensions/codewiki/src/engine/rebuild.ts",
           "scripts/rebuild_docs_meta.py",
           ".wiki/views",
           "extensions/codewiki",
           "skills",
           "scripts/smoke-test.mjs",
+          "scripts/check-architecture.mjs",
           "extensions/codewiki/contracts.ts"
         ],
         "code_area": "extensions, .wiki +2 more",
-        "open_task_ids": [],
-        "risky_spec_paths": [],
+        "open_task_ids": [
+          "TASK-28",
+          "TASK-29",
+          "TASK-30",
+          "TASK-31",
+          "TASK-32"
+        ],
+        "risky_spec_paths": [
+          ".wiki/knowledge/system/extensions/codewiki/overview.md",
+          ".wiki/knowledge/system/overview.md"
+        ],
         "stats": {
           "total_specs": 19,
-          "aligned_specs": 19,
-          "tracked_specs": 0,
+          "aligned_specs": 17,
+          "tracked_specs": 2,
           "untracked_specs": 0,
           "blocked_specs": 0,
           "unmapped_specs": 0
@@ -372,14 +422,16 @@
           "rebuild_complete",
           "pre_close_check"
         ],
-        "checked_at": "2026-05-02T05:54:25Z",
+        "checked_at": "2026-05-05T23:21:30Z",
         "revision": {
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": true,
             "dirty_paths": [
-              ".wiki/knowledge/product/surfaces.md",
+              ".wiki/knowledge/system/components/extension.md",
+              ".wiki/knowledge/system/components/view-rebuild.md",
               ".wiki/knowledge/system/extensions/codewiki/overview.md",
+              ".wiki/knowledge/system/overview.md",
               ".wiki/roadmap.json",
               ".wiki/views/drift.json",
               ".wiki/views/evidence/recent.json",
@@ -416,22 +468,26 @@
               ".wiki/views/roadmap/tasks/TASK-024/context.json",
               ".wiki/views/roadmap/tasks/TASK-025/context.json",
               ".wiki/views/roadmap/tasks/TASK-026/context.json",
+              ".wiki/views/roadmap/tasks/TASK-027/context.json",
               ".wiki/views/status-state.json",
               ".wiki/views/status.json",
               ".wiki/views/system/architecture.json",
+              "extensions/codewiki/bootstrap.ts",
               "extensions/codewiki/contracts.ts",
               "extensions/codewiki/index.ts",
-              "scripts/smoke-test.mjs"
+              "extensions/codewiki/project-root.ts",
+              "extensions/codewiki/templates.ts",
+              "scripts/codewiki-gateway.mjs"
             ],
             "paths": {
-              ".wiki/knowledge": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/knowledge": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
@@ -440,28 +496,33 @@
               ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/roadmap.json": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/views": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki/contracts.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki/index.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/roadmap.json": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              ".wiki/views": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki/contracts.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki/index.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki/src/adapters/pi": "",
+              "extensions/codewiki/src/core/rebuild-runner.ts": "",
+              "extensions/codewiki/src/engine/rebuild.ts": "",
+              "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "",
+              "scripts/check-architecture.mjs": "",
               "scripts/codewiki-gateway.mjs": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-              "scripts/smoke-test.mjs": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
+              "scripts/smoke-test.mjs": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           },
-          "spec_digest": "771a64ea81fe3d7859e7a594ae31ad0c5c64f47d5968b762966d7709c66d6e9b",
-          "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-          "code_digest": "12713ce9b83f69b00f88db19a95532b4994795af745a035a6b48b47b76a7979d",
-          "digest": "05e711c9ccd7e485e50ab0d0c1cae7edd7faff4736b30d8b997c6211e8d10761"
+          "spec_digest": "ec0d737217a012fc28a116d0a88f0e922b8ca9121ddb3419736bf84dfabedca7",
+          "task_digest": "cbad91c7b48b07b69ce38aae39052fab8379992a9804387627e590e4fb93e0d6",
+          "code_digest": "8bcce4c6ce964c9ae7ac48447cb949f97fd0b45bc9db3033b5c21225b86ee701",
+          "digest": "a0dda731edf9bc9feadd8c1f45d4ba9d74fdb7e6cd136bc9427a2355ad8facb5"
         },
         "freshness": {
-          "status": "stale",
+          "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-02T05:54:25Z",
-          "reason": "revision changed: task, code",
-          "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
+          "checked_at": "2026-05-05T23:21:30Z",
+          "reason": "revision anchors unchanged since previous heartbeat",
+          "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
         "spec_paths": [
           ".wiki/knowledge/system/components/extension.md",
@@ -482,23 +543,37 @@
         ],
         "code_paths": [
           "extensions/codewiki/index.ts",
+          "extensions/codewiki/src/adapters/pi",
           ".wiki/knowledge",
           ".wiki/roadmap.json",
           "scripts/codewiki-gateway.mjs",
+          "extensions/codewiki/src/core/rebuild-runner.ts",
+          "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
+          "extensions/codewiki/src/engine/rebuild.ts",
           "scripts/rebuild_docs_meta.py",
           ".wiki/views",
           "extensions/codewiki",
           "skills",
           "scripts/smoke-test.mjs",
+          "scripts/check-architecture.mjs",
           "extensions/codewiki/contracts.ts"
         ],
         "code_area": "extensions, .wiki +2 more",
-        "open_task_ids": [],
-        "risky_spec_paths": [],
+        "open_task_ids": [
+          "TASK-28",
+          "TASK-29",
+          "TASK-30",
+          "TASK-31",
+          "TASK-32"
+        ],
+        "risky_spec_paths": [
+          ".wiki/knowledge/system/extensions/codewiki/overview.md",
+          ".wiki/knowledge/system/overview.md"
+        ],
         "stats": {
           "total_specs": 15,
-          "aligned_specs": 15,
-          "tracked_specs": 0,
+          "aligned_specs": 13,
+          "tracked_specs": 2,
           "untracked_specs": 0,
           "blocked_specs": 0,
           "unmapped_specs": 0
@@ -523,14 +598,16 @@
           "code_change:ux_surface",
           "manual_review"
         ],
-        "checked_at": "2026-05-02T05:54:25Z",
+        "checked_at": "2026-05-05T23:21:30Z",
         "revision": {
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": true,
             "dirty_paths": [
-              ".wiki/knowledge/product/surfaces.md",
+              ".wiki/knowledge/system/components/extension.md",
+              ".wiki/knowledge/system/components/view-rebuild.md",
               ".wiki/knowledge/system/extensions/codewiki/overview.md",
+              ".wiki/knowledge/system/overview.md",
               ".wiki/roadmap.json",
               ".wiki/views/drift.json",
               ".wiki/views/evidence/recent.json",
@@ -567,22 +644,26 @@
               ".wiki/views/roadmap/tasks/TASK-024/context.json",
               ".wiki/views/roadmap/tasks/TASK-025/context.json",
               ".wiki/views/roadmap/tasks/TASK-026/context.json",
+              ".wiki/views/roadmap/tasks/TASK-027/context.json",
               ".wiki/views/status-state.json",
               ".wiki/views/status.json",
               ".wiki/views/system/architecture.json",
+              "extensions/codewiki/bootstrap.ts",
               "extensions/codewiki/contracts.ts",
               "extensions/codewiki/index.ts",
-              "scripts/smoke-test.mjs"
+              "extensions/codewiki/project-root.ts",
+              "extensions/codewiki/templates.ts",
+              "scripts/codewiki-gateway.mjs"
             ],
             "paths": {
-              ".wiki/knowledge": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/knowledge": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
               ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
               ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
               ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
               ".wiki/knowledge/product/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d",
-              ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
@@ -590,7 +671,7 @@
               ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
@@ -599,29 +680,34 @@
               ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/roadmap.json": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/views": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/roadmap.json": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              ".wiki/views": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               "README.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki/contracts.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki/index.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              "extensions/codewiki": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki/contracts.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki/index.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "extensions/codewiki/src/adapters/pi": "",
+              "extensions/codewiki/src/core/rebuild-runner.ts": "",
+              "extensions/codewiki/src/engine/rebuild.ts": "",
+              "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "",
+              "scripts/check-architecture.mjs": "",
               "scripts/codewiki-gateway.mjs": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-              "scripts/smoke-test.mjs": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
+              "scripts/smoke-test.mjs": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           },
-          "spec_digest": "abb73b8ead0e50f3443146a9bc5134a452b42f444bcb0d7e740204f225d630eb",
-          "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-          "code_digest": "6a2ef6bcf776aef3c02e7b184bc304cb7a1612cc21329ae4ff1c7cb1f5498dc6",
-          "digest": "6f6afc8b2f80c91e85cff6610652fd9804634fb708148ab05e8d8285f3341248"
+          "spec_digest": "a0e212de3c2ee1b4e6f485ebee0e6574b52a870487ac9e1a61d68546cb424651",
+          "task_digest": "cbad91c7b48b07b69ce38aae39052fab8379992a9804387627e590e4fb93e0d6",
+          "code_digest": "93c624efb7fce7104212dd4d747b59e73741416fc863fda8dafe7538f063c8e9",
+          "digest": "40c2b4812315d4263df1a266a52e44c79cdc58af5533d9bc5e88b4be19bf3cf4"
         },
         "freshness": {
-          "status": "stale",
+          "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-02T05:54:25Z",
-          "reason": "revision changed: task, code",
-          "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
+          "checked_at": "2026-05-05T23:21:30Z",
+          "reason": "revision anchors unchanged since previous heartbeat",
+          "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
         "spec_paths": [
           ".wiki/knowledge/product/overview.md",
@@ -650,24 +736,38 @@
         ],
         "code_paths": [
           "extensions/codewiki/index.ts",
+          "extensions/codewiki/src/adapters/pi",
           ".wiki/knowledge",
           ".wiki/roadmap.json",
           "scripts/codewiki-gateway.mjs",
+          "extensions/codewiki/src/core/rebuild-runner.ts",
+          "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
+          "extensions/codewiki/src/engine/rebuild.ts",
           "scripts/rebuild_docs_meta.py",
           ".wiki/views",
           "extensions/codewiki",
           "skills",
           "scripts/smoke-test.mjs",
+          "scripts/check-architecture.mjs",
           "extensions/codewiki/contracts.ts",
           "README.md"
         ],
         "code_area": "extensions, .wiki +3 more",
-        "open_task_ids": [],
-        "risky_spec_paths": [],
+        "open_task_ids": [
+          "TASK-28",
+          "TASK-29",
+          "TASK-30",
+          "TASK-31",
+          "TASK-32"
+        ],
+        "risky_spec_paths": [
+          ".wiki/knowledge/system/extensions/codewiki/overview.md",
+          ".wiki/knowledge/system/overview.md"
+        ],
         "stats": {
           "total_specs": 23,
-          "aligned_specs": 23,
-          "tracked_specs": 0,
+          "aligned_specs": 21,
+          "tracked_specs": 2,
           "untracked_specs": 0,
           "blocked_specs": 0,
           "unmapped_specs": 0
@@ -681,7 +781,7 @@
     ]
   },
   "parallel": {
-    "generated_at": "2026-05-02T05:54:25Z",
+    "generated_at": "2026-05-05T23:21:31Z",
     "active_session_count": 2,
     "collision_task_ids": [],
     "sessions": [
@@ -706,19 +806,118 @@
     ]
   },
   "resume": {
-    "source": "heartbeat",
-    "task_id": "",
-    "lane_id": "product_system",
-    "heading": "Product \u2194 System",
-    "command": "/wiki-status",
-    "reason": "Resume from stale heartbeat lane.",
-    "phase": "implement",
-    "verification": "Strategic intent drift should first be inspected through the canonical status surface.",
+    "source": "task",
+    "task_id": "TASK-28",
+    "lane_id": "",
+    "heading": "TASK-28 \u2014 Stabilize CodeWiki refactor after partial DDD migration",
+    "command": "/wiki-resume TASK-28",
+    "reason": "Resume roadmap task (verify \u00b7 verify).",
+    "phase": "verify",
+    "verification": "Run `npm run typecheck`.",
     "evidence": "No closure evidence recorded yet.",
-    "heartbeat": "Re-run status or resume implementation before trusting prior drift analysis."
+    "heartbeat": "Roadmap task should stay grounded in current heartbeat cues."
   },
   "wiki": {
     "rows": [
+      {
+        "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        "title": "Extensions / Codewiki",
+        "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+        "drift_status": "tracked",
+        "code_paths": [
+          "extensions/codewiki",
+          "skills",
+          "scripts/smoke-test.mjs",
+          "scripts/check-architecture.mjs"
+        ],
+        "code_area": "extensions, skills +1 more",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-28",
+          "TASK-29",
+          "TASK-30",
+          "TASK-31",
+          "TASK-32",
+          "TASK-002",
+          "TASK-005",
+          "TASK-027",
+          "TASK-010"
+        ],
+        "primary_task": {
+          "id": "TASK-28",
+          "status": "verify",
+          "title": "Stabilize CodeWiki refactor after partial DDD migration"
+        },
+        "revision": {
+          "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
+          "git": {
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "dirty": true,
+            "dirty_paths": [
+              ".wiki/knowledge/system/extensions/codewiki/overview.md"
+            ],
+            "paths": {
+              ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
+            }
+          }
+        },
+        "note": "tracked by TASK-28"
+      },
+      {
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
+        "drift_status": "tracked",
+        "code_paths": [
+          "extensions/codewiki",
+          "scripts/rebuild_docs_meta.py",
+          "skills"
+        ],
+        "code_area": "extensions, scripts +1 more",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-28",
+          "TASK-29",
+          "TASK-30",
+          "TASK-31",
+          "TASK-32",
+          "TASK-001",
+          "TASK-002",
+          "TASK-004",
+          "TASK-012",
+          "TASK-013",
+          "TASK-014",
+          "TASK-015",
+          "TASK-010"
+        ],
+        "primary_task": {
+          "id": "TASK-28",
+          "status": "verify",
+          "title": "Stabilize CodeWiki refactor after partial DDD migration"
+        },
+        "revision": {
+          "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
+          "git": {
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "dirty": true,
+            "dirty_paths": [
+              ".wiki/knowledge/system/overview.md"
+            ],
+            "paths": {
+              ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+            }
+          }
+        },
+        "note": "tracked by TASK-28"
+      },
       {
         "path": ".wiki/knowledge/clients/agent-skills.md",
         "title": "Agent Skills",
@@ -745,7 +944,7 @@
         "revision": {
           "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -782,7 +981,7 @@
         "revision": {
           "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -817,7 +1016,7 @@
         "revision": {
           "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -846,7 +1045,7 @@
         "revision": {
           "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -881,7 +1080,7 @@
         "revision": {
           "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -919,7 +1118,7 @@
         "revision": {
           "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -953,7 +1152,7 @@
         "revision": {
           "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -988,13 +1187,11 @@
         "revision": {
           "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/product/surfaces.md"
-            ],
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "dirty": false,
+            "dirty_paths": [],
             "paths": {
-              ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+              ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
             }
           }
         },
@@ -1023,7 +1220,7 @@
         "revision": {
           "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1036,12 +1233,13 @@
       {
         "path": ".wiki/knowledge/system/components/extension.md",
         "title": "CodeWiki Extension",
-        "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools.",
+        "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
         "drift_status": "aligned",
         "code_paths": [
-          "extensions/codewiki/index.ts"
+          "extensions/codewiki/index.ts",
+          "extensions/codewiki/src/adapters/pi"
         ],
-        "code_area": "extensions/codewiki/index.ts",
+        "code_area": "extensions +1 more",
         "issue_counts": {
           "errors": 0,
           "warnings": 0,
@@ -1050,11 +1248,13 @@
         "related_task_ids": [],
         "primary_task": null,
         "revision": {
-          "digest": "0d1babfa8f1bb1b3cc3a0f0232c2f32e570710ec9335c39e6b7270fd9d7897a7",
+          "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-            "dirty": false,
-            "dirty_paths": [],
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "dirty": true,
+            "dirty_paths": [
+              ".wiki/knowledge/system/components/extension.md"
+            ],
             "paths": {
               ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
             }
@@ -1081,7 +1281,7 @@
         "revision": {
           "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1110,7 +1310,7 @@
         "revision": {
           "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1139,7 +1339,7 @@
         "revision": {
           "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1152,12 +1352,15 @@
       {
         "path": ".wiki/knowledge/system/components/view-rebuild.md",
         "title": "View Rebuild",
-        "summary": "Generator that derives graph, lint, roadmap, status, and v2 views from canonical truth.",
+        "summary": "Generator and runner seam that derive graph, lint, roadmap, status, and v2 views from canonical truth.",
         "drift_status": "aligned",
         "code_paths": [
+          "extensions/codewiki/src/core/rebuild-runner.ts",
+          "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
+          "extensions/codewiki/src/engine/rebuild.ts",
           "scripts/rebuild_docs_meta.py"
         ],
-        "code_area": "scripts/rebuild_docs_meta.py",
+        "code_area": "extensions, scripts",
         "issue_counts": {
           "errors": 0,
           "warnings": 0,
@@ -1166,11 +1369,13 @@
         "related_task_ids": [],
         "primary_task": null,
         "revision": {
-          "digest": "bdb2bfdc759e203b38dab3eeb8320ae332e8122204e6eb3c234777bfd98f526c",
+          "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-            "dirty": false,
-            "dirty_paths": [],
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "dirty": true,
+            "dirty_paths": [
+              ".wiki/knowledge/system/components/view-rebuild.md"
+            ],
             "paths": {
               ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
             }
@@ -1197,53 +1402,11 @@
         "revision": {
           "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
               ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
-        "title": "Extensions / Codewiki",
-        "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
-        "drift_status": "aligned",
-        "code_paths": [
-          "extensions/codewiki",
-          "skills",
-          "scripts/smoke-test.mjs"
-        ],
-        "code_area": "extensions, skills +1 more",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [
-          "TASK-002",
-          "TASK-005",
-          "TASK-027",
-          "TASK-010"
-        ],
-        "primary_task": {
-          "id": "TASK-002",
-          "status": "done",
-          "title": "Map code ownership into spec hierarchy"
-        },
-        "revision": {
-          "digest": "e1b3f44c42cb0979d95a8f73a7f08015a397b95cfda073e181371604557c65b5",
-          "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/system/extensions/codewiki/overview.md"
-            ],
-            "paths": {
-              ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
             }
           }
         },
@@ -1279,7 +1442,7 @@
         "revision": {
           "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1308,7 +1471,7 @@
         "revision": {
           "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1343,7 +1506,7 @@
         "revision": {
           "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1372,7 +1535,7 @@
         "revision": {
           "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1401,55 +1564,11 @@
         "revision": {
           "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
               ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/overview.md",
-        "title": "System Overview",
-        "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
-        "drift_status": "aligned",
-        "code_paths": [
-          "extensions/codewiki",
-          "scripts/rebuild_docs_meta.py",
-          "skills"
-        ],
-        "code_area": "extensions, scripts +1 more",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [
-          "TASK-001",
-          "TASK-002",
-          "TASK-004",
-          "TASK-012",
-          "TASK-013",
-          "TASK-014",
-          "TASK-015",
-          "TASK-010"
-        ],
-        "primary_task": {
-          "id": "TASK-001",
-          "status": "done",
-          "title": "Lock product intent in specs"
-        },
-        "revision": {
-          "digest": "e518ec2537ade265f09ae825d85debee1b150f509658239f13938c71a36a670c",
-          "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
             }
           }
         },
@@ -1485,7 +1604,7 @@
         "revision": {
           "digest": "f0306aa864ab75eef3e989a6819add03232c7a7df3e95a442eaac6d4b688b332",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1530,7 +1649,7 @@
         "revision": {
           "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485",
           "git": {
-            "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1574,7 +1693,7 @@
             "revision": {
               "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1608,7 +1727,7 @@
             "revision": {
               "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1643,13 +1762,11 @@
             "revision": {
               "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/product/surfaces.md"
-                ],
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
-                  ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+                  ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
                 }
               }
             },
@@ -1678,7 +1795,7 @@
             "revision": {
               "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1694,6 +1811,105 @@
         "id": "system",
         "label": "System",
         "rows": [
+          {
+            "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+            "title": "Extensions / Codewiki",
+            "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+            "drift_status": "tracked",
+            "code_paths": [
+              "extensions/codewiki",
+              "skills",
+              "scripts/smoke-test.mjs",
+              "scripts/check-architecture.mjs"
+            ],
+            "code_area": "extensions, skills +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-28",
+              "TASK-29",
+              "TASK-30",
+              "TASK-31",
+              "TASK-32",
+              "TASK-002",
+              "TASK-005",
+              "TASK-027",
+              "TASK-010"
+            ],
+            "primary_task": {
+              "id": "TASK-28",
+              "status": "verify",
+              "title": "Stabilize CodeWiki refactor after partial DDD migration"
+            },
+            "revision": {
+              "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
+              "git": {
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "dirty": true,
+                "dirty_paths": [
+                  ".wiki/knowledge/system/extensions/codewiki/overview.md"
+                ],
+                "paths": {
+                  ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
+                }
+              }
+            },
+            "note": "tracked by TASK-28"
+          },
+          {
+            "path": ".wiki/knowledge/system/overview.md",
+            "title": "System Overview",
+            "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
+            "drift_status": "tracked",
+            "code_paths": [
+              "extensions/codewiki",
+              "scripts/rebuild_docs_meta.py",
+              "skills"
+            ],
+            "code_area": "extensions, scripts +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-28",
+              "TASK-29",
+              "TASK-30",
+              "TASK-31",
+              "TASK-32",
+              "TASK-001",
+              "TASK-002",
+              "TASK-004",
+              "TASK-012",
+              "TASK-013",
+              "TASK-014",
+              "TASK-015",
+              "TASK-010"
+            ],
+            "primary_task": {
+              "id": "TASK-28",
+              "status": "verify",
+              "title": "Stabilize CodeWiki refactor after partial DDD migration"
+            },
+            "revision": {
+              "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
+              "git": {
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "dirty": true,
+                "dirty_paths": [
+                  ".wiki/knowledge/system/overview.md"
+                ],
+                "paths": {
+                  ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+                }
+              }
+            },
+            "note": "tracked by TASK-28"
+          },
           {
             "path": ".wiki/knowledge/lexicon.md",
             "title": "Lexicon",
@@ -1719,7 +1935,7 @@
             "revision": {
               "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1732,12 +1948,13 @@
           {
             "path": ".wiki/knowledge/system/components/extension.md",
             "title": "CodeWiki Extension",
-            "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools.",
+            "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
             "drift_status": "aligned",
             "code_paths": [
-              "extensions/codewiki/index.ts"
+              "extensions/codewiki/index.ts",
+              "extensions/codewiki/src/adapters/pi"
             ],
-            "code_area": "extensions/codewiki/index.ts",
+            "code_area": "extensions +1 more",
             "issue_counts": {
               "errors": 0,
               "warnings": 0,
@@ -1746,11 +1963,13 @@
             "related_task_ids": [],
             "primary_task": null,
             "revision": {
-              "digest": "0d1babfa8f1bb1b3cc3a0f0232c2f32e570710ec9335c39e6b7270fd9d7897a7",
+              "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "dirty": true,
+                "dirty_paths": [
+                  ".wiki/knowledge/system/components/extension.md"
+                ],
                 "paths": {
                   ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
                 }
@@ -1777,7 +1996,7 @@
             "revision": {
               "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1806,7 +2025,7 @@
             "revision": {
               "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1835,7 +2054,7 @@
             "revision": {
               "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1848,12 +2067,15 @@
           {
             "path": ".wiki/knowledge/system/components/view-rebuild.md",
             "title": "View Rebuild",
-            "summary": "Generator that derives graph, lint, roadmap, status, and v2 views from canonical truth.",
+            "summary": "Generator and runner seam that derive graph, lint, roadmap, status, and v2 views from canonical truth.",
             "drift_status": "aligned",
             "code_paths": [
+              "extensions/codewiki/src/core/rebuild-runner.ts",
+              "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
+              "extensions/codewiki/src/engine/rebuild.ts",
               "scripts/rebuild_docs_meta.py"
             ],
-            "code_area": "scripts/rebuild_docs_meta.py",
+            "code_area": "extensions, scripts",
             "issue_counts": {
               "errors": 0,
               "warnings": 0,
@@ -1862,11 +2084,13 @@
             "related_task_ids": [],
             "primary_task": null,
             "revision": {
-              "digest": "bdb2bfdc759e203b38dab3eeb8320ae332e8122204e6eb3c234777bfd98f526c",
+              "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "dirty": true,
+                "dirty_paths": [
+                  ".wiki/knowledge/system/components/view-rebuild.md"
+                ],
                 "paths": {
                   ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
                 }
@@ -1893,53 +2117,11 @@
             "revision": {
               "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
-            "title": "Extensions / Codewiki",
-            "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
-            "drift_status": "aligned",
-            "code_paths": [
-              "extensions/codewiki",
-              "skills",
-              "scripts/smoke-test.mjs"
-            ],
-            "code_area": "extensions, skills +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-002",
-              "TASK-005",
-              "TASK-027",
-              "TASK-010"
-            ],
-            "primary_task": {
-              "id": "TASK-002",
-              "status": "done",
-              "title": "Map code ownership into spec hierarchy"
-            },
-            "revision": {
-              "digest": "e1b3f44c42cb0979d95a8f73a7f08015a397b95cfda073e181371604557c65b5",
-              "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/system/extensions/codewiki/overview.md"
-                ],
-                "paths": {
-                  ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
                 }
               }
             },
@@ -1975,7 +2157,7 @@
             "revision": {
               "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2004,7 +2186,7 @@
             "revision": {
               "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2039,7 +2221,7 @@
             "revision": {
               "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2068,7 +2250,7 @@
             "revision": {
               "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2097,55 +2279,11 @@
             "revision": {
               "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/system/overview.md",
-            "title": "System Overview",
-            "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
-            "drift_status": "aligned",
-            "code_paths": [
-              "extensions/codewiki",
-              "scripts/rebuild_docs_meta.py",
-              "skills"
-            ],
-            "code_area": "extensions, scripts +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-001",
-              "TASK-002",
-              "TASK-004",
-              "TASK-012",
-              "TASK-013",
-              "TASK-014",
-              "TASK-015",
-              "TASK-010"
-            ],
-            "primary_task": {
-              "id": "TASK-001",
-              "status": "done",
-              "title": "Lock product intent in specs"
-            },
-            "revision": {
-              "digest": "e518ec2537ade265f09ae825d85debee1b150f509658239f13938c71a36a670c",
-              "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-                "dirty": false,
-                "dirty_paths": [],
-                "paths": {
-                  ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
                 }
               }
             },
@@ -2181,7 +2319,7 @@
             "revision": {
               "digest": "f0306aa864ab75eef3e989a6819add03232c7a7df3e95a442eaac6d4b688b332",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2226,7 +2364,7 @@
             "revision": {
               "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2268,7 +2406,7 @@
             "revision": {
               "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2305,7 +2443,7 @@
             "revision": {
               "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2340,7 +2478,7 @@
             "revision": {
               "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2369,7 +2507,7 @@
             "revision": {
               "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
               "git": {
-                "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2384,9 +2522,15 @@
     ]
   },
   "roadmap": {
-    "focused_task_id": "",
+    "focused_task_id": "TASK-28",
     "blocked_task_ids": [],
-    "in_progress_task_ids": [],
+    "in_progress_task_ids": [
+      "TASK-28",
+      "TASK-29",
+      "TASK-30",
+      "TASK-31",
+      "TASK-32"
+    ],
     "next_task_id": "",
     "columns": [
       {
@@ -2407,7 +2551,13 @@
       {
         "id": "verify",
         "label": "Verify",
-        "task_ids": []
+        "task_ids": [
+          "TASK-28",
+          "TASK-29",
+          "TASK-30",
+          "TASK-31",
+          "TASK-32"
+        ]
       },
       {
         "id": "done",
@@ -2478,6 +2628,105 @@
   },
   "specs": [
     {
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "drift_status": "tracked",
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs"
+      ],
+      "code_area": "extensions, skills +1 more",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-28",
+        "TASK-29",
+        "TASK-30",
+        "TASK-31",
+        "TASK-32",
+        "TASK-002",
+        "TASK-005",
+        "TASK-027",
+        "TASK-010"
+      ],
+      "primary_task": {
+        "id": "TASK-28",
+        "status": "verify",
+        "title": "Stabilize CodeWiki refactor after partial DDD migration"
+      },
+      "revision": {
+        "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
+        "git": {
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/extensions/codewiki/overview.md"
+          ],
+          "paths": {
+            ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
+          }
+        }
+      },
+      "note": "tracked by TASK-28"
+    },
+    {
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
+      "drift_status": "tracked",
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "code_area": "extensions, scripts +1 more",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-28",
+        "TASK-29",
+        "TASK-30",
+        "TASK-31",
+        "TASK-32",
+        "TASK-001",
+        "TASK-002",
+        "TASK-004",
+        "TASK-012",
+        "TASK-013",
+        "TASK-014",
+        "TASK-015",
+        "TASK-010"
+      ],
+      "primary_task": {
+        "id": "TASK-28",
+        "status": "verify",
+        "title": "Stabilize CodeWiki refactor after partial DDD migration"
+      },
+      "revision": {
+        "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
+        "git": {
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/overview.md"
+          ],
+          "paths": {
+            ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+          }
+        }
+      },
+      "note": "tracked by TASK-28"
+    },
+    {
       "path": ".wiki/knowledge/clients/agent-skills.md",
       "title": "Agent Skills",
       "summary": "Compatibility guidance for global Pi skills alongside CodeWiki-specific workflow skills.",
@@ -2503,7 +2752,7 @@
       "revision": {
         "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2540,7 +2789,7 @@
       "revision": {
         "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2575,7 +2824,7 @@
       "revision": {
         "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2604,7 +2853,7 @@
       "revision": {
         "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2639,7 +2888,7 @@
       "revision": {
         "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2677,7 +2926,7 @@
       "revision": {
         "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2711,7 +2960,7 @@
       "revision": {
         "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2746,13 +2995,11 @@
       "revision": {
         "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/product/surfaces.md"
-          ],
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+            ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
           }
         }
       },
@@ -2781,7 +3028,7 @@
       "revision": {
         "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2794,12 +3041,13 @@
     {
       "path": ".wiki/knowledge/system/components/extension.md",
       "title": "CodeWiki Extension",
-      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools.",
+      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
       "drift_status": "aligned",
       "code_paths": [
-        "extensions/codewiki/index.ts"
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi"
       ],
-      "code_area": "extensions/codewiki/index.ts",
+      "code_area": "extensions +1 more",
       "issue_counts": {
         "errors": 0,
         "warnings": 0,
@@ -2808,11 +3056,13 @@
       "related_task_ids": [],
       "primary_task": null,
       "revision": {
-        "digest": "0d1babfa8f1bb1b3cc3a0f0232c2f32e570710ec9335c39e6b7270fd9d7897a7",
+        "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/components/extension.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
           }
@@ -2839,7 +3089,7 @@
       "revision": {
         "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2868,7 +3118,7 @@
       "revision": {
         "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2897,7 +3147,7 @@
       "revision": {
         "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2910,12 +3160,15 @@
     {
       "path": ".wiki/knowledge/system/components/view-rebuild.md",
       "title": "View Rebuild",
-      "summary": "Generator that derives graph, lint, roadmap, status, and v2 views from canonical truth.",
+      "summary": "Generator and runner seam that derive graph, lint, roadmap, status, and v2 views from canonical truth.",
       "drift_status": "aligned",
       "code_paths": [
+        "extensions/codewiki/src/core/rebuild-runner.ts",
+        "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
         "scripts/rebuild_docs_meta.py"
       ],
-      "code_area": "scripts/rebuild_docs_meta.py",
+      "code_area": "extensions, scripts",
       "issue_counts": {
         "errors": 0,
         "warnings": 0,
@@ -2924,11 +3177,13 @@
       "related_task_ids": [],
       "primary_task": null,
       "revision": {
-        "digest": "bdb2bfdc759e203b38dab3eeb8320ae332e8122204e6eb3c234777bfd98f526c",
+        "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/components/view-rebuild.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
           }
@@ -2955,53 +3210,11 @@
       "revision": {
         "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
             ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
-      "title": "Extensions / Codewiki",
-      "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
-      "drift_status": "aligned",
-      "code_paths": [
-        "extensions/codewiki",
-        "skills",
-        "scripts/smoke-test.mjs"
-      ],
-      "code_area": "extensions, skills +1 more",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [
-        "TASK-002",
-        "TASK-005",
-        "TASK-027",
-        "TASK-010"
-      ],
-      "primary_task": {
-        "id": "TASK-002",
-        "status": "done",
-        "title": "Map code ownership into spec hierarchy"
-      },
-      "revision": {
-        "digest": "e1b3f44c42cb0979d95a8f73a7f08015a397b95cfda073e181371604557c65b5",
-        "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/extensions/codewiki/overview.md"
-          ],
-          "paths": {
-            ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
           }
         }
       },
@@ -3037,7 +3250,7 @@
       "revision": {
         "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3066,7 +3279,7 @@
       "revision": {
         "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3101,7 +3314,7 @@
       "revision": {
         "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3130,7 +3343,7 @@
       "revision": {
         "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3159,55 +3372,11 @@
       "revision": {
         "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
             ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/overview.md",
-      "title": "System Overview",
-      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
-      "drift_status": "aligned",
-      "code_paths": [
-        "extensions/codewiki",
-        "scripts/rebuild_docs_meta.py",
-        "skills"
-      ],
-      "code_area": "extensions, scripts +1 more",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [
-        "TASK-001",
-        "TASK-002",
-        "TASK-004",
-        "TASK-012",
-        "TASK-013",
-        "TASK-014",
-        "TASK-015",
-        "TASK-010"
-      ],
-      "primary_task": {
-        "id": "TASK-001",
-        "status": "done",
-        "title": "Lock product intent in specs"
-      },
-      "revision": {
-        "digest": "e518ec2537ade265f09ae825d85debee1b150f509658239f13938c71a36a670c",
-        "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
           }
         }
       },
@@ -3243,7 +3412,7 @@
       "revision": {
         "digest": "f0306aa864ab75eef3e989a6819add03232c7a7df3e95a442eaac6d4b688b332",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3288,7 +3457,7 @@
       "revision": {
         "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3300,15 +3469,15 @@
     }
   ],
   "next_step": {
-    "kind": "observe",
-    "command": "Observe \u2014 roadmap clear",
-    "reason": "No open deterministic drift requires action right now."
+    "kind": "code",
+    "command": "/wiki-resume TASK-28",
+    "reason": "Roadmap already covers current delta; continue in-progress implementation."
   },
   "direction": [
-    "No open deterministic drift requires action right now.",
+    "Roadmap already covers current delta; continue in-progress implementation.",
     "Parallel sessions: 2 active, 0 collision task(s).",
     "Heartbeat lanes: 3 work-first (high=1, medium=1, low=1).",
     "Mapped specs: 14/14.",
-    "No tracked spec drift is open."
+    "Tracked drift coverage: 2/2."
   ]
 }

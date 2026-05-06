@@ -1,29 +1,54 @@
 {
   "summary": {},
-  "rows": [],
+  "rows": [
+    {
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-28",
+      "primary_task": {
+        "id": "TASK-28",
+        "status": "verify",
+        "title": "Stabilize CodeWiki refactor after partial DDD migration"
+      },
+      "code_area": "extensions, skills +1 more"
+    },
+    {
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-28",
+      "primary_task": {
+        "id": "TASK-28",
+        "status": "verify",
+        "title": "Stabilize CodeWiki refactor after partial DDD migration"
+      },
+      "code_area": "extensions, scripts +1 more"
+    }
+  ],
   "issues": [],
   "meta": {
     "version": 1,
     "name": "drift",
-    "generated_at": "2026-05-02T05:54:25Z",
+    "generated_at": "2026-05-05T23:21:31Z",
     "revision": {
-      "digest": "d7e3e8d0b855a7d4d80ff98e2d699b053289ab1cefec5da3ebdfb370d120ae43",
+      "digest": "816812ab9d3508ff783baf57d23fb7dff1c6381bae89d01d1b97e00ccb4537ce",
       "git": {
-        "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/product/surfaces.md",
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/view-rebuild.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
+          ".wiki/knowledge/system/overview.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
           ".wiki/roadmap/events.jsonl",
           ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json",
-          ".wiki/roadmap/tasks/TASK-001/context.json",
-          ".wiki/roadmap/tasks/TASK-002/context.json"
+          ".wiki/roadmap/state.json"
         ],
         "paths": {}
       }
@@ -32,6 +57,9 @@
     "budget": {
       "target_bytes": 16000
     },
-    "recommended_next_reads": []
+    "recommended_next_reads": [
+      ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      ".wiki/knowledge/system/overview.md"
+    ]
   }
 }

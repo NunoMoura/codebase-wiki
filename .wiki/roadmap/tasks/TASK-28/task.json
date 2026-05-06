@@ -1,0 +1,55 @@
+{
+  "id": "TASK-28",
+  "title": "Stabilize CodeWiki refactor after partial DDD migration",
+  "status": "verify",
+  "priority": "critical",
+  "kind": "architecture",
+  "summary": "Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.",
+  "spec_paths": [
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/knowledge/system/extensions/codewiki/overview.md"
+  ],
+  "code_paths": [
+    "extensions/codewiki",
+    "extensions/codewiki/src/adapters/pi",
+    "extensions/codewiki/src/core",
+    "extensions/codewiki/src/engine",
+    "extensions/codewiki/src/infrastructure",
+    "scripts/smoke-test.mjs",
+    "scripts/check-architecture.mjs",
+    "tsconfig.json"
+  ],
+  "research_ids": [],
+  "labels": [
+    "architecture",
+    "stabilization",
+    "migration"
+  ],
+  "goal": {
+    "outcome": "CodeWiki has a green baseline before further architecture migration proceeds.",
+    "acceptance": [
+      "`npm run typecheck` and `npm test` pass.",
+      "`codewiki_state` works from the Pi tool path or the failure is captured with a blocking root cause.",
+      "Current duplicate module sets are inventoried with a keep/delete/move decision.",
+      "No broad folder moves happen before the baseline is verified."
+    ],
+    "non_goals": [
+      "Do not implement MCP, Codex, or Claude adapters.",
+      "Do not complete the full DDD migration in this task.",
+      "Do not delete compatibility shims without proving all imports moved."
+    ],
+    "verification": [
+      "Run `npm run typecheck`.",
+      "Run `npm test`.",
+      "Run a CodeWiki state read or targeted equivalent for this repo.",
+      "Inspect git diff for unrelated rewrites."
+    ]
+  },
+  "delta": {
+    "desired": "Verified stable baseline with known drift and a safe migration path.",
+    "current": "Baseline is green: typecheck, tests, architecture check, pack dry-run, and live codewiki_state refresh pass. Pi surface is adapter-isolated, duplicate engine path is removed, and current seams are documented.",
+    "closure": "Baseline checks pass; current migration drift is documented; remaining future work lives in TASK-30/TASK-32."
+  },
+  "created": "2026-05-05",
+  "updated": "2026-05-05T23:16:23Z"
+}

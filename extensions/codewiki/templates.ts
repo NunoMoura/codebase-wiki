@@ -44,8 +44,9 @@ export function starterFiles(
 	const files: Record<string, string> = {
 		".wiki/config.json": configJson(projectName, date, brownfieldHints),
 		".wiki/events.jsonl": bootstrapEvent(projectName),
+		".wiki/roadmap-events.jsonl": "",
 		".wiki/sources/.gitkeep": "",
-		"scripts/rebuild_docs_meta.py": rebuildScript(),
+
 		".wiki/knowledge/lexicon.md": lexiconDoc(projectName, date),
 		".wiki/knowledge/product/overview.md": productSpecDoc(projectName, date),
 		".wiki/knowledge/product/users.md": productUsersDoc(projectName, date),
@@ -75,7 +76,7 @@ export function starterFiles(
 			"extension",
 			"CodeWiki Extension",
 			"Pi package extension surface for commands, status panel, skills, and agent tools.",
-			["scripts/rebuild_docs_meta.py"],
+			[],
 		),
 		".wiki/knowledge/system/components/knowledge.md": architectureComponentDoc(
 			projectName,
@@ -91,7 +92,7 @@ export function starterFiles(
 			"views",
 			"Generated Views",
 			"Tool-owned views consumed by agents and UI.",
-			[".wiki/views", "scripts/rebuild_docs_meta.py"],
+			[".wiki/views"],
 		),
 		".wiki/knowledge/system/components/rebuild.md": architectureComponentDoc(
 			projectName,
@@ -99,7 +100,7 @@ export function starterFiles(
 			"rebuild",
 			"View Rebuild",
 			"Generator that derives views from canonical truth.",
-			["scripts/rebuild_docs_meta.py"],
+			[],
 		),
 		".wiki/knowledge/system/flows/view-rebuild.md": architectureFlowDoc(
 			projectName,
@@ -193,7 +194,6 @@ function configJson(
 				},
 				codewiki: {
 					name: `${projectName} codebase wiki`,
-					rebuild_command: ["python", "scripts/rebuild_docs_meta.py"],
 					gateway: {
 						enabled: true,
 						mode: "read-only",
@@ -607,14 +607,14 @@ function architectureManifestJson(_projectName: string, date: string): string {
 					id: "system.views",
 					label: "Generated Views",
 					path: ".wiki/knowledge/system/components/views.md",
-					code_paths: [".wiki/views", "scripts/rebuild_docs_meta.py"],
+					code_paths: [".wiki/views"],
 					depends_on: ["system.rebuild"],
 				},
 				{
 					id: "system.rebuild",
 					label: "View Rebuild",
 					path: ".wiki/knowledge/system/components/rebuild.md",
-					code_paths: ["scripts/rebuild_docs_meta.py"],
+					code_paths: [],
 					depends_on: ["system.knowledge"],
 				},
 			],
@@ -699,7 +699,6 @@ function architectureFlowDoc(
 		"- architecture",
 		`updated: '${date}'`,
 		"code_paths:",
-		"- scripts/rebuild_docs_meta.py",
 		"---",
 		"",
 		`# ${title}`,
@@ -1034,13 +1033,5 @@ function roadmapJson(projectName: string, date: string): string {
 			null,
 			2,
 		) + "\n"
-	);
-}
-
-function rebuildScript(): string {
-	const templateDir = dirname(fileURLToPath(import.meta.url));
-	return readFileSync(
-		join(templateDir, "..", "..", "scripts", "rebuild_docs_meta.py"),
-		"utf8",
 	);
 }

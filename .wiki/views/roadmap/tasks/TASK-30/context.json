@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-05T23:21:30Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-30/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-30",
+    "title": "Extract agent-agnostic application use cases behind ports",
+    "status": "verify",
+    "phase": "verify",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Refactor CodeWiki behavior behind application use cases and ports while preserving Pi behavior through compatibility shims.",
+    "labels": [
+      "architecture",
+      "ports-adapters",
+      "migration"
+    ],
+    "goal": {
+      "outcome": "Core CodeWiki workflows are callable without Pi-specific types through stable application-layer use cases.",
+      "acceptance": [
+        "Application layer exposes use cases for read state, mutate task, manage session, run heartbeat, setup/bootstrap, and rebuild where appropriate.",
+        "Ports cover filesystem, project resolution, notification, session access, locking, message delivery, git/subprocess/rebuild needs without importing Pi types.",
+        "Domain/application modules do not import `@mariozechner/*` or Pi UI types.",
+        "Existing Pi tools and commands continue to work through adapters or compatibility wrappers."
+      ],
+      "non_goals": [
+        "Do not move UI rendering internals until application seams are stable.",
+        "Do not add MCP/Codex/Claude adapters in this task."
+      ],
+      "verification": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check.",
+        "Exercise Pi tool wrappers through smoke coverage or targeted tests."
+      ]
+    },
+    "delta": {
+      "desired": "Application use cases form the stable agent-agnostic API that future adapters can call.",
+      "current": "Core is Pi-free; context/runtime/file-store ports exist; rebuild runner seam exists; project/prefs I/O use file-store ports; Pi adapter wraps tools/commands/UI. Full use-case extraction for state/task/session/heartbeat/setup remains future work.",
+      "closure": "Use cases exist with green tests and Pi compatibility preserved."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "cba38d2e58cd27ecf33f446a9a40f49e2edc7ad64270519cbef7e6dcb7494ff6"
+    },
+    "git": {
+      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/roadmap.json",
+        "extensions/codewiki/index.ts"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afe",
+        ".wiki/knowledge/system/overview.md": "643c940fa1ca",
+        ".wiki/roadmap.json": "c70091881afe",
+        "extensions/codewiki/index.ts": "c70091881afe",
+        "extensions/codewiki/src/adapters/pi": "",
+        "extensions/codewiki/src/application": "",
+        "extensions/codewiki/src/core": "",
+        "extensions/codewiki/src/core/ports.ts": "",
+        "extensions/codewiki/src/core/rebuild-runner.ts": "",
+        "extensions/codewiki/src/infrastructure": ""
+      }
+    },
+    "spec_digest": "14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b",
+    "code_digest": "478e7074ccc41fd1ae5ce2cd235fa227f091a7bda53181052858558714416b44",
+    "graph": {
+      "git": {
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "dirty": true
+      },
+      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
+      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
+      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "state": "active",
+      "owners": [
+        "engineering"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs"
+      ],
+      "revision": {
+        "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src/application",
+      "extensions/codewiki/src/core",
+      "extensions/codewiki/src/core/ports.ts",
+      "extensions/codewiki/src/core/rebuild-runner.ts",
+      "extensions/codewiki/src/infrastructure",
+      "extensions/codewiki/src/adapters/pi",
+      "extensions/codewiki/index.ts"
+    ],
+    "digest": "478e7074ccc41fd1ae5ce2cd235fa227f091a7bda53181052858558714416b44",
+    "expand": [
+      {
+        "read": "extensions/codewiki/src/application"
+      },
+      {
+        "read": "extensions/codewiki/src/core"
+      },
+      {
+        "read": "extensions/codewiki/src/core/ports.ts"
+      },
+      {
+        "read": "extensions/codewiki/src/core/rebuild-runner.ts"
+      },
+      {
+        "read": "extensions/codewiki/src/infrastructure"
+      },
+      {
+        "read": "extensions/codewiki/src/adapters/pi"
+      },
+      {
+        "read": "extensions/codewiki/index.ts"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-30/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

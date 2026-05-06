@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-05T23:21:30Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-29/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-29",
+    "title": "Add architecture boundary checks and characterization coverage",
+    "status": "verify",
+    "phase": "verify",
+    "priority": "high",
+    "kind": "testing",
+    "summary": "Add guardrails that freeze current behavior and prevent future domain/application/infrastructure/adapters import-boundary regressions during the refactor.",
+    "labels": [
+      "architecture",
+      "testing",
+      "guardrails"
+    ],
+    "goal": {
+      "outcome": "Refactor work is protected by automated import-boundary checks and behavior characterization tests.",
+      "acceptance": [
+        "A script checks that domain does not import Pi, Node I/O, application, infrastructure, adapters, or legacy core.",
+        "Application and infrastructure boundary rules are encoded with transitional exceptions where needed.",
+        "Smoke/characterization coverage exercises bootstrap, state read, task mutation, session mutation, and rebuild behavior at the current public surface.",
+        "Package scripts expose the checks so future agents can run one command before and after migration slices."
+      ],
+      "non_goals": [
+        "Do not enforce final no-legacy-import rules until migration tasks remove shims.",
+        "Do not rewrite production architecture as part of adding checks."
+      ],
+      "verification": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run the new architecture check script.",
+        "Verify the check fails on an intentional forbidden import in local reasoning or unit fixture if practical."
+      ]
+    },
+    "delta": {
+      "desired": "Boundary violations become visible immediately and behavior changes are caught before broad moves.",
+      "current": "Architecture check is implemented and wired into npm test. Smoke coverage exercises package load, bootstrap, state/task/session behavior, rebuild, status UI expectations, and pack contents.",
+      "closure": "Guardrail scripts and tests pass and are documented in package scripts."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "7f8ac92488d0bfde43ac77d2bb1a4ff73f0e92b695188af6e3910315ed1c5a03"
+    },
+    "git": {
+      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/roadmap.json",
+        "extensions/codewiki/bootstrap.ts",
+        "extensions/codewiki/contracts.ts",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/project-root.ts",
+        "extensions/codewiki/templates.ts",
+        "package.json",
+        "scripts/smoke-test.mjs"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afe",
+        ".wiki/knowledge/system/overview.md": "643c940fa1ca",
+        ".wiki/roadmap.json": "c70091881afe",
+        "extensions/codewiki": "c70091881afe",
+        "extensions/codewiki/src/adapters/pi": "",
+        "extensions/codewiki/src/core": "",
+        "extensions/codewiki/src/domain": "",
+        "extensions/codewiki/src/infrastructure": "",
+        "package.json": "53578e465699",
+        "scripts/check-architecture.mjs": "",
+        "scripts/smoke-test.mjs": "c70091881afe"
+      }
+    },
+    "spec_digest": "14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b",
+    "code_digest": "4e6ab6917465ed61d20b3c1204a0b882dd49e02f1527be2d9697c1d02223e7e7",
+    "graph": {
+      "git": {
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "dirty": true
+      },
+      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
+      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
+      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "state": "active",
+      "owners": [
+        "engineering"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs"
+      ],
+      "revision": {
+        "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "scripts/check-architecture.mjs",
+      "package.json",
+      "scripts/smoke-test.mjs",
+      "extensions/codewiki",
+      "extensions/codewiki/src/adapters/pi",
+      "extensions/codewiki/src/core",
+      "extensions/codewiki/src/domain",
+      "extensions/codewiki/src/infrastructure"
+    ],
+    "digest": "4e6ab6917465ed61d20b3c1204a0b882dd49e02f1527be2d9697c1d02223e7e7",
+    "expand": [
+      {
+        "read": "scripts/check-architecture.mjs"
+      },
+      {
+        "read": "package.json"
+      },
+      {
+        "read": "scripts/smoke-test.mjs"
+      },
+      {
+        "read": "extensions/codewiki"
+      },
+      {
+        "read": "extensions/codewiki/src/adapters/pi"
+      },
+      {
+        "read": "extensions/codewiki/src/core"
+      },
+      {
+        "read": "extensions/codewiki/src/domain"
+      },
+      {
+        "read": "extensions/codewiki/src/infrastructure"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-29/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "TASK-32",
+  "title": "Prove the adapter seam with a minimal CLI surface",
+  "status": "verify",
+  "priority": "low",
+  "kind": "architecture",
+  "summary": "After Pi migration is stable, add a minimal CLI adapter that calls the same application use cases to prove the agent-agnostic seam before larger MCP/Codex/Claude integrations.",
+  "spec_paths": [
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/knowledge/system/extensions/codewiki/overview.md"
+  ],
+  "code_paths": [
+    "extensions/codewiki/src/application",
+    "extensions/codewiki/src/core",
+    "extensions/codewiki/src/adapters",
+    "package.json"
+  ],
+  "research_ids": [],
+  "labels": [
+    "architecture",
+    "cli",
+    "adapter-proof"
+  ],
+  "goal": {
+    "outcome": "A second simple adapter validates that CodeWiki workflows are no longer Pi-bound.",
+    "acceptance": [
+      "CLI exposes a minimal state read command and one task operation using application use cases.",
+      "CLI code does not duplicate domain/task/session logic from Pi tools.",
+      "Tests prove Pi and CLI paths share application behavior.",
+      "Findings from the CLI proof update future MCP/Codex/Claude adapter tasks if needed."
+    ],
+    "non_goals": [
+      "Do not build a full CLI product.",
+      "Do not implement MCP server, Codex extension, or Claude Code integration in this task."
+    ],
+    "verification": [
+      "Run `npm run typecheck`.",
+      "Run `npm test`.",
+      "Run architecture boundary check.",
+      "Run minimal CLI command against a temp fixture if packaged."
+    ]
+  },
+  "delta": {
+    "desired": "A tiny second adapter proves the ports/application seam with minimal complexity.",
+    "current": "Only Pi is a real adapter. Application/core seams are improved, but no CLI adapter exists yet; missing future CLI path was removed from code_paths to avoid lint noise.",
+    "closure": "CLI proof works or records seam gaps as follow-up tasks."
+  },
+  "created": "2026-05-05",
+  "updated": "2026-05-05T23:17:02Z"
+}

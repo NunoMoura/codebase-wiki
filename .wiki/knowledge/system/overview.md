@@ -5,7 +5,7 @@ state: active
 summary: Main runtime areas and ownership boundaries for CodeWiki.
 owners:
   - architecture
-updated: "2026-05-01"
+updated: "2026-05-05"
 code_paths:
   - extensions/codewiki
   - scripts/rebuild_docs_meta.py
@@ -59,11 +59,26 @@ See [CodeWiki v2 Operating Model](v2-operating-model.md) for the target structur
 
 ## Ownership seams
 
-- [Extensions / CodeWiki](extensions/codewiki/overview.md) owns the Pi extension surface under `extensions/codewiki`.
+- [Extensions / CodeWiki](extensions/codewiki/overview.md) owns the packaged extension and Pi adapter surface under `extensions/codewiki`.
+- [CodeWiki Extension](components/extension.md) describes the thin entrypoint and `src/adapters/pi/**` adapter boundary.
+- [View Rebuild](components/view-rebuild.md) owns the rebuild runner seam, TypeScript engine path, and generated view invariants.
 - [Runtime Policy](runtime/overview.md) owns the transaction boundary for compact reads and validated `.wiki` writes.
 - [CodeWiki v2 Operating Model](v2-operating-model.md) owns the current migration target for views, architecture graph, memory policy, and sanitation.
 
 CodeWiki should not implement a general sandbox or duplicate Pi observability/eval packages. It should define what operations are meaningful for `.wiki` and let Pi-native runtimes execute them safely.
+
+## Current package architecture
+
+The package is in a DDD-style migration with enforced import guardrails:
+
+- `extensions/codewiki/index.ts` is a thin stable entrypoint.
+- `extensions/codewiki/src/adapters/pi/**` contains Pi-specific lifecycle hooks, commands, tools, shortcuts, status dock/panel, and TUI rendering.
+- `extensions/codewiki/src/core/**` contains transitional CodeWiki semantics and must remain free of Pi SDK/TUI imports and adapter back-imports.
+- `extensions/codewiki/src/infrastructure/**` contains concrete filesystem and rebuild execution implementations.
+- `extensions/codewiki/src/engine/**` contains the canonical TypeScript rebuild engine.
+- `extensions/codewiki/src/domain/**` contains pure shared domain types and helpers.
+
+`scripts/check-architecture.mjs` enforces the current boundaries during `npm test`.
 
 ## Architecture organization rule
 

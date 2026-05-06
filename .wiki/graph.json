@@ -1,13 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T05:54:24Z",
+  "generated_at": "2026-05-05T23:21:29Z",
   "revision": {
     "git": {
-      "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
       "dirty": true,
       "dirty_paths": [
-        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/components/extension.md",
+        ".wiki/knowledge/system/components/view-rebuild.md",
         ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
         ".wiki/roadmap.json",
         ".wiki/views/drift.json",
         ".wiki/views/evidence/recent.json",
@@ -44,15 +46,19 @@
         ".wiki/views/roadmap/tasks/TASK-024/context.json",
         ".wiki/views/roadmap/tasks/TASK-025/context.json",
         ".wiki/views/roadmap/tasks/TASK-026/context.json",
+        ".wiki/views/roadmap/tasks/TASK-027/context.json",
         ".wiki/views/status-state.json",
         ".wiki/views/status.json",
         ".wiki/views/system/architecture.json",
+        "extensions/codewiki/bootstrap.ts",
         "extensions/codewiki/contracts.ts",
         "extensions/codewiki/index.ts",
-        "scripts/smoke-test.mjs"
+        "extensions/codewiki/project-root.ts",
+        "extensions/codewiki/templates.ts",
+        "package.json"
       ],
       "paths": {
-        ".wiki/knowledge": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        ".wiki/knowledge": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
         ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
         ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
@@ -60,7 +66,7 @@
         ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         ".wiki/knowledge/product/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d",
-        ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
@@ -68,7 +74,7 @@
         ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-        ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
@@ -77,29 +83,42 @@
         ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
         ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-        ".wiki/roadmap.json": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-        ".wiki/views": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        ".wiki/roadmap.json": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        ".wiki/views": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         "README.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-        "extensions/codewiki": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-        "extensions/codewiki/contracts.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-        "extensions/codewiki/index.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "extensions/codewiki": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "extensions/codewiki/contracts.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "extensions/codewiki/index.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "extensions/codewiki/src/adapters": "",
+        "extensions/codewiki/src/adapters/pi": "",
+        "extensions/codewiki/src/application": "",
+        "extensions/codewiki/src/core": "",
+        "extensions/codewiki/src/core/ports.ts": "",
+        "extensions/codewiki/src/core/rebuild-runner.ts": "",
+        "extensions/codewiki/src/domain": "",
+        "extensions/codewiki/src/engine": "",
+        "extensions/codewiki/src/engine/rebuild.ts": "",
+        "extensions/codewiki/src/infrastructure": "",
+        "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "",
         "extensions/codewiki/templates.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         "package.json": "53578e465699177d1945148075b98a9fc539da26",
+        "scripts/check-architecture.mjs": "",
         "scripts/codewiki-gateway.mjs": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-        "scripts/smoke-test.mjs": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
+        "scripts/smoke-test.mjs": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         "skills/codewiki-architecture/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
         "skills/codewiki-plan/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
         "skills/codewiki-research/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
         "skills/codewiki-task/SKILL.md": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
         "skills/codewiki-verify/SKILL.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-        "skills/codewiki/SKILL.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+        "skills/codewiki/SKILL.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "tsconfig.json": "0d12c87f000aedcf818ece8c88819b938a8d881e"
       }
     },
-    "spec_digest": "1699914a21b993bb1df96237bebd3a08a9ba886c447faeac247f7f069e281fa4",
-    "task_digest": "6f633bf2eaaddcb48106ae71f3d6ad694cde1215f25e0fb9efa4174a6aea9d22",
-    "evidence_digest": "8cc95cfb5fab95297aaed1cdb4f91770085001b3a2666b37131343b1ca0574d4"
+    "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
+    "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
+    "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
   },
   "nodes": [
     {
@@ -118,7 +137,7 @@
       "revision": {
         "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -153,7 +172,7 @@
       "revision": {
         "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -178,7 +197,7 @@
       "revision": {
         "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -203,7 +222,7 @@
       "revision": {
         "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -234,7 +253,7 @@
       "revision": {
         "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -259,7 +278,7 @@
       "revision": {
         "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -284,7 +303,7 @@
       "revision": {
         "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -310,13 +329,11 @@
       "revision": {
         "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/product/surfaces.md"
-          ],
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/product/surfaces.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+            ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
           }
         }
       }
@@ -337,7 +354,7 @@
       "revision": {
         "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -354,22 +371,29 @@
       "doc_type": "spec",
       "state": "active",
       "group": "system",
-      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools.",
+      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
       "owners": [
         "architecture"
       ],
       "tags": [],
       "revision": {
-        "digest": "0d1babfa8f1bb1b3cc3a0f0232c2f32e570710ec9335c39e6b7270fd9d7897a7",
+        "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/components/extension.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
           }
         }
       }
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi"
     },
     {
       "id": "doc:.wiki/knowledge/system/components/knowledge.md",
@@ -387,7 +411,7 @@
       "revision": {
         "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -417,7 +441,7 @@
       "revision": {
         "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -447,7 +471,7 @@
       "revision": {
         "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -469,22 +493,39 @@
       "doc_type": "spec",
       "state": "active",
       "group": "system",
-      "summary": "Generator that derives graph, lint, roadmap, status, and v2 views from canonical truth.",
+      "summary": "Generator and runner seam that derive graph, lint, roadmap, status, and v2 views from canonical truth.",
       "owners": [
         "architecture"
       ],
       "tags": [],
       "revision": {
-        "digest": "bdb2bfdc759e203b38dab3eeb8320ae332e8122204e6eb3c234777bfd98f526c",
+        "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/components/view-rebuild.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
           }
         }
       }
+    },
+    {
+      "id": "code:extensions/codewiki/src/core/rebuild-runner.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core/rebuild-runner.ts"
+    },
+    {
+      "id": "code:extensions/codewiki/src/infrastructure/rebuild-runner.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/infrastructure/rebuild-runner.ts"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine/rebuild.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine/rebuild.ts"
     },
     {
       "id": "code:scripts/rebuild_docs_meta.py",
@@ -507,7 +548,7 @@
       "revision": {
         "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -529,21 +570,21 @@
       "doc_type": "spec",
       "state": "active",
       "group": "system",
-      "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
       "owners": [
         "engineering"
       ],
       "tags": [],
       "revision": {
-        "digest": "e1b3f44c42cb0979d95a8f73a7f08015a397b95cfda073e181371604557c65b5",
+        "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": true,
           "dirty_paths": [
             ".wiki/knowledge/system/extensions/codewiki/overview.md"
           ],
           "paths": {
-            ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+            ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
           }
         }
       }
@@ -557,6 +598,11 @@
       "id": "code:scripts/smoke-test.mjs",
       "kind": "code_path",
       "path": "scripts/smoke-test.mjs"
+    },
+    {
+      "id": "code:scripts/check-architecture.mjs",
+      "kind": "code_path",
+      "path": "scripts/check-architecture.mjs"
     },
     {
       "id": "doc:.wiki/knowledge/system/flows/context-memory.md",
@@ -574,7 +620,7 @@
       "revision": {
         "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -604,7 +650,7 @@
       "revision": {
         "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -629,7 +675,7 @@
       "revision": {
         "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -654,7 +700,7 @@
       "revision": {
         "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -679,7 +725,7 @@
       "revision": {
         "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -702,11 +748,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "e518ec2537ade265f09ae825d85debee1b150f509658239f13938c71a36a670c",
+        "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/overview.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
           }
@@ -729,7 +777,7 @@
       "revision": {
         "digest": "f0306aa864ab75eef3e989a6819add03232c7a7df3e95a442eaac6d4b688b332",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -755,7 +803,7 @@
       "revision": {
         "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -784,7 +832,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -1343,6 +1391,141 @@
       "revision": {
         "digest": "92ba0d3bd372a2f2fdc555dd4094131a49c8037f57b5943adaf2828929a020e3"
       }
+    },
+    {
+      "id": "task:TASK-28",
+      "kind": "roadmap_task",
+      "task_id": "TASK-28",
+      "title": "Stabilize CodeWiki refactor after partial DDD migration",
+      "status": "verify",
+      "priority": "critical",
+      "task_kind": "architecture",
+      "summary": "Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.",
+      "updated": "2026-05-05T23:16:23Z",
+      "labels": [
+        "architecture",
+        "stabilization",
+        "migration"
+      ],
+      "revision": {
+        "digest": "a5bb092b564d0081bbe4bc2d5ddba0f4c7e02fecb3c5e1e4b8e42b2b045b3f15"
+      }
+    },
+    {
+      "id": "code:extensions/codewiki/src/core",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine"
+    },
+    {
+      "id": "code:extensions/codewiki/src/infrastructure",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/infrastructure"
+    },
+    {
+      "id": "code:tsconfig.json",
+      "kind": "code_path",
+      "path": "tsconfig.json"
+    },
+    {
+      "id": "task:TASK-29",
+      "kind": "roadmap_task",
+      "task_id": "TASK-29",
+      "title": "Add architecture boundary checks and characterization coverage",
+      "status": "verify",
+      "priority": "high",
+      "task_kind": "testing",
+      "summary": "Add guardrails that freeze current behavior and prevent future domain/application/infrastructure/adapters import-boundary regressions during the refactor.",
+      "updated": "2026-05-05T23:16:32Z",
+      "labels": [
+        "architecture",
+        "testing",
+        "guardrails"
+      ],
+      "revision": {
+        "digest": "7f8ac92488d0bfde43ac77d2bb1a4ff73f0e92b695188af6e3910315ed1c5a03"
+      }
+    },
+    {
+      "id": "code:extensions/codewiki/src/domain",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/domain"
+    },
+    {
+      "id": "task:TASK-30",
+      "kind": "roadmap_task",
+      "task_id": "TASK-30",
+      "title": "Extract agent-agnostic application use cases behind ports",
+      "status": "verify",
+      "priority": "high",
+      "task_kind": "architecture",
+      "summary": "Refactor CodeWiki behavior behind application use cases and ports while preserving Pi behavior through compatibility shims.",
+      "updated": "2026-05-05T23:16:43Z",
+      "labels": [
+        "architecture",
+        "ports-adapters",
+        "migration"
+      ],
+      "revision": {
+        "digest": "cba38d2e58cd27ecf33f446a9a40f49e2edc7ad64270519cbef7e6dcb7494ff6"
+      }
+    },
+    {
+      "id": "code:extensions/codewiki/src/application",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/application"
+    },
+    {
+      "id": "code:extensions/codewiki/src/core/ports.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core/ports.ts"
+    },
+    {
+      "id": "task:TASK-31",
+      "kind": "roadmap_task",
+      "task_id": "TASK-31",
+      "title": "Move Pi surface into adapters and retire legacy core structure",
+      "status": "verify",
+      "priority": "medium",
+      "task_kind": "migration",
+      "summary": "Complete the folder migration only after guardrails and application seams exist, moving Pi commands/tools/UI into adapters and deleting legacy duplicates/shims.",
+      "updated": "2026-05-05T23:16:54Z",
+      "labels": [
+        "architecture",
+        "migration",
+        "pi-adapter"
+      ],
+      "revision": {
+        "digest": "8c64ceb491961f8a14a588e2c0a9ee165e5ca36932f1a3460f968e298828dc71"
+      }
+    },
+    {
+      "id": "task:TASK-32",
+      "kind": "roadmap_task",
+      "task_id": "TASK-32",
+      "title": "Prove the adapter seam with a minimal CLI surface",
+      "status": "verify",
+      "priority": "low",
+      "task_kind": "architecture",
+      "summary": "After Pi migration is stable, add a minimal CLI adapter that calls the same application use cases to prove the agent-agnostic seam before larger MCP/Codex/Claude integrations.",
+      "updated": "2026-05-05T23:17:02Z",
+      "labels": [
+        "architecture",
+        "cli",
+        "adapter-proof"
+      ],
+      "revision": {
+        "digest": "76c29cd2ca8cbfbbc5b3b4fcf80abb4a28320e557de7fe525879e7008359c94f"
+      }
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters"
     }
   ],
   "edges": [
@@ -1534,12 +1717,22 @@
     {
       "kind": "doc_link",
       "from": "doc:.wiki/knowledge/system/components/extension.md",
+      "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/extension.md",
       "to": "doc:.wiki/knowledge/system/overview.md"
     },
     {
       "kind": "doc_code_path",
       "from": "doc:.wiki/knowledge/system/components/extension.md",
       "to": "code:extensions/codewiki/index.ts"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/components/extension.md",
+      "to": "code:extensions/codewiki/src/adapters/pi"
     },
     {
       "kind": "doc_link",
@@ -1594,7 +1787,27 @@
     {
       "kind": "doc_link",
       "from": "doc:.wiki/knowledge/system/components/view-rebuild.md",
+      "to": "doc:.wiki/knowledge/system/components/runtime-gateway.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/view-rebuild.md",
       "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/components/view-rebuild.md",
+      "to": "code:extensions/codewiki/src/core/rebuild-runner.ts"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/components/view-rebuild.md",
+      "to": "code:extensions/codewiki/src/infrastructure/rebuild-runner.ts"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/components/view-rebuild.md",
+      "to": "code:extensions/codewiki/src/engine/rebuild.ts"
     },
     {
       "kind": "doc_code_path",
@@ -1629,6 +1842,16 @@
     {
       "kind": "doc_link",
       "from": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "to": "doc:.wiki/knowledge/system/components/extension.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "to": "doc:.wiki/knowledge/system/components/view-rebuild.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
       "to": "doc:.wiki/knowledge/system/overview.md"
     },
     {
@@ -1645,6 +1868,11 @@
       "kind": "doc_code_path",
       "from": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
       "to": "code:scripts/smoke-test.mjs"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "to": "code:scripts/check-architecture.mjs"
     },
     {
       "kind": "doc_link",
@@ -1730,6 +1958,16 @@
       "kind": "doc_link",
       "from": "doc:.wiki/knowledge/system/overview.md",
       "to": "doc:.wiki/knowledge/product/overview.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/overview.md",
+      "to": "doc:.wiki/knowledge/system/components/extension.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/overview.md",
+      "to": "doc:.wiki/knowledge/system/components/view-rebuild.md"
     },
     {
       "kind": "doc_link",
@@ -2395,6 +2633,221 @@
       "kind": "task_code_path",
       "from": "task:TASK-027",
       "to": "code:scripts/smoke-test.mjs"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-28",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-28",
+      "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-28",
+      "to": "code:extensions/codewiki"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-28",
+      "to": "code:extensions/codewiki/src/adapters/pi"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-28",
+      "to": "code:extensions/codewiki/src/core"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-28",
+      "to": "code:extensions/codewiki/src/engine"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-28",
+      "to": "code:extensions/codewiki/src/infrastructure"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-28",
+      "to": "code:scripts/smoke-test.mjs"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-28",
+      "to": "code:scripts/check-architecture.mjs"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-28",
+      "to": "code:tsconfig.json"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-29",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-29",
+      "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-29",
+      "to": "code:scripts/check-architecture.mjs"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-29",
+      "to": "code:package.json"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-29",
+      "to": "code:scripts/smoke-test.mjs"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-29",
+      "to": "code:extensions/codewiki"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-29",
+      "to": "code:extensions/codewiki/src/adapters/pi"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-29",
+      "to": "code:extensions/codewiki/src/core"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-29",
+      "to": "code:extensions/codewiki/src/domain"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-29",
+      "to": "code:extensions/codewiki/src/infrastructure"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-30",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-30",
+      "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-30",
+      "to": "code:extensions/codewiki/src/application"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-30",
+      "to": "code:extensions/codewiki/src/core"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-30",
+      "to": "code:extensions/codewiki/src/core/ports.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-30",
+      "to": "code:extensions/codewiki/src/core/rebuild-runner.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-30",
+      "to": "code:extensions/codewiki/src/infrastructure"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-30",
+      "to": "code:extensions/codewiki/src/adapters/pi"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-30",
+      "to": "code:extensions/codewiki/index.ts"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-31",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-31",
+      "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-31",
+      "to": "code:extensions/codewiki/index.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-31",
+      "to": "code:extensions/codewiki/src/adapters/pi"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-31",
+      "to": "code:extensions/codewiki/src/core"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-31",
+      "to": "code:extensions/codewiki/src/engine"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-31",
+      "to": "code:extensions/codewiki/src/infrastructure"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-31",
+      "to": "code:extensions/codewiki/contracts.ts"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-32",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-32",
+      "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-32",
+      "to": "code:extensions/codewiki/src/application"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-32",
+      "to": "code:extensions/codewiki/src/core"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-32",
+      "to": "code:extensions/codewiki/src/adapters"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-32",
+      "to": "code:package.json"
     }
   ],
   "views": {
@@ -2541,10 +2994,27 @@
         "TASK-024",
         "TASK-025",
         "TASK-026",
-        "TASK-027"
+        "TASK-027",
+        "TASK-28",
+        "TASK-29",
+        "TASK-30",
+        "TASK-31",
+        "TASK-32"
       ],
-      "open_task_ids": [],
-      "in_progress_task_ids": [],
+      "open_task_ids": [
+        "TASK-28",
+        "TASK-29",
+        "TASK-30",
+        "TASK-31",
+        "TASK-32"
+      ],
+      "in_progress_task_ids": [
+        "TASK-28",
+        "TASK-29",
+        "TASK-30",
+        "TASK-31",
+        "TASK-32"
+      ],
       "todo_task_ids": [],
       "blocked_task_ids": [],
       "done_task_ids": [
@@ -2578,6 +3048,11 @@
       ],
       "cancelled_task_ids": [],
       "recent_task_ids": [
+        "TASK-32",
+        "TASK-31",
+        "TASK-30",
+        "TASK-29",
+        "TASK-28",
         "TASK-027",
         "TASK-026",
         "TASK-025",
@@ -2607,7 +3082,8 @@
         "TASK-001"
       ],
       "status_counts": {
-        "done": 27
+        "done": 27,
+        "verify": 5
       }
     },
     "research": {
@@ -2627,8 +3103,20 @@
         "extensions/codewiki",
         "extensions/codewiki/contracts.ts",
         "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/application",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/core/ports.ts",
+        "extensions/codewiki/src/core/rebuild-runner.ts",
+        "extensions/codewiki/src/domain",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
         "extensions/codewiki/templates.ts",
         "package.json",
+        "scripts/check-architecture.mjs",
         "scripts/codewiki-gateway.mjs",
         "scripts/rebuild_docs_meta.py",
         "scripts/smoke-test.mjs",
@@ -2638,7 +3126,8 @@
         "skills/codewiki-research/SKILL.md",
         "skills/codewiki-task/SKILL.md",
         "skills/codewiki-verify/SKILL.md",
-        "skills/codewiki/SKILL.md"
+        "skills/codewiki/SKILL.md",
+        "tsconfig.json"
       ]
     }
   }

@@ -3,7 +3,7 @@
   "manifest_revision": {
     "digest": "4d3e7eaf1292c534b3321ba3443303f8b682fa576cb526a8b4a89af4abab0866",
     "git": {
-      "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
       "dirty": false,
       "dirty_paths": [],
       "paths": {
@@ -16,7 +16,7 @@
       "id": "system.extension",
       "label": "CodeWiki Extension",
       "path": ".wiki/knowledge/system/components/extension.md",
-      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools.",
+      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
       "code_paths": [
         "extensions/codewiki/index.ts",
         "extensions/codewiki/contracts.ts"
@@ -26,14 +26,14 @@
         "system.roadmap"
       ],
       "doc_revision": {
-        "digest": "0d1babfa8f1bb1b3cc3a0f0232c2f32e570710ec9335c39e6b7270fd9d7897a7"
+        "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d"
       }
     },
     {
       "id": "system.rebuild",
       "label": "View Rebuild",
       "path": ".wiki/knowledge/system/components/view-rebuild.md",
-      "summary": "Generator that derives graph, lint, roadmap, status, and v2 views from canonical truth.",
+      "summary": "Generator and runner seam that derive graph, lint, roadmap, status, and v2 views from canonical truth.",
       "code_paths": [
         "scripts/rebuild_docs_meta.py"
       ],
@@ -42,7 +42,7 @@
         "system.roadmap"
       ],
       "doc_revision": {
-        "digest": "bdb2bfdc759e203b38dab3eeb8320ae332e8122204e6eb3c234777bfd98f526c"
+        "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec"
       }
     },
     {
@@ -182,35 +182,35 @@
   },
   "graph_revision": {
     "git": {
-      "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
       "dirty": true
     },
-    "spec_digest": "1699914a21b993bb1df96237bebd3a08a9ba886c447faeac247f7f069e281fa4",
-    "task_digest": "6f633bf2eaaddcb48106ae71f3d6ad694cde1215f25e0fb9efa4174a6aea9d22",
-    "evidence_digest": "8cc95cfb5fab95297aaed1cdb4f91770085001b3a2666b37131343b1ca0574d4"
+    "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
+    "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
+    "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
   },
   "meta": {
     "version": 1,
     "name": "system.architecture",
-    "generated_at": "2026-05-02T05:54:26Z",
+    "generated_at": "2026-05-05T23:21:31Z",
     "revision": {
-      "digest": "ba87a30e32d60764e69a2d46113f7d69e2380e74d56caa3e3b7e5d30649bf38e",
+      "digest": "bbd032347c11b69fcd4d2156dd0211d1f24b29c918e06cbe76fb41cab9d118e6",
       "git": {
-        "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/product/surfaces.md",
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/view-rebuild.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
+          ".wiki/knowledge/system/overview.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
           ".wiki/roadmap/events.jsonl",
           ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json",
-          ".wiki/roadmap/tasks/TASK-001/context.json",
-          ".wiki/roadmap/tasks/TASK-002/context.json"
+          ".wiki/roadmap/state.json"
         ],
         "paths": {}
       }

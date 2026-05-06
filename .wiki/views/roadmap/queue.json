@@ -1,28 +1,99 @@
 {
-  "tasks": [],
-  "next_task_id": "",
+  "tasks": [
+    {
+      "id": "TASK-28",
+      "title": "Stabilize CodeWiki refactor after partial DDD migration",
+      "status": "verify",
+      "phase": "verify",
+      "priority": "critical",
+      "kind": "architecture",
+      "summary": "Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-28/context.json",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ]
+    },
+    {
+      "id": "TASK-29",
+      "title": "Add architecture boundary checks and characterization coverage",
+      "status": "verify",
+      "phase": "verify",
+      "priority": "high",
+      "kind": "testing",
+      "summary": "Add guardrails that freeze current behavior and prevent future domain/application/infrastructure/adapters import-boundary regressions during the refactor.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-29/context.json",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ]
+    },
+    {
+      "id": "TASK-30",
+      "title": "Extract agent-agnostic application use cases behind ports",
+      "status": "verify",
+      "phase": "verify",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Refactor CodeWiki behavior behind application use cases and ports while preserving Pi behavior through compatibility shims.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-30/context.json",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ]
+    },
+    {
+      "id": "TASK-31",
+      "title": "Move Pi surface into adapters and retire legacy core structure",
+      "status": "verify",
+      "phase": "verify",
+      "priority": "medium",
+      "kind": "migration",
+      "summary": "Complete the folder migration only after guardrails and application seams exist, moving Pi commands/tools/UI into adapters and deleting legacy duplicates/shims.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-31/context.json",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ]
+    },
+    {
+      "id": "TASK-32",
+      "title": "Prove the adapter seam with a minimal CLI surface",
+      "status": "verify",
+      "phase": "verify",
+      "priority": "low",
+      "kind": "architecture",
+      "summary": "After Pi migration is stable, add a minimal CLI adapter that calls the same application use cases to prove the agent-agnostic seam before larger MCP/Codex/Claude integrations.",
+      "context_path": ".wiki/views/roadmap/tasks/TASK-32/context.json",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ]
+    }
+  ],
+  "next_task_id": "TASK-28",
   "meta": {
     "version": 1,
     "name": "roadmap.queue",
-    "generated_at": "2026-05-02T05:54:25Z",
+    "generated_at": "2026-05-05T23:21:31Z",
     "revision": {
-      "digest": "b62e44f9da35d428635c4110d413527a0217849dc618aeab5ab8f32695a2bf10",
+      "digest": "16e43356c68443dacc30e93191809de2790c06b5708b9d9288222a7900ace103",
       "git": {
-        "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/product/surfaces.md",
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/view-rebuild.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
+          ".wiki/knowledge/system/overview.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
           ".wiki/roadmap/events.jsonl",
           ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json",
-          ".wiki/roadmap/tasks/TASK-001/context.json",
-          ".wiki/roadmap/tasks/TASK-002/context.json"
+          ".wiki/roadmap/state.json"
         ],
         "paths": {}
       }
@@ -32,7 +103,7 @@
       "target_bytes": 12000
     },
     "recommended_next_reads": [
-      ".wiki/views/drift.json"
+      ".wiki/views/roadmap/tasks/TASK-28/context.json"
     ]
   }
 }

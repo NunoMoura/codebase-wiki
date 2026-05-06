@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-02T05:54:24Z",
+  "generated_at": "2026-05-05T23:21:29Z",
   "context_path": ".wiki/roadmap/tasks/TASK-002/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -43,34 +43,38 @@
       "digest": "ce7cf418f288fc3ba4a317fbe1442130ca0a995e06499eb096279d3995ff8f85"
     },
     "git": {
-      "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
       "dirty": true,
       "dirty_paths": [
         ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
         ".wiki/roadmap.json",
+        "extensions/codewiki/bootstrap.ts",
         "extensions/codewiki/contracts.ts",
         "extensions/codewiki/index.ts",
+        "extensions/codewiki/project-root.ts",
+        "extensions/codewiki/templates.ts",
         "scripts/smoke-test.mjs"
       ],
       "paths": {
-        ".wiki/knowledge/system/extensions/codewiki/overview.md": "643c940fa1ca",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afe",
         ".wiki/knowledge/system/overview.md": "643c940fa1ca",
-        ".wiki/roadmap.json": "fe19eabf6306",
-        "extensions/codewiki": "fe19eabf6306",
-        "scripts/smoke-test.mjs": "7e122a3091d4",
+        ".wiki/roadmap.json": "c70091881afe",
+        "extensions/codewiki": "c70091881afe",
+        "scripts/smoke-test.mjs": "c70091881afe",
         "skills": "fe19eabf6306"
       }
     },
-    "spec_digest": "b00e0a7bfab46c80394a9818fe91260fb80d8bc258537a1471d08761f908f91d",
-    "code_digest": "162371fb44f1eb9ef4bbfe269b250532eee61d53645d76accb16e0b96f8f6b74",
+    "spec_digest": "14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b",
+    "code_digest": "32d806ec53232f1d112a2401801c001fdf115636abdd2a793f4aab317179c242",
     "graph": {
       "git": {
-        "head": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         "dirty": true
       },
-      "spec_digest": "1699914a21b993bb1df96237bebd3a08a9ba886c447faeac247f7f069e281fa4",
-      "task_digest": "6f633bf2eaaddcb48106ae71f3d6ad694cde1215f25e0fb9efa4174a6aea9d22",
-      "evidence_digest": "8cc95cfb5fab95297aaed1cdb4f91770085001b3a2666b37131343b1ca0574d4"
+      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
+      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
+      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
     }
   },
   "specs": [
@@ -88,7 +92,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "e518ec2537ade265f09ae825d85debee1b150f509658239f13938c71a36a670c"
+        "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca"
       },
       "expand": {
         "read": ".wiki/knowledge/system/overview.md"
@@ -97,7 +101,7 @@
     {
       "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
       "title": "Extensions / Codewiki",
-      "summary": "Pi package resources, extension commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
+      "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
       "state": "active",
       "owners": [
         "engineering"
@@ -105,10 +109,11 @@
       "code_paths": [
         "extensions/codewiki",
         "skills",
-        "scripts/smoke-test.mjs"
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs"
       ],
       "revision": {
-        "digest": "e1b3f44c42cb0979d95a8f73a7f08015a397b95cfda073e181371604557c65b5"
+        "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12"
       },
       "expand": {
         "read": ".wiki/knowledge/system/extensions/codewiki/overview.md"
@@ -121,7 +126,7 @@
       "skills",
       "scripts/smoke-test.mjs"
     ],
-    "digest": "162371fb44f1eb9ef4bbfe269b250532eee61d53645d76accb16e0b96f8f6b74",
+    "digest": "32d806ec53232f1d112a2401801c001fdf115636abdd2a793f4aab317179c242",
     "expand": [
       {
         "read": "extensions/codewiki"

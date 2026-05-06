@@ -15,7 +15,8 @@
 		"benchmark:tokens": "node ./scripts/token-benchmark.mjs",
 		"test:smoke": "node ./scripts/smoke-test.mjs",
 		"test:pack": "npm pack --dry-run",
-		"test": "npm run test:smoke && npm run test:pack",
+		"check:architecture": "node ./scripts/check-architecture.mjs",
+		"test": "npm run check:architecture && npm run test:smoke && npm run test:pack",
 		"prepublishOnly": "npm test",
 		"typecheck": "tsc --noEmit"
 	},
@@ -45,6 +46,7 @@
 		"@mariozechner/pi-coding-agent": "*",
 		"@mariozechner/pi-tui": "*",
 		"@sinclair/typebox": "*",
+		"@types/js-yaml": "^4.0.9",
 		"@types/node": "*",
 		"typescript": "^5.9.3"
 	},
@@ -58,5 +60,8 @@
 		"skills": [
 			"./skills"
 		]
+	},
+	"dependencies": {
+		"js-yaml": "^4.1.1"
 	}
 }
