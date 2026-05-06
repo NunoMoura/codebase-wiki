@@ -13,7 +13,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -24,36 +24,6 @@
     }
   ],
   "events": [
-    {
-      "ts": "2026-05-06T10:07:28Z",
-      "kind": "task_evidence_recorded",
-      "taskId": "TASK-040",
-      "title": "Harden verification gateway before dogfood checkpoint",
-      "verdict": "block",
-      "summary": "Fresh verifier block: Subprocess error: spawn E2BIG",
-      "checks_run": [
-        "automatic verifier subprocess"
-      ],
-      "files_touched": [],
-      "issues": [
-        "Automatic verifier could not complete: spawn E2BIG"
-      ]
-    },
-    {
-      "ts": "2026-05-06T10:10:16Z",
-      "kind": "task_evidence_recorded",
-      "taskId": "TASK-040",
-      "title": "Harden verification gateway before dogfood checkpoint",
-      "verdict": "block",
-      "summary": "Fresh verifier block: Subprocess error: spawn E2BIG",
-      "checks_run": [
-        "automatic verifier subprocess"
-      ],
-      "files_touched": [],
-      "issues": [
-        "Automatic verifier could not complete: spawn E2BIG"
-      ]
-    },
     {
       "ts": "2026-05-06T10:13:02Z",
       "kind": "task_evidence_recorded",
@@ -363,30 +333,56 @@
         "scripts/smoke-test.mjs"
       ],
       "issues": []
+    },
+    {
+      "ts": "2026-05-06T22:02:31Z",
+      "kind": "roadmap_task_session_link",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "action": "note",
+      "summary": "TASK-040 closed. Verifier gateway hardening passed fresh verifier and local checks.",
+      "files_touched": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "spawnedTaskIds": [],
+      "session_id": "019dfc74-46a7-779a-a2b3-4e892aaa5836"
+    },
+    {
+      "ts": "2026-05-06T22:12:47Z",
+      "kind": "roadmap_task_session_link",
+      "taskId": "TASK-033",
+      "title": "Checkpoint stable refactor baseline before next roadmap",
+      "action": "focus",
+      "summary": "After TASK-040 closure and push, resume dogfood baseline checkpoint next.",
+      "files_touched": [],
+      "spawnedTaskIds": [],
+      "session_id": "019dfc74-46a7-779a-a2b3-4e892aaa5836"
     }
   ],
   "meta": {
     "version": 1,
     "name": "evidence.recent",
-    "generated_at": "2026-05-06T22:02:16Z",
+    "generated_at": "2026-05-06T22:12:54Z",
     "revision": {
-      "digest": "751b34b04f8d4f4178c8c49c29fa8421ca32faa4457263ceddfb9a11c688347e",
+      "digest": "cb847fc6ff0cf814791b6b465259bc6b172d75a0a35f45711aae3616597aaf5c",
       "git": {
-        "head": "166313f96147e9bace1240466c5bac7090332b42",
+        "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/lexicon.md",
-          ".wiki/knowledge/system/components/views.md",
-          ".wiki/knowledge/system/flows/context-memory.md",
-          ".wiki/knowledge/system/flows/task-loop.md",
-          ".wiki/knowledge/system/runtime/overview.md",
-          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/lint.json",
-          ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
-          ".wiki/roadmap.json",
-          ".wiki/roadmap/events.jsonl"
+          ".wiki/roadmap/index.json",
+          ".wiki/roadmap/state.json",
+          ".wiki/roadmap/tasks/TASK-001/context.json",
+          ".wiki/roadmap/tasks/TASK-002/context.json",
+          ".wiki/roadmap/tasks/TASK-003/context.json",
+          ".wiki/roadmap/tasks/TASK-004/context.json",
+          ".wiki/roadmap/tasks/TASK-005/context.json",
+          ".wiki/roadmap/tasks/TASK-006/context.json",
+          ".wiki/roadmap/tasks/TASK-007/context.json"
         ],
         "paths": {}
       }

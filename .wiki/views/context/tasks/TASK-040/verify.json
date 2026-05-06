@@ -262,45 +262,6 @@
   ],
   "recent_evidence": [
     {
-      "ts": "2026-05-06T21:57:33Z",
-      "kind": "task_evidence_recorded",
-      "taskId": "TASK-040",
-      "title": "Harden verification gateway before dogfood checkpoint",
-      "verdict": "fail",
-      "summary": "Fresh verifier fail: The gateway, task-close route, fresh read-only Pi session, compact context pack, full rubric inclusion, malformed-output blocking, and smoke coverage are largely present. However, a core preflight acceptance requirement is implemented against the wrong evidence source, which undermines task-close routing and deterministic evidence/check validation. Strict schema enforcement also remains permissive for extra fields.",
-      "checks_run": [
-        "read extensions/codewiki/src/core/roadmap.ts",
-        "read extensions/codewiki/src/adapters/pi/tools/task.ts",
-        "read scripts/smoke-test.mjs",
-        "read skills/codewiki-verify/SKILL.md",
-        "read .wiki/config.json",
-        "grep .wiki/roadmap/events.jsonl task_evidence_recorded"
-      ],
-      "files_touched": [],
-      "issues": [
-        "Deterministic preflight evidence/check validation reads the wrong event log, so it will not find canonical task evidence and can block valid closes before semantic verification.",
-        "Verifier JSON schema validation is not fully strict against the declared verdict_schema because extra fields are accepted silently."
-      ]
-    },
-    {
-      "ts": "2026-05-06T21:59:04Z",
-      "kind": "task_phase_passed",
-      "taskId": "TASK-040",
-      "title": "Harden verification gateway before dogfood checkpoint",
-      "phase": "implement",
-      "nextPhase": "verify",
-      "summary": "Fixed verifier feedback: deterministic preflight now reads canonical project events for task evidence/check presence, not roadmap event mirror, and strict verifier schema now blocks extra top-level fields. Smoke parser golden cases cover extra-field rejection.",
-      "checks_run": [
-        "npm run typecheck: pass",
-        "npm test: pass"
-      ],
-      "files_touched": [
-        "extensions/codewiki/src/core/roadmap.ts",
-        "scripts/smoke-test.mjs"
-      ],
-      "issues": []
-    },
-    {
       "ts": "2026-05-06T21:59:04Z",
       "kind": "task_evidence_recorded",
       "verdict": "pass",
@@ -415,6 +376,32 @@
         "scripts/smoke-test.mjs"
       ],
       "issues": []
+    },
+    {
+      "ts": "2026-05-06T22:02:31Z",
+      "kind": "roadmap_task_session_link",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "action": "note",
+      "summary": "TASK-040 closed. Verifier gateway hardening passed fresh verifier and local checks.",
+      "files_touched": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "spawnedTaskIds": [],
+      "session_id": "019dfc74-46a7-779a-a2b3-4e892aaa5836"
+    },
+    {
+      "ts": "2026-05-06T22:12:47Z",
+      "kind": "roadmap_task_session_link",
+      "taskId": "TASK-033",
+      "title": "Checkpoint stable refactor baseline before next roadmap",
+      "action": "focus",
+      "summary": "After TASK-040 closure and push, resume dogfood baseline checkpoint next.",
+      "files_touched": [],
+      "spawnedTaskIds": [],
+      "session_id": "019dfc74-46a7-779a-a2b3-4e892aaa5836"
     }
   ],
   "context_routes": {
@@ -452,7 +439,7 @@
   "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
   "budget": {
     "target_tokens": 3500,
-    "estimated_tokens": 4395,
+    "estimated_tokens": 4137,
     "over_budget": true
   }
 }

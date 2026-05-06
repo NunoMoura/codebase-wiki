@@ -1,21 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-05-06T22:02:16Z",
+  "generated_at": "2026-05-06T22:12:54Z",
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-06T22:02:15Z",
+    "graph_generated_at": "2026-05-06T22:12:53Z",
     "revision": {
       "git": {
-        "head": "166313f96147e9bace1240466c5bac7090332b42",
+        "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
         "dirty": true,
         "dirty_paths": [
-          ".wiki/knowledge/lexicon.md",
-          ".wiki/knowledge/system/components/views.md",
-          ".wiki/knowledge/system/flows/context-memory.md",
-          ".wiki/knowledge/system/flows/task-loop.md",
-          ".wiki/knowledge/system/runtime/overview.md",
-          ".wiki/knowledge/system/v2-operating-model.md",
-          ".wiki/roadmap.json",
+          ".wiki/views/context/tasks/TASK-040/verify.json",
           ".wiki/views/drift.json",
           ".wiki/views/evidence/recent.json",
           ".wiki/views/graph.json",
@@ -52,21 +46,27 @@
           ".wiki/views/roadmap/tasks/TASK-025/context.json",
           ".wiki/views/roadmap/tasks/TASK-026/context.json",
           ".wiki/views/roadmap/tasks/TASK-027/context.json",
+          ".wiki/views/roadmap/tasks/TASK-033/context.json",
+          ".wiki/views/roadmap/tasks/TASK-034/context.json",
+          ".wiki/views/roadmap/tasks/TASK-035/context.json",
+          ".wiki/views/roadmap/tasks/TASK-036/context.json",
+          ".wiki/views/roadmap/tasks/TASK-037/context.json",
+          ".wiki/views/roadmap/tasks/TASK-038/context.json",
+          ".wiki/views/roadmap/tasks/TASK-039/context.json",
+          ".wiki/views/roadmap/tasks/TASK-040/context.json",
+          ".wiki/views/roadmap/tasks/TASK-041/context.json",
           ".wiki/views/roadmap/tasks/TASK-28/context.json",
           ".wiki/views/roadmap/tasks/TASK-29/context.json",
           ".wiki/views/roadmap/tasks/TASK-30/context.json",
-          ".wiki/views/roadmap/tasks/TASK-31/context.json",
-          ".wiki/views/roadmap/tasks/TASK-32/context.json",
-          ".wiki/views/status-state.json",
-          ".wiki/views/status.json"
+          ".wiki/views/roadmap/tasks/TASK-31/context.json"
         ],
         "paths": {
-          ".wiki/knowledge": "166313f96147e9bace1240466c5bac7090332b42",
+          ".wiki/knowledge": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
-          ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/lexicon.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           ".wiki/knowledge/product/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
           ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d",
           ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
@@ -76,48 +76,48 @@
           ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42",
-          ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/knowledge/system/components/views.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
-          ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          ".wiki/knowledge/system/flows/context-memory.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/knowledge/system/flows/task-loop.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
-          ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          ".wiki/roadmap.json": "166313f96147e9bace1240466c5bac7090332b42",
-          ".wiki/views": "166313f96147e9bace1240466c5bac7090332b42",
+          ".wiki/knowledge/system/runtime/overview.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          ".wiki/knowledge/system/v2-operating-model.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          ".wiki/roadmap.json": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          ".wiki/views": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "README.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "extensions/codewiki": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "extensions/codewiki/contracts.ts": "166313f96147e9bace1240466c5bac7090332b42",
           "extensions/codewiki/index.ts": "166313f96147e9bace1240466c5bac7090332b42",
-          "extensions/codewiki/src/adapters": "166313f96147e9bace1240466c5bac7090332b42",
-          "extensions/codewiki/src/adapters/pi": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/adapters": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          "extensions/codewiki/src/adapters/pi": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts": "166313f96147e9bace1240466c5bac7090332b42",
-          "extensions/codewiki/src/adapters/pi/tools/task.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/adapters/pi/tools/task.ts": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "extensions/codewiki/src/adapters/pi/ui": "166313f96147e9bace1240466c5bac7090332b42",
           "extensions/codewiki/src/application": "166313f96147e9bace1240466c5bac7090332b42",
-          "extensions/codewiki/src/core": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/core": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "extensions/codewiki/src/core/ports.ts": "166313f96147e9bace1240466c5bac7090332b42",
           "extensions/codewiki/src/core/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
-          "extensions/codewiki/src/core/roadmap.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/core/roadmap.ts": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "extensions/codewiki/src/core/schemas.ts": "166313f96147e9bace1240466c5bac7090332b42",
           "extensions/codewiki/src/core/types.ts": "166313f96147e9bace1240466c5bac7090332b42",
           "extensions/codewiki/src/domain": "166313f96147e9bace1240466c5bac7090332b42",
-          "extensions/codewiki/src/engine": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/engine": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "extensions/codewiki/src/engine/graph.ts": "166313f96147e9bace1240466c5bac7090332b42",
           "extensions/codewiki/src/engine/rebuild.ts": "166313f96147e9bace1240466c5bac7090332b42",
           "extensions/codewiki/src/engine/state.ts": "166313f96147e9bace1240466c5bac7090332b42",
-          "extensions/codewiki/src/engine/views.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/engine/views.ts": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "extensions/codewiki/src/infrastructure": "166313f96147e9bace1240466c5bac7090332b42",
           "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
           "extensions/codewiki/templates.ts": "166313f96147e9bace1240466c5bac7090332b42",
           "package.json": "166313f96147e9bace1240466c5bac7090332b42",
           "scripts/check-architecture.mjs": "166313f96147e9bace1240466c5bac7090332b42",
           "scripts/codewiki-gateway.mjs": "166313f96147e9bace1240466c5bac7090332b42",
-          "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-          "scripts/smoke-test.mjs": "166313f96147e9bace1240466c5bac7090332b42",
+          "scripts/rebuild_docs_meta.py": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          "scripts/smoke-test.mjs": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           "skills/codewiki-architecture/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
           "skills/codewiki-plan/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
@@ -130,7 +130,7 @@
       },
       "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
       "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
-      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
+      "evidence_digest": "b2c2ff6545f58a6961ec3cdcbd4c5f5196ffc742d89a221db6a98e77f4ab6c25"
     }
   },
   "project": {
@@ -225,7 +225,7 @@
     ]
   },
   "heartbeat": {
-    "generated_at": "2026-05-06T22:02:16Z",
+    "generated_at": "2026-05-06T22:12:54Z",
     "summary": {
       "lane_count": 3,
       "freshness_basis": "work-first",
@@ -253,19 +253,13 @@
           "task_close:architecture",
           "manual_review"
         ],
-        "checked_at": "2026-05-06T22:02:16Z",
+        "checked_at": "2026-05-06T22:12:54Z",
         "revision": {
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": true,
             "dirty_paths": [
-              ".wiki/knowledge/lexicon.md",
-              ".wiki/knowledge/system/components/views.md",
-              ".wiki/knowledge/system/flows/context-memory.md",
-              ".wiki/knowledge/system/flows/task-loop.md",
-              ".wiki/knowledge/system/runtime/overview.md",
-              ".wiki/knowledge/system/v2-operating-model.md",
-              ".wiki/roadmap.json",
+              ".wiki/views/context/tasks/TASK-040/verify.json",
               ".wiki/views/drift.json",
               ".wiki/views/evidence/recent.json",
               ".wiki/views/graph.json",
@@ -302,16 +296,22 @@
               ".wiki/views/roadmap/tasks/TASK-025/context.json",
               ".wiki/views/roadmap/tasks/TASK-026/context.json",
               ".wiki/views/roadmap/tasks/TASK-027/context.json",
+              ".wiki/views/roadmap/tasks/TASK-033/context.json",
+              ".wiki/views/roadmap/tasks/TASK-034/context.json",
+              ".wiki/views/roadmap/tasks/TASK-035/context.json",
+              ".wiki/views/roadmap/tasks/TASK-036/context.json",
+              ".wiki/views/roadmap/tasks/TASK-037/context.json",
+              ".wiki/views/roadmap/tasks/TASK-038/context.json",
+              ".wiki/views/roadmap/tasks/TASK-039/context.json",
+              ".wiki/views/roadmap/tasks/TASK-040/context.json",
+              ".wiki/views/roadmap/tasks/TASK-041/context.json",
               ".wiki/views/roadmap/tasks/TASK-28/context.json",
               ".wiki/views/roadmap/tasks/TASK-29/context.json",
               ".wiki/views/roadmap/tasks/TASK-30/context.json",
-              ".wiki/views/roadmap/tasks/TASK-31/context.json",
-              ".wiki/views/roadmap/tasks/TASK-32/context.json",
-              ".wiki/views/status-state.json",
-              ".wiki/views/status.json"
+              ".wiki/views/roadmap/tasks/TASK-31/context.json"
             ],
             "paths": {
-              ".wiki/knowledge": "166313f96147e9bace1240466c5bac7090332b42",
+              ".wiki/knowledge": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/product/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d",
               ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
@@ -321,41 +321,41 @@
               ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/components/views.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/knowledge/system/flows/context-memory.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/flows/task-loop.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/roadmap.json": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/views": "166313f96147e9bace1240466c5bac7090332b42",
-              "extensions/codewiki": "166313f96147e9bace1240466c5bac7090332b42",
+              ".wiki/knowledge/system/runtime/overview.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              ".wiki/knowledge/system/v2-operating-model.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              ".wiki/roadmap.json": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              ".wiki/views": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              "extensions/codewiki": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               "extensions/codewiki/contracts.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "extensions/codewiki/index.ts": "166313f96147e9bace1240466c5bac7090332b42",
-              "extensions/codewiki/src/adapters/pi": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/adapters/pi": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               "extensions/codewiki/src/core/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "extensions/codewiki/src/engine/rebuild.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "scripts/check-architecture.mjs": "166313f96147e9bace1240466c5bac7090332b42",
               "scripts/codewiki-gateway.mjs": "166313f96147e9bace1240466c5bac7090332b42",
-              "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-              "scripts/smoke-test.mjs": "166313f96147e9bace1240466c5bac7090332b42",
+              "scripts/rebuild_docs_meta.py": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              "scripts/smoke-test.mjs": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           },
           "spec_digest": "5a710e2d97be05c2af2028d0627f902c1a96bad3ec574c3575059022d7b01c5a",
           "task_digest": "b8fc00ce3c36deb86bfa5b58bc8351bb936e64a9038575d3135a38c8f6cf0c38",
           "code_digest": "7bee559c6057205513f3cad622ca223cab378d489ba0005e9707fbaa70582c30",
-          "digest": "2fc69c6c6cf6b6d0627727c48e3486e298dcb7c4bb13fd4210d99345bd2fb6a7"
+          "digest": "cb63afca0e54570b36ea30748c2e8431bcc9180a43b810dcb652ac107b30bfe1"
         },
         "freshness": {
           "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-06T22:02:16Z",
+          "checked_at": "2026-05-06T22:12:54Z",
           "reason": "revision anchors unchanged since previous heartbeat",
           "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
@@ -453,19 +453,13 @@
           "rebuild_complete",
           "pre_close_check"
         ],
-        "checked_at": "2026-05-06T22:02:16Z",
+        "checked_at": "2026-05-06T22:12:54Z",
         "revision": {
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": true,
             "dirty_paths": [
-              ".wiki/knowledge/lexicon.md",
-              ".wiki/knowledge/system/components/views.md",
-              ".wiki/knowledge/system/flows/context-memory.md",
-              ".wiki/knowledge/system/flows/task-loop.md",
-              ".wiki/knowledge/system/runtime/overview.md",
-              ".wiki/knowledge/system/v2-operating-model.md",
-              ".wiki/roadmap.json",
+              ".wiki/views/context/tasks/TASK-040/verify.json",
               ".wiki/views/drift.json",
               ".wiki/views/evidence/recent.json",
               ".wiki/views/graph.json",
@@ -502,56 +496,62 @@
               ".wiki/views/roadmap/tasks/TASK-025/context.json",
               ".wiki/views/roadmap/tasks/TASK-026/context.json",
               ".wiki/views/roadmap/tasks/TASK-027/context.json",
+              ".wiki/views/roadmap/tasks/TASK-033/context.json",
+              ".wiki/views/roadmap/tasks/TASK-034/context.json",
+              ".wiki/views/roadmap/tasks/TASK-035/context.json",
+              ".wiki/views/roadmap/tasks/TASK-036/context.json",
+              ".wiki/views/roadmap/tasks/TASK-037/context.json",
+              ".wiki/views/roadmap/tasks/TASK-038/context.json",
+              ".wiki/views/roadmap/tasks/TASK-039/context.json",
+              ".wiki/views/roadmap/tasks/TASK-040/context.json",
+              ".wiki/views/roadmap/tasks/TASK-041/context.json",
               ".wiki/views/roadmap/tasks/TASK-28/context.json",
               ".wiki/views/roadmap/tasks/TASK-29/context.json",
               ".wiki/views/roadmap/tasks/TASK-30/context.json",
-              ".wiki/views/roadmap/tasks/TASK-31/context.json",
-              ".wiki/views/roadmap/tasks/TASK-32/context.json",
-              ".wiki/views/status-state.json",
-              ".wiki/views/status.json"
+              ".wiki/views/roadmap/tasks/TASK-31/context.json"
             ],
             "paths": {
-              ".wiki/knowledge": "166313f96147e9bace1240466c5bac7090332b42",
+              ".wiki/knowledge": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/system/components/extension.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/components/views.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/knowledge/system/flows/context-memory.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/flows/task-loop.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/roadmap.json": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/views": "166313f96147e9bace1240466c5bac7090332b42",
-              "extensions/codewiki": "166313f96147e9bace1240466c5bac7090332b42",
+              ".wiki/knowledge/system/runtime/overview.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              ".wiki/knowledge/system/v2-operating-model.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              ".wiki/roadmap.json": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              ".wiki/views": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              "extensions/codewiki": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               "extensions/codewiki/contracts.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "extensions/codewiki/index.ts": "166313f96147e9bace1240466c5bac7090332b42",
-              "extensions/codewiki/src/adapters/pi": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/adapters/pi": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               "extensions/codewiki/src/core/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "extensions/codewiki/src/engine/rebuild.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "scripts/check-architecture.mjs": "166313f96147e9bace1240466c5bac7090332b42",
               "scripts/codewiki-gateway.mjs": "166313f96147e9bace1240466c5bac7090332b42",
-              "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-              "scripts/smoke-test.mjs": "166313f96147e9bace1240466c5bac7090332b42",
+              "scripts/rebuild_docs_meta.py": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              "scripts/smoke-test.mjs": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           },
           "spec_digest": "2b223717c9bf43d4f952baa54a260ed6c1843f76cb3873ed8394773592ec8ce0",
           "task_digest": "b8fc00ce3c36deb86bfa5b58bc8351bb936e64a9038575d3135a38c8f6cf0c38",
           "code_digest": "7bee559c6057205513f3cad622ca223cab378d489ba0005e9707fbaa70582c30",
-          "digest": "89232e67037ba2df9116278e745ed3b6177064cdb0215967138fdbfb83029de9"
+          "digest": "ede64e9a2653078ca0b4e303221faf87c9054033ba85d503230f7d6b6cbb442f"
         },
         "freshness": {
           "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-06T22:02:16Z",
+          "checked_at": "2026-05-06T22:12:54Z",
           "reason": "revision anchors unchanged since previous heartbeat",
           "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
@@ -644,19 +644,13 @@
           "code_change:ux_surface",
           "manual_review"
         ],
-        "checked_at": "2026-05-06T22:02:16Z",
+        "checked_at": "2026-05-06T22:12:54Z",
         "revision": {
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": true,
             "dirty_paths": [
-              ".wiki/knowledge/lexicon.md",
-              ".wiki/knowledge/system/components/views.md",
-              ".wiki/knowledge/system/flows/context-memory.md",
-              ".wiki/knowledge/system/flows/task-loop.md",
-              ".wiki/knowledge/system/runtime/overview.md",
-              ".wiki/knowledge/system/v2-operating-model.md",
-              ".wiki/roadmap.json",
+              ".wiki/views/context/tasks/TASK-040/verify.json",
               ".wiki/views/drift.json",
               ".wiki/views/evidence/recent.json",
               ".wiki/views/graph.json",
@@ -693,16 +687,22 @@
               ".wiki/views/roadmap/tasks/TASK-025/context.json",
               ".wiki/views/roadmap/tasks/TASK-026/context.json",
               ".wiki/views/roadmap/tasks/TASK-027/context.json",
+              ".wiki/views/roadmap/tasks/TASK-033/context.json",
+              ".wiki/views/roadmap/tasks/TASK-034/context.json",
+              ".wiki/views/roadmap/tasks/TASK-035/context.json",
+              ".wiki/views/roadmap/tasks/TASK-036/context.json",
+              ".wiki/views/roadmap/tasks/TASK-037/context.json",
+              ".wiki/views/roadmap/tasks/TASK-038/context.json",
+              ".wiki/views/roadmap/tasks/TASK-039/context.json",
+              ".wiki/views/roadmap/tasks/TASK-040/context.json",
+              ".wiki/views/roadmap/tasks/TASK-041/context.json",
               ".wiki/views/roadmap/tasks/TASK-28/context.json",
               ".wiki/views/roadmap/tasks/TASK-29/context.json",
               ".wiki/views/roadmap/tasks/TASK-30/context.json",
-              ".wiki/views/roadmap/tasks/TASK-31/context.json",
-              ".wiki/views/roadmap/tasks/TASK-32/context.json",
-              ".wiki/views/status-state.json",
-              ".wiki/views/status.json"
+              ".wiki/views/roadmap/tasks/TASK-31/context.json"
             ],
             "paths": {
-              ".wiki/knowledge": "166313f96147e9bace1240466c5bac7090332b42",
+              ".wiki/knowledge": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
               ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
               ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
@@ -716,42 +716,42 @@
               ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/components/views.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/knowledge/system/flows/context-memory.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/flows/task-loop.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/roadmap.json": "166313f96147e9bace1240466c5bac7090332b42",
-              ".wiki/views": "166313f96147e9bace1240466c5bac7090332b42",
+              ".wiki/knowledge/system/runtime/overview.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              ".wiki/knowledge/system/v2-operating-model.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              ".wiki/roadmap.json": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              ".wiki/views": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               "README.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               "extensions/codewiki/contracts.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "extensions/codewiki/index.ts": "166313f96147e9bace1240466c5bac7090332b42",
-              "extensions/codewiki/src/adapters/pi": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/adapters/pi": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               "extensions/codewiki/src/core/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "extensions/codewiki/src/engine/rebuild.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
               "scripts/check-architecture.mjs": "166313f96147e9bace1240466c5bac7090332b42",
               "scripts/codewiki-gateway.mjs": "166313f96147e9bace1240466c5bac7090332b42",
-              "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-              "scripts/smoke-test.mjs": "166313f96147e9bace1240466c5bac7090332b42",
+              "scripts/rebuild_docs_meta.py": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+              "scripts/smoke-test.mjs": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
               "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           },
           "spec_digest": "891036abff339fa5fa17a311c5ae28055da14e02b93d385145c0665ffc32a125",
           "task_digest": "b8fc00ce3c36deb86bfa5b58bc8351bb936e64a9038575d3135a38c8f6cf0c38",
           "code_digest": "ad96ea71a1c15139f1296a8b98010abbd09d0791c5a8e21567ed6a1366ae9a51",
-          "digest": "4f46dc3f73bf1c6862b0a7a4808606f869e9c5fd923ac1b3e4ed964e807abddb"
+          "digest": "a32763f7ae8968e124a9a77db0f96d4434dd64de3ae1e6e2426d72857ee435bd"
         },
         "freshness": {
           "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-06T22:02:16Z",
+          "checked_at": "2026-05-06T22:12:54Z",
           "reason": "revision anchors unchanged since previous heartbeat",
           "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
@@ -845,7 +845,7 @@
     ]
   },
   "parallel": {
-    "generated_at": "2026-05-06T22:02:16Z",
+    "generated_at": "2026-05-06T22:12:54Z",
     "active_session_count": 2,
     "collision_task_ids": [],
     "sessions": [
@@ -910,7 +910,7 @@
         "revision": {
           "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -945,7 +945,7 @@
         "revision": {
           "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -985,13 +985,11 @@
         "revision": {
           "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/lexicon.md"
-            ],
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+            "dirty": false,
+            "dirty_paths": [],
             "paths": {
-              ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+              ".wiki/knowledge/lexicon.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
             }
           }
         },
@@ -1023,7 +1021,7 @@
         "revision": {
           "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1059,7 +1057,7 @@
         "revision": {
           "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1094,7 +1092,7 @@
         "revision": {
           "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1130,7 +1128,7 @@
         "revision": {
           "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1165,7 +1163,7 @@
         "revision": {
           "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1202,13 +1200,11 @@
         "revision": {
           "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/system/components/views.md"
-            ],
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+            "dirty": false,
+            "dirty_paths": [],
             "paths": {
-              ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+              ".wiki/knowledge/system/components/views.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
             }
           }
         },
@@ -1251,7 +1247,7 @@
         "revision": {
           "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1287,7 +1283,7 @@
         "revision": {
           "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1325,13 +1321,11 @@
         "revision": {
           "digest": "4992b16d50d00b3cff32de6283b1642d108a3ba8ae7dcb373873fcfb2e44aca5",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/system/flows/task-loop.md"
-            ],
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+            "dirty": false,
+            "dirty_paths": [],
             "paths": {
-              ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+              ".wiki/knowledge/system/flows/task-loop.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
             }
           }
         },
@@ -1377,7 +1371,7 @@
         "revision": {
           "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1419,13 +1413,11 @@
         "revision": {
           "digest": "0b4d5690b61979d89fa163d01d48cc73f66d0470f752b0f13f1978b78c8f6ecd",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/system/runtime/overview.md"
-            ],
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+            "dirty": false,
+            "dirty_paths": [],
             "paths": {
-              ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+              ".wiki/knowledge/system/runtime/overview.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
             }
           }
         },
@@ -1473,13 +1465,11 @@
         "revision": {
           "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/system/v2-operating-model.md"
-            ],
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+            "dirty": false,
+            "dirty_paths": [],
             "paths": {
-              ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+              ".wiki/knowledge/system/v2-operating-model.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
             }
           }
         },
@@ -1512,7 +1502,7 @@
         "revision": {
           "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1547,7 +1537,7 @@
         "revision": {
           "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1585,7 +1575,7 @@
         "revision": {
           "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1619,7 +1609,7 @@
         "revision": {
           "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1652,7 +1642,7 @@
         "revision": {
           "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1684,7 +1674,7 @@
         "revision": {
           "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1725,13 +1715,11 @@
         "revision": {
           "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/system/flows/context-memory.md"
-            ],
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+            "dirty": false,
+            "dirty_paths": [],
             "paths": {
-              ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+              ".wiki/knowledge/system/flows/context-memory.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
             }
           }
         },
@@ -1756,7 +1744,7 @@
         "revision": {
           "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1785,7 +1773,7 @@
         "revision": {
           "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
           "git": {
-            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1827,7 +1815,7 @@
             "revision": {
               "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1865,7 +1853,7 @@
             "revision": {
               "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1899,7 +1887,7 @@
             "revision": {
               "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1932,7 +1920,7 @@
             "revision": {
               "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1978,13 +1966,11 @@
             "revision": {
               "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/lexicon.md"
-                ],
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
-                  ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+                  ".wiki/knowledge/lexicon.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
                 }
               }
             },
@@ -2016,7 +2002,7 @@
             "revision": {
               "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2051,7 +2037,7 @@
             "revision": {
               "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2087,7 +2073,7 @@
             "revision": {
               "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2122,7 +2108,7 @@
             "revision": {
               "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2159,13 +2145,11 @@
             "revision": {
               "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/system/components/views.md"
-                ],
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
-                  ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+                  ".wiki/knowledge/system/components/views.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
                 }
               }
             },
@@ -2208,7 +2192,7 @@
             "revision": {
               "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2244,7 +2228,7 @@
             "revision": {
               "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2282,13 +2266,11 @@
             "revision": {
               "digest": "4992b16d50d00b3cff32de6283b1642d108a3ba8ae7dcb373873fcfb2e44aca5",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/system/flows/task-loop.md"
-                ],
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
-                  ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+                  ".wiki/knowledge/system/flows/task-loop.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
                 }
               }
             },
@@ -2334,7 +2316,7 @@
             "revision": {
               "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2376,13 +2358,11 @@
             "revision": {
               "digest": "0b4d5690b61979d89fa163d01d48cc73f66d0470f752b0f13f1978b78c8f6ecd",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/system/runtime/overview.md"
-                ],
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
-                  ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+                  ".wiki/knowledge/system/runtime/overview.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
                 }
               }
             },
@@ -2430,13 +2410,11 @@
             "revision": {
               "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/system/v2-operating-model.md"
-                ],
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
-                  ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+                  ".wiki/knowledge/system/v2-operating-model.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
                 }
               }
             },
@@ -2464,7 +2442,7 @@
             "revision": {
               "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2505,13 +2483,11 @@
             "revision": {
               "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/system/flows/context-memory.md"
-                ],
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
-                  ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+                  ".wiki/knowledge/system/flows/context-memory.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
                 }
               }
             },
@@ -2536,7 +2512,7 @@
             "revision": {
               "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2565,7 +2541,7 @@
             "revision": {
               "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2608,7 +2584,7 @@
             "revision": {
               "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2643,7 +2619,7 @@
             "revision": {
               "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2680,7 +2656,7 @@
             "revision": {
               "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2715,7 +2691,7 @@
             "revision": {
               "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
               "git": {
-                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2872,7 +2848,7 @@
       "revision": {
         "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2907,7 +2883,7 @@
       "revision": {
         "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2947,13 +2923,11 @@
       "revision": {
         "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/lexicon.md"
-          ],
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+            ".wiki/knowledge/lexicon.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
           }
         }
       },
@@ -2985,7 +2959,7 @@
       "revision": {
         "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3021,7 +2995,7 @@
       "revision": {
         "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3056,7 +3030,7 @@
       "revision": {
         "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3092,7 +3066,7 @@
       "revision": {
         "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3127,7 +3101,7 @@
       "revision": {
         "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3164,13 +3138,11 @@
       "revision": {
         "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/components/views.md"
-          ],
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+            ".wiki/knowledge/system/components/views.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
           }
         }
       },
@@ -3213,7 +3185,7 @@
       "revision": {
         "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3249,7 +3221,7 @@
       "revision": {
         "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3287,13 +3259,11 @@
       "revision": {
         "digest": "4992b16d50d00b3cff32de6283b1642d108a3ba8ae7dcb373873fcfb2e44aca5",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/flows/task-loop.md"
-          ],
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+            ".wiki/knowledge/system/flows/task-loop.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
           }
         }
       },
@@ -3339,7 +3309,7 @@
       "revision": {
         "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3381,13 +3351,11 @@
       "revision": {
         "digest": "0b4d5690b61979d89fa163d01d48cc73f66d0470f752b0f13f1978b78c8f6ecd",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/runtime/overview.md"
-          ],
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+            ".wiki/knowledge/system/runtime/overview.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
           }
         }
       },
@@ -3435,13 +3403,11 @@
       "revision": {
         "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/v2-operating-model.md"
-          ],
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+            ".wiki/knowledge/system/v2-operating-model.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
           }
         }
       },
@@ -3474,7 +3440,7 @@
       "revision": {
         "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3509,7 +3475,7 @@
       "revision": {
         "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3547,7 +3513,7 @@
       "revision": {
         "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3581,7 +3547,7 @@
       "revision": {
         "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3614,7 +3580,7 @@
       "revision": {
         "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3646,7 +3612,7 @@
       "revision": {
         "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3687,13 +3653,11 @@
       "revision": {
         "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/flows/context-memory.md"
-          ],
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+            ".wiki/knowledge/system/flows/context-memory.md": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717"
           }
         }
       },
@@ -3718,7 +3682,7 @@
       "revision": {
         "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3747,7 +3711,7 @@
       "revision": {
         "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
         "git": {
-          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "head": "eaa9e258e2dbd56e0c8d074b8ff9f3fab4073717",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
