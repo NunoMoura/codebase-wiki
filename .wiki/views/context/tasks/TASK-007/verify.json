@@ -1,0 +1,271 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-007",
+    "title": "Define CodeWiki task execution inner loop",
+    "status": "done",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Specify the automatic per-task loop that uses think-code context packets, implementation, local checks, fresh verification, and evidence before closure without requiring user-triggered verification commands.",
+    "labels": [
+      "inner-loop",
+      "implement-verify",
+      "think-code"
+    ],
+    "goal": {
+      "outcome": "Each roadmap task has an automatic implement\u2192verify loop grounded in task context, tests, and evidence.",
+      "acceptance": [
+        "Task loop is documented as load task/context, create compact context with think-code when useful, implement, run local checks, automatically invoke fresh verification when ready, append evidence, then close/block/follow-up.",
+        "Local verification and fresh-context verification have distinct responsibilities.",
+        "Task evidence captures checks run, files touched, issues, and verifier verdict.",
+        "Closure criteria require acceptance criteria and verification evidence, not just model confidence.",
+        "User command/manual trigger is treated as override/debug, not normal flow."
+      ],
+      "non_goals": [
+        "Force TDD for every trivial documentation-only task.",
+        "Make think-code a hard dependency when unavailable."
+      ],
+      "verification": [
+        "Run a sample task through the documented automatic loop or dry-run the workflow with an existing task.",
+        "Confirm task history/evidence records contain enough data to resume or audit work.",
+        "Confirm task closure cannot skip required verifier stage unless policy explicitly allows it."
+      ]
+    },
+    "delta": {
+      "desired": "Task execution is automatic, evidence-backed, and resumable from implementation through verification.",
+      "current": "Implement\u2192verify guidance exists but is not formalized as an automatic focused inner loop skill.",
+      "closure": "Add inner-loop skill/spec guidance and link it to CodeWiki task/session tools and automatic verifier stage."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Task loop is documented as load task/context, create compact context with think-code when useful, implement, run local checks, automatically invoke fresh verification when ready, append evidence, then close/block/follow-up.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md"
+      ],
+      "checks": [
+        "Run a sample task through the documented automatic loop or dry-run the workflow with an existing task.",
+        "Confirm task history/evidence records contain enough data to resume or audit work.",
+        "Confirm task closure cannot skip required verifier stage unless policy explicitly allows it."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Local verification and fresh-context verification have distinct responsibilities.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md"
+      ],
+      "checks": [
+        "Run a sample task through the documented automatic loop or dry-run the workflow with an existing task.",
+        "Confirm task history/evidence records contain enough data to resume or audit work.",
+        "Confirm task closure cannot skip required verifier stage unless policy explicitly allows it."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Task evidence captures checks run, files touched, issues, and verifier verdict.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md"
+      ],
+      "checks": [
+        "Run a sample task through the documented automatic loop or dry-run the workflow with an existing task.",
+        "Confirm task history/evidence records contain enough data to resume or audit work.",
+        "Confirm task closure cannot skip required verifier stage unless policy explicitly allows it."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Closure criteria require acceptance criteria and verification evidence, not just model confidence.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md"
+      ],
+      "checks": [
+        "Run a sample task through the documented automatic loop or dry-run the workflow with an existing task.",
+        "Confirm task history/evidence records contain enough data to resume or audit work.",
+        "Confirm task closure cannot skip required verifier stage unless policy explicitly allows it."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "User command/manual trigger is treated as override/debug, not normal flow.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md"
+      ],
+      "checks": [
+        "Run a sample task through the documented automatic loop or dry-run the workflow with an existing task.",
+        "Confirm task history/evidence records contain enough data to resume or audit work.",
+        "Confirm task closure cannot skip required verifier stage unless policy explicitly allows it."
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Force TDD for every trivial documentation-only task.",
+    "Make think-code a hard dependency when unavailable."
+  ],
+  "required_checks": [
+    "Run a sample task through the documented automatic loop or dry-run the workflow with an existing task.",
+    "Confirm task history/evidence records contain enough data to resume or audit work.",
+    "Confirm task closure cannot skip required verifier stage unless policy explicitly allows it."
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-01T02:20:38Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-007",
+      "action": "focus",
+      "title": "Define CodeWiki task execution inner loop",
+      "summary": "Continue implementation with automatic inner task execution loop.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-01T02:21:12Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-007 Define CodeWiki task execution inner loop"
+    },
+    {
+      "ts": "2026-05-01T02:21:12Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-007 Define CodeWiki task execution inner loop"
+    },
+    {
+      "ts": "2026-05-01T02:21:12Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-007",
+      "phase": "implement",
+      "title": "Define CodeWiki task execution inner loop",
+      "summary": "Implemented automatic inner task loop in focused task skill and runtime policy spec, including think-code context, local verification, fresh verification, evidence, and closure gates.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T02:21:12Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-007",
+      "verdict": "pass",
+      "summary": "Implemented automatic inner task loop in focused task skill and runtime policy spec, including think-code context, local verification, fresh verification, evidence, and closure gates.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T02:22:16Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-007",
+      "verdict": "pass",
+      "summary": "Specify the automatic per-task loop that uses think-code context packets, implementation, local checks, fresh verification, and evidence before closure without requiring user-triggered verification commands.",
+      "checks_run": [
+        "Run a sample task through the documented automatic loop or dry-run the workflow with an existing task.",
+        "Confirm task history/evidence records contain enough data to resume or audit work.",
+        "Confirm task closure cannot skip required verifier stage unless policy explicitly allows it."
+      ],
+      "files_touched": [
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T02:22:16Z",
+      "kind": "roadmap_close",
+      "title": "Closed 1 roadmap task(s)",
+      "summary": "TASK-007 Define CodeWiki task execution inner loop"
+    },
+    {
+      "ts": "2026-05-01T02:22:16Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-007",
+      "verdict": "pass",
+      "summary": "Verified automatic inner task loop implementation after final checks.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-007/context.json",
+    "build": ".wiki/views/context/tasks/TASK-007/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-007/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-007/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/clients/surfaces/roadmap.md",
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/roadmap/tasks/TASK-007/task.json",
+    ".wiki/views/context/tasks/TASK-007/build.json",
+    ".wiki/views/context/tasks/TASK-007/graph.json",
+    "skills/codewiki-task/SKILL.md",
+    "skills/codewiki-verify/SKILL.md"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 2396,
+    "over_budget": false
+  }
+}

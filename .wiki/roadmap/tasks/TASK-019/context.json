@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-05T23:21:30Z",
+  "generated_at": "2026-05-06T22:02:15Z",
   "context_path": ".wiki/roadmap/tasks/TASK-019/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -48,30 +48,32 @@
       "digest": "d258060c587c57eae1e2fc34d6c4526f3b2722f7e1b6afd7427559436e5ae28e"
     },
     "git": {
-      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
       "dirty": true,
       "dirty_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
         ".wiki/roadmap.json",
-        "extensions/codewiki/contracts.ts"
+        "scripts/rebuild_docs_meta.py"
       ],
       "paths": {
         ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf6306",
         ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf6306",
-        ".wiki/roadmap.json": "c70091881afe",
-        "extensions/codewiki/contracts.ts": "c70091881afe",
+        ".wiki/roadmap.json": "166313f96147",
+        "extensions/codewiki/contracts.ts": "166313f96147",
         "scripts/rebuild_docs_meta.py": "7e122a3091d4"
       }
     },
-    "spec_digest": "4e7040d721595f956d61abe3aec5ae33bb917d523ae4c3dbd2c729290abf5247",
-    "code_digest": "a971c0e62dd9a0347679055b65246f769eb556499f60183a94c01106be954e91",
+    "spec_digest": "fe724415a4885e4b77fd98dfc0c3e4ef714aa1e9ed97b9d2971754f7044bdbfb",
+    "code_digest": "f65f557f1cdac40196c6f15597ae2261a938bc15be885bdb24c3474b470c86b9",
     "graph": {
       "git": {
-        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
         "dirty": true
       },
-      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
-      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
-      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
     }
   },
   "specs": [
@@ -90,7 +92,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485"
+        "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4"
       },
       "expand": {
         "read": ".wiki/knowledge/system/v2-operating-model.md"
@@ -109,7 +111,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543"
+        "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b"
       },
       "expand": {
         "read": ".wiki/knowledge/system/flows/context-memory.md"
@@ -121,7 +123,7 @@
       "scripts/rebuild_docs_meta.py",
       "extensions/codewiki/contracts.ts"
     ],
-    "digest": "a971c0e62dd9a0347679055b65246f769eb556499f60183a94c01106be954e91",
+    "digest": "f65f557f1cdac40196c6f15597ae2261a938bc15be885bdb24c3474b470c86b9",
     "expand": [
       {
         "read": "scripts/rebuild_docs_meta.py"
@@ -156,6 +158,9 @@
     "task_json": ".wiki/roadmap/tasks/TASK-019/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",
     "status_state": ".wiki/status-state.json",
-    "graph": ".wiki/graph.json"
+    "graph": ".wiki/graph.json",
+    "build_pack": ".wiki/views/context/tasks/TASK-019/build.json",
+    "verify_pack": ".wiki/views/context/tasks/TASK-019/verify.json",
+    "graph_slice": ".wiki/views/context/tasks/TASK-019/graph.json"
   }
 }

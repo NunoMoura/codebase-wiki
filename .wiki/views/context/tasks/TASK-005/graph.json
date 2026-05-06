@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "role": "graph",
+  "task_id": "TASK-005",
+  "tiers": {
+    "core": [
+      {
+        "id": "doc:.wiki/knowledge/product/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/overview.md",
+        "title": "Product",
+        "why": "task_spec explicitly links TASK-005 to this node",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/product/overview.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/clients/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/clients/overview.md",
+        "title": "Clients Overview",
+        "why": "task_spec explicitly links TASK-005 to this node",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/clients/overview.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        "title": "Extensions / Codewiki",
+        "why": "task_spec explicitly links TASK-005 to this node",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "code:skills/codewiki/SKILL.md",
+        "kind": "code_path",
+        "path": "skills/codewiki/SKILL.md",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-005 to this node",
+        "edge_path": [
+          "task:TASK-005",
+          "code:skills/codewiki/SKILL.md"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:package.json",
+        "kind": "code_path",
+        "path": "package.json",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-005 to this node",
+        "edge_path": [
+          "task:TASK-005",
+          "code:package.json"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      }
+    ],
+    "supporting": [
+      {
+        "id": "doc:.wiki/knowledge/clients/agent-skills.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/clients/agent-skills.md",
+        "title": "Agent Skills",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/clients/overview.md",
+          "doc:.wiki/knowledge/clients/agent-skills.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/clients/surfaces/roadmap.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/clients/surfaces/roadmap.md",
+        "title": "Roadmap Surface",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/clients/overview.md",
+          "doc:.wiki/knowledge/clients/surfaces/roadmap.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/clients/surfaces/status-panel.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
+        "title": "Status Panel",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/clients/overview.md",
+          "doc:.wiki/knowledge/clients/surfaces/status-panel.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/clients/overview.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/lexicon.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/lexicon.md",
+        "title": "Lexicon",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/product/overview.md",
+          "doc:.wiki/knowledge/lexicon.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/product/stories.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/stories.md",
+        "title": "Product Stories",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/product/overview.md",
+          "doc:.wiki/knowledge/product/stories.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/product/surfaces.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/surfaces.md",
+        "title": "Product Surfaces",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/product/overview.md",
+          "doc:.wiki/knowledge/product/surfaces.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/product/users.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/users.md",
+        "title": "Product Users",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/product/overview.md",
+          "doc:.wiki/knowledge/product/users.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/product/overview.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/components/extension.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/components/extension.md",
+        "title": "CodeWiki Extension",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "doc:.wiki/knowledge/system/components/extension.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/components/view-rebuild.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/components/view-rebuild.md",
+        "title": "View Rebuild",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "doc:.wiki/knowledge/system/components/view-rebuild.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-005",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      }
+    ],
+    "watch": [],
+    "excluded": []
+  },
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 3000,
+    "estimated_tokens": 1624,
+    "over_budget": false
+  }
+}

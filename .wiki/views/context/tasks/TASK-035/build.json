@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-035",
+    "title": "Enforce structured knowledge-roadmap-code mapping",
+    "status": "todo",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Strengthen CodeWiki schemas, lint, and docs so knowledge docs, sprints, tasks, evidence, and code paths form a navigable vertical mapping for agents.",
+    "labels": [
+      "schema",
+      "lint",
+      "mapping"
+    ],
+    "goal": {
+      "outcome": "Agents can reliably trace intended knowledge to roadmap delta to code ownership through enforced metadata and generated views.",
+      "acceptance": [
+        "Knowledge frontmatter requirements are documented and enforced for ids, summaries, owners, and relevant code/spec links.",
+        "Roadmap tasks validate `spec_paths`, `code_paths`, goals, acceptance, non-goals, verification, and evidence links.",
+        "Lint/reporting identifies missing or broken horizontal and vertical mappings.",
+        "Generated views expose compact navigation packets for this mapping without becoming canonical truth."
+      ],
+      "non_goals": [
+        "Do not require every code file to have a one-to-one doc.",
+        "Do not make roadmap tasks duplicate all knowledge content."
+      ],
+      "verification": [
+        "Run `npm test`.",
+        "Run a rebuild and confirm `codewiki_state refresh=true` is green.",
+        "Add/adjust smoke fixtures for invalid mapping cases."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Knowledge frontmatter requirements are documented and enforced for ids, summaries, owners, and relevant code/spec links.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/components/knowledge.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run a rebuild and confirm `codewiki_state refresh=true` is green.",
+        "Add/adjust smoke fixtures for invalid mapping cases."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Roadmap tasks validate `spec_paths`, `code_paths`, goals, acceptance, non-goals, verification, and evidence links.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/components/knowledge.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run a rebuild and confirm `codewiki_state refresh=true` is green.",
+        "Add/adjust smoke fixtures for invalid mapping cases."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Lint/reporting identifies missing or broken horizontal and vertical mappings.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/components/knowledge.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run a rebuild and confirm `codewiki_state refresh=true` is green.",
+        "Add/adjust smoke fixtures for invalid mapping cases."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Generated views expose compact navigation packets for this mapping without becoming canonical truth.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/components/knowledge.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run a rebuild and confirm `codewiki_state refresh=true` is green.",
+        "Add/adjust smoke fixtures for invalid mapping cases."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-035/context.json",
+    "build": ".wiki/views/context/tasks/TASK-035/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-035/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-035/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/system/components/knowledge.md",
+    ".wiki/knowledge/system/components/roadmap.md",
+    ".wiki/knowledge/system/components/views.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-035/task.json",
+    "extensions/codewiki/src/engine",
+    "extensions/codewiki/templates.ts",
+    "scripts/rebuild_docs_meta.py"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-035 to this node",
+      "edge_path": [
+        "task:TASK-035",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/knowledge.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/knowledge.md",
+      "title": "Canonical Knowledge",
+      "why": "task_spec explicitly links TASK-035 to this node",
+      "edge_path": [
+        "task:TASK-035",
+        "doc:.wiki/knowledge/system/components/knowledge.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/roadmap.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/roadmap.md",
+      "title": "Roadmap Tasks",
+      "why": "task_spec explicitly links TASK-035 to this node",
+      "edge_path": [
+        "task:TASK-035",
+        "doc:.wiki/knowledge/system/components/roadmap.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/views.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/views.md",
+      "title": "Generated Views",
+      "why": "task_spec explicitly links TASK-035 to this node",
+      "edge_path": [
+        "task:TASK-035",
+        "doc:.wiki/knowledge/system/components/views.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/lexicon.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "why": "task_spec explicitly links TASK-035 to this node",
+      "edge_path": [
+        "task:TASK-035",
+        "doc:.wiki/knowledge/lexicon.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-035 to this node",
+      "edge_path": [
+        "task:TASK-035",
+        "code:extensions/codewiki/src/engine"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/templates.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/templates.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-035 to this node",
+      "edge_path": [
+        "task:TASK-035",
+        "code:extensions/codewiki/templates.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/rebuild_docs_meta.py",
+      "kind": "code_path",
+      "path": "scripts/rebuild_docs_meta.py",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-035 to this node",
+      "edge_path": [
+        "task:TASK-035",
+        "code:scripts/rebuild_docs_meta.py"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/components/knowledge.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 2063,
+    "over_budget": false
+  }
+}

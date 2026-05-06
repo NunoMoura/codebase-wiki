@@ -6,7 +6,7 @@ summary: Shared CodeWiki vocabulary for agents, humans, tasks, and generated vie
 owners:
   - product
   - architecture
-updated: "2026-05-01"
+updated: "2026-05-06"
 ---
 
 # Lexicon
@@ -17,7 +17,23 @@ Durable project intent that agents may update through approved tools or exact wi
 
 ## View
 
-A generated read model optimized for agent navigation and UI rendering. Views are consumed by agents but never hand-edited. They are rebuilt from canonical truth.
+A generated read model optimized for agent navigation, verification, and UI rendering. Views are consumed by agents but never hand-edited. They are rebuilt from canonical truth.
+
+## Context compiler
+
+The view-generation role that compiles canonical knowledge, roadmap tasks, evidence, graph state, and lint state into compact routing artifacts for agents. A context compiler does not create new truth; it creates deterministic routes to the smallest useful context.
+
+## Role seed pack
+
+A compact generated context packet for a specific role such as `grill`, `plan`, `build`, or `verify`. It contains routing metadata, reasons, revisions, alignment signals, recommended next reads, and small decisive excerpts when useful. It should not inline broad docs, broad code, or old task history.
+
+## Graph slice
+
+A scoped generated subset of the knowledge graph for one task, sprint, roadmap question, or verification profile. A graph slice groups nodes into `core`, `supporting`, `watch`, and `excluded` tiers and records why each node was selected.
+
+## Observability signal
+
+A non-gating fact about horizontal or vertical alignment, freshness, bloat, missing links, or stale context. Observability signals inform agents and verification gateways, but they do not themselves close or block work.
 
 ## Canonical/view boundary
 
@@ -42,6 +58,14 @@ The active Pi agent session memory. It is volatile RAM and expensive because it 
 ## Subagent
 
 A fresh Pi agent invocation with a clean context window used for bounded work such as verification, research, planning review, or architecture review.
+
+## Verification gateway
+
+A CodeWiki capability router that runs deterministic preflight, allowed mechanical checks, fresh-context semantic verification, and evidence gating for profiles such as task close, sprint close, release checkpoint, drift audit, view audit, runtime adapter, and skill package changes.
+
+## Verifier
+
+A read-only fresh process, session, or subagent that returns a deterministic `pass`, `fail`, or `block` verdict. The verifier does not mutate canonical truth; the parent process records evidence and lifecycle changes.
 
 ## Heartbeat
 

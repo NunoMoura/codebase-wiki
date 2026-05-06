@@ -1,0 +1,332 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-31",
+    "title": "Move Pi surface into adapters and retire legacy core structure",
+    "status": "verify",
+    "priority": "medium",
+    "kind": "migration",
+    "summary": "Complete the folder migration only after guardrails and application seams exist, moving Pi commands/tools/UI into adapters and deleting legacy duplicates/shims.",
+    "labels": [
+      "architecture",
+      "migration",
+      "pi-adapter"
+    ],
+    "goal": {
+      "outcome": "Repository layout matches the target ports/adapters architecture without duplicate engine/core surfaces.",
+      "acceptance": [
+        "`extensions/codewiki/index.ts` is a thin Pi extension entrypoint that delegates registration to `src/adapters/pi`.",
+        "Pi tools, commands, and TUI code live under `src/adapters/pi`.",
+        "There is one engine/rebuild implementation path, with old duplicate `src/engine` removed or converted to a temporary shim before deletion.",
+        "`contracts.ts` exports stable public contracts from canonical locations, not legacy `core` internals.",
+        "Legacy `core`, `tools`, `commands`, `ui`, and duplicate `engine` shims are deleted only after import-boundary checks deny their use."
+      ],
+      "non_goals": [
+        "Do not change public command/tool names.",
+        "Do not add non-Pi adapters beyond a tiny proof adapter if separately tasked."
+      ],
+      "verification": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ]
+    },
+    "delta": {
+      "desired": "Clear folder ownership with Pi-specific code isolated and legacy structure removed.",
+      "current": "Pi tools, commands, and UI live under src/adapters/pi; index.ts is thin; duplicate infrastructure/engine path and legacy src/tools/src/commands/src/ui folders are gone; transitional core shims remain intentionally for follow-up application extraction.",
+      "closure": "No duplicate migration artifacts remain and all public Pi behavior still passes tests."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "`extensions/codewiki/index.ts` is a thin Pi extension entrypoint that delegates registration to `src/adapters/pi`.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Pi tools, commands, and TUI code live under `src/adapters/pi`.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "There is one engine/rebuild implementation path, with old duplicate `src/engine` removed or converted to a temporary shim before deletion.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "`contracts.ts` exports stable public contracts from canonical locations, not legacy `core` internals.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "Legacy `core`, `tools`, `commands`, `ui`, and duplicate `engine` shims are deleted only after import-boundary checks deny their use.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-31/context.json",
+    "build": ".wiki/views/context/tasks/TASK-31/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-31/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-31/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/extensions/codewiki/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/roadmap/tasks/TASK-31/task.json",
+    "extensions/codewiki/contracts.ts",
+    "extensions/codewiki/index.ts",
+    "extensions/codewiki/src/adapters/pi",
+    "extensions/codewiki/src/core",
+    "extensions/codewiki/src/engine",
+    "extensions/codewiki/src/infrastructure"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "why": "task_spec explicitly links TASK-31 to this node",
+      "edge_path": [
+        "task:TASK-31",
+        "doc:.wiki/knowledge/system/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "why": "task_spec explicitly links TASK-31 to this node",
+      "edge_path": [
+        "task:TASK-31",
+        "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/index.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/index.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-31 to this node",
+      "edge_path": [
+        "task:TASK-31",
+        "code:extensions/codewiki/index.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-31 to this node",
+      "edge_path": [
+        "task:TASK-31",
+        "code:extensions/codewiki/src/adapters/pi"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/core",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-31 to this node",
+      "edge_path": [
+        "task:TASK-31",
+        "code:extensions/codewiki/src/core"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-31 to this node",
+      "edge_path": [
+        "task:TASK-31",
+        "code:extensions/codewiki/src/engine"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/infrastructure",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/infrastructure",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-31 to this node",
+      "edge_path": [
+        "task:TASK-31",
+        "code:extensions/codewiki/src/infrastructure"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/contracts.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/contracts.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-31 to this node",
+      "edge_path": [
+        "task:TASK-31",
+        "code:extensions/codewiki/contracts.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        "extensions/codewiki/contracts.ts",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 2469,
+    "over_budget": false
+  }
+}

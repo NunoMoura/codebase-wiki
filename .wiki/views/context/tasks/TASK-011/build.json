@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-011",
+    "title": "Record curated global agent skills decision",
+    "status": "done",
+    "priority": "medium",
+    "kind": "docs",
+    "summary": "Document which general engineering skills should be installed or adapted globally for Pi without conflicting with CodeWiki-specific workflows.",
+    "labels": [
+      "global-agent-skills",
+      "compatibility"
+    ],
+    "goal": {
+      "outcome": "There is a durable CodeWiki decision record for global Pi skills versus CodeWiki-specific skills.",
+      "acceptance": [
+        "Global candidates are tdd, diagnose, grill-me, zoom-out, and write-a-skill.",
+        "Excluded or adapt-first skills are documented with reasons.",
+        "Notes include Pi package security and skill discovery behavior.",
+        "No global Pi settings are changed without explicit user approval."
+      ],
+      "non_goals": [
+        "Install all external skills immediately.",
+        "Replace CodeWiki roadmap with external issue skills."
+      ],
+      "verification": [
+        "Review decision text against Pi docs and existing global packages.",
+        "Confirm no repo-specific conventions are forced globally."
+      ]
+    },
+    "delta": {
+      "desired": "Global skills are curated with compatibility rationale.",
+      "current": "Decision exists only in chat.",
+      "closure": "Add durable decision guidance before installation or packaging."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Global candidates are tdd, diagnose, grill-me, zoom-out, and write-a-skill.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/clients/overview.md"
+      ],
+      "code_paths": [],
+      "checks": [
+        "Review decision text against Pi docs and existing global packages.",
+        "Confirm no repo-specific conventions are forced globally."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Excluded or adapt-first skills are documented with reasons.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/clients/overview.md"
+      ],
+      "code_paths": [],
+      "checks": [
+        "Review decision text against Pi docs and existing global packages.",
+        "Confirm no repo-specific conventions are forced globally."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Notes include Pi package security and skill discovery behavior.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/clients/overview.md"
+      ],
+      "code_paths": [],
+      "checks": [
+        "Review decision text against Pi docs and existing global packages.",
+        "Confirm no repo-specific conventions are forced globally."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "No global Pi settings are changed without explicit user approval.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/clients/overview.md"
+      ],
+      "code_paths": [],
+      "checks": [
+        "Review decision text against Pi docs and existing global packages.",
+        "Confirm no repo-specific conventions are forced globally."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-011/context.json",
+    "build": ".wiki/views/context/tasks/TASK-011/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-011/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-011/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/clients/agent-skills.md",
+    ".wiki/knowledge/clients/overview.md",
+    ".wiki/roadmap/tasks/TASK-011/task.json"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/clients/agent-skills.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/clients/agent-skills.md",
+      "title": "Agent Skills",
+      "why": "task_spec explicitly links TASK-011 to this node",
+      "edge_path": [
+        "task:TASK-011",
+        "doc:.wiki/knowledge/clients/agent-skills.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/clients/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/clients/overview.md",
+      "title": "Clients Overview",
+      "why": "task_spec explicitly links TASK-011 to this node",
+      "edge_path": [
+        "task:TASK-011",
+        "doc:.wiki/knowledge/clients/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": []
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/clients/overview.md"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": false,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": false,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1122,
+    "over_budget": false
+  }
+}

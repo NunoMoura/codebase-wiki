@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "role": "graph",
+  "task_id": "TASK-019",
+  "tiers": {
+    "core": [
+      {
+        "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/v2-operating-model.md",
+        "title": "CodeWiki v2 Operating Model",
+        "why": "task_spec explicitly links TASK-019 to this node",
+        "edge_path": [
+          "task:TASK-019",
+          "doc:.wiki/knowledge/system/v2-operating-model.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/flows/context-memory.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/flows/context-memory.md",
+        "title": "Context Memory Flow",
+        "why": "task_spec explicitly links TASK-019 to this node",
+        "edge_path": [
+          "task:TASK-019",
+          "doc:.wiki/knowledge/system/flows/context-memory.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "code:scripts/rebuild_docs_meta.py",
+        "kind": "code_path",
+        "path": "scripts/rebuild_docs_meta.py",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-019 to this node",
+        "edge_path": [
+          "task:TASK-019",
+          "code:scripts/rebuild_docs_meta.py"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:extensions/codewiki/contracts.ts",
+        "kind": "code_path",
+        "path": "extensions/codewiki/contracts.ts",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-019 to this node",
+        "edge_path": [
+          "task:TASK-019",
+          "code:extensions/codewiki/contracts.ts"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      }
+    ],
+    "supporting": [
+      {
+        "id": "code:skills",
+        "kind": "code_path",
+        "path": "skills",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-019",
+          "doc:.wiki/knowledge/system/flows/context-memory.md",
+          "code:skills"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/flows/sanitation-release.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+        "title": "Sanitation and Release Flow",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-019",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "doc:.wiki/knowledge/system/flows/sanitation-release.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-019",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:extensions/codewiki",
+        "kind": "code_path",
+        "path": "extensions/codewiki",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-019",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "code:extensions/codewiki"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:skills",
+        "kind": "code_path",
+        "path": "skills",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-019",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "code:skills"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      }
+    ],
+    "watch": [],
+    "excluded": []
+  },
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 3000,
+    "estimated_tokens": 849,
+    "over_budget": false
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-016",
+    "title": "Bake product split and lexicon into templates",
+    "status": "done",
+    "priority": "high",
+    "kind": "docs",
+    "summary": "Starter templates now include the v2 product split and shared lexicon, with smoke coverage for the new files.",
+    "labels": [
+      "v2",
+      "product",
+      "lexicon",
+      "templates"
+    ],
+    "goal": {
+      "outcome": "New wikis start with focused product knowledge and a shared lexicon rather than one large product overview.",
+      "acceptance": [
+        "Bootstrap templates include lexicon, users, stories, and surfaces docs.",
+        "Product overview is short navigation plus boundaries.",
+        "Smoke tests cover expected starter files.",
+        "Existing clients docs link cleanly to the product split."
+      ],
+      "non_goals": [
+        "Delete all client surface docs.",
+        "Implement system architecture graph generation."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Every new CodeWiki repo gets the v2 product/lexicon structure.",
+      "current": "This repo has the new product split, but package templates still need to adopt it.",
+      "closure": "Templates and smoke tests reflect product split and lexicon."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Bootstrap templates include lexicon, users, stories, and surfaces docs.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Product overview is short navigation plus boundaries.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Smoke tests cover expected starter files.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Existing clients docs link cleanly to the product split.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-016/context.json",
+    "build": ".wiki/views/context/tasks/TASK-016/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-016/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-016/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/product/stories.md",
+    ".wiki/knowledge/product/surfaces.md",
+    ".wiki/knowledge/product/users.md",
+    ".wiki/roadmap/tasks/TASK-016/task.json",
+    "extensions/codewiki/templates.ts",
+    "scripts/smoke-test.mjs"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/product/users.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/product/users.md",
+      "title": "Product Users",
+      "why": "task_spec explicitly links TASK-016 to this node",
+      "edge_path": [
+        "task:TASK-016",
+        "doc:.wiki/knowledge/product/users.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/product/stories.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/product/stories.md",
+      "title": "Product Stories",
+      "why": "task_spec explicitly links TASK-016 to this node",
+      "edge_path": [
+        "task:TASK-016",
+        "doc:.wiki/knowledge/product/stories.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/product/surfaces.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/product/surfaces.md",
+      "title": "Product Surfaces",
+      "why": "task_spec explicitly links TASK-016 to this node",
+      "edge_path": [
+        "task:TASK-016",
+        "doc:.wiki/knowledge/product/surfaces.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/lexicon.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "why": "task_spec explicitly links TASK-016 to this node",
+      "edge_path": [
+        "task:TASK-016",
+        "doc:.wiki/knowledge/lexicon.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/templates.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/templates.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-016 to this node",
+      "edge_path": [
+        "task:TASK-016",
+        "code:extensions/codewiki/templates.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/smoke-test.mjs",
+      "kind": "code_path",
+      "path": "scripts/smoke-test.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-016 to this node",
+      "edge_path": [
+        "task:TASK-016",
+        "code:scripts/smoke-test.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/product/users.md",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1496,
+    "over_budget": false
+  }
+}

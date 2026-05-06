@@ -13,7 +13,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -25,361 +25,368 @@
   ],
   "events": [
     {
-      "ts": "2026-05-05T21:41:03Z",
+      "ts": "2026-05-06T10:07:28Z",
+      "kind": "task_evidence_recorded",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "block",
+      "summary": "Fresh verifier block: Subprocess error: spawn E2BIG",
+      "checks_run": [
+        "automatic verifier subprocess"
+      ],
+      "files_touched": [],
+      "issues": [
+        "Automatic verifier could not complete: spawn E2BIG"
+      ]
+    },
+    {
+      "ts": "2026-05-06T10:10:16Z",
+      "kind": "task_evidence_recorded",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "block",
+      "summary": "Fresh verifier block: Subprocess error: spawn E2BIG",
+      "checks_run": [
+        "automatic verifier subprocess"
+      ],
+      "files_touched": [],
+      "issues": [
+        "Automatic verifier could not complete: spawn E2BIG"
+      ]
+    },
+    {
+      "ts": "2026-05-06T10:13:02Z",
+      "kind": "task_evidence_recorded",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "block",
+      "summary": "Fresh verifier block: Subprocess error: spawn E2BIG",
+      "checks_run": [
+        "automatic verifier subprocess"
+      ],
+      "files_touched": [],
+      "issues": [
+        "Automatic verifier could not complete: spawn E2BIG"
+      ]
+    },
+    {
+      "ts": "2026-05-06T10:13:56Z",
+      "kind": "release_checkpoint_created",
+      "title": "Created release checkpoint",
+      "summary": "TASK-040 verifier gateway hardening pending Pi reload for close",
+      "path": ".wiki/release-checkpoints.jsonl"
+    },
+    {
+      "ts": "2026-05-06T21:21:33Z",
+      "kind": "task_evidence_recorded",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "block",
+      "summary": "Fresh verifier block: Failed to parse verifier output",
+      "checks_run": [
+        "strict verifier JSON parse"
+      ],
+      "files_touched": [],
+      "issues": [
+        "Malformed verifier JSON output"
+      ]
+    },
+    {
+      "ts": "2026-05-06T21:34:38Z",
       "kind": "roadmap_task_session_link",
-      "taskId": "TASK-28",
-      "title": "Stabilize CodeWiki refactor after partial DDD migration",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
       "action": "focus",
-      "summary": "Begin stabilization-first architecture refactor plan after reviewing DDD proposal and current partial migration drift.",
+      "summary": "Refactor verifier gateway so CodeWiki core is adapter-agnostic and Pi adapter owns fresh read-only verifier session execution.",
       "files_touched": [],
       "spawnedTaskIds": [],
-      "session_id": "019df511-c242-728f-afd4-a2834fb25e4e"
+      "session_id": "019dfc74-46a7-779a-a2b3-4e892aaa5836"
     },
     {
-      "ts": "2026-05-05T21:41:14Z",
-      "kind": "roadmap_task_evidence",
-      "taskId": "TASK-28",
-      "title": "Stabilize CodeWiki refactor after partial DDD migration",
-      "verdict": "progress",
-      "summary": "Reviewed architecture proposal and current repo state. Found partial DDD migration already present with mixed old/new folders, duplicate engine paths, dominant legacy imports, passing typecheck, and failing codewiki_state tool path in this session.",
-      "checks_run": [
-        "npm run typecheck",
-        "codewiki_state"
-      ],
-      "files_touched": [
-        "/mnt/c/Users/nunoc/OneDrive/Desktop/architecture_proposal.md",
-        ".wiki/knowledge/system/overview.md",
-        ".wiki/knowledge/system/extensions/codewiki/overview.md",
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/src/application/ports.ts",
-        "extensions/codewiki/src/application/rebuild.ts",
-        "extensions/codewiki/src/infrastructure/filesystem.ts"
-      ],
-      "issues": [
-        "codewiki_state failed with: Cannot use 'in' operator to search for 'type' in undefined",
-        "Partial migration has duplicated src/engine and src/infrastructure/engine modules",
-        "Application rebuild currently imports root mutation queue and node:path, so ports/lock boundary is incomplete"
-      ]
-    },
-    {
-      "ts": "2026-05-05T23:16:15Z",
+      "ts": "2026-05-06T21:39:33Z",
       "kind": "task_evidence_recorded",
-      "taskId": "TASK-28",
-      "title": "Stabilize CodeWiki refactor after partial DDD migration",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
       "verdict": "block",
-      "summary": "Fresh verifier block: Subprocess error: Command failed: pi --mode json -p --no-session --no-extensions --no-prompt-templates --no-themes --no-context-files --tools read,grep,find,ls Verify roadmap task TASK-28: Stabilize CodeWiki refactor after partial DDD migration\nSummary: Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.\nContext: {\"version\":1,\"generated_at\":\"2026-05-05T23:10:02Z\",\"context_path\":\".wiki/roadmap/tasks/TASK-28/context.json\",\"budget\":{\"target_tokens\":6000,\"policy\":\"Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source.\"},\"task\":{\"id\":\"TASK-28\",\"title\":\"Stabilize CodeWiki refactor after partial DDD migration\",\"status\":\"todo\",\"phase\":\"implement\",\"priority\":\"critical\",\"kind\":\"architecture\",\"summary\":\"Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.\",\"labels\":[\"architecture\",\"stabilization\",\"migration\"],\"goal\":{\"outcome\":\"CodeWiki has a green baseline before further architecture migration proceeds.\",\"acceptance\":[\"`npm run typecheck` and `npm test` pass.\",\"`codewiki_state` works from the Pi tool path or the failure is captured with a blocking root cause.\",\"Current duplicate module sets are inventoried with a keep/delete/move decision.\",\"No broad folder moves happen before the baseline is verified.\"],\"non_goals\":[\"Do not implement MCP, Codex, or Claude adapters.\",\"Do not complete the full DDD migration in this task.\",\"Do not delete compatibility shims without proving all imports moved.\"],\"verification\":[\"Run `npm run typecheck`.\",\"Run `npm test`.\",\"Run a CodeWiki state read or targeted equivalent for this repo.\",\"Inspect git diff for unrelated rewrites.\"]},\"delta\":{\"desired\":\"Verified stable baseline with known drift and a safe migration path.\",\"current\":\"A partial architecture refactor exists: domain/application/infrastructure folders have been created, but old core/engine/tools/commands/ui imports still dominate and `codewiki_state` currently fails in this session.\",\"closure\":\"Baseline checks pass and current migration drift is documented.\"}},\"revision\":{\"task\":{\"digest\":\"8ba593fa5652f9872615a8fc0f0a5d63ebcc395324e9a217a145e5bae2b39d28\"},\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true,\"dirty_paths\":[\".wiki/knowledge/system/extensions/codewiki/overview.md\",\".wiki/knowledge/system/overview.md\",\".wiki/roadmap.json\",\"extensions/codewiki/bootstrap.ts\",\"extensions/codewiki/contracts.ts\",\"extensions/codewiki/index.ts\",\"extensions/codewiki/project-root.ts\",\"extensions/codewiki/templates.ts\",\"scripts/smoke-test.mjs\"],\"paths\":{\".wiki/knowledge/system/extensions/codewiki/overview.md\":\"c70091881afe\",\".wiki/knowledge/system/overview.md\":\"643c940fa1ca\",\".wiki/roadmap.json\":\"c70091881afe\",\"extensions/codewiki\":\"c70091881afe\",\"scripts/smoke-test.mjs\":\"c70091881afe\",\"tsconfig.json\":\"0d12c87f000a\"}},\"spec_digest\":\"14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b\",\"code_digest\":\"effa7d5ce81181baddbf7c272de9fd4fd8699afc84d9f2d010f381c092af7dc8\",\"graph\":{\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true},\"spec_digest\":\"f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a\",\"task_digest\":\"4d194d60c1ade731693d3beb35d650be8f36d44141ba6cc58b7a048c14d4e061\",\"evidence_digest\":\"c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367\"}},\"specs\":[{\"path\":\".wiki/knowledge/system/overview.md\",\"title\":\"System Overview\",\"summary\":\"Main runtime areas and ownership boundaries for CodeWiki.\",\"state\":\"active\",\"owners\":[\"architecture\"],\"code_paths\":[\"extensions/codewiki\",\"scripts/rebuild_docs_meta.py\",\"skills\"],\"revision\":{\"digest\":\"09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca\"},\"expand\":{\"read\":\".wiki/knowledge/system/overview.md\"}},{\"path\":\".wiki/knowledge/system/extensions/codewiki/overview.md\",\"title\":\"Extensions / Codewiki\",\"summary\":\"Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.\",\"state\":\"active\",\"owners\":[\"engineering\"],\"code_paths\":[\"extensions/codewiki\",\"skills\",\"scripts/smoke-test.mjs\",\"scripts/check-architecture.mjs\"],\"revision\":{\"digest\":\"a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12\"},\"expand\":{\"read\":\".wiki/knowledge/system/extensions/codewiki/overview.md\"}}],\"code\":{\"paths\":[\"extensions/codewiki\",\"scripts/smoke-test.mjs\",\"tsconfig.json\"],\"digest\":\"effa7d5ce81181baddbf7c272de9fd4fd8699afc84d9f2d010f381c092af7dc8\",\"expand\":[{\"read\":\"extensions/codewiki\"},{\"read\":\"scripts/smoke-test.mjs\"},{\"read\":\"tsconfig.json\"}]},\"evidence\":null,\"expansion\":{\"task_json\":\".wiki/roadmap/tasks/TASK-28/task.json\",\"roadmap_state\":\".wiki/roadmap-state.json\",\"status_state\":\".wiki/status-state.json\",\"graph\":\".wiki/graph.json\"}}",
+      "summary": "Fresh verifier block: Failed to parse verifier output",
       "checks_run": [
-        "automatic verifier subprocess"
+        "strict verifier JSON parse"
       ],
       "files_touched": [],
       "issues": [
-        "Automatic verifier could not complete: Command failed: pi --mode json -p --no-session --no-extensions --no-prompt-templates --no-themes --no-context-files --tools read,grep,find,ls Verify roadmap task TASK-28: Stabilize CodeWiki refactor after partial DDD migration\nSummary: Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.\nContext: {\"version\":1,\"generated_at\":\"2026-05-05T23:10:02Z\",\"context_path\":\".wiki/roadmap/tasks/TASK-28/context.json\",\"budget\":{\"target_tokens\":6000,\"policy\":\"Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source.\"},\"task\":{\"id\":\"TASK-28\",\"title\":\"Stabilize CodeWiki refactor after partial DDD migration\",\"status\":\"todo\",\"phase\":\"implement\",\"priority\":\"critical\",\"kind\":\"architecture\",\"summary\":\"Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.\",\"labels\":[\"architecture\",\"stabilization\",\"migration\"],\"goal\":{\"outcome\":\"CodeWiki has a green baseline before further architecture migration proceeds.\",\"acceptance\":[\"`npm run typecheck` and `npm test` pass.\",\"`codewiki_state` works from the Pi tool path or the failure is captured with a blocking root cause.\",\"Current duplicate module sets are inventoried with a keep/delete/move decision.\",\"No broad folder moves happen before the baseline is verified.\"],\"non_goals\":[\"Do not implement MCP, Codex, or Claude adapters.\",\"Do not complete the full DDD migration in this task.\",\"Do not delete compatibility shims without proving all imports moved.\"],\"verification\":[\"Run `npm run typecheck`.\",\"Run `npm test`.\",\"Run a CodeWiki state read or targeted equivalent for this repo.\",\"Inspect git diff for unrelated rewrites.\"]},\"delta\":{\"desired\":\"Verified stable baseline with known drift and a safe migration path.\",\"current\":\"A partial architecture refactor exists: domain/application/infrastructure folders have been created, but old core/engine/tools/commands/ui imports still dominate and `codewiki_state` currently fails in this session.\",\"closure\":\"Baseline checks pass and current migration drift is documented.\"}},\"revision\":{\"task\":{\"digest\":\"8ba593fa5652f9872615a8fc0f0a5d63ebcc395324e9a217a145e5bae2b39d28\"},\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true,\"dirty_paths\":[\".wiki/knowledge/system/extensions/codewiki/overview.md\",\".wiki/knowledge/system/overview.md\",\".wiki/roadmap.json\",\"extensions/codewiki/bootstrap.ts\",\"extensions/codewiki/contracts.ts\",\"extensions/codewiki/index.ts\",\"extensions/codewiki/project-root.ts\",\"extensions/codewiki/templates.ts\",\"scripts/smoke-test.mjs\"],\"paths\":{\".wiki/knowledge/system/extensions/codewiki/overview.md\":\"c70091881afe\",\".wiki/knowledge/system/overview.md\":\"643c940fa1ca\",\".wiki/roadmap.json\":\"c70091881afe\",\"extensions/codewiki\":\"c70091881afe\",\"scripts/smoke-test.mjs\":\"c70091881afe\",\"tsconfig.json\":\"0d12c87f000a\"}},\"spec_digest\":\"14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b\",\"code_digest\":\"effa7d5ce81181baddbf7c272de9fd4fd8699afc84d9f2d010f381c092af7dc8\",\"graph\":{\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true},\"spec_digest\":\"f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a\",\"task_digest\":\"4d194d60c1ade731693d3beb35d650be8f36d44141ba6cc58b7a048c14d4e061\",\"evidence_digest\":\"c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367\"}},\"specs\":[{\"path\":\".wiki/knowledge/system/overview.md\",\"title\":\"System Overview\",\"summary\":\"Main runtime areas and ownership boundaries for CodeWiki.\",\"state\":\"active\",\"owners\":[\"architecture\"],\"code_paths\":[\"extensions/codewiki\",\"scripts/rebuild_docs_meta.py\",\"skills\"],\"revision\":{\"digest\":\"09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca\"},\"expand\":{\"read\":\".wiki/knowledge/system/overview.md\"}},{\"path\":\".wiki/knowledge/system/extensions/codewiki/overview.md\",\"title\":\"Extensions / Codewiki\",\"summary\":\"Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.\",\"state\":\"active\",\"owners\":[\"engineering\"],\"code_paths\":[\"extensions/codewiki\",\"skills\",\"scripts/smoke-test.mjs\",\"scripts/check-architecture.mjs\"],\"revision\":{\"digest\":\"a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12\"},\"expand\":{\"read\":\".wiki/knowledge/system/extensions/codewiki/overview.md\"}}],\"code\":{\"paths\":[\"extensions/codewiki\",\"scripts/smoke-test.mjs\",\"tsconfig.json\"],\"digest\":\"effa7d5ce81181baddbf7c272de9fd4fd8699afc84d9f2d010f381c092af7dc8\",\"expand\":[{\"read\":\"extensions/codewiki\"},{\"read\":\"scripts/smoke-test.mjs\"},{\"read\":\"tsconfig.json\"}]},\"evidence\":null,\"expansion\":{\"task_json\":\".wiki/roadmap/tasks/TASK-28/task.json\",\"roadmap_state\":\".wiki/roadmap-state.json\",\"status_state\":\".wiki/status-state.json\",\"graph\":\".wiki/graph.json\"}}\n"
+        "Malformed verifier JSON output"
       ]
     },
     {
-      "ts": "2026-05-05T23:16:23Z",
-      "kind": "roadmap_task_updated",
-      "taskId": "TASK-28",
-      "title": "Stabilize CodeWiki refactor after partial DDD migration"
+      "ts": "2026-05-06T21:41:07Z",
+      "kind": "release_checkpoint_created",
+      "title": "Created release checkpoint",
+      "summary": "TASK-040 core-adapter verifier split implemented pending Pi reload for close",
+      "path": ".wiki/release-checkpoints.jsonl"
     },
     {
-      "ts": "2026-05-05T23:16:23Z",
-      "kind": "task_phase_passed",
-      "taskId": "TASK-28",
-      "title": "Stabilize CodeWiki refactor after partial DDD migration",
-      "phase": "implement",
-      "nextPhase": "verify",
-      "summary": "Refreshed TASK-28 context after stabilization work so verifier sees current paths and completed checks.",
-      "checks_run": [
-        "npm run check:architecture",
-        "npm run typecheck",
-        "npm test",
-        "codewiki_state refresh=true"
-      ],
-      "files_touched": [
-        "extensions/codewiki",
-        "scripts/check-architecture.mjs",
-        ".wiki/knowledge/system/overview.md",
-        ".wiki/knowledge/system/extensions/codewiki/overview.md",
-        ".wiki/knowledge/system/components/extension.md",
-        ".wiki/knowledge/system/components/view-rebuild.md"
-      ],
-      "issues": []
-    },
-    {
-      "ts": "2026-05-05T23:16:23Z",
+      "ts": "2026-05-06T21:51:20Z",
       "kind": "task_evidence_recorded",
-      "verdict": "pass",
-      "taskId": "TASK-28",
-      "title": "Stabilize CodeWiki refactor after partial DDD migration",
-      "phase": "implement",
-      "nextPhase": "verify",
-      "summary": "Refreshed TASK-28 context after stabilization work so verifier sees current paths and completed checks.",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "fail",
+      "summary": "Fresh verifier fail: The implementation routes close through an adapter-owned fresh read-only Pi session and defines a task-close brief/profile, but multiple explicit acceptance criteria remain unmet or only covered by source-regex assertions. The task should not close until preflight, strict schema validation, rubric delivery, and behavioral pass/fail/block/malformed coverage are hardened.",
       "checks_run": [
-        "npm run check:architecture",
-        "npm run typecheck",
-        "npm test",
-        "codewiki_state refresh=true"
+        "read extensions/codewiki/src/core/roadmap.ts",
+        "read extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "read extensions/codewiki/src/core/schemas.ts",
+        "read scripts/codewiki-gateway.mjs",
+        "read scripts/smoke-test.mjs",
+        "read skills/codewiki-verify/SKILL.md",
+        "review .wiki/events.jsonl TASK-040 evidence"
       ],
-      "files_touched": [
-        "extensions/codewiki",
-        "scripts/check-architecture.mjs",
-        ".wiki/knowledge/system/overview.md",
-        ".wiki/knowledge/system/extensions/codewiki/overview.md",
-        ".wiki/knowledge/system/components/extension.md",
-        ".wiki/knowledge/system/components/view-rebuild.md"
-      ],
-      "issues": []
+      "files_touched": [],
+      "issues": [
+        "Deterministic preflight does not cover all required acceptance checks: evidence/check presence and view freshness are not implemented.",
+        "Golden/smoke coverage for pass, fail, block, and malformed-output cases is not actually implemented; smoke tests only assert source-code regexes.",
+        "Verifier JSON parsing is not strict against the declared schema; it extracts a JSON object from surrounding text and coerces/masks missing or malformed fields.",
+        "The semantic verifier prompt does not include the complete CodeWiki verifier rubric from skills/codewiki-verify/SKILL.md, only a short inline rubric and compact brief."
+      ]
     },
     {
-      "ts": "2026-05-05T23:16:32Z",
-      "kind": "roadmap_task_updated",
-      "taskId": "TASK-29",
-      "title": "Add architecture boundary checks and characterization coverage"
+      "ts": "2026-05-06T21:53:49Z",
+      "kind": "task_evidence_recorded",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "fail",
+      "summary": "Fresh verifier fail: The task has a gateway contract, routes close through an adapter-owned fresh read-only session, and uses a compact verifier context pack when present. However, multiple explicit hardening requirements remain unmet: preflight lacks required evidence/check and freshness validation, strict JSON schema enforcement is still permissive/coercive, and the semantic verifier is not supplied the full CodeWiki verifier rubric. Do not close TASK-040 yet.",
+      "checks_run": [
+        "read extensions/codewiki/src/core/roadmap.ts",
+        "read extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "read scripts/codewiki-gateway.mjs",
+        "read skills/codewiki-verify/SKILL.md",
+        "grep scripts/*.mjs verifier smoke coverage"
+      ],
+      "files_touched": [],
+      "issues": [
+        "Deterministic preflight is incomplete versus acceptance: it checks goal fields, linked path existence, and verify pack existence, but does not validate evidence/check presence or view freshness.",
+        "Verifier JSON parsing is not strict. It extracts a JSON object from surrounding text and coerces missing/malformed fields instead of blocking on schema mismatch.",
+        "Semantic verifier prompt does not include the complete CodeWiki verifier rubric from skills/codewiki-verify/SKILL.md; it uses a short inline prompt plus compact brief.",
+        "Smoke coverage improved for parser pass/fail/block/malformed cases, but the malformed/strictness behavior under test still permits non-strict output with surrounding diagnostics, conflicting with strictJson acceptance."
+      ]
     },
     {
-      "ts": "2026-05-05T23:16:32Z",
+      "ts": "2026-05-06T21:56:06Z",
       "kind": "task_phase_passed",
-      "taskId": "TASK-29",
-      "title": "Add architecture boundary checks and characterization coverage",
-      "phase": "implement",
-      "nextPhase": "verify",
-      "summary": "Architecture boundary check added and wired into test script; typecheck/smoke/pack all pass with guardrails active.",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "phase": "verify",
+      "nextPhase": "done",
+      "summary": "Verifier gateway hardening completed after fresh verifier feedback: preflight now validates evidence/check presence and verify-pack freshness, strict verifier parsing now rejects surrounding diagnostics and malformed issue/check/rationale schema instead of coercing, semantic prompt now includes the CodeWiki verifier skill rubric, and smoke tests behaviorally exercise pass/fail/block/malformed/mismatch/malformed-schema outcomes from the actual core parser source.",
       "checks_run": [
-        "npm run check:architecture",
-        "npm run typecheck",
-        "npm test"
+        "npm run typecheck: pass",
+        "npm test: pass"
       ],
       "files_touched": [
-        "scripts/check-architecture.mjs",
-        "package.json",
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
         "scripts/smoke-test.mjs"
       ],
       "issues": []
     },
     {
-      "ts": "2026-05-05T23:16:32Z",
+      "ts": "2026-05-06T21:56:06Z",
       "kind": "task_evidence_recorded",
       "verdict": "pass",
-      "taskId": "TASK-29",
-      "title": "Add architecture boundary checks and characterization coverage",
-      "phase": "implement",
-      "nextPhase": "verify",
-      "summary": "Architecture boundary check added and wired into test script; typecheck/smoke/pack all pass with guardrails active.",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "phase": "verify",
+      "nextPhase": "done",
+      "summary": "Verifier gateway hardening completed after fresh verifier feedback: preflight now validates evidence/check presence and verify-pack freshness, strict verifier parsing now rejects surrounding diagnostics and malformed issue/check/rationale schema instead of coercing, semantic prompt now includes the CodeWiki verifier skill rubric, and smoke tests behaviorally exercise pass/fail/block/malformed/mismatch/malformed-schema outcomes from the actual core parser source.",
       "checks_run": [
-        "npm run check:architecture",
-        "npm run typecheck",
-        "npm test"
+        "npm run typecheck: pass",
+        "npm test: pass"
       ],
       "files_touched": [
-        "scripts/check-architecture.mjs",
-        "package.json",
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
         "scripts/smoke-test.mjs"
       ],
       "issues": []
     },
     {
-      "ts": "2026-05-05T23:16:43Z",
-      "kind": "roadmap_task_updated",
-      "taskId": "TASK-30",
-      "title": "Extract agent-agnostic application use cases behind ports"
-    },
-    {
-      "ts": "2026-05-05T23:16:43Z",
-      "kind": "task_phase_passed",
-      "taskId": "TASK-30",
-      "title": "Extract agent-agnostic application use cases behind ports",
-      "phase": "implement",
-      "nextPhase": "verify",
-      "summary": "Partial progress recorded: agent-specific dependencies removed from core and key file/rebuild seams added; task remains open for full use-case extraction.",
-      "checks_run": [
-        "npm run check:architecture",
-        "npm run typecheck",
-        "npm test"
-      ],
-      "files_touched": [
-        "extensions/codewiki/src/core/ports.ts",
-        "extensions/codewiki/src/core/rebuild-runner.ts",
-        "extensions/codewiki/src/infrastructure/file-store.ts",
-        "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
-        "extensions/codewiki/src/adapters/pi"
-      ],
-      "issues": [
-        "Full application use cases for state/task/session/heartbeat/setup are not yet extracted."
-      ]
-    },
-    {
-      "ts": "2026-05-05T23:16:43Z",
+      "ts": "2026-05-06T21:57:33Z",
       "kind": "task_evidence_recorded",
-      "verdict": "pass",
-      "taskId": "TASK-30",
-      "title": "Extract agent-agnostic application use cases behind ports",
-      "phase": "implement",
-      "nextPhase": "verify",
-      "summary": "Partial progress recorded: agent-specific dependencies removed from core and key file/rebuild seams added; task remains open for full use-case extraction.",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "fail",
+      "summary": "Fresh verifier fail: The gateway, task-close route, fresh read-only Pi session, compact context pack, full rubric inclusion, malformed-output blocking, and smoke coverage are largely present. However, a core preflight acceptance requirement is implemented against the wrong evidence source, which undermines task-close routing and deterministic evidence/check validation. Strict schema enforcement also remains permissive for extra fields.",
       "checks_run": [
-        "npm run check:architecture",
-        "npm run typecheck",
-        "npm test"
+        "read extensions/codewiki/src/core/roadmap.ts",
+        "read extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "read scripts/smoke-test.mjs",
+        "read skills/codewiki-verify/SKILL.md",
+        "read .wiki/config.json",
+        "grep .wiki/roadmap/events.jsonl task_evidence_recorded"
       ],
-      "files_touched": [
-        "extensions/codewiki/src/core/ports.ts",
-        "extensions/codewiki/src/core/rebuild-runner.ts",
-        "extensions/codewiki/src/infrastructure/file-store.ts",
-        "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
-        "extensions/codewiki/src/adapters/pi"
-      ],
+      "files_touched": [],
       "issues": [
-        "Full application use cases for state/task/session/heartbeat/setup are not yet extracted."
+        "Deterministic preflight evidence/check validation reads the wrong event log, so it will not find canonical task evidence and can block valid closes before semantic verification.",
+        "Verifier JSON schema validation is not fully strict against the declared verdict_schema because extra fields are accepted silently."
       ]
     },
     {
-      "ts": "2026-05-05T23:16:54Z",
-      "kind": "roadmap_task_updated",
-      "taskId": "TASK-31",
-      "title": "Move Pi surface into adapters and retire legacy core structure"
-    },
-    {
-      "ts": "2026-05-05T23:16:54Z",
+      "ts": "2026-05-06T21:59:04Z",
       "kind": "task_phase_passed",
-      "taskId": "TASK-31",
-      "title": "Move Pi surface into adapters and retire legacy core structure",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
       "phase": "implement",
       "nextPhase": "verify",
-      "summary": "Pi surface moved into src/adapters/pi and legacy tools/commands/ui locations removed; package entrypoint now delegates to adapter registration.",
+      "summary": "Fixed verifier feedback: deterministic preflight now reads canonical project events for task evidence/check presence, not roadmap event mirror, and strict verifier schema now blocks extra top-level fields. Smoke parser golden cases cover extra-field rejection.",
       "checks_run": [
-        "npm run check:architecture",
-        "npm run typecheck",
-        "npm test"
+        "npm run typecheck: pass",
+        "npm test: pass"
       ],
       "files_touched": [
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/src/adapters/pi",
-        "extensions/codewiki/src/core",
-        "extensions/codewiki/src/engine",
-        "extensions/codewiki/contracts.ts"
+        "extensions/codewiki/src/core/roadmap.ts",
+        "scripts/smoke-test.mjs"
       ],
       "issues": []
     },
     {
-      "ts": "2026-05-05T23:16:54Z",
+      "ts": "2026-05-06T21:59:04Z",
       "kind": "task_evidence_recorded",
       "verdict": "pass",
-      "taskId": "TASK-31",
-      "title": "Move Pi surface into adapters and retire legacy core structure",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
       "phase": "implement",
       "nextPhase": "verify",
-      "summary": "Pi surface moved into src/adapters/pi and legacy tools/commands/ui locations removed; package entrypoint now delegates to adapter registration.",
+      "summary": "Fixed verifier feedback: deterministic preflight now reads canonical project events for task evidence/check presence, not roadmap event mirror, and strict verifier schema now blocks extra top-level fields. Smoke parser golden cases cover extra-field rejection.",
       "checks_run": [
-        "npm run check:architecture",
-        "npm run typecheck",
-        "npm test"
+        "npm run typecheck: pass",
+        "npm test: pass"
       ],
       "files_touched": [
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/src/adapters/pi",
-        "extensions/codewiki/src/core",
-        "extensions/codewiki/src/engine",
-        "extensions/codewiki/contracts.ts"
+        "extensions/codewiki/src/core/roadmap.ts",
+        "scripts/smoke-test.mjs"
       ],
       "issues": []
     },
     {
-      "ts": "2026-05-05T23:17:02Z",
-      "kind": "roadmap_task_updated",
-      "taskId": "TASK-32",
-      "title": "Prove the adapter seam with a minimal CLI surface"
-    },
-    {
-      "ts": "2026-05-05T23:17:02Z",
-      "kind": "task_phase_passed",
-      "taskId": "TASK-32",
-      "title": "Prove the adapter seam with a minimal CLI surface",
-      "phase": "implement",
-      "nextPhase": "verify",
-      "summary": "Removed missing future CLI adapter path from code_paths; task remains open until CLI proof is implemented.",
+      "ts": "2026-05-06T22:00:10Z",
+      "kind": "task_evidence_recorded",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "fail",
+      "summary": "Fresh verifier fail: The gateway contract, task-close routing, preflight, compact context pack, fresh read-only Pi session, full rubric inclusion, and main parser smoke cases are present. However, the strict verifier schema requirement remains partially unmet because nested issue objects are not rejected when they contain fields outside {severity, summary, evidence?}. For a hardening task whose acceptance explicitly requires strict JSON validation against verdict_schema, this should be fixed before closure.",
       "checks_run": [
-        "codewiki_state refresh=true"
+        "read extensions/codewiki/src/core/roadmap.ts",
+        "read extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "read scripts/smoke-test.mjs",
+        "read skills/codewiki-verify/SKILL.md",
+        "read .wiki/roadmap/tasks/TASK-040/task.json",
+        "read .wiki/views/context/tasks/TASK-040/verify.json",
+        "review recent TASK-040 evidence"
       ],
-      "files_touched": [
-        ".wiki/roadmap.json"
-      ],
+      "files_touched": [],
       "issues": [
-        "No CLI adapter exists yet."
+        "Verifier JSON validation is still not fully strict for the declared verdict schema: nested issue objects may contain extra fields and still pass validation.",
+        "Smoke coverage does not exercise strict rejection of nested schema extras, so the remaining strict-schema gap is not covered."
       ]
     },
     {
-      "ts": "2026-05-05T23:17:02Z",
+      "ts": "2026-05-06T22:01:08Z",
+      "kind": "task_phase_passed",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "phase": "verify",
+      "nextPhase": "done",
+      "summary": "Completed strict nested schema hardening: verifier issue objects now reject fields outside severity, summary, and optional evidence; smoke golden tests cover nested extra-field rejection from actual core parser source.",
+      "checks_run": [
+        "npm run typecheck: pass",
+        "npm test: pass"
+      ],
+      "files_touched": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-06T22:01:08Z",
       "kind": "task_evidence_recorded",
       "verdict": "pass",
-      "taskId": "TASK-32",
-      "title": "Prove the adapter seam with a minimal CLI surface",
-      "phase": "implement",
-      "nextPhase": "verify",
-      "summary": "Removed missing future CLI adapter path from code_paths; task remains open until CLI proof is implemented.",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "phase": "verify",
+      "nextPhase": "done",
+      "summary": "Completed strict nested schema hardening: verifier issue objects now reject fields outside severity, summary, and optional evidence; smoke golden tests cover nested extra-field rejection from actual core parser source.",
       "checks_run": [
-        "codewiki_state refresh=true"
+        "npm run typecheck: pass",
+        "npm test: pass"
       ],
       "files_touched": [
-        ".wiki/roadmap.json"
+        "extensions/codewiki/src/core/roadmap.ts",
+        "scripts/smoke-test.mjs"
       ],
-      "issues": [
-        "No CLI adapter exists yet."
-      ]
+      "issues": []
     },
     {
-      "ts": "2026-05-05T23:19:09Z",
+      "ts": "2026-05-06T22:02:07Z",
       "kind": "task_evidence_recorded",
-      "taskId": "TASK-28",
-      "title": "Stabilize CodeWiki refactor after partial DDD migration",
-      "verdict": "block",
-      "summary": "Fresh verifier block: Subprocess error: Command failed: pi --mode json -p --no-session --no-extensions --no-prompt-templates --no-themes --no-context-files --tools read,grep,find,ls Verify roadmap task TASK-28: Stabilize CodeWiki refactor after partial DDD migration\nSummary: Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.\nContext: {\"version\":1,\"generated_at\":\"2026-05-05T23:17:03Z\",\"context_path\":\".wiki/roadmap/tasks/TASK-28/context.json\",\"budget\":{\"target_tokens\":6000,\"policy\":\"Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source.\"},\"task\":{\"id\":\"TASK-28\",\"title\":\"Stabilize CodeWiki refactor after partial DDD migration\",\"status\":\"verify\",\"phase\":\"verify\",\"priority\":\"critical\",\"kind\":\"architecture\",\"summary\":\"Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.\",\"labels\":[\"architecture\",\"stabilization\",\"migration\"],\"goal\":{\"outcome\":\"CodeWiki has a green baseline before further architecture migration proceeds.\",\"acceptance\":[\"`npm run typecheck` and `npm test` pass.\",\"`codewiki_state` works from the Pi tool path or the failure is captured with a blocking root cause.\",\"Current duplicate module sets are inventoried with a keep/delete/move decision.\",\"No broad folder moves happen before the baseline is verified.\"],\"non_goals\":[\"Do not implement MCP, Codex, or Claude adapters.\",\"Do not complete the full DDD migration in this task.\",\"Do not delete compatibility shims without proving all imports moved.\"],\"verification\":[\"Run `npm run typecheck`.\",\"Run `npm test`.\",\"Run a CodeWiki state read or targeted equivalent for this repo.\",\"Inspect git diff for unrelated rewrites.\"]},\"delta\":{\"desired\":\"Verified stable baseline with known drift and a safe migration path.\",\"current\":\"Baseline is green: typecheck, tests, architecture check, pack dry-run, and live codewiki_state refresh pass. Pi surface is adapter-isolated, duplicate engine path is removed, and current seams are documented.\",\"closure\":\"Baseline checks pass; current migration drift is documented; remaining future work lives in TASK-30/TASK-32.\"}},\"revision\":{\"task\":{\"digest\":\"a5bb092b564d0081bbe4bc2d5ddba0f4c7e02fecb3c5e1e4b8e42b2b045b3f15\"},\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true,\"dirty_paths\":[\".wiki/knowledge/system/extensions/codewiki/overview.md\",\".wiki/knowledge/system/overview.md\",\".wiki/roadmap.json\",\"extensions/codewiki/bootstrap.ts\",\"extensions/codewiki/contracts.ts\",\"extensions/codewiki/index.ts\",\"extensions/codewiki/project-root.ts\",\"extensions/codewiki/templates.ts\",\"scripts/smoke-test.mjs\"],\"paths\":{\".wiki/knowledge/system/extensions/codewiki/overview.md\":\"c70091881afe\",\".wiki/knowledge/system/overview.md\":\"643c940fa1ca\",\".wiki/roadmap.json\":\"c70091881afe\",\"extensions/codewiki\":\"c70091881afe\",\"extensions/codewiki/src/adapters/pi\":\"\",\"extensions/codewiki/src/core\":\"\",\"extensions/codewiki/src/engine\":\"\",\"extensions/codewiki/src/infrastructure\":\"\",\"scripts/check-architecture.mjs\":\"\",\"scripts/smoke-test.mjs\":\"c70091881afe\",\"tsconfig.json\":\"0d12c87f000a\"}},\"spec_digest\":\"14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b\",\"code_digest\":\"69d211c2a7108a8786529693e6106277422003e3065ac955025acbc6303fdc35\",\"graph\":{\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true},\"spec_digest\":\"f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a\",\"task_digest\":\"191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b\",\"evidence_digest\":\"c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367\"}},\"specs\":[{\"path\":\".wiki/knowledge/system/overview.md\",\"title\":\"System Overview\",\"summary\":\"Main runtime areas and ownership boundaries for CodeWiki.\",\"state\":\"active\",\"owners\":[\"architecture\"],\"code_paths\":[\"extensions/codewiki\",\"scripts/rebuild_docs_meta.py\",\"skills\"],\"revision\":{\"digest\":\"09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca\"},\"expand\":{\"read\":\".wiki/knowledge/system/overview.md\"}},{\"path\":\".wiki/knowledge/system/extensions/codewiki/overview.md\",\"title\":\"Extensions / Codewiki\",\"summary\":\"Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.\",\"state\":\"active\",\"owners\":[\"engineering\"],\"code_paths\":[\"extensions/codewiki\",\"skills\",\"scripts/smoke-test.mjs\",\"scripts/check-architecture.mjs\"],\"revision\":{\"digest\":\"a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12\"},\"expand\":{\"read\":\".wiki/knowledge/system/extensions/codewiki/overview.md\"}}],\"code\":{\"paths\":[\"extensions/codewiki\",\"extensions/codewiki/src/adapters/pi\",\"extensions/codewiki/src/core\",\"extensions/codewiki/src/engine\",\"extensions/codewiki/src/infrastructure\",\"scripts/smoke-test.mjs\",\"scripts/check-architecture.mjs\",\"tsconfig.json\"],\"digest\":\"69d211c2a7108a8786529693e6106277422003e3065ac955025acbc6303fdc35\",\"expand\":[{\"read\":\"extensions/codewiki\"},{\"read\":\"extensions/codewiki/src/adapters/pi\"},{\"read\":\"extensions/codewiki/src/core\"},{\"read\":\"extensions/codewiki/src/engine\"},{\"read\":\"extensions/codewiki/src/infrastructure\"},{\"read\":\"scripts/smoke-test.mjs\"},{\"read\":\"scripts/check-architecture.mjs\"},{\"read\":\"tsconfig.json\"}]},\"evidence\":null,\"expansion\":{\"task_json\":\".wiki/roadmap/tasks/TASK-28/task.json\",\"roadmap_state\":\".wiki/roadmap-state.json\",\"status_state\":\".wiki/status-state.json\",\"graph\":\".wiki/graph.json\"}}",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "pass",
+      "summary": "Fresh verifier pass: Acceptance is satisfied: the task-close verifier contract, preflight, compact context pack consumption, fresh read-only Pi SDK verifier session, strict JSON parser with malformed/block behavior, parent-only lifecycle writes, and smoke coverage for pass/fail/block/malformed/schema cases are implemented and evidenced. Required npm test/typecheck evidence is current, and prior task evidence records codewiki_state refresh=true with green health.",
       "checks_run": [
-        "automatic verifier subprocess"
+        "read extensions/codewiki/src/core/roadmap.ts",
+        "read extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "read scripts/smoke-test.mjs",
+        "read skills/codewiki-verify/SKILL.md",
+        "read .wiki/roadmap/tasks/TASK-040/task.json",
+        "read .wiki/views/context/tasks/TASK-040/verify.json",
+        "review .wiki/events.jsonl TASK-040 evidence"
       ],
       "files_touched": [],
-      "issues": [
-        "Automatic verifier could not complete: Command failed: pi --mode json -p --no-session --no-extensions --no-prompt-templates --no-themes --no-context-files --tools read,grep,find,ls Verify roadmap task TASK-28: Stabilize CodeWiki refactor after partial DDD migration\nSummary: Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.\nContext: {\"version\":1,\"generated_at\":\"2026-05-05T23:17:03Z\",\"context_path\":\".wiki/roadmap/tasks/TASK-28/context.json\",\"budget\":{\"target_tokens\":6000,\"policy\":\"Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source.\"},\"task\":{\"id\":\"TASK-28\",\"title\":\"Stabilize CodeWiki refactor after partial DDD migration\",\"status\":\"verify\",\"phase\":\"verify\",\"priority\":\"critical\",\"kind\":\"architecture\",\"summary\":\"Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.\",\"labels\":[\"architecture\",\"stabilization\",\"migration\"],\"goal\":{\"outcome\":\"CodeWiki has a green baseline before further architecture migration proceeds.\",\"acceptance\":[\"`npm run typecheck` and `npm test` pass.\",\"`codewiki_state` works from the Pi tool path or the failure is captured with a blocking root cause.\",\"Current duplicate module sets are inventoried with a keep/delete/move decision.\",\"No broad folder moves happen before the baseline is verified.\"],\"non_goals\":[\"Do not implement MCP, Codex, or Claude adapters.\",\"Do not complete the full DDD migration in this task.\",\"Do not delete compatibility shims without proving all imports moved.\"],\"verification\":[\"Run `npm run typecheck`.\",\"Run `npm test`.\",\"Run a CodeWiki state read or targeted equivalent for this repo.\",\"Inspect git diff for unrelated rewrites.\"]},\"delta\":{\"desired\":\"Verified stable baseline with known drift and a safe migration path.\",\"current\":\"Baseline is green: typecheck, tests, architecture check, pack dry-run, and live codewiki_state refresh pass. Pi surface is adapter-isolated, duplicate engine path is removed, and current seams are documented.\",\"closure\":\"Baseline checks pass; current migration drift is documented; remaining future work lives in TASK-30/TASK-32.\"}},\"revision\":{\"task\":{\"digest\":\"a5bb092b564d0081bbe4bc2d5ddba0f4c7e02fecb3c5e1e4b8e42b2b045b3f15\"},\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true,\"dirty_paths\":[\".wiki/knowledge/system/extensions/codewiki/overview.md\",\".wiki/knowledge/system/overview.md\",\".wiki/roadmap.json\",\"extensions/codewiki/bootstrap.ts\",\"extensions/codewiki/contracts.ts\",\"extensions/codewiki/index.ts\",\"extensions/codewiki/project-root.ts\",\"extensions/codewiki/templates.ts\",\"scripts/smoke-test.mjs\"],\"paths\":{\".wiki/knowledge/system/extensions/codewiki/overview.md\":\"c70091881afe\",\".wiki/knowledge/system/overview.md\":\"643c940fa1ca\",\".wiki/roadmap.json\":\"c70091881afe\",\"extensions/codewiki\":\"c70091881afe\",\"extensions/codewiki/src/adapters/pi\":\"\",\"extensions/codewiki/src/core\":\"\",\"extensions/codewiki/src/engine\":\"\",\"extensions/codewiki/src/infrastructure\":\"\",\"scripts/check-architecture.mjs\":\"\",\"scripts/smoke-test.mjs\":\"c70091881afe\",\"tsconfig.json\":\"0d12c87f000a\"}},\"spec_digest\":\"14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b\",\"code_digest\":\"69d211c2a7108a8786529693e6106277422003e3065ac955025acbc6303fdc35\",\"graph\":{\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true},\"spec_digest\":\"f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a\",\"task_digest\":\"191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b\",\"evidence_digest\":\"c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367\"}},\"specs\":[{\"path\":\".wiki/knowledge/system/overview.md\",\"title\":\"System Overview\",\"summary\":\"Main runtime areas and ownership boundaries for CodeWiki.\",\"state\":\"active\",\"owners\":[\"architecture\"],\"code_paths\":[\"extensions/codewiki\",\"scripts/rebuild_docs_meta.py\",\"skills\"],\"revision\":{\"digest\":\"09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca\"},\"expand\":{\"read\":\".wiki/knowledge/system/overview.md\"}},{\"path\":\".wiki/knowledge/system/extensions/codewiki/overview.md\",\"title\":\"Extensions / Codewiki\",\"summary\":\"Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.\",\"state\":\"active\",\"owners\":[\"engineering\"],\"code_paths\":[\"extensions/codewiki\",\"skills\",\"scripts/smoke-test.mjs\",\"scripts/check-architecture.mjs\"],\"revision\":{\"digest\":\"a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12\"},\"expand\":{\"read\":\".wiki/knowledge/system/extensions/codewiki/overview.md\"}}],\"code\":{\"paths\":[\"extensions/codewiki\",\"extensions/codewiki/src/adapters/pi\",\"extensions/codewiki/src/core\",\"extensions/codewiki/src/engine\",\"extensions/codewiki/src/infrastructure\",\"scripts/smoke-test.mjs\",\"scripts/check-architecture.mjs\",\"tsconfig.json\"],\"digest\":\"69d211c2a7108a8786529693e6106277422003e3065ac955025acbc6303fdc35\",\"expand\":[{\"read\":\"extensions/codewiki\"},{\"read\":\"extensions/codewiki/src/adapters/pi\"},{\"read\":\"extensions/codewiki/src/core\"},{\"read\":\"extensions/codewiki/src/engine\"},{\"read\":\"extensions/codewiki/src/infrastructure\"},{\"read\":\"scripts/smoke-test.mjs\"},{\"read\":\"scripts/check-architecture.mjs\"},{\"read\":\"tsconfig.json\"}]},\"evidence\":null,\"expansion\":{\"task_json\":\".wiki/roadmap/tasks/TASK-28/task.json\",\"roadmap_state\":\".wiki/roadmap-state.json\",\"status_state\":\".wiki/status-state.json\",\"graph\":\".wiki/graph.json\"}}\n"
-      ]
+      "issues": []
     },
     {
-      "ts": "2026-05-05T23:21:18Z",
+      "ts": "2026-05-06T22:02:07Z",
       "kind": "task_evidence_recorded",
-      "taskId": "TASK-29",
-      "title": "Add architecture boundary checks and characterization coverage",
-      "verdict": "block",
-      "summary": "Fresh verifier block: Subprocess error: Command failed: pi --mode json -p --no-session --no-extensions --no-prompt-templates --no-themes --no-context-files --tools read,grep,find,ls Verify roadmap task TASK-29: Add architecture boundary checks and characterization coverage\nSummary: Add guardrails that freeze current behavior and prevent future domain/application/infrastructure/adapters import-boundary regressions during the refactor.\nContext: {\"version\":1,\"generated_at\":\"2026-05-05T23:19:10Z\",\"context_path\":\".wiki/roadmap/tasks/TASK-29/context.json\",\"budget\":{\"target_tokens\":6000,\"policy\":\"Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source.\"},\"task\":{\"id\":\"TASK-29\",\"title\":\"Add architecture boundary checks and characterization coverage\",\"status\":\"verify\",\"phase\":\"verify\",\"priority\":\"high\",\"kind\":\"testing\",\"summary\":\"Add guardrails that freeze current behavior and prevent future domain/application/infrastructure/adapters import-boundary regressions during the refactor.\",\"labels\":[\"architecture\",\"testing\",\"guardrails\"],\"goal\":{\"outcome\":\"Refactor work is protected by automated import-boundary checks and behavior characterization tests.\",\"acceptance\":[\"A script checks that domain does not import Pi, Node I/O, application, infrastructure, adapters, or legacy core.\",\"Application and infrastructure boundary rules are encoded with transitional exceptions where needed.\",\"Smoke/characterization coverage exercises bootstrap, state read, task mutation, session mutation, and rebuild behavior at the current public surface.\",\"Package scripts expose the checks so future agents can run one command before and after migration slices.\"],\"non_goals\":[\"Do not enforce final no-legacy-import rules until migration tasks remove shims.\",\"Do not rewrite production architecture as part of adding checks.\"],\"verification\":[\"Run `npm run typecheck`.\",\"Run `npm test`.\",\"Run the new architecture check script.\",\"Verify the check fails on an intentional forbidden import in local reasoning or unit fixture if practical.\"]},\"delta\":{\"desired\":\"Boundary violations become visible immediately and behavior changes are caught before broad moves.\",\"current\":\"Architecture check is implemented and wired into npm test. Smoke coverage exercises package load, bootstrap, state/task/session behavior, rebuild, status UI expectations, and pack contents.\",\"closure\":\"Guardrail scripts and tests pass and are documented in package scripts.\"}},\"revision\":{\"task\":{\"digest\":\"7f8ac92488d0bfde43ac77d2bb1a4ff73f0e92b695188af6e3910315ed1c5a03\"},\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true,\"dirty_paths\":[\".wiki/knowledge/system/extensions/codewiki/overview.md\",\".wiki/knowledge/system/overview.md\",\".wiki/roadmap.json\",\"extensions/codewiki/bootstrap.ts\",\"extensions/codewiki/contracts.ts\",\"extensions/codewiki/index.ts\",\"extensions/codewiki/project-root.ts\",\"extensions/codewiki/templates.ts\",\"package.json\",\"scripts/smoke-test.mjs\"],\"paths\":{\".wiki/knowledge/system/extensions/codewiki/overview.md\":\"c70091881afe\",\".wiki/knowledge/system/overview.md\":\"643c940fa1ca\",\".wiki/roadmap.json\":\"c70091881afe\",\"extensions/codewiki\":\"c70091881afe\",\"extensions/codewiki/src/adapters/pi\":\"\",\"extensions/codewiki/src/core\":\"\",\"extensions/codewiki/src/domain\":\"\",\"extensions/codewiki/src/infrastructure\":\"\",\"package.json\":\"53578e465699\",\"scripts/check-architecture.mjs\":\"\",\"scripts/smoke-test.mjs\":\"c70091881afe\"}},\"spec_digest\":\"14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b\",\"code_digest\":\"4e6ab6917465ed61d20b3c1204a0b882dd49e02f1527be2d9697c1d02223e7e7\",\"graph\":{\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true},\"spec_digest\":\"f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a\",\"task_digest\":\"191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b\",\"evidence_digest\":\"c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367\"}},\"specs\":[{\"path\":\".wiki/knowledge/system/overview.md\",\"title\":\"System Overview\",\"summary\":\"Main runtime areas and ownership boundaries for CodeWiki.\",\"state\":\"active\",\"owners\":[\"architecture\"],\"code_paths\":[\"extensions/codewiki\",\"scripts/rebuild_docs_meta.py\",\"skills\"],\"revision\":{\"digest\":\"09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca\"},\"expand\":{\"read\":\".wiki/knowledge/system/overview.md\"}},{\"path\":\".wiki/knowledge/system/extensions/codewiki/overview.md\",\"title\":\"Extensions / Codewiki\",\"summary\":\"Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.\",\"state\":\"active\",\"owners\":[\"engineering\"],\"code_paths\":[\"extensions/codewiki\",\"skills\",\"scripts/smoke-test.mjs\",\"scripts/check-architecture.mjs\"],\"revision\":{\"digest\":\"a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12\"},\"expand\":{\"read\":\".wiki/knowledge/system/extensions/codewiki/overview.md\"}}],\"code\":{\"paths\":[\"scripts/check-architecture.mjs\",\"package.json\",\"scripts/smoke-test.mjs\",\"extensions/codewiki\",\"extensions/codewiki/src/adapters/pi\",\"extensions/codewiki/src/core\",\"extensions/codewiki/src/domain\",\"extensions/codewiki/src/infrastructure\"],\"digest\":\"4e6ab6917465ed61d20b3c1204a0b882dd49e02f1527be2d9697c1d02223e7e7\",\"expand\":[{\"read\":\"scripts/check-architecture.mjs\"},{\"read\":\"package.json\"},{\"read\":\"scripts/smoke-test.mjs\"},{\"read\":\"extensions/codewiki\"},{\"read\":\"extensions/codewiki/src/adapters/pi\"},{\"read\":\"extensions/codewiki/src/core\"},{\"read\":\"extensions/codewiki/src/domain\"},{\"read\":\"extensions/codewiki/src/infrastructure\"}]},\"evidence\":null,\"expansion\":{\"task_json\":\".wiki/roadmap/tasks/TASK-29/task.json\",\"roadmap_state\":\".wiki/roadmap-state.json\",\"status_state\":\".wiki/status-state.json\",\"graph\":\".wiki/graph.json\"}}",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "pass",
+      "summary": "Closed TASK-040 after verifier gateway hardening satisfied fresh verifier feedback: core/adapter split, deterministic preflight, canonical evidence source, view freshness, full rubric prompt, strict top-level and nested schema validation, and behavioral smoke coverage.",
       "checks_run": [
-        "automatic verifier subprocess"
+        "npm run typecheck: pass",
+        "npm test: pass",
+        "codewiki_state refresh=true: health green"
       ],
-      "files_touched": [],
-      "issues": [
-        "Automatic verifier could not complete: Command failed: pi --mode json -p --no-session --no-extensions --no-prompt-templates --no-themes --no-context-files --tools read,grep,find,ls Verify roadmap task TASK-29: Add architecture boundary checks and characterization coverage\nSummary: Add guardrails that freeze current behavior and prevent future domain/application/infrastructure/adapters import-boundary regressions during the refactor.\nContext: {\"version\":1,\"generated_at\":\"2026-05-05T23:19:10Z\",\"context_path\":\".wiki/roadmap/tasks/TASK-29/context.json\",\"budget\":{\"target_tokens\":6000,\"policy\":\"Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source.\"},\"task\":{\"id\":\"TASK-29\",\"title\":\"Add architecture boundary checks and characterization coverage\",\"status\":\"verify\",\"phase\":\"verify\",\"priority\":\"high\",\"kind\":\"testing\",\"summary\":\"Add guardrails that freeze current behavior and prevent future domain/application/infrastructure/adapters import-boundary regressions during the refactor.\",\"labels\":[\"architecture\",\"testing\",\"guardrails\"],\"goal\":{\"outcome\":\"Refactor work is protected by automated import-boundary checks and behavior characterization tests.\",\"acceptance\":[\"A script checks that domain does not import Pi, Node I/O, application, infrastructure, adapters, or legacy core.\",\"Application and infrastructure boundary rules are encoded with transitional exceptions where needed.\",\"Smoke/characterization coverage exercises bootstrap, state read, task mutation, session mutation, and rebuild behavior at the current public surface.\",\"Package scripts expose the checks so future agents can run one command before and after migration slices.\"],\"non_goals\":[\"Do not enforce final no-legacy-import rules until migration tasks remove shims.\",\"Do not rewrite production architecture as part of adding checks.\"],\"verification\":[\"Run `npm run typecheck`.\",\"Run `npm test`.\",\"Run the new architecture check script.\",\"Verify the check fails on an intentional forbidden import in local reasoning or unit fixture if practical.\"]},\"delta\":{\"desired\":\"Boundary violations become visible immediately and behavior changes are caught before broad moves.\",\"current\":\"Architecture check is implemented and wired into npm test. Smoke coverage exercises package load, bootstrap, state/task/session behavior, rebuild, status UI expectations, and pack contents.\",\"closure\":\"Guardrail scripts and tests pass and are documented in package scripts.\"}},\"revision\":{\"task\":{\"digest\":\"7f8ac92488d0bfde43ac77d2bb1a4ff73f0e92b695188af6e3910315ed1c5a03\"},\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true,\"dirty_paths\":[\".wiki/knowledge/system/extensions/codewiki/overview.md\",\".wiki/knowledge/system/overview.md\",\".wiki/roadmap.json\",\"extensions/codewiki/bootstrap.ts\",\"extensions/codewiki/contracts.ts\",\"extensions/codewiki/index.ts\",\"extensions/codewiki/project-root.ts\",\"extensions/codewiki/templates.ts\",\"package.json\",\"scripts/smoke-test.mjs\"],\"paths\":{\".wiki/knowledge/system/extensions/codewiki/overview.md\":\"c70091881afe\",\".wiki/knowledge/system/overview.md\":\"643c940fa1ca\",\".wiki/roadmap.json\":\"c70091881afe\",\"extensions/codewiki\":\"c70091881afe\",\"extensions/codewiki/src/adapters/pi\":\"\",\"extensions/codewiki/src/core\":\"\",\"extensions/codewiki/src/domain\":\"\",\"extensions/codewiki/src/infrastructure\":\"\",\"package.json\":\"53578e465699\",\"scripts/check-architecture.mjs\":\"\",\"scripts/smoke-test.mjs\":\"c70091881afe\"}},\"spec_digest\":\"14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b\",\"code_digest\":\"4e6ab6917465ed61d20b3c1204a0b882dd49e02f1527be2d9697c1d02223e7e7\",\"graph\":{\"git\":{\"head\":\"c70091881afec87bbd293e06f58b1a2a40f1d06d\",\"dirty\":true},\"spec_digest\":\"f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a\",\"task_digest\":\"191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b\",\"evidence_digest\":\"c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367\"}},\"specs\":[{\"path\":\".wiki/knowledge/system/overview.md\",\"title\":\"System Overview\",\"summary\":\"Main runtime areas and ownership boundaries for CodeWiki.\",\"state\":\"active\",\"owners\":[\"architecture\"],\"code_paths\":[\"extensions/codewiki\",\"scripts/rebuild_docs_meta.py\",\"skills\"],\"revision\":{\"digest\":\"09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca\"},\"expand\":{\"read\":\".wiki/knowledge/system/overview.md\"}},{\"path\":\".wiki/knowledge/system/extensions/codewiki/overview.md\",\"title\":\"Extensions / Codewiki\",\"summary\":\"Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.\",\"state\":\"active\",\"owners\":[\"engineering\"],\"code_paths\":[\"extensions/codewiki\",\"skills\",\"scripts/smoke-test.mjs\",\"scripts/check-architecture.mjs\"],\"revision\":{\"digest\":\"a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12\"},\"expand\":{\"read\":\".wiki/knowledge/system/extensions/codewiki/overview.md\"}}],\"code\":{\"paths\":[\"scripts/check-architecture.mjs\",\"package.json\",\"scripts/smoke-test.mjs\",\"extensions/codewiki\",\"extensions/codewiki/src/adapters/pi\",\"extensions/codewiki/src/core\",\"extensions/codewiki/src/domain\",\"extensions/codewiki/src/infrastructure\"],\"digest\":\"4e6ab6917465ed61d20b3c1204a0b882dd49e02f1527be2d9697c1d02223e7e7\",\"expand\":[{\"read\":\"scripts/check-architecture.mjs\"},{\"read\":\"package.json\"},{\"read\":\"scripts/smoke-test.mjs\"},{\"read\":\"extensions/codewiki\"},{\"read\":\"extensions/codewiki/src/adapters/pi\"},{\"read\":\"extensions/codewiki/src/core\"},{\"read\":\"extensions/codewiki/src/domain\"},{\"read\":\"extensions/codewiki/src/infrastructure\"}]},\"evidence\":null,\"expansion\":{\"task_json\":\".wiki/roadmap/tasks/TASK-29/task.json\",\"roadmap_state\":\".wiki/roadmap-state.json\",\"status_state\":\".wiki/status-state.json\",\"graph\":\".wiki/graph.json\"}}\n"
-      ]
+      "files_touched": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
     }
   ],
   "meta": {
     "version": 1,
     "name": "evidence.recent",
-    "generated_at": "2026-05-05T23:21:31Z",
+    "generated_at": "2026-05-06T22:02:16Z",
     "revision": {
-      "digest": "3943111cf79efcda73ff0bc680b1a799d70cb44ce82b1b1eff2591bbe149b2c0",
+      "digest": "751b34b04f8d4f4178c8c49c29fa8421ca32faa4457263ceddfb9a11c688347e",
       "git": {
-        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/system/components/extension.md",
-          ".wiki/knowledge/system/components/view-rebuild.md",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md",
-          ".wiki/knowledge/system/overview.md",
+          ".wiki/knowledge/lexicon.md",
+          ".wiki/knowledge/system/components/views.md",
+          ".wiki/knowledge/system/flows/context-memory.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
-          ".wiki/roadmap/events.jsonl",
-          ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json"
+          ".wiki/roadmap/events.jsonl"
         ],
         "paths": {}
       }

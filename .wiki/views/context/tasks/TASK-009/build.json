@@ -1,0 +1,306 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-009",
+    "title": "Add automatic fresh-context verifier agent workflow",
+    "status": "done",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Design and implement an automatic verifier stage that spawns a read-only agent when task execution reaches verification, while retaining a manual command only as an override/debug entrypoint.",
+    "labels": [
+      "verification",
+      "subagent",
+      "pi-extension"
+    ],
+    "goal": {
+      "outcome": "CodeWiki automatically verifies task completion through a separate read-only Pi agent as part of the inner loop before closure.",
+      "acceptance": [
+        "Inner loop invokes verifier automatically when a task is ready for closure or explicit verification evidence is missing.",
+        "Verifier stage accepts a task id internally and builds a compact verification brief from task context, linked specs, diff/status, and acceptance criteria.",
+        "Verifier runs in a separate Pi process or SDK/RPC session with read-only tools plus allowed check commands.",
+        "Verifier returns deterministic JSON verdict with pass/fail/block, checks, issues, and rationale.",
+        "Parent CodeWiki flow appends verifier output as task evidence without automatically mutating code.",
+        "Auto-close is gated by verifier pass plus local checks plus no unresolved issues and user/project policy.",
+        "Manual `/wiki-verify` or equivalent, if present, is a debug/override entrypoint rather than the primary workflow."
+      ],
+      "non_goals": [
+        "Give verifier write/edit/apply authority.",
+        "Replace human review for security-sensitive or product-sensitive changes.",
+        "Require verifier for every tiny docs typo when policy says skip."
+      ],
+      "verification": [
+        "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+        "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+        "Confirm verifier cannot write files or mutate roadmap directly."
+      ]
+    },
+    "delta": {
+      "desired": "Task closure automatically uses independent fresh-context verification rather than relying on users to trigger a command.",
+      "current": "Skill guidance recommends fresh verification, but no automatic verifier stage exists.",
+      "closure": "Add automatic verifier stage, verifier prompt/protocol, evidence append path, and optional manual override."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Inner loop invokes verifier automatically when a task is ready for closure or explicit verification evidence is missing.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+        "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+        "Confirm verifier cannot write files or mutate roadmap directly."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Verifier stage accepts a task id internally and builds a compact verification brief from task context, linked specs, diff/status, and acceptance criteria.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+        "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+        "Confirm verifier cannot write files or mutate roadmap directly."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Verifier runs in a separate Pi process or SDK/RPC session with read-only tools plus allowed check commands.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+        "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+        "Confirm verifier cannot write files or mutate roadmap directly."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Verifier returns deterministic JSON verdict with pass/fail/block, checks, issues, and rationale.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+        "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+        "Confirm verifier cannot write files or mutate roadmap directly."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "Parent CodeWiki flow appends verifier output as task evidence without automatically mutating code.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+        "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+        "Confirm verifier cannot write files or mutate roadmap directly."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-6",
+      "criterion": "Auto-close is gated by verifier pass plus local checks plus no unresolved issues and user/project policy.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+        "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+        "Confirm verifier cannot write files or mutate roadmap directly."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-7",
+      "criterion": "Manual `/wiki-verify` or equivalent, if present, is a debug/override entrypoint rather than the primary workflow.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "Create tests or smoke scripts for verifier trigger selection, brief generation, and verdict parsing.",
+        "Manual smoke: run automatic verifier stage against a known passing and known failing task fixture.",
+        "Confirm verifier cannot write files or mutate roadmap directly."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-009/context.json",
+    "build": ".wiki/views/context/tasks/TASK-009/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-009/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-009/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/clients/overview.md",
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/roadmap/tasks/TASK-009/task.json",
+    "extensions/codewiki/index.ts",
+    "scripts/smoke-test.mjs",
+    "skills/codewiki-verify/SKILL.md"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/clients/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/clients/overview.md",
+      "title": "Clients Overview",
+      "why": "task_spec explicitly links TASK-009 to this node",
+      "edge_path": [
+        "task:TASK-009",
+        "doc:.wiki/knowledge/clients/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/runtime/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "why": "task_spec explicitly links TASK-009 to this node",
+      "edge_path": [
+        "task:TASK-009",
+        "doc:.wiki/knowledge/system/runtime/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/index.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/index.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-009 to this node",
+      "edge_path": [
+        "task:TASK-009",
+        "code:extensions/codewiki/index.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:skills/codewiki-verify/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki-verify/SKILL.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-009 to this node",
+      "edge_path": [
+        "task:TASK-009",
+        "code:skills/codewiki-verify/SKILL.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/smoke-test.mjs",
+      "kind": "code_path",
+      "path": "scripts/smoke-test.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-009 to this node",
+      "edge_path": [
+        "task:TASK-009",
+        "code:scripts/smoke-test.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/index.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/smoke-test.mjs"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs",
+        "skills/codewiki-verify/SKILL.md"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 2469,
+    "over_budget": false
+  }
+}

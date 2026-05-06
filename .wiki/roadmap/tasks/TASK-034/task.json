@@ -1,0 +1,49 @@
+{
+  "id": "TASK-034",
+  "title": "Design CodeWiki skill package and workflow assets",
+  "status": "todo",
+  "priority": "high",
+  "kind": "agent-workflow",
+  "summary": "Define a CodeWiki skill package with router instructions, deterministic scripts, and grill/plan/build/verify workflow assets adapted from Matt Pocock's skills only where they fit CodeWiki semantics.",
+  "spec_paths": [
+    ".wiki/knowledge/clients/agent-skills.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/knowledge/lexicon.md"
+  ],
+  "code_paths": [
+    "skills",
+    "README.md",
+    "package.json"
+  ],
+  "research_ids": [],
+  "labels": [
+    "skills",
+    "workflow",
+    "matt-pocock-adaptation"
+  ],
+  "goal": {
+    "outcome": "CodeWiki has a clear packaged skill contract that teaches agents how to operate `.wiki` without creating parallel documentation systems.",
+    "acceptance": [
+      "A skill-package structure is specified for `SKILL.md`, `scripts/`, and workflow assets.",
+      "`grill`, `plan`, `build`, and `verify` loops are described with CodeWiki-specific inputs, outputs, stop conditions, and canonical write rules.",
+      "Matt Pocock skill ideas are classified as adopt, adapt, or discard, with documentation-related conventions explicitly filtered through CodeWiki's knowledge model.",
+      "Repo-specific process customization lives under `.wiki/knowledge/**` or config, while package workflow assets remain versioned and not casually self-mutated."
+    ],
+    "non_goals": [
+      "Do not blindly copy `CONTEXT.md`, `docs/adr`, issue-tracker, or PRD conventions when they duplicate CodeWiki knowledge/roadmap semantics.",
+      "Do not make agents hand-edit generated views."
+    ],
+    "verification": [
+      "Review packaged skill docs against `.wiki` invariants.",
+      "Run package smoke/test checks after any skill packaging changes.",
+      "Verify no parallel source of truth was introduced."
+    ]
+  },
+  "delta": {
+    "desired": "",
+    "current": "",
+    "closure": ""
+  },
+  "created": "2026-05-06",
+  "updated": "2026-05-06"
+}

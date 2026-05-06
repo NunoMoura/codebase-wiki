@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-038",
+    "title": "Implement trigger-based heartbeat agency loop",
+    "status": "todo",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Replace the current heartbeat planning stub with a bounded trigger-based loop whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
+    "labels": [
+      "heartbeat",
+      "agency",
+      "automation",
+      "openclaw-inspired"
+    ],
+    "goal": {
+      "outcome": "Users can choose understandable heartbeat triggers and safe autonomy budgets instead of opaque agency levels.",
+      "acceptance": [
+        "Heartbeat trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
+        "Each trigger maps to bounded observe/maintain/plan/work behavior with explicit budgets and stop conditions.",
+        "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
+        "Heartbeat can enter a brainstorm/planning loop only when trigger, budget, and risk policy allow it."
+      ],
+      "non_goals": [
+        "Do not implement unbounded autonomous coding.",
+        "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks."
+      ],
+      "verification": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Heartbeat trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ],
+      "checks": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Each trigger maps to bounded observe/maintain/plan/work behavior with explicit budgets and stop conditions.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ],
+      "checks": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ],
+      "checks": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Heartbeat can enter a brainstorm/planning loop only when trigger, budget, and risk policy allow it.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ],
+      "checks": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Do not implement unbounded autonomous coding.",
+    "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks."
+  ],
+  "required_checks": [
+    "Add tests or smoke coverage for trigger-to-action planning.",
+    "Run `npm test`.",
+    "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-06T03:23:00Z",
+      "kind": "roadmap_task_created",
+      "taskId": "TASK-038",
+      "title": "Implement trigger-based heartbeat agency loop"
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-038/context.json",
+    "build": ".wiki/views/context/tasks/TASK-038/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-038/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-038/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/system/flows/sanitation-release.md",
+    ".wiki/knowledge/system/flows/task-loop.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-038/task.json",
+    ".wiki/views/context/tasks/TASK-038/build.json",
+    ".wiki/views/context/tasks/TASK-038/graph.json",
+    "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+    "extensions/codewiki/src/core/types.ts",
+    "skills/codewiki/SKILL.md"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1434,
+    "over_budget": false
+  }
+}

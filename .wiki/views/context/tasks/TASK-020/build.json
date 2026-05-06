@@ -1,0 +1,264 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-020",
+    "title": "Architecture manifest and Mermaid view generator",
+    "status": "done",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
+    "labels": [
+      "architecture-manifest",
+      "component-cards",
+      "flow-docs",
+      "mermaid-view"
+    ],
+    "goal": {
+      "outcome": "System architecture is represented as a structured canonical graph with component and flow detail docs and generated visual/read views.",
+      "acceptance": [
+        "`system/architecture.json` owns component nodes and information-flow edges.",
+        "`system/components/*.md` detail component cards.",
+        "`system/flows/*.md` detail important cross-component paths.",
+        "Rebuild generates a Mermaid architecture view and agent-readable system architecture view.",
+        "Graph validation detects missing component/flow docs or orphan docs."
+      ],
+      "non_goals": [
+        "Implement status panel click interactions in this task.",
+        "Make Mermaid the source of truth."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ]
+    },
+    "delta": {
+      "desired": "Structured graph truth plus generated architecture views.",
+      "current": "System architecture is mostly prose; generated graph state is not a first-class architecture source.",
+      "closure": "Architecture graph and Mermaid generation work with validation."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "`system/architecture.json` owns component nodes and information-flow edges.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "`system/components/*.md` detail component cards.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "`system/flows/*.md` detail important cross-component paths.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Rebuild generates a Mermaid architecture view and agent-readable system architecture view.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "Graph validation detects missing component/flow docs or orphan docs.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-020/context.json",
+    "build": ".wiki/views/context/tasks/TASK-020/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-020/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-020/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/flows/context-memory.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-020/task.json",
+    "extensions/codewiki/templates.ts",
+    "scripts/rebuild_docs_meta.py",
+    "scripts/smoke-test.mjs"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-020 to this node",
+      "edge_path": [
+        "task:TASK-020",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/flows/context-memory.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "why": "task_spec explicitly links TASK-020 to this node",
+      "edge_path": [
+        "task:TASK-020",
+        "doc:.wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:scripts/rebuild_docs_meta.py",
+      "kind": "code_path",
+      "path": "scripts/rebuild_docs_meta.py",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-020 to this node",
+      "edge_path": [
+        "task:TASK-020",
+        "code:scripts/rebuild_docs_meta.py"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/templates.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/templates.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-020 to this node",
+      "edge_path": [
+        "task:TASK-020",
+        "code:extensions/codewiki/templates.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/smoke-test.mjs",
+      "kind": "code_path",
+      "path": "scripts/smoke-test.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-020 to this node",
+      "edge_path": [
+        "task:TASK-020",
+        "code:scripts/smoke-test.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1669,
+    "over_budget": false
+  }
+}

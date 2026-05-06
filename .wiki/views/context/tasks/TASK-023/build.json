@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-023",
+    "title": "ThinkCode query executor integration",
+    "status": "done",
+    "priority": "medium",
+    "kind": "integration",
+    "summary": "Use ThinkCode for ad hoc programmatic context creation, view validation, graph checks, and staged edits without making it CodeWiki's memory layer.",
+    "labels": [
+      "thinkcode-query",
+      "context-etl",
+      "graph-validation"
+    ],
+    "goal": {
+      "outcome": "CodeWiki can delegate bounded query/ETL and validation tasks to ThinkCode while preserving CodeWiki semantic write boundaries.",
+      "acceptance": [
+        "ThinkCode role is documented in skills and runtime guidance.",
+        "At least one workflow uses ThinkCode for compact context creation or graph/view validation when available.",
+        "Fallback path works when ThinkCode is unavailable.",
+        "ThinkCode writes remain staged or flow through CodeWiki capabilities/transactions."
+      ],
+      "non_goals": [
+        "Make ThinkCode required for CodeWiki.",
+        "Let ThinkCode edit generated views directly."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "ThinkCode acts as a policy-bound programmatic context and validation executor.",
+      "current": "ThinkCode is documented as future runtime support but not integrated into view/context workflows.",
+      "closure": "Integration seam and first use case are implemented with fallback."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "ThinkCode role is documented in skills and runtime guidance.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "At least one workflow uses ThinkCode for compact context creation or graph/view validation when available.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Fallback path works when ThinkCode is unavailable.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "ThinkCode writes remain staged or flow through CodeWiki capabilities/transactions.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-023/context.json",
+    "build": ".wiki/views/context/tasks/TASK-023/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-023/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-023/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-023/task.json",
+    "extensions/codewiki/index.ts",
+    "scripts/codewiki-gateway.mjs",
+    "skills"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-023 to this node",
+      "edge_path": [
+        "task:TASK-023",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/runtime/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "why": "task_spec explicitly links TASK-023 to this node",
+      "edge_path": [
+        "task:TASK-023",
+        "doc:.wiki/knowledge/system/runtime/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/index.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/index.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-023 to this node",
+      "edge_path": [
+        "task:TASK-023",
+        "code:extensions/codewiki/index.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/codewiki-gateway.mjs",
+      "kind": "code_path",
+      "path": "scripts/codewiki-gateway.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-023 to this node",
+      "edge_path": [
+        "task:TASK-023",
+        "code:scripts/codewiki-gateway.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:skills",
+      "kind": "code_path",
+      "path": "skills",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-023 to this node",
+      "edge_path": [
+        "task:TASK-023",
+        "code:skills"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1436,
+    "over_budget": false
+  }
+}

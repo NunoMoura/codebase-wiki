@@ -1,0 +1,267 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-32",
+    "title": "Prove the adapter seam with a minimal CLI surface",
+    "status": "verify",
+    "priority": "low",
+    "kind": "architecture",
+    "summary": "After Pi migration is stable, add a minimal CLI adapter that calls the same application use cases to prove the agent-agnostic seam before larger MCP/Codex/Claude integrations.",
+    "labels": [
+      "architecture",
+      "cli",
+      "adapter-proof"
+    ],
+    "goal": {
+      "outcome": "A second simple adapter validates that CodeWiki workflows are no longer Pi-bound.",
+      "acceptance": [
+        "CLI exposes a minimal state read command and one task operation using application use cases.",
+        "CLI code does not duplicate domain/task/session logic from Pi tools.",
+        "Tests prove Pi and CLI paths share application behavior.",
+        "Findings from the CLI proof update future MCP/Codex/Claude adapter tasks if needed."
+      ],
+      "non_goals": [
+        "Do not build a full CLI product.",
+        "Do not implement MCP server, Codex extension, or Claude Code integration in this task."
+      ],
+      "verification": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check.",
+        "Run minimal CLI command against a temp fixture if packaged."
+      ]
+    },
+    "delta": {
+      "desired": "A tiny second adapter proves the ports/application seam with minimal complexity.",
+      "current": "Only Pi is a real adapter. Application/core seams are improved, but no CLI adapter exists yet; missing future CLI path was removed from code_paths to avoid lint noise.",
+      "closure": "CLI proof works or records seam gaps as follow-up tasks."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "CLI exposes a minimal state read command and one task operation using application use cases.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/application",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/adapters",
+        "package.json"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check.",
+        "Run minimal CLI command against a temp fixture if packaged."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "CLI code does not duplicate domain/task/session logic from Pi tools.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/application",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/adapters",
+        "package.json"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check.",
+        "Run minimal CLI command against a temp fixture if packaged."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Tests prove Pi and CLI paths share application behavior.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/application",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/adapters",
+        "package.json"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check.",
+        "Run minimal CLI command against a temp fixture if packaged."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Findings from the CLI proof update future MCP/Codex/Claude adapter tasks if needed.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/application",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/adapters",
+        "package.json"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check.",
+        "Run minimal CLI command against a temp fixture if packaged."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-32/context.json",
+    "build": ".wiki/views/context/tasks/TASK-32/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-32/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-32/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/extensions/codewiki/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/roadmap/tasks/TASK-32/task.json",
+    "extensions/codewiki/src/adapters",
+    "extensions/codewiki/src/application",
+    "extensions/codewiki/src/core",
+    "package.json"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "why": "task_spec explicitly links TASK-32 to this node",
+      "edge_path": [
+        "task:TASK-32",
+        "doc:.wiki/knowledge/system/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "why": "task_spec explicitly links TASK-32 to this node",
+      "edge_path": [
+        "task:TASK-32",
+        "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/src/application",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/application",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-32 to this node",
+      "edge_path": [
+        "task:TASK-32",
+        "code:extensions/codewiki/src/application"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/core",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-32 to this node",
+      "edge_path": [
+        "task:TASK-32",
+        "code:extensions/codewiki/src/core"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-32 to this node",
+      "edge_path": [
+        "task:TASK-32",
+        "code:extensions/codewiki/src/adapters"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:package.json",
+      "kind": "code_path",
+      "path": "package.json",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-32 to this node",
+      "edge_path": [
+        "task:TASK-32",
+        "code:package.json"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/src/application",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/adapters",
+        "package.json"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        "extensions/codewiki/src/adapters",
+        "extensions/codewiki/src/application",
+        "extensions/codewiki/src/core",
+        "package.json"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1748,
+    "over_budget": false
+  }
+}

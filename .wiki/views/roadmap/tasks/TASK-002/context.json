@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-05T23:21:29Z",
+  "generated_at": "2026-05-06T22:02:15Z",
   "context_path": ".wiki/roadmap/tasks/TASK-002/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -43,38 +43,35 @@
       "digest": "ce7cf418f288fc3ba4a317fbe1442130ca0a995e06499eb096279d3995ff8f85"
     },
     "git": {
-      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
       "dirty": true,
       "dirty_paths": [
-        ".wiki/knowledge/system/extensions/codewiki/overview.md",
-        ".wiki/knowledge/system/overview.md",
         ".wiki/roadmap.json",
-        "extensions/codewiki/bootstrap.ts",
-        "extensions/codewiki/contracts.ts",
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/project-root.ts",
-        "extensions/codewiki/templates.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/core/session.ts",
+        "extensions/codewiki/src/engine/views.ts",
         "scripts/smoke-test.mjs"
       ],
       "paths": {
-        ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afe",
-        ".wiki/knowledge/system/overview.md": "643c940fa1ca",
-        ".wiki/roadmap.json": "c70091881afe",
-        "extensions/codewiki": "c70091881afe",
-        "scripts/smoke-test.mjs": "c70091881afe",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147",
+        ".wiki/knowledge/system/overview.md": "166313f96147",
+        ".wiki/roadmap.json": "166313f96147",
+        "extensions/codewiki": "166313f96147",
+        "scripts/smoke-test.mjs": "166313f96147",
         "skills": "fe19eabf6306"
       }
     },
     "spec_digest": "14fe6fa15427308dcd2efb28880e33ce2840680ffa2b30452120e760fe4a0f7b",
-    "code_digest": "32d806ec53232f1d112a2401801c001fdf115636abdd2a793f4aab317179c242",
+    "code_digest": "be08111f54db407025dd7ac01823272c67832a4fb5c20e233088cd0aa47985d8",
     "graph": {
       "git": {
-        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
         "dirty": true
       },
-      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
-      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
-      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
     }
   },
   "specs": [
@@ -126,7 +123,7 @@
       "skills",
       "scripts/smoke-test.mjs"
     ],
-    "digest": "32d806ec53232f1d112a2401801c001fdf115636abdd2a793f4aab317179c242",
+    "digest": "be08111f54db407025dd7ac01823272c67832a4fb5c20e233088cd0aa47985d8",
     "expand": [
       {
         "read": "extensions/codewiki"
@@ -158,6 +155,9 @@
     "task_json": ".wiki/roadmap/tasks/TASK-002/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",
     "status_state": ".wiki/status-state.json",
-    "graph": ".wiki/graph.json"
+    "graph": ".wiki/graph.json",
+    "build_pack": ".wiki/views/context/tasks/TASK-002/build.json",
+    "verify_pack": ".wiki/views/context/tasks/TASK-002/verify.json",
+    "graph_slice": ".wiki/views/context/tasks/TASK-002/graph.json"
   }
 }

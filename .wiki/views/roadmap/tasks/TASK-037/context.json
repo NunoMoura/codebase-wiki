@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-06T22:02:16Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-037/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-037",
+    "title": "Build standalone read-only CodeWiki UI",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "architecture",
+    "summary": "Detach the human status interface from Pi by creating an agent-agnostic read-only UI that consumes generated `.wiki/views/**` and renders Mermaid outside the Pi TUI constraints.",
+    "labels": [
+      "ui",
+      "adapter",
+      "mermaid",
+      "agent-agnostic"
+    ],
+    "goal": {
+      "outcome": "Humans can inspect CodeWiki status, roadmap, product/system views, and Mermaid architecture without running Pi.",
+      "acceptance": [
+        "A standalone read-only UI surface is designed or implemented without importing Pi SDK/TUI code.",
+        "UI consumes generated views as its only data source for initial slice.",
+        "Mermaid architecture renders in an environment suited to diagrams.",
+        "Pi status panel remains compatible or delegates shared formatting where useful."
+      ],
+      "non_goals": [
+        "Do not add canonical writes in the first external UI slice.",
+        "Do not make UI the access layer for agents; agents should use views, CLI, MCP, or native adapters."
+      ],
+      "verification": [
+        "Run package tests.",
+        "Manually open/read fixture views in the standalone UI or snapshot-render output.",
+        "Confirm no Pi imports cross into standalone UI modules."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "96f94065963478e683c07c197e82e72643984039968d22e618382564b48d2b62"
+    },
+    "git": {
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/roadmap.json",
+        "extensions/codewiki/src/engine/views.ts"
+      ],
+      "paths": {
+        ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df3",
+        ".wiki/knowledge/product/surfaces.md": "c70091881afe",
+        ".wiki/knowledge/system/components/extension.md": "166313f96147",
+        ".wiki/knowledge/system/components/views.md": "ce607eba2ff9",
+        ".wiki/roadmap.json": "166313f96147",
+        "extensions/codewiki/src/adapters/pi/ui": "166313f96147",
+        "extensions/codewiki/src/engine/views.ts": "166313f96147",
+        "package.json": "166313f96147"
+      }
+    },
+    "spec_digest": "589d1441d6b676a83d8f002a1610e2f460da8fe196cd6123f3da4bdd42cf66c2",
+    "code_digest": "408c50f3916e6ada77bec6c066a68d0a29460c20b4fd36cfbe759bff15a64fbe",
+    "graph": {
+      "git": {
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
+        "dirty": true
+      },
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/product/surfaces.md",
+      "title": "Product Surfaces",
+      "summary": "Human and AI interaction surfaces for CodeWiki.",
+      "state": "active",
+      "owners": [
+        "product",
+        "clients"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/product/surfaces.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
+      "title": "Status Panel",
+      "summary": "Compact status-line and panel rules for codewiki.",
+      "state": "active",
+      "owners": [
+        "design"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts"
+      ],
+      "revision": {
+        "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/clients/surfaces/status-panel.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/components/views.md",
+      "title": "Generated Views",
+      "summary": "Tool-owned optimized read models and context routes consumed by agents, verifiers, and UI.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        ".wiki/views"
+      ],
+      "revision": {
+        "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/components/views.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/components/extension.md",
+      "title": "CodeWiki Extension",
+      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi"
+      ],
+      "revision": {
+        "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/components/extension.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src/adapters/pi/ui",
+      "extensions/codewiki/src/engine/views.ts",
+      "package.json"
+    ],
+    "digest": "408c50f3916e6ada77bec6c066a68d0a29460c20b4fd36cfbe759bff15a64fbe",
+    "expand": [
+      {
+        "read": "extensions/codewiki/src/adapters/pi/ui"
+      },
+      {
+        "read": "extensions/codewiki/src/engine/views.ts"
+      },
+      {
+        "read": "package.json"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-037/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json",
+    "build_pack": ".wiki/views/context/tasks/TASK-037/build.json",
+    "verify_pack": ".wiki/views/context/tasks/TASK-037/verify.json",
+    "graph_slice": ".wiki/views/context/tasks/TASK-037/graph.json"
+  }
+}

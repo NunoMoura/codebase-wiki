@@ -1,0 +1,347 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-29",
+    "title": "Add architecture boundary checks and characterization coverage",
+    "status": "verify",
+    "priority": "high",
+    "kind": "testing",
+    "summary": "Add guardrails that freeze current behavior and prevent future domain/application/infrastructure/adapters import-boundary regressions during the refactor.",
+    "labels": [
+      "architecture",
+      "testing",
+      "guardrails"
+    ],
+    "goal": {
+      "outcome": "Refactor work is protected by automated import-boundary checks and behavior characterization tests.",
+      "acceptance": [
+        "A script checks that domain does not import Pi, Node I/O, application, infrastructure, adapters, or legacy core.",
+        "Application and infrastructure boundary rules are encoded with transitional exceptions where needed.",
+        "Smoke/characterization coverage exercises bootstrap, state read, task mutation, session mutation, and rebuild behavior at the current public surface.",
+        "Package scripts expose the checks so future agents can run one command before and after migration slices."
+      ],
+      "non_goals": [
+        "Do not enforce final no-legacy-import rules until migration tasks remove shims.",
+        "Do not rewrite production architecture as part of adding checks."
+      ],
+      "verification": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run the new architecture check script.",
+        "Verify the check fails on an intentional forbidden import in local reasoning or unit fixture if practical."
+      ]
+    },
+    "delta": {
+      "desired": "Boundary violations become visible immediately and behavior changes are caught before broad moves.",
+      "current": "Architecture check is implemented and wired into npm test. Smoke coverage exercises package load, bootstrap, state/task/session behavior, rebuild, status UI expectations, and pack contents.",
+      "closure": "Guardrail scripts and tests pass and are documented in package scripts."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "A script checks that domain does not import Pi, Node I/O, application, infrastructure, adapters, or legacy core.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "scripts/check-architecture.mjs",
+        "package.json",
+        "scripts/smoke-test.mjs",
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/domain",
+        "extensions/codewiki/src/infrastructure"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run the new architecture check script.",
+        "Verify the check fails on an intentional forbidden import in local reasoning or unit fixture if practical."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Application and infrastructure boundary rules are encoded with transitional exceptions where needed.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "scripts/check-architecture.mjs",
+        "package.json",
+        "scripts/smoke-test.mjs",
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/domain",
+        "extensions/codewiki/src/infrastructure"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run the new architecture check script.",
+        "Verify the check fails on an intentional forbidden import in local reasoning or unit fixture if practical."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Smoke/characterization coverage exercises bootstrap, state read, task mutation, session mutation, and rebuild behavior at the current public surface.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "scripts/check-architecture.mjs",
+        "package.json",
+        "scripts/smoke-test.mjs",
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/domain",
+        "extensions/codewiki/src/infrastructure"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run the new architecture check script.",
+        "Verify the check fails on an intentional forbidden import in local reasoning or unit fixture if practical."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Package scripts expose the checks so future agents can run one command before and after migration slices.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "scripts/check-architecture.mjs",
+        "package.json",
+        "scripts/smoke-test.mjs",
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/domain",
+        "extensions/codewiki/src/infrastructure"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run the new architecture check script.",
+        "Verify the check fails on an intentional forbidden import in local reasoning or unit fixture if practical."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-29/context.json",
+    "build": ".wiki/views/context/tasks/TASK-29/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-29/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-29/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/extensions/codewiki/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/roadmap/tasks/TASK-29/task.json",
+    "extensions/codewiki",
+    "extensions/codewiki/src/adapters/pi",
+    "extensions/codewiki/src/core",
+    "extensions/codewiki/src/domain",
+    "extensions/codewiki/src/infrastructure",
+    "package.json",
+    "scripts/check-architecture.mjs",
+    "scripts/smoke-test.mjs"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "why": "task_spec explicitly links TASK-29 to this node",
+      "edge_path": [
+        "task:TASK-29",
+        "doc:.wiki/knowledge/system/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "why": "task_spec explicitly links TASK-29 to this node",
+      "edge_path": [
+        "task:TASK-29",
+        "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:scripts/check-architecture.mjs",
+      "kind": "code_path",
+      "path": "scripts/check-architecture.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-29 to this node",
+      "edge_path": [
+        "task:TASK-29",
+        "code:scripts/check-architecture.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:package.json",
+      "kind": "code_path",
+      "path": "package.json",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-29 to this node",
+      "edge_path": [
+        "task:TASK-29",
+        "code:package.json"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/smoke-test.mjs",
+      "kind": "code_path",
+      "path": "scripts/smoke-test.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-29 to this node",
+      "edge_path": [
+        "task:TASK-29",
+        "code:scripts/smoke-test.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki",
+      "kind": "code_path",
+      "path": "extensions/codewiki",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-29 to this node",
+      "edge_path": [
+        "task:TASK-29",
+        "code:extensions/codewiki"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-29 to this node",
+      "edge_path": [
+        "task:TASK-29",
+        "code:extensions/codewiki/src/adapters/pi"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/core",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-29 to this node",
+      "edge_path": [
+        "task:TASK-29",
+        "code:extensions/codewiki/src/core"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/domain",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/domain",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-29 to this node",
+      "edge_path": [
+        "task:TASK-29",
+        "code:extensions/codewiki/src/domain"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/infrastructure",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/infrastructure",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-29 to this node",
+      "edge_path": [
+        "task:TASK-29",
+        "code:extensions/codewiki/src/infrastructure"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "scripts/check-architecture.mjs",
+        "package.json",
+        "scripts/smoke-test.mjs",
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/domain",
+        "extensions/codewiki/src/infrastructure"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/domain",
+        "extensions/codewiki/src/infrastructure",
+        "package.json",
+        "scripts/check-architecture.mjs",
+        "scripts/smoke-test.mjs"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 2427,
+    "over_budget": false
+  }
+}

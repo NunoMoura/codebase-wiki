@@ -1,0 +1,282 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-039",
+    "title": "Provide optional ThinkCode runtime adapter",
+    "status": "todo",
+    "priority": "medium",
+    "kind": "architecture",
+    "summary": "Make ThinkCode a first-class optional runtime for bounded CodeWiki context work while preserving native fallback paths for Pi, Codex, Claude Code, and other agent harnesses.",
+    "labels": [
+      "think-code",
+      "runtime",
+      "adapters",
+      "agent-agnostic"
+    ],
+    "goal": {
+      "outcome": "CodeWiki can prefer ThinkCode when available but remains usable from any agent runtime through views, CLI/gateway, MCP/future adapters, or native tools.",
+      "acceptance": [
+        "Runtime docs describe ThinkCode as optional, not required memory or execution substrate.",
+        "Adapter contract identifies where `think-code.policy.json` lives and how staged writes are validated.",
+        "Fallback paths are documented for native CodeWiki gateway/views when ThinkCode is unavailable.",
+        "The design supports future Codex and Claude Code adapters without Pi-specific assumptions."
+      ],
+      "non_goals": [
+        "Do not make ThinkCode a hard dependency.",
+        "Do not let ThinkCode bypass CodeWiki canonical write rules or mutate generated views directly."
+      ],
+      "verification": [
+        "Run tests/smoke after docs/package changes.",
+        "Validate gateway manifest still advertises CodeWiki capabilities independent of ThinkCode.",
+        "Check skills mention optional fallback behavior clearly."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Runtime docs describe ThinkCode as optional, not required memory or execution substrate.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/components/runtime-gateway.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "skills",
+        "README.md",
+        "package.json"
+      ],
+      "checks": [
+        "Run tests/smoke after docs/package changes.",
+        "Validate gateway manifest still advertises CodeWiki capabilities independent of ThinkCode.",
+        "Check skills mention optional fallback behavior clearly."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Adapter contract identifies where `think-code.policy.json` lives and how staged writes are validated.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/components/runtime-gateway.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "skills",
+        "README.md",
+        "package.json"
+      ],
+      "checks": [
+        "Run tests/smoke after docs/package changes.",
+        "Validate gateway manifest still advertises CodeWiki capabilities independent of ThinkCode.",
+        "Check skills mention optional fallback behavior clearly."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Fallback paths are documented for native CodeWiki gateway/views when ThinkCode is unavailable.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/components/runtime-gateway.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "skills",
+        "README.md",
+        "package.json"
+      ],
+      "checks": [
+        "Run tests/smoke after docs/package changes.",
+        "Validate gateway manifest still advertises CodeWiki capabilities independent of ThinkCode.",
+        "Check skills mention optional fallback behavior clearly."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "The design supports future Codex and Claude Code adapters without Pi-specific assumptions.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/components/runtime-gateway.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "skills",
+        "README.md",
+        "package.json"
+      ],
+      "checks": [
+        "Run tests/smoke after docs/package changes.",
+        "Validate gateway manifest still advertises CodeWiki capabilities independent of ThinkCode.",
+        "Check skills mention optional fallback behavior clearly."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-039/context.json",
+    "build": ".wiki/views/context/tasks/TASK-039/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-039/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-039/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/components/runtime-gateway.md",
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-039/task.json",
+    "README.md",
+    "package.json",
+    "scripts/codewiki-gateway.mjs",
+    "skills"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/runtime/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "why": "task_spec explicitly links TASK-039 to this node",
+      "edge_path": [
+        "task:TASK-039",
+        "doc:.wiki/knowledge/system/runtime/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/runtime-gateway.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+      "title": "Runtime Gateway",
+      "why": "task_spec explicitly links TASK-039 to this node",
+      "edge_path": [
+        "task:TASK-039",
+        "doc:.wiki/knowledge/system/components/runtime-gateway.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-039 to this node",
+      "edge_path": [
+        "task:TASK-039",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:scripts/codewiki-gateway.mjs",
+      "kind": "code_path",
+      "path": "scripts/codewiki-gateway.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-039 to this node",
+      "edge_path": [
+        "task:TASK-039",
+        "code:scripts/codewiki-gateway.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:skills",
+      "kind": "code_path",
+      "path": "skills",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-039 to this node",
+      "edge_path": [
+        "task:TASK-039",
+        "code:skills"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:README.md",
+      "kind": "code_path",
+      "path": "README.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-039 to this node",
+      "edge_path": [
+        "task:TASK-039",
+        "code:README.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:package.json",
+      "kind": "code_path",
+      "path": "package.json",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-039 to this node",
+      "edge_path": [
+        "task:TASK-039",
+        "code:package.json"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "scripts/codewiki-gateway.mjs",
+        "skills",
+        "README.md",
+        "package.json"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/components/runtime-gateway.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "README.md",
+        "package.json",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1849,
+    "over_budget": false
+  }
+}

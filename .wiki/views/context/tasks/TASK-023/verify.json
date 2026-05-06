@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-023",
+    "title": "ThinkCode query executor integration",
+    "status": "done",
+    "priority": "medium",
+    "kind": "integration",
+    "summary": "Use ThinkCode for ad hoc programmatic context creation, view validation, graph checks, and staged edits without making it CodeWiki's memory layer.",
+    "labels": [
+      "thinkcode-query",
+      "context-etl",
+      "graph-validation"
+    ],
+    "goal": {
+      "outcome": "CodeWiki can delegate bounded query/ETL and validation tasks to ThinkCode while preserving CodeWiki semantic write boundaries.",
+      "acceptance": [
+        "ThinkCode role is documented in skills and runtime guidance.",
+        "At least one workflow uses ThinkCode for compact context creation or graph/view validation when available.",
+        "Fallback path works when ThinkCode is unavailable.",
+        "ThinkCode writes remain staged or flow through CodeWiki capabilities/transactions."
+      ],
+      "non_goals": [
+        "Make ThinkCode required for CodeWiki.",
+        "Let ThinkCode edit generated views directly."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "ThinkCode acts as a policy-bound programmatic context and validation executor.",
+      "current": "ThinkCode is documented as future runtime support but not integrated into view/context workflows.",
+      "closure": "Integration seam and first use case are implemented with fallback."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "ThinkCode role is documented in skills and runtime guidance.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "At least one workflow uses ThinkCode for compact context creation or graph/view validation when available.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Fallback path works when ThinkCode is unavailable.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "ThinkCode writes remain staged or flow through CodeWiki capabilities/transactions.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/codewiki-gateway.mjs",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Make ThinkCode required for CodeWiki.",
+    "Let ThinkCode edit generated views directly."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:03:51Z",
+      "kind": "roadmap_append",
+      "title": "Appended 1 roadmap task(s)",
+      "summary": "TASK-023 ThinkCode query executor integration"
+    },
+    {
+      "ts": "2026-05-02T00:03:51Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-023",
+      "action": "spawn",
+      "title": "ThinkCode query executor integration",
+      "summary": "Spawned task TASK-023 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T02:29:01Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-023",
+      "action": "focus",
+      "title": "ThinkCode query executor integration",
+      "summary": "Continue next roadmap task.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T02:34:09Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-023 ThinkCode query executor integration"
+    },
+    {
+      "ts": "2026-05-02T02:34:09Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-023 ThinkCode query executor integration"
+    },
+    {
+      "ts": "2026-05-02T02:34:09Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-023",
+      "phase": "verify",
+      "title": "ThinkCode query executor integration",
+      "summary": "Integrated optional ThinkCode context executor seam into heartbeat workflow: heartbeat now returns a bounded think_code_run script plan for view/task/graph context with native CodeWiki gateway/state fallback. Documented optional role and staged-write boundary in runtime/skills/README.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T02:34:09Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-023",
+      "verdict": "pass",
+      "summary": "Integrated optional ThinkCode context executor seam into heartbeat workflow: heartbeat now returns a bounded think_code_run script plan for view/task/graph context with native CodeWiki gateway/state fallback. Documented optional role and staged-write boundary in runtime/skills/README.",
+      "checks_run": [
+        "python scripts/rebuild_docs_meta.py",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs",
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "skills/codewiki-task/SKILL.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-023/context.json",
+    "build": ".wiki/views/context/tasks/TASK-023/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-023/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-023/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-023/task.json",
+    ".wiki/views/context/tasks/TASK-023/build.json",
+    ".wiki/views/context/tasks/TASK-023/graph.json",
+    "extensions/codewiki/index.ts",
+    "scripts/codewiki-gateway.mjs",
+    "skills"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1605,
+    "over_budget": false
+  }
+}

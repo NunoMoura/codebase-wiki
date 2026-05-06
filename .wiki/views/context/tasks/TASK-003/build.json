@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-003",
+    "title": "Keep roadmap as freshest delta log",
+    "status": "done",
+    "priority": "medium",
+    "kind": "process",
+    "summary": "Move drift and plan tracking into structured roadmap tasks instead of separate prose buckets.",
+    "labels": [
+      "roadmap",
+      "process"
+    ],
+    "goal": {
+      "outcome": "Tracked delta lives in roadmap tasks instead of scattered prose.",
+      "acceptance": [
+        "Active implementation gaps are represented by roadmap tasks.",
+        "Users can resume task work from Pi surfaces without editing roadmap JSON manually."
+      ],
+      "non_goals": [
+        "Maintain separate plan and drift documents for the same live work."
+      ],
+      "verification": [
+        "Inspect generated roadmap view after rebuild.",
+        "Confirm roadmap tasks cover current active delta."
+      ]
+    },
+    "delta": {
+      "desired": "Roadmap is single current queue for closing docs-to-code gaps.",
+      "current": "Teams often spread gaps across plans, drift notes, and chat.",
+      "closure": "Convert each active mismatch or sequence into a scoped roadmap task."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Active implementation gaps are represented by roadmap tasks.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [],
+      "checks": [
+        "Inspect generated roadmap view after rebuild.",
+        "Confirm roadmap tasks cover current active delta."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Users can resume task work from Pi surfaces without editing roadmap JSON manually.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "code_paths": [],
+      "checks": [
+        "Inspect generated roadmap view after rebuild.",
+        "Confirm roadmap tasks cover current active delta."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-003/context.json",
+    "build": ".wiki/views/context/tasks/TASK-003/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-003/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-003/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/clients/overview.md",
+    ".wiki/knowledge/clients/surfaces/roadmap.md",
+    ".wiki/roadmap/tasks/TASK-003/task.json"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/clients/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/clients/overview.md",
+      "title": "Clients Overview",
+      "why": "task_spec explicitly links TASK-003 to this node",
+      "edge_path": [
+        "task:TASK-003",
+        "doc:.wiki/knowledge/clients/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/clients/surfaces/roadmap.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/clients/surfaces/roadmap.md",
+      "title": "Roadmap Surface",
+      "why": "task_spec explicitly links TASK-003 to this node",
+      "edge_path": [
+        "task:TASK-003",
+        "doc:.wiki/knowledge/clients/surfaces/roadmap.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": []
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": false,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": false,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 858,
+    "over_budget": false
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-014",
+    "title": "Capture CodeWiki v2 operating model and roadmap",
+    "status": "done",
+    "priority": "high",
+    "kind": "docs",
+    "summary": "CodeWiki v2 decisions are now durable wiki knowledge and mapped to executable roadmap tasks.",
+    "labels": [
+      "v2",
+      "planning",
+      "view-boundary",
+      "memory-model"
+    ],
+    "goal": {
+      "outcome": "The wiki records the v2 canonical/view model, product split, memory policy, subagent/heartbeat/think-code roles, and sanitation/versioning policy as roadmap-backed intent.",
+      "acceptance": [
+        "V2 decisions are captured in canonical knowledge docs, not only chat history.",
+        "Product knowledge is split or prepared for users, stories, and surfaces.",
+        "The system knowledge names the canonical/view boundary and view consumption model.",
+        "Roadmap tasks cover v2 migration, views, architecture graph, subagents, heartbeat, think-code, and sanitation/release policy.",
+        "codewiki_state reports the new roadmap without drift."
+      ],
+      "non_goals": [
+        "Implement the full v2 storage migration.",
+        "Render architecture diagrams in the status panel.",
+        "Rename all code-level projection terminology immediately."
+      ],
+      "verification": [
+        "codewiki_state refresh=true"
+      ]
+    },
+    "delta": {
+      "desired": "V2 direction is captured as wiki truth and mapped to concrete roadmap tasks.",
+      "current": "V2 direction exists in chat but not yet as durable wiki knowledge or executable roadmap tasks.",
+      "closure": "Knowledge docs and roadmap tasks reflect the agreed v2 operating model."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "V2 decisions are captured in canonical knowledge docs, not only chat history.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "checks": [
+        "codewiki_state refresh=true"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Product knowledge is split or prepared for users, stories, and surfaces.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "checks": [
+        "codewiki_state refresh=true"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "The system knowledge names the canonical/view boundary and view consumption model.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "checks": [
+        "codewiki_state refresh=true"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Roadmap tasks cover v2 migration, views, architecture graph, subagents, heartbeat, think-code, and sanitation/release policy.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "checks": [
+        "codewiki_state refresh=true"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "codewiki_state reports the new roadmap without drift.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "checks": [
+        "codewiki_state refresh=true"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-014/context.json",
+    "build": ".wiki/views/context/tasks/TASK-014/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-014/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-014/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge",
+    ".wiki/knowledge/product/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/roadmap/tasks/TASK-014/task.json"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/product/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "why": "task_spec explicitly links TASK-014 to this node",
+      "edge_path": [
+        "task:TASK-014",
+        "doc:.wiki/knowledge/product/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "why": "task_spec explicitly links TASK-014 to this node",
+      "edge_path": [
+        "task:TASK-014",
+        "doc:.wiki/knowledge/system/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/runtime/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "why": "task_spec explicitly links TASK-014 to this node",
+      "edge_path": [
+        "task:TASK-014",
+        "doc:.wiki/knowledge/system/runtime/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:.wiki/knowledge",
+      "kind": "code_path",
+      "path": ".wiki/knowledge",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-014 to this node",
+      "edge_path": [
+        "task:TASK-014",
+        "code:.wiki/knowledge"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        ".wiki/knowledge"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1426,
+    "over_budget": false
+  }
+}

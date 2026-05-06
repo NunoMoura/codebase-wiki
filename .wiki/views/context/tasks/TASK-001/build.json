@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-001",
+    "title": "Lock product intent in specs",
+    "status": "done",
+    "priority": "high",
+    "kind": "docs",
+    "summary": "Turn codewiki intent into explicit product and system docs.",
+    "labels": [
+      "foundation",
+      "specs"
+    ],
+    "goal": {
+      "outcome": "Project intent and ownership boundaries are explicit enough to guide implementation.",
+      "acceptance": [
+        "Foundational specs describe desired outcomes and major constraints.",
+        "At least one roadmap task links back to those specs."
+      ],
+      "non_goals": [
+        "Document every implementation detail before the project has real seams."
+      ],
+      "verification": [
+        "Review starter specs for project-specific intent and ownership coverage.",
+        "Run the rebuild command after replacing placeholders."
+      ]
+    },
+    "delta": {
+      "desired": "Product intent and architecture boundaries are explicit and stable.",
+      "current": "Starter docs need project-specific content.",
+      "closure": "Replace placeholders with concrete intended behavior and ownership boundaries."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Foundational specs describe desired outcomes and major constraints.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [],
+      "checks": [
+        "Review starter specs for project-specific intent and ownership coverage.",
+        "Run the rebuild command after replacing placeholders."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "At least one roadmap task links back to those specs.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [],
+      "checks": [
+        "Review starter specs for project-specific intent and ownership coverage.",
+        "Run the rebuild command after replacing placeholders."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-001/context.json",
+    "build": ".wiki/views/context/tasks/TASK-001/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-001/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-001/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/product/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/roadmap/tasks/TASK-001/task.json"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/product/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "why": "task_spec explicitly links TASK-001 to this node",
+      "edge_path": [
+        "task:TASK-001",
+        "doc:.wiki/knowledge/product/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "why": "task_spec explicitly links TASK-001 to this node",
+      "edge_path": [
+        "task:TASK-001",
+        "doc:.wiki/knowledge/system/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": []
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": false,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": false,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 847,
+    "over_budget": false
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-010",
+    "title": "Add CodeWiki architecture review workflow adapted from deep-module heuristics",
+    "status": "done",
+    "priority": "medium",
+    "kind": "architecture",
+    "summary": "Adapt deep-module and shared-language architecture review ideas into a `.wiki`-aware workflow for finding seams, locality problems, and roadmap-worthy refactors.",
+    "labels": [
+      "architecture",
+      "deep-modules",
+      "pocock-adaptation"
+    ],
+    "goal": {
+      "outcome": "CodeWiki can run architecture reviews that produce knowledge updates and roadmap tasks rather than ad hoc refactor suggestions.",
+      "acceptance": [
+        "Workflow uses CodeWiki vocabulary and `.wiki/knowledge` instead of `CONTEXT.md`/ADR assumptions.",
+        "Review rubric includes module/interface/implementation, seam, adapter, locality, leverage, and deletion test.",
+        "Findings become either knowledge clarifications, roadmap tasks, or explicitly deferred non-goals.",
+        "Architecture review does not propose interfaces before presenting friction candidates and asking user to pick."
+      ],
+      "non_goals": [
+        "Create a separate ADR tree outside `.wiki/knowledge`.",
+        "Automatically refactor architecture during review."
+      ],
+      "verification": [
+        "Run the workflow on the CodeWiki repo and produce at least one candidate or documented no-op result.",
+        "Confirm any resulting tasks link to owning specs and acceptance criteria."
+      ]
+    },
+    "delta": {
+      "desired": "Architecture improvement becomes a first-class CodeWiki planning input.",
+      "current": "General architecture heuristics are useful but not adapted to CodeWiki's knowledge/roadmap model.",
+      "closure": "Add CodeWiki-specific architecture review skill or section and validate against the repo."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Workflow uses CodeWiki vocabulary and `.wiki/knowledge` instead of `CONTEXT.md`/ADR assumptions.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-architecture/SKILL.md"
+      ],
+      "checks": [
+        "Run the workflow on the CodeWiki repo and produce at least one candidate or documented no-op result.",
+        "Confirm any resulting tasks link to owning specs and acceptance criteria."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Review rubric includes module/interface/implementation, seam, adapter, locality, leverage, and deletion test.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-architecture/SKILL.md"
+      ],
+      "checks": [
+        "Run the workflow on the CodeWiki repo and produce at least one candidate or documented no-op result.",
+        "Confirm any resulting tasks link to owning specs and acceptance criteria."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Findings become either knowledge clarifications, roadmap tasks, or explicitly deferred non-goals.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-architecture/SKILL.md"
+      ],
+      "checks": [
+        "Run the workflow on the CodeWiki repo and produce at least one candidate or documented no-op result.",
+        "Confirm any resulting tasks link to owning specs and acceptance criteria."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Architecture review does not propose interfaces before presenting friction candidates and asking user to pick.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-architecture/SKILL.md"
+      ],
+      "checks": [
+        "Run the workflow on the CodeWiki repo and produce at least one candidate or documented no-op result.",
+        "Confirm any resulting tasks link to owning specs and acceptance criteria."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-010/context.json",
+    "build": ".wiki/views/context/tasks/TASK-010/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-010/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-010/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/extensions/codewiki/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/roadmap/tasks/TASK-010/task.json",
+    "skills/codewiki-architecture/SKILL.md"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "why": "task_spec explicitly links TASK-010 to this node",
+      "edge_path": [
+        "task:TASK-010",
+        "doc:.wiki/knowledge/system/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "why": "task_spec explicitly links TASK-010 to this node",
+      "edge_path": [
+        "task:TASK-010",
+        "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:skills/codewiki-architecture/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki-architecture/SKILL.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-010 to this node",
+      "edge_path": [
+        "task:TASK-010",
+        "code:skills/codewiki-architecture/SKILL.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "skills/codewiki-architecture/SKILL.md"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        "skills/codewiki-architecture/SKILL.md"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1499,
+    "over_budget": false
+  }
+}

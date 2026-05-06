@@ -3,7 +3,7 @@
   "manifest_revision": {
     "digest": "4d3e7eaf1292c534b3321ba3443303f8b682fa576cb526a8b4a89af4abab0866",
     "git": {
-      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
       "dirty": false,
       "dirty_paths": [],
       "paths": {
@@ -78,7 +78,7 @@
       "id": "system.views",
       "label": "Generated Views",
       "path": ".wiki/knowledge/system/components/views.md",
-      "summary": "Tool-owned optimized read models consumed by agents and UI.",
+      "summary": "Tool-owned optimized read models and context routes consumed by agents, verifiers, and UI.",
       "code_paths": [
         ".wiki/views",
         "scripts/rebuild_docs_meta.py"
@@ -87,7 +87,7 @@
         "system.rebuild"
       ],
       "doc_revision": {
-        "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5"
+        "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e"
       }
     },
     {
@@ -118,7 +118,7 @@
       "path": ".wiki/knowledge/system/flows/context-memory.md",
       "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and optional bounded context tools.",
       "doc_revision": {
-        "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543"
+        "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b"
       }
     },
     {
@@ -154,7 +154,7 @@
       "path": ".wiki/knowledge/system/flows/task-loop.md",
       "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
       "doc_revision": {
-        "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde"
+        "digest": "4992b16d50d00b3cff32de6283b1642d108a3ba8ae7dcb373873fcfb2e44aca5"
       }
     },
     {
@@ -182,35 +182,35 @@
   },
   "graph_revision": {
     "git": {
-      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
       "dirty": true
     },
-    "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
-    "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
-    "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+    "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+    "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+    "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
   },
   "meta": {
     "version": 1,
     "name": "system.architecture",
-    "generated_at": "2026-05-05T23:21:31Z",
+    "generated_at": "2026-05-06T22:02:16Z",
     "revision": {
-      "digest": "bbd032347c11b69fcd4d2156dd0211d1f24b29c918e06cbe76fb41cab9d118e6",
+      "digest": "96f5c137e4b963e4b0d858c789d8e73918df3d937d991bd10971e221fa872855",
       "git": {
-        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/system/components/extension.md",
-          ".wiki/knowledge/system/components/view-rebuild.md",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md",
-          ".wiki/knowledge/system/overview.md",
+          ".wiki/knowledge/lexicon.md",
+          ".wiki/knowledge/system/components/views.md",
+          ".wiki/knowledge/system/flows/context-memory.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
-          ".wiki/roadmap/events.jsonl",
-          ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json"
+          ".wiki/roadmap/events.jsonl"
         ],
         "paths": {}
       }

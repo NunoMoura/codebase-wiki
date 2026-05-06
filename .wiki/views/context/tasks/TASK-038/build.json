@@ -1,0 +1,281 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-038",
+    "title": "Implement trigger-based heartbeat agency loop",
+    "status": "todo",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Replace the current heartbeat planning stub with a bounded trigger-based loop whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
+    "labels": [
+      "heartbeat",
+      "agency",
+      "automation",
+      "openclaw-inspired"
+    ],
+    "goal": {
+      "outcome": "Users can choose understandable heartbeat triggers and safe autonomy budgets instead of opaque agency levels.",
+      "acceptance": [
+        "Heartbeat trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
+        "Each trigger maps to bounded observe/maintain/plan/work behavior with explicit budgets and stop conditions.",
+        "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
+        "Heartbeat can enter a brainstorm/planning loop only when trigger, budget, and risk policy allow it."
+      ],
+      "non_goals": [
+        "Do not implement unbounded autonomous coding.",
+        "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks."
+      ],
+      "verification": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Heartbeat trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ],
+      "checks": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Each trigger maps to bounded observe/maintain/plan/work behavior with explicit budgets and stop conditions.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ],
+      "checks": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ],
+      "checks": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Heartbeat can enter a brainstorm/planning loop only when trigger, budget, and risk policy allow it.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ],
+      "checks": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-038/context.json",
+    "build": ".wiki/views/context/tasks/TASK-038/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-038/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-038/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/system/flows/sanitation-release.md",
+    ".wiki/knowledge/system/flows/task-loop.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-038/task.json",
+    "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+    "extensions/codewiki/src/core/types.ts",
+    "skills/codewiki/SKILL.md"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-038 to this node",
+      "edge_path": [
+        "task:TASK-038",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/flows/task-loop.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/task-loop.md",
+      "title": "Task Loop Flow",
+      "why": "task_spec explicitly links TASK-038 to this node",
+      "edge_path": [
+        "task:TASK-038",
+        "doc:.wiki/knowledge/system/flows/task-loop.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/flows/sanitation-release.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+      "title": "Sanitation and Release Flow",
+      "why": "task_spec explicitly links TASK-038 to this node",
+      "edge_path": [
+        "task:TASK-038",
+        "doc:.wiki/knowledge/system/flows/sanitation-release.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/lexicon.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "why": "task_spec explicitly links TASK-038 to this node",
+      "edge_path": [
+        "task:TASK-038",
+        "doc:.wiki/knowledge/lexicon.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-038 to this node",
+      "edge_path": [
+        "task:TASK-038",
+        "code:extensions/codewiki/src/adapters/pi/tools/heartbeat.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/core/types.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core/types.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-038 to this node",
+      "edge_path": [
+        "task:TASK-038",
+        "code:extensions/codewiki/src/core/types.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:skills/codewiki/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki/SKILL.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-038 to this node",
+      "edge_path": [
+        "task:TASK-038",
+        "code:skills/codewiki/SKILL.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 2016,
+    "over_budget": false
+  }
+}

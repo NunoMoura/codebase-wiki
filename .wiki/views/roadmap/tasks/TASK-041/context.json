@@ -1,0 +1,233 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-06T22:02:16Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-041/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-041",
+    "title": "Review and improve generated views into a token-efficient context compiler",
+    "status": "done",
+    "phase": "done",
+    "priority": "critical",
+    "kind": "architecture",
+    "summary": "Audit and redesign generated `.wiki/views/**` as lightweight routing and observability read models, then benchmark prebuilt packs versus bounded programmatic exploration to choose the most token-efficient context strategy for task/sprint/roadmap work.",
+    "labels": [
+      "p0",
+      "views",
+      "context-compiler",
+      "observability",
+      "dogfood-gate"
+    ],
+    "goal": {
+      "outcome": "Generated views become a first-class context routing layer that supports compact role-specific packs, graph slices, and optional bounded programmatic exploration without confusing observability with verification gates.",
+      "acceptance": [
+        "Document the context-access model: views provide map/cached routes, bounded sandbox/programmatic tools provide microscope-style exploration, and verifier gateways remain the only quality gate.",
+        "Benchmark or prototype four context strategies for representative task work: prebuilt pack only, progressive disclosure only, sandbox/programmatic exploration only, and hybrid pack plus sandbox.",
+        "Define role-specific seed/context pack contracts for at least `grill`, `plan`, `build`, and `verify`, emphasizing minimal routing metadata instead of large precomputed context dumps.",
+        "Define typed graph-slice views for task/sprint/roadmap scopes with `core`, `supporting`, `watch`, and `excluded` tiers plus edge reasons and confidence (`explicit` vs `inferred`).",
+        "Define horizontal and vertical observability signals only: knowledge/task/evidence/view alignment and intent \u2192 knowledge \u2192 roadmap \u2192 code \u2192 checks/evidence alignment; do not make observability a pass/fail gate.",
+        "Define an acceptance/evidence matrix that maps criteria to spec paths, code paths, checks, and evidence for verifier consumption.",
+        "Represent token budget as generator/test metadata (`estimated_tokens`, `max_tokens`, `over_budget`) rather than instructions the agent must maintain manually.",
+        "Implement or prototype the smallest useful `task.build`, `task.verify`, and `task.graph` views needed by the hardened verification gateway, without blocking future sprint/roadmap expansion.",
+        "Add tests or smoke checks proving generated context views stay deterministic, stale-aware, and within size guarantees."
+      ],
+      "non_goals": [
+        "Do not introduce embeddings, vector search, or external search infrastructure in the first slice.",
+        "Do not build the standalone UI; only shape views so UI and agents can consume them later.",
+        "Do not replace canonical knowledge, roadmap, evidence, or verifier verdicts with generated views.",
+        "Do not make observability itself a closure gate; verification consumes observability but decides separately.",
+        "Do not hand-edit generated view files."
+      ],
+      "verification": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "4c9b1ac7f361514c5893ba9c9153d1f1e20a39aec9f495f89eea4928ecebe793"
+    },
+    "git": {
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/roadmap.json",
+        "extensions/codewiki/src/engine/views.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "paths": {
+        ".wiki/knowledge/lexicon.md": "643c940fa1ca",
+        ".wiki/knowledge/system/components/views.md": "ce607eba2ff9",
+        ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf6306",
+        ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9",
+        ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf6306",
+        ".wiki/roadmap.json": "166313f96147",
+        "extensions/codewiki/src/engine/graph.ts": "166313f96147",
+        "extensions/codewiki/src/engine/rebuild.ts": "166313f96147",
+        "extensions/codewiki/src/engine/state.ts": "166313f96147",
+        "extensions/codewiki/src/engine/views.ts": "166313f96147",
+        "scripts/rebuild_docs_meta.py": "7e122a3091d4"
+      }
+    },
+    "spec_digest": "1261a0a41fdbdb3a2b41dd47e8a568a28c06547db6b9d750f8d2ad62c1d19152",
+    "code_digest": "15fa28e21d3349ef7fe63d3894fa59193ae70071051c1a3452638d510327290f",
+    "graph": {
+      "git": {
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
+        "dirty": true
+      },
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/components/views.md",
+      "title": "Generated Views",
+      "summary": "Tool-owned optimized read models and context routes consumed by agents, verifiers, and UI.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        ".wiki/views"
+      ],
+      "revision": {
+        "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/components/views.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "summary": "How CodeWiki chooses between session RAM, views, canonical knowledge, subagents, and optional bounded context tools.",
+      "state": "proposed",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "revision": {
+        "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/flows/context-memory.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/task-loop.md",
+      "title": "Task Loop Flow",
+      "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "revision": {
+        "digest": "4992b16d50d00b3cff32de6283b1642d108a3ba8ae7dcb373873fcfb2e44aca5"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/flows/task-loop.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, and generated views.",
+      "state": "active",
+      "owners": [
+        "product",
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/lexicon.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src/engine/views.ts",
+      "extensions/codewiki/src/engine/rebuild.ts",
+      "extensions/codewiki/src/engine/graph.ts",
+      "extensions/codewiki/src/engine/state.ts",
+      "scripts/rebuild_docs_meta.py"
+    ],
+    "digest": "15fa28e21d3349ef7fe63d3894fa59193ae70071051c1a3452638d510327290f",
+    "expand": [
+      {
+        "read": "extensions/codewiki/src/engine/views.ts"
+      },
+      {
+        "read": "extensions/codewiki/src/engine/rebuild.ts"
+      },
+      {
+        "read": "extensions/codewiki/src/engine/graph.ts"
+      },
+      {
+        "read": "extensions/codewiki/src/engine/state.ts"
+      },
+      {
+        "read": "scripts/rebuild_docs_meta.py"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-041/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json",
+    "build_pack": ".wiki/views/context/tasks/TASK-041/build.json",
+    "verify_pack": ".wiki/views/context/tasks/TASK-041/verify.json",
+    "graph_slice": ".wiki/views/context/tasks/TASK-041/graph.json"
+  }
+}

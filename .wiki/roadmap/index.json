@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-05T23:21:30Z",
+  "generated_at": "2026-05-06T22:02:16Z",
   "source": ".wiki/roadmap.json",
   "state_path": ".wiki/roadmap/state.json",
   "events_path": ".wiki/roadmap/events.jsonl",
@@ -171,7 +171,7 @@
     {
       "id": "TASK-28",
       "title": "Stabilize CodeWiki refactor after partial DDD migration",
-      "status": "verify",
+      "status": "done",
       "context_path": ".wiki/roadmap/tasks/TASK-28/context.json"
     },
     {
@@ -197,6 +197,60 @@
       "title": "Prove the adapter seam with a minimal CLI surface",
       "status": "verify",
       "context_path": ".wiki/roadmap/tasks/TASK-32/context.json"
+    },
+    {
+      "id": "TASK-033",
+      "title": "Checkpoint stable refactor baseline before next roadmap",
+      "status": "verify",
+      "context_path": ".wiki/roadmap/tasks/TASK-033/context.json"
+    },
+    {
+      "id": "TASK-034",
+      "title": "Design CodeWiki skill package and workflow assets",
+      "status": "todo",
+      "context_path": ".wiki/roadmap/tasks/TASK-034/context.json"
+    },
+    {
+      "id": "TASK-035",
+      "title": "Enforce structured knowledge-roadmap-code mapping",
+      "status": "todo",
+      "context_path": ".wiki/roadmap/tasks/TASK-035/context.json"
+    },
+    {
+      "id": "TASK-036",
+      "title": "Introduce sprint planning model",
+      "status": "todo",
+      "context_path": ".wiki/roadmap/tasks/TASK-036/context.json"
+    },
+    {
+      "id": "TASK-037",
+      "title": "Build standalone read-only CodeWiki UI",
+      "status": "todo",
+      "context_path": ".wiki/roadmap/tasks/TASK-037/context.json"
+    },
+    {
+      "id": "TASK-038",
+      "title": "Implement trigger-based heartbeat agency loop",
+      "status": "todo",
+      "context_path": ".wiki/roadmap/tasks/TASK-038/context.json"
+    },
+    {
+      "id": "TASK-039",
+      "title": "Provide optional ThinkCode runtime adapter",
+      "status": "todo",
+      "context_path": ".wiki/roadmap/tasks/TASK-039/context.json"
+    },
+    {
+      "id": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "status": "done",
+      "context_path": ".wiki/roadmap/tasks/TASK-040/context.json"
+    },
+    {
+      "id": "TASK-041",
+      "title": "Review and improve generated views into a token-efficient context compiler",
+      "status": "done",
+      "context_path": ".wiki/roadmap/tasks/TASK-041/context.json"
     }
   ]
 }

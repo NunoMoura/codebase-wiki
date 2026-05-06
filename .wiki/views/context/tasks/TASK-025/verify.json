@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-025",
+    "title": "Audit read model wording in README skills and tools",
+    "status": "done",
+    "priority": "medium",
+    "kind": "docs",
+    "summary": "Align public package language so generated read models are called views and source-of-truth files are called canonical truth.",
+    "labels": [
+      "read-model-language"
+    ],
+    "goal": {
+      "outcome": "User-facing and agent-facing text use the same v2 vocabulary for views and canonical truth.",
+      "acceptance": [
+        "README describes views and the canonical/view boundary.",
+        "Skills tell agents to consume views and avoid editing views.",
+        "Tool descriptions mention rebuilding views where relevant."
+      ],
+      "non_goals": [
+        "Change storage paths.",
+        "Implement new view schemas."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Public and agent instructions use view vocabulary consistently.",
+      "current": "Some package text still says projection, derived state, or generated state in places where v2 wants view terminology.",
+      "closure": "README, skills, and tool descriptions match the lexicon."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "README describes views and the canonical/view boundary.",
+      "status": "unknown",
+      "spec_paths": [
+        "README.md"
+      ],
+      "code_paths": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Skills tell agents to consume views and avoid editing views.",
+      "status": "unknown",
+      "spec_paths": [
+        "README.md"
+      ],
+      "code_paths": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Tool descriptions mention rebuilding views where relevant.",
+      "status": "unknown",
+      "spec_paths": [
+        "README.md"
+      ],
+      "code_paths": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Change storage paths.",
+    "Implement new view schemas."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:04:20Z",
+      "kind": "roadmap_append",
+      "title": "Appended 1 roadmap task(s)",
+      "summary": "TASK-025 Audit read model wording in README skills and tools"
+    },
+    {
+      "ts": "2026-05-02T00:04:20Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-025",
+      "action": "spawn",
+      "title": "Audit read model wording in README skills and tools",
+      "summary": "Spawned task TASK-025 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T04:09:10Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-025",
+      "action": "focus",
+      "title": "Audit read model wording in README skills and tools",
+      "summary": "Continue next roadmap task.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T04:26:05Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-025 Audit read model wording in README skills and tools"
+    },
+    {
+      "ts": "2026-05-02T04:26:05Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-025 Audit read model wording in README skills and tools"
+    },
+    {
+      "ts": "2026-05-02T04:26:05Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-025",
+      "phase": "verify",
+      "title": "Audit read model wording in README skills and tools",
+      "summary": "Audited and aligned read model wording across README, skills, and tools. Replaced \"projection\", \"derived state\", \"generated state\", and \"read model\" with \"view\", and \"source of truth\" with \"canonical truth\".",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T04:26:05Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-025",
+      "verdict": "pass",
+      "summary": "Audited and aligned read model wording across README, skills, and tools. Replaced \"projection\", \"derived state\", \"generated state\", and \"read model\" with \"view\", and \"source of truth\" with \"canonical truth\".",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/codewiki-gateway.mjs",
+        "scripts/token-benchmark.mjs",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-025/context.json",
+    "build": ".wiki/views/context/tasks/TASK-025/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-025/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-025/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/roadmap/tasks/TASK-025/task.json",
+    ".wiki/views/context/tasks/TASK-025/build.json",
+    ".wiki/views/context/tasks/TASK-025/graph.json",
+    "README.md",
+    "extensions/codewiki/contracts.ts",
+    "skills/codewiki/SKILL.md"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1328,
+    "over_budget": false
+  }
+}

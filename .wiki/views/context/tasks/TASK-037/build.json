@@ -1,0 +1,281 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-037",
+    "title": "Build standalone read-only CodeWiki UI",
+    "status": "todo",
+    "priority": "medium",
+    "kind": "architecture",
+    "summary": "Detach the human status interface from Pi by creating an agent-agnostic read-only UI that consumes generated `.wiki/views/**` and renders Mermaid outside the Pi TUI constraints.",
+    "labels": [
+      "ui",
+      "adapter",
+      "mermaid",
+      "agent-agnostic"
+    ],
+    "goal": {
+      "outcome": "Humans can inspect CodeWiki status, roadmap, product/system views, and Mermaid architecture without running Pi.",
+      "acceptance": [
+        "A standalone read-only UI surface is designed or implemented without importing Pi SDK/TUI code.",
+        "UI consumes generated views as its only data source for initial slice.",
+        "Mermaid architecture renders in an environment suited to diagrams.",
+        "Pi status panel remains compatible or delegates shared formatting where useful."
+      ],
+      "non_goals": [
+        "Do not add canonical writes in the first external UI slice.",
+        "Do not make UI the access layer for agents; agents should use views, CLI, MCP, or native adapters."
+      ],
+      "verification": [
+        "Run package tests.",
+        "Manually open/read fixture views in the standalone UI or snapshot-render output.",
+        "Confirm no Pi imports cross into standalone UI modules."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "A standalone read-only UI surface is designed or implemented without importing Pi SDK/TUI code.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/clients/surfaces/status-panel.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/components/extension.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/ui",
+        "extensions/codewiki/src/engine/views.ts",
+        "package.json"
+      ],
+      "checks": [
+        "Run package tests.",
+        "Manually open/read fixture views in the standalone UI or snapshot-render output.",
+        "Confirm no Pi imports cross into standalone UI modules."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "UI consumes generated views as its only data source for initial slice.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/clients/surfaces/status-panel.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/components/extension.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/ui",
+        "extensions/codewiki/src/engine/views.ts",
+        "package.json"
+      ],
+      "checks": [
+        "Run package tests.",
+        "Manually open/read fixture views in the standalone UI or snapshot-render output.",
+        "Confirm no Pi imports cross into standalone UI modules."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Mermaid architecture renders in an environment suited to diagrams.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/clients/surfaces/status-panel.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/components/extension.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/ui",
+        "extensions/codewiki/src/engine/views.ts",
+        "package.json"
+      ],
+      "checks": [
+        "Run package tests.",
+        "Manually open/read fixture views in the standalone UI or snapshot-render output.",
+        "Confirm no Pi imports cross into standalone UI modules."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Pi status panel remains compatible or delegates shared formatting where useful.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/clients/surfaces/status-panel.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/components/extension.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/ui",
+        "extensions/codewiki/src/engine/views.ts",
+        "package.json"
+      ],
+      "checks": [
+        "Run package tests.",
+        "Manually open/read fixture views in the standalone UI or snapshot-render output.",
+        "Confirm no Pi imports cross into standalone UI modules."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-037/context.json",
+    "build": ".wiki/views/context/tasks/TASK-037/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-037/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-037/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/clients/surfaces/status-panel.md",
+    ".wiki/knowledge/product/surfaces.md",
+    ".wiki/knowledge/system/components/extension.md",
+    ".wiki/knowledge/system/components/views.md",
+    ".wiki/roadmap/tasks/TASK-037/task.json",
+    "extensions/codewiki/src/adapters/pi/ui",
+    "extensions/codewiki/src/engine/views.ts",
+    "package.json"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/product/surfaces.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/product/surfaces.md",
+      "title": "Product Surfaces",
+      "why": "task_spec explicitly links TASK-037 to this node",
+      "edge_path": [
+        "task:TASK-037",
+        "doc:.wiki/knowledge/product/surfaces.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/clients/surfaces/status-panel.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
+      "title": "Status Panel",
+      "why": "task_spec explicitly links TASK-037 to this node",
+      "edge_path": [
+        "task:TASK-037",
+        "doc:.wiki/knowledge/clients/surfaces/status-panel.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/views.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/views.md",
+      "title": "Generated Views",
+      "why": "task_spec explicitly links TASK-037 to this node",
+      "edge_path": [
+        "task:TASK-037",
+        "doc:.wiki/knowledge/system/components/views.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/components/extension.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/extension.md",
+      "title": "CodeWiki Extension",
+      "why": "task_spec explicitly links TASK-037 to this node",
+      "edge_path": [
+        "task:TASK-037",
+        "doc:.wiki/knowledge/system/components/extension.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi/ui",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi/ui",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-037 to this node",
+      "edge_path": [
+        "task:TASK-037",
+        "code:extensions/codewiki/src/adapters/pi/ui"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine/views.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine/views.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-037 to this node",
+      "edge_path": [
+        "task:TASK-037",
+        "code:extensions/codewiki/src/engine/views.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:package.json",
+      "kind": "code_path",
+      "path": "package.json",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-037 to this node",
+      "edge_path": [
+        "task:TASK-037",
+        "code:package.json"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/src/adapters/pi/ui",
+        "extensions/codewiki/src/engine/views.ts",
+        "package.json"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/clients/surfaces/status-panel.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/components/extension.md",
+        ".wiki/knowledge/system/components/views.md",
+        "extensions/codewiki/src/adapters/pi/ui",
+        "extensions/codewiki/src/engine/views.ts",
+        "package.json"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1921,
+    "over_budget": false
+  }
+}

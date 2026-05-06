@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-005",
+    "title": "Split CodeWiki skills into focused outer and inner workflows",
+    "status": "done",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Replace the single monolithic CodeWiki skill with a package-level router plus focused CodeWiki skills for planning, task execution, research, and verification.",
+    "labels": [
+      "skills",
+      "workflow",
+      "pocock-adaptation"
+    ],
+    "goal": {
+      "outcome": "Agents load only the CodeWiki workflow instructions needed for the current job while preserving shared CodeWiki invariants.",
+      "acceptance": [
+        "A small `codewiki` router skill states package invariants and when to load each focused skill.",
+        "Focused skills exist for `codewiki-plan`, `codewiki-task`, `codewiki-research`, and `codewiki-verify`.",
+        "Skill descriptions are precise enough for Pi progressive disclosure and do not duplicate large workflow text.",
+        "All focused skills preserve `.wiki/knowledge` as canonical intent and roadmap/evidence as machine-managed operational truth."
+      ],
+      "non_goals": [
+        "Install unrelated global skills as part of this repo task.",
+        "Replace CodeWiki tools or roadmap schema."
+      ],
+      "verification": [
+        "Run package typecheck/tests after skill/package changes.",
+        "Use Pi startup or package listing to confirm focused skills are discoverable.",
+        "Review each skill for overlap and conflicting instructions."
+      ]
+    },
+    "delta": {
+      "desired": "CodeWiki package exposes composable workflow skills optimized for planning, execution, research, and verification.",
+      "current": "One CodeWiki skill contains all guidance and is growing into a monolith.",
+      "closure": "Split skill files and keep a compact router/invariants skill."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "A small `codewiki` router skill states package invariants and when to load each focused skill.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki/SKILL.md",
+        "package.json"
+      ],
+      "checks": [
+        "Run package typecheck/tests after skill/package changes.",
+        "Use Pi startup or package listing to confirm focused skills are discoverable.",
+        "Review each skill for overlap and conflicting instructions."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Focused skills exist for `codewiki-plan`, `codewiki-task`, `codewiki-research`, and `codewiki-verify`.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki/SKILL.md",
+        "package.json"
+      ],
+      "checks": [
+        "Run package typecheck/tests after skill/package changes.",
+        "Use Pi startup or package listing to confirm focused skills are discoverable.",
+        "Review each skill for overlap and conflicting instructions."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Skill descriptions are precise enough for Pi progressive disclosure and do not duplicate large workflow text.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki/SKILL.md",
+        "package.json"
+      ],
+      "checks": [
+        "Run package typecheck/tests after skill/package changes.",
+        "Use Pi startup or package listing to confirm focused skills are discoverable.",
+        "Review each skill for overlap and conflicting instructions."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "All focused skills preserve `.wiki/knowledge` as canonical intent and roadmap/evidence as machine-managed operational truth.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki/SKILL.md",
+        "package.json"
+      ],
+      "checks": [
+        "Run package typecheck/tests after skill/package changes.",
+        "Use Pi startup or package listing to confirm focused skills are discoverable.",
+        "Review each skill for overlap and conflicting instructions."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-005/context.json",
+    "build": ".wiki/views/context/tasks/TASK-005/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-005/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-005/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/clients/overview.md",
+    ".wiki/knowledge/product/overview.md",
+    ".wiki/knowledge/system/extensions/codewiki/overview.md",
+    ".wiki/roadmap/tasks/TASK-005/task.json",
+    "package.json",
+    "skills/codewiki/SKILL.md"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/product/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "why": "task_spec explicitly links TASK-005 to this node",
+      "edge_path": [
+        "task:TASK-005",
+        "doc:.wiki/knowledge/product/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/clients/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/clients/overview.md",
+      "title": "Clients Overview",
+      "why": "task_spec explicitly links TASK-005 to this node",
+      "edge_path": [
+        "task:TASK-005",
+        "doc:.wiki/knowledge/clients/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "why": "task_spec explicitly links TASK-005 to this node",
+      "edge_path": [
+        "task:TASK-005",
+        "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:skills/codewiki/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki/SKILL.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-005 to this node",
+      "edge_path": [
+        "task:TASK-005",
+        "code:skills/codewiki/SKILL.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:package.json",
+      "kind": "code_path",
+      "path": "package.json",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-005 to this node",
+      "edge_path": [
+        "task:TASK-005",
+        "code:package.json"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "skills/codewiki/SKILL.md",
+        "package.json"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        "package.json",
+        "skills/codewiki/SKILL.md"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1721,
+    "over_budget": false
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-015",
+    "title": "Implement v2 wiki layout and migration",
+    "status": "done",
+    "priority": "high",
+    "kind": "migration",
+    "summary": "V2 layout compatibility is implemented: `.wiki/views/**` is generated alongside legacy read models and bootstrap/rebuild understand the v2 views root.",
+    "labels": [
+      "v2",
+      "migration",
+      "wiki-layout"
+    ],
+    "goal": {
+      "outcome": "New and migrated repos use canonical knowledge/tasks/evidence plus generated views under the v2 structure without breaking legacy paths.",
+      "acceptance": [
+        "V2 target paths are represented in config/templates.",
+        "Legacy `.wiki/roadmap.json` and current generated files remain readable during migration.",
+        "Migration or bootstrap creates the v2 directory shape safely.",
+        "Rebuild can populate v2 views while preserving current tool behavior."
+      ],
+      "non_goals": [
+        "Remove all legacy paths in one release.",
+        "Rewrite every tool call to the final v2 paths immediately."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "V2 layout makes canonical truth and `.wiki/views/**` read models explicit.",
+      "current": "Current layout mixes canonical files and generated read models under several top-level `.wiki` paths.",
+      "closure": "Bootstrap/migration and rebuild understand v2 paths with legacy compatibility."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "V2 target paths are represented in config/templates.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Legacy `.wiki/roadmap.json` and current generated files remain readable during migration.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Migration or bootstrap creates the v2 directory shape safely.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Rebuild can populate v2 views while preserving current tool behavior.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-015/context.json",
+    "build": ".wiki/views/context/tasks/TASK-015/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-015/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-015/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-015/task.json",
+    "extensions/codewiki/index.ts",
+    "extensions/codewiki/templates.ts",
+    "scripts/rebuild_docs_meta.py"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-015 to this node",
+      "edge_path": [
+        "task:TASK-015",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "why": "task_spec explicitly links TASK-015 to this node",
+      "edge_path": [
+        "task:TASK-015",
+        "doc:.wiki/knowledge/system/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/templates.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/templates.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-015 to this node",
+      "edge_path": [
+        "task:TASK-015",
+        "code:extensions/codewiki/templates.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/rebuild_docs_meta.py",
+      "kind": "code_path",
+      "path": "scripts/rebuild_docs_meta.py",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-015 to this node",
+      "edge_path": [
+        "task:TASK-015",
+        "code:scripts/rebuild_docs_meta.py"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/index.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/index.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-015 to this node",
+      "edge_path": [
+        "task:TASK-015",
+        "code:extensions/codewiki/index.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1475,
+    "over_budget": false
+  }
+}

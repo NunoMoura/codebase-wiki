@@ -1,0 +1,282 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-014",
+    "title": "Capture CodeWiki v2 operating model and roadmap",
+    "status": "done",
+    "priority": "high",
+    "kind": "docs",
+    "summary": "CodeWiki v2 decisions are now durable wiki knowledge and mapped to executable roadmap tasks.",
+    "labels": [
+      "v2",
+      "planning",
+      "view-boundary",
+      "memory-model"
+    ],
+    "goal": {
+      "outcome": "The wiki records the v2 canonical/view model, product split, memory policy, subagent/heartbeat/think-code roles, and sanitation/versioning policy as roadmap-backed intent.",
+      "acceptance": [
+        "V2 decisions are captured in canonical knowledge docs, not only chat history.",
+        "Product knowledge is split or prepared for users, stories, and surfaces.",
+        "The system knowledge names the canonical/view boundary and view consumption model.",
+        "Roadmap tasks cover v2 migration, views, architecture graph, subagents, heartbeat, think-code, and sanitation/release policy.",
+        "codewiki_state reports the new roadmap without drift."
+      ],
+      "non_goals": [
+        "Implement the full v2 storage migration.",
+        "Render architecture diagrams in the status panel.",
+        "Rename all code-level projection terminology immediately."
+      ],
+      "verification": [
+        "codewiki_state refresh=true"
+      ]
+    },
+    "delta": {
+      "desired": "V2 direction is captured as wiki truth and mapped to concrete roadmap tasks.",
+      "current": "V2 direction exists in chat but not yet as durable wiki knowledge or executable roadmap tasks.",
+      "closure": "Knowledge docs and roadmap tasks reflect the agreed v2 operating model."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "V2 decisions are captured in canonical knowledge docs, not only chat history.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "checks": [
+        "codewiki_state refresh=true"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Product knowledge is split or prepared for users, stories, and surfaces.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "checks": [
+        "codewiki_state refresh=true"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "The system knowledge names the canonical/view boundary and view consumption model.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "checks": [
+        "codewiki_state refresh=true"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Roadmap tasks cover v2 migration, views, architecture graph, subagents, heartbeat, think-code, and sanitation/release policy.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "checks": [
+        "codewiki_state refresh=true"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "codewiki_state reports the new roadmap without drift.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "checks": [
+        "codewiki_state refresh=true"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Implement the full v2 storage migration.",
+    "Render architecture diagrams in the status panel.",
+    "Rename all code-level projection terminology immediately."
+  ],
+  "required_checks": [
+    "codewiki_state refresh=true"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:04:08Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-014",
+      "action": "focus",
+      "title": "Capture CodeWiki v2 operating model and roadmap",
+      "summary": "Reused tracked roadmap task TASK-014 instead of creating duplicate work.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:04:39Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-014",
+      "action": "focus",
+      "title": "Capture CodeWiki v2 operating model and roadmap",
+      "summary": "Finish v2 planning capture and close planning task after docs/roadmap update.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:04:47Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-014 Capture CodeWiki v2 operating model and roadmap"
+    },
+    {
+      "ts": "2026-05-02T00:04:47Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-014",
+      "phase": "implement",
+      "title": "Capture CodeWiki v2 operating model and roadmap",
+      "summary": "Captured CodeWiki v2 brainstorm decisions into wiki knowledge: product split, lexicon, v2 operating model, context memory flow, sanitation/release flow, and v2 roadmap tasks.",
+      "issues": [
+        "Full v2 implementation is now represented by open roadmap tasks; this planning task only captures intent and roadmap structure."
+      ]
+    },
+    {
+      "ts": "2026-05-02T00:04:47Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-014",
+      "verdict": "pass",
+      "summary": "Captured CodeWiki v2 brainstorm decisions into wiki knowledge: product split, lexicon, v2 operating model, context memory flow, sanitation/release flow, and v2 roadmap tasks.",
+      "checks_run": [
+        "codewiki_state refresh=true"
+      ],
+      "files_touched": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/clients/overview.md"
+      ],
+      "issues": [
+        "Full v2 implementation is now represented by open roadmap tasks; this planning task only captures intent and roadmap structure."
+      ]
+    },
+    {
+      "ts": "2026-05-02T00:04:52Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-014",
+      "verdict": "pass",
+      "summary": "CodeWiki v2 decisions are now durable wiki knowledge and mapped to executable roadmap tasks.",
+      "checks_run": [
+        "codewiki_state refresh=true"
+      ],
+      "files_touched": [
+        ".wiki/knowledge"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T00:04:52Z",
+      "kind": "roadmap_close",
+      "title": "Closed 1 roadmap task(s)",
+      "summary": "TASK-014 Capture CodeWiki v2 operating model and roadmap"
+    },
+    {
+      "ts": "2026-05-02T00:04:52Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-014",
+      "verdict": "pass",
+      "summary": "Closed after codewiki_state reported no unmapped specs and v2 roadmap tasks were created.",
+      "checks_run": [
+        "codewiki_state refresh=true"
+      ],
+      "files_touched": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/clients/overview.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-014/context.json",
+    "build": ".wiki/views/context/tasks/TASK-014/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-014/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-014/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge",
+    ".wiki/knowledge/product/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/roadmap/tasks/TASK-014/task.json",
+    ".wiki/views/context/tasks/TASK-014/build.json",
+    ".wiki/views/context/tasks/TASK-014/graph.json"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 2044,
+    "over_budget": false
+  }
+}

@@ -5,7 +5,7 @@ state: active
 summary: Policy boundary for codewiki runtime access in codewiki.
 owners:
   - architecture
-updated: "2026-04-29"
+updated: "2026-05-06"
 ---
 
 # Runtime Policy
@@ -49,11 +49,33 @@ Optional bounded context tools can create compact project context for token-heav
 
 Task closure requires evidence: checks run, files touched, unresolved issues, and verifier verdict when policy requires it. If verification fails or blocks, CodeWiki should record evidence and create follow-up roadmap tasks or keep the current task open instead of silently closing it.
 
-## Fresh verifier subprocess
+## Verification gateway
 
-When a task is explicitly closed through the task API, CodeWiki should run an automatic fresh verifier unless project policy disables it. The verifier runs in a separate `pi --mode json --no-session` subprocess with read-only tools (`read`, `grep`, `find`, `ls`) and receives a compact brief containing the task, linked specs/code paths, acceptance criteria, non-goals, and task context packet.
+CodeWiki verification should be exposed as one internal capability router rather than a collection of ad hoc prompts. The gateway accepts a verification profile, a compact brief, and a policy budget. It returns a validated verdict packet and never mutates canonical truth directly.
 
-The verifier must return deterministic JSON with `pass`, `fail`, or `block`. CodeWiki appends that verifier result as task evidence. A non-pass verdict blocks closure. Manual verifier commands are allowed only as override/debug entrypoints; the normal inner loop should not depend on users invoking them.
+Initial profiles should include:
+
+- `task-close` for closing a roadmap task.
+- `sprint-close` for checking the integration quality of a planned sprint before closing it.
+- `roadmap-close` for checking that a roadmap has no active unmapped delta before a product review or new roadmap begins.
+- `release-checkpoint` for version/checkpoint gates.
+- `drift-audit` for horizontal and vertical drift review.
+- `view-audit` for generated view alignment.
+- `runtime-adapter` for Pi, CLI, MCP, Codex, Claude Code, ThinkCode, and other adapter seams.
+- `skill-package` for packaged skill and workflow asset changes.
+
+The gateway should run four layers in order:
+
+1. Deterministic preflight validates schemas, required links, evidence presence, generated-view freshness, and profile-specific required fields.
+2. Mechanical checks run or review allowed commands such as typecheck, lint, tests, smoke checks, and profile-specific scripts.
+3. Semantic verification runs in a fresh read-only process or subagent and checks vertical alignment (`user intent → knowledge → roadmap → code/docs → evidence`) and horizontal coherence inside each layer.
+4. Evidence gating appends the verifier packet through the parent process and blocks closure on `fail` or `block`.
+
+## Fresh verifier process
+
+When a task is explicitly closed through the task API, CodeWiki should call the verification gateway with the `task-close` profile unless project policy disables it. The semantic verifier runs in a separate process, session, or subagent with a fresh context window and read-only tools. It receives a compact brief containing the task, linked specs/code paths, acceptance criteria, non-goals, recent evidence, touched paths, and task context packet.
+
+The verifier must return deterministic JSON with `pass`, `fail`, or `block`, and CodeWiki must parse and validate it against a strict schema before using it. The parent process appends that verifier result as task evidence. A non-pass verdict blocks closure. Manual verifier commands are allowed only as override/debug entrypoints; the normal inner loop should not depend on users invoking them.
 
 ## Capability manifest
 

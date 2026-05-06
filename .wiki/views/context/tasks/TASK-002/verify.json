@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-002",
+    "title": "Map code ownership into spec hierarchy",
+    "status": "done",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Refine the inferred boundary docs until wiki/system mirrors the repo's real ownership seams without creating doc sprawl.",
+    "labels": [
+      "brownfield",
+      "mapping"
+    ],
+    "goal": {
+      "outcome": "wiki/system reflects real stable ownership seams in the repo.",
+      "acceptance": [
+        "Each meaningful code area maps to one canonical owning spec.",
+        "Unnecessary inferred boundaries are removed or collapsed."
+      ],
+      "non_goals": [
+        "Create a spec for every folder regardless of architectural value."
+      ],
+      "verification": [
+        "Review inferred boundary docs against actual repo structure.",
+        "Run rebuild and inspect mapping/drift output."
+      ]
+    },
+    "delta": {
+      "desired": "Each meaningful layer or component has one canonical owning spec.",
+      "current": "Setup can infer first-pass boundaries, but humans still need to confirm or reshape them.",
+      "closure": "Add, remove, or rewrite inferred spec folders until they match real stable ownership seams."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Each meaningful code area maps to one canonical owning spec.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "Review inferred boundary docs against actual repo structure.",
+        "Run rebuild and inspect mapping/drift output."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Unnecessary inferred boundaries are removed or collapsed.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "skills",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "Review inferred boundary docs against actual repo structure.",
+        "Run rebuild and inspect mapping/drift output."
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Create a spec for every folder regardless of architectural value."
+  ],
+  "required_checks": [
+    "Review inferred boundary docs against actual repo structure.",
+    "Run rebuild and inspect mapping/drift output."
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-01T03:08:42Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-002",
+      "action": "focus",
+      "title": "Map code ownership into spec hierarchy",
+      "summary": "Continue with mapping code ownership into spec hierarchy and removing starter inferred language.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-01T03:11:02Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-002 Map code ownership into spec hierarchy"
+    },
+    {
+      "ts": "2026-05-01T03:11:02Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-002 Map code ownership into spec hierarchy"
+    },
+    {
+      "ts": "2026-05-01T03:11:02Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-002",
+      "phase": "verify",
+      "title": "Map code ownership into spec hierarchy",
+      "summary": "Mapped real package ownership seams into system specs: extension/package surface owns commands, tools, status UI, packaged skills, bootstrap templates, smoke tests, and root discovery; runtime policy owns transaction/verifier/capability boundary.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T03:11:02Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-002",
+      "verdict": "pass",
+      "summary": "Mapped real package ownership seams into system specs: extension/package surface owns commands, tools, status UI, packaged skills, bootstrap templates, smoke tests, and root discovery; runtime policy owns transaction/verifier/capability boundary.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "codewiki_state refresh"
+      ],
+      "files_touched": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-002/context.json",
+    "build": ".wiki/views/context/tasks/TASK-002/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-002/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-002/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/extensions/codewiki/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/roadmap/tasks/TASK-002/task.json",
+    ".wiki/views/context/tasks/TASK-002/build.json",
+    ".wiki/views/context/tasks/TASK-002/graph.json",
+    "extensions/codewiki",
+    "scripts/smoke-test.mjs",
+    "skills"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1207,
+    "over_budget": false
+  }
+}

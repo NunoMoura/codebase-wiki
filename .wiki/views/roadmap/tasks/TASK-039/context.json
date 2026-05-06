@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-06T22:02:16Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-039/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-039",
+    "title": "Provide optional ThinkCode runtime adapter",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "architecture",
+    "summary": "Make ThinkCode a first-class optional runtime for bounded CodeWiki context work while preserving native fallback paths for Pi, Codex, Claude Code, and other agent harnesses.",
+    "labels": [
+      "think-code",
+      "runtime",
+      "adapters",
+      "agent-agnostic"
+    ],
+    "goal": {
+      "outcome": "CodeWiki can prefer ThinkCode when available but remains usable from any agent runtime through views, CLI/gateway, MCP/future adapters, or native tools.",
+      "acceptance": [
+        "Runtime docs describe ThinkCode as optional, not required memory or execution substrate.",
+        "Adapter contract identifies where `think-code.policy.json` lives and how staged writes are validated.",
+        "Fallback paths are documented for native CodeWiki gateway/views when ThinkCode is unavailable.",
+        "The design supports future Codex and Claude Code adapters without Pi-specific assumptions."
+      ],
+      "non_goals": [
+        "Do not make ThinkCode a hard dependency.",
+        "Do not let ThinkCode bypass CodeWiki canonical write rules or mutate generated views directly."
+      ],
+      "verification": [
+        "Run tests/smoke after docs/package changes.",
+        "Validate gateway manifest still advertises CodeWiki capabilities independent of ThinkCode.",
+        "Check skills mention optional fallback behavior clearly."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "fca4574d457acc83cbbc55123165d1fd361c3ecc08a933fe282b808efa8ac7c3"
+    },
+    "git": {
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/roadmap.json"
+      ],
+      "paths": {
+        ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9",
+        ".wiki/knowledge/system/runtime/overview.md": "fe19eabf6306",
+        ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf6306",
+        ".wiki/roadmap.json": "166313f96147",
+        "README.md": "fe19eabf6306",
+        "package.json": "166313f96147",
+        "scripts/codewiki-gateway.mjs": "166313f96147",
+        "skills": "fe19eabf6306"
+      }
+    },
+    "spec_digest": "03fcaaa388aca8fbda8c24cd57f16dea5c5041efaa2aa0293fe52f31f9c3bc65",
+    "code_digest": "c1f4b35dc21d57c731b2bb1902a7aca18b2879afbe505034e76e2fa5d38efb7c",
+    "graph": {
+      "git": {
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
+        "dirty": true
+      },
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "summary": "Policy boundary for codewiki runtime access in codewiki.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "0b4d5690b61979d89fa163d01d48cc73f66d0470f752b0f13f1978b78c8f6ecd"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/runtime/overview.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+      "title": "Runtime Gateway",
+      "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "revision": {
+        "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/components/runtime-gateway.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "scripts/codewiki-gateway.mjs",
+      "skills",
+      "README.md",
+      "package.json"
+    ],
+    "digest": "c1f4b35dc21d57c731b2bb1902a7aca18b2879afbe505034e76e2fa5d38efb7c",
+    "expand": [
+      {
+        "read": "scripts/codewiki-gateway.mjs"
+      },
+      {
+        "read": "skills"
+      },
+      {
+        "read": "README.md"
+      },
+      {
+        "read": "package.json"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-039/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json",
+    "build_pack": ".wiki/views/context/tasks/TASK-039/build.json",
+    "verify_pack": ".wiki/views/context/tasks/TASK-039/verify.json",
+    "graph_slice": ".wiki/views/context/tasks/TASK-039/graph.json"
+  }
+}

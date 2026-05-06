@@ -1,7 +1,5 @@
 import { resolve } from "node:path";
-import { appendFile, writeFile } from "node:fs/promises";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
+import { appendFile, readFile, stat, writeFile } from "node:fs/promises";
 import type {
 	WikiProject,
 	RoadmapFile,
@@ -30,8 +28,6 @@ import {
 	maybeReadRoadmapState,
 	maybeReadTaskContext,
 } from "./state";
-
-const execFileAsync = promisify(execFile);
 
 /**
  * Get the path to the roadmap archive file.
@@ -229,79 +225,296 @@ export function summarizeCodewikiTaskAction(result: {
 /**
  * Build a prompt for the automatic task verifier.
  */
-function buildTaskVerifierPrompt(
+export type TaskVerifierProfile = "task-close" | "sprint-close" | "roadmap-check" | "drift-check";
+
+export interface TaskVerifierBrief {
+	profile: TaskVerifierProfile;
+	policy: {
+		mode: "read-only";
+		parentWritesOnly: true;
+		strictJson: true;
+	};
+	verdict_schema: {
+		verdict: ["pass", "fail", "block"];
+		taskId: "string";
+		checks: "string[]";
+		issues: "{severity, summary, evidence?}[]";
+		rationale: "string";
+	};
+	task: Pick<RoadmapTaskRecord, "id" | "title" | "status" | "summary" | "goal" | "spec_paths" | "code_paths">;
+	context: any;
+	preflight: TaskVerifierResult;
+	verifier_rubric?: string;
+}
+
+function taskVerifierBlock(taskId: string, rationale: string, checks: string[], issueSummary: string): TaskVerifierResult {
+	return {
+		verdict: "block",
+		taskId,
+		checks,
+		issues: [{ severity: "medium", summary: issueSummary }],
+		rationale,
+	};
+}
+
+async function pathExists(path: string): Promise<boolean> {
+	try {
+		await stat(path);
+		return true;
+	} catch {
+		return false;
+	}
+}
+
+export async function runTaskClosePreflight(project: WikiProject, task: RoadmapTaskRecord): Promise<TaskVerifierResult> {
+	const checks = ["task-close deterministic preflight"];
+	const issues: TaskVerifierResult["issues"] = [];
+	if (!task.goal?.outcome) issues.push({ severity: "high", summary: "Task goal.outcome missing" });
+	if (!task.goal?.acceptance?.length) issues.push({ severity: "high", summary: "Task goal.acceptance missing" });
+	if (!task.goal?.verification?.length) issues.push({ severity: "medium", summary: "Task goal.verification missing" });
+	for (const path of [...(task.spec_paths ?? []), ...(task.code_paths ?? [])]) {
+		if (!(await pathExists(resolve(project.root, path)))) {
+			issues.push({ severity: "high", summary: `Linked path missing: ${path}` });
+		}
+	}
+	const verifyPackPath = resolve(project.root, project.viewsRoot, "context", "tasks", task.id, "verify.json");
+	let verifyPackMtime = 0;
+	try {
+		verifyPackMtime = (await stat(verifyPackPath)).mtimeMs;
+	} catch {
+		issues.push({ severity: "medium", summary: `Verifier context pack missing: ${project.viewsRoot}/context/tasks/${task.id}/verify.json` });
+	}
+	if (verifyPackMtime > 0 && Date.parse(task.updated || task.created || "") > verifyPackMtime) {
+		issues.push({ severity: "medium", summary: "Verifier context pack is older than the task record" });
+	}
+	const eventsText = await readFile(resolve(project.root, project.eventsPath), "utf8").catch(() => "");
+	const taskEvents = eventsText.split(/\r?\n/).filter((line) => line.includes(`"taskId":"${task.id}"`));
+	const evidenceEvents = taskEvents.filter((line) => line.includes('"kind":"task_evidence_recorded"'));
+	if (!evidenceEvents.length) {
+		issues.push({ severity: "high", summary: "No task evidence recorded for closure" });
+	} else {
+		const hasChecks = evidenceEvents.some((line) => {
+			try {
+				const event = JSON.parse(line);
+				return Array.isArray(event.checks_run) && event.checks_run.length > 0;
+			} catch {
+				return false;
+			}
+		});
+		if (!hasChecks) issues.push({ severity: "high", summary: "No task evidence checks_run recorded for closure" });
+	}
+	return {
+		verdict: issues.some((issue) => issue.severity === "high") ? "fail" : issues.length ? "block" : "pass",
+		taskId: task.id,
+		checks,
+		issues,
+		rationale: issues.length ? "Deterministic preflight found closure blockers." : "Deterministic preflight passed.",
+	};
+}
+
+async function maybeReadVerifierContextPack(project: WikiProject, taskId: string): Promise<any | null> {
+	const path = resolve(project.root, project.viewsRoot, "context", "tasks", taskId, "verify.json");
+	try {
+		return JSON.parse(await readFile(path, "utf8"));
+	} catch {
+		return null;
+	}
+}
+
+function compactText(value: unknown, maxLength = 600): string {
+	const text = String(value ?? "");
+	return text.length > maxLength ? `${text.slice(0, maxLength)}…` : text;
+}
+
+function compactVerifierContext(context: any): any {
+	if (!context || typeof context !== "object") return context;
+	return {
+		version: context.version,
+		role: context.role,
+		task: context.task ? {
+			id: context.task.id,
+			title: context.task.title,
+			status: context.task.status,
+			priority: context.task.priority,
+			kind: context.task.kind,
+			summary: context.task.summary,
+			goal: context.task.goal,
+			delta: context.task.delta,
+		} : undefined,
+		acceptance_matrix: Array.isArray(context.acceptance_matrix) ? context.acceptance_matrix.map((item: any) => ({
+			id: item?.id,
+			criterion: item?.criterion,
+			status: item?.status,
+			checks: Array.isArray(item?.checks) ? item.checks.slice(0, 6) : [],
+		})) : [],
+		non_goals: Array.isArray(context.non_goals) ? context.non_goals : [],
+		required_checks: Array.isArray(context.required_checks) ? context.required_checks : [],
+		recent_evidence: Array.isArray(context.recent_evidence) ? context.recent_evidence.slice(-8).map((event: any) => ({
+			ts: event?.ts,
+			kind: event?.kind,
+			verdict: event?.verdict,
+			taskId: event?.taskId,
+			summary: compactText(event?.summary, 700),
+			checks_run: Array.isArray(event?.checks_run) ? event.checks_run.slice(0, 10).map((check: any) => compactText(check, 160)) : [],
+			files_touched: Array.isArray(event?.files_touched) ? event.files_touched.slice(0, 12) : [],
+			issues: Array.isArray(event?.issues) ? event.issues.slice(0, 5).map((issue: any) => compactText(issue, 240)) : [],
+		})) : [],
+		context_routes: context.context_routes,
+		recommended_next_reads: Array.isArray(context.recommended_next_reads) ? context.recommended_next_reads.slice(0, 16) : [],
+		observability: context.observability,
+		verdict_policy: context.verdict_policy,
+		budget: context.budget,
+	};
+}
+
+export async function buildTaskVerifierBrief(
+	project: WikiProject,
 	task: RoadmapTaskRecord,
 	context: any,
-): string {
-	return `Verify roadmap task ${task.id}: ${task.title}\nSummary: ${task.summary}\nContext: ${JSON.stringify(context)}`;
+	profile: TaskVerifierProfile = "task-close",
+): Promise<TaskVerifierBrief> {
+	const preflight = await runTaskClosePreflight(project, task);
+	const verifierRubric = await readFile(resolve(project.root, "skills", "codewiki-verify", "SKILL.md"), "utf8")
+		.then((text) => compactText(text, 5000))
+		.catch(() => undefined);
+	return {
+		profile,
+		policy: { mode: "read-only", parentWritesOnly: true, strictJson: true },
+		verdict_schema: {
+			verdict: ["pass", "fail", "block"],
+			taskId: "string",
+			checks: "string[]",
+			issues: "{severity, summary, evidence?}[]",
+			rationale: "string",
+		},
+		task: {
+			id: task.id,
+			title: task.title,
+			status: task.status,
+			summary: task.summary,
+			goal: task.goal,
+			spec_paths: task.spec_paths,
+			code_paths: task.code_paths,
+		},
+		context: compactVerifierContext(context),
+		preflight,
+		verifier_rubric: verifierRubric,
+	};
 }
 
-function extractFinalAssistantTextFromJsonMode(stdout: string): string {
-	return stdout; // simplistic
+export function buildTaskVerifierPrompt(brief: TaskVerifierBrief): string {
+	return [
+		"You are the fresh read-only CodeWiki verifier.",
+		"Return only strict JSON matching verdict_schema. No markdown, comments, or surrounding diagnostics.",
+		"Do not write files or mutate canonical truth; parent process owns evidence and lifecycle writes.",
+		"Judge task acceptance against brief, linked context routes, checks, and evidence.",
+		brief.verifier_rubric ? `Verifier rubric:\n${brief.verifier_rubric}` : "Verifier rubric: use the CodeWiki verify rubric from the active task brief.",
+		`Brief: ${JSON.stringify(brief)}`,
+	].join("\n");
 }
 
-function extractVerifierJson(text: string): TaskVerifierResult {
-	try {
-		return JSON.parse(text);
-	} catch {
-		return { verdict: "block", taskId: "", checks: [], issues: [], rationale: "Failed to parse verifier output" };
+function isPlainVerifierObject(value: unknown): value is Record<string, unknown> {
+	return Boolean(value && typeof value === "object" && !Array.isArray(value));
+}
+
+export function extractVerifierJson(text: string, taskId = ""): TaskVerifierResult {
+	let parsed: any;
+	const trimmed = text.trim();
+	if (!trimmed || !trimmed.startsWith("{") || !trimmed.endsWith("}")) {
+		return taskVerifierBlock(taskId, "Failed to parse verifier output", ["strict verifier JSON parse"], "Malformed verifier JSON output");
 	}
+	try {
+		parsed = JSON.parse(trimmed);
+	} catch {
+		return taskVerifierBlock(taskId, "Failed to parse verifier output", ["strict verifier JSON parse"], "Malformed verifier JSON output");
+	}
+	if (!isPlainVerifierObject(parsed)) {
+		return taskVerifierBlock(taskId, "Verifier output failed schema validation", ["strict verifier JSON schema"], "Verifier output must be a JSON object");
+	}
+	const allowedKeys = ["verdict", "taskId", "checks", "issues", "rationale"];
+	const extraKeys = Object.keys(parsed).filter((key) => !allowedKeys.includes(key));
+	if (extraKeys.length) {
+		return taskVerifierBlock(taskId, "Verifier output failed schema validation", ["strict verifier JSON schema"], `Verifier output contained extra fields: ${extraKeys.join(", ")}`);
+	}
+	const verdict = parsed.verdict;
+	if (typeof verdict !== "string" || !["pass", "fail", "block"].includes(verdict)) {
+		return taskVerifierBlock(taskId, "Verifier output failed schema validation", ["strict verifier JSON schema"], "Invalid or missing verifier verdict");
+	}
+	if (parsed?.taskId !== taskId) {
+		return taskVerifierBlock(taskId, "Verifier output task id mismatch", ["strict verifier JSON schema"], "Verifier taskId did not match requested task");
+	}
+	if (!Array.isArray(parsed.checks) || !parsed.checks.every((check: unknown) => typeof check === "string")) {
+		return taskVerifierBlock(taskId, "Verifier output failed schema validation", ["strict verifier JSON schema"], "Verifier checks must be a string array");
+	}
+	const allowedIssueKeys = ["severity", "summary", "evidence"];
+	if (!Array.isArray(parsed.issues) || !parsed.issues.every((issue: unknown) => {
+		return isPlainVerifierObject(issue)
+			&& Object.keys(issue).every((key) => allowedIssueKeys.includes(key))
+			&& ["high", "medium", "low"].includes(String(issue.severity))
+			&& typeof issue.summary === "string"
+			&& (issue.evidence === undefined || typeof issue.evidence === "string");
+	})) {
+		return taskVerifierBlock(taskId, "Verifier output failed schema validation", ["strict verifier JSON schema"], "Verifier issues must contain severity and summary strings");
+	}
+	if (typeof parsed.rationale !== "string" || !parsed.rationale.trim()) {
+		return taskVerifierBlock(taskId, "Verifier output failed schema validation", ["strict verifier JSON schema"], "Verifier rationale must be a non-empty string");
+	}
+	return {
+		verdict: verdict as "pass" | "fail" | "block",
+		taskId,
+		checks: parsed.checks,
+		issues: parsed.issues,
+		rationale: parsed.rationale,
+	};
 }
 
 /**
  * Run the automatic task verifier if enabled.
  */
+export type SemanticTaskVerifierRunner = (prompt: string, brief: TaskVerifierBrief) => Promise<string>;
+
 export async function maybeRunAutomaticTaskVerifier(
 	project: WikiProject,
 	task: RoadmapTaskRecord,
+	runSemanticVerifier?: SemanticTaskVerifierRunner,
 ): Promise<TaskVerifierResult | null> {
 	if (process.env.PI_CODEWIKI_SKIP_VERIFIER === "1") return null;
 	if (process.env.PI_CODEWIKI_VERIFIER_MODE === "off") return null;
 	
 	const state = await maybeReadRoadmapState(project.roadmapStatePath);
 	const runtimeTask = state?.tasks?.[task.id] ?? null;
-	const contextPacket = await maybeReadTaskContext(
+	const contextPacket = (await maybeReadVerifierContextPack(project, task.id)) ?? await maybeReadTaskContext(
 		project,
 		task.id,
 		runtimeTask,
 	);
-	const prompt = buildTaskVerifierPrompt(task, contextPacket);
+	const brief = await buildTaskVerifierBrief(project, task, contextPacket, "task-close");
+	if (brief.preflight.verdict !== "pass") return brief.preflight;
+	if (!runSemanticVerifier) {
+		return {
+			verdict: "block",
+			taskId: task.id,
+			checks: ["semantic verifier adapter"],
+			issues: [{ severity: "medium", summary: "Semantic verifier adapter is not configured" }],
+			rationale: "No semantic verifier runner was provided by the runtime adapter.",
+		};
+	}
+	const prompt = buildTaskVerifierPrompt(brief);
 	try {
-		const { stdout } = await execFileAsync(
-			"pi",
-			[
-				"--mode",
-				"json",
-				"-p",
-				"--no-session",
-				"--no-extensions",
-				"--no-prompt-templates",
-				"--no-themes",
-				"--no-context-files",
-				"--tools",
-				"read,grep,find,ls",
-				prompt,
-			],
-			{
-				cwd: project.root,
-				timeout: 120_000,
-				maxBuffer: 2 * 1024 * 1024,
-			},
-		);
-		const text = extractFinalAssistantTextFromJsonMode(stdout);
-		return extractVerifierJson(text);
+		const text = await runSemanticVerifier(prompt, brief);
+		return extractVerifierJson(text, task.id);
 	} catch (error) {
 		return {
 			verdict: "block",
 			taskId: task.id,
-			checks: ["automatic verifier subprocess"],
+			checks: ["semantic verifier adapter"],
 			issues: [
 				{
 					severity: "medium",
-					summary: `Automatic verifier could not complete: ${formatError(error)}`,
+					summary: `Semantic verifier could not complete: ${formatError(error)}`,
 				},
 			],
-			rationale: `Subprocess error: ${formatError(error)}`,
+			rationale: `Verifier adapter error: ${formatError(error)}`,
 		};
 	}
 }

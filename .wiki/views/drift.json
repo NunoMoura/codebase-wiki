@@ -2,26 +2,182 @@
   "summary": {},
   "rows": [
     {
+      "path": ".wiki/knowledge/clients/agent-skills.md",
+      "title": "Agent Skills",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-034",
+      "primary_task": {
+        "id": "TASK-034",
+        "status": "todo",
+        "title": "Design CodeWiki skill package and workflow assets"
+      },
+      "code_area": "skills, README.md"
+    },
+    {
+      "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
+      "title": "Status Panel",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-037",
+      "primary_task": {
+        "id": "TASK-037",
+        "status": "todo",
+        "title": "Build standalone read-only CodeWiki UI"
+      },
+      "code_area": "extensions/codewiki/index.ts"
+    },
+    {
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-034",
+      "primary_task": {
+        "id": "TASK-034",
+        "status": "todo",
+        "title": "Design CodeWiki skill package and workflow assets"
+      },
+      "code_area": "\u2014"
+    },
+    {
+      "path": ".wiki/knowledge/product/surfaces.md",
+      "title": "Product Surfaces",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-037",
+      "primary_task": {
+        "id": "TASK-037",
+        "status": "todo",
+        "title": "Build standalone read-only CodeWiki UI"
+      },
+      "code_area": "\u2014"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/extension.md",
+      "title": "CodeWiki Extension",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-037",
+      "primary_task": {
+        "id": "TASK-037",
+        "status": "todo",
+        "title": "Build standalone read-only CodeWiki UI"
+      },
+      "code_area": "extensions +1 more"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/knowledge.md",
+      "title": "Canonical Knowledge",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-035",
+      "primary_task": {
+        "id": "TASK-035",
+        "status": "todo",
+        "title": "Enforce structured knowledge-roadmap-code mapping"
+      },
+      "code_area": ".wiki/knowledge"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/roadmap.md",
+      "title": "Roadmap Tasks",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-035",
+      "primary_task": {
+        "id": "TASK-035",
+        "status": "todo",
+        "title": "Enforce structured knowledge-roadmap-code mapping"
+      },
+      "code_area": ".wiki/roadmap.json"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+      "title": "Runtime Gateway",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-039",
+      "primary_task": {
+        "id": "TASK-039",
+        "status": "todo",
+        "title": "Provide optional ThinkCode runtime adapter"
+      },
+      "code_area": "scripts/codewiki-gateway.mjs"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/views.md",
+      "title": "Generated Views",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-035",
+      "primary_task": {
+        "id": "TASK-035",
+        "status": "todo",
+        "title": "Enforce structured knowledge-roadmap-code mapping"
+      },
+      "code_area": ".wiki/views"
+    },
+    {
       "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
       "title": "Extensions / Codewiki",
       "drift_status": "tracked",
-      "note": "tracked by TASK-28",
+      "note": "tracked by TASK-033",
       "primary_task": {
-        "id": "TASK-28",
+        "id": "TASK-033",
         "status": "verify",
-        "title": "Stabilize CodeWiki refactor after partial DDD migration"
+        "title": "Checkpoint stable refactor baseline before next roadmap"
       },
       "code_area": "extensions, skills +1 more"
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+      "title": "Sanitation and Release Flow",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-038",
+      "primary_task": {
+        "id": "TASK-038",
+        "status": "todo",
+        "title": "Implement trigger-based heartbeat agency loop"
+      },
+      "code_area": "scripts/rebuild_docs_meta.py"
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/task-loop.md",
+      "title": "Task Loop Flow",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-036",
+      "primary_task": {
+        "id": "TASK-036",
+        "status": "todo",
+        "title": "Introduce sprint planning model"
+      },
+      "code_area": "scripts/rebuild_docs_meta.py"
     },
     {
       "path": ".wiki/knowledge/system/overview.md",
       "title": "System Overview",
       "drift_status": "tracked",
-      "note": "tracked by TASK-28",
+      "note": "tracked by TASK-033",
       "primary_task": {
-        "id": "TASK-28",
+        "id": "TASK-033",
         "status": "verify",
-        "title": "Stabilize CodeWiki refactor after partial DDD migration"
+        "title": "Checkpoint stable refactor baseline before next roadmap"
+      },
+      "code_area": "extensions, scripts +1 more"
+    },
+    {
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-039",
+      "primary_task": {
+        "id": "TASK-039",
+        "status": "todo",
+        "title": "Provide optional ThinkCode runtime adapter"
+      },
+      "code_area": "\u2014"
+    },
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "drift_status": "tracked",
+      "note": "tracked by TASK-034",
+      "primary_task": {
+        "id": "TASK-034",
+        "status": "todo",
+        "title": "Design CodeWiki skill package and workflow assets"
       },
       "code_area": "extensions, scripts +1 more"
     }
@@ -30,25 +186,25 @@
   "meta": {
     "version": 1,
     "name": "drift",
-    "generated_at": "2026-05-05T23:21:31Z",
+    "generated_at": "2026-05-06T22:02:16Z",
     "revision": {
-      "digest": "816812ab9d3508ff783baf57d23fb7dff1c6381bae89d01d1b97e00ccb4537ce",
+      "digest": "accb907e2b03b7ea843f3805bf3f73bfc13071e0ece363ae0e405611619348ac",
       "git": {
-        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
         "dirty": true,
         "dirty_paths": [
           ".wiki/graph.json",
-          ".wiki/knowledge/system/components/extension.md",
-          ".wiki/knowledge/system/components/view-rebuild.md",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md",
-          ".wiki/knowledge/system/overview.md",
+          ".wiki/knowledge/lexicon.md",
+          ".wiki/knowledge/system/components/views.md",
+          ".wiki/knowledge/system/flows/context-memory.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/lint.json",
           ".wiki/roadmap-events.jsonl",
           ".wiki/roadmap-state.json",
           ".wiki/roadmap.json",
-          ".wiki/roadmap/events.jsonl",
-          ".wiki/roadmap/index.json",
-          ".wiki/roadmap/state.json"
+          ".wiki/roadmap/events.jsonl"
         ],
         "paths": {}
       }
@@ -58,8 +214,11 @@
       "target_bytes": 16000
     },
     "recommended_next_reads": [
-      ".wiki/knowledge/system/extensions/codewiki/overview.md",
-      ".wiki/knowledge/system/overview.md"
+      ".wiki/knowledge/clients/agent-skills.md",
+      ".wiki/knowledge/clients/surfaces/status-panel.md",
+      ".wiki/knowledge/lexicon.md",
+      ".wiki/knowledge/product/surfaces.md",
+      ".wiki/knowledge/system/components/extension.md"
     ]
   }
 }

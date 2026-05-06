@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-05T23:21:30Z",
+  "generated_at": "2026-05-06T22:02:15Z",
   "context_path": ".wiki/roadmap/tasks/TASK-015/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -47,33 +47,32 @@
       "digest": "5840148123f865991fbf9cb3108512204b3eef38ab4efa72138f0fcb0787a826"
     },
     "git": {
-      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
       "dirty": true,
       "dirty_paths": [
-        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
         ".wiki/roadmap.json",
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/templates.ts"
+        "scripts/rebuild_docs_meta.py"
       ],
       "paths": {
-        ".wiki/knowledge/system/overview.md": "643c940fa1ca",
+        ".wiki/knowledge/system/overview.md": "166313f96147",
         ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf6306",
-        ".wiki/roadmap.json": "c70091881afe",
-        "extensions/codewiki/index.ts": "c70091881afe",
-        "extensions/codewiki/templates.ts": "fe19eabf6306",
+        ".wiki/roadmap.json": "166313f96147",
+        "extensions/codewiki/index.ts": "166313f96147",
+        "extensions/codewiki/templates.ts": "166313f96147",
         "scripts/rebuild_docs_meta.py": "7e122a3091d4"
       }
     },
-    "spec_digest": "52f49fe283735ed6791efcdd7c2ae395af1f4811b11e9961b474fd375441be33",
-    "code_digest": "0ca5def69d306dc5daeb63ea37a9979bd83937c822c9ffcdf568d147be4bc27e",
+    "spec_digest": "33c7206a44fac7c172eb79e7c8ded5f66042c1ef693a39653c2cd74203ab224d",
+    "code_digest": "2501f00a9e713d0cb2ee34b59d62b93abb9096fd725d2321bb9e43b4996fc979",
     "graph": {
       "git": {
-        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
         "dirty": true
       },
-      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
-      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
-      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
     }
   },
   "specs": [
@@ -92,7 +91,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485"
+        "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4"
       },
       "expand": {
         "read": ".wiki/knowledge/system/v2-operating-model.md"
@@ -125,7 +124,7 @@
       "scripts/rebuild_docs_meta.py",
       "extensions/codewiki/index.ts"
     ],
-    "digest": "0ca5def69d306dc5daeb63ea37a9979bd83937c822c9ffcdf568d147be4bc27e",
+    "digest": "2501f00a9e713d0cb2ee34b59d62b93abb9096fd725d2321bb9e43b4996fc979",
     "expand": [
       {
         "read": "extensions/codewiki/templates.ts"
@@ -162,6 +161,9 @@
     "task_json": ".wiki/roadmap/tasks/TASK-015/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",
     "status_state": ".wiki/status-state.json",
-    "graph": ".wiki/graph.json"
+    "graph": ".wiki/graph.json",
+    "build_pack": ".wiki/views/context/tasks/TASK-015/build.json",
+    "verify_pack": ".wiki/views/context/tasks/TASK-015/verify.json",
+    "graph_slice": ".wiki/views/context/tasks/TASK-015/graph.json"
   }
 }

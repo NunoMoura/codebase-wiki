@@ -1,15 +1,17 @@
 {
   "version": 1,
-  "generated_at": "2026-05-05T23:21:29Z",
+  "generated_at": "2026-05-06T22:02:15Z",
   "revision": {
     "git": {
-      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
       "dirty": true,
       "dirty_paths": [
-        ".wiki/knowledge/system/components/extension.md",
-        ".wiki/knowledge/system/components/view-rebuild.md",
-        ".wiki/knowledge/system/extensions/codewiki/overview.md",
-        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
         ".wiki/roadmap.json",
         ".wiki/views/drift.json",
         ".wiki/views/evidence/recent.json",
@@ -47,18 +49,16 @@
         ".wiki/views/roadmap/tasks/TASK-025/context.json",
         ".wiki/views/roadmap/tasks/TASK-026/context.json",
         ".wiki/views/roadmap/tasks/TASK-027/context.json",
+        ".wiki/views/roadmap/tasks/TASK-28/context.json",
+        ".wiki/views/roadmap/tasks/TASK-29/context.json",
+        ".wiki/views/roadmap/tasks/TASK-30/context.json",
+        ".wiki/views/roadmap/tasks/TASK-31/context.json",
+        ".wiki/views/roadmap/tasks/TASK-32/context.json",
         ".wiki/views/status-state.json",
-        ".wiki/views/status.json",
-        ".wiki/views/system/architecture.json",
-        "extensions/codewiki/bootstrap.ts",
-        "extensions/codewiki/contracts.ts",
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/project-root.ts",
-        "extensions/codewiki/templates.ts",
-        "package.json"
+        ".wiki/views/status.json"
       ],
       "paths": {
-        ".wiki/knowledge": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        ".wiki/knowledge": "166313f96147e9bace1240466c5bac7090332b42",
         ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
         ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
         ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
@@ -68,44 +68,53 @@
         ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d",
         ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
         ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-        ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+        ".wiki/knowledge/system/components/extension.md": "166313f96147e9bace1240466c5bac7090332b42",
         ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-        ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+        ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42",
         ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-        ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
         ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
         ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-        ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+        ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
         ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-        ".wiki/roadmap.json": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-        ".wiki/views": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        ".wiki/roadmap.json": "166313f96147e9bace1240466c5bac7090332b42",
+        ".wiki/views": "166313f96147e9bace1240466c5bac7090332b42",
         "README.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-        "extensions/codewiki": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-        "extensions/codewiki/contracts.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-        "extensions/codewiki/index.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-        "extensions/codewiki/src/adapters": "",
-        "extensions/codewiki/src/adapters/pi": "",
-        "extensions/codewiki/src/application": "",
-        "extensions/codewiki/src/core": "",
-        "extensions/codewiki/src/core/ports.ts": "",
-        "extensions/codewiki/src/core/rebuild-runner.ts": "",
-        "extensions/codewiki/src/domain": "",
-        "extensions/codewiki/src/engine": "",
-        "extensions/codewiki/src/engine/rebuild.ts": "",
-        "extensions/codewiki/src/infrastructure": "",
-        "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "",
-        "extensions/codewiki/templates.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-        "package.json": "53578e465699177d1945148075b98a9fc539da26",
-        "scripts/check-architecture.mjs": "",
-        "scripts/codewiki-gateway.mjs": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+        "extensions/codewiki": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/contracts.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/index.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/adapters": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/adapters/pi": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/adapters/pi/ui": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/application": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/core": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/core/ports.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/core/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/core/roadmap.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/core/schemas.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/core/types.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/domain": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/engine": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/engine/graph.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/engine/rebuild.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/engine/state.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/engine/views.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/infrastructure": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "extensions/codewiki/templates.ts": "166313f96147e9bace1240466c5bac7090332b42",
+        "package.json": "166313f96147e9bace1240466c5bac7090332b42",
+        "scripts/check-architecture.mjs": "166313f96147e9bace1240466c5bac7090332b42",
+        "scripts/codewiki-gateway.mjs": "166313f96147e9bace1240466c5bac7090332b42",
         "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-        "scripts/smoke-test.mjs": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "scripts/smoke-test.mjs": "166313f96147e9bace1240466c5bac7090332b42",
         "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
         "skills/codewiki-architecture/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
         "skills/codewiki-plan/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
@@ -116,9 +125,9 @@
         "tsconfig.json": "0d12c87f000aedcf818ece8c88819b938a8d881e"
       }
     },
-    "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
-    "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
-    "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+    "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+    "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+    "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
   },
   "nodes": [
     {
@@ -137,7 +146,7 @@
       "revision": {
         "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -172,7 +181,7 @@
       "revision": {
         "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -197,7 +206,7 @@
       "revision": {
         "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -222,7 +231,7 @@
       "revision": {
         "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -251,11 +260,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
+        "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/lexicon.md"
+          ],
           "paths": {
             ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
           }
@@ -278,7 +289,7 @@
       "revision": {
         "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -303,7 +314,7 @@
       "revision": {
         "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -329,7 +340,7 @@
       "revision": {
         "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -354,7 +365,7 @@
       "revision": {
         "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -379,13 +390,11 @@
       "revision": {
         "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/components/extension.md"
-          ],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+            ".wiki/knowledge/system/components/extension.md": "166313f96147e9bace1240466c5bac7090332b42"
           }
         }
       }
@@ -411,7 +420,7 @@
       "revision": {
         "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -441,7 +450,7 @@
       "revision": {
         "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -471,7 +480,7 @@
       "revision": {
         "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -501,13 +510,11 @@
       "revision": {
         "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/components/view-rebuild.md"
-          ],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+            ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42"
           }
         }
       }
@@ -540,17 +547,19 @@
       "doc_type": "spec",
       "state": "active",
       "group": "system",
-      "summary": "Tool-owned optimized read models consumed by agents and UI.",
+      "summary": "Tool-owned optimized read models and context routes consumed by agents, verifiers, and UI.",
       "owners": [
         "architecture"
       ],
       "tags": [],
       "revision": {
-        "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
+        "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/components/views.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
           }
@@ -578,13 +587,11 @@
       "revision": {
         "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/extensions/codewiki/overview.md"
-          ],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
+            ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42"
           }
         }
       }
@@ -618,11 +625,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543",
+        "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/flows/context-memory.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
           }
@@ -650,7 +659,7 @@
       "revision": {
         "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -675,7 +684,7 @@
       "revision": {
         "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -698,11 +707,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
+        "digest": "4992b16d50d00b3cff32de6283b1642d108a3ba8ae7dcb373873fcfb2e44aca5",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/flows/task-loop.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
           }
@@ -725,7 +736,7 @@
       "revision": {
         "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -750,13 +761,11 @@
       "revision": {
         "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/overview.md"
-          ],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+            ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42"
           }
         }
       }
@@ -775,11 +784,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "f0306aa864ab75eef3e989a6819add03232c7a7df3e95a442eaac6d4b688b332",
+        "digest": "0b4d5690b61979d89fa163d01d48cc73f66d0470f752b0f13f1978b78c8f6ecd",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/runtime/overview.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
           }
@@ -801,11 +812,13 @@
       ],
       "tags": [],
       "revision": {
-        "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485",
+        "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/v2-operating-model.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
           }
@@ -832,7 +845,7 @@
       "revision": {
         "digest": "7417dba34855b481539da478e820d6ba7614fd52eff5b2311274187dbc9c8691",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -1397,18 +1410,18 @@
       "kind": "roadmap_task",
       "task_id": "TASK-28",
       "title": "Stabilize CodeWiki refactor after partial DDD migration",
-      "status": "verify",
+      "status": "done",
       "priority": "critical",
       "task_kind": "architecture",
       "summary": "Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.",
-      "updated": "2026-05-05T23:16:23Z",
+      "updated": "2026-05-06T08:48:01Z",
       "labels": [
         "architecture",
         "stabilization",
         "migration"
       ],
       "revision": {
-        "digest": "a5bb092b564d0081bbe4bc2d5ddba0f4c7e02fecb3c5e1e4b8e42b2b045b3f15"
+        "digest": "b8bb847b28f90d5a7452125a561e8f49e796f763225975dcc62644ee72cbb05d"
       }
     },
     {
@@ -1526,6 +1539,230 @@
       "id": "code:extensions/codewiki/src/adapters",
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters"
+    },
+    {
+      "id": "task:TASK-033",
+      "kind": "roadmap_task",
+      "task_id": "TASK-033",
+      "title": "Checkpoint stable refactor baseline before next roadmap",
+      "status": "verify",
+      "priority": "critical",
+      "task_kind": "verification",
+      "summary": "Verify and close the current refactor stabilization queue only after the hardened verification gateway is in place, then record a stable dogfooding baseline.",
+      "updated": "2026-05-06T04:16:49Z",
+      "labels": [
+        "baseline",
+        "dogfood",
+        "release-gate",
+        "depends-on:TASK-040"
+      ],
+      "revision": {
+        "digest": "787e0b9e540779405a1de97cd6e3d50d91c309804600b15c9e32b5d8eed35471"
+      }
+    },
+    {
+      "id": "task:TASK-034",
+      "kind": "roadmap_task",
+      "task_id": "TASK-034",
+      "title": "Design CodeWiki skill package and workflow assets",
+      "status": "todo",
+      "priority": "high",
+      "task_kind": "agent-workflow",
+      "summary": "Define a CodeWiki skill package with router instructions, deterministic scripts, and grill/plan/build/verify workflow assets adapted from Matt Pocock's skills only where they fit CodeWiki semantics.",
+      "updated": "2026-05-06",
+      "labels": [
+        "skills",
+        "workflow",
+        "matt-pocock-adaptation"
+      ],
+      "revision": {
+        "digest": "be123b1ac11f2e25e8791d50b34f889044cce6c6694e63ccc509022432ce25f5"
+      }
+    },
+    {
+      "id": "task:TASK-035",
+      "kind": "roadmap_task",
+      "task_id": "TASK-035",
+      "title": "Enforce structured knowledge-roadmap-code mapping",
+      "status": "todo",
+      "priority": "high",
+      "task_kind": "architecture",
+      "summary": "Strengthen CodeWiki schemas, lint, and docs so knowledge docs, sprints, tasks, evidence, and code paths form a navigable vertical mapping for agents.",
+      "updated": "2026-05-06",
+      "labels": [
+        "schema",
+        "lint",
+        "mapping"
+      ],
+      "revision": {
+        "digest": "2d77abede2d4467f0b5f4a461e87179d88cb089c284935b27af6c2b6c6260172"
+      }
+    },
+    {
+      "id": "task:TASK-036",
+      "kind": "roadmap_task",
+      "task_id": "TASK-036",
+      "title": "Introduce sprint planning model",
+      "status": "todo",
+      "priority": "high",
+      "task_kind": "architecture",
+      "summary": "Add a roadmap sprint layer so the roadmap holds broad intent, future sprints stay outcome-level, and only the next sprint is decomposed into executable tasks.",
+      "updated": "2026-05-06",
+      "labels": [
+        "roadmap",
+        "sprints",
+        "planning-loop"
+      ],
+      "revision": {
+        "digest": "5e4f7d81e22cabf2f7bec359c543e5b6b3e4be7d7b16cd1cde4b904a5b2ca27e"
+      }
+    },
+    {
+      "id": "code:extensions/codewiki/src/core/roadmap.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core/roadmap.ts"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine/views.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine/views.ts"
+    },
+    {
+      "id": "code:extensions/codewiki/src/core/types.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core/types.ts"
+    },
+    {
+      "id": "task:TASK-037",
+      "kind": "roadmap_task",
+      "task_id": "TASK-037",
+      "title": "Build standalone read-only CodeWiki UI",
+      "status": "todo",
+      "priority": "medium",
+      "task_kind": "architecture",
+      "summary": "Detach the human status interface from Pi by creating an agent-agnostic read-only UI that consumes generated `.wiki/views/**` and renders Mermaid outside the Pi TUI constraints.",
+      "updated": "2026-05-06",
+      "labels": [
+        "ui",
+        "adapter",
+        "mermaid",
+        "agent-agnostic"
+      ],
+      "revision": {
+        "digest": "96f94065963478e683c07c197e82e72643984039968d22e618382564b48d2b62"
+      }
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi/ui",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi/ui"
+    },
+    {
+      "id": "task:TASK-038",
+      "kind": "roadmap_task",
+      "task_id": "TASK-038",
+      "title": "Implement trigger-based heartbeat agency loop",
+      "status": "todo",
+      "priority": "medium",
+      "task_kind": "agent-workflow",
+      "summary": "Replace the current heartbeat planning stub with a bounded trigger-based loop whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
+      "updated": "2026-05-06",
+      "labels": [
+        "heartbeat",
+        "agency",
+        "automation",
+        "openclaw-inspired"
+      ],
+      "revision": {
+        "digest": "9e3cb54c6705ab831a049e341960f1b0bc091d5bf44909b5d93785b19c68c6aa"
+      }
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts"
+    },
+    {
+      "id": "task:TASK-039",
+      "kind": "roadmap_task",
+      "task_id": "TASK-039",
+      "title": "Provide optional ThinkCode runtime adapter",
+      "status": "todo",
+      "priority": "medium",
+      "task_kind": "architecture",
+      "summary": "Make ThinkCode a first-class optional runtime for bounded CodeWiki context work while preserving native fallback paths for Pi, Codex, Claude Code, and other agent harnesses.",
+      "updated": "2026-05-06",
+      "labels": [
+        "think-code",
+        "runtime",
+        "adapters",
+        "agent-agnostic"
+      ],
+      "revision": {
+        "digest": "fca4574d457acc83cbbc55123165d1fd361c3ecc08a933fe282b808efa8ac7c3"
+      }
+    },
+    {
+      "id": "task:TASK-040",
+      "kind": "roadmap_task",
+      "task_id": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "status": "done",
+      "priority": "critical",
+      "task_kind": "testing",
+      "summary": "Implement a first-class CodeWiki verification gateway/router before relying on existing verifier evidence to close the stable refactor baseline and start dogfooding.",
+      "updated": "2026-05-06T22:01:08Z",
+      "labels": [
+        "p0",
+        "verification",
+        "gateway",
+        "dogfood-gate",
+        "depends-on:TASK-041"
+      ],
+      "revision": {
+        "digest": "01af7038d1b1f953471214380f1cb8d95ede89b0ede17dede105b523d508a211"
+      }
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi/tools/task.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi/tools/task.ts"
+    },
+    {
+      "id": "code:extensions/codewiki/src/core/schemas.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core/schemas.ts"
+    },
+    {
+      "id": "task:TASK-041",
+      "kind": "roadmap_task",
+      "task_id": "TASK-041",
+      "title": "Review and improve generated views into a token-efficient context compiler",
+      "status": "done",
+      "priority": "critical",
+      "task_kind": "architecture",
+      "summary": "Audit and redesign generated `.wiki/views/**` as lightweight routing and observability read models, then benchmark prebuilt packs versus bounded programmatic exploration to choose the most token-efficient context strategy for task/sprint/roadmap work.",
+      "updated": "2026-05-06T05:51:07Z",
+      "labels": [
+        "p0",
+        "views",
+        "context-compiler",
+        "observability",
+        "dogfood-gate"
+      ],
+      "revision": {
+        "digest": "4c9b1ac7f361514c5893ba9c9153d1f1e20a39aec9f495f89eea4928ecebe793"
+      }
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine/graph.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine/graph.ts"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine/state.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine/state.ts"
     }
   ],
   "edges": [
@@ -1818,6 +2055,11 @@
       "kind": "doc_link",
       "from": "doc:.wiki/knowledge/system/components/views.md",
       "to": "doc:.wiki/knowledge/system/architecture.json"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.wiki/knowledge/system/components/views.md",
+      "to": "doc:.wiki/knowledge/system/flows/context-memory.md"
     },
     {
       "kind": "doc_link",
@@ -2848,6 +3090,341 @@
       "kind": "task_code_path",
       "from": "task:TASK-32",
       "to": "code:package.json"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-033",
+      "to": "doc:.wiki/knowledge/system/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-033",
+      "to": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-033",
+      "to": "code:extensions/codewiki"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-033",
+      "to": "code:scripts/check-architecture.mjs"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-033",
+      "to": "code:scripts/smoke-test.mjs"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-033",
+      "to": "code:package.json"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-034",
+      "to": "doc:.wiki/knowledge/clients/agent-skills.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-034",
+      "to": "doc:.wiki/knowledge/system/v2-operating-model.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-034",
+      "to": "doc:.wiki/knowledge/lexicon.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-034",
+      "to": "code:skills"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-034",
+      "to": "code:README.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-034",
+      "to": "code:package.json"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-035",
+      "to": "doc:.wiki/knowledge/system/v2-operating-model.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-035",
+      "to": "doc:.wiki/knowledge/system/components/knowledge.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-035",
+      "to": "doc:.wiki/knowledge/system/components/roadmap.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-035",
+      "to": "doc:.wiki/knowledge/system/components/views.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-035",
+      "to": "doc:.wiki/knowledge/lexicon.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-035",
+      "to": "code:extensions/codewiki/src/engine"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-035",
+      "to": "code:extensions/codewiki/templates.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-035",
+      "to": "code:scripts/rebuild_docs_meta.py"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-036",
+      "to": "doc:.wiki/knowledge/system/v2-operating-model.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-036",
+      "to": "doc:.wiki/knowledge/system/components/roadmap.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-036",
+      "to": "doc:.wiki/knowledge/system/flows/task-loop.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-036",
+      "to": "code:extensions/codewiki/src/core/roadmap.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-036",
+      "to": "code:extensions/codewiki/src/engine/views.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-036",
+      "to": "code:extensions/codewiki/src/core/types.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-036",
+      "to": "code:extensions/codewiki/templates.ts"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-037",
+      "to": "doc:.wiki/knowledge/product/surfaces.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-037",
+      "to": "doc:.wiki/knowledge/clients/surfaces/status-panel.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-037",
+      "to": "doc:.wiki/knowledge/system/components/views.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-037",
+      "to": "doc:.wiki/knowledge/system/components/extension.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-037",
+      "to": "code:extensions/codewiki/src/adapters/pi/ui"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-037",
+      "to": "code:extensions/codewiki/src/engine/views.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-037",
+      "to": "code:package.json"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-038",
+      "to": "doc:.wiki/knowledge/system/v2-operating-model.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-038",
+      "to": "doc:.wiki/knowledge/system/flows/task-loop.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-038",
+      "to": "doc:.wiki/knowledge/system/flows/sanitation-release.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-038",
+      "to": "doc:.wiki/knowledge/lexicon.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-038",
+      "to": "code:extensions/codewiki/src/adapters/pi/tools/heartbeat.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-038",
+      "to": "code:extensions/codewiki/src/core/types.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-038",
+      "to": "code:skills/codewiki/SKILL.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-039",
+      "to": "doc:.wiki/knowledge/system/runtime/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-039",
+      "to": "doc:.wiki/knowledge/system/components/runtime-gateway.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-039",
+      "to": "doc:.wiki/knowledge/system/v2-operating-model.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-039",
+      "to": "code:scripts/codewiki-gateway.mjs"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-039",
+      "to": "code:skills"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-039",
+      "to": "code:README.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-039",
+      "to": "code:package.json"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-040",
+      "to": "doc:.wiki/knowledge/system/runtime/overview.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-040",
+      "to": "doc:.wiki/knowledge/system/v2-operating-model.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-040",
+      "to": "doc:.wiki/knowledge/system/flows/task-loop.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-040",
+      "to": "doc:.wiki/knowledge/lexicon.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-040",
+      "to": "code:extensions/codewiki/src/core/roadmap.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-040",
+      "to": "code:extensions/codewiki/src/adapters/pi/tools/task.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-040",
+      "to": "code:extensions/codewiki/src/core/schemas.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-040",
+      "to": "code:skills/codewiki-verify/SKILL.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-040",
+      "to": "code:scripts/codewiki-gateway.mjs"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-041",
+      "to": "doc:.wiki/knowledge/system/components/views.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-041",
+      "to": "doc:.wiki/knowledge/system/flows/context-memory.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-041",
+      "to": "doc:.wiki/knowledge/system/v2-operating-model.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-041",
+      "to": "doc:.wiki/knowledge/system/flows/task-loop.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-041",
+      "to": "doc:.wiki/knowledge/lexicon.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-041",
+      "to": "code:extensions/codewiki/src/engine/views.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-041",
+      "to": "code:extensions/codewiki/src/engine/rebuild.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-041",
+      "to": "code:extensions/codewiki/src/engine/graph.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-041",
+      "to": "code:extensions/codewiki/src/engine/state.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-041",
+      "to": "code:scripts/rebuild_docs_meta.py"
     }
   ],
   "views": {
@@ -2999,23 +3576,45 @@
         "TASK-29",
         "TASK-30",
         "TASK-31",
-        "TASK-32"
+        "TASK-32",
+        "TASK-033",
+        "TASK-034",
+        "TASK-035",
+        "TASK-036",
+        "TASK-037",
+        "TASK-038",
+        "TASK-039",
+        "TASK-040",
+        "TASK-041"
       ],
       "open_task_ids": [
-        "TASK-28",
         "TASK-29",
         "TASK-30",
         "TASK-31",
-        "TASK-32"
+        "TASK-32",
+        "TASK-033",
+        "TASK-034",
+        "TASK-035",
+        "TASK-036",
+        "TASK-037",
+        "TASK-038",
+        "TASK-039"
       ],
       "in_progress_task_ids": [
-        "TASK-28",
         "TASK-29",
         "TASK-30",
         "TASK-31",
-        "TASK-32"
+        "TASK-32",
+        "TASK-033"
       ],
-      "todo_task_ids": [],
+      "todo_task_ids": [
+        "TASK-034",
+        "TASK-035",
+        "TASK-036",
+        "TASK-037",
+        "TASK-038",
+        "TASK-039"
+      ],
       "blocked_task_ids": [],
       "done_task_ids": [
         "TASK-001",
@@ -3044,15 +3643,27 @@
         "TASK-024",
         "TASK-025",
         "TASK-026",
-        "TASK-027"
+        "TASK-027",
+        "TASK-28",
+        "TASK-040",
+        "TASK-041"
       ],
       "cancelled_task_ids": [],
       "recent_task_ids": [
+        "TASK-040",
+        "TASK-28",
+        "TASK-041",
+        "TASK-033",
+        "TASK-039",
+        "TASK-038",
+        "TASK-037",
+        "TASK-036",
+        "TASK-035",
+        "TASK-034",
         "TASK-32",
         "TASK-31",
         "TASK-30",
         "TASK-29",
-        "TASK-28",
         "TASK-027",
         "TASK-026",
         "TASK-025",
@@ -3082,8 +3693,9 @@
         "TASK-001"
       ],
       "status_counts": {
-        "done": 27,
-        "verify": 5
+        "done": 30,
+        "verify": 5,
+        "todo": 6
       }
     },
     "research": {
@@ -3105,13 +3717,22 @@
         "extensions/codewiki/index.ts",
         "extensions/codewiki/src/adapters",
         "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/adapters/pi/ui",
         "extensions/codewiki/src/application",
         "extensions/codewiki/src/core",
         "extensions/codewiki/src/core/ports.ts",
         "extensions/codewiki/src/core/rebuild-runner.ts",
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/core/schemas.ts",
+        "extensions/codewiki/src/core/types.ts",
         "extensions/codewiki/src/domain",
         "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/engine/graph.ts",
         "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "extensions/codewiki/src/engine/views.ts",
         "extensions/codewiki/src/infrastructure",
         "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
         "extensions/codewiki/templates.ts",

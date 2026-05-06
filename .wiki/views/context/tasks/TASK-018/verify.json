@@ -1,0 +1,248 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-018",
+    "title": "Implement context memory policy in skills and loops",
+    "status": "done",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Teach agents when to use session RAM, views, canonical docs, subagents, and ThinkCode so default workflows minimize repeated token load.",
+    "labels": [
+      "v2",
+      "context-window",
+      "skills",
+      "token-efficiency"
+    ],
+    "goal": {
+      "outcome": "CodeWiki skills and loops default to tiny views and targeted expansion instead of reloading raw wiki state into the parent session.",
+      "acceptance": [
+        "Planning, task, verification, research, and architecture skills describe RAM vs persistent memory rules.",
+        "Default flow starts from status view and recommended next reads.",
+        "Agents track loaded view revisions and avoid rereading unchanged views when possible.",
+        "Task and outer-loop instructions explain when to spawn subagents or ThinkCode."
+      ],
+      "non_goals": [
+        "Implement full heartbeat scheduler.",
+        "Build new view schemas from scratch if TASK-018 is not done."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Agent workflow policy explicitly optimizes context-window usage.",
+      "current": "Skills mention compact state but do not fully model session RAM, views, subagents, and ThinkCode together.",
+      "closure": "Skills and loop prompts encode the memory policy."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Planning, task, verification, research, and architecture skills describe RAM vs persistent memory rules.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Default flow starts from status view and recommended next reads.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Agents track loaded view revisions and avoid rereading unchanged views when possible.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Task and outer-loop instructions explain when to spawn subagents or ThinkCode.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Implement full heartbeat scheduler.",
+    "Build new view schemas from scratch if TASK-018 is not done."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:02:47Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-018",
+      "action": "focus",
+      "title": "Implement context memory policy in skills and loops",
+      "summary": "Reused tracked roadmap task TASK-018 instead of creating duplicate work.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:02:47Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-018",
+      "action": "focus",
+      "title": "Implement context memory policy in skills and loops",
+      "summary": "Reused tracked roadmap task TASK-018 instead of creating duplicate work.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:02:47Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-018",
+      "action": "focus",
+      "title": "Implement context memory policy in skills and loops",
+      "summary": "Reused tracked roadmap task TASK-018 instead of creating duplicate work.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:38:37Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-018",
+      "action": "focus",
+      "title": "Implement context memory policy in skills and loops",
+      "summary": "Implement context memory policy in skills and loops.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:41:45Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-018 Implement context memory policy in skills and loops"
+    },
+    {
+      "ts": "2026-05-02T00:41:45Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-018 Implement context memory policy in skills and loops"
+    },
+    {
+      "ts": "2026-05-02T00:41:45Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-018",
+      "phase": "verify",
+      "title": "Implement context memory policy in skills and loops",
+      "summary": "Updated memory policy across skills and prompts; ready for closure after passing checks.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T00:41:45Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-018",
+      "verdict": "pass",
+      "summary": "Updated memory policy across skills and prompts; ready for closure after passing checks.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "skills/codewiki/SKILL.md",
+        "skills/codewiki-plan/SKILL.md",
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-verify/SKILL.md",
+        "skills/codewiki-architecture/SKILL.md",
+        "extensions/codewiki/index.ts"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-018/context.json",
+    "build": ".wiki/views/context/tasks/TASK-018/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-018/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-018/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/system/flows/context-memory.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-018/task.json",
+    ".wiki/views/context/tasks/TASK-018/build.json",
+    ".wiki/views/context/tasks/TASK-018/graph.json",
+    "extensions/codewiki/index.ts",
+    "skills"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1693,
+    "over_budget": false
+  }
+}

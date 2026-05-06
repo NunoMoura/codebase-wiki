@@ -121,6 +121,61 @@ async function main() {
 	);
 	initTheme("dark", false);
 	process.env.PI_CODEWIKI_SKIP_VERIFIER = "1";
+	const roadmapCoreSource = readFileSync(resolve(repoRoot, "extensions", "codewiki", "src", "core", "roadmap.ts"), "utf8");
+	const taskAdapterSource = readFileSync(resolve(repoRoot, "extensions", "codewiki", "src", "adapters", "pi", "tools", "task.ts"), "utf8");
+	assert.match(roadmapCoreSource, /TaskVerifierProfile = "task-close"/, "Verifier gateway should define task-close profile contract");
+	assert.match(roadmapCoreSource, /runTaskClosePreflight/, "Verifier gateway should run deterministic task-close preflight");
+	assert.match(roadmapCoreSource, /Malformed verifier JSON output/, "Malformed verifier output should block closure");
+	assert.match(roadmapCoreSource, /strict JSON matching verdict_schema/, "Verifier gateway should require strict JSON without surrounding diagnostics");
+	assert.match(roadmapCoreSource, /compactVerifierContext/, "Verifier gateway should compact context packs before semantic verification");
+	assert.match(roadmapCoreSource, /SemanticTaskVerifierRunner/, "Core verifier gateway should depend on an adapter-provided semantic verifier runner");
+	assert.doesNotMatch(roadmapCoreSource, /execFileAsync\(\s*"pi"/, "Core verifier gateway should not spawn the Pi CLI directly");
+	assert.match(taskAdapterSource, /createAgentSession/, "Pi adapter should run semantic verification through Pi SDK sessions");
+	assert.match(taskAdapterSource, /SessionManager\.inMemory/, "Pi adapter verifier session should be ephemeral");
+	assert.match(taskAdapterSource, /noExtensions: true/, "Pi adapter verifier session should disable extensions");
+	assert.match(taskAdapterSource, /tools: \["read", "grep", "find", "ls"\]/, "Pi adapter verifier session should be read-only");
+	assert.match(roadmapCoreSource, /\["pass", "fail", "block"\]/, "Verifier gateway should cover pass/fail/block verdicts");
+
+	const verifierParserStart = roadmapCoreSource.indexOf("function taskVerifierBlock");
+	const verifierParserEnd = roadmapCoreSource.indexOf("/**\n * Run the automatic task verifier", verifierParserStart);
+	assert.ok(verifierParserStart >= 0 && verifierParserEnd > verifierParserStart, "Verifier parser source block should be discoverable for golden tests");
+	const verifierParserTs = [
+		"type TaskVerifierResult = any;",
+		roadmapCoreSource.slice(verifierParserStart, verifierParserEnd),
+		"export { extractVerifierJson };",
+	].join("\n");
+	const ts = require("typescript");
+	const verifierParserJs = ts.transpileModule(verifierParserTs, {
+		compilerOptions: { module: ts.ModuleKind.ES2022, target: ts.ScriptTarget.ES2022 },
+	}).outputText;
+	const verifierSmokeDir = mkdtempSync(resolve(tmpdir(), "codewiki-verifier-parser-"));
+	const verifierSmokeModule = resolve(verifierSmokeDir, "parser.mjs");
+	writeFileSync(verifierSmokeModule, verifierParserJs, "utf8");
+	try {
+		const { extractVerifierJson } = await import(pathToFileURL(verifierSmokeModule).href);
+		const passVerdict = extractVerifierJson('{"verdict":"pass","taskId":"TASK-999","checks":["npm test"],"issues":[],"rationale":"ok"}', "TASK-999");
+		assert.equal(passVerdict.verdict, "pass", "Verifier parser should preserve pass verdicts");
+		const failVerdict = extractVerifierJson('{"verdict":"fail","taskId":"TASK-999","checks":["npm test"],"issues":[{"severity":"high","summary":"gap"}],"rationale":"gap remains"}', "TASK-999");
+		assert.equal(failVerdict.verdict, "fail", "Verifier parser should preserve fail verdicts");
+		assert.equal(failVerdict.issues[0].severity, "high", "Verifier parser should preserve issue severity");
+		const blockVerdict = extractVerifierJson('{"verdict":"block","taskId":"TASK-999","checks":["manual"],"issues":[{"severity":"medium","summary":"ambiguous"}],"rationale":"blocked"}', "TASK-999");
+		assert.equal(blockVerdict.verdict, "block", "Verifier parser should preserve strict block verdicts");
+		const diagnosticVerdict = extractVerifierJson('diagnostic before {"verdict":"pass","taskId":"TASK-999","checks":[],"issues":[],"rationale":"ok"}', "TASK-999");
+		assert.equal(diagnosticVerdict.verdict, "block", "Verifier parser should block surrounding diagnostics in strict JSON mode");
+		const malformedVerdict = extractVerifierJson("not json", "TASK-999");
+		assert.equal(malformedVerdict.verdict, "block", "Malformed verifier output should become a block verdict");
+		assert.match(malformedVerdict.rationale, /Failed to parse verifier output/, "Malformed verifier output should explain parse failure");
+		const mismatchVerdict = extractVerifierJson('{"verdict":"pass","taskId":"TASK-OTHER","checks":[],"issues":[],"rationale":"wrong task"}', "TASK-999");
+		assert.equal(mismatchVerdict.verdict, "block", "Verifier parser should block task id mismatches");
+		const permissiveIssueVerdict = extractVerifierJson('{"verdict":"fail","taskId":"TASK-999","checks":["npm test"],"issues":[{"summary":"missing severity"}],"rationale":"gap"}', "TASK-999");
+		assert.equal(permissiveIssueVerdict.verdict, "block", "Verifier parser should block malformed issue schema instead of coercing it");
+		const extraFieldVerdict = extractVerifierJson('{"verdict":"pass","taskId":"TASK-999","checks":[],"issues":[],"rationale":"ok","extra":true}', "TASK-999");
+		assert.equal(extraFieldVerdict.verdict, "block", "Verifier parser should block extra fields under strict schema validation");
+		const extraIssueFieldVerdict = extractVerifierJson('{"verdict":"fail","taskId":"TASK-999","checks":["npm test"],"issues":[{"severity":"high","summary":"gap","extra":"nope"}],"rationale":"gap"}', "TASK-999");
+		assert.equal(extraIssueFieldVerdict.verdict, "block", "Verifier parser should block extra issue fields under strict nested schema validation");
+	} finally {
+		rmSync(verifierSmokeDir, { recursive: true, force: true });
+	}
 
 	assert.equal(packageJson.name, "codewiki", "Unexpected package name");
 	assert.ok(
@@ -1131,6 +1186,24 @@ async function main() {
 				"utf8",
 			),
 		);
+		const starterTaskBuildPack = JSON.parse(
+			readFileSync(
+				resolve(projectDir, ".wiki", "views", "context", "tasks", "TASK-001", "build.json"),
+				"utf8",
+			),
+		);
+		const starterTaskVerifyPack = JSON.parse(
+			readFileSync(
+				resolve(projectDir, ".wiki", "views", "context", "tasks", "TASK-001", "verify.json"),
+				"utf8",
+			),
+		);
+		const starterTaskGraphPack = JSON.parse(
+			readFileSync(
+				resolve(projectDir, ".wiki", "views", "context", "tasks", "TASK-001", "graph.json"),
+				"utf8",
+			),
+		);
 		let panelLines = panelState.renderedLines ?? [];
 		assert.ok(
 			!existsSync(resolve(nestedDir, "wiki")),
@@ -1191,6 +1264,34 @@ async function main() {
 		assert.ok(
 			queueV2View.tasks.length >= 1,
 			"Queue view should list open tasks",
+		);
+		assert.ok(
+			queueV2View.meta.recommended_next_reads.some((path) => path.includes("/build.json")),
+			"Queue view should recommend task build seed packs",
+		);
+		assert.equal(starterTaskBuildPack.role, "build");
+		assert.equal(starterTaskVerifyPack.role, "verify");
+		assert.equal(starterTaskGraphPack.role, "graph");
+		assert.ok(
+			Array.isArray(starterTaskBuildPack.acceptance_matrix),
+			"Build seed pack should expose acceptance matrix",
+		);
+		assert.ok(
+			starterTaskVerifyPack.verdict_policy.includes("verification gateway"),
+			"Verify seed pack should keep observability separate from the verification gate",
+		);
+		assert.ok(
+			starterTaskGraphPack.tiers && Array.isArray(starterTaskGraphPack.tiers.core),
+			"Task graph slice should expose tiered core/supporting/watch/excluded routes",
+		);
+		assert.ok(
+			starterTaskBuildPack.budget?.estimated_tokens <= starterTaskBuildPack.budget?.target_tokens,
+			"Build seed pack should stay within its generated token budget",
+		);
+		assert.equal(
+			starterTaskContext.expansion.build_pack,
+			".wiki/views/context/tasks/TASK-001/build.json",
+			"Legacy task context should route to build seed pack",
 		);
 		assert.ok(
 			systemArchitectureView.components.length >= 1,

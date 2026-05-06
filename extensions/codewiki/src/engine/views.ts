@@ -13,6 +13,156 @@ function viewMeta(name: string, targetBytes: number, recommendedNextReads: strin
 	};
 }
 
+function estimateTokens(payload: any): number {
+	return Math.ceil(JSON.stringify(payload).length / 4);
+}
+
+function withTokenBudget(payload: any, targetTokens: number) {
+	const estimatedTokens = estimateTokens(payload);
+	return {
+		...payload,
+		budget: {
+			...(payload.budget || {}),
+			target_tokens: targetTokens,
+			estimated_tokens: estimatedTokens,
+			over_budget: estimatedTokens > targetTokens,
+		},
+	};
+}
+
+function uniqStrings(values: any[]): string[] {
+	return Array.from(new Set((values || []).filter(Boolean).map(String))).sort();
+}
+
+function taskContextPaths(task: any) {
+	return {
+		legacy: `.wiki/views/roadmap/tasks/${task.id}/context.json`,
+		build: `.wiki/views/context/tasks/${task.id}/build.json`,
+		verify: `.wiki/views/context/tasks/${task.id}/verify.json`,
+		graph: `.wiki/views/context/tasks/${task.id}/graph.json`,
+	};
+}
+
+function buildAcceptanceMatrix(task: any) {
+	const goal = task.goal || {};
+	const specPaths = task.spec_paths || [];
+	const codePaths = task.code_paths || [];
+	return (goal.acceptance || []).map((criterion: string, index: number) => ({
+		id: `AC-${index + 1}`,
+		criterion,
+		status: "unknown",
+		spec_paths: specPaths,
+		code_paths: codePaths,
+		checks: goal.verification || [],
+		evidence: [],
+	}));
+}
+
+function buildTaskGraphSlice(task: any, graph: any) {
+	const taskNodeId = `task:${task.id}`;
+	const nodesById = new Map((graph.nodes || []).map((node: any) => [node.id, node]));
+	const edges = graph.edges || [];
+	const explicitTargets = edges.filter((edge: any) => edge.from === taskNodeId);
+	const core = [
+		...explicitTargets.map((edge: any) => ({ edge, node: nodesById.get(edge.to) })).filter((item: any) => item.node),
+	].map((item: any) => ({
+		id: item.node.id,
+		kind: item.node.kind,
+		path: item.node.path,
+		title: item.node.title,
+		why: `${item.edge.kind} explicitly links ${task.id} to this node`,
+		edge_path: [taskNodeId, item.node.id],
+		confidence: "explicit",
+		expand: item.node.kind === "code_path" ? "grep" : "read",
+	}));
+
+	const coreIds = new Set(core.map((node: any) => node.id));
+	const supporting = edges
+		.filter((edge: any) => coreIds.has(edge.from) && !coreIds.has(edge.to))
+		.slice(0, 12)
+		.map((edge: any) => ({ edge, node: nodesById.get(edge.to) }))
+		.filter((item: any) => item.node)
+		.map((item: any) => ({
+			id: item.node.id,
+			kind: item.node.kind,
+			path: item.node.path,
+			title: item.node.title,
+			why: `Neighbor of explicit task context via ${item.edge.kind}`,
+			edge_path: [taskNodeId, item.edge.from, item.node.id],
+			confidence: "inferred",
+			expand: "read-if-ambiguous",
+		}));
+
+	const explicitPaths = uniqStrings([...(task.spec_paths || []), ...(task.code_paths || [])]);
+	return {
+		task_id: task.id,
+		tiers: {
+			core,
+			supporting,
+			watch: [],
+			excluded: explicitPaths.length ? [] : [{ reason: "Task has no explicit spec_paths or code_paths; broad graph expansion skipped." }],
+		},
+		observability: {
+			horizontal_alignment: {
+				has_specs: Boolean((task.spec_paths || []).length),
+				has_code: Boolean((task.code_paths || []).length),
+				has_acceptance: Boolean(task.goal?.acceptance?.length),
+			},
+			vertical_alignment: {
+				intent_to_specs: Boolean((task.spec_paths || []).length),
+				specs_to_code: Boolean((task.code_paths || []).length),
+				checks_to_evidence: false,
+			},
+		},
+	};
+}
+
+function buildTaskRolePacks(task: any, graphSlice: any, recentTaskEvents: any[]) {
+	const paths = taskContextPaths(task);
+	const acceptance_matrix = buildAcceptanceMatrix(task);
+	const commonTask = {
+		id: task.id,
+		title: task.title || task.id,
+		status: task.status || "todo",
+		priority: task.priority || "medium",
+		kind: task.kind || "task",
+		summary: task.summary || "",
+		labels: task.labels || [],
+		goal: task.goal || {},
+		delta: task.delta || {},
+	};
+	const specPaths = task.spec_paths || [];
+	const codePaths = task.code_paths || [];
+	const buildPack = withTokenBudget({
+		version: 1,
+		role: "build",
+		task: commonTask,
+		acceptance_matrix,
+		context_routes: paths,
+		recommended_next_reads: uniqStrings([`.wiki/roadmap/tasks/${task.id}/task.json`, ...specPaths, ...codePaths]).slice(0, 16),
+		graph_core: graphSlice.tiers.core,
+		exploration_recipes: [
+			{ tool: "grep", purpose: "Find code touchpoints inside linked paths before broad reads.", paths: codePaths },
+			{ tool: "sandbox", purpose: "Filter linked specs/code for acceptance keywords; return compact findings only.", paths: uniqStrings([...specPaths, ...codePaths]) },
+		],
+		observability: graphSlice.observability,
+	}, 4000);
+	const verifyPack = withTokenBudget({
+		version: 1,
+		role: "verify",
+		task: commonTask,
+		acceptance_matrix,
+		non_goals: task.goal?.non_goals || [],
+		required_checks: task.goal?.verification || [],
+		recent_evidence: recentTaskEvents.slice(-8),
+		context_routes: paths,
+		recommended_next_reads: uniqStrings([`.wiki/roadmap/tasks/${task.id}/task.json`, paths.build, paths.graph, ...specPaths, ...codePaths]).slice(0, 18),
+		observability: graphSlice.observability,
+		verdict_policy: "Observability signals inform review only; verification gateway decides pass/fail/block.",
+	}, 3500);
+	return { buildPack, verifyPack };
+}
+
 export function writeV2Views(
 	repoRoot: string,
 	docs: any[],
@@ -77,7 +227,7 @@ export function writeV2Views(
 		}
 	}
 	const queuePayload: any = { tasks: queue, next_task_id: queue[0]?.id || "" };
-	queuePayload.meta = viewMeta("roadmap.queue", 12000, queue.length ? [queue[0].context_path] : [".wiki/views/drift.json"]);
+	queuePayload.meta = viewMeta("roadmap.queue", 12000, queue.length ? [queue[0].context_path, taskContextPaths(queue[0]).build] : [".wiki/views/drift.json"]);
 	writeView("roadmap/queue.json", queuePayload);
 
 	// --- 3. drift.json ---
@@ -176,6 +326,13 @@ export function writeV2Views(
 		mkdirSync(taskDir, { recursive: true });
 		
 		const rt = (roadmapState.tasks || {})[task.id] || {};
+		const graphSlice = buildTaskGraphSlice(task, graph);
+		const recentTaskEvents = events.filter((event: any) => JSON.stringify(event).includes(task.id));
+		const rolePacks = buildTaskRolePacks(task, graphSlice, recentTaskEvents);
+		writeView(`context/tasks/${task.id}/graph.json`, withTokenBudget({ version: 1, role: "graph", ...graphSlice }, 3000));
+		writeView(`context/tasks/${task.id}/build.json`, rolePacks.buildPack);
+		writeView(`context/tasks/${task.id}/verify.json`, rolePacks.verifyPack);
+		const paths = taskContextPaths(task);
 		const context = {
 			version: 1,
 			generated_at: new Date().toISOString(),
@@ -210,7 +367,10 @@ export function writeV2Views(
 				task_json: `.wiki/roadmap/tasks/${task.id}/task.json`,
 				roadmap_state: `.wiki/roadmap-state.json`,
 				status_state: `.wiki/status-state.json`,
-				graph: `.wiki/graph.json`
+				graph: `.wiki/graph.json`,
+				build_pack: paths.build,
+				verify_pack: paths.verify,
+				graph_slice: paths.graph
 			}
 		};
 		

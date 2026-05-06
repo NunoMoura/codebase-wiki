@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-06T22:02:16Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-035/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-035",
+    "title": "Enforce structured knowledge-roadmap-code mapping",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Strengthen CodeWiki schemas, lint, and docs so knowledge docs, sprints, tasks, evidence, and code paths form a navigable vertical mapping for agents.",
+    "labels": [
+      "schema",
+      "lint",
+      "mapping"
+    ],
+    "goal": {
+      "outcome": "Agents can reliably trace intended knowledge to roadmap delta to code ownership through enforced metadata and generated views.",
+      "acceptance": [
+        "Knowledge frontmatter requirements are documented and enforced for ids, summaries, owners, and relevant code/spec links.",
+        "Roadmap tasks validate `spec_paths`, `code_paths`, goals, acceptance, non-goals, verification, and evidence links.",
+        "Lint/reporting identifies missing or broken horizontal and vertical mappings.",
+        "Generated views expose compact navigation packets for this mapping without becoming canonical truth."
+      ],
+      "non_goals": [
+        "Do not require every code file to have a one-to-one doc.",
+        "Do not make roadmap tasks duplicate all knowledge content."
+      ],
+      "verification": [
+        "Run `npm test`.",
+        "Run a rebuild and confirm `codewiki_state refresh=true` is green.",
+        "Add/adjust smoke fixtures for invalid mapping cases."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "2d77abede2d4467f0b5f4a461e87179d88cb089c284935b27af6c2b6c6260172"
+    },
+    "git": {
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/roadmap.json",
+        "extensions/codewiki/src/engine/views.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "paths": {
+        ".wiki/knowledge/lexicon.md": "643c940fa1ca",
+        ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9",
+        ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9",
+        ".wiki/knowledge/system/components/views.md": "ce607eba2ff9",
+        ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf6306",
+        ".wiki/roadmap.json": "166313f96147",
+        "extensions/codewiki/src/engine": "166313f96147",
+        "extensions/codewiki/templates.ts": "166313f96147",
+        "scripts/rebuild_docs_meta.py": "7e122a3091d4"
+      }
+    },
+    "spec_digest": "2f2727b97c26ffeb7487a0a9b7457e9258c943b79ff1739ebbab4e1a66e86750",
+    "code_digest": "b44e76784fff9d1590cb0b7dd0face6a41483472ba2f309cbf36da948ae340b7",
+    "graph": {
+      "git": {
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
+        "dirty": true
+      },
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/components/knowledge.md",
+      "title": "Canonical Knowledge",
+      "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "revision": {
+        "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/components/knowledge.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/components/roadmap.md",
+      "title": "Roadmap Tasks",
+      "summary": "Canonical active delta between intended knowledge and current implementation reality.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        ".wiki/roadmap.json"
+      ],
+      "revision": {
+        "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/components/roadmap.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/components/views.md",
+      "title": "Generated Views",
+      "summary": "Tool-owned optimized read models and context routes consumed by agents, verifiers, and UI.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        ".wiki/views"
+      ],
+      "revision": {
+        "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/components/views.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, and generated views.",
+      "state": "active",
+      "owners": [
+        "product",
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/lexicon.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src/engine",
+      "extensions/codewiki/templates.ts",
+      "scripts/rebuild_docs_meta.py"
+    ],
+    "digest": "b44e76784fff9d1590cb0b7dd0face6a41483472ba2f309cbf36da948ae340b7",
+    "expand": [
+      {
+        "read": "extensions/codewiki/src/engine"
+      },
+      {
+        "read": "extensions/codewiki/templates.ts"
+      },
+      {
+        "read": "scripts/rebuild_docs_meta.py"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-035/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json",
+    "build_pack": ".wiki/views/context/tasks/TASK-035/build.json",
+    "verify_pack": ".wiki/views/context/tasks/TASK-035/verify.json",
+    "graph_slice": ".wiki/views/context/tasks/TASK-035/graph.json"
+  }
+}

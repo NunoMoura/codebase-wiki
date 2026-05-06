@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-022",
+    "title": "Heartbeat modes budgets and stop conditions",
+    "status": "done",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Add bounded observe, maintain, and work heartbeat modes that use views, subagents, and canonical writes safely.",
+    "labels": [
+      "heartbeat-loop",
+      "autonomous-budget",
+      "stop-conditions"
+    ],
+    "goal": {
+      "outcome": "Users can run CodeWiki autonomously within explicit budgets and modes without losing alignment with wiki truth or project safety.",
+      "acceptance": [
+        "Heartbeat supports observe, maintain, and work modes.",
+        "Each cycle reads status, handles stale views, selects inner or outer loop action, records evidence, and stops on budget/risk/ambiguity.",
+        "Budgets include max cycles, wall time, writes, subagents, and risk level.",
+        "Push/version/archive behavior is gated by policy and checks."
+      ],
+      "non_goals": [
+        "Run unbounded autonomous coding.",
+        "Bypass user approval for risky or destructive work."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Heartbeat is a bounded CodeWiki loop with safe modes and stop conditions.",
+      "current": "Heartbeat is an idea but not a fully defined or implemented autonomous workflow.",
+      "closure": "Heartbeat command/tool contract and initial implementation are covered by tests."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Heartbeat supports observe, maintain, and work modes.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Each cycle reads status, handles stale views, selects inner or outer loop action, records evidence, and stops on budget/risk/ambiguity.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Budgets include max cycles, wall time, writes, subagents, and risk level.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Push/version/archive behavior is gated by policy and checks.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-022/context.json",
+    "build": ".wiki/views/context/tasks/TASK-022/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-022/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-022/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/product/stories.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-022/task.json",
+    "extensions/codewiki/contracts.ts",
+    "extensions/codewiki/index.ts",
+    "skills"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-022 to this node",
+      "edge_path": [
+        "task:TASK-022",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/product/stories.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/product/stories.md",
+      "title": "Product Stories",
+      "why": "task_spec explicitly links TASK-022 to this node",
+      "edge_path": [
+        "task:TASK-022",
+        "doc:.wiki/knowledge/product/stories.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/index.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/index.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-022 to this node",
+      "edge_path": [
+        "task:TASK-022",
+        "code:extensions/codewiki/index.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/contracts.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/contracts.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-022 to this node",
+      "edge_path": [
+        "task:TASK-022",
+        "code:extensions/codewiki/contracts.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:skills",
+      "kind": "code_path",
+      "path": "skills",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-022 to this node",
+      "edge_path": [
+        "task:TASK-022",
+        "code:skills"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "extensions/codewiki/contracts.ts",
+        "extensions/codewiki/index.ts",
+        "skills"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1434,
+    "over_budget": false
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-31",
+    "title": "Move Pi surface into adapters and retire legacy core structure",
+    "status": "verify",
+    "priority": "medium",
+    "kind": "migration",
+    "summary": "Complete the folder migration only after guardrails and application seams exist, moving Pi commands/tools/UI into adapters and deleting legacy duplicates/shims.",
+    "labels": [
+      "architecture",
+      "migration",
+      "pi-adapter"
+    ],
+    "goal": {
+      "outcome": "Repository layout matches the target ports/adapters architecture without duplicate engine/core surfaces.",
+      "acceptance": [
+        "`extensions/codewiki/index.ts` is a thin Pi extension entrypoint that delegates registration to `src/adapters/pi`.",
+        "Pi tools, commands, and TUI code live under `src/adapters/pi`.",
+        "There is one engine/rebuild implementation path, with old duplicate `src/engine` removed or converted to a temporary shim before deletion.",
+        "`contracts.ts` exports stable public contracts from canonical locations, not legacy `core` internals.",
+        "Legacy `core`, `tools`, `commands`, `ui`, and duplicate `engine` shims are deleted only after import-boundary checks deny their use."
+      ],
+      "non_goals": [
+        "Do not change public command/tool names.",
+        "Do not add non-Pi adapters beyond a tiny proof adapter if separately tasked."
+      ],
+      "verification": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ]
+    },
+    "delta": {
+      "desired": "Clear folder ownership with Pi-specific code isolated and legacy structure removed.",
+      "current": "Pi tools, commands, and UI live under src/adapters/pi; index.ts is thin; duplicate infrastructure/engine path and legacy src/tools/src/commands/src/ui folders are gone; transitional core shims remain intentionally for follow-up application extraction.",
+      "closure": "No duplicate migration artifacts remain and all public Pi behavior still passes tests."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "`extensions/codewiki/index.ts` is a thin Pi extension entrypoint that delegates registration to `src/adapters/pi`.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Pi tools, commands, and TUI code live under `src/adapters/pi`.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "There is one engine/rebuild implementation path, with old duplicate `src/engine` removed or converted to a temporary shim before deletion.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "`contracts.ts` exports stable public contracts from canonical locations, not legacy `core` internals.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "Legacy `core`, `tools`, `commands`, `ui`, and duplicate `engine` shims are deleted only after import-boundary checks deny their use.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run architecture boundary check with final no-legacy rules enabled.",
+        "Inspect package `files` and Pi extension discovery still include correct resources."
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Do not change public command/tool names.",
+    "Do not add non-Pi adapters beyond a tiny proof adapter if separately tasked."
+  ],
+  "required_checks": [
+    "Run `npm run typecheck`.",
+    "Run `npm test`.",
+    "Run architecture boundary check with final no-legacy rules enabled.",
+    "Inspect package `files` and Pi extension discovery still include correct resources."
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-05T21:40:57Z",
+      "kind": "roadmap_task_created",
+      "taskId": "TASK-31",
+      "title": "Move Pi surface into adapters and retire legacy core structure"
+    },
+    {
+      "ts": "2026-05-05T23:16:54Z",
+      "kind": "roadmap_task_updated",
+      "taskId": "TASK-31",
+      "title": "Move Pi surface into adapters and retire legacy core structure"
+    },
+    {
+      "ts": "2026-05-05T23:16:54Z",
+      "kind": "task_phase_passed",
+      "taskId": "TASK-31",
+      "title": "Move Pi surface into adapters and retire legacy core structure",
+      "phase": "implement",
+      "nextPhase": "verify",
+      "summary": "Pi surface moved into src/adapters/pi and legacy tools/commands/ui locations removed; package entrypoint now delegates to adapter registration.",
+      "checks_run": [
+        "npm run check:architecture",
+        "npm run typecheck",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-05T23:16:54Z",
+      "kind": "task_evidence_recorded",
+      "verdict": "pass",
+      "taskId": "TASK-31",
+      "title": "Move Pi surface into adapters and retire legacy core structure",
+      "phase": "implement",
+      "nextPhase": "verify",
+      "summary": "Pi surface moved into src/adapters/pi and legacy tools/commands/ui locations removed; package entrypoint now delegates to adapter registration.",
+      "checks_run": [
+        "npm run check:architecture",
+        "npm run typecheck",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-31/context.json",
+    "build": ".wiki/views/context/tasks/TASK-31/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-31/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-31/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/extensions/codewiki/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/roadmap/tasks/TASK-31/task.json",
+    ".wiki/views/context/tasks/TASK-31/build.json",
+    ".wiki/views/context/tasks/TASK-31/graph.json",
+    "extensions/codewiki/contracts.ts",
+    "extensions/codewiki/index.ts",
+    "extensions/codewiki/src/adapters/pi",
+    "extensions/codewiki/src/core",
+    "extensions/codewiki/src/engine",
+    "extensions/codewiki/src/infrastructure"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 2191,
+    "over_budget": false
+  }
+}

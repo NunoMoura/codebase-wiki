@@ -1,0 +1,458 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-040",
+    "title": "Harden verification gateway before dogfood checkpoint",
+    "status": "done",
+    "priority": "critical",
+    "kind": "testing",
+    "summary": "Implement a first-class CodeWiki verification gateway/router before relying on existing verifier evidence to close the stable refactor baseline and start dogfooding.",
+    "labels": [
+      "p0",
+      "verification",
+      "gateway",
+      "dogfood-gate",
+      "depends-on:TASK-041"
+    ],
+    "goal": {
+      "outcome": "Task closure and future sprint/release/drift checks use a robust verification gateway instead of ad hoc verifier prompts or parent-session confidence, using hardened context packs from the view/context-compiler work where needed.",
+      "acceptance": [
+        "Define a `codewiki.verify`-style internal gateway/router contract with profiles, briefs, policies, and verdict schema.",
+        "Implement the `task-close` profile first and route `codewiki_task action=\"close\"` through it.",
+        "Run deterministic preflight before semantic verification, including task goal fields, linked path existence, evidence/check presence, and view freshness where applicable.",
+        "Consume or define a compact verifier context pack instead of relying on ad hoc task prompt assembly.",
+        "Invoke semantic verification in a separate fresh read-only process/session/subagent with a complete CodeWiki verifier rubric and compact task brief.",
+        "Parse and validate verifier JSON strictly; malformed output returns `block` with evidence.",
+        "Add golden or smoke coverage for `pass`, `fail`, `block`, and malformed-output cases.",
+        "Ensure verifier cannot mutate canonical truth or generated views; parent remains sole writer for evidence and lifecycle changes."
+      ],
+      "non_goals": [
+        "Do not implement all profiles in the first slice beyond contract stubs or documented routing.",
+        "Do not make verification depend on ThinkCode or any single runtime.",
+        "Do not close baseline refactor tasks using the old weak verifier path.",
+        "Do not solve the full sprint/roadmap context compiler in this task."
+      ],
+      "verification": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if required by touched TypeScript.",
+        "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Define a `codewiki.verify`-style internal gateway/router contract with profiles, briefs, policies, and verdict schema.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/schemas.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if required by touched TypeScript.",
+        "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Implement the `task-close` profile first and route `codewiki_task action=\"close\"` through it.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/schemas.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if required by touched TypeScript.",
+        "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Run deterministic preflight before semantic verification, including task goal fields, linked path existence, evidence/check presence, and view freshness where applicable.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/schemas.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if required by touched TypeScript.",
+        "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Consume or define a compact verifier context pack instead of relying on ad hoc task prompt assembly.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/schemas.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if required by touched TypeScript.",
+        "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "Invoke semantic verification in a separate fresh read-only process/session/subagent with a complete CodeWiki verifier rubric and compact task brief.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/schemas.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if required by touched TypeScript.",
+        "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-6",
+      "criterion": "Parse and validate verifier JSON strictly; malformed output returns `block` with evidence.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/schemas.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if required by touched TypeScript.",
+        "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-7",
+      "criterion": "Add golden or smoke coverage for `pass`, `fail`, `block`, and malformed-output cases.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/schemas.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if required by touched TypeScript.",
+        "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-8",
+      "criterion": "Ensure verifier cannot mutate canonical truth or generated views; parent remains sole writer for evidence and lifecycle changes.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/schemas.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if required by touched TypeScript.",
+        "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Do not implement all profiles in the first slice beyond contract stubs or documented routing.",
+    "Do not make verification depend on ThinkCode or any single runtime.",
+    "Do not close baseline refactor tasks using the old weak verifier path.",
+    "Do not solve the full sprint/roadmap context compiler in this task."
+  ],
+  "required_checks": [
+    "Run `npm test`.",
+    "Run `npm run typecheck` if required by touched TypeScript.",
+    "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+    "Run `codewiki_state refresh=true` and confirm green health."
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-06T21:57:33Z",
+      "kind": "task_evidence_recorded",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "fail",
+      "summary": "Fresh verifier fail: The gateway, task-close route, fresh read-only Pi session, compact context pack, full rubric inclusion, malformed-output blocking, and smoke coverage are largely present. However, a core preflight acceptance requirement is implemented against the wrong evidence source, which undermines task-close routing and deterministic evidence/check validation. Strict schema enforcement also remains permissive for extra fields.",
+      "checks_run": [
+        "read extensions/codewiki/src/core/roadmap.ts",
+        "read extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "read scripts/smoke-test.mjs",
+        "read skills/codewiki-verify/SKILL.md",
+        "read .wiki/config.json",
+        "grep .wiki/roadmap/events.jsonl task_evidence_recorded"
+      ],
+      "files_touched": [],
+      "issues": [
+        "Deterministic preflight evidence/check validation reads the wrong event log, so it will not find canonical task evidence and can block valid closes before semantic verification.",
+        "Verifier JSON schema validation is not fully strict against the declared verdict_schema because extra fields are accepted silently."
+      ]
+    },
+    {
+      "ts": "2026-05-06T21:59:04Z",
+      "kind": "task_phase_passed",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "phase": "implement",
+      "nextPhase": "verify",
+      "summary": "Fixed verifier feedback: deterministic preflight now reads canonical project events for task evidence/check presence, not roadmap event mirror, and strict verifier schema now blocks extra top-level fields. Smoke parser golden cases cover extra-field rejection.",
+      "checks_run": [
+        "npm run typecheck: pass",
+        "npm test: pass"
+      ],
+      "files_touched": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-06T21:59:04Z",
+      "kind": "task_evidence_recorded",
+      "verdict": "pass",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "phase": "implement",
+      "nextPhase": "verify",
+      "summary": "Fixed verifier feedback: deterministic preflight now reads canonical project events for task evidence/check presence, not roadmap event mirror, and strict verifier schema now blocks extra top-level fields. Smoke parser golden cases cover extra-field rejection.",
+      "checks_run": [
+        "npm run typecheck: pass",
+        "npm test: pass"
+      ],
+      "files_touched": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-06T22:00:10Z",
+      "kind": "task_evidence_recorded",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "fail",
+      "summary": "Fresh verifier fail: The gateway contract, task-close routing, preflight, compact context pack, fresh read-only Pi session, full rubric inclusion, and main parser smoke cases are present. However, the strict verifier schema requirement remains partially unmet because nested issue objects are not rejected when they contain fields outside {severity, summary, evidence?}. For a hardening task whose acceptance explicitly requires strict JSON validation against verdict_schema, this should be fixed before closure.",
+      "checks_run": [
+        "read extensions/codewiki/src/core/roadmap.ts",
+        "read extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "read scripts/smoke-test.mjs",
+        "read skills/codewiki-verify/SKILL.md",
+        "read .wiki/roadmap/tasks/TASK-040/task.json",
+        "read .wiki/views/context/tasks/TASK-040/verify.json",
+        "review recent TASK-040 evidence"
+      ],
+      "files_touched": [],
+      "issues": [
+        "Verifier JSON validation is still not fully strict for the declared verdict schema: nested issue objects may contain extra fields and still pass validation.",
+        "Smoke coverage does not exercise strict rejection of nested schema extras, so the remaining strict-schema gap is not covered."
+      ]
+    },
+    {
+      "ts": "2026-05-06T22:01:08Z",
+      "kind": "task_phase_passed",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "phase": "verify",
+      "nextPhase": "done",
+      "summary": "Completed strict nested schema hardening: verifier issue objects now reject fields outside severity, summary, and optional evidence; smoke golden tests cover nested extra-field rejection from actual core parser source.",
+      "checks_run": [
+        "npm run typecheck: pass",
+        "npm test: pass"
+      ],
+      "files_touched": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-06T22:01:08Z",
+      "kind": "task_evidence_recorded",
+      "verdict": "pass",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "phase": "verify",
+      "nextPhase": "done",
+      "summary": "Completed strict nested schema hardening: verifier issue objects now reject fields outside severity, summary, and optional evidence; smoke golden tests cover nested extra-field rejection from actual core parser source.",
+      "checks_run": [
+        "npm run typecheck: pass",
+        "npm test: pass"
+      ],
+      "files_touched": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-06T22:02:07Z",
+      "kind": "task_evidence_recorded",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "pass",
+      "summary": "Fresh verifier pass: Acceptance is satisfied: the task-close verifier contract, preflight, compact context pack consumption, fresh read-only Pi SDK verifier session, strict JSON parser with malformed/block behavior, parent-only lifecycle writes, and smoke coverage for pass/fail/block/malformed/schema cases are implemented and evidenced. Required npm test/typecheck evidence is current, and prior task evidence records codewiki_state refresh=true with green health.",
+      "checks_run": [
+        "read extensions/codewiki/src/core/roadmap.ts",
+        "read extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "read scripts/smoke-test.mjs",
+        "read skills/codewiki-verify/SKILL.md",
+        "read .wiki/roadmap/tasks/TASK-040/task.json",
+        "read .wiki/views/context/tasks/TASK-040/verify.json",
+        "review .wiki/events.jsonl TASK-040 evidence"
+      ],
+      "files_touched": [],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-06T22:02:07Z",
+      "kind": "task_evidence_recorded",
+      "taskId": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "verdict": "pass",
+      "summary": "Closed TASK-040 after verifier gateway hardening satisfied fresh verifier feedback: core/adapter split, deterministic preflight, canonical evidence source, view freshness, full rubric prompt, strict top-level and nested schema validation, and behavioral smoke coverage.",
+      "checks_run": [
+        "npm run typecheck: pass",
+        "npm test: pass",
+        "codewiki_state refresh=true: health green"
+      ],
+      "files_touched": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-040/context.json",
+    "build": ".wiki/views/context/tasks/TASK-040/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-040/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-040/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/system/flows/task-loop.md",
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-040/task.json",
+    ".wiki/views/context/tasks/TASK-040/build.json",
+    ".wiki/views/context/tasks/TASK-040/graph.json",
+    "extensions/codewiki/src/adapters/pi/tools/task.ts",
+    "extensions/codewiki/src/core/roadmap.ts",
+    "extensions/codewiki/src/core/schemas.ts",
+    "scripts/codewiki-gateway.mjs",
+    "skills/codewiki-verify/SKILL.md"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 4395,
+    "over_budget": true
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-026",
+    "title": "Decouple ThinkCode from CodeWiki memory policy",
+    "status": "done",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Remove wording that frames ThinkCode as an enforced CodeWiki runtime and describe it only as optional compatible tooling.",
+    "labels": [
+      "v2",
+      "decoupling",
+      "think-code"
+    ],
+    "goal": {
+      "outcome": "CodeWiki operates independently as a Pi package while allowing ThinkCode or other tools to integrate optionally.",
+      "acceptance": [
+        "Skills do not require ThinkCode for CodeWiki workflows.",
+        "Code/task/verifier prompts frame programmatic context executors as optional/replaceable.",
+        "Knowledge and lexicon describe ThinkCode as compatible external tooling, not CodeWiki runtime.",
+        "Checks pass."
+      ],
+      "non_goals": [
+        "Change ThinkCode package behavior.",
+        "Remove all mentions of ThinkCode where optional integration is useful."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "CodeWiki is standalone and stack-agnostic; ThinkCode is optional external tooling enforced only by its own skill.",
+      "current": "Recent memory-policy wording overstates ThinkCode as CodeWiki context/query executor.",
+      "closure": "Wording changed to optional/compatible tool language."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Skills do not require ThinkCode for CodeWiki workflows.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Code/task/verifier prompts frame programmatic context executors as optional/replaceable.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Knowledge and lexicon describe ThinkCode as compatible external tooling, not CodeWiki runtime.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Checks pass.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Change ThinkCode package behavior.",
+    "Remove all mentions of ThinkCode where optional integration is useful."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:49:53Z",
+      "kind": "roadmap_append",
+      "title": "Appended 1 roadmap task(s)",
+      "summary": "TASK-026 Decouple ThinkCode from CodeWiki memory policy"
+    },
+    {
+      "ts": "2026-05-02T00:49:53Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-026",
+      "action": "spawn",
+      "title": "Decouple ThinkCode from CodeWiki memory policy",
+      "summary": "Spawned task TASK-026 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:49:58Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-026",
+      "action": "focus",
+      "title": "Decouple ThinkCode from CodeWiki memory policy",
+      "summary": "Decouple ThinkCode wording from CodeWiki memory policy.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:53:12Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-026 Decouple ThinkCode from CodeWiki memory policy"
+    },
+    {
+      "ts": "2026-05-02T00:53:12Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-026 Decouple ThinkCode from CodeWiki memory policy"
+    },
+    {
+      "ts": "2026-05-02T00:53:12Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-026",
+      "phase": "verify",
+      "title": "Decouple ThinkCode from CodeWiki memory policy",
+      "summary": "Removed ThinkCode-as-required-runtime wording from skills, prompts, and knowledge; now framed as optional external/compatible tooling governed by its own skill.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T00:53:12Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-026",
+      "verdict": "pass",
+      "summary": "Removed ThinkCode-as-required-runtime wording from skills, prompts, and knowledge; now framed as optional external/compatible tooling governed by its own skill.",
+      "checks_run": [
+        "python scripts/rebuild_docs_meta.py",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "skills/codewiki/SKILL.md",
+        "skills/codewiki-plan/SKILL.md",
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md",
+        "skills/codewiki-architecture/SKILL.md",
+        "extensions/codewiki/index.ts",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-026/context.json",
+    "build": ".wiki/views/context/tasks/TASK-026/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-026/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-026/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/system/flows/context-memory.md",
+    ".wiki/roadmap/tasks/TASK-026/task.json",
+    ".wiki/views/context/tasks/TASK-026/build.json",
+    ".wiki/views/context/tasks/TASK-026/graph.json",
+    "extensions/codewiki/index.ts",
+    "skills"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1575,
+    "over_budget": false
+  }
+}

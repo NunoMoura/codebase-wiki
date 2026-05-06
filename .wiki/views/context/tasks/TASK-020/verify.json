@@ -1,0 +1,283 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-020",
+    "title": "Architecture manifest and Mermaid view generator",
+    "status": "done",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
+    "labels": [
+      "architecture-manifest",
+      "component-cards",
+      "flow-docs",
+      "mermaid-view"
+    ],
+    "goal": {
+      "outcome": "System architecture is represented as a structured canonical graph with component and flow detail docs and generated visual/read views.",
+      "acceptance": [
+        "`system/architecture.json` owns component nodes and information-flow edges.",
+        "`system/components/*.md` detail component cards.",
+        "`system/flows/*.md` detail important cross-component paths.",
+        "Rebuild generates a Mermaid architecture view and agent-readable system architecture view.",
+        "Graph validation detects missing component/flow docs or orphan docs."
+      ],
+      "non_goals": [
+        "Implement status panel click interactions in this task.",
+        "Make Mermaid the source of truth."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ]
+    },
+    "delta": {
+      "desired": "Structured graph truth plus generated architecture views.",
+      "current": "System architecture is mostly prose; generated graph state is not a first-class architecture source.",
+      "closure": "Architecture graph and Mermaid generation work with validation."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "`system/architecture.json` owns component nodes and information-flow edges.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "`system/components/*.md` detail component cards.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "`system/flows/*.md` detail important cross-component paths.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Rebuild generates a Mermaid architecture view and agent-readable system architecture view.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "Graph validation detects missing component/flow docs or orphan docs.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Implement status panel click interactions in this task.",
+    "Make Mermaid the source of truth."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test",
+    "node scripts/rebuild_docs_meta.py"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:03:33Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-020",
+      "action": "spawn",
+      "title": "Architecture manifest and Mermaid view generator",
+      "summary": "Spawned task TASK-020 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:37:53Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-017",
+      "phase": "verify",
+      "title": "Render architecture graph in status panel",
+      "summary": "Implemented architecture fallback display and richer wiki detail cards; ready for verification.",
+      "issues": [
+        "Generated architecture JSON/Mermaid remains TASK-020; panel degrades to system-doc fallback until that view exists."
+      ]
+    },
+    {
+      "ts": "2026-05-02T00:37:53Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-017",
+      "verdict": "pass",
+      "summary": "Implemented architecture fallback display and richer wiki detail cards; ready for verification.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/index.ts"
+      ],
+      "issues": [
+        "Generated architecture JSON/Mermaid remains TASK-020; panel degrades to system-doc fallback until that view exists."
+      ]
+    },
+    {
+      "ts": "2026-05-02T01:13:20Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-020",
+      "action": "focus",
+      "title": "Architecture manifest and Mermaid view generator",
+      "summary": "Implement architecture manifest and Mermaid generator.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T01:19:45Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-020 Architecture manifest and Mermaid view generator"
+    },
+    {
+      "ts": "2026-05-02T01:19:45Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-020 Architecture manifest and Mermaid view generator"
+    },
+    {
+      "ts": "2026-05-02T01:19:45Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-020",
+      "phase": "verify",
+      "title": "Architecture manifest and Mermaid view generator",
+      "summary": "Added canonical system architecture manifest, component/flow docs, architecture view generation, Mermaid rendering, validation for missing/orphan component and flow docs, and bootstrap smoke coverage.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T01:19:45Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-020",
+      "verdict": "pass",
+      "summary": "Added canonical system architecture manifest, component/flow docs, architecture view generation, Mermaid rendering, validation for missing/orphan component and flow docs, and bootstrap smoke coverage.",
+      "checks_run": [
+        "python scripts/rebuild_docs_meta.py",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs",
+        ".wiki/knowledge/system/architecture.json",
+        ".wiki/knowledge/system/components/*.md",
+        ".wiki/knowledge/system/flows/*.md",
+        ".wiki/views/system/architecture.json",
+        ".wiki/views/system/architecture.mmd"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-020/context.json",
+    "build": ".wiki/views/context/tasks/TASK-020/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-020/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-020/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/flows/context-memory.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-020/task.json",
+    ".wiki/views/context/tasks/TASK-020/build.json",
+    ".wiki/views/context/tasks/TASK-020/graph.json",
+    "extensions/codewiki/templates.ts",
+    "scripts/rebuild_docs_meta.py",
+    "scripts/smoke-test.mjs"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1993,
+    "over_budget": false
+  }
+}

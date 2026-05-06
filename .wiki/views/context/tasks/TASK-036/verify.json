@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-036",
+    "title": "Introduce sprint planning model",
+    "status": "todo",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Add a roadmap sprint layer so the roadmap holds broad intent, future sprints stay outcome-level, and only the next sprint is decomposed into executable tasks.",
+    "labels": [
+      "roadmap",
+      "sprints",
+      "planning-loop"
+    ],
+    "goal": {
+      "outcome": "CodeWiki supports `roadmap -> sprints -> tasks` while keeping task execution atomic and verifiable.",
+      "acceptance": [
+        "Sprint semantics are documented: future sprints contain outcomes/spec links/risks, next sprint contains tasks.",
+        "Roadmap schema and generated views can represent sprint summaries and next-sprint tasks.",
+        "Planning workflow creates tasks only for the next sprint.",
+        "Sprint closure requires integration verification and drift review."
+      ],
+      "non_goals": [
+        "Do not build a full project-management suite.",
+        "Do not force existing flat roadmap users through a breaking migration without compatibility."
+      ],
+      "verification": [
+        "Run schema/view smoke tests.",
+        "Verify old flat roadmap fixtures remain readable or have a safe migration path.",
+        "Run `codewiki_state refresh=true` and inspect queue/status views."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Sprint semantics are documented: future sprints contain outcomes/spec links/risks, next sprint contains tasks.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/flows/task-loop.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "Run schema/view smoke tests.",
+        "Verify old flat roadmap fixtures remain readable or have a safe migration path.",
+        "Run `codewiki_state refresh=true` and inspect queue/status views."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Roadmap schema and generated views can represent sprint summaries and next-sprint tasks.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/flows/task-loop.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "Run schema/view smoke tests.",
+        "Verify old flat roadmap fixtures remain readable or have a safe migration path.",
+        "Run `codewiki_state refresh=true` and inspect queue/status views."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Planning workflow creates tasks only for the next sprint.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/flows/task-loop.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "Run schema/view smoke tests.",
+        "Verify old flat roadmap fixtures remain readable or have a safe migration path.",
+        "Run `codewiki_state refresh=true` and inspect queue/status views."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Sprint closure requires integration verification and drift review.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/flows/task-loop.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "Run schema/view smoke tests.",
+        "Verify old flat roadmap fixtures remain readable or have a safe migration path.",
+        "Run `codewiki_state refresh=true` and inspect queue/status views."
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Do not build a full project-management suite.",
+    "Do not force existing flat roadmap users through a breaking migration without compatibility."
+  ],
+  "required_checks": [
+    "Run schema/view smoke tests.",
+    "Verify old flat roadmap fixtures remain readable or have a safe migration path.",
+    "Run `codewiki_state refresh=true` and inspect queue/status views."
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-06T03:23:00Z",
+      "kind": "roadmap_task_created",
+      "taskId": "TASK-036",
+      "title": "Introduce sprint planning model"
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-036/context.json",
+    "build": ".wiki/views/context/tasks/TASK-036/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-036/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-036/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/components/roadmap.md",
+    ".wiki/knowledge/system/flows/task-loop.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-036/task.json",
+    ".wiki/views/context/tasks/TASK-036/build.json",
+    ".wiki/views/context/tasks/TASK-036/graph.json",
+    "extensions/codewiki/src/core/roadmap.ts",
+    "extensions/codewiki/src/core/types.ts",
+    "extensions/codewiki/src/engine/views.ts",
+    "extensions/codewiki/templates.ts"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1400,
+    "over_budget": false
+  }
+}

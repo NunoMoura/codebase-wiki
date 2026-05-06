@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-033",
+    "title": "Checkpoint stable refactor baseline before next roadmap",
+    "status": "verify",
+    "priority": "critical",
+    "kind": "verification",
+    "summary": "Verify and close the current refactor stabilization queue only after the hardened verification gateway is in place, then record a stable dogfooding baseline.",
+    "labels": [
+      "baseline",
+      "dogfood",
+      "release-gate",
+      "depends-on:TASK-040"
+    ],
+    "goal": {
+      "outcome": "After TASK-040 hardens the verifier, current TASK-28 through TASK-32 are verified, closed, and recorded as a stable dogfooding baseline.",
+      "acceptance": [
+        "TASK-040 is done and `task-close` verification gateway is active.",
+        "TASK-28 through TASK-32 have fresh verification evidence from the hardened verifier and are either closed or explicitly blocked.",
+        "`npm test` passes on the stable baseline.",
+        "A release checkpoint records git SHA, canonical digest, view schema version, and closed-task summaries."
+      ],
+      "non_goals": [
+        "Do not implement new sprint, skill, UI, heartbeat, or runtime features in this gate.",
+        "Do not rely on the previous weak verifier path for baseline closure."
+      ],
+      "verification": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if available/required for the touched code.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "TASK-040 is done and `task-close` verification gateway is active.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/check-architecture.mjs",
+        "scripts/smoke-test.mjs",
+        "package.json"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if available/required for the touched code.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "TASK-28 through TASK-32 have fresh verification evidence from the hardened verifier and are either closed or explicitly blocked.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/check-architecture.mjs",
+        "scripts/smoke-test.mjs",
+        "package.json"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if available/required for the touched code.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "`npm test` passes on the stable baseline.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/check-architecture.mjs",
+        "scripts/smoke-test.mjs",
+        "package.json"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if available/required for the touched code.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "A release checkpoint records git SHA, canonical digest, view schema version, and closed-task summaries.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/check-architecture.mjs",
+        "scripts/smoke-test.mjs",
+        "package.json"
+      ],
+      "checks": [
+        "Run `npm test`.",
+        "Run `npm run typecheck` if available/required for the touched code.",
+        "Run `codewiki_state refresh=true` and confirm green health."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-033/context.json",
+    "build": ".wiki/views/context/tasks/TASK-033/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-033/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-033/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/extensions/codewiki/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/roadmap/tasks/TASK-033/task.json",
+    "extensions/codewiki",
+    "package.json",
+    "scripts/check-architecture.mjs",
+    "scripts/smoke-test.mjs"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "why": "task_spec explicitly links TASK-033 to this node",
+      "edge_path": [
+        "task:TASK-033",
+        "doc:.wiki/knowledge/system/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "why": "task_spec explicitly links TASK-033 to this node",
+      "edge_path": [
+        "task:TASK-033",
+        "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki",
+      "kind": "code_path",
+      "path": "extensions/codewiki",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-033 to this node",
+      "edge_path": [
+        "task:TASK-033",
+        "code:extensions/codewiki"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/check-architecture.mjs",
+      "kind": "code_path",
+      "path": "scripts/check-architecture.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-033 to this node",
+      "edge_path": [
+        "task:TASK-033",
+        "code:scripts/check-architecture.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/smoke-test.mjs",
+      "kind": "code_path",
+      "path": "scripts/smoke-test.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-033 to this node",
+      "edge_path": [
+        "task:TASK-033",
+        "code:scripts/smoke-test.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:package.json",
+      "kind": "code_path",
+      "path": "package.json",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-033 to this node",
+      "edge_path": [
+        "task:TASK-033",
+        "code:package.json"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki",
+        "scripts/check-architecture.mjs",
+        "scripts/smoke-test.mjs",
+        "package.json"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        "extensions/codewiki",
+        "package.json",
+        "scripts/check-architecture.mjs",
+        "scripts/smoke-test.mjs"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1670,
+    "over_budget": false
+  }
+}

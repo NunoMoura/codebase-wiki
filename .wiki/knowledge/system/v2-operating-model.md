@@ -6,7 +6,7 @@ summary: Agreed v2 model for canonical truth, views, memory use, subagents, hear
 owners:
   - architecture
   - product
-updated: "2026-05-01"
+updated: "2026-05-06"
 code_paths:
   - extensions/codewiki
   - scripts/rebuild_docs_meta.py
@@ -26,6 +26,8 @@ agent writes canonical, consumes views
 ```
 
 Canonical truth is durable project memory. Views are generated navigation and read models rebuilt from that truth. The status panel and agents should consume views first, then expand to linked canonical files only when needed.
+
+Generated views also act as a context compiler. They provide compact role-specific routes, scoped graph slices, and observability signals so agents can avoid re-reading broad wiki or roadmap history. They should not become hidden truth or large RAG-style dumps.
 
 ## Target `.wiki` shape
 
@@ -52,6 +54,9 @@ Canonical truth is durable project memory. Views are generated navigation and re
     system/architecture.mmd
     roadmap/queue.json
     roadmap/tasks/TASK-###/context.json
+    context/tasks/TASK-###/build.json
+    context/tasks/TASK-###/verify.json
+    context/tasks/TASK-###/graph.json
     evidence/recent.json
 ```
 
@@ -65,9 +70,17 @@ Canonical truth is durable project memory. Views are generated navigation and re
 
 The context window is expensive RAM. The `.wiki` is persistent memory. A parent agent should keep only the current user intent, focused task, loaded view revisions, and small decisions in session context. Heavy context creation should happen through views, targeted canonical reads, subagents, or optional bounded context tools when available.
 
+The preferred context path is hybrid: compact seed packs provide the map, and bounded programmatic tools provide the microscope when a task needs filtering, graph traversal, or search over the listed paths. Precomputed packs alone can become noisy; programmatic exploration alone can wander. The compiled view should make the first step obvious and make deeper reads intentional.
+
 ## Subagents
 
 Subagents should run context-heavy or bias-sensitive work in fresh sessions. Good subagent roles include verifier, researcher, planner, architecture reviewer, and view auditor. Subagents should normally return compact JSON to the parent; the parent decides which canonical writes to perform.
+
+## Verification gateway
+
+Verification is a first-class CodeWiki capability router. The parent process prepares a compact profile-specific brief, runs deterministic preflight checks, invokes a fresh read-only verifier process or subagent for semantic review, validates the returned JSON packet, and then records evidence or blocks closure. The verifier process never writes canonical truth.
+
+The same gateway should support task, sprint, roadmap, release, drift, view, runtime-adapter, and skill-package verification profiles. Task closure should use the `task-close` profile before any dogfooding or checkpoint work relies on prior verification evidence.
 
 ## Heartbeat
 
@@ -84,6 +97,8 @@ Push, version bump, and archive behavior require policy permission plus green ve
 ## Optional bounded context tools
 
 Views are persistent common context. CodeWiki should not require a specific sandbox/runtime package for programmatic context work. Optional tools such as ThinkCode may help build temporary context packets, filter large searches, validate architecture graphs, compute stale hashes, or stage safe edits under their own policy and skill.
+
+Role seed packs may include bounded exploration recipes, but those recipes are advisory and portable. A native agent harness can execute equivalent read-only queries with its own tools.
 
 When ThinkCode is available, CodeWiki workflows may ask it to run bounded analysis scripts over `.wiki/views/**`, roadmap task shards, graph state, and linked code paths. The returned packet is advisory context for the parent agent. If ThinkCode is unavailable, the same workflow falls back to `codewiki_state`, generated views, `scripts/codewiki-gateway.mjs pack/tree/manifest`, and normal Pi read/search tools.
 

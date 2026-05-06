@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-05T23:17:02Z",
+  "updated": "2026-05-06T22:01:08Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -33,7 +33,16 @@
     "TASK-29",
     "TASK-30",
     "TASK-31",
-    "TASK-32"
+    "TASK-32",
+    "TASK-033",
+    "TASK-034",
+    "TASK-035",
+    "TASK-036",
+    "TASK-037",
+    "TASK-038",
+    "TASK-039",
+    "TASK-040",
+    "TASK-041"
   ],
   "tasks": {
     "TASK-001": {
@@ -1302,7 +1311,7 @@
     "TASK-28": {
       "id": "TASK-28",
       "title": "Stabilize CodeWiki refactor after partial DDD migration",
-      "status": "verify",
+      "status": "done",
       "priority": "critical",
       "kind": "architecture",
       "summary": "Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.",
@@ -1352,7 +1361,7 @@
         "closure": "Baseline checks pass; current migration drift is documented; remaining future work lives in TASK-30/TASK-32."
       },
       "created": "2026-05-05",
-      "updated": "2026-05-05T23:16:23Z"
+      "updated": "2026-05-06T08:48:01Z"
     },
     "TASK-29": {
       "id": "TASK-29",
@@ -1563,6 +1572,485 @@
       },
       "created": "2026-05-05",
       "updated": "2026-05-05T23:17:02Z"
+    },
+    "TASK-033": {
+      "id": "TASK-033",
+      "title": "Checkpoint stable refactor baseline before next roadmap",
+      "status": "verify",
+      "priority": "critical",
+      "kind": "verification",
+      "summary": "Verify and close the current refactor stabilization queue only after the hardened verification gateway is in place, then record a stable dogfooding baseline.",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/check-architecture.mjs",
+        "scripts/smoke-test.mjs",
+        "package.json"
+      ],
+      "research_ids": [],
+      "labels": [
+        "baseline",
+        "dogfood",
+        "release-gate",
+        "depends-on:TASK-040"
+      ],
+      "goal": {
+        "outcome": "After TASK-040 hardens the verifier, current TASK-28 through TASK-32 are verified, closed, and recorded as a stable dogfooding baseline.",
+        "acceptance": [
+          "TASK-040 is done and `task-close` verification gateway is active.",
+          "TASK-28 through TASK-32 have fresh verification evidence from the hardened verifier and are either closed or explicitly blocked.",
+          "`npm test` passes on the stable baseline.",
+          "A release checkpoint records git SHA, canonical digest, view schema version, and closed-task summaries."
+        ],
+        "non_goals": [
+          "Do not implement new sprint, skill, UI, heartbeat, or runtime features in this gate.",
+          "Do not rely on the previous weak verifier path for baseline closure."
+        ],
+        "verification": [
+          "Run `npm test`.",
+          "Run `npm run typecheck` if available/required for the touched code.",
+          "Run `codewiki_state refresh=true` and confirm green health."
+        ]
+      },
+      "delta": {
+        "desired": "",
+        "current": "",
+        "closure": ""
+      },
+      "created": "2026-05-06",
+      "updated": "2026-05-06T04:16:49Z"
+    },
+    "TASK-034": {
+      "id": "TASK-034",
+      "title": "Design CodeWiki skill package and workflow assets",
+      "status": "todo",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Define a CodeWiki skill package with router instructions, deterministic scripts, and grill/plan/build/verify workflow assets adapted from Matt Pocock's skills only where they fit CodeWiki semantics.",
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "README.md",
+        "package.json"
+      ],
+      "research_ids": [],
+      "labels": [
+        "skills",
+        "workflow",
+        "matt-pocock-adaptation"
+      ],
+      "goal": {
+        "outcome": "CodeWiki has a clear packaged skill contract that teaches agents how to operate `.wiki` without creating parallel documentation systems.",
+        "acceptance": [
+          "A skill-package structure is specified for `SKILL.md`, `scripts/`, and workflow assets.",
+          "`grill`, `plan`, `build`, and `verify` loops are described with CodeWiki-specific inputs, outputs, stop conditions, and canonical write rules.",
+          "Matt Pocock skill ideas are classified as adopt, adapt, or discard, with documentation-related conventions explicitly filtered through CodeWiki's knowledge model.",
+          "Repo-specific process customization lives under `.wiki/knowledge/**` or config, while package workflow assets remain versioned and not casually self-mutated."
+        ],
+        "non_goals": [
+          "Do not blindly copy `CONTEXT.md`, `docs/adr`, issue-tracker, or PRD conventions when they duplicate CodeWiki knowledge/roadmap semantics.",
+          "Do not make agents hand-edit generated views."
+        ],
+        "verification": [
+          "Review packaged skill docs against `.wiki` invariants.",
+          "Run package smoke/test checks after any skill packaging changes.",
+          "Verify no parallel source of truth was introduced."
+        ]
+      },
+      "delta": {
+        "desired": "",
+        "current": "",
+        "closure": ""
+      },
+      "created": "2026-05-06",
+      "updated": "2026-05-06"
+    },
+    "TASK-035": {
+      "id": "TASK-035",
+      "title": "Enforce structured knowledge-roadmap-code mapping",
+      "status": "todo",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Strengthen CodeWiki schemas, lint, and docs so knowledge docs, sprints, tasks, evidence, and code paths form a navigable vertical mapping for agents.",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/components/knowledge.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "research_ids": [],
+      "labels": [
+        "schema",
+        "lint",
+        "mapping"
+      ],
+      "goal": {
+        "outcome": "Agents can reliably trace intended knowledge to roadmap delta to code ownership through enforced metadata and generated views.",
+        "acceptance": [
+          "Knowledge frontmatter requirements are documented and enforced for ids, summaries, owners, and relevant code/spec links.",
+          "Roadmap tasks validate `spec_paths`, `code_paths`, goals, acceptance, non-goals, verification, and evidence links.",
+          "Lint/reporting identifies missing or broken horizontal and vertical mappings.",
+          "Generated views expose compact navigation packets for this mapping without becoming canonical truth."
+        ],
+        "non_goals": [
+          "Do not require every code file to have a one-to-one doc.",
+          "Do not make roadmap tasks duplicate all knowledge content."
+        ],
+        "verification": [
+          "Run `npm test`.",
+          "Run a rebuild and confirm `codewiki_state refresh=true` is green.",
+          "Add/adjust smoke fixtures for invalid mapping cases."
+        ]
+      },
+      "delta": {
+        "desired": "",
+        "current": "",
+        "closure": ""
+      },
+      "created": "2026-05-06",
+      "updated": "2026-05-06"
+    },
+    "TASK-036": {
+      "id": "TASK-036",
+      "title": "Introduce sprint planning model",
+      "status": "todo",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Add a roadmap sprint layer so the roadmap holds broad intent, future sprints stay outcome-level, and only the next sprint is decomposed into executable tasks.",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/components/roadmap.md",
+        ".wiki/knowledge/system/flows/task-loop.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "research_ids": [],
+      "labels": [
+        "roadmap",
+        "sprints",
+        "planning-loop"
+      ],
+      "goal": {
+        "outcome": "CodeWiki supports `roadmap -> sprints -> tasks` while keeping task execution atomic and verifiable.",
+        "acceptance": [
+          "Sprint semantics are documented: future sprints contain outcomes/spec links/risks, next sprint contains tasks.",
+          "Roadmap schema and generated views can represent sprint summaries and next-sprint tasks.",
+          "Planning workflow creates tasks only for the next sprint.",
+          "Sprint closure requires integration verification and drift review."
+        ],
+        "non_goals": [
+          "Do not build a full project-management suite.",
+          "Do not force existing flat roadmap users through a breaking migration without compatibility."
+        ],
+        "verification": [
+          "Run schema/view smoke tests.",
+          "Verify old flat roadmap fixtures remain readable or have a safe migration path.",
+          "Run `codewiki_state refresh=true` and inspect queue/status views."
+        ]
+      },
+      "delta": {
+        "desired": "",
+        "current": "",
+        "closure": ""
+      },
+      "created": "2026-05-06",
+      "updated": "2026-05-06"
+    },
+    "TASK-037": {
+      "id": "TASK-037",
+      "title": "Build standalone read-only CodeWiki UI",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "architecture",
+      "summary": "Detach the human status interface from Pi by creating an agent-agnostic read-only UI that consumes generated `.wiki/views/**` and renders Mermaid outside the Pi TUI constraints.",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/clients/surfaces/status-panel.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/components/extension.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/ui",
+        "extensions/codewiki/src/engine/views.ts",
+        "package.json"
+      ],
+      "research_ids": [],
+      "labels": [
+        "ui",
+        "adapter",
+        "mermaid",
+        "agent-agnostic"
+      ],
+      "goal": {
+        "outcome": "Humans can inspect CodeWiki status, roadmap, product/system views, and Mermaid architecture without running Pi.",
+        "acceptance": [
+          "A standalone read-only UI surface is designed or implemented without importing Pi SDK/TUI code.",
+          "UI consumes generated views as its only data source for initial slice.",
+          "Mermaid architecture renders in an environment suited to diagrams.",
+          "Pi status panel remains compatible or delegates shared formatting where useful."
+        ],
+        "non_goals": [
+          "Do not add canonical writes in the first external UI slice.",
+          "Do not make UI the access layer for agents; agents should use views, CLI, MCP, or native adapters."
+        ],
+        "verification": [
+          "Run package tests.",
+          "Manually open/read fixture views in the standalone UI or snapshot-render output.",
+          "Confirm no Pi imports cross into standalone UI modules."
+        ]
+      },
+      "delta": {
+        "desired": "",
+        "current": "",
+        "closure": ""
+      },
+      "created": "2026-05-06",
+      "updated": "2026-05-06"
+    },
+    "TASK-038": {
+      "id": "TASK-038",
+      "title": "Implement trigger-based heartbeat agency loop",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "agent-workflow",
+      "summary": "Replace the current heartbeat planning stub with a bounded trigger-based loop whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+        "extensions/codewiki/src/core/types.ts",
+        "skills/codewiki/SKILL.md"
+      ],
+      "research_ids": [],
+      "labels": [
+        "heartbeat",
+        "agency",
+        "automation",
+        "openclaw-inspired"
+      ],
+      "goal": {
+        "outcome": "Users can choose understandable heartbeat triggers and safe autonomy budgets instead of opaque agency levels.",
+        "acceptance": [
+          "Heartbeat trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
+          "Each trigger maps to bounded observe/maintain/plan/work behavior with explicit budgets and stop conditions.",
+          "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
+          "Heartbeat can enter a brainstorm/planning loop only when trigger, budget, and risk policy allow it."
+        ],
+        "non_goals": [
+          "Do not implement unbounded autonomous coding.",
+          "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks."
+        ],
+        "verification": [
+          "Add tests or smoke coverage for trigger-to-action planning.",
+          "Run `npm test`.",
+          "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+        ]
+      },
+      "delta": {
+        "desired": "",
+        "current": "",
+        "closure": ""
+      },
+      "created": "2026-05-06",
+      "updated": "2026-05-06"
+    },
+    "TASK-039": {
+      "id": "TASK-039",
+      "title": "Provide optional ThinkCode runtime adapter",
+      "status": "todo",
+      "priority": "medium",
+      "kind": "architecture",
+      "summary": "Make ThinkCode a first-class optional runtime for bounded CodeWiki context work while preserving native fallback paths for Pi, Codex, Claude Code, and other agent harnesses.",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/components/runtime-gateway.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "skills",
+        "README.md",
+        "package.json"
+      ],
+      "research_ids": [],
+      "labels": [
+        "think-code",
+        "runtime",
+        "adapters",
+        "agent-agnostic"
+      ],
+      "goal": {
+        "outcome": "CodeWiki can prefer ThinkCode when available but remains usable from any agent runtime through views, CLI/gateway, MCP/future adapters, or native tools.",
+        "acceptance": [
+          "Runtime docs describe ThinkCode as optional, not required memory or execution substrate.",
+          "Adapter contract identifies where `think-code.policy.json` lives and how staged writes are validated.",
+          "Fallback paths are documented for native CodeWiki gateway/views when ThinkCode is unavailable.",
+          "The design supports future Codex and Claude Code adapters without Pi-specific assumptions."
+        ],
+        "non_goals": [
+          "Do not make ThinkCode a hard dependency.",
+          "Do not let ThinkCode bypass CodeWiki canonical write rules or mutate generated views directly."
+        ],
+        "verification": [
+          "Run tests/smoke after docs/package changes.",
+          "Validate gateway manifest still advertises CodeWiki capabilities independent of ThinkCode.",
+          "Check skills mention optional fallback behavior clearly."
+        ]
+      },
+      "delta": {
+        "desired": "",
+        "current": "",
+        "closure": ""
+      },
+      "created": "2026-05-06",
+      "updated": "2026-05-06"
+    },
+    "TASK-040": {
+      "id": "TASK-040",
+      "title": "Harden verification gateway before dogfood checkpoint",
+      "status": "done",
+      "priority": "critical",
+      "kind": "testing",
+      "summary": "Implement a first-class CodeWiki verification gateway/router before relying on existing verifier evidence to close the stable refactor baseline and start dogfooding.",
+      "spec_paths": [
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/schemas.ts",
+        "skills/codewiki-verify/SKILL.md",
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "p0",
+        "verification",
+        "gateway",
+        "dogfood-gate",
+        "depends-on:TASK-041"
+      ],
+      "goal": {
+        "outcome": "Task closure and future sprint/release/drift checks use a robust verification gateway instead of ad hoc verifier prompts or parent-session confidence, using hardened context packs from the view/context-compiler work where needed.",
+        "acceptance": [
+          "Define a `codewiki.verify`-style internal gateway/router contract with profiles, briefs, policies, and verdict schema.",
+          "Implement the `task-close` profile first and route `codewiki_task action=\"close\"` through it.",
+          "Run deterministic preflight before semantic verification, including task goal fields, linked path existence, evidence/check presence, and view freshness where applicable.",
+          "Consume or define a compact verifier context pack instead of relying on ad hoc task prompt assembly.",
+          "Invoke semantic verification in a separate fresh read-only process/session/subagent with a complete CodeWiki verifier rubric and compact task brief.",
+          "Parse and validate verifier JSON strictly; malformed output returns `block` with evidence.",
+          "Add golden or smoke coverage for `pass`, `fail`, `block`, and malformed-output cases.",
+          "Ensure verifier cannot mutate canonical truth or generated views; parent remains sole writer for evidence and lifecycle changes."
+        ],
+        "non_goals": [
+          "Do not implement all profiles in the first slice beyond contract stubs or documented routing.",
+          "Do not make verification depend on ThinkCode or any single runtime.",
+          "Do not close baseline refactor tasks using the old weak verifier path.",
+          "Do not solve the full sprint/roadmap context compiler in this task."
+        ],
+        "verification": [
+          "Run `npm test`.",
+          "Run `npm run typecheck` if required by touched TypeScript.",
+          "Manually exercise or unit-test `task-close` verifier outcomes for pass/fail/block.",
+          "Run `codewiki_state refresh=true` and confirm green health."
+        ]
+      },
+      "delta": {
+        "desired": "",
+        "current": "",
+        "closure": ""
+      },
+      "created": "2026-05-06",
+      "updated": "2026-05-06T22:01:08Z"
+    },
+    "TASK-041": {
+      "id": "TASK-041",
+      "title": "Review and improve generated views into a token-efficient context compiler",
+      "status": "done",
+      "priority": "critical",
+      "kind": "architecture",
+      "summary": "Audit and redesign generated `.wiki/views/**` as lightweight routing and observability read models, then benchmark prebuilt packs versus bounded programmatic exploration to choose the most token-efficient context strategy for task/sprint/roadmap work.",
+      "spec_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "research_ids": [],
+      "labels": [
+        "p0",
+        "views",
+        "context-compiler",
+        "observability",
+        "dogfood-gate"
+      ],
+      "goal": {
+        "outcome": "Generated views become a first-class context routing layer that supports compact role-specific packs, graph slices, and optional bounded programmatic exploration without confusing observability with verification gates.",
+        "acceptance": [
+          "Document the context-access model: views provide map/cached routes, bounded sandbox/programmatic tools provide microscope-style exploration, and verifier gateways remain the only quality gate.",
+          "Benchmark or prototype four context strategies for representative task work: prebuilt pack only, progressive disclosure only, sandbox/programmatic exploration only, and hybrid pack plus sandbox.",
+          "Define role-specific seed/context pack contracts for at least `grill`, `plan`, `build`, and `verify`, emphasizing minimal routing metadata instead of large precomputed context dumps.",
+          "Define typed graph-slice views for task/sprint/roadmap scopes with `core`, `supporting`, `watch`, and `excluded` tiers plus edge reasons and confidence (`explicit` vs `inferred`).",
+          "Define horizontal and vertical observability signals only: knowledge/task/evidence/view alignment and intent → knowledge → roadmap → code → checks/evidence alignment; do not make observability a pass/fail gate.",
+          "Define an acceptance/evidence matrix that maps criteria to spec paths, code paths, checks, and evidence for verifier consumption.",
+          "Represent token budget as generator/test metadata (`estimated_tokens`, `max_tokens`, `over_budget`) rather than instructions the agent must maintain manually.",
+          "Implement or prototype the smallest useful `task.build`, `task.verify`, and `task.graph` views needed by the hardened verification gateway, without blocking future sprint/roadmap expansion.",
+          "Add tests or smoke checks proving generated context views stay deterministic, stale-aware, and within size guarantees."
+        ],
+        "non_goals": [
+          "Do not introduce embeddings, vector search, or external search infrastructure in the first slice.",
+          "Do not build the standalone UI; only shape views so UI and agents can consume them later.",
+          "Do not replace canonical knowledge, roadmap, evidence, or verifier verdicts with generated views.",
+          "Do not make observability itself a closure gate; verification consumes observability but decides separately.",
+          "Do not hand-edit generated view files."
+        ],
+        "verification": [
+          "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+          "Run `npm test`.",
+          "Run `npm run typecheck` if TypeScript files change.",
+          "Run `codewiki_state refresh=true` and confirm health stays green.",
+          "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+        ]
+      },
+      "delta": {
+        "desired": "",
+        "current": "",
+        "closure": ""
+      },
+      "created": "2026-05-06",
+      "updated": "2026-05-06T05:51:07Z"
     }
   }
 }

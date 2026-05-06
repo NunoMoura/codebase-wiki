@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-001",
+    "title": "Lock product intent in specs",
+    "status": "done",
+    "priority": "high",
+    "kind": "docs",
+    "summary": "Turn codewiki intent into explicit product and system docs.",
+    "labels": [
+      "foundation",
+      "specs"
+    ],
+    "goal": {
+      "outcome": "Project intent and ownership boundaries are explicit enough to guide implementation.",
+      "acceptance": [
+        "Foundational specs describe desired outcomes and major constraints.",
+        "At least one roadmap task links back to those specs."
+      ],
+      "non_goals": [
+        "Document every implementation detail before the project has real seams."
+      ],
+      "verification": [
+        "Review starter specs for project-specific intent and ownership coverage.",
+        "Run the rebuild command after replacing placeholders."
+      ]
+    },
+    "delta": {
+      "desired": "Product intent and architecture boundaries are explicit and stable.",
+      "current": "Starter docs need project-specific content.",
+      "closure": "Replace placeholders with concrete intended behavior and ownership boundaries."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Foundational specs describe desired outcomes and major constraints.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [],
+      "checks": [
+        "Review starter specs for project-specific intent and ownership coverage.",
+        "Run the rebuild command after replacing placeholders."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "At least one roadmap task links back to those specs.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [],
+      "checks": [
+        "Review starter specs for project-specific intent and ownership coverage.",
+        "Run the rebuild command after replacing placeholders."
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Document every implementation detail before the project has real seams."
+  ],
+  "required_checks": [
+    "Review starter specs for project-specific intent and ownership coverage.",
+    "Run the rebuild command after replacing placeholders."
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-01T03:08:19Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-001",
+      "action": "focus",
+      "title": "Lock product intent in specs",
+      "summary": "Continue with foundational product/system intent specs now that workflow tasks are implemented.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-01T03:08:37Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-001 Lock product intent in specs"
+    },
+    {
+      "ts": "2026-05-01T03:08:37Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-001 Lock product intent in specs"
+    },
+    {
+      "ts": "2026-05-01T03:08:37Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-001",
+      "phase": "verify",
+      "title": "Lock product intent in specs",
+      "summary": "Foundational product and system specs now describe CodeWiki intent, users, success criteria, non-goals, ownership seams, runtime boundary, evidence model, planning/task loops, and architecture review rule. Roadmap tasks link back to these specs.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T03:08:37Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-001",
+      "verdict": "pass",
+      "summary": "Foundational product and system specs now describe CodeWiki intent, users, success criteria, non-goals, ownership seams, runtime boundary, evidence model, planning/task loops, and architecture review rule. Roadmap tasks link back to these specs.",
+      "checks_run": [
+        "codewiki_state refresh",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/roadmap.json"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T03:24:30Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-004",
+      "action": "note",
+      "title": "Expose CodeWiki capability manifest and think-code boundary",
+      "summary": "Completed remaining roadmap tasks TASK-001 through TASK-004; roadmap now has zero open tasks and zero unmapped specs. Added capability manifest command, completed system/client/product specs, and verified package checks.",
+      "files_touched": [
+        "scripts/codewiki-gateway.mjs",
+        "README.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/clients/overview.md",
+        ".wiki/knowledge/clients/surfaces/roadmap.md",
+        ".wiki/knowledge/clients/surfaces/status-panel.md",
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        ".wiki/roadmap.json"
+      ],
+      "spawned_task_ids": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-001/context.json",
+    "build": ".wiki/views/context/tasks/TASK-001/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-001/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-001/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/product/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/roadmap/tasks/TASK-001/task.json",
+    ".wiki/views/context/tasks/TASK-001/build.json",
+    ".wiki/views/context/tasks/TASK-001/graph.json"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": false,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": false,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1390,
+    "over_budget": false
+  }
+}

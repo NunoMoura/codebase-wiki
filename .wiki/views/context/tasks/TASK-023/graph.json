@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "role": "graph",
+  "task_id": "TASK-023",
+  "tiers": {
+    "core": [
+      {
+        "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/v2-operating-model.md",
+        "title": "CodeWiki v2 Operating Model",
+        "why": "task_spec explicitly links TASK-023 to this node",
+        "edge_path": [
+          "task:TASK-023",
+          "doc:.wiki/knowledge/system/v2-operating-model.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/runtime/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/runtime/overview.md",
+        "title": "Runtime Policy",
+        "why": "task_spec explicitly links TASK-023 to this node",
+        "edge_path": [
+          "task:TASK-023",
+          "doc:.wiki/knowledge/system/runtime/overview.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "code:extensions/codewiki/index.ts",
+        "kind": "code_path",
+        "path": "extensions/codewiki/index.ts",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-023 to this node",
+        "edge_path": [
+          "task:TASK-023",
+          "code:extensions/codewiki/index.ts"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:scripts/codewiki-gateway.mjs",
+        "kind": "code_path",
+        "path": "scripts/codewiki-gateway.mjs",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-023 to this node",
+        "edge_path": [
+          "task:TASK-023",
+          "code:scripts/codewiki-gateway.mjs"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:skills",
+        "kind": "code_path",
+        "path": "skills",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-023 to this node",
+        "edge_path": [
+          "task:TASK-023",
+          "code:skills"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      }
+    ],
+    "supporting": [
+      {
+        "id": "doc:.wiki/knowledge/product/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/overview.md",
+        "title": "Product",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-023",
+          "doc:.wiki/knowledge/system/runtime/overview.md",
+          "doc:.wiki/knowledge/product/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-023",
+          "doc:.wiki/knowledge/system/runtime/overview.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/flows/sanitation-release.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+        "title": "Sanitation and Release Flow",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-023",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "doc:.wiki/knowledge/system/flows/sanitation-release.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-023",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:extensions/codewiki",
+        "kind": "code_path",
+        "path": "extensions/codewiki",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-023",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "code:extensions/codewiki"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:scripts/rebuild_docs_meta.py",
+        "kind": "code_path",
+        "path": "scripts/rebuild_docs_meta.py",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-023",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "code:scripts/rebuild_docs_meta.py"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      }
+    ],
+    "watch": [],
+    "excluded": []
+  },
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 3000,
+    "estimated_tokens": 1029,
+    "over_budget": false
+  }
+}

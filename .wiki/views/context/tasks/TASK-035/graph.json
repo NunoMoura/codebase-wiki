@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "role": "graph",
+  "task_id": "TASK-035",
+  "tiers": {
+    "core": [
+      {
+        "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/v2-operating-model.md",
+        "title": "CodeWiki v2 Operating Model",
+        "why": "task_spec explicitly links TASK-035 to this node",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/v2-operating-model.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/components/knowledge.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/components/knowledge.md",
+        "title": "Canonical Knowledge",
+        "why": "task_spec explicitly links TASK-035 to this node",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/components/knowledge.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/components/roadmap.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/components/roadmap.md",
+        "title": "Roadmap Tasks",
+        "why": "task_spec explicitly links TASK-035 to this node",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/components/roadmap.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/components/views.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/components/views.md",
+        "title": "Generated Views",
+        "why": "task_spec explicitly links TASK-035 to this node",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/components/views.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/lexicon.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/lexicon.md",
+        "title": "Lexicon",
+        "why": "task_spec explicitly links TASK-035 to this node",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/lexicon.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "code:extensions/codewiki/src/engine",
+        "kind": "code_path",
+        "path": "extensions/codewiki/src/engine",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-035 to this node",
+        "edge_path": [
+          "task:TASK-035",
+          "code:extensions/codewiki/src/engine"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:extensions/codewiki/templates.ts",
+        "kind": "code_path",
+        "path": "extensions/codewiki/templates.ts",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-035 to this node",
+        "edge_path": [
+          "task:TASK-035",
+          "code:extensions/codewiki/templates.ts"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:scripts/rebuild_docs_meta.py",
+        "kind": "code_path",
+        "path": "scripts/rebuild_docs_meta.py",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-035 to this node",
+        "edge_path": [
+          "task:TASK-035",
+          "code:scripts/rebuild_docs_meta.py"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      }
+    ],
+    "supporting": [
+      {
+        "id": "doc:.wiki/knowledge/product/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/overview.md",
+        "title": "Product",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/lexicon.md",
+          "doc:.wiki/knowledge/product/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/lexicon.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/components/knowledge.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:.wiki/knowledge",
+        "kind": "code_path",
+        "path": ".wiki/knowledge",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/components/knowledge.md",
+          "code:.wiki/knowledge"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/components/roadmap.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:.wiki/roadmap.json",
+        "kind": "code_path",
+        "path": ".wiki/roadmap.json",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/components/roadmap.md",
+          "code:.wiki/roadmap.json"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/flows/context-memory.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/flows/context-memory.md",
+        "title": "Context Memory Flow",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/components/views.md",
+          "doc:.wiki/knowledge/system/flows/context-memory.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/components/views.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:.wiki/views",
+        "kind": "code_path",
+        "path": ".wiki/views",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/components/views.md",
+          "code:.wiki/views"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/flows/sanitation-release.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+        "title": "Sanitation and Release Flow",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "doc:.wiki/knowledge/system/flows/sanitation-release.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:extensions/codewiki",
+        "kind": "code_path",
+        "path": "extensions/codewiki",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-035",
+          "doc:.wiki/knowledge/system/v2-operating-model.md",
+          "code:extensions/codewiki"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      }
+    ],
+    "watch": [],
+    "excluded": []
+  },
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 3000,
+    "estimated_tokens": 1827,
+    "over_budget": false
+  }
+}

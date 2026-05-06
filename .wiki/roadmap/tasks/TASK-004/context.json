@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-05T23:21:30Z",
+  "generated_at": "2026-05-06T22:02:15Z",
   "context_path": ".wiki/roadmap/tasks/TASK-004/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -50,38 +50,36 @@
       "digest": "e0b44e9e07f33d59f518e66511d84251cef9a772c937e15f96fafda5dbc3444e"
     },
     "git": {
-      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
       "dirty": true,
       "dirty_paths": [
-        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
         ".wiki/roadmap.json",
-        "extensions/codewiki/bootstrap.ts",
-        "extensions/codewiki/contracts.ts",
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/project-root.ts",
-        "extensions/codewiki/templates.ts",
-        "scripts/codewiki-gateway.mjs"
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/core/roadmap.ts",
+        "extensions/codewiki/src/core/session.ts",
+        "extensions/codewiki/src/engine/views.ts"
       ],
       "paths": {
         ".wiki/knowledge/product/overview.md": "643c940fa1ca",
-        ".wiki/knowledge/system/overview.md": "643c940fa1ca",
+        ".wiki/knowledge/system/overview.md": "166313f96147",
         ".wiki/knowledge/system/runtime/overview.md": "fe19eabf6306",
-        ".wiki/roadmap.json": "c70091881afe",
+        ".wiki/roadmap.json": "166313f96147",
         "README.md": "fe19eabf6306",
-        "extensions/codewiki": "c70091881afe",
-        "scripts/codewiki-gateway.mjs": "fe19eabf6306"
+        "extensions/codewiki": "166313f96147",
+        "scripts/codewiki-gateway.mjs": "166313f96147"
       }
     },
-    "spec_digest": "6055ee4746df88b58f1e9147b9f2d4b493cff9c3e094f4b9bc80c21bc5721684",
+    "spec_digest": "8f36e41bc3e98c5fa3b02eb473aab1f3f7c79b9360c51eb269298724e466e43a",
     "code_digest": "3ff7a8cbe4ca69e770e79637c976e4cbfc390b1b77a20f4103d44c4ab7218203",
     "graph": {
       "git": {
-        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
         "dirty": true
       },
-      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
-      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
-      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
     }
   },
   "specs": [
@@ -131,7 +129,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "f0306aa864ab75eef3e989a6819add03232c7a7df3e95a442eaac6d4b688b332"
+        "digest": "0b4d5690b61979d89fa163d01d48cc73f66d0470f752b0f13f1978b78c8f6ecd"
       },
       "expand": {
         "read": ".wiki/knowledge/system/runtime/overview.md"
@@ -178,6 +176,9 @@
     "task_json": ".wiki/roadmap/tasks/TASK-004/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",
     "status_state": ".wiki/status-state.json",
-    "graph": ".wiki/graph.json"
+    "graph": ".wiki/graph.json",
+    "build_pack": ".wiki/views/context/tasks/TASK-004/build.json",
+    "verify_pack": ".wiki/views/context/tasks/TASK-004/verify.json",
+    "graph_slice": ".wiki/views/context/tasks/TASK-004/graph.json"
   }
 }

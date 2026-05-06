@@ -1,0 +1,348 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-28",
+    "title": "Stabilize CodeWiki refactor after partial DDD migration",
+    "status": "done",
+    "priority": "critical",
+    "kind": "architecture",
+    "summary": "Restore a stable baseline after the partial folder refactor by mapping current drift, fixing broken CodeWiki tool execution, and removing duplicate or dead migration artifacts only when safe.",
+    "labels": [
+      "architecture",
+      "stabilization",
+      "migration"
+    ],
+    "goal": {
+      "outcome": "CodeWiki has a green baseline before further architecture migration proceeds.",
+      "acceptance": [
+        "`npm run typecheck` and `npm test` pass.",
+        "`codewiki_state` works from the Pi tool path or the failure is captured with a blocking root cause.",
+        "Current duplicate module sets are inventoried with a keep/delete/move decision.",
+        "No broad folder moves happen before the baseline is verified."
+      ],
+      "non_goals": [
+        "Do not implement MCP, Codex, or Claude adapters.",
+        "Do not complete the full DDD migration in this task.",
+        "Do not delete compatibility shims without proving all imports moved."
+      ],
+      "verification": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run a CodeWiki state read or targeted equivalent for this repo.",
+        "Inspect git diff for unrelated rewrites."
+      ]
+    },
+    "delta": {
+      "desired": "Verified stable baseline with known drift and a safe migration path.",
+      "current": "Baseline is green: typecheck, tests, architecture check, pack dry-run, and live codewiki_state refresh pass. Pi surface is adapter-isolated, duplicate engine path is removed, and current seams are documented.",
+      "closure": "Baseline checks pass; current migration drift is documented; remaining future work lives in TASK-30/TASK-32."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "`npm run typecheck` and `npm test` pass.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs",
+        "tsconfig.json"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run a CodeWiki state read or targeted equivalent for this repo.",
+        "Inspect git diff for unrelated rewrites."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "`codewiki_state` works from the Pi tool path or the failure is captured with a blocking root cause.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs",
+        "tsconfig.json"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run a CodeWiki state read or targeted equivalent for this repo.",
+        "Inspect git diff for unrelated rewrites."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Current duplicate module sets are inventoried with a keep/delete/move decision.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs",
+        "tsconfig.json"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run a CodeWiki state read or targeted equivalent for this repo.",
+        "Inspect git diff for unrelated rewrites."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "No broad folder moves happen before the baseline is verified.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs",
+        "tsconfig.json"
+      ],
+      "checks": [
+        "Run `npm run typecheck`.",
+        "Run `npm test`.",
+        "Run a CodeWiki state read or targeted equivalent for this repo.",
+        "Inspect git diff for unrelated rewrites."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-28/context.json",
+    "build": ".wiki/views/context/tasks/TASK-28/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-28/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-28/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/extensions/codewiki/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/roadmap/tasks/TASK-28/task.json",
+    "extensions/codewiki",
+    "extensions/codewiki/src/adapters/pi",
+    "extensions/codewiki/src/core",
+    "extensions/codewiki/src/engine",
+    "extensions/codewiki/src/infrastructure",
+    "scripts/check-architecture.mjs",
+    "scripts/smoke-test.mjs",
+    "tsconfig.json"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "why": "task_spec explicitly links TASK-28 to this node",
+      "edge_path": [
+        "task:TASK-28",
+        "doc:.wiki/knowledge/system/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+      "title": "Extensions / Codewiki",
+      "why": "task_spec explicitly links TASK-28 to this node",
+      "edge_path": [
+        "task:TASK-28",
+        "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki",
+      "kind": "code_path",
+      "path": "extensions/codewiki",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-28 to this node",
+      "edge_path": [
+        "task:TASK-28",
+        "code:extensions/codewiki"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-28 to this node",
+      "edge_path": [
+        "task:TASK-28",
+        "code:extensions/codewiki/src/adapters/pi"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/core",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/core",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-28 to this node",
+      "edge_path": [
+        "task:TASK-28",
+        "code:extensions/codewiki/src/core"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-28 to this node",
+      "edge_path": [
+        "task:TASK-28",
+        "code:extensions/codewiki/src/engine"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/infrastructure",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/infrastructure",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-28 to this node",
+      "edge_path": [
+        "task:TASK-28",
+        "code:extensions/codewiki/src/infrastructure"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/smoke-test.mjs",
+      "kind": "code_path",
+      "path": "scripts/smoke-test.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-28 to this node",
+      "edge_path": [
+        "task:TASK-28",
+        "code:scripts/smoke-test.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/check-architecture.mjs",
+      "kind": "code_path",
+      "path": "scripts/check-architecture.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-28 to this node",
+      "edge_path": [
+        "task:TASK-28",
+        "code:scripts/check-architecture.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:tsconfig.json",
+      "kind": "code_path",
+      "path": "tsconfig.json",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-28 to this node",
+      "edge_path": [
+        "task:TASK-28",
+        "code:tsconfig.json"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "scripts/smoke-test.mjs",
+        "scripts/check-architecture.mjs",
+        "tsconfig.json"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        "extensions/codewiki",
+        "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/core",
+        "extensions/codewiki/src/engine",
+        "extensions/codewiki/src/infrastructure",
+        "scripts/check-architecture.mjs",
+        "scripts/smoke-test.mjs",
+        "tsconfig.json"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 2303,
+    "over_budget": false
+  }
+}

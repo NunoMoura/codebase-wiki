@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-05T23:21:30Z",
+  "generated_at": "2026-05-06T22:02:15Z",
   "context_path": ".wiki/roadmap/tasks/TASK-018/context.json",
   "budget": {
     "target_tokens": 6000,
@@ -48,31 +48,33 @@
       "digest": "77b8abed0c301d6e397f3baae35ee6f2e1a13290e8112af2affd23e5e99b0ee4"
     },
     "git": {
-      "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
       "dirty": true,
       "dirty_paths": [
-        ".wiki/roadmap.json",
-        "extensions/codewiki/index.ts"
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/roadmap.json"
       ],
       "paths": {
         ".wiki/knowledge/lexicon.md": "643c940fa1ca",
         ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf6306",
         ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf6306",
-        ".wiki/roadmap.json": "c70091881afe",
-        "extensions/codewiki/index.ts": "c70091881afe",
+        ".wiki/roadmap.json": "166313f96147",
+        "extensions/codewiki/index.ts": "166313f96147",
         "skills": "fe19eabf6306"
       }
     },
-    "spec_digest": "6cc8a7a2a756c97ba6134b5ffb1a3f4b113206d27759f4a9951c0234e21fcfc3",
+    "spec_digest": "1f1f94c09bcd1f63c3527dc1030df4a210193b0b676e17688c23f7566898c8c6",
     "code_digest": "83ed821e11077d66f70d1d650c59b713668b5df904ef339884a5476f0601aa4a",
     "graph": {
       "git": {
-        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
         "dirty": true
       },
-      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
-      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
-      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
     }
   },
   "specs": [
@@ -89,7 +91,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543"
+        "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b"
       },
       "expand": {
         "read": ".wiki/knowledge/system/flows/context-memory.md"
@@ -110,7 +112,7 @@
         "skills"
       ],
       "revision": {
-        "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485"
+        "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4"
       },
       "expand": {
         "read": ".wiki/knowledge/system/v2-operating-model.md"
@@ -127,7 +129,7 @@
       ],
       "code_paths": [],
       "revision": {
-        "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e"
+        "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d"
       },
       "expand": {
         "read": ".wiki/knowledge/lexicon.md"
@@ -172,6 +174,9 @@
     "task_json": ".wiki/roadmap/tasks/TASK-018/task.json",
     "roadmap_state": ".wiki/roadmap-state.json",
     "status_state": ".wiki/status-state.json",
-    "graph": ".wiki/graph.json"
+    "graph": ".wiki/graph.json",
+    "build_pack": ".wiki/views/context/tasks/TASK-018/build.json",
+    "verify_pack": ".wiki/views/context/tasks/TASK-018/verify.json",
+    "graph_slice": ".wiki/views/context/tasks/TASK-018/graph.json"
   }
 }

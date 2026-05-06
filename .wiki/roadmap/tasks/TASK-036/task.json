@@ -1,0 +1,50 @@
+{
+  "id": "TASK-036",
+  "title": "Introduce sprint planning model",
+  "status": "todo",
+  "priority": "high",
+  "kind": "architecture",
+  "summary": "Add a roadmap sprint layer so the roadmap holds broad intent, future sprints stay outcome-level, and only the next sprint is decomposed into executable tasks.",
+  "spec_paths": [
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/knowledge/system/components/roadmap.md",
+    ".wiki/knowledge/system/flows/task-loop.md"
+  ],
+  "code_paths": [
+    "extensions/codewiki/src/core/roadmap.ts",
+    "extensions/codewiki/src/engine/views.ts",
+    "extensions/codewiki/src/core/types.ts",
+    "extensions/codewiki/templates.ts"
+  ],
+  "research_ids": [],
+  "labels": [
+    "roadmap",
+    "sprints",
+    "planning-loop"
+  ],
+  "goal": {
+    "outcome": "CodeWiki supports `roadmap -> sprints -> tasks` while keeping task execution atomic and verifiable.",
+    "acceptance": [
+      "Sprint semantics are documented: future sprints contain outcomes/spec links/risks, next sprint contains tasks.",
+      "Roadmap schema and generated views can represent sprint summaries and next-sprint tasks.",
+      "Planning workflow creates tasks only for the next sprint.",
+      "Sprint closure requires integration verification and drift review."
+    ],
+    "non_goals": [
+      "Do not build a full project-management suite.",
+      "Do not force existing flat roadmap users through a breaking migration without compatibility."
+    ],
+    "verification": [
+      "Run schema/view smoke tests.",
+      "Verify old flat roadmap fixtures remain readable or have a safe migration path.",
+      "Run `codewiki_state refresh=true` and inspect queue/status views."
+    ]
+  },
+  "delta": {
+    "desired": "",
+    "current": "",
+    "closure": ""
+  },
+  "created": "2026-05-06",
+  "updated": "2026-05-06"
+}

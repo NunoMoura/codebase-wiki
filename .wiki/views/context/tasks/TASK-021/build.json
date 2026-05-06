@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-021",
+    "title": "Subagent JSON worker contracts",
+    "status": "done",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
+    "labels": [
+      "subagent-workers",
+      "json-contracts",
+      "fresh-ram"
+    ],
+    "goal": {
+      "outcome": "Context-heavy or bias-sensitive CodeWiki work can run in fresh subagent sessions and return bounded results to the parent agent.",
+      "acceptance": [
+        "Verifier, researcher, planner, architecture reviewer, and view auditor roles have documented input/output contracts.",
+        "Parent agent remains responsible for canonical writes.",
+        "Subagent outputs are compact JSON with pass/fail/block or proposal semantics as appropriate.",
+        "Existing fresh verifier behavior aligns with the shared subagent model."
+      ],
+      "non_goals": [
+        "Let subagents freely mutate `.wiki` canonical truth.",
+        "Replace all parent-agent work with subagents."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Subagents become reusable context-management workers.",
+      "current": "Fresh verifier exists, but broader subagent roles and contracts are underexplored.",
+      "closure": "Contracts and at least one additional subagent workflow are implemented or stubbed with tests."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Verifier, researcher, planner, architecture reviewer, and view auditor roles have documented input/output contracts.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Parent agent remains responsible for canonical writes.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Subagent outputs are compact JSON with pass/fail/block or proposal semantics as appropriate.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Existing fresh verifier behavior aligns with the shared subagent model.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-021/context.json",
+    "build": ".wiki/views/context/tasks/TASK-021/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-021/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-021/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/flows/context-memory.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-021/task.json",
+    "extensions/codewiki/contracts.ts",
+    "skills"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-021 to this node",
+      "edge_path": [
+        "task:TASK-021",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/flows/context-memory.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "why": "task_spec explicitly links TASK-021 to this node",
+      "edge_path": [
+        "task:TASK-021",
+        "doc:.wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/contracts.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/contracts.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-021 to this node",
+      "edge_path": [
+        "task:TASK-021",
+        "code:extensions/codewiki/contracts.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:skills",
+      "kind": "code_path",
+      "path": "skills",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-021 to this node",
+      "edge_path": [
+        "task:TASK-021",
+        "code:skills"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1339,
+    "over_budget": false
+  }
+}

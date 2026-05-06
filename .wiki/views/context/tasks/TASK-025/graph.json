@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "role": "graph",
+  "task_id": "TASK-025",
+  "tiers": {
+    "core": [
+      {
+        "id": "code:README.md",
+        "kind": "code_path",
+        "path": "README.md",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-025 to this node",
+        "edge_path": [
+          "task:TASK-025",
+          "code:README.md"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:skills/codewiki/SKILL.md",
+        "kind": "code_path",
+        "path": "skills/codewiki/SKILL.md",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-025 to this node",
+        "edge_path": [
+          "task:TASK-025",
+          "code:skills/codewiki/SKILL.md"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:extensions/codewiki/contracts.ts",
+        "kind": "code_path",
+        "path": "extensions/codewiki/contracts.ts",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-025 to this node",
+        "edge_path": [
+          "task:TASK-025",
+          "code:extensions/codewiki/contracts.ts"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      }
+    ],
+    "supporting": [],
+    "watch": [],
+    "excluded": []
+  },
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 3000,
+    "estimated_tokens": 292,
+    "over_budget": false
+  }
+}

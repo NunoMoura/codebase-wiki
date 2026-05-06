@@ -20,8 +20,10 @@ user prompt
   -> parent Pi agent session RAM
   -> tiny status view
   -> recommended task/product/system/drift views
+  -> role seed pack and scoped graph slice
+  -> optional bounded context tool for programmatic exploration over listed paths
   -> targeted canonical docs and code paths only when needed
-  -> optional subagent or bounded context tool for heavy context work
+  -> optional subagent for heavy or bias-sensitive work
   -> compact result back to parent
   -> canonical write
   -> view rebuild
@@ -31,13 +33,18 @@ user prompt
 
 The context window is expensive RAM and should not become the default store for project truth. The parent agent keeps the current user intent, focused task, loaded view revisions, and small decisions. It should avoid loading whole wiki trees or raw historical logs.
 
-Views are the default persistent read surface. Canonical files are expanded when a view points to them or when exact source is required. Subagents handle context-heavy verification, research, architecture review, and planning review in fresh sessions. Optional bounded context tools can handle programmatic filtering, validation, and temporary context creation. ThinkCode is one compatible tool, not a CodeWiki requirement.
+Views are the default persistent read surface. They should provide cached routes and scoped graph slices, not large context dumps. Canonical files are expanded when a view points to them or when exact source is required.
+
+The preferred access pattern is hybrid: a compact role seed pack gives the map, and optional bounded context tools provide a microscope for programmatic filtering, validation, and temporary context creation over the listed paths. ThinkCode is one compatible tool, not a CodeWiki requirement.
+
+Subagents handle context-heavy verification, research, architecture review, and planning review in fresh sessions. They should consume the same views and seed packs instead of relying on ad hoc prompt assembly.
 
 ## Success signals
 
 - The first read for most workflows is a tiny status view.
-- Views include revisions and recommended next reads so unchanged context can be skipped.
+- Views include revisions, role-specific recommended next reads, scoped graph slices, and bounded exploration hints so unchanged or irrelevant context can be skipped.
 - Subagents return compact JSON summaries instead of pushing large raw context into the parent session.
+- Observability reports horizontal and vertical alignment facts without becoming a pass/fail gate; verification profiles consume those facts separately.
 - Parent agents perform canonical writes only after reviewing compact results.
 
 ## Subagent JSON workers
@@ -96,7 +103,7 @@ Shared result fields:
 
 Role contracts:
 
-- `verifier`: validates task acceptance, checks, non-goals, and evidence. Returns `pass`, `fail`, or `block`; no proposals unless follow-up is needed.
+- `verifier`: validates task acceptance, checks, non-goals, and evidence. It should consume a `verify` seed pack, acceptance/evidence matrix, and observability signals when available. Returns `pass`, `fail`, or `block`; no proposals unless follow-up is needed.
 - `researcher`: answers a bounded claim/question with sources and uncertainty. Returns `pass` when evidence supports a finding, `block` when sources are insufficient, and proposals for knowledge patches or follow-up.
 - `planner`: converts intent, drift, or research into candidate knowledge/task deltas. Returns proposal semantics; parent creates tasks.
 - `architecture_reviewer`: inspects seams, ownership, and graph/doc/code alignment. Returns findings plus possible task deltas; parent chooses design direction.

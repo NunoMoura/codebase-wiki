@@ -1,0 +1,284 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-004",
+    "title": "Expose CodeWiki capability manifest and think-code boundary",
+    "status": "done",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Define the typed CodeWiki capabilities that Pi runtimes such as think-code can call without bypassing .wiki semantics, including optional executor/fallback boundaries.",
+    "labels": [
+      "think-code",
+      "capabilities",
+      "runtime-boundary"
+    ],
+    "goal": {
+      "outcome": "CodeWiki exposes a clear capability/transaction surface for reads, task mutations, evidence appends, graph rebuilds, and validated wiki edits while composing with think-code as an optional bounded executor.",
+      "acceptance": [
+        "Runtime policy spec names the capability classes CodeWiki owns.",
+        "Manifest shape includes capability name, args schema, result schema, read/write classification, and audit fields.",
+        "Raw writes to generated state remain out of scope for external runtimes.",
+        "Plan covers behavior when think-code is not installed.",
+        "Plan covers project .wiki read access and write delegation rules."
+      ],
+      "non_goals": [
+        "Implement a general sandbox.",
+        "Duplicate telemetry or eval extension behavior.",
+        "Make think-code a hard dependency before the integration contract is stable."
+      ],
+      "verification": [
+        "Review against think-code capability boundary task",
+        "Run codewiki state refresh after spec changes",
+        "Compare intended behavior in Pi sessions with and without think-code installed"
+      ]
+    },
+    "delta": {
+      "desired": "External runtimes call CodeWiki through explicit semantic capabilities and can optionally delegate bounded execution to think-code.",
+      "current": "CodeWiki has a gateway script and transaction schema, but no formal capability manifest or optional think-code integration boundary.",
+      "closure": "Specify the manifest, fallback behavior, and follow-up implementation tasks."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Runtime policy spec names the capability classes CodeWiki owns.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "extensions/codewiki",
+        "README.md"
+      ],
+      "checks": [
+        "Review against think-code capability boundary task",
+        "Run codewiki state refresh after spec changes",
+        "Compare intended behavior in Pi sessions with and without think-code installed"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Manifest shape includes capability name, args schema, result schema, read/write classification, and audit fields.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "extensions/codewiki",
+        "README.md"
+      ],
+      "checks": [
+        "Review against think-code capability boundary task",
+        "Run codewiki state refresh after spec changes",
+        "Compare intended behavior in Pi sessions with and without think-code installed"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Raw writes to generated state remain out of scope for external runtimes.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "extensions/codewiki",
+        "README.md"
+      ],
+      "checks": [
+        "Review against think-code capability boundary task",
+        "Run codewiki state refresh after spec changes",
+        "Compare intended behavior in Pi sessions with and without think-code installed"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Plan covers behavior when think-code is not installed.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "extensions/codewiki",
+        "README.md"
+      ],
+      "checks": [
+        "Review against think-code capability boundary task",
+        "Run codewiki state refresh after spec changes",
+        "Compare intended behavior in Pi sessions with and without think-code installed"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "Plan covers project .wiki read access and write delegation rules.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs",
+        "extensions/codewiki",
+        "README.md"
+      ],
+      "checks": [
+        "Review against think-code capability boundary task",
+        "Run codewiki state refresh after spec changes",
+        "Compare intended behavior in Pi sessions with and without think-code installed"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-004/context.json",
+    "build": ".wiki/views/context/tasks/TASK-004/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-004/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-004/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/product/overview.md",
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/roadmap/tasks/TASK-004/task.json",
+    "README.md",
+    "extensions/codewiki",
+    "scripts/codewiki-gateway.mjs"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/product/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "why": "task_spec explicitly links TASK-004 to this node",
+      "edge_path": [
+        "task:TASK-004",
+        "doc:.wiki/knowledge/product/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/overview.md",
+      "title": "System Overview",
+      "why": "task_spec explicitly links TASK-004 to this node",
+      "edge_path": [
+        "task:TASK-004",
+        "doc:.wiki/knowledge/system/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/runtime/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "why": "task_spec explicitly links TASK-004 to this node",
+      "edge_path": [
+        "task:TASK-004",
+        "doc:.wiki/knowledge/system/runtime/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:scripts/codewiki-gateway.mjs",
+      "kind": "code_path",
+      "path": "scripts/codewiki-gateway.mjs",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-004 to this node",
+      "edge_path": [
+        "task:TASK-004",
+        "code:scripts/codewiki-gateway.mjs"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki",
+      "kind": "code_path",
+      "path": "extensions/codewiki",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-004 to this node",
+      "edge_path": [
+        "task:TASK-004",
+        "code:extensions/codewiki"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:README.md",
+      "kind": "code_path",
+      "path": "README.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-004 to this node",
+      "edge_path": [
+        "task:TASK-004",
+        "code:README.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "scripts/codewiki-gateway.mjs",
+        "extensions/codewiki",
+        "README.md"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        "README.md",
+        "extensions/codewiki",
+        "scripts/codewiki-gateway.mjs"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1930,
+    "over_budget": false
+  }
+}

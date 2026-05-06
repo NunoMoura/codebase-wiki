@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-013",
+    "title": "Decouple closed-task retention from projection rebuild",
+    "status": "done",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Closed-task retention no longer depends on generated projection rebuilds; refresh=false close path preserves archive retention.",
+    "labels": [
+      "projection-firewall",
+      "roadmap-retention",
+      "write-amplification"
+    ],
+    "goal": {
+      "outcome": "Closing tasks can enforce roadmap archive retention through the canonical task mutation path without depending on rebuild side effects.",
+      "acceptance": [
+        "Task close with closed_task_limit=0 archives the closed task even when projection refresh is false.",
+        "Generated projection rebuild remains available and does not become the only retention mechanism.",
+        "Smoke coverage verifies archive retention for refresh=false or equivalent minimal-write close path.",
+        "Typecheck and tests pass."
+      ],
+      "non_goals": [
+        "Remove Python rebuild retention immediately.",
+        "Change archive file format.",
+        "Change default retention policy."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Retention belongs to canonical roadmap mutation; generated projection rebuilds are no longer required for correct archive preservation.",
+      "current": "Roadmap archive retention is enforced by rebuild, so codewiki_task keeps refresh=true by default for compatibility.",
+      "closure": "Task close retention is implemented in extension code and covered by smoke tests."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Task close with closed_task_limit=0 archives the closed task even when projection refresh is false.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Generated projection rebuild remains available and does not become the only retention mechanism.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Smoke coverage verifies archive retention for refresh=false or equivalent minimal-write close path.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Typecheck and tests pass.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Remove Python rebuild retention immediately.",
+    "Change archive file format.",
+    "Change default retention policy."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-01T06:12:45Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-013",
+      "action": "spawn",
+      "title": "Decouple closed-task retention from projection rebuild",
+      "summary": "Spawned task TASK-013 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-01T06:12:48Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-013",
+      "action": "focus",
+      "title": "Decouple closed-task retention from projection rebuild",
+      "summary": "Implement next projection firewall slice: move closed-task retention into canonical task close path so refresh=false remains correct.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-01T06:19:26Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-013 Decouple closed-task retention from projection rebuild"
+    },
+    {
+      "ts": "2026-05-01T06:19:26Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-013",
+      "phase": "implement",
+      "title": "Decouple closed-task retention from projection rebuild",
+      "summary": "Implemented closed-task hot-set retention in TypeScript roadmap mutation paths and updated smoke test to close archive-retention task with refresh=false.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T06:19:26Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-013",
+      "verdict": "pass",
+      "summary": "Implemented closed-task hot-set retention in TypeScript roadmap mutation paths and updated smoke test to close archive-retention task with refresh=false.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T06:19:30Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-013",
+      "verdict": "pass",
+      "summary": "Closed-task retention no longer depends on generated projection rebuilds; refresh=false close path preserves archive retention.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/index.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T06:19:30Z",
+      "kind": "roadmap_close",
+      "title": "Closed 1 roadmap task(s)",
+      "summary": "TASK-013 Decouple closed-task retention from projection rebuild"
+    },
+    {
+      "ts": "2026-05-01T06:19:30Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-013",
+      "verdict": "pass",
+      "summary": "Closed after typecheck, smoke, and pack tests passed.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-013/context.json",
+    "build": ".wiki/views/context/tasks/TASK-013/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-013/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-013/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/roadmap/tasks/TASK-013/task.json",
+    ".wiki/views/context/tasks/TASK-013/build.json",
+    ".wiki/views/context/tasks/TASK-013/graph.json",
+    "extensions/codewiki/index.ts",
+    "scripts/rebuild_docs_meta.py",
+    "scripts/smoke-test.mjs"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1750,
+    "over_budget": false
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-015",
+    "title": "Implement v2 wiki layout and migration",
+    "status": "done",
+    "priority": "high",
+    "kind": "migration",
+    "summary": "V2 layout compatibility is implemented: `.wiki/views/**` is generated alongside legacy read models and bootstrap/rebuild understand the v2 views root.",
+    "labels": [
+      "v2",
+      "migration",
+      "wiki-layout"
+    ],
+    "goal": {
+      "outcome": "New and migrated repos use canonical knowledge/tasks/evidence plus generated views under the v2 structure without breaking legacy paths.",
+      "acceptance": [
+        "V2 target paths are represented in config/templates.",
+        "Legacy `.wiki/roadmap.json` and current generated files remain readable during migration.",
+        "Migration or bootstrap creates the v2 directory shape safely.",
+        "Rebuild can populate v2 views while preserving current tool behavior."
+      ],
+      "non_goals": [
+        "Remove all legacy paths in one release.",
+        "Rewrite every tool call to the final v2 paths immediately."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "V2 layout makes canonical truth and `.wiki/views/**` read models explicit.",
+      "current": "Current layout mixes canonical files and generated read models under several top-level `.wiki` paths.",
+      "closure": "Bootstrap/migration and rebuild understand v2 paths with legacy compatibility."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "V2 target paths are represented in config/templates.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Legacy `.wiki/roadmap.json` and current generated files remain readable during migration.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Migration or bootstrap creates the v2 directory shape safely.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Rebuild can populate v2 views while preserving current tool behavior.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/overview.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Remove all legacy paths in one release.",
+    "Rewrite every tool call to the final v2 paths immediately."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:02:47Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-015",
+      "action": "focus",
+      "title": "Implement v2 wiki layout and migration",
+      "summary": "Reused tracked roadmap task TASK-015 instead of creating duplicate work.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:13:49Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-015",
+      "action": "focus",
+      "title": "Implement v2 wiki layout and migration",
+      "summary": "Start v2 wiki layout and migration implementation.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:21:40Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-015 Implement v2 wiki layout and migration"
+    },
+    {
+      "ts": "2026-05-02T00:21:40Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-015",
+      "phase": "implement",
+      "title": "Implement v2 wiki layout and migration",
+      "summary": "Implemented v2 layout compatibility slice: config/templates now include views_root, rebuild writes legacy generated files plus `.wiki/views/**` mirrors, extension locks view paths on rebuild, and smoke tests assert generated views exist.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T00:21:40Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-015",
+      "verdict": "pass",
+      "summary": "Implemented v2 layout compatibility slice: config/templates now include views_root, rebuild writes legacy generated files plus `.wiki/views/**` mirrors, extension locks view paths on rebuild, and smoke tests assert generated views exist.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "python scripts/rebuild_docs_meta.py",
+        "npm test"
+      ],
+      "files_touched": [
+        ".wiki/config.json",
+        "extensions/codewiki/contracts.ts",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs",
+        ".wiki/views/**"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T00:21:45Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-015",
+      "verdict": "pass",
+      "summary": "V2 layout compatibility is implemented: `.wiki/views/**` is generated alongside legacy read models and bootstrap/rebuild understand the v2 views root.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T00:21:45Z",
+      "kind": "roadmap_close",
+      "title": "Closed 1 roadmap task(s)",
+      "summary": "TASK-015 Implement v2 wiki layout and migration"
+    },
+    {
+      "ts": "2026-05-02T00:21:45Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-015",
+      "verdict": "pass",
+      "summary": "Closed after typecheck, rebuild, smoke, and pack tests passed.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "python scripts/rebuild_docs_meta.py",
+        "npm test"
+      ],
+      "files_touched": [
+        ".wiki/config.json",
+        "extensions/codewiki/contracts.ts",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs",
+        ".wiki/views/**"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-015/context.json",
+    "build": ".wiki/views/context/tasks/TASK-015/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-015/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-015/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/overview.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-015/task.json",
+    ".wiki/views/context/tasks/TASK-015/build.json",
+    ".wiki/views/context/tasks/TASK-015/graph.json",
+    "extensions/codewiki/index.ts",
+    "extensions/codewiki/templates.ts",
+    "scripts/rebuild_docs_meta.py"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1819,
+    "over_budget": false
+  }
+}

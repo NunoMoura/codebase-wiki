@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-024",
+    "title": "Sanitation checkpoints and git history policy",
+    "status": "done",
+    "priority": "medium",
+    "kind": "architecture",
+    "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
+    "labels": [
+      "sanitation-policy",
+      "release-checkpoints",
+      "git-history"
+    ],
+    "goal": {
+      "outcome": "CodeWiki distinguishes hot current truth, generated views, compact semantic history, and full git recovery.",
+      "acceptance": [
+        "Closed task archive stores compact semantic summaries with commit/release links rather than full raw context by default.",
+        "Release checkpoint schema records version, git sha, canonical digest, view schema version, and closed task summaries.",
+        "Docs and skills describe commit/push/version boundaries.",
+        "Views exclude cold history unless explicitly requested."
+      ],
+      "non_goals": [
+        "Duplicate full git history inside `.wiki`.",
+        "Automatically push or version without policy gates."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Sanitation keeps agent hot context small while preserving semantic memory and git recovery.",
+      "current": "Retention exists but archives and release/version boundaries are not fully aligned with git as full history.",
+      "closure": "Archive/checkpoint policy is implemented and documented."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Closed task archive stores compact semantic summaries with commit/release links rather than full raw context by default.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Release checkpoint schema records version, git sha, canonical digest, view schema version, and closed task summaries.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Docs and skills describe commit/push/version boundaries.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Views exclude cold history unless explicitly requested.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-024/context.json",
+    "build": ".wiki/views/context/tasks/TASK-024/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-024/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-024/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/flows/sanitation-release.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-024/task.json",
+    "extensions/codewiki/index.ts",
+    "extensions/codewiki/templates.ts",
+    "scripts/rebuild_docs_meta.py"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/flows/sanitation-release.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+      "title": "Sanitation and Release Flow",
+      "why": "task_spec explicitly links TASK-024 to this node",
+      "edge_path": [
+        "task:TASK-024",
+        "doc:.wiki/knowledge/system/flows/sanitation-release.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-024 to this node",
+      "edge_path": [
+        "task:TASK-024",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:scripts/rebuild_docs_meta.py",
+      "kind": "code_path",
+      "path": "scripts/rebuild_docs_meta.py",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-024 to this node",
+      "edge_path": [
+        "task:TASK-024",
+        "code:scripts/rebuild_docs_meta.py"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/index.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/index.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-024 to this node",
+      "edge_path": [
+        "task:TASK-024",
+        "code:extensions/codewiki/index.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/templates.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/templates.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-024 to this node",
+      "edge_path": [
+        "task:TASK-024",
+        "code:extensions/codewiki/templates.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/rebuild_docs_meta.py"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1548,
+    "over_budget": false
+  }
+}

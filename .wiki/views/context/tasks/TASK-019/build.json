@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-019",
+    "title": "View schema generator for status queue drift and briefs",
+    "status": "done",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Define and generate the small, revisioned read models agents and UI consume for status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence.",
+    "labels": [
+      "view-schema",
+      "read-models",
+      "routing-context"
+    ],
+    "goal": {
+      "outcome": "CodeWiki exposes compact generated views that route agents to the right next read without loading raw wiki state.",
+      "acceptance": [
+        "Views include revision metadata, stale flags where applicable, size budgets, and recommended next reads.",
+        "Status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence views are defined.",
+        "`codewiki_state` can expose or consume the views without increasing default token load.",
+        "Views remain rebuild-owned and read-only to agents."
+      ],
+      "non_goals": [
+        "Build status panel graph interaction.",
+        "Implement heartbeat autonomy."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ]
+    },
+    "delta": {
+      "desired": "Views become the default optimized read models for inner and outer loops.",
+      "current": "Generated state exists but is not organized as purpose-specific v2 views with routing contracts.",
+      "closure": "View schemas and generation are implemented and verified."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Views include revision metadata, stale flags where applicable, size budgets, and recommended next reads.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence views are defined.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "`codewiki_state` can expose or consume the views without increasing default token load.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Views remain rebuild-owned and read-only to agents.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-019/context.json",
+    "build": ".wiki/views/context/tasks/TASK-019/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-019/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-019/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/flows/context-memory.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-019/task.json",
+    "extensions/codewiki/contracts.ts",
+    "scripts/rebuild_docs_meta.py"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-019 to this node",
+      "edge_path": [
+        "task:TASK-019",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/flows/context-memory.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "why": "task_spec explicitly links TASK-019 to this node",
+      "edge_path": [
+        "task:TASK-019",
+        "doc:.wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:scripts/rebuild_docs_meta.py",
+      "kind": "code_path",
+      "path": "scripts/rebuild_docs_meta.py",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-019 to this node",
+      "edge_path": [
+        "task:TASK-019",
+        "code:scripts/rebuild_docs_meta.py"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/contracts.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/contracts.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-019 to this node",
+      "edge_path": [
+        "task:TASK-019",
+        "code:extensions/codewiki/contracts.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "extensions/codewiki/contracts.ts",
+        "scripts/rebuild_docs_meta.py"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1459,
+    "over_budget": false
+  }
+}

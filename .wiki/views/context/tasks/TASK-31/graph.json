@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "role": "graph",
+  "task_id": "TASK-31",
+  "tiers": {
+    "core": [
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "task_spec explicitly links TASK-31 to this node",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        "title": "Extensions / Codewiki",
+        "why": "task_spec explicitly links TASK-31 to this node",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "code:extensions/codewiki/index.ts",
+        "kind": "code_path",
+        "path": "extensions/codewiki/index.ts",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-31 to this node",
+        "edge_path": [
+          "task:TASK-31",
+          "code:extensions/codewiki/index.ts"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:extensions/codewiki/src/adapters/pi",
+        "kind": "code_path",
+        "path": "extensions/codewiki/src/adapters/pi",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-31 to this node",
+        "edge_path": [
+          "task:TASK-31",
+          "code:extensions/codewiki/src/adapters/pi"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:extensions/codewiki/src/core",
+        "kind": "code_path",
+        "path": "extensions/codewiki/src/core",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-31 to this node",
+        "edge_path": [
+          "task:TASK-31",
+          "code:extensions/codewiki/src/core"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:extensions/codewiki/src/engine",
+        "kind": "code_path",
+        "path": "extensions/codewiki/src/engine",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-31 to this node",
+        "edge_path": [
+          "task:TASK-31",
+          "code:extensions/codewiki/src/engine"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:extensions/codewiki/src/infrastructure",
+        "kind": "code_path",
+        "path": "extensions/codewiki/src/infrastructure",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-31 to this node",
+        "edge_path": [
+          "task:TASK-31",
+          "code:extensions/codewiki/src/infrastructure"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:extensions/codewiki/contracts.ts",
+        "kind": "code_path",
+        "path": "extensions/codewiki/contracts.ts",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-31 to this node",
+        "edge_path": [
+          "task:TASK-31",
+          "code:extensions/codewiki/contracts.ts"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      }
+    ],
+    "supporting": [
+      {
+        "id": "doc:.wiki/knowledge/clients/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/clients/overview.md",
+        "title": "Clients Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "doc:.wiki/knowledge/clients/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/product/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/overview.md",
+        "title": "Product",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "doc:.wiki/knowledge/product/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/components/extension.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/components/extension.md",
+        "title": "CodeWiki Extension",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "doc:.wiki/knowledge/system/components/extension.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/components/view-rebuild.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/components/view-rebuild.md",
+        "title": "View Rebuild",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "doc:.wiki/knowledge/system/components/view-rebuild.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:extensions/codewiki",
+        "kind": "code_path",
+        "path": "extensions/codewiki",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "code:extensions/codewiki"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:skills",
+        "kind": "code_path",
+        "path": "skills",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "code:skills"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:scripts/smoke-test.mjs",
+        "kind": "code_path",
+        "path": "scripts/smoke-test.mjs",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "code:scripts/smoke-test.mjs"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:scripts/check-architecture.mjs",
+        "kind": "code_path",
+        "path": "scripts/check-architecture.mjs",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+          "code:scripts/check-architecture.mjs"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/clients/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/clients/overview.md",
+        "title": "Clients Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/overview.md",
+          "doc:.wiki/knowledge/clients/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/lexicon.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/lexicon.md",
+        "title": "Lexicon",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/overview.md",
+          "doc:.wiki/knowledge/lexicon.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/product/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/overview.md",
+        "title": "Product",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/overview.md",
+          "doc:.wiki/knowledge/product/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/components/extension.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/components/extension.md",
+        "title": "CodeWiki Extension",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-31",
+          "doc:.wiki/knowledge/system/overview.md",
+          "doc:.wiki/knowledge/system/components/extension.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      }
+    ],
+    "watch": [],
+    "excluded": []
+  },
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 3000,
+    "estimated_tokens": 1838,
+    "over_budget": false
+  }
+}

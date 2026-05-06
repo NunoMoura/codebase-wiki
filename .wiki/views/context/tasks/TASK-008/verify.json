@@ -1,0 +1,244 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-008",
+    "title": "Model research evidence as support for wiki knowledge",
+    "status": "done",
+    "priority": "medium",
+    "kind": "research",
+    "summary": "Separate external/source research from task execution so research evidence supports `.wiki/knowledge` claims rather than becoming part of every implementation loop.",
+    "labels": [
+      "research",
+      "evidence",
+      "knowledge"
+    ],
+    "goal": {
+      "outcome": "CodeWiki distinguishes research evidence for intended knowledge from execution evidence for task closure.",
+      "acceptance": [
+        "Research workflow records cited findings as support for knowledge updates and design decisions.",
+        "Task execution loop treats research as optional only when uncertainty blocks implementation or claims need support.",
+        "Evidence schema or conventions distinguish source/research evidence from checks/execution evidence.",
+        "The research skill explains when to use web/code research versus local code inspection."
+      ],
+      "non_goals": [
+        "Require web research for routine code changes.",
+        "Create a separate ADR system outside `.wiki/knowledge`."
+      ],
+      "verification": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ]
+    },
+    "delta": {
+      "desired": "Research strengthens canonical knowledge without bloating task execution.",
+      "current": "Research is described as optional evidence but not modeled as a distinct workflow.",
+      "closure": "Add research-specific workflow guidance and evidence classification."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Research workflow records cited findings as support for knowledge updates and design decisions.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "checks": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Task execution loop treats research as optional only when uncertainty blocks implementation or claims need support.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "checks": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Evidence schema or conventions distinguish source/research evidence from checks/execution evidence.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "checks": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "The research skill explains when to use web/code research versus local code inspection.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "checks": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Require web research for routine code changes.",
+    "Create a separate ADR system outside `.wiki/knowledge`."
+  ],
+  "required_checks": [
+    "Review evidence entries produced by sample research and sample task execution for clear classification.",
+    "Run codewiki state refresh and confirm no generated state is hand-edited."
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-01T02:22:25Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-008",
+      "action": "focus",
+      "title": "Model research evidence as support for wiki knowledge",
+      "summary": "Continue implementation with research evidence model.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-01T02:22:57Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-008 Model research evidence as support for wiki knowledge"
+    },
+    {
+      "ts": "2026-05-01T02:22:57Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-008 Model research evidence as support for wiki knowledge"
+    },
+    {
+      "ts": "2026-05-01T02:22:57Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-008",
+      "phase": "implement",
+      "title": "Model research evidence as support for wiki knowledge",
+      "summary": "Implemented research evidence separation in product knowledge and focused research/task skills.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T02:22:57Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-008",
+      "verdict": "pass",
+      "summary": "Implemented research evidence separation in product knowledge and focused research/task skills.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md",
+        ".wiki/knowledge/product/overview.md"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T02:24:01Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-008",
+      "verdict": "pass",
+      "summary": "Separate external/source research from task execution so research evidence supports `.wiki/knowledge` claims rather than becoming part of every implementation loop.",
+      "checks_run": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ],
+      "files_touched": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-01T02:24:01Z",
+      "kind": "roadmap_close",
+      "title": "Closed 1 roadmap task(s)",
+      "summary": "TASK-008 Model research evidence as support for wiki knowledge"
+    },
+    {
+      "ts": "2026-05-01T02:24:01Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-008",
+      "verdict": "pass",
+      "summary": "Verified research evidence model implementation after final checks.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md",
+        ".wiki/knowledge/product/overview.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-008/context.json",
+    "build": ".wiki/views/context/tasks/TASK-008/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-008/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-008/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/product/overview.md",
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/roadmap/tasks/TASK-008/task.json",
+    ".wiki/views/context/tasks/TASK-008/build.json",
+    ".wiki/views/context/tasks/TASK-008/graph.json",
+    "skills/codewiki-research/SKILL.md",
+    "skills/codewiki-task/SKILL.md"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1905,
+    "over_budget": false
+  }
+}

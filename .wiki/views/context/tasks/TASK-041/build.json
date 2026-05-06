@@ -1,0 +1,494 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-041",
+    "title": "Review and improve generated views into a token-efficient context compiler",
+    "status": "done",
+    "priority": "critical",
+    "kind": "architecture",
+    "summary": "Audit and redesign generated `.wiki/views/**` as lightweight routing and observability read models, then benchmark prebuilt packs versus bounded programmatic exploration to choose the most token-efficient context strategy for task/sprint/roadmap work.",
+    "labels": [
+      "p0",
+      "views",
+      "context-compiler",
+      "observability",
+      "dogfood-gate"
+    ],
+    "goal": {
+      "outcome": "Generated views become a first-class context routing layer that supports compact role-specific packs, graph slices, and optional bounded programmatic exploration without confusing observability with verification gates.",
+      "acceptance": [
+        "Document the context-access model: views provide map/cached routes, bounded sandbox/programmatic tools provide microscope-style exploration, and verifier gateways remain the only quality gate.",
+        "Benchmark or prototype four context strategies for representative task work: prebuilt pack only, progressive disclosure only, sandbox/programmatic exploration only, and hybrid pack plus sandbox.",
+        "Define role-specific seed/context pack contracts for at least `grill`, `plan`, `build`, and `verify`, emphasizing minimal routing metadata instead of large precomputed context dumps.",
+        "Define typed graph-slice views for task/sprint/roadmap scopes with `core`, `supporting`, `watch`, and `excluded` tiers plus edge reasons and confidence (`explicit` vs `inferred`).",
+        "Define horizontal and vertical observability signals only: knowledge/task/evidence/view alignment and intent \u2192 knowledge \u2192 roadmap \u2192 code \u2192 checks/evidence alignment; do not make observability a pass/fail gate.",
+        "Define an acceptance/evidence matrix that maps criteria to spec paths, code paths, checks, and evidence for verifier consumption.",
+        "Represent token budget as generator/test metadata (`estimated_tokens`, `max_tokens`, `over_budget`) rather than instructions the agent must maintain manually.",
+        "Implement or prototype the smallest useful `task.build`, `task.verify`, and `task.graph` views needed by the hardened verification gateway, without blocking future sprint/roadmap expansion.",
+        "Add tests or smoke checks proving generated context views stay deterministic, stale-aware, and within size guarantees."
+      ],
+      "non_goals": [
+        "Do not introduce embeddings, vector search, or external search infrastructure in the first slice.",
+        "Do not build the standalone UI; only shape views so UI and agents can consume them later.",
+        "Do not replace canonical knowledge, roadmap, evidence, or verifier verdicts with generated views.",
+        "Do not make observability itself a closure gate; verification consumes observability but decides separately.",
+        "Do not hand-edit generated view files."
+      ],
+      "verification": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Document the context-access model: views provide map/cached routes, bounded sandbox/programmatic tools provide microscope-style exploration, and verifier gateways remain the only quality gate.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Benchmark or prototype four context strategies for representative task work: prebuilt pack only, progressive disclosure only, sandbox/programmatic exploration only, and hybrid pack plus sandbox.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Define role-specific seed/context pack contracts for at least `grill`, `plan`, `build`, and `verify`, emphasizing minimal routing metadata instead of large precomputed context dumps.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Define typed graph-slice views for task/sprint/roadmap scopes with `core`, `supporting`, `watch`, and `excluded` tiers plus edge reasons and confidence (`explicit` vs `inferred`).",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "Define horizontal and vertical observability signals only: knowledge/task/evidence/view alignment and intent \u2192 knowledge \u2192 roadmap \u2192 code \u2192 checks/evidence alignment; do not make observability a pass/fail gate.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-6",
+      "criterion": "Define an acceptance/evidence matrix that maps criteria to spec paths, code paths, checks, and evidence for verifier consumption.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-7",
+      "criterion": "Represent token budget as generator/test metadata (`estimated_tokens`, `max_tokens`, `over_budget`) rather than instructions the agent must maintain manually.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-8",
+      "criterion": "Implement or prototype the smallest useful `task.build`, `task.verify`, and `task.graph` views needed by the hardened verification gateway, without blocking future sprint/roadmap expansion.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-9",
+      "criterion": "Add tests or smoke checks proving generated context views stay deterministic, stale-aware, and within size guarantees.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "checks": [
+        "Run view rebuild and confirm `.wiki/views/status.json` or task contexts point to the new context entrypoints where appropriate.",
+        "Run `npm test`.",
+        "Run `npm run typecheck` if TypeScript files change.",
+        "Run `codewiki_state refresh=true` and confirm health stays green.",
+        "Manually inspect one generated task seed/graph pack for token efficiency, recommended next reads, and acceptance/evidence mapping."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-041/context.json",
+    "build": ".wiki/views/context/tasks/TASK-041/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-041/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-041/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/system/components/views.md",
+    ".wiki/knowledge/system/flows/context-memory.md",
+    ".wiki/knowledge/system/flows/task-loop.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-041/task.json",
+    "extensions/codewiki/src/engine/graph.ts",
+    "extensions/codewiki/src/engine/rebuild.ts",
+    "extensions/codewiki/src/engine/state.ts",
+    "extensions/codewiki/src/engine/views.ts",
+    "scripts/rebuild_docs_meta.py"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/components/views.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/components/views.md",
+      "title": "Generated Views",
+      "why": "task_spec explicitly links TASK-041 to this node",
+      "edge_path": [
+        "task:TASK-041",
+        "doc:.wiki/knowledge/system/components/views.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/flows/context-memory.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "why": "task_spec explicitly links TASK-041 to this node",
+      "edge_path": [
+        "task:TASK-041",
+        "doc:.wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-041 to this node",
+      "edge_path": [
+        "task:TASK-041",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/flows/task-loop.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/task-loop.md",
+      "title": "Task Loop Flow",
+      "why": "task_spec explicitly links TASK-041 to this node",
+      "edge_path": [
+        "task:TASK-041",
+        "doc:.wiki/knowledge/system/flows/task-loop.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/lexicon.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "why": "task_spec explicitly links TASK-041 to this node",
+      "edge_path": [
+        "task:TASK-041",
+        "doc:.wiki/knowledge/lexicon.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine/views.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine/views.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-041 to this node",
+      "edge_path": [
+        "task:TASK-041",
+        "code:extensions/codewiki/src/engine/views.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine/rebuild.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine/rebuild.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-041 to this node",
+      "edge_path": [
+        "task:TASK-041",
+        "code:extensions/codewiki/src/engine/rebuild.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine/graph.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine/graph.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-041 to this node",
+      "edge_path": [
+        "task:TASK-041",
+        "code:extensions/codewiki/src/engine/graph.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/src/engine/state.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/engine/state.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-041 to this node",
+      "edge_path": [
+        "task:TASK-041",
+        "code:extensions/codewiki/src/engine/state.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:scripts/rebuild_docs_meta.py",
+      "kind": "code_path",
+      "path": "scripts/rebuild_docs_meta.py",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-041 to this node",
+      "edge_path": [
+        "task:TASK-041",
+        "code:scripts/rebuild_docs_meta.py"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "extensions/codewiki/src/engine/views.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "scripts/rebuild_docs_meta.py"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/components/views.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/rebuild.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "extensions/codewiki/src/engine/views.ts",
+        "scripts/rebuild_docs_meta.py"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 4663,
+    "over_budget": true
+  }
+}

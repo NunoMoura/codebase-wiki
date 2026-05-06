@@ -1,18 +1,20 @@
 {
   "version": 1,
-  "generated_at": "2026-05-05T23:21:31Z",
+  "generated_at": "2026-05-06T22:02:16Z",
   "source": {
     "graph_version": 1,
-    "graph_generated_at": "2026-05-05T23:21:29Z",
+    "graph_generated_at": "2026-05-06T22:02:15Z",
     "revision": {
       "git": {
-        "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
         "dirty": true,
         "dirty_paths": [
-          ".wiki/knowledge/system/components/extension.md",
-          ".wiki/knowledge/system/components/view-rebuild.md",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md",
-          ".wiki/knowledge/system/overview.md",
+          ".wiki/knowledge/lexicon.md",
+          ".wiki/knowledge/system/components/views.md",
+          ".wiki/knowledge/system/flows/context-memory.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md",
           ".wiki/roadmap.json",
           ".wiki/views/drift.json",
           ".wiki/views/evidence/recent.json",
@@ -50,18 +52,16 @@
           ".wiki/views/roadmap/tasks/TASK-025/context.json",
           ".wiki/views/roadmap/tasks/TASK-026/context.json",
           ".wiki/views/roadmap/tasks/TASK-027/context.json",
+          ".wiki/views/roadmap/tasks/TASK-28/context.json",
+          ".wiki/views/roadmap/tasks/TASK-29/context.json",
+          ".wiki/views/roadmap/tasks/TASK-30/context.json",
+          ".wiki/views/roadmap/tasks/TASK-31/context.json",
+          ".wiki/views/roadmap/tasks/TASK-32/context.json",
           ".wiki/views/status-state.json",
-          ".wiki/views/status.json",
-          ".wiki/views/system/architecture.json",
-          "extensions/codewiki/bootstrap.ts",
-          "extensions/codewiki/contracts.ts",
-          "extensions/codewiki/index.ts",
-          "extensions/codewiki/project-root.ts",
-          "extensions/codewiki/templates.ts",
-          "package.json"
+          ".wiki/views/status.json"
         ],
         "paths": {
-          ".wiki/knowledge": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          ".wiki/knowledge": "166313f96147e9bace1240466c5bac7090332b42",
           ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
           ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
           ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
@@ -71,44 +71,53 @@
           ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d",
           ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
           ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-          ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/knowledge/system/components/extension.md": "166313f96147e9bace1240466c5bac7090332b42",
           ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-          ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+          ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42",
           ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-          ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
           ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
           ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-          ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+          ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
           ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          ".wiki/roadmap.json": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          ".wiki/views": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          ".wiki/roadmap.json": "166313f96147e9bace1240466c5bac7090332b42",
+          ".wiki/views": "166313f96147e9bace1240466c5bac7090332b42",
           "README.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "extensions/codewiki": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "extensions/codewiki/contracts.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "extensions/codewiki/index.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "extensions/codewiki/src/adapters": "",
-          "extensions/codewiki/src/adapters/pi": "",
-          "extensions/codewiki/src/application": "",
-          "extensions/codewiki/src/core": "",
-          "extensions/codewiki/src/core/ports.ts": "",
-          "extensions/codewiki/src/core/rebuild-runner.ts": "",
-          "extensions/codewiki/src/domain": "",
-          "extensions/codewiki/src/engine": "",
-          "extensions/codewiki/src/engine/rebuild.ts": "",
-          "extensions/codewiki/src/infrastructure": "",
-          "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "",
-          "extensions/codewiki/templates.ts": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-          "package.json": "53578e465699177d1945148075b98a9fc539da26",
-          "scripts/check-architecture.mjs": "",
-          "scripts/codewiki-gateway.mjs": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+          "extensions/codewiki": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/contracts.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/index.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/adapters": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/adapters/pi": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/adapters/pi/tools/task.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/adapters/pi/ui": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/application": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/core": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/core/ports.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/core/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/core/roadmap.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/core/schemas.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/core/types.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/domain": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/engine": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/engine/graph.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/engine/rebuild.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/engine/state.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/engine/views.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/infrastructure": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "extensions/codewiki/templates.ts": "166313f96147e9bace1240466c5bac7090332b42",
+          "package.json": "166313f96147e9bace1240466c5bac7090332b42",
+          "scripts/check-architecture.mjs": "166313f96147e9bace1240466c5bac7090332b42",
+          "scripts/codewiki-gateway.mjs": "166313f96147e9bace1240466c5bac7090332b42",
           "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-          "scripts/smoke-test.mjs": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "scripts/smoke-test.mjs": "166313f96147e9bace1240466c5bac7090332b42",
           "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
           "skills/codewiki-architecture/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
           "skills/codewiki-plan/SKILL.md": "b89c737a9201f997dfab4559020744016884d537",
@@ -119,9 +128,9 @@
           "tsconfig.json": "0d12c87f000aedcf818ece8c88819b938a8d881e"
         }
       },
-      "spec_digest": "f605c3ecfe08c2bdfeb5520b51cc3e832c4652f9c6a1cde27524ee38c651ff7a",
-      "task_digest": "191690f9a39cf4ca15f4478beed4d04c6620cbc525d050064fe9090eb812a06b",
-      "evidence_digest": "c04eebc55973e4ed03adc49c4b4d705f8b63ddc24f0033bd3a22f279aea09367"
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
     }
   },
   "project": {
@@ -138,27 +147,27 @@
   "summary": {
     "total_specs": 14,
     "mapped_specs": 14,
-    "aligned_specs": 22,
-    "tracked_specs": 2,
+    "aligned_specs": 9,
+    "tracked_specs": 15,
     "untracked_specs": 0,
     "blocked_specs": 0,
     "unmapped_specs": 0,
-    "task_count": 32,
-    "open_task_count": 5,
-    "done_task_count": 27
+    "task_count": 41,
+    "open_task_count": 11,
+    "done_task_count": 30
   },
   "bars": {
     "tracked_drift": {
       "label": "Tracked drift",
-      "value": 2,
-      "total": 2,
+      "value": 15,
+      "total": 15,
       "percent": 100
     },
     "roadmap_done": {
       "label": "Roadmap done",
-      "value": 27,
-      "total": 32,
-      "percent": 84
+      "value": 30,
+      "total": 41,
+      "percent": 73
     },
     "spec_mapping": {
       "label": "Spec mapping",
@@ -169,48 +178,54 @@
   },
   "views": {
     "risky_spec_paths": [
-      ".wiki/knowledge/system/extensions/codewiki/overview.md",
-      ".wiki/knowledge/system/overview.md",
       ".wiki/knowledge/clients/agent-skills.md",
-      ".wiki/knowledge/clients/overview.md",
-      ".wiki/knowledge/clients/surfaces/roadmap.md",
       ".wiki/knowledge/clients/surfaces/status-panel.md",
       ".wiki/knowledge/lexicon.md",
-      ".wiki/knowledge/product/overview.md",
-      ".wiki/knowledge/product/stories.md",
       ".wiki/knowledge/product/surfaces.md",
-      ".wiki/knowledge/product/users.md",
       ".wiki/knowledge/system/components/extension.md",
       ".wiki/knowledge/system/components/knowledge.md",
       ".wiki/knowledge/system/components/roadmap.md",
       ".wiki/knowledge/system/components/runtime-gateway.md",
-      ".wiki/knowledge/system/components/view-rebuild.md",
       ".wiki/knowledge/system/components/views.md",
-      ".wiki/knowledge/system/flows/context-memory.md",
-      ".wiki/knowledge/system/flows/runtime-transaction.md",
+      ".wiki/knowledge/system/extensions/codewiki/overview.md",
       ".wiki/knowledge/system/flows/sanitation-release.md",
       ".wiki/knowledge/system/flows/task-loop.md",
-      ".wiki/knowledge/system/flows/view-rebuild.md",
+      ".wiki/knowledge/system/overview.md",
       ".wiki/knowledge/system/runtime/overview.md",
-      ".wiki/knowledge/system/v2-operating-model.md"
+      ".wiki/knowledge/system/v2-operating-model.md",
+      ".wiki/knowledge/clients/overview.md",
+      ".wiki/knowledge/clients/surfaces/roadmap.md",
+      ".wiki/knowledge/product/overview.md",
+      ".wiki/knowledge/product/stories.md",
+      ".wiki/knowledge/product/users.md",
+      ".wiki/knowledge/system/components/view-rebuild.md",
+      ".wiki/knowledge/system/flows/context-memory.md",
+      ".wiki/knowledge/system/flows/runtime-transaction.md",
+      ".wiki/knowledge/system/flows/view-rebuild.md"
     ],
     "top_risky_spec_paths": [
-      ".wiki/knowledge/system/extensions/codewiki/overview.md",
-      ".wiki/knowledge/system/overview.md",
       ".wiki/knowledge/clients/agent-skills.md",
-      ".wiki/knowledge/clients/overview.md",
-      ".wiki/knowledge/clients/surfaces/roadmap.md"
+      ".wiki/knowledge/clients/surfaces/status-panel.md",
+      ".wiki/knowledge/lexicon.md",
+      ".wiki/knowledge/product/surfaces.md",
+      ".wiki/knowledge/system/components/extension.md"
     ],
     "open_task_ids": [
-      "TASK-28",
       "TASK-29",
       "TASK-30",
       "TASK-31",
-      "TASK-32"
+      "TASK-32",
+      "TASK-033",
+      "TASK-034",
+      "TASK-035",
+      "TASK-036",
+      "TASK-037",
+      "TASK-038",
+      "TASK-039"
     ]
   },
   "heartbeat": {
-    "generated_at": "2026-05-05T23:21:31Z",
+    "generated_at": "2026-05-06T22:02:16Z",
     "summary": {
       "lane_count": 3,
       "freshness_basis": "work-first",
@@ -238,16 +253,18 @@
           "task_close:architecture",
           "manual_review"
         ],
-        "checked_at": "2026-05-05T23:21:30Z",
+        "checked_at": "2026-05-06T22:02:16Z",
         "revision": {
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": true,
             "dirty_paths": [
-              ".wiki/knowledge/system/components/extension.md",
-              ".wiki/knowledge/system/components/view-rebuild.md",
-              ".wiki/knowledge/system/extensions/codewiki/overview.md",
-              ".wiki/knowledge/system/overview.md",
+              ".wiki/knowledge/lexicon.md",
+              ".wiki/knowledge/system/components/views.md",
+              ".wiki/knowledge/system/flows/context-memory.md",
+              ".wiki/knowledge/system/flows/task-loop.md",
+              ".wiki/knowledge/system/runtime/overview.md",
+              ".wiki/knowledge/system/v2-operating-model.md",
               ".wiki/roadmap.json",
               ".wiki/views/drift.json",
               ".wiki/views/evidence/recent.json",
@@ -285,62 +302,60 @@
               ".wiki/views/roadmap/tasks/TASK-025/context.json",
               ".wiki/views/roadmap/tasks/TASK-026/context.json",
               ".wiki/views/roadmap/tasks/TASK-027/context.json",
+              ".wiki/views/roadmap/tasks/TASK-28/context.json",
+              ".wiki/views/roadmap/tasks/TASK-29/context.json",
+              ".wiki/views/roadmap/tasks/TASK-30/context.json",
+              ".wiki/views/roadmap/tasks/TASK-31/context.json",
+              ".wiki/views/roadmap/tasks/TASK-32/context.json",
               ".wiki/views/status-state.json",
-              ".wiki/views/status.json",
-              ".wiki/views/system/architecture.json",
-              "extensions/codewiki/bootstrap.ts",
-              "extensions/codewiki/contracts.ts",
-              "extensions/codewiki/index.ts",
-              "extensions/codewiki/project-root.ts",
-              "extensions/codewiki/templates.ts",
-              "scripts/codewiki-gateway.mjs"
+              ".wiki/views/status.json"
             ],
             "paths": {
-              ".wiki/knowledge": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              ".wiki/knowledge": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/product/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
               ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d",
               ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-              ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/components/extension.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/roadmap.json": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              ".wiki/views": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki/contracts.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki/index.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki/src/adapters/pi": "",
-              "extensions/codewiki/src/core/rebuild-runner.ts": "",
-              "extensions/codewiki/src/engine/rebuild.ts": "",
-              "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "",
-              "scripts/check-architecture.mjs": "",
-              "scripts/codewiki-gateway.mjs": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/roadmap.json": "166313f96147e9bace1240466c5bac7090332b42",
+              ".wiki/views": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/contracts.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/index.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/adapters/pi": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/core/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/engine/rebuild.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "scripts/check-architecture.mjs": "166313f96147e9bace1240466c5bac7090332b42",
+              "scripts/codewiki-gateway.mjs": "166313f96147e9bace1240466c5bac7090332b42",
               "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-              "scripts/smoke-test.mjs": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "scripts/smoke-test.mjs": "166313f96147e9bace1240466c5bac7090332b42",
               "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           },
-          "spec_digest": "1bf9d205103ac0149dbfdda32000411a6f46a86bd5b8adea634a017bcabe92e1",
-          "task_digest": "cbad91c7b48b07b69ce38aae39052fab8379992a9804387627e590e4fb93e0d6",
-          "code_digest": "8bcce4c6ce964c9ae7ac48447cb949f97fd0b45bc9db3033b5c21225b86ee701",
-          "digest": "dfd9de3ad11efd3d260a0de69a9ac4728cb2f9125d6e304407877a0b6a8595c5"
+          "spec_digest": "5a710e2d97be05c2af2028d0627f902c1a96bad3ec574c3575059022d7b01c5a",
+          "task_digest": "b8fc00ce3c36deb86bfa5b58bc8351bb936e64a9038575d3135a38c8f6cf0c38",
+          "code_digest": "7bee559c6057205513f3cad622ca223cab378d489ba0005e9707fbaa70582c30",
+          "digest": "2fc69c6c6cf6b6d0627727c48e3486e298dcb7c4bb13fd4210d99345bd2fb6a7"
         },
         "freshness": {
           "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-05T23:21:30Z",
+          "checked_at": "2026-05-06T22:02:16Z",
           "reason": "revision anchors unchanged since previous heartbeat",
           "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
@@ -384,20 +399,36 @@
         ],
         "code_area": "extensions, .wiki +2 more",
         "open_task_ids": [
-          "TASK-28",
           "TASK-29",
           "TASK-30",
           "TASK-31",
-          "TASK-32"
+          "TASK-32",
+          "TASK-033",
+          "TASK-034",
+          "TASK-035",
+          "TASK-036",
+          "TASK-037",
+          "TASK-038",
+          "TASK-039"
         ],
         "risky_spec_paths": [
+          ".wiki/knowledge/product/surfaces.md",
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/knowledge.md",
+          ".wiki/knowledge/system/components/roadmap.md",
+          ".wiki/knowledge/system/components/runtime-gateway.md",
+          ".wiki/knowledge/system/components/views.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
-          ".wiki/knowledge/system/overview.md"
+          ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/overview.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md"
         ],
         "stats": {
           "total_specs": 19,
-          "aligned_specs": 17,
-          "tracked_specs": 2,
+          "aligned_specs": 7,
+          "tracked_specs": 12,
           "untracked_specs": 0,
           "blocked_specs": 0,
           "unmapped_specs": 0
@@ -422,16 +453,18 @@
           "rebuild_complete",
           "pre_close_check"
         ],
-        "checked_at": "2026-05-05T23:21:30Z",
+        "checked_at": "2026-05-06T22:02:16Z",
         "revision": {
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": true,
             "dirty_paths": [
-              ".wiki/knowledge/system/components/extension.md",
-              ".wiki/knowledge/system/components/view-rebuild.md",
-              ".wiki/knowledge/system/extensions/codewiki/overview.md",
-              ".wiki/knowledge/system/overview.md",
+              ".wiki/knowledge/lexicon.md",
+              ".wiki/knowledge/system/components/views.md",
+              ".wiki/knowledge/system/flows/context-memory.md",
+              ".wiki/knowledge/system/flows/task-loop.md",
+              ".wiki/knowledge/system/runtime/overview.md",
+              ".wiki/knowledge/system/v2-operating-model.md",
               ".wiki/roadmap.json",
               ".wiki/views/drift.json",
               ".wiki/views/evidence/recent.json",
@@ -469,58 +502,56 @@
               ".wiki/views/roadmap/tasks/TASK-025/context.json",
               ".wiki/views/roadmap/tasks/TASK-026/context.json",
               ".wiki/views/roadmap/tasks/TASK-027/context.json",
+              ".wiki/views/roadmap/tasks/TASK-28/context.json",
+              ".wiki/views/roadmap/tasks/TASK-29/context.json",
+              ".wiki/views/roadmap/tasks/TASK-30/context.json",
+              ".wiki/views/roadmap/tasks/TASK-31/context.json",
+              ".wiki/views/roadmap/tasks/TASK-32/context.json",
               ".wiki/views/status-state.json",
-              ".wiki/views/status.json",
-              ".wiki/views/system/architecture.json",
-              "extensions/codewiki/bootstrap.ts",
-              "extensions/codewiki/contracts.ts",
-              "extensions/codewiki/index.ts",
-              "extensions/codewiki/project-root.ts",
-              "extensions/codewiki/templates.ts",
-              "scripts/codewiki-gateway.mjs"
+              ".wiki/views/status.json"
             ],
             "paths": {
-              ".wiki/knowledge": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge": "166313f96147e9bace1240466c5bac7090332b42",
+              ".wiki/knowledge/system/components/extension.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/roadmap.json": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              ".wiki/views": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki/contracts.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki/index.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki/src/adapters/pi": "",
-              "extensions/codewiki/src/core/rebuild-runner.ts": "",
-              "extensions/codewiki/src/engine/rebuild.ts": "",
-              "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "",
-              "scripts/check-architecture.mjs": "",
-              "scripts/codewiki-gateway.mjs": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              ".wiki/roadmap.json": "166313f96147e9bace1240466c5bac7090332b42",
+              ".wiki/views": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/contracts.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/index.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/adapters/pi": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/core/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/engine/rebuild.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "scripts/check-architecture.mjs": "166313f96147e9bace1240466c5bac7090332b42",
+              "scripts/codewiki-gateway.mjs": "166313f96147e9bace1240466c5bac7090332b42",
               "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-              "scripts/smoke-test.mjs": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "scripts/smoke-test.mjs": "166313f96147e9bace1240466c5bac7090332b42",
               "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           },
-          "spec_digest": "ec0d737217a012fc28a116d0a88f0e922b8ca9121ddb3419736bf84dfabedca7",
-          "task_digest": "cbad91c7b48b07b69ce38aae39052fab8379992a9804387627e590e4fb93e0d6",
-          "code_digest": "8bcce4c6ce964c9ae7ac48447cb949f97fd0b45bc9db3033b5c21225b86ee701",
-          "digest": "a0dda731edf9bc9feadd8c1f45d4ba9d74fdb7e6cd136bc9427a2355ad8facb5"
+          "spec_digest": "2b223717c9bf43d4f952baa54a260ed6c1843f76cb3873ed8394773592ec8ce0",
+          "task_digest": "b8fc00ce3c36deb86bfa5b58bc8351bb936e64a9038575d3135a38c8f6cf0c38",
+          "code_digest": "7bee559c6057205513f3cad622ca223cab378d489ba0005e9707fbaa70582c30",
+          "digest": "89232e67037ba2df9116278e745ed3b6177064cdb0215967138fdbfb83029de9"
         },
         "freshness": {
           "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-05T23:21:30Z",
+          "checked_at": "2026-05-06T22:02:16Z",
           "reason": "revision anchors unchanged since previous heartbeat",
           "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
@@ -560,20 +591,35 @@
         ],
         "code_area": "extensions, .wiki +2 more",
         "open_task_ids": [
-          "TASK-28",
           "TASK-29",
           "TASK-30",
           "TASK-31",
-          "TASK-32"
+          "TASK-32",
+          "TASK-033",
+          "TASK-034",
+          "TASK-035",
+          "TASK-036",
+          "TASK-037",
+          "TASK-038",
+          "TASK-039"
         ],
         "risky_spec_paths": [
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/knowledge.md",
+          ".wiki/knowledge/system/components/roadmap.md",
+          ".wiki/knowledge/system/components/runtime-gateway.md",
+          ".wiki/knowledge/system/components/views.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
-          ".wiki/knowledge/system/overview.md"
+          ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/overview.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md"
         ],
         "stats": {
           "total_specs": 15,
-          "aligned_specs": 13,
-          "tracked_specs": 2,
+          "aligned_specs": 4,
+          "tracked_specs": 11,
           "untracked_specs": 0,
           "blocked_specs": 0,
           "unmapped_specs": 0
@@ -598,16 +644,18 @@
           "code_change:ux_surface",
           "manual_review"
         ],
-        "checked_at": "2026-05-05T23:21:30Z",
+        "checked_at": "2026-05-06T22:02:16Z",
         "revision": {
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": true,
             "dirty_paths": [
-              ".wiki/knowledge/system/components/extension.md",
-              ".wiki/knowledge/system/components/view-rebuild.md",
-              ".wiki/knowledge/system/extensions/codewiki/overview.md",
-              ".wiki/knowledge/system/overview.md",
+              ".wiki/knowledge/lexicon.md",
+              ".wiki/knowledge/system/components/views.md",
+              ".wiki/knowledge/system/flows/context-memory.md",
+              ".wiki/knowledge/system/flows/task-loop.md",
+              ".wiki/knowledge/system/runtime/overview.md",
+              ".wiki/knowledge/system/v2-operating-model.md",
               ".wiki/roadmap.json",
               ".wiki/views/drift.json",
               ".wiki/views/evidence/recent.json",
@@ -645,18 +693,16 @@
               ".wiki/views/roadmap/tasks/TASK-025/context.json",
               ".wiki/views/roadmap/tasks/TASK-026/context.json",
               ".wiki/views/roadmap/tasks/TASK-027/context.json",
+              ".wiki/views/roadmap/tasks/TASK-28/context.json",
+              ".wiki/views/roadmap/tasks/TASK-29/context.json",
+              ".wiki/views/roadmap/tasks/TASK-30/context.json",
+              ".wiki/views/roadmap/tasks/TASK-31/context.json",
+              ".wiki/views/roadmap/tasks/TASK-32/context.json",
               ".wiki/views/status-state.json",
-              ".wiki/views/status.json",
-              ".wiki/views/system/architecture.json",
-              "extensions/codewiki/bootstrap.ts",
-              "extensions/codewiki/contracts.ts",
-              "extensions/codewiki/index.ts",
-              "extensions/codewiki/project-root.ts",
-              "extensions/codewiki/templates.ts",
-              "scripts/codewiki-gateway.mjs"
+              ".wiki/views/status.json"
             ],
             "paths": {
-              ".wiki/knowledge": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              ".wiki/knowledge": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
               ".wiki/knowledge/clients/overview.md": "a6f94f94cbc07e3259a6b8e0ebdce821e3b566aa",
               ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8",
@@ -665,47 +711,47 @@
               ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d",
               ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
               ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
-              ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/components/extension.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
+              ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
               ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1",
-              ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af",
+              ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42",
               ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
               ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              ".wiki/roadmap.json": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              ".wiki/views": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              ".wiki/roadmap.json": "166313f96147e9bace1240466c5bac7090332b42",
+              ".wiki/views": "166313f96147e9bace1240466c5bac7090332b42",
               "README.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
-              "extensions/codewiki": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki/contracts.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki/index.ts": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-              "extensions/codewiki/src/adapters/pi": "",
-              "extensions/codewiki/src/core/rebuild-runner.ts": "",
-              "extensions/codewiki/src/engine/rebuild.ts": "",
-              "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "",
-              "scripts/check-architecture.mjs": "",
-              "scripts/codewiki-gateway.mjs": "fe19eabf630656ba5c4665a6bbb3cda4350aef74",
+              "extensions/codewiki": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/contracts.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/index.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/adapters/pi": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/core/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/engine/rebuild.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "extensions/codewiki/src/infrastructure/rebuild-runner.ts": "166313f96147e9bace1240466c5bac7090332b42",
+              "scripts/check-architecture.mjs": "166313f96147e9bace1240466c5bac7090332b42",
+              "scripts/codewiki-gateway.mjs": "166313f96147e9bace1240466c5bac7090332b42",
               "scripts/rebuild_docs_meta.py": "7e122a3091d46dcfe414ca2ed8d2de2f0d7932a9",
-              "scripts/smoke-test.mjs": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+              "scripts/smoke-test.mjs": "166313f96147e9bace1240466c5bac7090332b42",
               "skills": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           },
-          "spec_digest": "a0e212de3c2ee1b4e6f485ebee0e6574b52a870487ac9e1a61d68546cb424651",
-          "task_digest": "cbad91c7b48b07b69ce38aae39052fab8379992a9804387627e590e4fb93e0d6",
-          "code_digest": "93c624efb7fce7104212dd4d747b59e73741416fc863fda8dafe7538f063c8e9",
-          "digest": "40c2b4812315d4263df1a266a52e44c79cdc58af5533d9bc5e88b4be19bf3cf4"
+          "spec_digest": "891036abff339fa5fa17a311c5ae28055da14e02b93d385145c0665ffc32a125",
+          "task_digest": "b8fc00ce3c36deb86bfa5b58bc8351bb936e64a9038575d3135a38c8f6cf0c38",
+          "code_digest": "ad96ea71a1c15139f1296a8b98010abbd09d0791c5a8e21567ed6a1366ae9a51",
+          "digest": "4f46dc3f73bf1c6862b0a7a4808606f869e9c5fd923ac1b3e4ed964e807abddb"
         },
         "freshness": {
           "status": "fresh",
           "basis": "revision",
-          "checked_at": "2026-05-05T23:21:30Z",
+          "checked_at": "2026-05-06T22:02:16Z",
           "reason": "revision anchors unchanged since previous heartbeat",
           "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
         },
@@ -754,20 +800,38 @@
         ],
         "code_area": "extensions, .wiki +3 more",
         "open_task_ids": [
-          "TASK-28",
           "TASK-29",
           "TASK-30",
           "TASK-31",
-          "TASK-32"
+          "TASK-32",
+          "TASK-033",
+          "TASK-034",
+          "TASK-035",
+          "TASK-036",
+          "TASK-037",
+          "TASK-038",
+          "TASK-039"
         ],
         "risky_spec_paths": [
+          ".wiki/knowledge/product/surfaces.md",
+          ".wiki/knowledge/system/components/extension.md",
+          ".wiki/knowledge/system/components/knowledge.md",
+          ".wiki/knowledge/system/components/roadmap.md",
+          ".wiki/knowledge/system/components/runtime-gateway.md",
+          ".wiki/knowledge/system/components/views.md",
           ".wiki/knowledge/system/extensions/codewiki/overview.md",
-          ".wiki/knowledge/system/overview.md"
+          ".wiki/knowledge/system/flows/sanitation-release.md",
+          ".wiki/knowledge/system/flows/task-loop.md",
+          ".wiki/knowledge/system/overview.md",
+          ".wiki/knowledge/system/runtime/overview.md",
+          ".wiki/knowledge/system/v2-operating-model.md",
+          ".wiki/knowledge/clients/agent-skills.md",
+          ".wiki/knowledge/clients/surfaces/status-panel.md"
         ],
         "stats": {
           "total_specs": 23,
-          "aligned_specs": 21,
-          "tracked_specs": 2,
+          "aligned_specs": 9,
+          "tracked_specs": 14,
           "untracked_specs": 0,
           "blocked_specs": 0,
           "unmapped_specs": 0
@@ -781,7 +845,7 @@
     ]
   },
   "parallel": {
-    "generated_at": "2026-05-05T23:21:31Z",
+    "generated_at": "2026-05-06T22:02:16Z",
     "active_session_count": 2,
     "collision_task_ids": [],
     "sessions": [
@@ -807,10 +871,10 @@
   },
   "resume": {
     "source": "task",
-    "task_id": "TASK-28",
+    "task_id": "TASK-29",
     "lane_id": "",
-    "heading": "TASK-28 \u2014 Stabilize CodeWiki refactor after partial DDD migration",
-    "command": "/wiki-resume TASK-28",
+    "heading": "TASK-29 \u2014 Add architecture boundary checks and characterization coverage",
+    "command": "/wiki-resume TASK-29",
     "reason": "Resume roadmap task (verify \u00b7 verify).",
     "phase": "verify",
     "verification": "Run `npm run typecheck`.",
@@ -819,6 +883,337 @@
   },
   "wiki": {
     "rows": [
+      {
+        "path": ".wiki/knowledge/clients/agent-skills.md",
+        "title": "Agent Skills",
+        "summary": "Compatibility guidance for global Pi skills alongside CodeWiki-specific workflow skills.",
+        "drift_status": "tracked",
+        "code_paths": [
+          "skills",
+          "README.md"
+        ],
+        "code_area": "skills, README.md",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-034",
+          "TASK-011"
+        ],
+        "primary_task": {
+          "id": "TASK-034",
+          "status": "todo",
+          "title": "Design CodeWiki skill package and workflow assets"
+        },
+        "revision": {
+          "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
+            }
+          }
+        },
+        "note": "tracked by TASK-034"
+      },
+      {
+        "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
+        "title": "Status Panel",
+        "summary": "Compact status-line and panel rules for codewiki.",
+        "drift_status": "tracked",
+        "code_paths": [
+          "extensions/codewiki/index.ts"
+        ],
+        "code_area": "extensions/codewiki/index.ts",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-037"
+        ],
+        "primary_task": {
+          "id": "TASK-037",
+          "status": "todo",
+          "title": "Build standalone read-only CodeWiki UI"
+        },
+        "revision": {
+          "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
+            }
+          }
+        },
+        "note": "tracked by TASK-037"
+      },
+      {
+        "path": ".wiki/knowledge/lexicon.md",
+        "title": "Lexicon",
+        "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, and generated views.",
+        "drift_status": "tracked",
+        "code_paths": [],
+        "code_area": "\u2014",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-034",
+          "TASK-035",
+          "TASK-038",
+          "TASK-040",
+          "TASK-041",
+          "TASK-016",
+          "TASK-018",
+          "TASK-026"
+        ],
+        "primary_task": {
+          "id": "TASK-034",
+          "status": "todo",
+          "title": "Design CodeWiki skill package and workflow assets"
+        },
+        "revision": {
+          "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": true,
+            "dirty_paths": [
+              ".wiki/knowledge/lexicon.md"
+            ],
+            "paths": {
+              ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+            }
+          }
+        },
+        "note": "tracked by TASK-034"
+      },
+      {
+        "path": ".wiki/knowledge/product/surfaces.md",
+        "title": "Product Surfaces",
+        "summary": "Human and AI interaction surfaces for CodeWiki.",
+        "drift_status": "tracked",
+        "code_paths": [],
+        "code_area": "\u2014",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-037",
+          "TASK-016",
+          "TASK-027",
+          "TASK-017"
+        ],
+        "primary_task": {
+          "id": "TASK-037",
+          "status": "todo",
+          "title": "Build standalone read-only CodeWiki UI"
+        },
+        "revision": {
+          "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
+            }
+          }
+        },
+        "note": "tracked by TASK-037"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/extension.md",
+        "title": "CodeWiki Extension",
+        "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
+        "drift_status": "tracked",
+        "code_paths": [
+          "extensions/codewiki/index.ts",
+          "extensions/codewiki/src/adapters/pi"
+        ],
+        "code_area": "extensions +1 more",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-037"
+        ],
+        "primary_task": {
+          "id": "TASK-037",
+          "status": "todo",
+          "title": "Build standalone read-only CodeWiki UI"
+        },
+        "revision": {
+          "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/components/extension.md": "166313f96147e9bace1240466c5bac7090332b42"
+            }
+          }
+        },
+        "note": "tracked by TASK-037"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/knowledge.md",
+        "title": "Canonical Knowledge",
+        "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
+        "drift_status": "tracked",
+        "code_paths": [
+          ".wiki/knowledge"
+        ],
+        "code_area": ".wiki/knowledge",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-035"
+        ],
+        "primary_task": {
+          "id": "TASK-035",
+          "status": "todo",
+          "title": "Enforce structured knowledge-roadmap-code mapping"
+        },
+        "revision": {
+          "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+            }
+          }
+        },
+        "note": "tracked by TASK-035"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/roadmap.md",
+        "title": "Roadmap Tasks",
+        "summary": "Canonical active delta between intended knowledge and current implementation reality.",
+        "drift_status": "tracked",
+        "code_paths": [
+          ".wiki/roadmap.json"
+        ],
+        "code_area": ".wiki/roadmap.json",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-035",
+          "TASK-036"
+        ],
+        "primary_task": {
+          "id": "TASK-035",
+          "status": "todo",
+          "title": "Enforce structured knowledge-roadmap-code mapping"
+        },
+        "revision": {
+          "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+            }
+          }
+        },
+        "note": "tracked by TASK-035"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+        "title": "Runtime Gateway",
+        "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
+        "drift_status": "tracked",
+        "code_paths": [
+          "scripts/codewiki-gateway.mjs"
+        ],
+        "code_area": "scripts/codewiki-gateway.mjs",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-039"
+        ],
+        "primary_task": {
+          "id": "TASK-039",
+          "status": "todo",
+          "title": "Provide optional ThinkCode runtime adapter"
+        },
+        "revision": {
+          "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+            }
+          }
+        },
+        "note": "tracked by TASK-039"
+      },
+      {
+        "path": ".wiki/knowledge/system/components/views.md",
+        "title": "Generated Views",
+        "summary": "Tool-owned optimized read models and context routes consumed by agents, verifiers, and UI.",
+        "drift_status": "tracked",
+        "code_paths": [
+          ".wiki/views"
+        ],
+        "code_area": ".wiki/views",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-035",
+          "TASK-037",
+          "TASK-041"
+        ],
+        "primary_task": {
+          "id": "TASK-035",
+          "status": "todo",
+          "title": "Enforce structured knowledge-roadmap-code mapping"
+        },
+        "revision": {
+          "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": true,
+            "dirty_paths": [
+              ".wiki/knowledge/system/components/views.md"
+            ],
+            "paths": {
+              ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+            }
+          }
+        },
+        "note": "tracked by TASK-035"
+      },
       {
         "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
         "title": "Extensions / Codewiki",
@@ -837,35 +1232,110 @@
           "total": 0
         },
         "related_task_ids": [
-          "TASK-28",
+          "TASK-033",
           "TASK-29",
           "TASK-30",
           "TASK-31",
           "TASK-32",
+          "TASK-28",
           "TASK-002",
           "TASK-005",
           "TASK-027",
           "TASK-010"
         ],
         "primary_task": {
-          "id": "TASK-28",
+          "id": "TASK-033",
           "status": "verify",
-          "title": "Stabilize CodeWiki refactor after partial DDD migration"
+          "title": "Checkpoint stable refactor baseline before next roadmap"
         },
         "revision": {
           "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/system/extensions/codewiki/overview.md"
-            ],
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": false,
+            "dirty_paths": [],
             "paths": {
-              ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
+              ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42"
             }
           }
         },
-        "note": "tracked by TASK-28"
+        "note": "tracked by TASK-033"
+      },
+      {
+        "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+        "title": "Sanitation and Release Flow",
+        "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
+        "drift_status": "tracked",
+        "code_paths": [
+          "scripts/rebuild_docs_meta.py"
+        ],
+        "code_area": "scripts/rebuild_docs_meta.py",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-038",
+          "TASK-024"
+        ],
+        "primary_task": {
+          "id": "TASK-038",
+          "status": "todo",
+          "title": "Implement trigger-based heartbeat agency loop"
+        },
+        "revision": {
+          "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": false,
+            "dirty_paths": [],
+            "paths": {
+              ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+            }
+          }
+        },
+        "note": "tracked by TASK-038"
+      },
+      {
+        "path": ".wiki/knowledge/system/flows/task-loop.md",
+        "title": "Task Loop Flow",
+        "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
+        "drift_status": "tracked",
+        "code_paths": [
+          "scripts/rebuild_docs_meta.py"
+        ],
+        "code_area": "scripts/rebuild_docs_meta.py",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-036",
+          "TASK-038",
+          "TASK-040",
+          "TASK-041"
+        ],
+        "primary_task": {
+          "id": "TASK-036",
+          "status": "todo",
+          "title": "Introduce sprint planning model"
+        },
+        "revision": {
+          "digest": "4992b16d50d00b3cff32de6283b1642d108a3ba8ae7dcb373873fcfb2e44aca5",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": true,
+            "dirty_paths": [
+              ".wiki/knowledge/system/flows/task-loop.md"
+            ],
+            "paths": {
+              ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+            }
+          }
+        },
+        "note": "tracked by TASK-036"
       },
       {
         "path": ".wiki/knowledge/system/overview.md",
@@ -884,11 +1354,12 @@
           "total": 0
         },
         "related_task_ids": [
-          "TASK-28",
+          "TASK-033",
           "TASK-29",
           "TASK-30",
           "TASK-31",
           "TASK-32",
+          "TASK-28",
           "TASK-001",
           "TASK-002",
           "TASK-004",
@@ -899,60 +1370,120 @@
           "TASK-010"
         ],
         "primary_task": {
-          "id": "TASK-28",
+          "id": "TASK-033",
           "status": "verify",
-          "title": "Stabilize CodeWiki refactor after partial DDD migration"
+          "title": "Checkpoint stable refactor baseline before next roadmap"
         },
         "revision": {
           "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/system/overview.md"
-            ],
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": false,
+            "dirty_paths": [],
             "paths": {
-              ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+              ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42"
             }
           }
         },
-        "note": "tracked by TASK-28"
+        "note": "tracked by TASK-033"
       },
       {
-        "path": ".wiki/knowledge/clients/agent-skills.md",
-        "title": "Agent Skills",
-        "summary": "Compatibility guidance for global Pi skills alongside CodeWiki-specific workflow skills.",
-        "drift_status": "aligned",
-        "code_paths": [
-          "skills",
-          "README.md"
-        ],
-        "code_area": "skills, README.md",
+        "path": ".wiki/knowledge/system/runtime/overview.md",
+        "title": "Runtime Policy",
+        "summary": "Policy boundary for codewiki runtime access in codewiki.",
+        "drift_status": "tracked",
+        "code_paths": [],
+        "code_area": "\u2014",
         "issue_counts": {
           "errors": 0,
           "warnings": 0,
           "total": 0
         },
         "related_task_ids": [
-          "TASK-011"
+          "TASK-039",
+          "TASK-040",
+          "TASK-004",
+          "TASK-007",
+          "TASK-009",
+          "TASK-012",
+          "TASK-013",
+          "TASK-014",
+          "TASK-008",
+          "TASK-023"
         ],
         "primary_task": {
-          "id": "TASK-011",
-          "status": "done",
-          "title": "Record curated global agent skills decision"
+          "id": "TASK-039",
+          "status": "todo",
+          "title": "Provide optional ThinkCode runtime adapter"
         },
         "revision": {
-          "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
+          "digest": "0b4d5690b61979d89fa163d01d48cc73f66d0470f752b0f13f1978b78c8f6ecd",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": true,
+            "dirty_paths": [
+              ".wiki/knowledge/system/runtime/overview.md"
+            ],
             "paths": {
-              ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
+              ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           }
         },
-        "note": "no deterministic drift signals"
+        "note": "tracked by TASK-039"
+      },
+      {
+        "path": ".wiki/knowledge/system/v2-operating-model.md",
+        "title": "CodeWiki v2 Operating Model",
+        "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
+        "drift_status": "tracked",
+        "code_paths": [
+          "extensions/codewiki",
+          "scripts/rebuild_docs_meta.py",
+          "skills"
+        ],
+        "code_area": "extensions, scripts +1 more",
+        "issue_counts": {
+          "errors": 0,
+          "warnings": 0,
+          "total": 0
+        },
+        "related_task_ids": [
+          "TASK-034",
+          "TASK-035",
+          "TASK-036",
+          "TASK-038",
+          "TASK-039",
+          "TASK-040",
+          "TASK-041",
+          "TASK-015",
+          "TASK-018",
+          "TASK-019",
+          "TASK-020",
+          "TASK-017",
+          "TASK-021",
+          "TASK-022",
+          "TASK-023",
+          "TASK-024"
+        ],
+        "primary_task": {
+          "id": "TASK-034",
+          "status": "todo",
+          "title": "Design CodeWiki skill package and workflow assets"
+        },
+        "revision": {
+          "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4",
+          "git": {
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": true,
+            "dirty_paths": [
+              ".wiki/knowledge/system/v2-operating-model.md"
+            ],
+            "paths": {
+              ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+            }
+          }
+        },
+        "note": "tracked by TASK-034"
       },
       {
         "path": ".wiki/knowledge/clients/overview.md",
@@ -981,7 +1512,7 @@
         "revision": {
           "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1016,75 +1547,11 @@
         "revision": {
           "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
               ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
-        "title": "Status Panel",
-        "summary": "Compact status-line and panel rules for codewiki.",
-        "drift_status": "aligned",
-        "code_paths": [
-          "extensions/codewiki/index.ts"
-        ],
-        "code_area": "extensions/codewiki/index.ts",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [],
-        "primary_task": null,
-        "revision": {
-          "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/lexicon.md",
-        "title": "Lexicon",
-        "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, and generated views.",
-        "drift_status": "aligned",
-        "code_paths": [],
-        "code_area": "\u2014",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [
-          "TASK-016",
-          "TASK-018",
-          "TASK-026"
-        ],
-        "primary_task": {
-          "id": "TASK-016",
-          "status": "done",
-          "title": "Bake product split and lexicon into templates"
-        },
-        "revision": {
-          "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
             }
           }
         },
@@ -1118,7 +1585,7 @@
         "revision": {
           "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
@@ -1152,46 +1619,11 @@
         "revision": {
           "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
               ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/product/surfaces.md",
-        "title": "Product Surfaces",
-        "summary": "Human and AI interaction surfaces for CodeWiki.",
-        "drift_status": "aligned",
-        "code_paths": [],
-        "code_area": "\u2014",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [
-          "TASK-016",
-          "TASK-027",
-          "TASK-017"
-        ],
-        "primary_task": {
-          "id": "TASK-016",
-          "status": "done",
-          "title": "Bake product split and lexicon into templates"
-        },
-        "revision": {
-          "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
             }
           }
         },
@@ -1220,130 +1652,11 @@
         "revision": {
           "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
               ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/components/extension.md",
-        "title": "CodeWiki Extension",
-        "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
-        "drift_status": "aligned",
-        "code_paths": [
-          "extensions/codewiki/index.ts",
-          "extensions/codewiki/src/adapters/pi"
-        ],
-        "code_area": "extensions +1 more",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [],
-        "primary_task": null,
-        "revision": {
-          "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/system/components/extension.md"
-            ],
-            "paths": {
-              ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/components/knowledge.md",
-        "title": "Canonical Knowledge",
-        "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
-        "drift_status": "aligned",
-        "code_paths": [
-          ".wiki/knowledge"
-        ],
-        "code_area": ".wiki/knowledge",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [],
-        "primary_task": null,
-        "revision": {
-          "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/components/roadmap.md",
-        "title": "Roadmap Tasks",
-        "summary": "Canonical active delta between intended knowledge and current implementation reality.",
-        "drift_status": "aligned",
-        "code_paths": [
-          ".wiki/roadmap.json"
-        ],
-        "code_area": ".wiki/roadmap.json",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [],
-        "primary_task": null,
-        "revision": {
-          "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/components/runtime-gateway.md",
-        "title": "Runtime Gateway",
-        "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
-        "drift_status": "aligned",
-        "code_paths": [
-          "scripts/codewiki-gateway.mjs"
-        ],
-        "code_area": "scripts/codewiki-gateway.mjs",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [],
-        "primary_task": null,
-        "revision": {
-          "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
             }
           }
         },
@@ -1371,42 +1684,11 @@
         "revision": {
           "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": true,
-            "dirty_paths": [
-              ".wiki/knowledge/system/components/view-rebuild.md"
-            ],
-            "paths": {
-              ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/components/views.md",
-        "title": "Generated Views",
-        "summary": "Tool-owned optimized read models consumed by agents and UI.",
-        "drift_status": "aligned",
-        "code_paths": [
-          ".wiki/views"
-        ],
-        "code_area": ".wiki/views",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [],
-        "primary_task": null,
-        "revision": {
-          "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
-              ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+              ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42"
             }
           }
         },
@@ -1428,6 +1710,7 @@
           "total": 0
         },
         "related_task_ids": [
+          "TASK-041",
           "TASK-018",
           "TASK-019",
           "TASK-020",
@@ -1435,16 +1718,18 @@
           "TASK-021"
         ],
         "primary_task": {
-          "id": "TASK-018",
+          "id": "TASK-041",
           "status": "done",
-          "title": "Implement context memory policy in skills and loops"
+          "title": "Review and improve generated views into a token-efficient context compiler"
         },
         "revision": {
-          "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543",
+          "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
+            "dirty": true,
+            "dirty_paths": [
+              ".wiki/knowledge/system/flows/context-memory.md"
+            ],
             "paths": {
               ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
@@ -1471,75 +1756,11 @@
         "revision": {
           "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
               ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/flows/sanitation-release.md",
-        "title": "Sanitation and Release Flow",
-        "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
-        "drift_status": "aligned",
-        "code_paths": [
-          "scripts/rebuild_docs_meta.py"
-        ],
-        "code_area": "scripts/rebuild_docs_meta.py",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [
-          "TASK-024"
-        ],
-        "primary_task": {
-          "id": "TASK-024",
-          "status": "done",
-          "title": "Sanitation checkpoints and git history policy"
-        },
-        "revision": {
-          "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/flows/task-loop.md",
-        "title": "Task Loop Flow",
-        "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
-        "drift_status": "aligned",
-        "code_paths": [
-          "scripts/rebuild_docs_meta.py"
-        ],
-        "code_area": "scripts/rebuild_docs_meta.py",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [],
-        "primary_task": null,
-        "revision": {
-          "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
             }
           }
         },
@@ -1564,96 +1785,11 @@
         "revision": {
           "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
           "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+            "head": "166313f96147e9bace1240466c5bac7090332b42",
             "dirty": false,
             "dirty_paths": [],
             "paths": {
               ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/runtime/overview.md",
-        "title": "Runtime Policy",
-        "summary": "Policy boundary for codewiki runtime access in codewiki.",
-        "drift_status": "aligned",
-        "code_paths": [],
-        "code_area": "\u2014",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [
-          "TASK-004",
-          "TASK-007",
-          "TASK-009",
-          "TASK-012",
-          "TASK-013",
-          "TASK-014",
-          "TASK-008",
-          "TASK-023"
-        ],
-        "primary_task": {
-          "id": "TASK-004",
-          "status": "done",
-          "title": "Expose CodeWiki capability manifest and think-code boundary"
-        },
-        "revision": {
-          "digest": "f0306aa864ab75eef3e989a6819add03232c7a7df3e95a442eaac6d4b688b332",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
-            }
-          }
-        },
-        "note": "no deterministic drift signals"
-      },
-      {
-        "path": ".wiki/knowledge/system/v2-operating-model.md",
-        "title": "CodeWiki v2 Operating Model",
-        "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
-        "drift_status": "aligned",
-        "code_paths": [
-          "extensions/codewiki",
-          "scripts/rebuild_docs_meta.py",
-          "skills"
-        ],
-        "code_area": "extensions, scripts +1 more",
-        "issue_counts": {
-          "errors": 0,
-          "warnings": 0,
-          "total": 0
-        },
-        "related_task_ids": [
-          "TASK-015",
-          "TASK-018",
-          "TASK-019",
-          "TASK-020",
-          "TASK-017",
-          "TASK-021",
-          "TASK-022",
-          "TASK-023",
-          "TASK-024"
-        ],
-        "primary_task": {
-          "id": "TASK-015",
-          "status": "done",
-          "title": "Implement v2 wiki layout and migration"
-        },
-        "revision": {
-          "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485",
-          "git": {
-            "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-            "dirty": false,
-            "dirty_paths": [],
-            "paths": {
-              ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
             }
           }
         },
@@ -1665,6 +1801,42 @@
         "id": "product",
         "label": "Product",
         "rows": [
+          {
+            "path": ".wiki/knowledge/product/surfaces.md",
+            "title": "Product Surfaces",
+            "summary": "Human and AI interaction surfaces for CodeWiki.",
+            "drift_status": "tracked",
+            "code_paths": [],
+            "code_area": "\u2014",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-037",
+              "TASK-016",
+              "TASK-027",
+              "TASK-017"
+            ],
+            "primary_task": {
+              "id": "TASK-037",
+              "status": "todo",
+              "title": "Build standalone read-only CodeWiki UI"
+            },
+            "revision": {
+              "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
+              "git": {
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
+                }
+              }
+            },
+            "note": "tracked by TASK-037"
+          },
           {
             "path": ".wiki/knowledge/product/overview.md",
             "title": "Product",
@@ -1693,7 +1865,7 @@
             "revision": {
               "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1727,46 +1899,11 @@
             "revision": {
               "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/product/surfaces.md",
-            "title": "Product Surfaces",
-            "summary": "Human and AI interaction surfaces for CodeWiki.",
-            "drift_status": "aligned",
-            "code_paths": [],
-            "code_area": "\u2014",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-016",
-              "TASK-027",
-              "TASK-017"
-            ],
-            "primary_task": {
-              "id": "TASK-016",
-              "status": "done",
-              "title": "Bake product split and lexicon into templates"
-            },
-            "revision": {
-              "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
-              "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
-                "paths": {
-                  ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
                 }
               }
             },
@@ -1795,7 +1932,7 @@
             "revision": {
               "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -1811,6 +1948,229 @@
         "id": "system",
         "label": "System",
         "rows": [
+          {
+            "path": ".wiki/knowledge/lexicon.md",
+            "title": "Lexicon",
+            "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, and generated views.",
+            "drift_status": "tracked",
+            "code_paths": [],
+            "code_area": "\u2014",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-034",
+              "TASK-035",
+              "TASK-038",
+              "TASK-040",
+              "TASK-041",
+              "TASK-016",
+              "TASK-018",
+              "TASK-026"
+            ],
+            "primary_task": {
+              "id": "TASK-034",
+              "status": "todo",
+              "title": "Design CodeWiki skill package and workflow assets"
+            },
+            "revision": {
+              "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d",
+              "git": {
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": true,
+                "dirty_paths": [
+                  ".wiki/knowledge/lexicon.md"
+                ],
+                "paths": {
+                  ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+                }
+              }
+            },
+            "note": "tracked by TASK-034"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/extension.md",
+            "title": "CodeWiki Extension",
+            "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
+            "drift_status": "tracked",
+            "code_paths": [
+              "extensions/codewiki/index.ts",
+              "extensions/codewiki/src/adapters/pi"
+            ],
+            "code_area": "extensions +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-037"
+            ],
+            "primary_task": {
+              "id": "TASK-037",
+              "status": "todo",
+              "title": "Build standalone read-only CodeWiki UI"
+            },
+            "revision": {
+              "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
+              "git": {
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/components/extension.md": "166313f96147e9bace1240466c5bac7090332b42"
+                }
+              }
+            },
+            "note": "tracked by TASK-037"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/knowledge.md",
+            "title": "Canonical Knowledge",
+            "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
+            "drift_status": "tracked",
+            "code_paths": [
+              ".wiki/knowledge"
+            ],
+            "code_area": ".wiki/knowledge",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-035"
+            ],
+            "primary_task": {
+              "id": "TASK-035",
+              "status": "todo",
+              "title": "Enforce structured knowledge-roadmap-code mapping"
+            },
+            "revision": {
+              "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
+              "git": {
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+                }
+              }
+            },
+            "note": "tracked by TASK-035"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/roadmap.md",
+            "title": "Roadmap Tasks",
+            "summary": "Canonical active delta between intended knowledge and current implementation reality.",
+            "drift_status": "tracked",
+            "code_paths": [
+              ".wiki/roadmap.json"
+            ],
+            "code_area": ".wiki/roadmap.json",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-035",
+              "TASK-036"
+            ],
+            "primary_task": {
+              "id": "TASK-035",
+              "status": "todo",
+              "title": "Enforce structured knowledge-roadmap-code mapping"
+            },
+            "revision": {
+              "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
+              "git": {
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+                }
+              }
+            },
+            "note": "tracked by TASK-035"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+            "title": "Runtime Gateway",
+            "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
+            "drift_status": "tracked",
+            "code_paths": [
+              "scripts/codewiki-gateway.mjs"
+            ],
+            "code_area": "scripts/codewiki-gateway.mjs",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-039"
+            ],
+            "primary_task": {
+              "id": "TASK-039",
+              "status": "todo",
+              "title": "Provide optional ThinkCode runtime adapter"
+            },
+            "revision": {
+              "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
+              "git": {
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+                }
+              }
+            },
+            "note": "tracked by TASK-039"
+          },
+          {
+            "path": ".wiki/knowledge/system/components/views.md",
+            "title": "Generated Views",
+            "summary": "Tool-owned optimized read models and context routes consumed by agents, verifiers, and UI.",
+            "drift_status": "tracked",
+            "code_paths": [
+              ".wiki/views"
+            ],
+            "code_area": ".wiki/views",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-035",
+              "TASK-037",
+              "TASK-041"
+            ],
+            "primary_task": {
+              "id": "TASK-035",
+              "status": "todo",
+              "title": "Enforce structured knowledge-roadmap-code mapping"
+            },
+            "revision": {
+              "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e",
+              "git": {
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": true,
+                "dirty_paths": [
+                  ".wiki/knowledge/system/components/views.md"
+                ],
+                "paths": {
+                  ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+                }
+              }
+            },
+            "note": "tracked by TASK-035"
+          },
           {
             "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
             "title": "Extensions / Codewiki",
@@ -1829,35 +2189,110 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-28",
+              "TASK-033",
               "TASK-29",
               "TASK-30",
               "TASK-31",
               "TASK-32",
+              "TASK-28",
               "TASK-002",
               "TASK-005",
               "TASK-027",
               "TASK-010"
             ],
             "primary_task": {
-              "id": "TASK-28",
+              "id": "TASK-033",
               "status": "verify",
-              "title": "Stabilize CodeWiki refactor after partial DDD migration"
+              "title": "Checkpoint stable refactor baseline before next roadmap"
             },
             "revision": {
               "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/system/extensions/codewiki/overview.md"
-                ],
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
-                  ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
+                  ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42"
                 }
               }
             },
-            "note": "tracked by TASK-28"
+            "note": "tracked by TASK-033"
+          },
+          {
+            "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+            "title": "Sanitation and Release Flow",
+            "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
+            "drift_status": "tracked",
+            "code_paths": [
+              "scripts/rebuild_docs_meta.py"
+            ],
+            "code_area": "scripts/rebuild_docs_meta.py",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-038",
+              "TASK-024"
+            ],
+            "primary_task": {
+              "id": "TASK-038",
+              "status": "todo",
+              "title": "Implement trigger-based heartbeat agency loop"
+            },
+            "revision": {
+              "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
+              "git": {
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+                }
+              }
+            },
+            "note": "tracked by TASK-038"
+          },
+          {
+            "path": ".wiki/knowledge/system/flows/task-loop.md",
+            "title": "Task Loop Flow",
+            "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
+            "drift_status": "tracked",
+            "code_paths": [
+              "scripts/rebuild_docs_meta.py"
+            ],
+            "code_area": "scripts/rebuild_docs_meta.py",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-036",
+              "TASK-038",
+              "TASK-040",
+              "TASK-041"
+            ],
+            "primary_task": {
+              "id": "TASK-036",
+              "status": "todo",
+              "title": "Introduce sprint planning model"
+            },
+            "revision": {
+              "digest": "4992b16d50d00b3cff32de6283b1642d108a3ba8ae7dcb373873fcfb2e44aca5",
+              "git": {
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": true,
+                "dirty_paths": [
+                  ".wiki/knowledge/system/flows/task-loop.md"
+                ],
+                "paths": {
+                  ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+                }
+              }
+            },
+            "note": "tracked by TASK-036"
           },
           {
             "path": ".wiki/knowledge/system/overview.md",
@@ -1876,11 +2311,12 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-28",
+              "TASK-033",
               "TASK-29",
               "TASK-30",
               "TASK-31",
               "TASK-32",
+              "TASK-28",
               "TASK-001",
               "TASK-002",
               "TASK-004",
@@ -1891,30 +2327,28 @@
               "TASK-010"
             ],
             "primary_task": {
-              "id": "TASK-28",
+              "id": "TASK-033",
               "status": "verify",
-              "title": "Stabilize CodeWiki refactor after partial DDD migration"
+              "title": "Checkpoint stable refactor baseline before next roadmap"
             },
             "revision": {
               "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/system/overview.md"
-                ],
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
-                  ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+                  ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42"
                 }
               }
             },
-            "note": "tracked by TASK-28"
+            "note": "tracked by TASK-033"
           },
           {
-            "path": ".wiki/knowledge/lexicon.md",
-            "title": "Lexicon",
-            "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, and generated views.",
-            "drift_status": "aligned",
+            "path": ".wiki/knowledge/system/runtime/overview.md",
+            "title": "Runtime Policy",
+            "summary": "Policy boundary for codewiki runtime access in codewiki.",
+            "drift_status": "tracked",
             "code_paths": [],
             "code_area": "\u2014",
             "issue_counts": {
@@ -1923,146 +2357,90 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-016",
-              "TASK-018",
-              "TASK-026"
+              "TASK-039",
+              "TASK-040",
+              "TASK-004",
+              "TASK-007",
+              "TASK-009",
+              "TASK-012",
+              "TASK-013",
+              "TASK-014",
+              "TASK-008",
+              "TASK-023"
             ],
             "primary_task": {
-              "id": "TASK-016",
-              "status": "done",
-              "title": "Bake product split and lexicon into templates"
+              "id": "TASK-039",
+              "status": "todo",
+              "title": "Provide optional ThinkCode runtime adapter"
             },
             "revision": {
-              "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
+              "digest": "0b4d5690b61979d89fa163d01d48cc73f66d0470f752b0f13f1978b78c8f6ecd",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
-                "paths": {
-                  ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/system/components/extension.md",
-            "title": "CodeWiki Extension",
-            "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
-            "drift_status": "aligned",
-            "code_paths": [
-              "extensions/codewiki/index.ts",
-              "extensions/codewiki/src/adapters/pi"
-            ],
-            "code_area": "extensions +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [],
-            "primary_task": null,
-            "revision": {
-              "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
-              "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
                 "dirty": true,
                 "dirty_paths": [
-                  ".wiki/knowledge/system/components/extension.md"
+                  ".wiki/knowledge/system/runtime/overview.md"
                 ],
                 "paths": {
-                  ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+                  ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
                 }
               }
             },
-            "note": "no deterministic drift signals"
+            "note": "tracked by TASK-039"
           },
           {
-            "path": ".wiki/knowledge/system/components/knowledge.md",
-            "title": "Canonical Knowledge",
-            "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
-            "drift_status": "aligned",
+            "path": ".wiki/knowledge/system/v2-operating-model.md",
+            "title": "CodeWiki v2 Operating Model",
+            "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
+            "drift_status": "tracked",
             "code_paths": [
-              ".wiki/knowledge"
+              "extensions/codewiki",
+              "scripts/rebuild_docs_meta.py",
+              "skills"
             ],
-            "code_area": ".wiki/knowledge",
+            "code_area": "extensions, scripts +1 more",
             "issue_counts": {
               "errors": 0,
               "warnings": 0,
               "total": 0
             },
-            "related_task_ids": [],
-            "primary_task": null,
-            "revision": {
-              "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
-              "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
-                "paths": {
-                  ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/system/components/roadmap.md",
-            "title": "Roadmap Tasks",
-            "summary": "Canonical active delta between intended knowledge and current implementation reality.",
-            "drift_status": "aligned",
-            "code_paths": [
-              ".wiki/roadmap.json"
+            "related_task_ids": [
+              "TASK-034",
+              "TASK-035",
+              "TASK-036",
+              "TASK-038",
+              "TASK-039",
+              "TASK-040",
+              "TASK-041",
+              "TASK-015",
+              "TASK-018",
+              "TASK-019",
+              "TASK-020",
+              "TASK-017",
+              "TASK-021",
+              "TASK-022",
+              "TASK-023",
+              "TASK-024"
             ],
-            "code_area": ".wiki/roadmap.json",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
+            "primary_task": {
+              "id": "TASK-034",
+              "status": "todo",
+              "title": "Design CodeWiki skill package and workflow assets"
             },
-            "related_task_ids": [],
-            "primary_task": null,
             "revision": {
-              "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
+              "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": true,
+                "dirty_paths": [
+                  ".wiki/knowledge/system/v2-operating-model.md"
+                ],
                 "paths": {
-                  ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+                  ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
                 }
               }
             },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/system/components/runtime-gateway.md",
-            "title": "Runtime Gateway",
-            "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
-            "drift_status": "aligned",
-            "code_paths": [
-              "scripts/codewiki-gateway.mjs"
-            ],
-            "code_area": "scripts/codewiki-gateway.mjs",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [],
-            "primary_task": null,
-            "revision": {
-              "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
-              "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
-                "paths": {
-                  ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
+            "note": "tracked by TASK-034"
           },
           {
             "path": ".wiki/knowledge/system/components/view-rebuild.md",
@@ -2086,42 +2464,11 @@
             "revision": {
               "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": true,
-                "dirty_paths": [
-                  ".wiki/knowledge/system/components/view-rebuild.md"
-                ],
-                "paths": {
-                  ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/system/components/views.md",
-            "title": "Generated Views",
-            "summary": "Tool-owned optimized read models consumed by agents and UI.",
-            "drift_status": "aligned",
-            "code_paths": [
-              ".wiki/views"
-            ],
-            "code_area": ".wiki/views",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [],
-            "primary_task": null,
-            "revision": {
-              "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
-              "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
-                  ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+                  ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42"
                 }
               }
             },
@@ -2143,6 +2490,7 @@
               "total": 0
             },
             "related_task_ids": [
+              "TASK-041",
               "TASK-018",
               "TASK-019",
               "TASK-020",
@@ -2150,16 +2498,18 @@
               "TASK-021"
             ],
             "primary_task": {
-              "id": "TASK-018",
+              "id": "TASK-041",
               "status": "done",
-              "title": "Implement context memory policy in skills and loops"
+              "title": "Review and improve generated views into a token-efficient context compiler"
             },
             "revision": {
-              "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543",
+              "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": true,
+                "dirty_paths": [
+                  ".wiki/knowledge/system/flows/context-memory.md"
+                ],
                 "paths": {
                   ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
                 }
@@ -2186,75 +2536,11 @@
             "revision": {
               "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/system/flows/sanitation-release.md",
-            "title": "Sanitation and Release Flow",
-            "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
-            "drift_status": "aligned",
-            "code_paths": [
-              "scripts/rebuild_docs_meta.py"
-            ],
-            "code_area": "scripts/rebuild_docs_meta.py",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-024"
-            ],
-            "primary_task": {
-              "id": "TASK-024",
-              "status": "done",
-              "title": "Sanitation checkpoints and git history policy"
-            },
-            "revision": {
-              "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
-              "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
-                "paths": {
-                  ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/system/flows/task-loop.md",
-            "title": "Task Loop Flow",
-            "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
-            "drift_status": "aligned",
-            "code_paths": [
-              "scripts/rebuild_docs_meta.py"
-            ],
-            "code_area": "scripts/rebuild_docs_meta.py",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [],
-            "primary_task": null,
-            "revision": {
-              "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
-              "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
-                "paths": {
-                  ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
                 }
               }
             },
@@ -2279,96 +2565,11 @@
             "revision": {
               "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".wiki/knowledge/system/flows/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/system/runtime/overview.md",
-            "title": "Runtime Policy",
-            "summary": "Policy boundary for codewiki runtime access in codewiki.",
-            "drift_status": "aligned",
-            "code_paths": [],
-            "code_area": "\u2014",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-004",
-              "TASK-007",
-              "TASK-009",
-              "TASK-012",
-              "TASK-013",
-              "TASK-014",
-              "TASK-008",
-              "TASK-023"
-            ],
-            "primary_task": {
-              "id": "TASK-004",
-              "status": "done",
-              "title": "Expose CodeWiki capability manifest and think-code boundary"
-            },
-            "revision": {
-              "digest": "f0306aa864ab75eef3e989a6819add03232c7a7df3e95a442eaac6d4b688b332",
-              "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
-                "paths": {
-                  ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/system/v2-operating-model.md",
-            "title": "CodeWiki v2 Operating Model",
-            "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
-            "drift_status": "aligned",
-            "code_paths": [
-              "extensions/codewiki",
-              "scripts/rebuild_docs_meta.py",
-              "skills"
-            ],
-            "code_area": "extensions, scripts +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-015",
-              "TASK-018",
-              "TASK-019",
-              "TASK-020",
-              "TASK-017",
-              "TASK-021",
-              "TASK-022",
-              "TASK-023",
-              "TASK-024"
-            ],
-            "primary_task": {
-              "id": "TASK-015",
-              "status": "done",
-              "title": "Implement v2 wiki layout and migration"
-            },
-            "revision": {
-              "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485",
-              "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
-                "paths": {
-                  ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
                 }
               }
             },
@@ -2384,7 +2585,7 @@
             "path": ".wiki/knowledge/clients/agent-skills.md",
             "title": "Agent Skills",
             "summary": "Compatibility guidance for global Pi skills alongside CodeWiki-specific workflow skills.",
-            "drift_status": "aligned",
+            "drift_status": "tracked",
             "code_paths": [
               "skills",
               "README.md"
@@ -2396,17 +2597,18 @@
               "total": 0
             },
             "related_task_ids": [
+              "TASK-034",
               "TASK-011"
             ],
             "primary_task": {
-              "id": "TASK-011",
-              "status": "done",
-              "title": "Record curated global agent skills decision"
+              "id": "TASK-034",
+              "status": "todo",
+              "title": "Design CodeWiki skill package and workflow assets"
             },
             "revision": {
               "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2414,7 +2616,42 @@
                 }
               }
             },
-            "note": "no deterministic drift signals"
+            "note": "tracked by TASK-034"
+          },
+          {
+            "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
+            "title": "Status Panel",
+            "summary": "Compact status-line and panel rules for codewiki.",
+            "drift_status": "tracked",
+            "code_paths": [
+              "extensions/codewiki/index.ts"
+            ],
+            "code_area": "extensions/codewiki/index.ts",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-037"
+            ],
+            "primary_task": {
+              "id": "TASK-037",
+              "status": "todo",
+              "title": "Build standalone read-only CodeWiki UI"
+            },
+            "revision": {
+              "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
+              "git": {
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
+                "dirty": false,
+                "dirty_paths": [],
+                "paths": {
+                  ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
+                }
+              }
+            },
+            "note": "tracked by TASK-037"
           },
           {
             "path": ".wiki/knowledge/clients/overview.md",
@@ -2443,7 +2680,7 @@
             "revision": {
               "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -2478,40 +2715,11 @@
             "revision": {
               "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
               "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+                "head": "166313f96147e9bace1240466c5bac7090332b42",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
-                }
-              }
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
-            "title": "Status Panel",
-            "summary": "Compact status-line and panel rules for codewiki.",
-            "drift_status": "aligned",
-            "code_paths": [
-              "extensions/codewiki/index.ts"
-            ],
-            "code_area": "extensions/codewiki/index.ts",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [],
-            "primary_task": null,
-            "revision": {
-              "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
-              "git": {
-                "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-                "dirty": false,
-                "dirty_paths": [],
-                "paths": {
-                  ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
                 }
               }
             },
@@ -2522,21 +2730,28 @@
     ]
   },
   "roadmap": {
-    "focused_task_id": "TASK-28",
+    "focused_task_id": "TASK-29",
     "blocked_task_ids": [],
     "in_progress_task_ids": [
-      "TASK-28",
       "TASK-29",
       "TASK-30",
       "TASK-31",
-      "TASK-32"
+      "TASK-32",
+      "TASK-033"
     ],
-    "next_task_id": "",
+    "next_task_id": "TASK-034",
     "columns": [
       {
         "id": "todo",
         "label": "Todo",
-        "task_ids": []
+        "task_ids": [
+          "TASK-034",
+          "TASK-035",
+          "TASK-036",
+          "TASK-037",
+          "TASK-038",
+          "TASK-039"
+        ]
       },
       {
         "id": "research",
@@ -2552,11 +2767,11 @@
         "id": "verify",
         "label": "Verify",
         "task_ids": [
-          "TASK-28",
           "TASK-29",
           "TASK-30",
           "TASK-31",
-          "TASK-32"
+          "TASK-32",
+          "TASK-033"
         ]
       },
       {
@@ -2589,7 +2804,10 @@
           "TASK-024",
           "TASK-025",
           "TASK-026",
-          "TASK-027"
+          "TASK-027",
+          "TASK-28",
+          "TASK-040",
+          "TASK-041"
         ]
       }
     ]
@@ -2628,6 +2846,337 @@
   },
   "specs": [
     {
+      "path": ".wiki/knowledge/clients/agent-skills.md",
+      "title": "Agent Skills",
+      "summary": "Compatibility guidance for global Pi skills alongside CodeWiki-specific workflow skills.",
+      "drift_status": "tracked",
+      "code_paths": [
+        "skills",
+        "README.md"
+      ],
+      "code_area": "skills, README.md",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-034",
+        "TASK-011"
+      ],
+      "primary_task": {
+        "id": "TASK-034",
+        "status": "todo",
+        "title": "Design CodeWiki skill package and workflow assets"
+      },
+      "revision": {
+        "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
+          }
+        }
+      },
+      "note": "tracked by TASK-034"
+    },
+    {
+      "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
+      "title": "Status Panel",
+      "summary": "Compact status-line and panel rules for codewiki.",
+      "drift_status": "tracked",
+      "code_paths": [
+        "extensions/codewiki/index.ts"
+      ],
+      "code_area": "extensions/codewiki/index.ts",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-037"
+      ],
+      "primary_task": {
+        "id": "TASK-037",
+        "status": "todo",
+        "title": "Build standalone read-only CodeWiki UI"
+      },
+      "revision": {
+        "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
+          }
+        }
+      },
+      "note": "tracked by TASK-037"
+    },
+    {
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, and generated views.",
+      "drift_status": "tracked",
+      "code_paths": [],
+      "code_area": "\u2014",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-034",
+        "TASK-035",
+        "TASK-038",
+        "TASK-040",
+        "TASK-041",
+        "TASK-016",
+        "TASK-018",
+        "TASK-026"
+      ],
+      "primary_task": {
+        "id": "TASK-034",
+        "status": "todo",
+        "title": "Design CodeWiki skill package and workflow assets"
+      },
+      "revision": {
+        "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/lexicon.md"
+          ],
+          "paths": {
+            ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+          }
+        }
+      },
+      "note": "tracked by TASK-034"
+    },
+    {
+      "path": ".wiki/knowledge/product/surfaces.md",
+      "title": "Product Surfaces",
+      "summary": "Human and AI interaction surfaces for CodeWiki.",
+      "drift_status": "tracked",
+      "code_paths": [],
+      "code_area": "\u2014",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-037",
+        "TASK-016",
+        "TASK-027",
+        "TASK-017"
+      ],
+      "primary_task": {
+        "id": "TASK-037",
+        "status": "todo",
+        "title": "Build standalone read-only CodeWiki UI"
+      },
+      "revision": {
+        "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
+          }
+        }
+      },
+      "note": "tracked by TASK-037"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/extension.md",
+      "title": "CodeWiki Extension",
+      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
+      "drift_status": "tracked",
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/src/adapters/pi"
+      ],
+      "code_area": "extensions +1 more",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-037"
+      ],
+      "primary_task": {
+        "id": "TASK-037",
+        "status": "todo",
+        "title": "Build standalone read-only CodeWiki UI"
+      },
+      "revision": {
+        "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/extension.md": "166313f96147e9bace1240466c5bac7090332b42"
+          }
+        }
+      },
+      "note": "tracked by TASK-037"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/knowledge.md",
+      "title": "Canonical Knowledge",
+      "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
+      "drift_status": "tracked",
+      "code_paths": [
+        ".wiki/knowledge"
+      ],
+      "code_area": ".wiki/knowledge",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-035"
+      ],
+      "primary_task": {
+        "id": "TASK-035",
+        "status": "todo",
+        "title": "Enforce structured knowledge-roadmap-code mapping"
+      },
+      "revision": {
+        "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+          }
+        }
+      },
+      "note": "tracked by TASK-035"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/roadmap.md",
+      "title": "Roadmap Tasks",
+      "summary": "Canonical active delta between intended knowledge and current implementation reality.",
+      "drift_status": "tracked",
+      "code_paths": [
+        ".wiki/roadmap.json"
+      ],
+      "code_area": ".wiki/roadmap.json",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-035",
+        "TASK-036"
+      ],
+      "primary_task": {
+        "id": "TASK-035",
+        "status": "todo",
+        "title": "Enforce structured knowledge-roadmap-code mapping"
+      },
+      "revision": {
+        "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+          }
+        }
+      },
+      "note": "tracked by TASK-035"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/runtime-gateway.md",
+      "title": "Runtime Gateway",
+      "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
+      "drift_status": "tracked",
+      "code_paths": [
+        "scripts/codewiki-gateway.mjs"
+      ],
+      "code_area": "scripts/codewiki-gateway.mjs",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-039"
+      ],
+      "primary_task": {
+        "id": "TASK-039",
+        "status": "todo",
+        "title": "Provide optional ThinkCode runtime adapter"
+      },
+      "revision": {
+        "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+          }
+        }
+      },
+      "note": "tracked by TASK-039"
+    },
+    {
+      "path": ".wiki/knowledge/system/components/views.md",
+      "title": "Generated Views",
+      "summary": "Tool-owned optimized read models and context routes consumed by agents, verifiers, and UI.",
+      "drift_status": "tracked",
+      "code_paths": [
+        ".wiki/views"
+      ],
+      "code_area": ".wiki/views",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-035",
+        "TASK-037",
+        "TASK-041"
+      ],
+      "primary_task": {
+        "id": "TASK-035",
+        "status": "todo",
+        "title": "Enforce structured knowledge-roadmap-code mapping"
+      },
+      "revision": {
+        "digest": "f7663963696a6ba26e22334f0b6f411d30222451b77290a47488d676e93fe58e",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/components/views.md"
+          ],
+          "paths": {
+            ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+          }
+        }
+      },
+      "note": "tracked by TASK-035"
+    },
+    {
       "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
       "title": "Extensions / Codewiki",
       "summary": "Pi package resources, adapter boundary, commands/tools, packaged skills, status UI, and generated wiki templates for codewiki.",
@@ -2645,35 +3194,110 @@
         "total": 0
       },
       "related_task_ids": [
-        "TASK-28",
+        "TASK-033",
         "TASK-29",
         "TASK-30",
         "TASK-31",
         "TASK-32",
+        "TASK-28",
         "TASK-002",
         "TASK-005",
         "TASK-027",
         "TASK-010"
       ],
       "primary_task": {
-        "id": "TASK-28",
+        "id": "TASK-033",
         "status": "verify",
-        "title": "Stabilize CodeWiki refactor after partial DDD migration"
+        "title": "Checkpoint stable refactor baseline before next roadmap"
       },
       "revision": {
         "digest": "a40c0540fe1fdd9243a0fd8b08423a6e54f88c9849e82f3c37075cd7c0eb2c12",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/extensions/codewiki/overview.md"
-          ],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/extensions/codewiki/overview.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
+            ".wiki/knowledge/system/extensions/codewiki/overview.md": "166313f96147e9bace1240466c5bac7090332b42"
           }
         }
       },
-      "note": "tracked by TASK-28"
+      "note": "tracked by TASK-033"
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+      "title": "Sanitation and Release Flow",
+      "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
+      "drift_status": "tracked",
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "code_area": "scripts/rebuild_docs_meta.py",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-038",
+        "TASK-024"
+      ],
+      "primary_task": {
+        "id": "TASK-038",
+        "status": "todo",
+        "title": "Implement trigger-based heartbeat agency loop"
+      },
+      "revision": {
+        "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
+          "paths": {
+            ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+          }
+        }
+      },
+      "note": "tracked by TASK-038"
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/task-loop.md",
+      "title": "Task Loop Flow",
+      "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
+      "drift_status": "tracked",
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "code_area": "scripts/rebuild_docs_meta.py",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-036",
+        "TASK-038",
+        "TASK-040",
+        "TASK-041"
+      ],
+      "primary_task": {
+        "id": "TASK-036",
+        "status": "todo",
+        "title": "Introduce sprint planning model"
+      },
+      "revision": {
+        "digest": "4992b16d50d00b3cff32de6283b1642d108a3ba8ae7dcb373873fcfb2e44aca5",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/flows/task-loop.md"
+          ],
+          "paths": {
+            ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+          }
+        }
+      },
+      "note": "tracked by TASK-036"
     },
     {
       "path": ".wiki/knowledge/system/overview.md",
@@ -2692,11 +3316,12 @@
         "total": 0
       },
       "related_task_ids": [
-        "TASK-28",
+        "TASK-033",
         "TASK-29",
         "TASK-30",
         "TASK-31",
         "TASK-32",
+        "TASK-28",
         "TASK-001",
         "TASK-002",
         "TASK-004",
@@ -2707,60 +3332,120 @@
         "TASK-010"
       ],
       "primary_task": {
-        "id": "TASK-28",
+        "id": "TASK-033",
         "status": "verify",
-        "title": "Stabilize CodeWiki refactor after partial DDD migration"
+        "title": "Checkpoint stable refactor baseline before next roadmap"
       },
       "revision": {
         "digest": "09b9f2da245e3239d4038981c5f4e297dea3ca678cc04aa924257bd8399aaaca",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/overview.md"
-          ],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": false,
+          "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/overview.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
+            ".wiki/knowledge/system/overview.md": "166313f96147e9bace1240466c5bac7090332b42"
           }
         }
       },
-      "note": "tracked by TASK-28"
+      "note": "tracked by TASK-033"
     },
     {
-      "path": ".wiki/knowledge/clients/agent-skills.md",
-      "title": "Agent Skills",
-      "summary": "Compatibility guidance for global Pi skills alongside CodeWiki-specific workflow skills.",
-      "drift_status": "aligned",
-      "code_paths": [
-        "skills",
-        "README.md"
-      ],
-      "code_area": "skills, README.md",
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "summary": "Policy boundary for codewiki runtime access in codewiki.",
+      "drift_status": "tracked",
+      "code_paths": [],
+      "code_area": "\u2014",
       "issue_counts": {
         "errors": 0,
         "warnings": 0,
         "total": 0
       },
       "related_task_ids": [
-        "TASK-011"
+        "TASK-039",
+        "TASK-040",
+        "TASK-004",
+        "TASK-007",
+        "TASK-009",
+        "TASK-012",
+        "TASK-013",
+        "TASK-014",
+        "TASK-008",
+        "TASK-023"
       ],
       "primary_task": {
-        "id": "TASK-011",
-        "status": "done",
-        "title": "Record curated global agent skills decision"
+        "id": "TASK-039",
+        "status": "todo",
+        "title": "Provide optional ThinkCode runtime adapter"
       },
       "revision": {
-        "digest": "79d858480198dd0fcd0b071a7d046e9dfeab0c5bef5d823f23dc86957648aad5",
+        "digest": "0b4d5690b61979d89fa163d01d48cc73f66d0470f752b0f13f1978b78c8f6ecd",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/runtime/overview.md"
+          ],
           "paths": {
-            ".wiki/knowledge/clients/agent-skills.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
+            ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
           }
         }
       },
-      "note": "no deterministic drift signals"
+      "note": "tracked by TASK-039"
+    },
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
+      "drift_status": "tracked",
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "code_area": "extensions, scripts +1 more",
+      "issue_counts": {
+        "errors": 0,
+        "warnings": 0,
+        "total": 0
+      },
+      "related_task_ids": [
+        "TASK-034",
+        "TASK-035",
+        "TASK-036",
+        "TASK-038",
+        "TASK-039",
+        "TASK-040",
+        "TASK-041",
+        "TASK-015",
+        "TASK-018",
+        "TASK-019",
+        "TASK-020",
+        "TASK-017",
+        "TASK-021",
+        "TASK-022",
+        "TASK-023",
+        "TASK-024"
+      ],
+      "primary_task": {
+        "id": "TASK-034",
+        "status": "todo",
+        "title": "Design CodeWiki skill package and workflow assets"
+      },
+      "revision": {
+        "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4",
+        "git": {
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/v2-operating-model.md"
+          ],
+          "paths": {
+            ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
+          }
+        }
+      },
+      "note": "tracked by TASK-034"
     },
     {
       "path": ".wiki/knowledge/clients/overview.md",
@@ -2789,7 +3474,7 @@
       "revision": {
         "digest": "ad5ab61a010b7494d3f8e24e52695efc87e4ae6b39f838f526c89edd653906aa",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2824,75 +3509,11 @@
       "revision": {
         "digest": "405f518e5536e9835d652b41629b36a72e53defece0c95cb468edb30b40089e3",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
             ".wiki/knowledge/clients/surfaces/roadmap.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
-      "title": "Status Panel",
-      "summary": "Compact status-line and panel rules for codewiki.",
-      "drift_status": "aligned",
-      "code_paths": [
-        "extensions/codewiki/index.ts"
-      ],
-      "code_area": "extensions/codewiki/index.ts",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [],
-      "primary_task": null,
-      "revision": {
-        "digest": "3897eb2183ddd6faa5df941b036f7ac1777e2e887c61c7f79ba981eb7e39647a",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/clients/surfaces/status-panel.md": "a6fc64223df319b53cd863958c062c28180ebbd8"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/lexicon.md",
-      "title": "Lexicon",
-      "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, and generated views.",
-      "drift_status": "aligned",
-      "code_paths": [],
-      "code_area": "\u2014",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [
-        "TASK-016",
-        "TASK-018",
-        "TASK-026"
-      ],
-      "primary_task": {
-        "id": "TASK-016",
-        "status": "done",
-        "title": "Bake product split and lexicon into templates"
-      },
-      "revision": {
-        "digest": "86925068a4592f1066a7787b718b55fa8a530c0309b5033c78f549ac492a817e",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/lexicon.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
           }
         }
       },
@@ -2926,7 +3547,7 @@
       "revision": {
         "digest": "9910e1c3f61a6712fc9764316183b3bb9bbdc71843289877bf581efadf8bc5b4",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -2960,46 +3581,11 @@
       "revision": {
         "digest": "58842daa3e3a34dbfd4e1e3fb8b428e56ace68e2ed0bd8310f20028a0b348e69",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
             ".wiki/knowledge/product/stories.md": "ac992065707d76fe55b83b5755e7067e4ab6166d"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/product/surfaces.md",
-      "title": "Product Surfaces",
-      "summary": "Human and AI interaction surfaces for CodeWiki.",
-      "drift_status": "aligned",
-      "code_paths": [],
-      "code_area": "\u2014",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [
-        "TASK-016",
-        "TASK-027",
-        "TASK-017"
-      ],
-      "primary_task": {
-        "id": "TASK-016",
-        "status": "done",
-        "title": "Bake product split and lexicon into templates"
-      },
-      "revision": {
-        "digest": "673a01cef2aaf76f342afd75a4ccf126d32aedd0509a2a04f73edd00ca6e16b7",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/product/surfaces.md": "c70091881afec87bbd293e06f58b1a2a40f1d06d"
           }
         }
       },
@@ -3028,130 +3614,11 @@
       "revision": {
         "digest": "896b732c02a50e93e082495883f01247d90c5113896743692ae0c36136fe7bbc",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
             ".wiki/knowledge/product/users.md": "643c940fa1ca402f1ac31d44a26cbdffffdc45af"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/components/extension.md",
-      "title": "CodeWiki Extension",
-      "summary": "Pi package extension surface that exposes commands, status panel, skills, and agent tools through a thin adapter boundary.",
-      "drift_status": "aligned",
-      "code_paths": [
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/src/adapters/pi"
-      ],
-      "code_area": "extensions +1 more",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [],
-      "primary_task": null,
-      "revision": {
-        "digest": "cdaab8c5c23bf1c9ccb0c83a71e80ffdbc8e138438dfb72e486a993437ea534d",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/components/extension.md"
-          ],
-          "paths": {
-            ".wiki/knowledge/system/components/extension.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/components/knowledge.md",
-      "title": "Canonical Knowledge",
-      "summary": "Durable product, system, flow, and lexicon truth maintained by agents.",
-      "drift_status": "aligned",
-      "code_paths": [
-        ".wiki/knowledge"
-      ],
-      "code_area": ".wiki/knowledge",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [],
-      "primary_task": null,
-      "revision": {
-        "digest": "e5c087c21a7341126182761e5ffb6974406135be9d0e0251aa3ca1f55873168b",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/system/components/knowledge.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/components/roadmap.md",
-      "title": "Roadmap Tasks",
-      "summary": "Canonical active delta between intended knowledge and current implementation reality.",
-      "drift_status": "aligned",
-      "code_paths": [
-        ".wiki/roadmap.json"
-      ],
-      "code_area": ".wiki/roadmap.json",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [],
-      "primary_task": null,
-      "revision": {
-        "digest": "009951632200abd85cd3ebddc96267f67bac1020bb6b6ed1d827e010fa2e5653",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/system/components/roadmap.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/components/runtime-gateway.md",
-      "title": "Runtime Gateway",
-      "summary": "CodeWiki-specific transaction and gateway scripts for validated non-interactive operations.",
-      "drift_status": "aligned",
-      "code_paths": [
-        "scripts/codewiki-gateway.mjs"
-      ],
-      "code_area": "scripts/codewiki-gateway.mjs",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [],
-      "primary_task": null,
-      "revision": {
-        "digest": "03c459e931c6f73f43747d1a6a6f67e76ea9708cb25c68b496e89528755e74cc",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/system/components/runtime-gateway.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
           }
         }
       },
@@ -3179,42 +3646,11 @@
       "revision": {
         "digest": "7b257da670f5bdfcda084a94107fd91ca93c7d3a3b16e84442ea0d1e8848d7ec",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": true,
-          "dirty_paths": [
-            ".wiki/knowledge/system/components/view-rebuild.md"
-          ],
-          "paths": {
-            ".wiki/knowledge/system/components/view-rebuild.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/components/views.md",
-      "title": "Generated Views",
-      "summary": "Tool-owned optimized read models consumed by agents and UI.",
-      "drift_status": "aligned",
-      "code_paths": [
-        ".wiki/views"
-      ],
-      "code_area": ".wiki/views",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [],
-      "primary_task": null,
-      "revision": {
-        "digest": "d4f04e65c95000531e2939601b14358233b9ab8802d44bbc94dc60af1535a4d5",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
-            ".wiki/knowledge/system/components/views.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
+            ".wiki/knowledge/system/components/view-rebuild.md": "166313f96147e9bace1240466c5bac7090332b42"
           }
         }
       },
@@ -3236,6 +3672,7 @@
         "total": 0
       },
       "related_task_ids": [
+        "TASK-041",
         "TASK-018",
         "TASK-019",
         "TASK-020",
@@ -3243,16 +3680,18 @@
         "TASK-021"
       ],
       "primary_task": {
-        "id": "TASK-018",
+        "id": "TASK-041",
         "status": "done",
-        "title": "Implement context memory policy in skills and loops"
+        "title": "Review and improve generated views into a token-efficient context compiler"
       },
       "revision": {
-        "digest": "6050fd828e23a4fed0ebbd239135ca11b8d4735fcf8ef930dfab1d8c5c65f543",
+        "digest": "0ae0fcdf2cae3a7bb30f5aca52ffa5d862ec676e400dae71afdcf9c4e981975b",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
+          "dirty": true,
+          "dirty_paths": [
+            ".wiki/knowledge/system/flows/context-memory.md"
+          ],
           "paths": {
             ".wiki/knowledge/system/flows/context-memory.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
           }
@@ -3279,75 +3718,11 @@
       "revision": {
         "digest": "70c831b048dca313db59537793d44bea13c2d9c07eceaf0e4c74ae7837918af7",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
             ".wiki/knowledge/system/flows/runtime-transaction.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
-      "title": "Sanitation and Release Flow",
-      "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
-      "drift_status": "aligned",
-      "code_paths": [
-        "scripts/rebuild_docs_meta.py"
-      ],
-      "code_area": "scripts/rebuild_docs_meta.py",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [
-        "TASK-024"
-      ],
-      "primary_task": {
-        "id": "TASK-024",
-        "status": "done",
-        "title": "Sanitation checkpoints and git history policy"
-      },
-      "revision": {
-        "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/flows/task-loop.md",
-      "title": "Task Loop Flow",
-      "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
-      "drift_status": "aligned",
-      "code_paths": [
-        "scripts/rebuild_docs_meta.py"
-      ],
-      "code_area": "scripts/rebuild_docs_meta.py",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [],
-      "primary_task": null,
-      "revision": {
-        "digest": "2dfc13a790b4231857abbbad3c325df85caed237f308b1cb63d23c720e608bde",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9f94ebfacc9192802884c0ccbe2e1"
           }
         }
       },
@@ -3372,7 +3747,7 @@
       "revision": {
         "digest": "1ce5045cafa23729c2b3aefacf6f49820de0f434b0396f8bc4bffb5c1ef006eb",
         "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
+          "head": "166313f96147e9bace1240466c5bac7090332b42",
           "dirty": false,
           "dirty_paths": [],
           "paths": {
@@ -3381,96 +3756,11 @@
         }
       },
       "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/runtime/overview.md",
-      "title": "Runtime Policy",
-      "summary": "Policy boundary for codewiki runtime access in codewiki.",
-      "drift_status": "aligned",
-      "code_paths": [],
-      "code_area": "\u2014",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [
-        "TASK-004",
-        "TASK-007",
-        "TASK-009",
-        "TASK-012",
-        "TASK-013",
-        "TASK-014",
-        "TASK-008",
-        "TASK-023"
-      ],
-      "primary_task": {
-        "id": "TASK-004",
-        "status": "done",
-        "title": "Expose CodeWiki capability manifest and think-code boundary"
-      },
-      "revision": {
-        "digest": "f0306aa864ab75eef3e989a6819add03232c7a7df3e95a442eaac6d4b688b332",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/system/runtime/overview.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
-    },
-    {
-      "path": ".wiki/knowledge/system/v2-operating-model.md",
-      "title": "CodeWiki v2 Operating Model",
-      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
-      "drift_status": "aligned",
-      "code_paths": [
-        "extensions/codewiki",
-        "scripts/rebuild_docs_meta.py",
-        "skills"
-      ],
-      "code_area": "extensions, scripts +1 more",
-      "issue_counts": {
-        "errors": 0,
-        "warnings": 0,
-        "total": 0
-      },
-      "related_task_ids": [
-        "TASK-015",
-        "TASK-018",
-        "TASK-019",
-        "TASK-020",
-        "TASK-017",
-        "TASK-021",
-        "TASK-022",
-        "TASK-023",
-        "TASK-024"
-      ],
-      "primary_task": {
-        "id": "TASK-015",
-        "status": "done",
-        "title": "Implement v2 wiki layout and migration"
-      },
-      "revision": {
-        "digest": "4166f005185c310b9ddc9fd468f196355bc0eb4a91b02e6a8895fc09a8653485",
-        "git": {
-          "head": "c70091881afec87bbd293e06f58b1a2a40f1d06d",
-          "dirty": false,
-          "dirty_paths": [],
-          "paths": {
-            ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf630656ba5c4665a6bbb3cda4350aef74"
-          }
-        }
-      },
-      "note": "no deterministic drift signals"
     }
   ],
   "next_step": {
     "kind": "code",
-    "command": "/wiki-resume TASK-28",
+    "command": "/wiki-resume TASK-29",
     "reason": "Roadmap already covers current delta; continue in-progress implementation."
   },
   "direction": [
@@ -3478,6 +3768,6 @@
     "Parallel sessions: 2 active, 0 collision task(s).",
     "Heartbeat lanes: 3 work-first (high=1, medium=1, low=1).",
     "Mapped specs: 14/14.",
-    "Tracked drift coverage: 2/2."
+    "Tracked drift coverage: 15/15."
   ]
 }

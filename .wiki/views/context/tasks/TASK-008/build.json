@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-008",
+    "title": "Model research evidence as support for wiki knowledge",
+    "status": "done",
+    "priority": "medium",
+    "kind": "research",
+    "summary": "Separate external/source research from task execution so research evidence supports `.wiki/knowledge` claims rather than becoming part of every implementation loop.",
+    "labels": [
+      "research",
+      "evidence",
+      "knowledge"
+    ],
+    "goal": {
+      "outcome": "CodeWiki distinguishes research evidence for intended knowledge from execution evidence for task closure.",
+      "acceptance": [
+        "Research workflow records cited findings as support for knowledge updates and design decisions.",
+        "Task execution loop treats research as optional only when uncertainty blocks implementation or claims need support.",
+        "Evidence schema or conventions distinguish source/research evidence from checks/execution evidence.",
+        "The research skill explains when to use web/code research versus local code inspection."
+      ],
+      "non_goals": [
+        "Require web research for routine code changes.",
+        "Create a separate ADR system outside `.wiki/knowledge`."
+      ],
+      "verification": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ]
+    },
+    "delta": {
+      "desired": "Research strengthens canonical knowledge without bloating task execution.",
+      "current": "Research is described as optional evidence but not modeled as a distinct workflow.",
+      "closure": "Add research-specific workflow guidance and evidence classification."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Research workflow records cited findings as support for knowledge updates and design decisions.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "checks": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Task execution loop treats research as optional only when uncertainty blocks implementation or claims need support.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "checks": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Evidence schema or conventions distinguish source/research evidence from checks/execution evidence.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "checks": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "The research skill explains when to use web/code research versus local code inspection.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md"
+      ],
+      "code_paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "checks": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-008/context.json",
+    "build": ".wiki/views/context/tasks/TASK-008/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-008/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-008/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/product/overview.md",
+    ".wiki/knowledge/system/runtime/overview.md",
+    ".wiki/roadmap/tasks/TASK-008/task.json",
+    "skills/codewiki-research/SKILL.md",
+    "skills/codewiki-task/SKILL.md"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/product/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/product/overview.md",
+      "title": "Product",
+      "why": "task_spec explicitly links TASK-008 to this node",
+      "edge_path": [
+        "task:TASK-008",
+        "doc:.wiki/knowledge/product/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/runtime/overview.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/runtime/overview.md",
+      "title": "Runtime Policy",
+      "why": "task_spec explicitly links TASK-008 to this node",
+      "edge_path": [
+        "task:TASK-008",
+        "doc:.wiki/knowledge/system/runtime/overview.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:skills/codewiki-research/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki-research/SKILL.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-008 to this node",
+      "edge_path": [
+        "task:TASK-008",
+        "code:skills/codewiki-research/SKILL.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:skills/codewiki-task/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki-task/SKILL.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-008 to this node",
+      "edge_path": [
+        "task:TASK-008",
+        "code:skills/codewiki-task/SKILL.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/system/runtime/overview.md",
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1565,
+    "over_budget": false
+  }
+}

@@ -1,0 +1,289 @@
+{
+  "version": 1,
+  "role": "graph",
+  "task_id": "TASK-037",
+  "tiers": {
+    "core": [
+      {
+        "id": "doc:.wiki/knowledge/product/surfaces.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/surfaces.md",
+        "title": "Product Surfaces",
+        "why": "task_spec explicitly links TASK-037 to this node",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/product/surfaces.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/clients/surfaces/status-panel.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/clients/surfaces/status-panel.md",
+        "title": "Status Panel",
+        "why": "task_spec explicitly links TASK-037 to this node",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/clients/surfaces/status-panel.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/components/views.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/components/views.md",
+        "title": "Generated Views",
+        "why": "task_spec explicitly links TASK-037 to this node",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/system/components/views.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/components/extension.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/components/extension.md",
+        "title": "CodeWiki Extension",
+        "why": "task_spec explicitly links TASK-037 to this node",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/system/components/extension.md"
+        ],
+        "confidence": "explicit",
+        "expand": "read"
+      },
+      {
+        "id": "code:extensions/codewiki/src/adapters/pi/ui",
+        "kind": "code_path",
+        "path": "extensions/codewiki/src/adapters/pi/ui",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-037 to this node",
+        "edge_path": [
+          "task:TASK-037",
+          "code:extensions/codewiki/src/adapters/pi/ui"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:extensions/codewiki/src/engine/views.ts",
+        "kind": "code_path",
+        "path": "extensions/codewiki/src/engine/views.ts",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-037 to this node",
+        "edge_path": [
+          "task:TASK-037",
+          "code:extensions/codewiki/src/engine/views.ts"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      },
+      {
+        "id": "code:package.json",
+        "kind": "code_path",
+        "path": "package.json",
+        "title": null,
+        "why": "task_code_path explicitly links TASK-037 to this node",
+        "edge_path": [
+          "task:TASK-037",
+          "code:package.json"
+        ],
+        "confidence": "explicit",
+        "expand": "grep"
+      }
+    ],
+    "supporting": [
+      {
+        "id": "doc:.wiki/knowledge/clients/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/clients/overview.md",
+        "title": "Clients Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/clients/surfaces/status-panel.md",
+          "doc:.wiki/knowledge/clients/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/clients/surfaces/roadmap.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/clients/surfaces/roadmap.md",
+        "title": "Roadmap Surface",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/clients/surfaces/status-panel.md",
+          "doc:.wiki/knowledge/clients/surfaces/roadmap.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/clients/surfaces/status-panel.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:extensions/codewiki/index.ts",
+        "kind": "code_path",
+        "path": "extensions/codewiki/index.ts",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/clients/surfaces/status-panel.md",
+          "code:extensions/codewiki/index.ts"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/clients/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/clients/overview.md",
+        "title": "Clients Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/product/surfaces.md",
+          "doc:.wiki/knowledge/clients/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/product/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/overview.md",
+        "title": "Product",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/product/surfaces.md",
+          "doc:.wiki/knowledge/product/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/product/stories.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/stories.md",
+        "title": "Product Stories",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/product/surfaces.md",
+          "doc:.wiki/knowledge/product/stories.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/product/users.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/product/users.md",
+        "title": "Product Users",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/product/surfaces.md",
+          "doc:.wiki/knowledge/product/users.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/extensions/codewiki/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/extensions/codewiki/overview.md",
+        "title": "Extensions / Codewiki",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/system/components/extension.md",
+          "doc:.wiki/knowledge/system/extensions/codewiki/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "doc:.wiki/knowledge/system/overview.md",
+        "kind": "doc",
+        "path": ".wiki/knowledge/system/overview.md",
+        "title": "System Overview",
+        "why": "Neighbor of explicit task context via doc_link",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/system/components/extension.md",
+          "doc:.wiki/knowledge/system/overview.md"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:extensions/codewiki/index.ts",
+        "kind": "code_path",
+        "path": "extensions/codewiki/index.ts",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/system/components/extension.md",
+          "code:extensions/codewiki/index.ts"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      },
+      {
+        "id": "code:extensions/codewiki/src/adapters/pi",
+        "kind": "code_path",
+        "path": "extensions/codewiki/src/adapters/pi",
+        "title": null,
+        "why": "Neighbor of explicit task context via doc_code_path",
+        "edge_path": [
+          "task:TASK-037",
+          "doc:.wiki/knowledge/system/components/extension.md",
+          "code:extensions/codewiki/src/adapters/pi"
+        ],
+        "confidence": "inferred",
+        "expand": "read-if-ambiguous"
+      }
+    ],
+    "watch": [],
+    "excluded": []
+  },
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 3000,
+    "estimated_tokens": 1800,
+    "over_budget": false
+  }
+}

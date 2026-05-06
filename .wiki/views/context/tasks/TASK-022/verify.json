@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-022",
+    "title": "Heartbeat modes budgets and stop conditions",
+    "status": "done",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Add bounded observe, maintain, and work heartbeat modes that use views, subagents, and canonical writes safely.",
+    "labels": [
+      "heartbeat-loop",
+      "autonomous-budget",
+      "stop-conditions"
+    ],
+    "goal": {
+      "outcome": "Users can run CodeWiki autonomously within explicit budgets and modes without losing alignment with wiki truth or project safety.",
+      "acceptance": [
+        "Heartbeat supports observe, maintain, and work modes.",
+        "Each cycle reads status, handles stale views, selects inner or outer loop action, records evidence, and stops on budget/risk/ambiguity.",
+        "Budgets include max cycles, wall time, writes, subagents, and risk level.",
+        "Push/version/archive behavior is gated by policy and checks."
+      ],
+      "non_goals": [
+        "Run unbounded autonomous coding.",
+        "Bypass user approval for risky or destructive work."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Heartbeat is a bounded CodeWiki loop with safe modes and stop conditions.",
+      "current": "Heartbeat is an idea but not a fully defined or implemented autonomous workflow.",
+      "closure": "Heartbeat command/tool contract and initial implementation are covered by tests."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Heartbeat supports observe, maintain, and work modes.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Each cycle reads status, handles stale views, selects inner or outer loop action, records evidence, and stops on budget/risk/ambiguity.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Budgets include max cycles, wall time, writes, subagents, and risk level.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Push/version/archive behavior is gated by policy and checks.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Run unbounded autonomous coding.",
+    "Bypass user approval for risky or destructive work."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:03:45Z",
+      "kind": "roadmap_append",
+      "title": "Appended 1 roadmap task(s)",
+      "summary": "TASK-022 Heartbeat modes budgets and stop conditions"
+    },
+    {
+      "ts": "2026-05-02T00:03:45Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-022",
+      "action": "spawn",
+      "title": "Heartbeat modes budgets and stop conditions",
+      "summary": "Spawned task TASK-022 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T01:49:03Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-022",
+      "action": "focus",
+      "title": "Heartbeat modes budgets and stop conditions",
+      "summary": "Continue next roadmap task.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T01:54:21Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-022 Heartbeat modes budgets and stop conditions"
+    },
+    {
+      "ts": "2026-05-02T01:54:21Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-022 Heartbeat modes budgets and stop conditions"
+    },
+    {
+      "ts": "2026-05-02T01:54:21Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-022",
+      "phase": "verify",
+      "title": "Heartbeat modes budgets and stop conditions",
+      "summary": "Added bounded codewiki_heartbeat tool contract and initial planner implementation for observe, maintain, and work modes with budgets, dry-run default, stop conditions, policy gates, and smoke coverage. Updated v2 operating model, product story, and task skill heartbeat policy.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T01:54:21Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-022",
+      "verdict": "pass",
+      "summary": "Added bounded codewiki_heartbeat tool contract and initial planner implementation for observe, maintain, and work modes with budgets, dry-run default, stop conditions, policy gates, and smoke coverage. Updated v2 operating model, product story, and task skill heartbeat policy.",
+      "checks_run": [
+        "python scripts/rebuild_docs_meta.py",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/contracts.ts",
+        "extensions/codewiki/index.ts",
+        "scripts/smoke-test.mjs",
+        "skills/codewiki/SKILL.md",
+        "skills/codewiki-task/SKILL.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/product/stories.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-022/context.json",
+    "build": ".wiki/views/context/tasks/TASK-022/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-022/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-022/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/product/stories.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-022/task.json",
+    ".wiki/views/context/tasks/TASK-022/build.json",
+    ".wiki/views/context/tasks/TASK-022/graph.json",
+    "extensions/codewiki/contracts.ts",
+    "extensions/codewiki/index.ts",
+    "skills"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1617,
+    "over_budget": false
+  }
+}

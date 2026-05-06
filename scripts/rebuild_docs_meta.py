@@ -1895,6 +1895,32 @@ def task_context_rel_path(task_id: str) -> str:
     return (ROADMAP_TASKS_PATH / task_id / "context.json").relative_to(ROOT).as_posix()
 
 
+def task_view_context_paths(task_id: str) -> dict[str, str]:
+    return {
+        "legacy": f".wiki/views/roadmap/tasks/{task_id}/context.json",
+        "build": f".wiki/views/context/tasks/{task_id}/build.json",
+        "verify": f".wiki/views/context/tasks/{task_id}/verify.json",
+        "graph": f".wiki/views/context/tasks/{task_id}/graph.json",
+    }
+
+
+def estimate_tokens(payload: Any) -> int:
+    return max(1, (len(json.dumps(payload, sort_keys=True)) + 3) // 4)
+
+
+def with_token_budget(payload: dict[str, Any], target_tokens: int) -> dict[str, Any]:
+    result = dict(payload)
+    budget = dict(result.get("budget", {}) if isinstance(result.get("budget"), dict) else {})
+    estimated = estimate_tokens(result)
+    budget.update({"target_tokens": target_tokens, "estimated_tokens": estimated, "over_budget": estimated > target_tokens})
+    result["budget"] = budget
+    return result
+
+
+def unique_strings(values: list[Any]) -> list[str]:
+    return sorted({str(value).strip() for value in values if str(value).strip()})
+
+
 def compact_task_goal(task: dict[str, Any]) -> dict[str, Any]:
     goal_raw = task.get("goal")
     goal = goal_raw if isinstance(goal_raw, dict) else {}
@@ -1953,6 +1979,138 @@ def compact_spec_contract(path: str, docs_by_path: dict[str, dict[str, Any]]) ->
     }
 
 
+def build_acceptance_matrix(task: dict[str, Any]) -> list[dict[str, Any]]:
+    goal = compact_task_goal(task)
+    spec_paths = [str(value).strip() for value in task.get("spec_paths", []) if str(value).strip()] if isinstance(task.get("spec_paths"), list) else []
+    code_paths = [str(value).strip() for value in task.get("code_paths", []) if str(value).strip()] if isinstance(task.get("code_paths"), list) else []
+    return [{
+        "id": f"AC-{index + 1}",
+        "criterion": criterion,
+        "status": "unknown",
+        "spec_paths": spec_paths,
+        "code_paths": code_paths,
+        "checks": goal["verification"],
+        "evidence": [],
+    } for index, criterion in enumerate(goal["acceptance"])]
+
+
+def build_task_graph_slice(task: dict[str, Any], graph: dict[str, Any]) -> dict[str, Any]:
+    task_id = str(task.get("id", "")).strip()
+    task_node_id = f"task:{task_id}"
+    nodes = {str(node.get("id", "")): node for node in graph.get("nodes", []) if isinstance(node, dict)} if isinstance(graph.get("nodes"), list) else {}
+    edges = [edge for edge in graph.get("edges", []) if isinstance(edge, dict)] if isinstance(graph.get("edges"), list) else []
+    core = []
+    for edge in edges:
+        if edge.get("from") != task_node_id:
+            continue
+        node = nodes.get(str(edge.get("to", "")))
+        if not node:
+            continue
+        core.append({
+            "id": node.get("id"),
+            "kind": node.get("kind"),
+            "path": node.get("path"),
+            "title": node.get("title"),
+            "why": f"{edge.get('kind')} explicitly links {task_id} to this node",
+            "edge_path": [task_node_id, node.get("id")],
+            "confidence": "explicit",
+            "expand": "grep" if node.get("kind") == "code_path" else "read",
+        })
+    core_ids = {str(node.get("id", "")) for node in core}
+    supporting = []
+    for edge in edges:
+        if edge.get("from") not in core_ids or edge.get("to") in core_ids:
+            continue
+        node = nodes.get(str(edge.get("to", "")))
+        if not node:
+            continue
+        supporting.append({
+            "id": node.get("id"),
+            "kind": node.get("kind"),
+            "path": node.get("path"),
+            "title": node.get("title"),
+            "why": f"Neighbor of explicit task context via {edge.get('kind')}",
+            "edge_path": [task_node_id, edge.get("from"), node.get("id")],
+            "confidence": "inferred",
+            "expand": "read-if-ambiguous",
+        })
+        if len(supporting) >= 12:
+            break
+    spec_paths = task.get("spec_paths", []) if isinstance(task.get("spec_paths"), list) else []
+    code_paths = task.get("code_paths", []) if isinstance(task.get("code_paths"), list) else []
+    explicit_paths = unique_strings(spec_paths + code_paths)
+    return {
+        "task_id": task_id,
+        "tiers": {
+            "core": core,
+            "supporting": supporting,
+            "watch": [],
+            "excluded": [] if explicit_paths else [{"reason": "Task has no explicit spec_paths or code_paths; broad graph expansion skipped."}],
+        },
+        "observability": {
+            "horizontal_alignment": {
+                "has_specs": bool(spec_paths),
+                "has_code": bool(code_paths),
+                "has_acceptance": bool(compact_task_goal(task)["acceptance"]),
+            },
+            "vertical_alignment": {
+                "intent_to_specs": bool(spec_paths),
+                "specs_to_code": bool(code_paths),
+                "checks_to_evidence": False,
+            },
+        },
+    }
+
+
+def build_task_role_packs(task: dict[str, Any], graph_slice: dict[str, Any], events: list[dict[str, Any]]) -> tuple[dict[str, Any], dict[str, Any]]:
+    task_id = str(task.get("id", "")).strip()
+    paths = task_view_context_paths(task_id)
+    spec_paths = [str(value).strip() for value in task.get("spec_paths", []) if str(value).strip()] if isinstance(task.get("spec_paths"), list) else []
+    code_paths = [str(value).strip() for value in task.get("code_paths", []) if str(value).strip()] if isinstance(task.get("code_paths"), list) else []
+    goal = compact_task_goal(task)
+    common_task = {
+        "id": task_id,
+        "title": str(task.get("title", task_id)).strip(),
+        "status": str(task.get("status", "todo")).strip(),
+        "priority": str(task.get("priority", "medium")).strip(),
+        "kind": str(task.get("kind", "task")).strip(),
+        "summary": str(task.get("summary", "")).strip(),
+        "labels": [str(value).strip() for value in task.get("labels", []) if str(value).strip()] if isinstance(task.get("labels"), list) else [],
+        "goal": goal,
+        "delta": task.get("delta", {}) if isinstance(task.get("delta"), dict) else {},
+    }
+    acceptance_matrix = build_acceptance_matrix(task)
+    recent_task_events = [event for event in events if task_id in json.dumps(event)][-8:]
+    build_pack = with_token_budget({
+        "version": 1,
+        "role": "build",
+        "task": common_task,
+        "acceptance_matrix": acceptance_matrix,
+        "context_routes": paths,
+        "recommended_next_reads": unique_strings([f".wiki/roadmap/tasks/{task_id}/task.json"] + spec_paths + code_paths)[:16],
+        "graph_core": graph_slice.get("tiers", {}).get("core", []),
+        "exploration_recipes": [
+            {"tool": "grep", "purpose": "Find code touchpoints inside linked paths before broad reads.", "paths": code_paths},
+            {"tool": "sandbox", "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.", "paths": unique_strings(spec_paths + code_paths)},
+        ],
+        "observability": graph_slice.get("observability", {}),
+    }, 4000)
+    verify_pack = with_token_budget({
+        "version": 1,
+        "role": "verify",
+        "task": common_task,
+        "acceptance_matrix": acceptance_matrix,
+        "non_goals": goal["non_goals"],
+        "required_checks": goal["verification"],
+        "recent_evidence": recent_task_events,
+        "context_routes": paths,
+        "recommended_next_reads": unique_strings([f".wiki/roadmap/tasks/{task_id}/task.json", paths["build"], paths["graph"]] + spec_paths + code_paths)[:18],
+        "observability": graph_slice.get("observability", {}),
+        "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+    }, 3500)
+    return build_pack, verify_pack
+
+
 def build_task_context_packet(task: dict[str, Any], runtime_task: dict[str, Any], docs_by_path: dict[str, dict[str, Any]], graph: dict[str, Any]) -> dict[str, Any]:
     task_id = str(task.get("id", "")).strip()
     spec_paths = [str(value).strip() for value in task.get("spec_paths", []) if str(value).strip()] if isinstance(task.get("spec_paths"), list) else []
@@ -2008,6 +2166,9 @@ def build_task_context_packet(task: dict[str, Any], runtime_task: dict[str, Any]
             "roadmap_state": ROADMAP_STATE_PATH.relative_to(ROOT).as_posix(),
             "status_state": STATUS_STATE_PATH.relative_to(ROOT).as_posix(),
             "graph": (META_ROOT / "graph.json").relative_to(ROOT).as_posix(),
+            "build_pack": task_view_context_paths(task_id)["build"],
+            "verify_pack": task_view_context_paths(task_id)["verify"],
+            "graph_slice": task_view_context_paths(task_id)["graph"],
         },
     }
 
@@ -2249,7 +2410,12 @@ def build_recent_evidence_view(research_collections: list[dict[str, Any]], event
 
 def write_v2_views(docs: list[dict[str, Any]], research_collections: list[dict[str, Any]], graph: dict[str, Any], roadmap_items: list[dict[str, Any]], lint_report: dict[str, Any], roadmap_state: dict[str, Any], status_state: dict[str, Any], events: list[dict[str, Any]]) -> None:
     write_view("status.json", build_status_view(status_state, roadmap_state, lint_report))
-    write_view("roadmap/queue.json", build_roadmap_queue_view(roadmap_items, roadmap_state))
+    queue_view = build_roadmap_queue_view(roadmap_items, roadmap_state)
+    if queue_view.get("tasks"):
+        first_task_id = str(queue_view["tasks"][0].get("id", "")).strip()
+        if first_task_id:
+            queue_view["meta"]["recommended_next_reads"] = [queue_view["tasks"][0]["context_path"], task_view_context_paths(first_task_id)["build"]]
+    write_view("roadmap/queue.json", queue_view)
     write_view("drift.json", build_drift_view(status_state, lint_report))
     write_view("product/brief.json", build_product_brief_view(docs))
     architecture_view = build_system_architecture_view(docs, graph)
@@ -2261,6 +2427,11 @@ def write_v2_views(docs: list[dict[str, Any]], research_collections: list[dict[s
         task_id = str(task.get("id", "")).strip()
         if not task_id:
             continue
+        graph_slice = build_task_graph_slice(task, graph)
+        build_pack, verify_pack = build_task_role_packs(task, graph_slice, events)
+        write_view(f"context/tasks/{task_id}/graph.json", with_token_budget({"version": 1, "role": "graph", **graph_slice}, 3000))
+        write_view(f"context/tasks/{task_id}/build.json", build_pack)
+        write_view(f"context/tasks/{task_id}/verify.json", verify_pack)
         source = ROADMAP_TASKS_PATH / task_id / "context.json"
         if source.exists():
             write_view(f"roadmap/tasks/{task_id}/context.json", json.loads(source.read_text(encoding="utf-8")))

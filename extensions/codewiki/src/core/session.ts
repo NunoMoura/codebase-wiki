@@ -179,11 +179,12 @@ export async function recordTaskSessionLinkUnlocked(
 
 export function setTaskSessionStatusText(
 	ctx: CodewikiContextPort,
-	_taskId: string,
-	_title: string,
-	_action: TaskSessionAction,
+	taskId: string,
+	title: string,
+	action: TaskSessionAction,
 ): void {
-	ctx.ui.setStatus("codewiki-task", undefined);
+	const label = action === "focus" ? "focused" : action;
+	ctx.ui.setStatus("codewiki-task", `${taskId} ${label}: ${title}`);
 }
 
 /**

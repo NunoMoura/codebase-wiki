@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-024",
+    "title": "Sanitation checkpoints and git history policy",
+    "status": "done",
+    "priority": "medium",
+    "kind": "architecture",
+    "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
+    "labels": [
+      "sanitation-policy",
+      "release-checkpoints",
+      "git-history"
+    ],
+    "goal": {
+      "outcome": "CodeWiki distinguishes hot current truth, generated views, compact semantic history, and full git recovery.",
+      "acceptance": [
+        "Closed task archive stores compact semantic summaries with commit/release links rather than full raw context by default.",
+        "Release checkpoint schema records version, git sha, canonical digest, view schema version, and closed task summaries.",
+        "Docs and skills describe commit/push/version boundaries.",
+        "Views exclude cold history unless explicitly requested."
+      ],
+      "non_goals": [
+        "Duplicate full git history inside `.wiki`.",
+        "Automatically push or version without policy gates."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Sanitation keeps agent hot context small while preserving semantic memory and git recovery.",
+      "current": "Retention exists but archives and release/version boundaries are not fully aligned with git as full history.",
+      "closure": "Archive/checkpoint policy is implemented and documented."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Closed task archive stores compact semantic summaries with commit/release links rather than full raw context by default.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Release checkpoint schema records version, git sha, canonical digest, view schema version, and closed task summaries.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Docs and skills describe commit/push/version boundaries.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Views exclude cold history unless explicitly requested.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/sanitation-release.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/templates.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Duplicate full git history inside `.wiki`.",
+    "Automatically push or version without policy gates."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:03:57Z",
+      "kind": "roadmap_append",
+      "title": "Appended 1 roadmap task(s)",
+      "summary": "TASK-024 Sanitation checkpoints and git history policy"
+    },
+    {
+      "ts": "2026-05-02T00:03:57Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-024",
+      "action": "spawn",
+      "title": "Sanitation checkpoints and git history policy",
+      "summary": "Spawned task TASK-024 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T03:36:04Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-024",
+      "action": "focus",
+      "title": "Sanitation checkpoints and git history policy",
+      "summary": "Continue next roadmap task.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T04:00:05Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-024 Sanitation checkpoints and git history policy"
+    },
+    {
+      "ts": "2026-05-02T04:00:05Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-024 Sanitation checkpoints and git history policy"
+    },
+    {
+      "ts": "2026-05-02T04:00:05Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-024",
+      "phase": "verify",
+      "title": "Sanitation checkpoints and git history policy",
+      "summary": "Updated roadmap closed-task retention to store compact semantic summaries instead of full raw context. Added checkpoint action to codewiki_task to snapshot release milestones with version labels, git shas, and canonical digests. Documented commit, push, and version boundaries in SKILL files. Verified behavior through new smoke tests.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T04:00:05Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-024",
+      "verdict": "pass",
+      "summary": "Updated roadmap closed-task retention to store compact semantic summaries instead of full raw context. Added checkpoint action to codewiki_task to snapshot release milestones with version labels, git shas, and canonical digests. Documented commit, push, and version boundaries in SKILL files. Verified behavior through new smoke tests.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "python scripts/rebuild_docs_meta.py"
+      ],
+      "files_touched": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts",
+        "scripts/smoke-test.mjs",
+        "skills/codewiki/SKILL.md",
+        "skills/codewiki-task/SKILL.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-024/context.json",
+    "build": ".wiki/views/context/tasks/TASK-024/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-024/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-024/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/flows/sanitation-release.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-024/task.json",
+    ".wiki/views/context/tasks/TASK-024/build.json",
+    ".wiki/views/context/tasks/TASK-024/graph.json",
+    "extensions/codewiki/index.ts",
+    "extensions/codewiki/templates.ts",
+    "scripts/rebuild_docs_meta.py"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1706,
+    "over_budget": false
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "TASK-035",
+  "title": "Enforce structured knowledge-roadmap-code mapping",
+  "status": "todo",
+  "priority": "high",
+  "kind": "architecture",
+  "summary": "Strengthen CodeWiki schemas, lint, and docs so knowledge docs, sprints, tasks, evidence, and code paths form a navigable vertical mapping for agents.",
+  "spec_paths": [
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/knowledge/system/components/knowledge.md",
+    ".wiki/knowledge/system/components/roadmap.md",
+    ".wiki/knowledge/system/components/views.md",
+    ".wiki/knowledge/lexicon.md"
+  ],
+  "code_paths": [
+    "extensions/codewiki/src/engine",
+    "extensions/codewiki/templates.ts",
+    "scripts/rebuild_docs_meta.py"
+  ],
+  "research_ids": [],
+  "labels": [
+    "schema",
+    "lint",
+    "mapping"
+  ],
+  "goal": {
+    "outcome": "Agents can reliably trace intended knowledge to roadmap delta to code ownership through enforced metadata and generated views.",
+    "acceptance": [
+      "Knowledge frontmatter requirements are documented and enforced for ids, summaries, owners, and relevant code/spec links.",
+      "Roadmap tasks validate `spec_paths`, `code_paths`, goals, acceptance, non-goals, verification, and evidence links.",
+      "Lint/reporting identifies missing or broken horizontal and vertical mappings.",
+      "Generated views expose compact navigation packets for this mapping without becoming canonical truth."
+    ],
+    "non_goals": [
+      "Do not require every code file to have a one-to-one doc.",
+      "Do not make roadmap tasks duplicate all knowledge content."
+    ],
+    "verification": [
+      "Run `npm test`.",
+      "Run a rebuild and confirm `codewiki_state refresh=true` is green.",
+      "Add/adjust smoke fixtures for invalid mapping cases."
+    ]
+  },
+  "delta": {
+    "desired": "",
+    "current": "",
+    "closure": ""
+  },
+  "created": "2026-05-06",
+  "updated": "2026-05-06"
+}

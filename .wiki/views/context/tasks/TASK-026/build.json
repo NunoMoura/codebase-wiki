@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-026",
+    "title": "Decouple ThinkCode from CodeWiki memory policy",
+    "status": "done",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Remove wording that frames ThinkCode as an enforced CodeWiki runtime and describe it only as optional compatible tooling.",
+    "labels": [
+      "v2",
+      "decoupling",
+      "think-code"
+    ],
+    "goal": {
+      "outcome": "CodeWiki operates independently as a Pi package while allowing ThinkCode or other tools to integrate optionally.",
+      "acceptance": [
+        "Skills do not require ThinkCode for CodeWiki workflows.",
+        "Code/task/verifier prompts frame programmatic context executors as optional/replaceable.",
+        "Knowledge and lexicon describe ThinkCode as compatible external tooling, not CodeWiki runtime.",
+        "Checks pass."
+      ],
+      "non_goals": [
+        "Change ThinkCode package behavior.",
+        "Remove all mentions of ThinkCode where optional integration is useful."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "CodeWiki is standalone and stack-agnostic; ThinkCode is optional external tooling enforced only by its own skill.",
+      "current": "Recent memory-policy wording overstates ThinkCode as CodeWiki context/query executor.",
+      "closure": "Wording changed to optional/compatible tool language."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Skills do not require ThinkCode for CodeWiki workflows.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Code/task/verifier prompts frame programmatic context executors as optional/replaceable.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Knowledge and lexicon describe ThinkCode as compatible external tooling, not CodeWiki runtime.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Checks pass.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/flows/context-memory.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-026/context.json",
+    "build": ".wiki/views/context/tasks/TASK-026/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-026/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-026/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/system/flows/context-memory.md",
+    ".wiki/roadmap/tasks/TASK-026/task.json",
+    "extensions/codewiki/index.ts",
+    "skills"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/system/flows/context-memory.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/flows/context-memory.md",
+      "title": "Context Memory Flow",
+      "why": "task_spec explicitly links TASK-026 to this node",
+      "edge_path": [
+        "task:TASK-026",
+        "doc:.wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/lexicon.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "why": "task_spec explicitly links TASK-026 to this node",
+      "edge_path": [
+        "task:TASK-026",
+        "doc:.wiki/knowledge/lexicon.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:skills",
+      "kind": "code_path",
+      "path": "skills",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-026 to this node",
+      "edge_path": [
+        "task:TASK-026",
+        "code:skills"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/index.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/index.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-026 to this node",
+      "edge_path": [
+        "task:TASK-026",
+        "code:extensions/codewiki/index.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "skills",
+        "extensions/codewiki/index.ts"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/flows/context-memory.md",
+        "extensions/codewiki/index.ts",
+        "skills"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1242,
+    "over_budget": false
+  }
+}

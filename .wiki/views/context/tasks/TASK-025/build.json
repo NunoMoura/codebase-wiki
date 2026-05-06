@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-025",
+    "title": "Audit read model wording in README skills and tools",
+    "status": "done",
+    "priority": "medium",
+    "kind": "docs",
+    "summary": "Align public package language so generated read models are called views and source-of-truth files are called canonical truth.",
+    "labels": [
+      "read-model-language"
+    ],
+    "goal": {
+      "outcome": "User-facing and agent-facing text use the same v2 vocabulary for views and canonical truth.",
+      "acceptance": [
+        "README describes views and the canonical/view boundary.",
+        "Skills tell agents to consume views and avoid editing views.",
+        "Tool descriptions mention rebuilding views where relevant."
+      ],
+      "non_goals": [
+        "Change storage paths.",
+        "Implement new view schemas."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Public and agent instructions use view vocabulary consistently.",
+      "current": "Some package text still says projection, derived state, or generated state in places where v2 wants view terminology.",
+      "closure": "README, skills, and tool descriptions match the lexicon."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "README describes views and the canonical/view boundary.",
+      "status": "unknown",
+      "spec_paths": [
+        "README.md"
+      ],
+      "code_paths": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Skills tell agents to consume views and avoid editing views.",
+      "status": "unknown",
+      "spec_paths": [
+        "README.md"
+      ],
+      "code_paths": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Tool descriptions mention rebuilding views where relevant.",
+      "status": "unknown",
+      "spec_paths": [
+        "README.md"
+      ],
+      "code_paths": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-025/context.json",
+    "build": ".wiki/views/context/tasks/TASK-025/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-025/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-025/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/roadmap/tasks/TASK-025/task.json",
+    "README.md",
+    "extensions/codewiki/contracts.ts",
+    "skills/codewiki/SKILL.md"
+  ],
+  "graph_core": [
+    {
+      "id": "code:README.md",
+      "kind": "code_path",
+      "path": "README.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-025 to this node",
+      "edge_path": [
+        "task:TASK-025",
+        "code:README.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:skills/codewiki/SKILL.md",
+      "kind": "code_path",
+      "path": "skills/codewiki/SKILL.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-025 to this node",
+      "edge_path": [
+        "task:TASK-025",
+        "code:skills/codewiki/SKILL.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:extensions/codewiki/contracts.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/contracts.ts",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-025 to this node",
+      "edge_path": [
+        "task:TASK-025",
+        "code:extensions/codewiki/contracts.ts"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "extensions/codewiki/contracts.ts"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        "README.md",
+        "extensions/codewiki/contracts.ts",
+        "skills/codewiki/SKILL.md"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 985,
+    "over_budget": false
+  }
+}

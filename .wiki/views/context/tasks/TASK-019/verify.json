@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-019",
+    "title": "View schema generator for status queue drift and briefs",
+    "status": "done",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Define and generate the small, revisioned read models agents and UI consume for status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence.",
+    "labels": [
+      "view-schema",
+      "read-models",
+      "routing-context"
+    ],
+    "goal": {
+      "outcome": "CodeWiki exposes compact generated views that route agents to the right next read without loading raw wiki state.",
+      "acceptance": [
+        "Views include revision metadata, stale flags where applicable, size budgets, and recommended next reads.",
+        "Status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence views are defined.",
+        "`codewiki_state` can expose or consume the views without increasing default token load.",
+        "Views remain rebuild-owned and read-only to agents."
+      ],
+      "non_goals": [
+        "Build status panel graph interaction.",
+        "Implement heartbeat autonomy."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ]
+    },
+    "delta": {
+      "desired": "Views become the default optimized read models for inner and outer loops.",
+      "current": "Generated state exists but is not organized as purpose-specific v2 views with routing contracts.",
+      "closure": "View schemas and generation are implemented and verified."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Views include revision metadata, stale flags where applicable, size budgets, and recommended next reads.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence views are defined.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "`codewiki_state` can expose or consume the views without increasing default token load.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Views remain rebuild-owned and read-only to agents.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "node scripts/rebuild_docs_meta.py"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Build status panel graph interaction.",
+    "Implement heartbeat autonomy."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test",
+    "node scripts/rebuild_docs_meta.py"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:03:24Z",
+      "kind": "roadmap_append",
+      "title": "Appended 1 roadmap task(s)",
+      "summary": "TASK-019 View schema generator for status queue drift and briefs"
+    },
+    {
+      "ts": "2026-05-02T00:03:24Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-019",
+      "action": "spawn",
+      "title": "View schema generator for status queue drift and briefs",
+      "summary": "Spawned task TASK-019 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T01:08:47Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-019",
+      "action": "focus",
+      "title": "View schema generator for status queue drift and briefs",
+      "summary": "Implement optimized v2 view schemas.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T01:11:56Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-019 View schema generator for status queue drift and briefs"
+    },
+    {
+      "ts": "2026-05-02T01:11:56Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-019 View schema generator for status queue drift and briefs"
+    },
+    {
+      "ts": "2026-05-02T01:11:56Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-019",
+      "phase": "verify",
+      "title": "View schema generator for status queue drift and briefs",
+      "summary": "Generated v2 views for status, roadmap queue, drift, product brief, system architecture, recent evidence, and mirrored task contexts with revision metadata, budgets, and recommended next reads.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T01:11:56Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-019",
+      "verdict": "pass",
+      "summary": "Generated v2 views for status, roadmap queue, drift, product brief, system architecture, recent evidence, and mirrored task contexts with revision metadata, budgets, and recommended next reads.",
+      "checks_run": [
+        "python scripts/rebuild_docs_meta.py",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "scripts/rebuild_docs_meta.py",
+        "scripts/smoke-test.mjs",
+        ".wiki/views/status.json",
+        ".wiki/views/roadmap/queue.json",
+        ".wiki/views/drift.json",
+        ".wiki/views/product/brief.json",
+        ".wiki/views/system/architecture.json",
+        ".wiki/views/evidence/recent.json"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-019/context.json",
+    "build": ".wiki/views/context/tasks/TASK-019/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-019/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-019/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/flows/context-memory.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-019/task.json",
+    ".wiki/views/context/tasks/TASK-019/build.json",
+    ".wiki/views/context/tasks/TASK-019/graph.json",
+    "extensions/codewiki/contracts.ts",
+    "scripts/rebuild_docs_meta.py"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1679,
+    "over_budget": false
+  }
+}

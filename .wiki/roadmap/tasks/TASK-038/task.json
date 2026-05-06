@@ -1,0 +1,51 @@
+{
+  "id": "TASK-038",
+  "title": "Implement trigger-based heartbeat agency loop",
+  "status": "todo",
+  "priority": "medium",
+  "kind": "agent-workflow",
+  "summary": "Replace the current heartbeat planning stub with a bounded trigger-based loop whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
+  "spec_paths": [
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/knowledge/system/flows/task-loop.md",
+    ".wiki/knowledge/system/flows/sanitation-release.md",
+    ".wiki/knowledge/lexicon.md"
+  ],
+  "code_paths": [
+    "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+    "extensions/codewiki/src/core/types.ts",
+    "skills/codewiki/SKILL.md"
+  ],
+  "research_ids": [],
+  "labels": [
+    "heartbeat",
+    "agency",
+    "automation",
+    "openclaw-inspired"
+  ],
+  "goal": {
+    "outcome": "Users can choose understandable heartbeat triggers and safe autonomy budgets instead of opaque agency levels.",
+    "acceptance": [
+      "Heartbeat trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
+      "Each trigger maps to bounded observe/maintain/plan/work behavior with explicit budgets and stop conditions.",
+      "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
+      "Heartbeat can enter a brainstorm/planning loop only when trigger, budget, and risk policy allow it."
+    ],
+    "non_goals": [
+      "Do not implement unbounded autonomous coding.",
+      "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks."
+    ],
+    "verification": [
+      "Add tests or smoke coverage for trigger-to-action planning.",
+      "Run `npm test`.",
+      "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+    ]
+  },
+  "delta": {
+    "desired": "",
+    "current": "",
+    "closure": ""
+  },
+  "created": "2026-05-06",
+  "updated": "2026-05-06"
+}

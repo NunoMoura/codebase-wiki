@@ -1,3 +1,9 @@
+import {
+	createAgentSession,
+	DefaultResourceLoader,
+	getAgentDir,
+	SessionManager,
+} from "@mariozechner/pi-coding-agent";
 import type {
 	ExtensionAPI,
 	ExtensionContext,
@@ -58,6 +64,55 @@ import {
 } from "./state";
 
 const execFileAsync = promisify(execFile);
+
+function extractTextContent(value: unknown): string {
+	if (typeof value === "string") return value;
+	if (Array.isArray(value)) {
+		return value.map((item) => typeof item?.text === "string" ? item.text : "").join("");
+	}
+	return "";
+}
+
+async function runPiTaskCloseVerifier(project: WikiProject, prompt: string): Promise<string> {
+	const loader = new DefaultResourceLoader({
+		cwd: project.root,
+		agentDir: getAgentDir(),
+		noExtensions: true,
+		noSkills: true,
+		noPromptTemplates: true,
+		noThemes: true,
+		noContextFiles: true,
+	});
+	await loader.reload();
+	const { session } = await createAgentSession({
+		cwd: project.root,
+		resourceLoader: loader,
+		sessionManager: SessionManager.inMemory(project.root),
+		tools: ["read", "grep", "find", "ls"],
+	});
+	let finalText = "";
+	const unsubscribe = session.subscribe((event) => {
+		const anyEvent = event as any;
+		const message = anyEvent?.message;
+		if (message?.role === "assistant") {
+			const text = extractTextContent(message.content);
+			if (text) finalText = text;
+		}
+		if (anyEvent?.type === "agent_end" && Array.isArray(anyEvent.messages)) {
+			const assistantMessage = [...anyEvent.messages].reverse().find((item: any) => item?.role === "assistant");
+			const text = extractTextContent(assistantMessage?.content);
+			if (text) finalText = text;
+		}
+	});
+	try {
+		await session.prompt(prompt);
+		if (!finalText.trim()) throw new Error("Verifier session returned no assistant text");
+		return finalText;
+	} finally {
+		unsubscribe();
+		await session.dispose();
+	}
+}
 
 /**
  * Implementation of the codewiki_task tool.
@@ -206,7 +261,21 @@ export async function executeCodewikiTask(
 	let evidenceRecorded = false;
 
 	if (input.action === "close") {
-		const verifier = await maybeRunAutomaticTaskVerifier(project, latestTask);
+		if (input.evidence) {
+			await appendCodewikiTaskEvidence(
+				project,
+				latestTask,
+				input.evidence,
+				false,
+			);
+			evidenceRecorded = true;
+			if (refresh) await runRebuild(project);
+		}
+		const verifier = await maybeRunAutomaticTaskVerifier(
+			project,
+			latestTask,
+			(prompt) => runPiTaskCloseVerifier(project, prompt),
+		);
 		if (verifier) {
 			await appendCodewikiTaskEvidence(
 				project,
@@ -255,15 +324,6 @@ export async function executeCodewikiTask(
 				await mkdir(dirname(archivePath), { recursive: true });
 				await appendFile(archivePath, JSON.stringify(latestTask) + "\n", "utf8");
 			});
-		}
-		if (input.evidence) {
-			await appendCodewikiTaskEvidence(
-				project,
-				latestTask,
-				input.evidence,
-				false,
-			);
-			evidenceRecorded = true;
 		}
 	} else if (input.action === "cancel") {
 		const cancelResult = await updateRoadmapTask(

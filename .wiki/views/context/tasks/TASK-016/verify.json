@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-016",
+    "title": "Bake product split and lexicon into templates",
+    "status": "done",
+    "priority": "high",
+    "kind": "docs",
+    "summary": "Starter templates now include the v2 product split and shared lexicon, with smoke coverage for the new files.",
+    "labels": [
+      "v2",
+      "product",
+      "lexicon",
+      "templates"
+    ],
+    "goal": {
+      "outcome": "New wikis start with focused product knowledge and a shared lexicon rather than one large product overview.",
+      "acceptance": [
+        "Bootstrap templates include lexicon, users, stories, and surfaces docs.",
+        "Product overview is short navigation plus boundaries.",
+        "Smoke tests cover expected starter files.",
+        "Existing clients docs link cleanly to the product split."
+      ],
+      "non_goals": [
+        "Delete all client surface docs.",
+        "Implement system architecture graph generation."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Every new CodeWiki repo gets the v2 product/lexicon structure.",
+      "current": "This repo has the new product split, but package templates still need to adopt it.",
+      "closure": "Templates and smoke tests reflect product split and lexicon."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Bootstrap templates include lexicon, users, stories, and surfaces docs.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Product overview is short navigation plus boundaries.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Smoke tests cover expected starter files.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Existing clients docs link cleanly to the product split.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Delete all client surface docs.",
+    "Implement system architecture graph generation."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:02:47Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-016",
+      "action": "spawn",
+      "title": "Bake product split and lexicon into templates",
+      "summary": "Spawned task TASK-016 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:26:21Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-016",
+      "action": "focus",
+      "title": "Bake product split and lexicon into templates",
+      "summary": "Implement product split and lexicon in bootstrap templates.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:34:20Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-016 Bake product split and lexicon into templates"
+    },
+    {
+      "ts": "2026-05-02T00:34:20Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-016",
+      "phase": "implement",
+      "title": "Bake product split and lexicon into templates",
+      "summary": "Added lexicon, product users, stories, and surfaces to bootstrap templates; shortened product overview into navigation/boundaries; updated smoke tests for 19 starter files and product split presence.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T00:34:20Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-016",
+      "verdict": "pass",
+      "summary": "Added lexicon, product users, stories, and surfaces to bootstrap templates; shortened product overview into navigation/boundaries; updated smoke tests for 19 starter files and product split presence.",
+      "checks_run": [
+        "python scripts/rebuild_docs_meta.py",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs",
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T00:34:26Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-016",
+      "verdict": "pass",
+      "summary": "Starter templates now include the v2 product split and shared lexicon, with smoke coverage for the new files.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs"
+      ],
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T00:34:26Z",
+      "kind": "roadmap_close",
+      "title": "Closed 1 roadmap task(s)",
+      "summary": "TASK-016 Bake product split and lexicon into templates"
+    },
+    {
+      "ts": "2026-05-02T00:34:26Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-016",
+      "verdict": "pass",
+      "summary": "Closed after rebuild, typecheck, smoke, and pack tests passed.",
+      "checks_run": [
+        "python scripts/rebuild_docs_meta.py",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/templates.ts",
+        "scripts/smoke-test.mjs",
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/product/overview.md",
+        ".wiki/knowledge/product/users.md",
+        ".wiki/knowledge/product/stories.md",
+        ".wiki/knowledge/product/surfaces.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-016/context.json",
+    "build": ".wiki/views/context/tasks/TASK-016/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-016/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-016/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/product/stories.md",
+    ".wiki/knowledge/product/surfaces.md",
+    ".wiki/knowledge/product/users.md",
+    ".wiki/roadmap/tasks/TASK-016/task.json",
+    ".wiki/views/context/tasks/TASK-016/build.json",
+    ".wiki/views/context/tasks/TASK-016/graph.json",
+    "extensions/codewiki/templates.ts",
+    "scripts/smoke-test.mjs"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1767,
+    "over_budget": false
+  }
+}

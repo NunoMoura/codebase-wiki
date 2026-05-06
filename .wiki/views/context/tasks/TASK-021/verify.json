@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-021",
+    "title": "Subagent JSON worker contracts",
+    "status": "done",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
+    "labels": [
+      "subagent-workers",
+      "json-contracts",
+      "fresh-ram"
+    ],
+    "goal": {
+      "outcome": "Context-heavy or bias-sensitive CodeWiki work can run in fresh subagent sessions and return bounded results to the parent agent.",
+      "acceptance": [
+        "Verifier, researcher, planner, architecture reviewer, and view auditor roles have documented input/output contracts.",
+        "Parent agent remains responsible for canonical writes.",
+        "Subagent outputs are compact JSON with pass/fail/block or proposal semantics as appropriate.",
+        "Existing fresh verifier behavior aligns with the shared subagent model."
+      ],
+      "non_goals": [
+        "Let subagents freely mutate `.wiki` canonical truth.",
+        "Replace all parent-agent work with subagents."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Subagents become reusable context-management workers.",
+      "current": "Fresh verifier exists, but broader subagent roles and contracts are underexplored.",
+      "closure": "Contracts and at least one additional subagent workflow are implemented or stubbed with tests."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Verifier, researcher, planner, architecture reviewer, and view auditor roles have documented input/output contracts.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Parent agent remains responsible for canonical writes.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Subagent outputs are compact JSON with pass/fail/block or proposal semantics as appropriate.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Existing fresh verifier behavior aligns with the shared subagent model.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/contracts.ts",
+        "skills"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Let subagents freely mutate `.wiki` canonical truth.",
+    "Replace all parent-agent work with subagents."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:03:39Z",
+      "kind": "roadmap_append",
+      "title": "Appended 1 roadmap task(s)",
+      "summary": "TASK-021 Subagent JSON worker contracts"
+    },
+    {
+      "ts": "2026-05-02T00:03:39Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-021",
+      "action": "spawn",
+      "title": "Subagent JSON worker contracts",
+      "summary": "Spawned task TASK-021 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T01:36:52Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-021",
+      "action": "focus",
+      "title": "Subagent JSON worker contracts",
+      "summary": "Continue next roadmap task.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T01:42:33Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-021 Subagent JSON worker contracts"
+    },
+    {
+      "ts": "2026-05-02T01:42:33Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-021 Subagent JSON worker contracts"
+    },
+    {
+      "ts": "2026-05-02T01:42:33Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-021",
+      "phase": "verify",
+      "title": "Subagent JSON worker contracts",
+      "summary": "Added shared SubagentBrief/SubagentResult contracts plus role-specific contracts for verifier, researcher, planner, architecture reviewer, and view auditor. Added view-audit skill and smoke coverage for package skill loading.",
+      "issues": []
+    },
+    {
+      "ts": "2026-05-02T01:42:33Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-021",
+      "verdict": "pass",
+      "summary": "Added shared SubagentBrief/SubagentResult contracts plus role-specific contracts for verifier, researcher, planner, architecture reviewer, and view auditor. Added view-audit skill and smoke coverage for package skill loading.",
+      "checks_run": [
+        "python scripts/rebuild_docs_meta.py",
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/contracts.ts",
+        "skills/codewiki/SKILL.md",
+        "skills/codewiki-plan/SKILL.md",
+        "skills/codewiki-research/SKILL.md",
+        "skills/codewiki-architecture/SKILL.md",
+        "skills/codewiki-view-audit/SKILL.md",
+        "scripts/smoke-test.mjs",
+        ".wiki/knowledge/system/flows/context-memory.md"
+      ],
+      "issues": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-021/context.json",
+    "build": ".wiki/views/context/tasks/TASK-021/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-021/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-021/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/system/flows/context-memory.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-021/task.json",
+    ".wiki/views/context/tasks/TASK-021/build.json",
+    ".wiki/views/context/tasks/TASK-021/graph.json",
+    "extensions/codewiki/contracts.ts",
+    "skills"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1570,
+    "over_budget": false
+  }
+}

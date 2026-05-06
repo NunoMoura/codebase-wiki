@@ -1,0 +1,243 @@
+{
+  "version": 1,
+  "role": "verify",
+  "task": {
+    "id": "TASK-017",
+    "title": "Render architecture graph in status panel",
+    "status": "done",
+    "priority": "medium",
+    "kind": "ui",
+    "summary": "Update the CodeWiki status panel to render the generated architecture view and show component or flow details when selected.",
+    "labels": [
+      "v2",
+      "status-panel",
+      "architecture-graph"
+    ],
+    "goal": {
+      "outcome": "Humans and agents can inspect system architecture visually through the status panel and zoom into component or flow detail cards.",
+      "acceptance": [
+        "Status panel renders the generated architecture graph or a fallback graph view.",
+        "Selecting a component opens linked component markdown/details.",
+        "Selecting a flow opens linked flow markdown/details.",
+        "Health colors use strict legend semantics from roadmap/drift/view state.",
+        "Panel degrades gracefully when architecture views are stale or absent."
+      ],
+      "non_goals": [
+        "Make the panel a full diagram editor.",
+        "Hand-edit Mermaid in the UI."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Architecture graph becomes an interactive navigation surface.",
+      "current": "Status panel focuses on status and roadmap, not architecture graph navigation.",
+      "closure": "Panel can render graph and detail cards from generated views."
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "Status panel renders the generated architecture graph or a fallback graph view.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "Selecting a component opens linked component markdown/details.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Selecting a flow opens linked flow markdown/details.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Health colors use strict legend semantics from roadmap/drift/view state.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "criterion": "Panel degrades gracefully when architecture views are stale or absent.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/product/surfaces.md",
+        ".wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "code_paths": [
+        "extensions/codewiki/index.ts",
+        "extensions/codewiki/contracts.ts"
+      ],
+      "checks": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "evidence": []
+    }
+  ],
+  "non_goals": [
+    "Make the panel a full diagram editor.",
+    "Hand-edit Mermaid in the UI."
+  ],
+  "required_checks": [
+    "npm run typecheck -- --pretty false",
+    "npm test"
+  ],
+  "recent_evidence": [
+    {
+      "ts": "2026-05-02T00:02:47Z",
+      "kind": "roadmap_append",
+      "title": "Appended 4 roadmap task(s)",
+      "summary": "TASK-015 Implement v2 wiki layout and migration; TASK-016 Bake product split and lexicon into templates; TASK-017 Render architecture graph in status panel; TASK-018 Implement context memory policy in skills and loops"
+    },
+    {
+      "ts": "2026-05-02T00:02:47Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-017",
+      "action": "spawn",
+      "title": "Render architecture graph in status panel",
+      "summary": "Spawned task TASK-017 in current Pi session.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:35:40Z",
+      "kind": "task_session_link",
+      "session_id": "019dd670-522d-726f-9e98-9d5dffb13551",
+      "task_id": "TASK-017",
+      "action": "focus",
+      "title": "Render architecture graph in status panel",
+      "summary": "Implement status panel architecture graph UX slice.",
+      "files_touched": [],
+      "spawned_task_ids": []
+    },
+    {
+      "ts": "2026-05-02T00:37:53Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-017 Render architecture graph in status panel"
+    },
+    {
+      "ts": "2026-05-02T00:37:53Z",
+      "kind": "roadmap_update",
+      "title": "Updated 1 roadmap task(s)",
+      "summary": "TASK-017 Render architecture graph in status panel"
+    },
+    {
+      "ts": "2026-05-02T00:37:53Z",
+      "kind": "task_phase_passed",
+      "task_id": "TASK-017",
+      "phase": "verify",
+      "title": "Render architecture graph in status panel",
+      "summary": "Implemented architecture fallback display and richer wiki detail cards; ready for verification.",
+      "issues": [
+        "Generated architecture JSON/Mermaid remains TASK-020; panel degrades to system-doc fallback until that view exists."
+      ]
+    },
+    {
+      "ts": "2026-05-02T00:37:53Z",
+      "kind": "task_evidence_recorded",
+      "task_id": "TASK-017",
+      "verdict": "pass",
+      "summary": "Implemented architecture fallback display and richer wiki detail cards; ready for verification.",
+      "checks_run": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ],
+      "files_touched": [
+        "extensions/codewiki/index.ts"
+      ],
+      "issues": [
+        "Generated architecture JSON/Mermaid remains TASK-020; panel degrades to system-doc fallback until that view exists."
+      ]
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-017/context.json",
+    "build": ".wiki/views/context/tasks/TASK-017/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-017/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-017/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/product/surfaces.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-017/task.json",
+    ".wiki/views/context/tasks/TASK-017/build.json",
+    ".wiki/views/context/tasks/TASK-017/graph.json",
+    "extensions/codewiki/contracts.ts",
+    "extensions/codewiki/index.ts"
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "verdict_policy": "Observability signals inform review only; verification gateway decides pass/fail/block.",
+  "budget": {
+    "target_tokens": 3500,
+    "estimated_tokens": 1623,
+    "over_budget": false
+  }
+}

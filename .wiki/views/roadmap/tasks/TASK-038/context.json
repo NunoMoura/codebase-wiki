@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-06T22:02:16Z",
+  "context_path": ".wiki/roadmap/tasks/TASK-038/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first. Expand only listed specs/code/evidence when phase or stale revision requires exact source."
+  },
+  "task": {
+    "id": "TASK-038",
+    "title": "Implement trigger-based heartbeat agency loop",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Replace the current heartbeat planning stub with a bounded trigger-based loop whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
+    "labels": [
+      "heartbeat",
+      "agency",
+      "automation",
+      "openclaw-inspired"
+    ],
+    "goal": {
+      "outcome": "Users can choose understandable heartbeat triggers and safe autonomy budgets instead of opaque agency levels.",
+      "acceptance": [
+        "Heartbeat trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
+        "Each trigger maps to bounded observe/maintain/plan/work behavior with explicit budgets and stop conditions.",
+        "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
+        "Heartbeat can enter a brainstorm/planning loop only when trigger, budget, and risk policy allow it."
+      ],
+      "non_goals": [
+        "Do not implement unbounded autonomous coding.",
+        "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks."
+      ],
+      "verification": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "9e3cb54c6705ab831a049e341960f1b0bc091d5bf44909b5d93785b19c68c6aa"
+    },
+    "git": {
+      "head": "166313f96147e9bace1240466c5bac7090332b42",
+      "dirty": true,
+      "dirty_paths": [
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/flows/task-loop.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/roadmap.json"
+      ],
+      "paths": {
+        ".wiki/knowledge/lexicon.md": "643c940fa1ca",
+        ".wiki/knowledge/system/flows/sanitation-release.md": "fe19eabf6306",
+        ".wiki/knowledge/system/flows/task-loop.md": "ce607eba2ff9",
+        ".wiki/knowledge/system/v2-operating-model.md": "fe19eabf6306",
+        ".wiki/roadmap.json": "166313f96147",
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts": "166313f96147",
+        "extensions/codewiki/src/core/types.ts": "166313f96147",
+        "skills/codewiki/SKILL.md": "fe19eabf6306"
+      }
+    },
+    "spec_digest": "75dd55c92d1611a0ad1886e270e5eb0605cda1c1664403f701d04bfe5c020e70",
+    "code_digest": "73a6ab20a9da973596d97efd698510b5fe9e687b1f8ea9914ad5b98fca20ae92",
+    "graph": {
+      "git": {
+        "head": "166313f96147e9bace1240466c5bac7090332b42",
+        "dirty": true
+      },
+      "spec_digest": "5880111e6744f442aee52229a41f7244ed2de4f95942ec5678ff9d44aa71005e",
+      "task_digest": "b8ac65914febd296c7b9f0ac8470d090c6bf0ad491603a6d5a3b9d925f31ae91",
+      "evidence_digest": "edd67789a23aa9c45f33a70c97920926bee98ddc03259b122b85f8e41df0249d"
+    }
+  },
+  "specs": [
+    {
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "summary": "Agreed v2 model for canonical truth, views, memory use, subagents, heartbeat, optional runtime tools, and sanitation.",
+      "state": "proposed",
+      "owners": [
+        "architecture",
+        "product"
+      ],
+      "code_paths": [
+        "extensions/codewiki",
+        "scripts/rebuild_docs_meta.py",
+        "skills"
+      ],
+      "revision": {
+        "digest": "ccd94e31b8a73b6765c6ceed1d77a34e5428ec678c316b4d170b1cb071523bb4"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/v2-operating-model.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/task-loop.md",
+      "title": "Task Loop Flow",
+      "summary": "Roadmap tasks route inner-loop execution from intent to implementation, verification, evidence, and closure.",
+      "state": "active",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "revision": {
+        "digest": "4992b16d50d00b3cff32de6283b1642d108a3ba8ae7dcb373873fcfb2e44aca5"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/flows/task-loop.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/system/flows/sanitation-release.md",
+      "title": "Sanitation and Release Flow",
+      "summary": "How CodeWiki keeps hot state small while using git for historical recovery.",
+      "state": "proposed",
+      "owners": [
+        "architecture"
+      ],
+      "code_paths": [
+        "scripts/rebuild_docs_meta.py"
+      ],
+      "revision": {
+        "digest": "dea7625314740e6e70ff60989e866dad517d154631c4f0cbe25401a97d0aed7b"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/system/flows/sanitation-release.md"
+      }
+    },
+    {
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, and generated views.",
+      "state": "active",
+      "owners": [
+        "product",
+        "architecture"
+      ],
+      "code_paths": [],
+      "revision": {
+        "digest": "04ab002be11d4125bbb36d563cde552c88cea43c015c62d3d247f0e324e70d7d"
+      },
+      "expand": {
+        "read": ".wiki/knowledge/lexicon.md"
+      }
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+      "extensions/codewiki/src/core/types.ts",
+      "skills/codewiki/SKILL.md"
+    ],
+    "digest": "73a6ab20a9da973596d97efd698510b5fe9e687b1f8ea9914ad5b98fca20ae92",
+    "expand": [
+      {
+        "read": "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts"
+      },
+      {
+        "read": "extensions/codewiki/src/core/types.ts"
+      },
+      {
+        "read": "skills/codewiki/SKILL.md"
+      }
+    ]
+  },
+  "evidence": null,
+  "expansion": {
+    "task_json": ".wiki/roadmap/tasks/TASK-038/task.json",
+    "roadmap_state": ".wiki/roadmap-state.json",
+    "status_state": ".wiki/status-state.json",
+    "graph": ".wiki/graph.json",
+    "build_pack": ".wiki/views/context/tasks/TASK-038/build.json",
+    "verify_pack": ".wiki/views/context/tasks/TASK-038/verify.json",
+    "graph_slice": ".wiki/views/context/tasks/TASK-038/graph.json"
+  }
+}

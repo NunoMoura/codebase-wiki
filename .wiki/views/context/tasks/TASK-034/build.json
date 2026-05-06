@@ -1,0 +1,261 @@
+{
+  "version": 1,
+  "role": "build",
+  "task": {
+    "id": "TASK-034",
+    "title": "Design CodeWiki skill package and workflow assets",
+    "status": "todo",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Define a CodeWiki skill package with router instructions, deterministic scripts, and grill/plan/build/verify workflow assets adapted from Matt Pocock's skills only where they fit CodeWiki semantics.",
+    "labels": [
+      "skills",
+      "workflow",
+      "matt-pocock-adaptation"
+    ],
+    "goal": {
+      "outcome": "CodeWiki has a clear packaged skill contract that teaches agents how to operate `.wiki` without creating parallel documentation systems.",
+      "acceptance": [
+        "A skill-package structure is specified for `SKILL.md`, `scripts/`, and workflow assets.",
+        "`grill`, `plan`, `build`, and `verify` loops are described with CodeWiki-specific inputs, outputs, stop conditions, and canonical write rules.",
+        "Matt Pocock skill ideas are classified as adopt, adapt, or discard, with documentation-related conventions explicitly filtered through CodeWiki's knowledge model.",
+        "Repo-specific process customization lives under `.wiki/knowledge/**` or config, while package workflow assets remain versioned and not casually self-mutated."
+      ],
+      "non_goals": [
+        "Do not blindly copy `CONTEXT.md`, `docs/adr`, issue-tracker, or PRD conventions when they duplicate CodeWiki knowledge/roadmap semantics.",
+        "Do not make agents hand-edit generated views."
+      ],
+      "verification": [
+        "Review packaged skill docs against `.wiki` invariants.",
+        "Run package smoke/test checks after any skill packaging changes.",
+        "Verify no parallel source of truth was introduced."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC-1",
+      "criterion": "A skill-package structure is specified for `SKILL.md`, `scripts/`, and workflow assets.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "README.md",
+        "package.json"
+      ],
+      "checks": [
+        "Review packaged skill docs against `.wiki` invariants.",
+        "Run package smoke/test checks after any skill packaging changes.",
+        "Verify no parallel source of truth was introduced."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "criterion": "`grill`, `plan`, `build`, and `verify` loops are described with CodeWiki-specific inputs, outputs, stop conditions, and canonical write rules.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "README.md",
+        "package.json"
+      ],
+      "checks": [
+        "Review packaged skill docs against `.wiki` invariants.",
+        "Run package smoke/test checks after any skill packaging changes.",
+        "Verify no parallel source of truth was introduced."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "criterion": "Matt Pocock skill ideas are classified as adopt, adapt, or discard, with documentation-related conventions explicitly filtered through CodeWiki's knowledge model.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "README.md",
+        "package.json"
+      ],
+      "checks": [
+        "Review packaged skill docs against `.wiki` invariants.",
+        "Run package smoke/test checks after any skill packaging changes.",
+        "Verify no parallel source of truth was introduced."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "criterion": "Repo-specific process customization lives under `.wiki/knowledge/**` or config, while package workflow assets remain versioned and not casually self-mutated.",
+      "status": "unknown",
+      "spec_paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        ".wiki/knowledge/lexicon.md"
+      ],
+      "code_paths": [
+        "skills",
+        "README.md",
+        "package.json"
+      ],
+      "checks": [
+        "Review packaged skill docs against `.wiki` invariants.",
+        "Run package smoke/test checks after any skill packaging changes.",
+        "Verify no parallel source of truth was introduced."
+      ],
+      "evidence": []
+    }
+  ],
+  "context_routes": {
+    "legacy": ".wiki/views/roadmap/tasks/TASK-034/context.json",
+    "build": ".wiki/views/context/tasks/TASK-034/build.json",
+    "verify": ".wiki/views/context/tasks/TASK-034/verify.json",
+    "graph": ".wiki/views/context/tasks/TASK-034/graph.json"
+  },
+  "recommended_next_reads": [
+    ".wiki/knowledge/clients/agent-skills.md",
+    ".wiki/knowledge/lexicon.md",
+    ".wiki/knowledge/system/v2-operating-model.md",
+    ".wiki/roadmap/tasks/TASK-034/task.json",
+    "README.md",
+    "package.json",
+    "skills"
+  ],
+  "graph_core": [
+    {
+      "id": "doc:.wiki/knowledge/clients/agent-skills.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/clients/agent-skills.md",
+      "title": "Agent Skills",
+      "why": "task_spec explicitly links TASK-034 to this node",
+      "edge_path": [
+        "task:TASK-034",
+        "doc:.wiki/knowledge/clients/agent-skills.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/system/v2-operating-model.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/system/v2-operating-model.md",
+      "title": "CodeWiki v2 Operating Model",
+      "why": "task_spec explicitly links TASK-034 to this node",
+      "edge_path": [
+        "task:TASK-034",
+        "doc:.wiki/knowledge/system/v2-operating-model.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "doc:.wiki/knowledge/lexicon.md",
+      "kind": "doc",
+      "path": ".wiki/knowledge/lexicon.md",
+      "title": "Lexicon",
+      "why": "task_spec explicitly links TASK-034 to this node",
+      "edge_path": [
+        "task:TASK-034",
+        "doc:.wiki/knowledge/lexicon.md"
+      ],
+      "confidence": "explicit",
+      "expand": "read"
+    },
+    {
+      "id": "code:skills",
+      "kind": "code_path",
+      "path": "skills",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-034 to this node",
+      "edge_path": [
+        "task:TASK-034",
+        "code:skills"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:README.md",
+      "kind": "code_path",
+      "path": "README.md",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-034 to this node",
+      "edge_path": [
+        "task:TASK-034",
+        "code:README.md"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    },
+    {
+      "id": "code:package.json",
+      "kind": "code_path",
+      "path": "package.json",
+      "title": null,
+      "why": "task_code_path explicitly links TASK-034 to this node",
+      "edge_path": [
+        "task:TASK-034",
+        "code:package.json"
+      ],
+      "confidence": "explicit",
+      "expand": "grep"
+    }
+  ],
+  "exploration_recipes": [
+    {
+      "tool": "grep",
+      "purpose": "Find code touchpoints inside linked paths before broad reads.",
+      "paths": [
+        "skills",
+        "README.md",
+        "package.json"
+      ]
+    },
+    {
+      "tool": "sandbox",
+      "purpose": "Filter linked specs/code for acceptance keywords; return compact findings only.",
+      "paths": [
+        ".wiki/knowledge/clients/agent-skills.md",
+        ".wiki/knowledge/lexicon.md",
+        ".wiki/knowledge/system/v2-operating-model.md",
+        "README.md",
+        "package.json",
+        "skills"
+      ]
+    }
+  ],
+  "observability": {
+    "horizontal_alignment": {
+      "has_specs": true,
+      "has_code": true,
+      "has_acceptance": true
+    },
+    "vertical_alignment": {
+      "intent_to_specs": true,
+      "specs_to_code": true,
+      "checks_to_evidence": false
+    }
+  },
+  "budget": {
+    "target_tokens": 4000,
+    "estimated_tokens": 1726,
+    "over_budget": false
+  }
+}
