@@ -1,0 +1,48 @@
+{
+  "id": "TASK-046",
+  "title": "Introduce tester and builder implementation roles",
+  "status": "todo",
+  "priority": "medium",
+  "kind": "agent-workflow",
+  "summary": "Add optional tester/builder workflow support so agent-created tests can be designed from task packs before code implementation.",
+  "spec_paths": [
+    ".codewiki/kb/system/flows/task-loop.md",
+    ".codewiki/kb/system/runtime/overview.md",
+    ".codewiki/kb/system/flows/context-memory.md"
+  ],
+  "code_paths": [
+    "skills/codewiki-task/SKILL.md",
+    "extensions/codewiki/src/adapters/pi/tools/task.ts"
+  ],
+  "research_ids": [],
+  "labels": [
+    "implementation-compiler",
+    "tester-builder",
+    "tdd"
+  ],
+  "goal": {
+    "outcome": "Implementation compiler can optionally split agent-created tests into tester and builder roles.",
+    "acceptance": [
+      "Task workflow documentation and tool briefs can request a tester role before builder work.",
+      "Tester receives task pack and writes/updates tests without implementation changes when practical.",
+      "Builder receives task pack plus tests and makes checks pass.",
+      "Validation can distinguish test-design evidence from build evidence."
+    ],
+    "non_goals": [
+      "Always require separate agents for every task.",
+      "Implement a generic multi-agent framework."
+    ],
+    "verification": [
+      "npm run typecheck",
+      "targeted tests or smoke coverage for generated briefs/workflow metadata",
+      "manual dry-run on one task pack"
+    ]
+  },
+  "delta": {
+    "desired": "",
+    "current": "",
+    "closure": ""
+  },
+  "created": "2026-05-07",
+  "updated": "2026-05-07"
+}

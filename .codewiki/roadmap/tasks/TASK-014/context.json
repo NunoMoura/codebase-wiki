@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.725Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-014/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-014",
+    "title": "Capture CodeWiki v2 operating model and roadmap",
+    "status": "done",
+    "phase": "done",
+    "priority": "high",
+    "kind": "docs",
+    "summary": "CodeWiki v2 decisions are now durable wiki knowledge and mapped to executable roadmap tasks.",
+    "labels": [
+      "v2",
+      "planning",
+      "view-boundary",
+      "memory-model"
+    ],
+    "goal": {
+      "outcome": "The wiki records the v2 canonical/view model, product split, memory policy, subagent/heartbeat/think-code roles, and sanitation/versioning policy as roadmap-backed intent.",
+      "acceptance": [
+        "V2 decisions are captured in canonical knowledge docs, not only chat history.",
+        "Product knowledge is split or prepared for users, stories, and surfaces.",
+        "The system knowledge names the canonical/view boundary and view consumption model.",
+        "Roadmap tasks cover v2 migration, views, architecture graph, subagents, heartbeat, think-code, and sanitation/release policy.",
+        "codewiki_state reports the new roadmap without drift."
+      ],
+      "non_goals": [
+        "Implement the full v2 storage migration.",
+        "Render architecture diagrams in the status panel.",
+        "Rename all code-level projection terminology immediately."
+      ],
+      "verification": [
+        "codewiki_state refresh=true"
+      ]
+    },
+    "delta": {
+      "desired": "V2 direction is captured as wiki truth and mapped to concrete roadmap tasks.",
+      "current": "V2 direction exists in chat but not yet as durable wiki knowledge or executable roadmap tasks.",
+      "closure": "Knowledge docs and roadmap tasks reflect the agreed v2 operating model."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/product/overview.md",
+      "title": ".codewiki/kb/product/overview.md"
+    },
+    {
+      "path": ".codewiki/kb/system/overview.md",
+      "title": ".codewiki/kb/system/overview.md"
+    },
+    {
+      "path": ".codewiki/kb/system/runtime/overview.md",
+      "title": ".codewiki/kb/system/runtime/overview.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      ".codewiki/kb"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-014/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-014/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-014/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-014/graph.json"
+  }
+}

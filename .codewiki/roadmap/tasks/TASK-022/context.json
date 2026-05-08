@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.737Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-022/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-022",
+    "title": "Heartbeat modes budgets and stop conditions",
+    "status": "done",
+    "phase": "done",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Add bounded observe, maintain, and work heartbeat modes that use views, subagents, and canonical writes safely.",
+    "labels": [
+      "heartbeat-loop",
+      "autonomous-budget",
+      "stop-conditions"
+    ],
+    "goal": {
+      "outcome": "Users can run CodeWiki autonomously within explicit budgets and modes without losing alignment with wiki truth or project safety.",
+      "acceptance": [
+        "Heartbeat supports observe, maintain, and work modes.",
+        "Each cycle reads status, handles stale views, selects inner or outer loop action, records evidence, and stops on budget/risk/ambiguity.",
+        "Budgets include max cycles, wall time, writes, subagents, and risk level.",
+        "Push/version/archive behavior is gated by policy and checks."
+      ],
+      "non_goals": [
+        "Run unbounded autonomous coding.",
+        "Bypass user approval for risky or destructive work."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Heartbeat is a bounded CodeWiki loop with safe modes and stop conditions.",
+      "current": "Heartbeat is an idea but not a fully defined or implemented autonomous workflow.",
+      "closure": "Heartbeat command/tool contract and initial implementation are covered by tests."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/system/v2-operating-model.md",
+      "title": ".codewiki/kb/system/v2-operating-model.md"
+    },
+    {
+      "path": ".codewiki/kb/product/stories/intent.md",
+      "title": ".codewiki/kb/product/stories/intent.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/index.ts",
+      "extensions/codewiki/contracts.ts",
+      "skills"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-022/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-022/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-022/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-022/graph.json"
+  }
+}

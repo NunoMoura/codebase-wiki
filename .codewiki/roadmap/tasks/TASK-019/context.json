@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.733Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-019/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-019",
+    "title": "View schema generator for status queue drift and briefs",
+    "status": "done",
+    "phase": "done",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Define and generate the small, revisioned read models agents and UI consume for status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence.",
+    "labels": [
+      "view-schema",
+      "read-models",
+      "routing-context"
+    ],
+    "goal": {
+      "outcome": "CodeWiki exposes compact generated views that route agents to the right next read without loading raw wiki state.",
+      "acceptance": [
+        "Views include revision metadata, stale flags where applicable, size budgets, and recommended next reads.",
+        "Status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence views are defined.",
+        "`codewiki_state` can expose or consume the views without increasing default token load.",
+        "Views remain rebuild-owned and read-only to agents."
+      ],
+      "non_goals": [
+        "Build status panel graph interaction.",
+        "Implement heartbeat autonomy."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test",
+        "TypeScript rebuild engine"
+      ]
+    },
+    "delta": {
+      "desired": "Views become the default optimized read models for inner and outer loops.",
+      "current": "Generated state exists but is not organized as purpose-specific v2 views with routing contracts.",
+      "closure": "View schemas and generation are implemented and verified."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/system/v2-operating-model.md",
+      "title": ".codewiki/kb/system/v2-operating-model.md"
+    },
+    {
+      "path": ".codewiki/kb/system/flows/context-memory.md",
+      "title": ".codewiki/kb/system/flows/context-memory.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src/engine/rebuild.ts",
+      "extensions/codewiki/contracts.ts"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-019/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-019/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-019/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-019/graph.json"
+  }
+}

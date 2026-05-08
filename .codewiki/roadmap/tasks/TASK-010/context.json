@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.720Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-010/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-010",
+    "title": "Add CodeWiki architecture review workflow adapted from deep-module heuristics",
+    "status": "done",
+    "phase": "done",
+    "priority": "medium",
+    "kind": "architecture",
+    "summary": "Adapt deep-module and shared-language architecture review ideas into a CodeWiki-aware workflow for finding seams, locality problems, and roadmap-worthy refactors.",
+    "labels": [
+      "architecture",
+      "deep-modules",
+      "pocock-adaptation"
+    ],
+    "goal": {
+      "outcome": "CodeWiki can run architecture reviews that produce knowledge updates and roadmap tasks rather than ad hoc refactor suggestions.",
+      "acceptance": [
+        "Workflow uses CodeWiki vocabulary and `.codewiki/kb` instead of `CONTEXT.md`/ADR assumptions.",
+        "Review rubric includes module/interface/implementation, seam, adapter, locality, leverage, and deletion test.",
+        "Findings become either knowledge clarifications, roadmap tasks, or explicitly deferred non-goals.",
+        "Architecture review does not propose interfaces before presenting friction candidates and asking user to pick."
+      ],
+      "non_goals": [
+        "Create a separate ADR tree outside `.codewiki/kb`.",
+        "Automatically refactor architecture during review."
+      ],
+      "verification": [
+        "Run the workflow on the CodeWiki repo and produce at least one candidate or documented no-op result.",
+        "Confirm any resulting tasks link to owning specs and acceptance criteria."
+      ]
+    },
+    "delta": {
+      "desired": "Architecture improvement becomes a first-class CodeWiki planning input.",
+      "current": "General architecture heuristics are useful but not adapted to CodeWiki's knowledge/roadmap model.",
+      "closure": "Add CodeWiki-specific architecture review skill or section and validate against the repo."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/system/overview.md",
+      "title": ".codewiki/kb/system/overview.md"
+    },
+    {
+      "path": ".codewiki/kb/system/extensions/codewiki/overview.md",
+      "title": ".codewiki/kb/system/extensions/codewiki/overview.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "skills/codewiki-architecture/SKILL.md"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-010/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-010/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-010/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-010/graph.json"
+  }
+}

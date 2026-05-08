@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.754Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-034/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-034",
+    "title": "Design CodeWiki skill package and workflow assets",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Define a CodeWiki skill package with router instructions, deterministic scripts, and grill/plan/build/verify workflow assets adapted from Matt Pocock's skills only where they fit CodeWiki semantics.",
+    "labels": [
+      "skills",
+      "workflow",
+      "matt-pocock-adaptation"
+    ],
+    "goal": {
+      "outcome": "CodeWiki has a clear packaged skill contract that teaches agents how to operate `.codewiki/` without creating parallel documentation systems.",
+      "acceptance": [
+        "A skill-package structure is specified for `SKILL.md`, `scripts/`, and workflow assets.",
+        "`grill`, `plan`, `build`, and `verify` loops are described with CodeWiki-specific inputs, outputs, stop conditions, and canonical write rules.",
+        "Matt Pocock skill ideas are classified as adopt, adapt, or discard, with documentation-related conventions explicitly filtered through CodeWiki's knowledge model.",
+        "Repo-specific process customization lives under `.codewiki/kb/**` or config, while package workflow assets remain versioned and not casually self-mutated."
+      ],
+      "non_goals": [
+        "Do not blindly copy `CONTEXT.md`, `docs/adr`, issue-tracker, or PRD conventions when they duplicate CodeWiki knowledge/roadmap semantics.",
+        "Do not make agents hand-edit generated views."
+      ],
+      "verification": [
+        "Review packaged skill docs against `.codewiki/` invariants.",
+        "Run package smoke/test checks after any skill packaging changes.",
+        "Verify no parallel source of truth was introduced."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/system/clients/agent-skills.md",
+      "title": ".codewiki/kb/system/clients/agent-skills.md"
+    },
+    {
+      "path": ".codewiki/kb/system/v2-operating-model.md",
+      "title": ".codewiki/kb/system/v2-operating-model.md"
+    },
+    {
+      "path": ".codewiki/kb/lexicon.md",
+      "title": ".codewiki/kb/lexicon.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "skills",
+      "README.md",
+      "package.json"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-034/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-034/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-034/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-034/graph.json"
+  }
+}

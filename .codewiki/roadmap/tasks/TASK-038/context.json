@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.759Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-038/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-038",
+    "title": "Implement trigger-based heartbeat agency loop",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Replace the current heartbeat planning stub with a bounded trigger-based loop whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
+    "labels": [
+      "heartbeat",
+      "agency",
+      "automation",
+      "openclaw-inspired"
+    ],
+    "goal": {
+      "outcome": "Users can choose understandable heartbeat triggers and safe autonomy budgets instead of opaque agency levels.",
+      "acceptance": [
+        "Heartbeat trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
+        "Each trigger maps to bounded observe/maintain/plan/work behavior with explicit budgets and stop conditions.",
+        "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
+        "Heartbeat can enter a brainstorm/planning loop only when trigger, budget, and risk policy allow it."
+      ],
+      "non_goals": [
+        "Do not implement unbounded autonomous coding.",
+        "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks."
+      ],
+      "verification": [
+        "Add tests or smoke coverage for trigger-to-action planning.",
+        "Run `npm test`.",
+        "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/system/v2-operating-model.md",
+      "title": ".codewiki/kb/system/v2-operating-model.md"
+    },
+    {
+      "path": ".codewiki/kb/system/flows/task-loop.md",
+      "title": ".codewiki/kb/system/flows/task-loop.md"
+    },
+    {
+      "path": ".codewiki/kb/system/flows/sanitation-release.md",
+      "title": ".codewiki/kb/system/flows/sanitation-release.md"
+    },
+    {
+      "path": ".codewiki/kb/lexicon.md",
+      "title": ".codewiki/kb/lexicon.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+      "extensions/codewiki/src/core/types.ts",
+      "skills/codewiki/SKILL.md"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-038/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-038/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-038/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-038/graph.json"
+  }
+}

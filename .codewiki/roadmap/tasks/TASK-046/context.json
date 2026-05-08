@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.771Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-046/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-046",
+    "title": "Introduce tester and builder implementation roles",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "agent-workflow",
+    "summary": "Add optional tester/builder workflow support so agent-created tests can be designed from task packs before code implementation.",
+    "labels": [
+      "implementation-compiler",
+      "tester-builder",
+      "tdd"
+    ],
+    "goal": {
+      "outcome": "Implementation compiler can optionally split agent-created tests into tester and builder roles.",
+      "acceptance": [
+        "Task workflow documentation and tool briefs can request a tester role before builder work.",
+        "Tester receives task pack and writes/updates tests without implementation changes when practical.",
+        "Builder receives task pack plus tests and makes checks pass.",
+        "Validation can distinguish test-design evidence from build evidence."
+      ],
+      "non_goals": [
+        "Always require separate agents for every task.",
+        "Implement a generic multi-agent framework."
+      ],
+      "verification": [
+        "npm run typecheck",
+        "targeted tests or smoke coverage for generated briefs/workflow metadata",
+        "manual dry-run on one task pack"
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/system/flows/task-loop.md",
+      "title": ".codewiki/kb/system/flows/task-loop.md"
+    },
+    {
+      "path": ".codewiki/kb/system/runtime/overview.md",
+      "title": ".codewiki/kb/system/runtime/overview.md"
+    },
+    {
+      "path": ".codewiki/kb/system/flows/context-memory.md",
+      "title": ".codewiki/kb/system/flows/context-memory.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "skills/codewiki-task/SKILL.md",
+      "extensions/codewiki/src/adapters/pi/tools/task.ts"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-046/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-046/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-046/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-046/graph.json"
+  }
+}

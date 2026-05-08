@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.731Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-018/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-018",
+    "title": "Implement context memory policy in skills and loops",
+    "status": "done",
+    "phase": "done",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "summary": "Teach agents when to use session RAM, views, canonical docs, subagents, and ThinkCode so default workflows minimize repeated token load.",
+    "labels": [
+      "v2",
+      "context-window",
+      "skills",
+      "token-efficiency"
+    ],
+    "goal": {
+      "outcome": "CodeWiki skills and loops default to tiny views and targeted expansion instead of reloading raw wiki state into the parent session.",
+      "acceptance": [
+        "Planning, task, verification, research, and architecture skills describe RAM vs persistent memory rules.",
+        "Default flow starts from status view and recommended next reads.",
+        "Agents track loaded view revisions and avoid rereading unchanged views when possible.",
+        "Task and outer-loop instructions explain when to spawn subagents or ThinkCode."
+      ],
+      "non_goals": [
+        "Implement full heartbeat scheduler.",
+        "Build new view schemas from scratch if TASK-018 is not done."
+      ],
+      "verification": [
+        "npm run typecheck -- --pretty false",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Agent workflow policy explicitly optimizes context-window usage.",
+      "current": "Skills mention compact state but do not fully model session RAM, views, subagents, and ThinkCode together.",
+      "closure": "Skills and loop prompts encode the memory policy."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/system/flows/context-memory.md",
+      "title": ".codewiki/kb/system/flows/context-memory.md"
+    },
+    {
+      "path": ".codewiki/kb/system/v2-operating-model.md",
+      "title": ".codewiki/kb/system/v2-operating-model.md"
+    },
+    {
+      "path": ".codewiki/kb/lexicon.md",
+      "title": ".codewiki/kb/lexicon.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "skills",
+      "extensions/codewiki/index.ts"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-018/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-018/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-018/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-018/graph.json"
+  }
+}

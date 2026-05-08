@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.757Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-036/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-036",
+    "title": "Introduce sprint planning model",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Add a roadmap sprint layer so the roadmap holds broad intent, future sprints stay outcome-level, and only the next sprint is decomposed into executable tasks.",
+    "labels": [
+      "roadmap",
+      "sprints",
+      "planning-loop"
+    ],
+    "goal": {
+      "outcome": "CodeWiki supports `roadmap -> sprints -> tasks` while keeping task execution atomic and verifiable.",
+      "acceptance": [
+        "Sprint semantics are documented: future sprints contain outcomes/spec links/risks, next sprint contains tasks.",
+        "Roadmap schema and generated views can represent sprint summaries and next-sprint tasks.",
+        "Planning workflow creates tasks only for the next sprint.",
+        "Sprint closure requires integration verification and drift review."
+      ],
+      "non_goals": [
+        "Do not build a full project-management suite.",
+        "Do not force existing flat roadmap users through a breaking migration without compatibility."
+      ],
+      "verification": [
+        "Run schema/view smoke tests.",
+        "Verify old flat roadmap fixtures remain readable or have a safe migration path.",
+        "Run `codewiki_state refresh=true` and inspect queue/status views."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/system/v2-operating-model.md",
+      "title": ".codewiki/kb/system/v2-operating-model.md"
+    },
+    {
+      "path": ".codewiki/kb/system/components/roadmap.md",
+      "title": ".codewiki/kb/system/components/roadmap.md"
+    },
+    {
+      "path": ".codewiki/kb/system/flows/task-loop.md",
+      "title": ".codewiki/kb/system/flows/task-loop.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src/core/roadmap.ts",
+      "extensions/codewiki/src/engine/views.ts",
+      "extensions/codewiki/src/core/types.ts",
+      "extensions/codewiki/templates.ts"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-036/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-036/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-036/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-036/graph.json"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.770Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-045/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-045",
+    "title": "Add compiler build and validation report schemas",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Add first-class schemas and writer paths for feedback_build, documentation_build, implementation_build, and validation reports under `.codewiki/builds/**` and `.codewiki/validation/**`.",
+    "labels": [
+      "compiler-model",
+      "validation-gateway",
+      "schemas"
+    ],
+    "goal": {
+      "outcome": "Compiler builds and validation reports have explicit schemas, write paths, and validation rules.",
+      "acceptance": [
+        "Schemas exist for feedback_build, documentation_build, implementation_build, and validation_report.",
+        "Writers or transaction paths can create build artifacts without hand-editing JSON.",
+        "Passing validation can be transient while fail/block/policy-required reports persist under `.codewiki/validation/**`.",
+        "Generated graph indexes build and validation artifacts."
+      ],
+      "non_goals": [
+        "Implement full multi-agent orchestration.",
+        "Change task close policy beyond schema integration."
+      ],
+      "verification": [
+        "npm run typecheck",
+        "schema/unit tests for accepted and rejected artifacts",
+        "codewiki_state refresh=true returns green"
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/system/v2-operating-model.md",
+      "title": ".codewiki/kb/system/v2-operating-model.md"
+    },
+    {
+      "path": ".codewiki/kb/system/runtime/overview.md",
+      "title": ".codewiki/kb/system/runtime/overview.md"
+    },
+    {
+      "path": ".codewiki/kb/lexicon.md",
+      "title": ".codewiki/kb/lexicon.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src",
+      "extensions/codewiki/src/engine/rebuild.ts"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-045/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-045/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-045/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-045/graph.json"
+  }
+}

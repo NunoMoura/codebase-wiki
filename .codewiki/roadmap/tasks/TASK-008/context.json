@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.716Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-008/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-008",
+    "title": "Model research evidence as support for wiki knowledge",
+    "status": "done",
+    "phase": "done",
+    "priority": "medium",
+    "kind": "research",
+    "summary": "Separate external/source research from task execution so research evidence supports `.codewiki/kb` claims rather than becoming part of every implementation loop.",
+    "labels": [
+      "research",
+      "evidence",
+      "knowledge"
+    ],
+    "goal": {
+      "outcome": "CodeWiki distinguishes research evidence for intended knowledge from execution evidence for task closure.",
+      "acceptance": [
+        "Research workflow records cited findings as support for knowledge updates and design decisions.",
+        "Task execution loop treats research as optional only when uncertainty blocks implementation or claims need support.",
+        "Evidence schema or conventions distinguish source/research evidence from checks/execution evidence.",
+        "The research skill explains when to use web/code research versus local code inspection."
+      ],
+      "non_goals": [
+        "Require web research for routine code changes.",
+        "Create a separate ADR system outside `.codewiki/kb`."
+      ],
+      "verification": [
+        "Review evidence entries produced by sample research and sample task execution for clear classification.",
+        "Run codewiki state refresh and confirm no generated state is hand-edited."
+      ]
+    },
+    "delta": {
+      "desired": "Research strengthens canonical knowledge without bloating task execution.",
+      "current": "Research is described as optional evidence but not modeled as a distinct workflow.",
+      "closure": "Add research-specific workflow guidance and evidence classification."
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/product/overview.md",
+      "title": ".codewiki/kb/product/overview.md"
+    },
+    {
+      "path": ".codewiki/kb/system/runtime/overview.md",
+      "title": ".codewiki/kb/system/runtime/overview.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "skills/codewiki-research/SKILL.md",
+      "skills/codewiki-task/SKILL.md"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-008/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-008/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-008/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-008/graph.json"
+  }
+}

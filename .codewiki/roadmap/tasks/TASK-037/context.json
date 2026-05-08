@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-08T00:21:24.758Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-037/context.json",
+  "budget": {
+    "target_tokens": 6000,
+    "policy": "Use this packet first."
+  },
+  "task": {
+    "id": "TASK-037",
+    "title": "Build standalone read-only CodeWiki UI",
+    "status": "todo",
+    "phase": "implement",
+    "priority": "medium",
+    "kind": "architecture",
+    "summary": "Detach the human status interface from Pi by creating an agent-agnostic read-only UI that consumes generated `.codewiki/**` and renders Mermaid outside the Pi TUI constraints.",
+    "labels": [
+      "ui",
+      "adapter",
+      "mermaid",
+      "agent-agnostic"
+    ],
+    "goal": {
+      "outcome": "Humans can inspect CodeWiki status, roadmap, product/system views, and Mermaid architecture without running Pi.",
+      "acceptance": [
+        "A standalone read-only UI surface is designed or implemented without importing Pi SDK/TUI code.",
+        "UI consumes generated views as its only data source for initial slice.",
+        "Mermaid architecture renders in an environment suited to diagrams.",
+        "Pi status panel remains compatible or delegates shared formatting where useful."
+      ],
+      "non_goals": [
+        "Do not add canonical writes in the first external UI slice.",
+        "Do not make UI the access layer for agents; agents should use views, CLI, MCP, or native adapters."
+      ],
+      "verification": [
+        "Run package tests.",
+        "Manually open/read fixture views in the standalone UI or snapshot-render output.",
+        "Confirm no Pi imports cross into standalone UI modules."
+      ]
+    },
+    "delta": {
+      "desired": "",
+      "current": "",
+      "closure": ""
+    }
+  },
+  "revision": {
+    "task": {
+      "digest": "dummy"
+    },
+    "git": {
+      "branch": "main",
+      "commit": "000"
+    },
+    "spec_digest": "dummy",
+    "code_digest": "dummy",
+    "graph": {
+      "digest": "dummy"
+    }
+  },
+  "specs": [
+    {
+      "path": ".codewiki/kb/product/uis/status-panel.md",
+      "title": ".codewiki/kb/product/uis/status-panel.md"
+    },
+    {
+      "path": ".codewiki/kb/system/components/views.md",
+      "title": ".codewiki/kb/system/components/views.md"
+    },
+    {
+      "path": ".codewiki/kb/system/components/extension.md",
+      "title": ".codewiki/kb/system/components/extension.md"
+    }
+  ],
+  "code": {
+    "paths": [
+      "extensions/codewiki/src/adapters/pi/ui",
+      "extensions/codewiki/src/engine/views.ts",
+      "package.json"
+    ],
+    "digest": "dummy",
+    "expand": []
+  },
+  "evidence": {},
+  "expansion": {
+    "task_json": ".codewiki/roadmap/tasks/TASK-037/task.json",
+    "roadmap_state": ".codewiki/roadmap-state.json",
+    "status_state": "",
+    "graph": ".codewiki/index_graph.json",
+    "build_pack": ".codewiki/context/tasks/TASK-037/build.json",
+    "verify_pack": ".codewiki/context/tasks/TASK-037/verify.json",
+    "graph_slice": ".codewiki/context/tasks/TASK-037/graph.json"
+  }
+}
