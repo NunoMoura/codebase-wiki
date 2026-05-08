@@ -1,68 +1,76 @@
 ---
 name: codewiki-task
-description: Automatic inner execution loop for CodeWiki roadmap tasks. Use when implementing, resuming, closing, or blocking a `TASK-###` with context, code changes, local checks, fresh verification, and evidence.
+description: Implementation compiler for CodeWiki roadmap tasks. Use when implementing, resuming, closing, or blocking a TASK-### with task-pack context, tester/builder work, checks, validation, implementation builds, and evidence.
+id: skill.codewiki-task
+title: codewiki-task skill
+state: active
+summary: Packaged CodeWiki agent skill.
+owners: [maintainers]
+updated: "2026-05-07"
 ---
 
 # CodeWiki Task
 
-Run the inner loop. The user should not manually trigger verification stages. For bounded autonomous runs, heartbeat selects whether to resume this inner loop, but this skill still owns task execution.
+Run the implementation compiler for one roadmap task.
 
 ```text
-load task → create context → implement → local verify → fresh verify → evidence → close/block/follow-up
+task pack -> tester -> builder -> checks -> implementation validation -> implementation_build -> close/block/follow-up
 ```
 
 ## Rules
 
-- Use `codewiki_session` when starting or continuing a task; keep task id, loaded view revisions, and current decision state in parent RAM.
-- Use `codewiki_state`/task context before reading raw wiki files.
-- Read only linked specs, flows, evidence, and code paths unless task context proves broader context is needed.
-- Use task context views first, then targeted repo tools or an available bounded context tool for compact project packets when exploration would be token-heavy. If ThinkCode is installed, `think_code_run` may produce bounded context/validation packets; otherwise use CodeWiki views, gateway `pack/tree/manifest`, and normal Pi tools.
-- Spawn subagents for fresh verification or bounded research; parent consumes their compact result, then writes canonical task/evidence updates.
+- Use `codewiki_session` when starting or continuing a task; keep task id, graph/build revisions, and current decision state in parent RAM.
+- Use `codewiki_state` and task pack context before reading broad raw files.
+- Read only linked specs, builds, validation reports, and code paths unless the task pack proves broader context is needed.
+- Tests live in code/test directories, not in `.codewiki/kb/**` or roadmap task folders.
+- If task meaning is ambiguous, escalate to the feedback compiler.
+- If knowledge or task pack is wrong/incomplete, return to the documentation compiler.
 - Use short local feedback loops during implementation: typecheck, tests, lint, runtime smoke, or targeted scripts.
-- Verification evidence, not confidence, controls closure.
-- Use `codewiki_task` for evidence, close, block, or follow-up task creation.
-- In heartbeat `work` mode, stop before risky/destructive changes, ambiguous product decisions, failed checks, or budget exhaustion.
+- Validation evidence, not confidence, controls closure.
+
+## Tester/builder split
+
+For small tasks, one agent may do both roles. For agent-created tests or bias-sensitive tasks, split:
+
+- `tester`: derives tests from the task pack before implementation.
+- `builder`: changes code until task-pack tests and required checks pass.
+
+The split is optional. Use it when independence matters more than coordination cost.
 
 ## Workflow
 
-1. **Load task**
-   - Read task outcome, acceptance, non-goals, verification, linked specs, and code paths.
-   - Check whether user intent or wiki knowledge conflicts with task text.
+1. **Load task pack**
+   - Read task outcome, acceptance, non-goals, validation expectations, linked specs, and code paths.
+   - Confirm the task is still aligned with current `codewiki_state`.
 
-2. **Create context**
-   - Prefer task context shard and targeted compact context packets.
-   - Expand linked specs/code only as needed.
+2. **Plan tests**
+   - Identify existing tests and missing tests.
+   - Add or update tests before code when practical.
 
-3. **Implement**
-   - Make surgical changes.
-   - Keep scope inside acceptance criteria and non-goals.
-   - For bugs, build or use a deterministic repro before fixing when possible.
+3. **Build**
+   - Change only files required by the task.
+   - Keep implementation scoped to acceptance criteria.
 
-4. **Local verify**
-   - Run relevant checks.
-   - Fix mechanical failures before fresh verification.
+4. **Mechanical checks**
+   - Run relevant tests/typecheck/lint/smoke checks.
+   - Record exact commands and outcomes.
 
-5. **Fresh verify**
-   - Automatically invoke the verifier stage when task appears ready for closure or verification evidence is missing.
-   - Route verifier-specific rubric to `codewiki-verify`.
-   - Treat manual verifier commands as debug/override only.
+5. **Implementation validation**
+   - Validate acceptance one by one.
+   - Check vertical alignment from task pack to tested behavior.
+   - Check horizontal alignment inside code/tests touched by the task.
 
-6. **Record evidence and finish**
-   - Append evidence with checks, files touched, issues, and verifier verdict.
-   - Close only when acceptance criteria pass and verifier/local checks allow it.
-   - If verifier fails or blocks, create follow-up tasks or mark blocked with evidence.
+6. **Emit implementation build**
+   - Record task id, tests changed, code changed, checks, acceptance mapping, unresolved issues, and validation verdict under `.codewiki/builds/implementation/**` when useful.
 
-## Closure gate
+7. **Close/block/follow-up**
+   - Use `codewiki_task` for lifecycle mutation.
+   - A non-pass validation verdict blocks closure unless explicit policy allows an override.
 
-A task may close only when:
+## Fresh validation contract
 
-- acceptance criteria are satisfied,
-- required checks pass or exceptions are documented,
-- fresh verifier passes or policy explicitly allows skipping,
-- unresolved issues are either fixed, out of scope, or tracked as follow-ups.
+A validator receives the task pack, linked knowledge paths, touched code/test paths, checks run, implementation build, and unresolved issues. It returns compact JSON with `pass`, `fail`, or `block`. It does not mutate canonical truth.
 
-After closing:
+## Related docs
 
-- Commit the coherent change with a single commit per closed task when practical.
-- Push the changes when checks are green and policy permits.
-- Use `codewiki_task` `action="checkpoint"` to snapshot closed sprint tasks when reaching a release or version milestone.
+- ../../.codewiki/kb/system/v2-operating-model.md

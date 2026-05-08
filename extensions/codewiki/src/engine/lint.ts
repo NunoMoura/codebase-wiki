@@ -11,7 +11,7 @@ const FORBIDDEN_HEADINGS = [
 	"## Background",
 ];
 const WORD_COUNT_WARN = 1000;
-const WORD_COUNT_EXEMPT = new Set([".wiki/roadmap.md", "index.md"]);
+const WORD_COUNT_EXEMPT = new Set([".codewiki/roadmap.md", "index.md"]);
 
 export function createIssue(severity: string, kind: string, path: string, message: string): LintIssue {
 	return { severity, kind, path, message };

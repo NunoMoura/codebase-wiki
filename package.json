@@ -14,9 +14,10 @@
 	"scripts": {
 		"benchmark:tokens": "node ./scripts/token-benchmark.mjs",
 		"test:smoke": "node ./scripts/smoke-test.mjs",
+		"test:features": "node ./tests/run.mjs",
 		"test:pack": "npm pack --dry-run",
 		"check:architecture": "node ./scripts/check-architecture.mjs",
-		"test": "npm run check:architecture && npm run test:smoke && npm run test:pack",
+		"test": "npm run check:architecture && npm run test:smoke && npm run test:features && npm run test:pack",
 		"prepublishOnly": "npm test",
 		"typecheck": "tsc --noEmit"
 	},

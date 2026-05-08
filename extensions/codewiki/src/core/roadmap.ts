@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import { appendFile, readFile, stat, writeFile } from "node:fs/promises";
+import { readFile, stat, writeFile } from "node:fs/promises";
 import type {
 	WikiProject,
 	RoadmapFile,
@@ -114,10 +114,7 @@ export async function appendCodewikiTaskEvidence(
 	refresh = true,
 ): Promise<void> {
 	await withLockedPaths(
-		[
-			resolve(project.root, project.eventsPath),
-			...(refresh ? rebuildTargetPaths(project) : []),
-		],
+		[...(refresh ? rebuildTargetPaths(project) : [])],
 		async () => {
 			await appendTaskEvidenceEvent(project, task, {
 				verdict: evidence.result ?? "progress",
@@ -126,6 +123,17 @@ export async function appendCodewikiTaskEvidence(
 				files_touched: unique(evidence.files_touched ?? []),
 				issues: unique(evidence.issues ?? []),
 			});
+			const action = (evidence.result === "pass" || evidence.result === "fail" || evidence.result === "block" || evidence.result === "done_candidate")
+				? (evidence.result === "done_candidate" ? "pass" : evidence.result)
+				: "pass";
+			await updateTaskLoop(project, {
+				taskId: task.id,
+				action,
+				summary: evidence.summary.trim(),
+				checks_run: evidence.checks_run,
+				files_touched: evidence.files_touched,
+				issues: evidence.issues,
+			}, { refresh: false });
 			if (refresh) await runRebuildUnlocked(project);
 		},
 	);
@@ -150,39 +158,26 @@ export function hasRoadmapTaskUpdateFields(input: RoadmapTaskUpdateInput): boole
 	);
 }
 
-/**
- * Append a general project event to the events file.
- */
 export async function appendProjectEvent(project: WikiProject, event: any): Promise<void> {
-	const eventPath = resolve(project.root, project.eventsPath);
-	await appendFile(eventPath, JSON.stringify(event) + "\n", "utf8");
+	void project;
+	void event;
 }
 
 export async function appendRoadmapEvent(project: WikiProject, event: any): Promise<void> {
-	const eventPath = resolve(project.root, project.roadmapEventsPath);
-	await appendFile(eventPath, JSON.stringify(event) + "\n", "utf8");
+	void project;
+	void event;
 }
 
-/**
- * Append a task evidence event to the events file.
- */
 export async function appendTaskEvidenceEvent(
 	project: WikiProject,
 	task: RoadmapTaskRecord,
 	evidence: any,
 ): Promise<void> {
-	await appendProjectEvent(project, {
-		ts: nowIso(),
-		kind: "task_evidence_recorded",
-		taskId: task.id,
-		title: task.title,
-		...evidence,
-	});
+	void project;
+	void task;
+	void evidence;
 }
 
-/**
- * Append a task phase transition event to the events file.
- */
 export async function appendTaskPhaseEvent(
 	project: WikiProject,
 	task: RoadmapTaskRecord,
@@ -190,14 +185,11 @@ export async function appendTaskPhaseEvent(
 	phase: string,
 	extra: any = {},
 ): Promise<void> {
-	await appendProjectEvent(project, {
-		ts: nowIso(),
-		kind,
-		taskId: task.id,
-		title: task.title,
-		phase,
-		...extra,
-	});
+	void project;
+	void task;
+	void kind;
+	void phase;
+	void extra;
 }
 
 /**
@@ -266,7 +258,7 @@ async function pathExists(path: string): Promise<boolean> {
 	}
 }
 
-export async function runTaskClosePreflight(project: WikiProject, task: RoadmapTaskRecord): Promise<TaskVerifierResult> {
+export async function runTaskClosePreflight(project: WikiProject, task: RoadmapTaskRecord, closeEvidence?: any): Promise<TaskVerifierResult> {
 	const checks = ["task-close deterministic preflight"];
 	const issues: TaskVerifierResult["issues"] = [];
 	if (!task.goal?.outcome) issues.push({ severity: "high", summary: "Task goal.outcome missing" });
@@ -277,32 +269,14 @@ export async function runTaskClosePreflight(project: WikiProject, task: RoadmapT
 			issues.push({ severity: "high", summary: `Linked path missing: ${path}` });
 		}
 	}
-	const verifyPackPath = resolve(project.root, project.viewsRoot, "context", "tasks", task.id, "verify.json");
-	let verifyPackMtime = 0;
-	try {
-		verifyPackMtime = (await stat(verifyPackPath)).mtimeMs;
-	} catch {
-		issues.push({ severity: "medium", summary: `Verifier context pack missing: ${project.viewsRoot}/context/tasks/${task.id}/verify.json` });
-	}
-	if (verifyPackMtime > 0 && Date.parse(task.updated || task.created || "") > verifyPackMtime) {
-		issues.push({ severity: "medium", summary: "Verifier context pack is older than the task record" });
-	}
-	const eventsText = await readFile(resolve(project.root, project.eventsPath), "utf8").catch(() => "");
-	const taskEvents = eventsText.split(/\r?\n/).filter((line) => line.includes(`"taskId":"${task.id}"`));
-	const evidenceEvents = taskEvents.filter((line) => line.includes('"kind":"task_evidence_recorded"'));
-	if (!evidenceEvents.length) {
+
+	const evidence = closeEvidence ?? (task as any).loop?.evidence;
+	if (!evidence) {
 		issues.push({ severity: "high", summary: "No task evidence recorded for closure" });
-	} else {
-		const hasChecks = evidenceEvents.some((line) => {
-			try {
-				const event = JSON.parse(line);
-				return Array.isArray(event.checks_run) && event.checks_run.length > 0;
-			} catch {
-				return false;
-			}
-		});
-		if (!hasChecks) issues.push({ severity: "high", summary: "No task evidence checks_run recorded for closure" });
+	} else if (!Array.isArray(evidence.checks_run) || evidence.checks_run.length === 0) {
+		issues.push({ severity: "high", summary: "No task evidence checks_run recorded for closure" });
 	}
+
 	return {
 		verdict: issues.some((issue) => issue.severity === "high") ? "fail" : issues.length ? "block" : "pass",
 		taskId: task.id,
@@ -372,8 +346,9 @@ export async function buildTaskVerifierBrief(
 	task: RoadmapTaskRecord,
 	context: any,
 	profile: TaskVerifierProfile = "task-close",
+	closeEvidence?: any,
 ): Promise<TaskVerifierBrief> {
-	const preflight = await runTaskClosePreflight(project, task);
+	const preflight = await runTaskClosePreflight(project, task, closeEvidence);
 	const verifierRubric = await readFile(resolve(project.root, "skills", "codewiki-verify", "SKILL.md"), "utf8")
 		.then((text) => compactText(text, 5000))
 		.catch(() => undefined);
@@ -477,6 +452,7 @@ export async function maybeRunAutomaticTaskVerifier(
 	project: WikiProject,
 	task: RoadmapTaskRecord,
 	runSemanticVerifier?: SemanticTaskVerifierRunner,
+	closeEvidence?: any,
 ): Promise<TaskVerifierResult | null> {
 	if (process.env.PI_CODEWIKI_SKIP_VERIFIER === "1") return null;
 	if (process.env.PI_CODEWIKI_VERIFIER_MODE === "off") return null;
@@ -488,7 +464,7 @@ export async function maybeRunAutomaticTaskVerifier(
 		task.id,
 		runtimeTask,
 	);
-	const brief = await buildTaskVerifierBrief(project, task, contextPacket, "task-close");
+	const brief = await buildTaskVerifierBrief(project, task, contextPacket, "task-close", closeEvidence);
 	if (brief.preflight.verdict !== "pass") return brief.preflight;
 	if (!runSemanticVerifier) {
 		return {
@@ -828,7 +804,6 @@ export function roadmapMutationTargetPaths(
 ): string[] {
 	return [
 		resolve(project.root, project.roadmapPath),
-		resolve(project.root, project.eventsPath),
 		...((options.refresh ?? true) ? rebuildTargetPaths(project) : []),
 	];
 }

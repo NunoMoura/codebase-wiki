@@ -235,6 +235,78 @@ export const codewikiTaskToolInputSchema = Type.Object({
 	evidence: Type.Optional(codewikiTaskEvidenceSchema),
 	summary: Type.Optional(Type.String({ minLength: 1 })),
 });
+export const codewikiBuildLifecycleSchema = Type.Object({
+	state: Type.Optional(Type.Union([
+		Type.Literal("proposed"),
+		Type.Literal("accepted"),
+		Type.Literal("applied"),
+		Type.Literal("validated"),
+		Type.Literal("archived"),
+	])),
+	ttl_days: Type.Optional(Type.Number({ minimum: 1 })),
+	archive_after: Type.Optional(Type.String()),
+	purge_after: Type.Optional(Type.String()),
+});
+export const codewikiBuildToolInputSchema = Type.Object({
+	repoPath: repoPathToolField,
+	kind: Type.Union([
+		Type.Literal("feedback"),
+		Type.Literal("documentation"),
+		Type.Literal("implementation"),
+	], {
+		description: "Build kind to create. feedback: user intent → knowledge. documentation: knowledge → roadmap. implementation: roadmap → tests/code.",
+	}),
+	summary: Type.String({ minLength: 1 }),
+	slug: Type.Optional(Type.String({ minLength: 1 })),
+	source: Type.Optional(Type.String({ minLength: 1 })),
+	lifecycle: Type.Optional(codewikiBuildLifecycleSchema),
+	refresh: Type.Optional(Type.Boolean({ default: true })),
+	// Feedback-specific
+	decisions: Type.Optional(Type.Array(Type.String({ minLength: 1 }))),
+	assumptions: Type.Optional(Type.Array(Type.String(), { default: [] })),
+	open_questions: Type.Optional(Type.Array(Type.String(), { default: [] })),
+	non_goals: Type.Optional(Type.Array(Type.String(), { default: [] })),
+	lower_layer_delta: Type.Optional(Type.Object({
+		knowledge: Type.Optional(Type.Array(Type.String(), { default: [] })),
+		roadmap: Type.Optional(Type.Array(Type.String(), { default: [] })),
+		code: Type.Optional(Type.Array(Type.String(), { default: [] })),
+	})),
+	// Documentation-specific
+	source_feedback_build: Type.Optional(Type.String()),
+	knowledge_changes: Type.Optional(Type.Array(Type.String())),
+	roadmap_changes: Type.Optional(Type.Array(Type.String())),
+	// Implementation-specific
+	source_documentation_build: Type.Optional(Type.String()),
+	task_id: Type.Optional(Type.String()),
+	test_files: Type.Optional(Type.Array(Type.String())),
+	code_files: Type.Optional(Type.Array(Type.String())),
+	checks_run: Type.Optional(Type.Array(Type.String())),
+	acceptance_mapping: Type.Optional(Type.Array(Type.Object({
+		criterion: Type.String(),
+		evidence: Type.String(),
+	}))),
+});
+export const codewikiValidationReportSchema = Type.Object({
+	repoPath: repoPathToolField,
+	profile: Type.String({
+		minLength: 1,
+		description: "Validation profile: feedback, documentation, implementation, task-close, drift-audit, etc.",
+	}),
+	task_id: Type.Optional(Type.String()),
+	verdict: Type.Union([
+		Type.Literal("pass"),
+		Type.Literal("fail"),
+		Type.Literal("block"),
+	]),
+	rationale: Type.String({ minLength: 1 }),
+	checks: Type.Optional(Type.Array(Type.String())),
+	issues: Type.Optional(Type.Array(Type.Object({
+		severity: Type.String(),
+		summary: Type.String(),
+	}))),
+	source: Type.Optional(Type.String()),
+	refresh: Type.Optional(Type.Boolean({ default: true })),
+});
 export const codewikiSessionToolInputSchema = Type.Object({
 	repoPath: repoPathToolField,
 	action: Type.Union([

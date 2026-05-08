@@ -193,7 +193,6 @@ export interface DocsConfig {
 		closed_task_limit?: number;
 	};
 	codewiki?: {
-		rebuild_command?: string | string[];
 		self_drift_scope?: ScopeConfig;
 		code_drift_scope?: CodeDriftScopeConfig;
 	};
@@ -327,6 +326,55 @@ export interface CodewikiTaskToolInput {
 	summary?: string;
 	patch?: CodewikiTaskPatchInput;
 	evidence?: CodewikiTaskEvidenceInput;
+	refresh?: boolean;
+}
+
+export interface CodewikiBuildToolInput {
+	repoPath?: string;
+	kind: "feedback" | "documentation" | "implementation";
+	refresh?: boolean;
+	/** Common */
+	summary: string;
+	slug?: string;
+	source?: string;
+	lifecycle?: {
+		state?: "proposed" | "accepted" | "applied" | "validated" | "archived";
+		ttl_days?: number;
+		archive_after?: string;
+		purge_after?: string;
+	};
+	/** Feedback-specific */
+	decisions?: string[];
+	assumptions?: string[];
+	open_questions?: string[];
+	non_goals?: string[];
+	lower_layer_delta?: {
+		knowledge?: string[];
+		roadmap?: string[];
+		code?: string[];
+	};
+	/** Documentation-specific */
+	source_feedback_build?: string;
+	knowledge_changes?: string[];
+	roadmap_changes?: string[];
+	/** Implementation-specific */
+	source_documentation_build?: string;
+	task_id?: string;
+	test_files?: string[];
+	code_files?: string[];
+	checks_run?: string[];
+	acceptance_mapping?: Array<{ criterion: string; evidence: string }>;
+}
+
+export interface CodewikiValidationReportInput {
+	repoPath?: string;
+	profile: string;
+	task_id?: string;
+	verdict: "pass" | "fail" | "block";
+	rationale: string;
+	checks?: string[];
+	issues?: Array<{ severity: string; summary: string }>;
+	source?: string;
 	refresh?: boolean;
 }
 

@@ -10,30 +10,27 @@ import {
 import path, { dirname, resolve } from "node:path";
 
 export const GENERATED_READONLY_PATHS = [
-	".wiki/graph.json",
-	".wiki/lint.json",
-	".wiki/status-state.json",
-	".wiki/roadmap-state.json",
-	".wiki/roadmap/**",
+	".codewiki/index_graph.json",
+				".codewiki/roadmap/index.json",
+	".codewiki/roadmap/state.json",
+	".codewiki/roadmap/tasks/**",
 ];
 
 export const DEFAULT_GATEWAY = {
 	enabled: true,
 	mode: "read-only",
 	allow_paths: [
-		".wiki/knowledge/**",
-		".wiki/roadmap/tasks/**",
-		".wiki/evidence/**",
-		".wiki/graph.json",
-		".wiki/status-state.json",
-		".wiki/roadmap-state.json",
-		".wiki/roadmap.json",
-		".wiki/roadmap-events.jsonl",
-		".wiki/events.jsonl",
+		".codewiki/kb/**",
+		".codewiki/roadmap/tasks/**",
+		".codewiki/evidence/**",
+		".codewiki/index_graph.json",
+								".codewiki/roadmap/index.json",
+		".codewiki/roadmap/state.json",
+		".codewiki/roadmap.json",
 	],
-	write_paths: [".wiki/knowledge/**", ".wiki/evidence/**"],
+	write_paths: [".codewiki/kb/**", ".codewiki/evidence/**"],
 	generated_readonly_paths: GENERATED_READONLY_PATHS,
-	deny_paths: ["**/.env*", "**/*secret*", ".wiki/sources/private/**"],
+	deny_paths: ["**/.env*", "**/*secret*", ".codewiki/sources/private/**"],
 	network: false,
 	max_stdout_bytes: 12000,
 	max_read_bytes: 200000,
@@ -66,7 +63,7 @@ export function matchesAny(relPath, patterns = []) {
 }
 
 export function loadGateway(repo) {
-	const config = readJson(path.join(repo, ".wiki", "config.json"), {});
+	const config = readJson(path.join(repo, ".codewiki", "config.json"), {});
 	return {
 		...DEFAULT_GATEWAY,
 		...(config?.codewiki?.gateway ?? {}),
@@ -149,25 +146,14 @@ export function setRebuildRunner(runner) {
 	rebuildRunner = runner;
 }
 
-export function runRebuild(repo) {
+export async function runRebuild(repo) {
 	if (rebuildRunner) return rebuildRunner(repo);
-	for (const command of [
-		["python3", "scripts/rebuild_docs_meta.py"],
-		["python", "scripts/rebuild_docs_meta.py"],
-	]) {
-		try {
-			execFileSync(command[0], command.slice(1), {
-				cwd: repo,
-				stdio: "pipe",
-				timeout: 120000,
-			});
-			return;
-		} catch {}
-	}
-	throw new Error("Rebuild failed after transaction");
+	// Default TypeScript rebuild.
+	const { CodewikiRebuilder } = await import("../extensions/codewiki/src/engine/rebuild.ts");
+	await new CodewikiRebuilder(repo).rebuildAll();
 }
 
-export function applyTransaction(repo, gateway, tx) {
+export async function applyTransaction(repo, gateway, tx) {
 	if (!tx || tx.version !== 1 || !Array.isArray(tx.ops))
 		throw new Error("Transaction must be { version: 1, ops: [...] }");
 	const applied = [];
@@ -177,7 +163,7 @@ export function applyTransaction(repo, gateway, tx) {
 			applied.push(applyAppendJsonl(repo, gateway, op));
 		else throw new Error(`Unsupported transaction op: ${op.kind}`);
 	}
-	if (applied.length > 0) runRebuild(repo);
+	if (applied.length > 0) await runRebuild(repo);
 	return {
 		version: 1,
 		summary: tx.summary ?? "Applied codewiki transaction.",
@@ -185,7 +171,7 @@ export function applyTransaction(repo, gateway, tx) {
 	};
 }
 
-export function applyTransactionFile(repo, gateway, file) {
+export async function applyTransactionFile(repo, gateway, file) {
 	return applyTransaction(repo, gateway, readJson(resolve(file)));
 }
 
@@ -194,7 +180,7 @@ export function findWikiRoot(start) {
 	if (existsSync(current) && statSync(current).isFile())
 		current = path.dirname(current);
 	while (true) {
-		if (existsSync(path.join(current, ".wiki", "config.json"))) return current;
+		if (existsSync(path.join(current, ".codewiki", "config.json"))) return current;
 		const parent = path.dirname(current);
 		if (parent === current) return null;
 		current = parent;

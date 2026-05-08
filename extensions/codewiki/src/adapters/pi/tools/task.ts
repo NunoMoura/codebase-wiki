@@ -22,29 +22,25 @@ import type {
     CodewikiTaskEvidenceInput,
 } from "../../../core/types";
 import { resolve, dirname } from "node:path";
-import { mkdir, writeFile, appendFile } from "node:fs/promises";
+import { mkdir, writeFile, appendFile, readdir, readFile, stat } from "node:fs/promises";
 import { gzipSync } from "node:zlib";
+import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { withLockedPaths } from "../../../../mutation-queue";
-import {
-	maybeReadRoadmapState,
-	maybeReadGraph,
-	rebuildTargetPaths,
-	runRebuild,
-	runRebuildUnlocked,
-    roadmapApiTaskState,
-    maybeReadTaskContext,
-    mapToolTaskStatusToRoadmapStatus,
-} from "../../../core/state";
 import {
 	nowIso,
 	unique,
 	formatError,
 } from "../../../core/utils";
 import {
+	maybeReadRoadmapState,
+	maybeReadGraph,
+	runRebuild,
+	maybeReadTaskContext,
+} from "../../../core/state";
+import {
 	readRoadmapTask,
-	maybeRunAutomaticTaskVerifier,
 	appendRoadmapTasks,
 	updateRoadmapTask,
 	updateTaskLoop,
@@ -59,11 +55,59 @@ import {
     readRoadmapFile,
     writeRoadmapFile,
 } from "../../../core/roadmap";
+import { buildCodewikiTaskDetail } from "../../../application/state";
 import {
-	buildCodewikiTaskDetail,
-} from "./state";
+	createCodewikiTasks,
+	patchCodewikiTask,
+	closeCodewikiTask,
+	appendTaskEvidence,
+	cancelCodewikiTask,
+	type TaskMutationPorts,
+} from "../../../application/task";
 
 const execFileAsync = promisify(execFile);
+
+async function collectCanonicalFiles(root: string, relPath: string): Promise<string[]> {
+	const absPath = resolve(root, relPath);
+	let info;
+	try {
+		info = await stat(absPath);
+	} catch {
+		return [];
+	}
+	if (info.isFile()) return [relPath];
+	if (!info.isDirectory()) return [];
+	const entries = await readdir(absPath, { withFileTypes: true });
+	const files: string[] = [];
+	for (const entry of entries) {
+		if (entry.name.startsWith(".")) continue;
+		const childRel = `${relPath}/${entry.name}`;
+		if (entry.isDirectory()) files.push(...await collectCanonicalFiles(root, childRel));
+		else if (entry.isFile()) files.push(childRel);
+	}
+	return files;
+}
+
+async function computeCanonicalDigest(project: WikiProject): Promise<string> {
+	const roots = [
+		".codewiki/config.json",
+		".codewiki/kb",
+		".codewiki/roadmap.json",
+		".codewiki/builds",
+		".codewiki/validation",
+	];
+	const files = (await Promise.all(roots.map((root) => collectCanonicalFiles(project.root, root))))
+		.flat()
+		.sort();
+	const hash = createHash("sha256");
+	for (const file of files) {
+		hash.update(file);
+		hash.update("\0");
+		hash.update(await readFile(resolve(project.root, file)));
+		hash.update("\0");
+	}
+	return `sha256:${hash.digest("hex")}`;
+}
 
 function extractTextContent(value: unknown): string {
 	if (typeof value === "string") return value;
@@ -93,6 +137,13 @@ async function runPiTaskCloseVerifier(project: WikiProject, prompt: string): Pro
 	let finalText = "";
 	const unsubscribe = session.subscribe((event) => {
 		const anyEvent = event as any;
+		if (
+			anyEvent?.type === "message_update" &&
+			anyEvent.assistantMessageEvent?.type === "text_delta" &&
+			typeof anyEvent.assistantMessageEvent.delta === "string"
+		) {
+			finalText += anyEvent.assistantMessageEvent.delta;
+		}
 		const message = anyEvent?.message;
 		if (message?.role === "assistant") {
 			const text = extractTextContent(message.content);
@@ -112,6 +163,32 @@ async function runPiTaskCloseVerifier(project: WikiProject, prompt: string): Pro
 		unsubscribe();
 		await session.dispose();
 	}
+}
+
+/**
+ * Build TaskMutationPorts from Pi ExtensionContext.
+ */
+function piTaskPorts(ctx: ExtensionContext, project: WikiProject): TaskMutationPorts {
+	return {
+		fileStore: {
+			readJson: async (path: string) => JSON.parse(await readFile(path, "utf8")),
+			maybeReadJson: async (path: string) => {
+				try { return JSON.parse(await readFile(path, "utf8")); } catch { return null; }
+			},
+			writeJson: async (path: string, data: unknown) => writeFile(path, JSON.stringify(data, null, 2), "utf8"),
+			appendJsonl: async (path: string, record: unknown) => appendFile(path, JSON.stringify(record) + "\n", "utf8"),
+		},
+		rebuildRunner: {
+			run: async (proj: WikiProject) => {
+				const { runConfiguredOrDefaultRebuild } = await import("../../../infrastructure/rebuild-runner");
+				await runConfiguredOrDefaultRebuild(proj);
+			},
+		},
+		messageBus: {
+			send: (_message: string) => { /* Pi adapter silences task output to caller */ },
+		},
+		runSemanticVerifier: (prompt: string) => runPiTaskCloseVerifier(project, prompt),
+	};
 }
 
 /**
@@ -167,20 +244,22 @@ export async function executeCodewikiTask(
 		} catch {}
 		const graph = await maybeReadGraph(project.graphPath);
 		const state = await maybeReadRoadmapState(project.roadmapStatePath);
+		const canonicalDigest = await computeCanonicalDigest(project);
 		const closedTasks = Object.values(state?.tasks ?? {}).filter(t => ["done", "cancelled"].includes(t.status)).map(t => ({
 			id: t.id,
 			title: t.title,
 			status: t.status,
 			closed_at: t.updated,
 		}));
-		const checkpointPath = resolve(project.root, ".wiki/release-checkpoints.jsonl");
+		const checkpointPath = resolve(project.root, ".codewiki/roadmap/release-checkpoints.jsonl");
 		await withLockedPaths([checkpointPath], async () => {
+			await mkdir(dirname(checkpointPath), { recursive: true });
 			const record = {
 				ts: nowIso(),
 				version_label: input.summary.trim(),
 				git_sha: gitSha,
 				git_dirty: gitDirty,
-				canonical_digest: (graph as any)?.spec_digest ?? "unknown",
+				canonical_digest: canonicalDigest,
 				view_schema_version: state?.version ?? 1,
 				closed_tasks: closedTasks,
 			};
@@ -191,7 +270,7 @@ export async function executeCodewikiTask(
 			kind: "release_checkpoint_created",
 			title: "Created release checkpoint",
 			summary: input.summary.trim(),
-			path: ".wiki/release-checkpoints.jsonl",
+			path: ".codewiki/roadmap/release-checkpoints.jsonl",
 		});
 		return {
 			action: "checkpoint" as const,
@@ -202,9 +281,7 @@ export async function executeCodewikiTask(
 	if (input.action === "create") {
 		if (!input.tasks?.length)
 			throw new Error("codewiki_task create requires tasks.");
-		const result = await appendRoadmapTasks(pi, project, ctx, input.tasks, {
-			refresh,
-		});
+		const result = await createCodewikiTasks(project, input.tasks, piTaskPorts(ctx, project));
 		const details = {
 			action: "create" as const,
 			changed: result.created.length > 0,
@@ -214,12 +291,12 @@ export async function executeCodewikiTask(
 			created: result.created.map((task) => ({
 				id: task.id,
 				title: task.title,
-				status: roadmapApiTaskState(task).status,
+				status: task.status,
 			})),
 			reused: result.reused.map((task) => ({
 				id: task.id,
 				title: task.title,
-				status: roadmapApiTaskState(task).status,
+				status: task.status,
 			})),
 			evidence_recorded: false,
 			summary: "",
@@ -261,58 +338,32 @@ export async function executeCodewikiTask(
 	let evidenceRecorded = false;
 
 	if (input.action === "close") {
+		// Append evidence first if provided
 		if (input.evidence) {
-			await appendCodewikiTaskEvidence(
-				project,
-				latestTask,
-				input.evidence,
-				false,
-			);
+			await appendCodewikiTaskEvidence(project, existingTask, input.evidence, false);
 			evidenceRecorded = true;
-			if (refresh) await runRebuild(project);
 		}
-		const verifier = await maybeRunAutomaticTaskVerifier(
+		const closeResult = await closeCodewikiTask(
 			project,
-			latestTask,
-			(prompt) => runPiTaskCloseVerifier(project, prompt),
+			existingTask.id,
+			piTaskPorts(ctx, project),
+			input.evidence,
+			input.summary,
 		);
-		if (verifier) {
-			await appendCodewikiTaskEvidence(
-				project,
-				latestTask,
-				{
-					summary: `Fresh verifier ${verifier.verdict}: ${verifier.rationale}`,
-					result:
-						verifier.verdict === "pass"
-							? "pass"
-							: verifier.verdict === "fail"
-								? "fail"
-								: "block",
-					checks_run: verifier.checks,
-					files_touched: [],
-					issues: verifier.issues.map((issue) => issue.summary),
-				},
-				false,
-			);
-			evidenceRecorded = true;
-			if (verifier.verdict !== "pass") {
-				if (refresh) await runRebuild(project);
-				throw new Error(
-					`Task ${latestTask.id} cannot close: fresh verifier returned ${verifier.verdict}. ${verifier.rationale}`,
-				);
-			}
+		if (!closeResult.closed) {
+			return {
+				action: "close" as const,
+				changed: false,
+				canonical_task_ids: [existingTask.id],
+				evidence_recorded: false,
+				summary: `codewiki task: close ${existingTask.id} blocked — ${closeResult.reason}`,
+			};
 		}
-		const closeResult = await updateRoadmapTask(
-			project,
-			{
-				taskId: existingTask.id,
-				status: "done",
-				summary: input.summary,
-			},
-			{ refresh: false },
-		);
-		latestTask = closeResult.task;
+		const reloaded = await readRoadmapTask(project, existingTask.id);
+		if (reloaded) latestTask = reloaded;
 		changed = true;
+		evidenceRecorded = true;
+
 		if (project.config.roadmap_retention?.closed_task_limit === 0) {
 			const roadmapPath = resolve(project.root, project.roadmapPath);
 			const archivePath = roadmapArchivePath(project);
@@ -326,33 +377,16 @@ export async function executeCodewikiTask(
 			});
 		}
 	} else if (input.action === "cancel") {
-		const cancelResult = await updateRoadmapTask(
-			project,
-			{
-				taskId: existingTask.id,
-				status: "cancelled",
-				summary: input.summary,
-			},
-			{ refresh: false },
-		);
-		latestTask = cancelResult.task;
+		await cancelCodewikiTask(project, existingTask.id, piTaskPorts(ctx, project), input.summary);
 		changed = true;
+		latestTask = (await readRoadmapTask(project, existingTask.id))!;
 	} else {
 		if (hasCodewikiTaskPatchChanges(input.patch)) {
-			const patchUpdate = buildRoadmapTaskUpdateFromCodewikiPatch(
-				latestTask,
-				runtimeTask,
-				input.patch,
-			);
-			if (hasRoadmapTaskUpdateFields(patchUpdate)) {
-				const patchResult = await updateRoadmapTask(project, patchUpdate, {
-					refresh: false,
-				});
-				latestTask = patchResult.task;
-				changed = true;
-				runtimeState = await maybeReadRoadmapState(project.roadmapStatePath);
-				runtimeTask = runtimeState?.tasks?.[latestTask.id] ?? null;
-			}
+			const patchResult = await patchCodewikiTask(project, existingTask.id, input.patch, piTaskPorts(ctx, project));
+			latestTask = patchResult.task;
+			changed = patchResult.changed;
+			runtimeState = await maybeReadRoadmapState(project.roadmapStatePath);
+			runtimeTask = runtimeState?.tasks?.[latestTask.id] ?? null;
 		}
 		if (input.evidence) {
 			if (
@@ -378,12 +412,7 @@ export async function executeCodewikiTask(
 				const reloadedTask = await readRoadmapTask(project, latestTask.id);
 				if (reloadedTask) latestTask = reloadedTask;
 			} else {
-				await appendCodewikiTaskEvidence(
-					project,
-					latestTask,
-					input.evidence,
-					false,
-				);
+				await appendTaskEvidence(project, latestTask.id, input.evidence, piTaskPorts(ctx, project));
 				evidenceRecorded = true;
 			}
 		}

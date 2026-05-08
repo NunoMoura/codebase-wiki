@@ -5,16 +5,36 @@ import type {
 import type {
 	WikiProject,
 	CodewikiSessionToolInput,
-	TaskSessionLinkRecord,
 } from "../../../core/types";
+import { nowIso } from "../../../core/utils";
 import {
-	nowIso,
-	unique,
-} from "../../../core/utils";
-import {
-	currentTaskLink,
-	linkTaskSession,
-} from "../../../core/session";
+	getFocusedTaskLink,
+	clearSessionFocus,
+	recordSessionTaskAction,
+} from "../../../application/session";
+import { readFile, writeFile, appendFile } from "node:fs/promises";
+
+function piSessionPorts(pi: ExtensionAPI, ctx: ExtensionContext) {
+	return {
+		fileStore: {
+			readJson: async (path: string) => JSON.parse(await readFile(path, "utf8")),
+			maybeReadJson: async (path: string) => {
+				try { return JSON.parse(await readFile(path, "utf8")); } catch { return null; }
+			},
+			writeJson: async (path: string, data: unknown) => writeFile(path, JSON.stringify(data, null, 2), "utf8"),
+			appendJsonl: async (path: string, record: unknown) => appendFile(path, JSON.stringify(record) + "\n", "utf8"),
+		},
+		runtime: {
+			setSessionName: (name: string) => pi.setSessionName(name),
+			appendEntry: (type: string, data: unknown) => pi.appendEntry(type, data),
+		},
+		context: ctx,
+		getSessionId: () => ctx.sessionManager.getSessionId(),
+		getSessionFile: () => ctx.sessionManager.getSessionFile() as string,
+		getSessionName: () => ctx.sessionManager.getSessionName(),
+		getSessionBranch: () => ctx.sessionManager.getBranch(),
+	};
+}
 
 /**
  * Implementation of the codewiki_session tool.
@@ -25,8 +45,9 @@ export async function executeCodewikiSession(
 	ctx: ExtensionContext,
 	input: CodewikiSessionToolInput,
 ) {
+	const ports = piSessionPorts(pi, ctx);
 	if (input.action === "clear") {
-		const active = currentTaskLink(ctx);
+		const active = getFocusedTaskLink(ports);
 		if (!active) {
 			return {
 				action: "clear" as const,
@@ -42,20 +63,7 @@ export async function executeCodewikiSession(
 				}),
 			};
 		}
-		await linkTaskSession(
-			pi,
-			project,
-			ctx,
-			{
-				taskId: active.taskId,
-				action: "clear",
-				summary:
-					input.summary?.trim() ||
-					`Cleared current Pi session focus from ${active.taskId}.`,
-				setSessionName: false,
-			},
-			{ refresh: false },
-		);
+		await clearSessionFocus(project, ports, input.summary?.trim());
 		const result = {
 			action: "clear" as const,
 			session: {
@@ -69,32 +77,14 @@ export async function executeCodewikiSession(
 		result.summary = buildCodewikiSessionSummary(result);
 		return result;
 	}
-	const taskId = input.taskId?.trim() || currentTaskLink(ctx)?.taskId;
-	if (!taskId) {
-		throw new Error(
-			`codewiki_session ${input.action} requires taskId or an active focused task.`,
-		);
-	}
-	const summary =
-		input.summary?.trim() ||
-		(input.action === "focus"
-			? `Focused current Pi session on ${taskId}.`
-			: `Recorded runtime session note for ${taskId}.`);
-	const result = await linkTaskSession(
-		pi,
-		project,
-		ctx,
-		{
-			taskId,
-			action: input.action,
-			summary,
-			filesTouched: unique(input.files_touched ?? []),
-			spawnedTaskIds: [],
-			setSessionName:
-				input.action === "focus" ? (input.setSessionName ?? false) : false,
-		},
-		{ refresh: false },
-	);
+
+	const result = await recordSessionTaskAction(project, {
+		taskId: input.taskId,
+		action: input.action,
+		summary: input.summary,
+		filesTouched: input.files_touched,
+		setSessionName: input.action === "focus" ? (input.setSessionName ?? false) : false,
+	}, ports);
 	return {
 		action: input.action,
 		session: {

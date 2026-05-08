@@ -3,7 +3,7 @@
  *
  * "Run a rebuild" use case.
  * Orchestrates the rebuild pipeline via the RebuildRunner port.
- * No knowledge of how the rebuild is actually executed (Python script, engine, etc.).
+ * No knowledge of the concrete rebuild engine implementation.
  */
 
 import type { WikiProject } from "../domain/shared/types";
@@ -15,18 +15,9 @@ import { resolve } from "node:path";
 // Path helpers (pure — no I/O)
 // ---------------------------------------------------------------------------
 
-const GENERATED_METADATA_FILES = [
-	"graph.json",
-	"lint.json",
-	"roadmap-state.json",
-	"status-state.json",
-];
+const GENERATED_METADATA_FILES = ["index_graph.json"];
 
-const GENERATED_VIEW_FILES = [
-	"roadmap-summary.md",
-	"status-dock-v1.json",
-	"status-dock-v1.txt",
-];
+const GENERATED_VIEW_FILES: string[] = [];
 
 /**
  * Returns all paths that participate in a rebuild lock.
@@ -38,7 +29,6 @@ export function rebuildTargetPaths(project: WikiProject): string[] {
 		...(project.roadmapDocPath
 			? [resolve(project.root, project.roadmapDocPath)]
 			: []),
-		resolve(project.root, project.eventsPath),
 		...GENERATED_METADATA_FILES.map((f) =>
 			resolve(project.root, project.metaRoot, f),
 		),

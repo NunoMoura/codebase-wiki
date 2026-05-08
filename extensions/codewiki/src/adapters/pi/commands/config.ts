@@ -63,7 +63,7 @@ export function registerConfigCommand(pi: ExtensionAPI): void {
 					if (!opened) {
 						if (!resolved) {
 							ctx.ui.notify(
-								`No codewiki project resolved. Use /wiki-bootstrap first or work inside a repo with .wiki/config.json.`,
+								`No codewiki project resolved. Use /wiki-bootstrap first or work inside a repo with .codewiki/config.json.`,
 								"warning",
 							);
 							return;

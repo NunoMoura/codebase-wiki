@@ -53,16 +53,16 @@ export const TASK_PHASE_DRIVERS: Record<
 
 export function defaultSelfDriftScope(project: WikiProject) {
 	return {
-		include: [".wiki/knowledge/product/**/*.md", ".wiki/knowledge/system/**/*.md"],
+		include: [".codewiki/kb/product/**/*.md", ".codewiki/kb/system/**/*.md"],
 		exclude: [
-			".wiki/knowledge/system/architecture/mermaid.md",
-			".wiki/knowledge/system/architecture/components.json",
+			".codewiki/kb/system/architecture/mermaid.md",
+			".codewiki/kb/system/architecture/components.json",
 		],
 	};
 }
 
 export function defaultCodeDriftDocsScope(project: WikiProject) {
-	return [".wiki/knowledge/product/**/*.md", ".wiki/knowledge/system/**/*.md"];
+	return [".codewiki/kb/product/**/*.md", ".codewiki/kb/system/**/*.md"];
 }
 
 export function buildDriftContext(
@@ -103,7 +103,7 @@ export function buildDriftContext(
 export function promptContextFiles(project: WikiProject): string[] {
 	return unique([
 		"README.md",
-		".wiki/config.json",
+		".codewiki/config.json",
 		project.roadmapStatePath,
 		project.statusStatePath,
 	]);

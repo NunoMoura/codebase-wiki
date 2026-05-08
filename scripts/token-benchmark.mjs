@@ -6,7 +6,7 @@ import { findWikiRoot } from "./codewiki-transaction.mjs";
 const TOKEN_BYTES = 4;
 
 function usage() {
-	return `Usage: node scripts/token-benchmark.mjs [repo] [--json]\n\nMeasures approximate token expenditure for codewiki state surfaces.\nDefault repo is current working directory or nearest ancestor with .wiki/config.json.`;
+	return `Usage: node scripts/token-benchmark.mjs [repo] [--json]\n\nMeasures approximate token expenditure for codewiki state surfaces.\nDefault repo is current working directory or nearest ancestor with .codewiki/config.json.`;
 }
 
 function parseArgs(argv) {
@@ -156,10 +156,10 @@ function main() {
 
 	const repo = findWikiRoot(args.repo);
 	if (!repo)
-		throw new Error(`No .wiki/config.json found from ${resolve(args.repo)}`);
+		throw new Error(`No .codewiki/config.json found from ${resolve(args.repo)}`);
 
-	const wiki = path.join(repo, ".wiki");
-	const knowledgeFiles = walkFiles(path.join(wiki, "knowledge"), (file) =>
+	const wiki = path.join(repo, ".codewiki");
+	const knowledgeFiles = walkFiles(path.join(wiki, "kb"), (file) =>
 		/\.(md|mdx|txt)$/i.test(file),
 	);
 	const evidenceFiles = walkFiles(path.join(wiki, "evidence"), (file) =>
@@ -170,13 +170,12 @@ function main() {
 		(file) => path.basename(file) === "context.json",
 	);
 	const stateFiles = [
-		path.join(wiki, "status-state.json"),
-		path.join(wiki, "roadmap-state.json"),
+		path.join(wiki, "index_graph.json"),
+		path.join(wiki, "index_graph.json"),
 	];
 	const lifecycleFiles = [
 		path.join(wiki, "roadmap.json"),
-		path.join(wiki, "roadmap-events.jsonl"),
-		path.join(wiki, "events.jsonl"),
+		path.join(wiki, "roadmap", "events.jsonl"),
 	];
 	const rawTruthFiles = [
 		...knowledgeFiles,
@@ -184,8 +183,8 @@ function main() {
 		...lifecycleFiles,
 	];
 
-	const statusState = readJson(path.join(wiki, "status-state.json"), {});
-	const roadmapState = readJson(path.join(wiki, "roadmap-state.json"), {});
+	const statusState = readJson(path.join(wiki, "index_graph.json"), {});
+	const roadmapState = readJson(path.join(wiki, "index_graph.json"), {});
 	const resumeTaskId =
 		statusState?.resume?.task_id ??
 		roadmapState?.views?.open_task_ids?.[0] ??
@@ -195,10 +194,10 @@ function main() {
 		: null;
 	const taskContext = taskContextPath ? readJson(taskContextPath, null) : null;
 	const latestCycleText = [
-		`--- ${rel(repo, path.join(wiki, "roadmap-events.jsonl"))} last 20 ---`,
-		latestLines(path.join(wiki, "roadmap-events.jsonl"), 20),
-		`--- ${rel(repo, path.join(wiki, "events.jsonl"))} last 20 ---`,
-		latestLines(path.join(wiki, "events.jsonl"), 20),
+		`--- ${rel(repo, path.join(wiki, "roadmap", "events.jsonl"))} last 20 ---`,
+		latestLines(path.join(wiki, "roadmap", "events.jsonl"), 20),
+		`--- ${rel(repo, path.join(wiki, "roadmap", "events.jsonl"))} last 20 ---`,
+		latestLines(path.join(wiki, "roadmap", "events.jsonl"), 20),
 	].join("\n");
 
 	const profiles = [
@@ -278,8 +277,8 @@ function main() {
 			saved_vs_raw_cycle_pct: pctSaved(rawCycle.bytes, profile.bytes),
 		})),
 		lifecycle_events: summarizeEvents(repo, [
-			path.join(wiki, "roadmap-events.jsonl"),
-			path.join(wiki, "events.jsonl"),
+			path.join(wiki, "roadmap", "events.jsonl"),
+			path.join(wiki, "roadmap", "events.jsonl"),
 		]),
 	};
 

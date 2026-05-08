@@ -231,14 +231,14 @@ export async function openConfigPanel(
 						body = [
 							theme.fg("text", theme.bold("Context gateway")),
 							"",
-							theme.fg("text", "Configured in repo-local .wiki/config.json."),
+							theme.fg("text", "Configured in repo-local .codewiki/config.json."),
 							theme.fg(
 								"muted",
 								"Bootstrap creates a read-only gateway by default.",
 							),
 							theme.fg(
 								"muted",
-								"Agents should use scripts/codewiki-gateway.mjs for token-light .wiki exploration.",
+								"Agents should use scripts/codewiki-gateway.mjs for token-light .codewiki exploration.",
 							),
 							theme.fg(
 								"muted",
@@ -1131,7 +1131,7 @@ export function readArchitecturePanelData(project: WikiProject): {
 	try {
 		const data = JSON.parse(
 			readFileSync(
-				resolve(project.root, ".wiki/views/system/architecture.json"),
+				resolve(project.root, ".codewiki/views/system/architecture.json"),
 				"utf8",
 			),
 		);
@@ -1144,7 +1144,7 @@ export function readArchitecturePanelData(project: WikiProject): {
 	try {
 		mermaid.push(
 			...readFileSync(
-				resolve(project.root, ".wiki/views/system/architecture.mmd"),
+				resolve(project.root, ".codewiki/views/system/architecture.mmd"),
 				"utf8",
 			).split("\n"),
 		);
@@ -1415,9 +1415,10 @@ export function readLiveStatusPanelSnapshot(
 	report: LintReport;
 	roadmapState: RoadmapStateFile | null;
 } | null {
-	const state = maybeReadJsonSync<StatusStateFile>(project.statusStatePath);
-	const report = maybeReadJsonSync<LintReport>(project.lintPath);
-	const roadmapState = maybeReadJsonSync<RoadmapStateFile>(
+	const indexGraph = maybeReadJsonSync<any>(project.graphPath);
+	const state = indexGraph?.lenses?.status ?? maybeReadJsonSync<StatusStateFile>(project.statusStatePath);
+	const report = indexGraph?.lenses?.lint ?? maybeReadJsonSync<LintReport>(project.lintPath);
+	const roadmapState = indexGraph?.lenses?.roadmap ?? maybeReadJsonSync<RoadmapStateFile>(
 		project.roadmapStatePath,
 	);
 	if (!state || !report) return null;
@@ -1482,9 +1483,13 @@ export function renderStatusPanelLines(
 
 	if (section === "product") {
 		const productPathOrder = [
-			".wiki/knowledge/product/users.md",
-			".wiki/knowledge/product/stories.md",
-			".wiki/knowledge/product/surfaces.md",
+			".codewiki/kb/product/users/maintainers.md",
+			".codewiki/kb/product/users/agents.md",
+			".codewiki/kb/product/stories/intent.md",
+			".codewiki/kb/product/stories/navigation.md",
+			".codewiki/kb/product/uis/status-panel.md",
+			".codewiki/kb/product/uis/board.md",
+			".codewiki/kb/product/uis/agent-tools.md",
 		];
 		const productRows = productPathOrder
 			.map((path) => state.specs.find((row) => row.path === path))
@@ -1980,9 +1985,13 @@ export async function openStatusPanel(
 						});
 				} else if (panelState.section === "product") {
 					const productPathOrder = [
-						".wiki/knowledge/product/users.md",
-						".wiki/knowledge/product/stories.md",
-						".wiki/knowledge/product/surfaces.md",
+						".codewiki/kb/product/users/maintainers.md",
+						".codewiki/kb/product/users/agents.md",
+						".codewiki/kb/product/stories/intent.md",
+						".codewiki/kb/product/stories/navigation.md",
+						".codewiki/kb/product/uis/status-panel.md",
+						".codewiki/kb/product/uis/board.md",
+						".codewiki/kb/product/uis/agent-tools.md",
 					];
                     const productRows = productPathOrder
                         .map((path) => snapshot.state.specs.find((row) => row.path === path))

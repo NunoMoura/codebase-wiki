@@ -10,11 +10,10 @@ import {
 import path, { dirname, resolve } from "node:path";
 
 export const GENERATED_READONLY_PATHS = [
-	".wiki/graph.json",
-	".wiki/lint.json",
-	".wiki/status-state.json",
-	".wiki/roadmap-state.json",
-	".wiki/roadmap/**",
+	".codewiki/index_graph.json",
+				".codewiki/roadmap/index.json",
+	".codewiki/roadmap/state.json",
+	".codewiki/roadmap/tasks/**",
 ];
 
 export interface GatewayConfig {
@@ -34,19 +33,17 @@ export const DEFAULT_GATEWAY: GatewayConfig = {
 	enabled: true,
 	mode: "read-only",
 	allow_paths: [
-		".wiki/knowledge/**",
-		".wiki/roadmap/tasks/**",
-		".wiki/evidence/**",
-		".wiki/graph.json",
-		".wiki/status-state.json",
-		".wiki/roadmap-state.json",
-		".wiki/roadmap.json",
-		".wiki/roadmap-events.jsonl",
-		".wiki/events.jsonl",
+		".codewiki/kb/**",
+		".codewiki/roadmap/tasks/**",
+		".codewiki/evidence/**",
+		".codewiki/index_graph.json",
+								".codewiki/roadmap/index.json",
+		".codewiki/roadmap/state.json",
+		".codewiki/roadmap.json",
 	],
-	write_paths: [".wiki/knowledge/**", ".wiki/evidence/**"],
+	write_paths: [".codewiki/kb/**", ".codewiki/evidence/**"],
 	generated_readonly_paths: GENERATED_READONLY_PATHS,
-	deny_paths: ["**/.env*", "**/*secret*", ".wiki/sources/private/**"],
+	deny_paths: ["**/.env*", "**/*secret*", ".codewiki/sources/private/**"],
 	network: false,
 	max_stdout_bytes: 12000,
 	max_read_bytes: 200000,
@@ -79,7 +76,7 @@ export function matchesAny(relPath: string, patterns: string[] = []): boolean {
 }
 
 export function loadGateway(repo: string): GatewayConfig {
-	const config = readJson(path.join(repo, ".wiki", "config.json"), {});
+	const config = readJson(path.join(repo, ".codewiki", "config.json"), {});
 	return {
 		...DEFAULT_GATEWAY,
 		...(config?.codewiki?.gateway ?? {}),
@@ -214,7 +211,7 @@ export function findWikiRoot(start?: string): string | null {
 	if (existsSync(current) && statSync(current).isFile())
 		current = path.dirname(current);
 	while (true) {
-		if (existsSync(path.join(current, ".wiki", "config.json"))) return current;
+		if (existsSync(path.join(current, ".codewiki", "config.json"))) return current;
 		const parent = path.dirname(current);
 		if (parent === current) return null;
 		current = parent;

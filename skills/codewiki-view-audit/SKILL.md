@@ -1,35 +1,49 @@
 ---
 name: codewiki-view-audit
-description: Fresh-context audit for generated CodeWiki views. Use when checking whether `.wiki/views/**`, graph, lint, roadmap state, or status state remain aligned with canonical knowledge, roadmap tasks, and evidence.
+description: Fresh-context audit for generated CodeWiki graph/index state. Use when checking whether `.codewiki/index_graph.json`, cached lenses, roadmap state, or status state remain aligned with canonical knowledge, roadmap tasks, builds, validation reports, and evidence.
+id: skill.codewiki-view-audit
+title: codewiki-view-audit skill
+state: active
+summary: Packaged CodeWiki agent skill.
+owners: [maintainers]
+updated: "2026-05-07"
 ---
 
-# CodeWiki View Audit
+# CodeWiki Graph Audit
 
-View auditor is a read-only subagent role. It verifies views, not product behavior.
+Graph auditor is a read-only subagent role. It verifies generated graph/index state, not product behavior.
 
-## Contract
+## Inputs
 
-Input: `SubagentBrief` with:
-
-- `role: "view_auditor"`
-- relevant view paths, usually `.wiki/views/status.json`, `.wiki/views/roadmap/queue.json`, `.wiki/views/drift.json`, and focused task context
-- canonical sources to sample, such as `.wiki/knowledge/**`, `.wiki/roadmap/tasks/**/task.json`, and `.wiki/evidence/**`
+- `role: "graph_auditor"`
+- graph path, usually `.codewiki/index_graph.json`
+- optional cached lenses such as status or queue files
+- canonical sources to sample: `.codewiki/kb/**`, `.codewiki/roadmap/**`, `.codewiki/builds/**`, `.codewiki/validation/**`, `.codewiki/evidence/**`
 - constraints: read-only, no generated-state edits
 
-Output: `SubagentResult` with:
+## Output
 
-- `verdict: "pass"` when sampled views match canonical sources and budgets are useful
-- `verdict: "fail"` when views are stale, missing required fields, noisy, or contradict canonical truth
+- `verdict: "pass"` when sampled graph/index state matches canonical sources and routing is useful
+- `verdict: "fail"` when graph/index state is stale, missing required nodes/edges, noisy, or contradictory
 - `verdict: "block"` when canonical context or generated files are unavailable
-- `findings`: compact alignment facts
-- `issues`: stale revisions, missing recommended reads, broken task/spec mappings, or unreadable budgets
-- `proposals`: `follow_up` or `task_delta`; parent decides mutations
+- `findings`: compact bullets with paths
+- `proposals`: optional `follow_up` or `task_delta`; no patches from the auditor
 
-## Audit checklist
+## Checks
 
-1. Confirm generated files are marked as views and not canonical truth.
-2. Compare view revision/digest fields with sampled source files when practical.
-3. Verify `recommended_next_reads` points to useful canonical files.
-4. Check roadmap queue and task context against task JSON.
-5. Check drift/status views against lint and graph summaries.
+1. Confirm generated files are marked as generated and not canonical truth.
+2. Compare graph revision/digest fields with sampled source files when practical.
+3. Verify graph edges route to useful canonical files and build artifacts.
+4. Check roadmap queue/focus data against task JSON.
+5. Check validation/build nodes against stored artifacts.
 6. Return compact JSON only; do not patch files.
+
+## Boundaries
+
+- Do not validate implementation correctness unless graph drift depends on it.
+- Do not rewrite graph/index files manually.
+- Do not expand broad source trees unless the graph itself cannot be sampled safely.
+
+## Related docs
+
+- ../../.codewiki/kb/system/v2-operating-model.md

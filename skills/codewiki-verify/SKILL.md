@@ -1,67 +1,81 @@
 ---
 name: codewiki-verify
-description: Fresh-context verification rubric for CodeWiki tasks. Use when an automatic verifier stage must judge whether a task satisfies user intent, linked knowledge, acceptance criteria, checks, and evidence.
+description: Fresh-context validation gateway for CodeWiki tasks and compiler handoffs. Use when an independent reviewer must judge horizontal and vertical alignment, acceptance, checks, and evidence.
+id: skill.codewiki-verify
+title: codewiki-verify skill
+state: active
+summary: Packaged CodeWiki agent skill.
+owners: [maintainers]
+updated: "2026-05-07"
 ---
 
 # CodeWiki Verify
 
-Verification is an automatic inner-loop stage. Manual commands are debug/override, not normal UX.
+Act as an independent validator with fresh context. Do not trust the implementer's rationale. Verify horizontal and vertical alignment with minimal context.
 
-## Verifier role
+Product term: **validation gateway**. Verifier is the read-only role inside the gateway.
 
-Act as an independent reviewer with fresh context. Do not trust the implementer's rationale. Verify vertical and horizontal alignment. Keep verifier RAM small: start from status/task context, then expand only linked canonical docs, evidence summaries, and touched code paths.
-
-Vertical alignment:
+## Vertical alignment
 
 ```text
-user intent → `.wiki/knowledge` → roadmap task → code/docs → evidence
+user intent -> feedback_build -> .codewiki/kb -> documentation_build -> roadmap task pack -> tests/code -> implementation_build
 ```
 
-Horizontal coherence:
+## Horizontal alignment
 
-- specs agree with specs,
-- tasks agree with tasks,
-- evidence agrees with checks,
-- code ownership matches linked specs.
+Check coherence inside the relevant layer:
 
-## Authority
+- knowledge docs agree with each other,
+- roadmap tasks agree with each other,
+- code components agree with each other,
+- tests agree with intended behavior.
 
-Verifier should be read-only by default:
+## Inputs
 
-- allowed: read, grep, find, ls, safe check commands, available bounded read/context tools
-- denied: write, edit, apply staged ops, roadmap mutation, generated-state edits
+Use the smallest useful context:
+
+- status/graph state,
+- feedback/documentation/implementation build paths,
+- task pack,
+- linked `.codewiki/kb/**` specs,
+- touched code/test paths,
+- checks run,
+- unresolved issues.
 
 ## Workflow
 
-1. Read verifier brief: task id, acceptance, non-goals, linked specs, files changed, checks run, and diff/status summary.
+1. Read the compact brief first.
 2. Inspect only enough source to validate claims.
 3. Run or review relevant checks when allowed.
 4. Judge acceptance criteria one by one.
-5. Return deterministic JSON verdict.
+5. Judge non-goals and scope.
+6. Return deterministic JSON only.
 
-## Verdict JSON
+## Output
 
 ```json
 {
   "verdict": "pass | fail | block",
   "taskId": "TASK-###",
   "checks": ["check names or commands reviewed"],
+  "alignment": {
+    "vertical": "pass | fail | unknown",
+    "horizontal": "pass | fail | unknown"
+  },
   "acceptance": [
     { "criterion": "...", "status": "pass | fail | unknown", "reason": "..." }
   ],
   "issues": [
-    {
-      "severity": "high | medium | low",
-      "summary": "...",
-      "evidence": "file/path or check output"
-    }
+    { "severity": "high | medium | low", "summary": "...", "evidence": "path/output" }
   ],
-  "rationale": "short explanation"
+  "summary": "compact verdict rationale"
 }
 ```
 
-## Pass bar
+`fail` means requirements are not satisfied. `block` means validation cannot safely decide because context, checks, schema, or task meaning is insufficient.
 
-Return `pass` only when acceptance criteria are satisfied, non-goals are respected, checks/evidence support completion, and no unresolved high/medium issues remain.
+Passing validation does not require durable storage by default. Failed, blocked, or policy-required reports should be stored under `.codewiki/validation/**` by the parent process.
 
-Return `block` when missing context, flaky/unavailable environment, or policy prevents a trustworthy verdict.
+## Related docs
+
+- ../../.codewiki/kb/system/v2-operating-model.md

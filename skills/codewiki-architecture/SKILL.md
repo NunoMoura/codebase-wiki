@@ -1,6 +1,12 @@
 ---
 name: codewiki-architecture
-description: CodeWiki-aware architecture review using deep-module heuristics. Use when looking for seams, ownership friction, testability gaps, doc/code drift, or roadmap-worthy refactors under `.wiki/knowledge`.
+description: CodeWiki-aware architecture review using deep-module heuristics. Use when looking for seams, ownership friction, testability gaps, doc/code drift, or roadmap-worthy refactors under `.codewiki/kb`.
+id: skill.codewiki-architecture
+title: codewiki-architecture skill
+state: active
+summary: Packaged CodeWiki agent skill.
+owners: [maintainers]
+updated: "2026-05-07"
 ---
 
 # CodeWiki Architecture
@@ -29,7 +35,7 @@ Use this workflow during outer planning, not as an automatic refactor pass.
 
 1. **Read CodeWiki state**
    - Start with `codewiki_state` and the smallest architecture/system view available.
-   - Expand relevant `.wiki/knowledge/system/**` component or flow specs only after the view points there.
+   - Expand relevant `.codewiki/kb/system/**` component or flow specs only after the view points there.
    - Use repo tools or an available bounded context tool to inspect code ownership seams; avoid loading broad source trees into parent RAM.
    - Use an architecture-review subagent for large cross-cutting reviews. Send `SubagentBrief` with `role: "architecture_reviewer"`; require `SubagentResult` findings and proposals only.
 
@@ -64,6 +70,10 @@ Output: `SubagentResult` with findings about ownership, locality, leverage, test
 
 ## Non-goals
 
-- Do not create a separate ADR tree outside `.wiki/knowledge`.
+- Do not create a separate ADR tree outside `.codewiki/kb`.
 - Do not refactor automatically during review.
 - Do not relitigate settled knowledge unless real friction justifies it.
+
+## Related docs
+
+- ../../.codewiki/kb/system/v2-operating-model.md

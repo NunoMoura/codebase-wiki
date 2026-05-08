@@ -161,7 +161,7 @@ export function buildRoadmapState(
 			spec_paths: Array.isArray(item.spec_paths) ? item.spec_paths : [],
 			code_paths: Array.isArray(item.code_paths) ? item.code_paths : [],
 			updated: String(item.updated || "").trim(),
-			context_path: `.wiki/roadmap/tasks/${taskId}/context.json`,
+			context_path: `.codewiki/roadmap/tasks/${taskId}/context.json`,
 			loop: buildTaskLoopState(taskId, status, events),
 		};
 	}
@@ -208,7 +208,7 @@ export function buildRoadmapState(
 		generated_at: nowIso(),
 		health: lintHealth(lintReport) as any,
 		source: {
-			task_context_root: ".wiki/roadmap/tasks",
+			task_context_root: ".codewiki/roadmap/tasks",
 		},
 		summary: {
 			task_count: entries.length,
@@ -250,7 +250,7 @@ export function pathStartsWithAny(path: string, prefixes: string[]): boolean {
 }
 
 export function specGroup(path: string, project: WikiProject): string {
-	const specsRoot = project.config.specs_root || project.docsRoot || ".wiki/knowledge";
+	const specsRoot = project.config.specs_root || project.docsRoot || ".codewiki/kb";
 	const PRODUCT_SPEC_PREFIX = `${specsRoot}/product/`;
 	const CLIENTS_SPEC_PREFIXES = [`${specsRoot}/clients/`, `${specsRoot}/ux/`];
 	if (path.startsWith(PRODUCT_SPEC_PREFIX)) return "product";
@@ -259,7 +259,7 @@ export function specGroup(path: string, project: WikiProject): string {
 }
 
 export function specRequiresCodeMapping(path: string, project: WikiProject): boolean {
-	const specsRoot = project.config.specs_root || project.docsRoot || ".wiki/knowledge";
+	const specsRoot = project.config.specs_root || project.docsRoot || ".codewiki/kb";
 	const SYSTEM_SPEC_PREFIX = `${specsRoot}/system/`;
 	if (!path.startsWith(SYSTEM_SPEC_PREFIX)) return false;
 	if (path.startsWith(`${SYSTEM_SPEC_PREFIX}runtime/`)) return false;
@@ -477,12 +477,31 @@ export function buildHeartbeatLane(
 	};
 }
 
-export function buildResumeState(roadmapState: RoadmapStateFile, heartbeatLanes: any[], nextStep: any): any {
+export function latestPersistedFocusTaskId(events: any[], roadmapState: RoadmapStateFile): string {
+	const tasks: any = roadmapState.tasks || {};
+	for (let index = events.length - 1; index >= 0; index -= 1) {
+		const event = events[index];
+		const kind = String(event?.kind || "").trim();
+		if (kind !== "task_session_link" && kind !== "roadmap_task_session_link") continue;
+		const action = String(event.action || "focus").trim() || "focus";
+		if (action === "clear") return "";
+		const taskId = String(event.task_id || event.taskId || "").trim();
+		if (!taskId) continue;
+		const task = tasks[taskId];
+		if (task && isOpenTaskStatus(task.status)) return taskId;
+	}
+	return "";
+}
+
+export function buildResumeState(roadmapState: RoadmapStateFile, heartbeatLanes: any[], nextStep: any, persistedFocusTaskId = ""): any {
 	const views: any = roadmapState.views || {};
 	const tasks: any = roadmapState.tasks || {};
 	const inProgressIds = views.in_progress_task_ids || [];
 	const todoIds = views.todo_task_ids || [];
-	const openTaskId = [...inProgressIds, ...todoIds, ""][0];
+	const persistedTask = persistedFocusTaskId ? tasks[persistedFocusTaskId] : null;
+	const openTaskId = persistedTask && isOpenTaskStatus(persistedTask.status)
+		? persistedFocusTaskId
+		: [...inProgressIds, ...todoIds, ""][0];
 	const task = openTaskId ? tasks[openTaskId] : null;
 
 	if (task) {
@@ -500,13 +519,16 @@ export function buildResumeState(roadmapState: RoadmapStateFile, heartbeatLanes:
 		const evidenceText = evidenceParts.join(" · ") || "No closure evidence recorded yet.";
 		const phase = normalizeTaskPhase(loop.phase);
 
+		const reasonPrefix = openTaskId === persistedFocusTaskId
+			? "Resume persisted task focus"
+			: "Resume roadmap task";
 		return {
 			source: "task",
 			task_id: openTaskId,
 			lane_id: "",
 			heading: `${openTaskId} — ${String(task.title || "").trim()}`.replace(/—\s*$/, "").trim(),
 			command: `/wiki-resume ${openTaskId}`,
-			reason: `Resume roadmap task (${String(task.status || "todo").trim()} · ${phase}).`,
+			reason: `${reasonPrefix} (${String(task.status || "todo").trim()} · ${phase}).`,
 			phase,
 			verification: verification[0] || "No explicit verification step yet.",
 			evidence: evidenceText,
@@ -814,7 +836,7 @@ export function buildStatusState(
 	const taskSummary: any = roadmapState.summary || {};
 	const taskStatusCounts: any = taskSummary.status_counts || {};
 
-	const specsRoot = project.config.specs_root || project.docsRoot || ".wiki/knowledge";
+	const specsRoot = project.config.specs_root || project.docsRoot || ".codewiki/kb";
 	const PRODUCT_SPEC_PREFIX = `${specsRoot}/product/`;
 	const SYSTEM_SPEC_PREFIX = `${specsRoot}/system/`;
 	const CLIENTS_SPEC_PREFIXES = [`${specsRoot}/clients/`, `${specsRoot}/ux/`];
@@ -853,8 +875,16 @@ export function buildStatusState(
 		),
 	];
 
+	const reconciliationAction = (graph.views as any)?.reconciliation?.next_action || null;
 	let nextStep: any;
-	if (counts.untracked > 0) {
+	if (reconciliationAction && String(reconciliationAction.loop || "observe") !== "observe") {
+		nextStep = {
+			kind: `reconciliation:${String(reconciliationAction.loop)}`,
+			command: String(reconciliationAction.command || "Run reconciliation gateway"),
+			reason: String(reconciliationAction.reason || "Graph reconciliation state selected the next compiler loop."),
+			item_id: reconciliationAction.item_id,
+		};
+	} else if (counts.untracked > 0) {
 		nextStep = { kind: "status", command: "/wiki-status", reason: `${counts.untracked} untracked spec drift needs inspection through the canonical status surface.` };
 	} else if (counts.blocked > 0 || (taskStatusCounts.blocked || 0) > 0) {
 		nextStep = { kind: "status", command: "/wiki-status", reason: "Blocked drift exists; inspect constraints in status before resuming implementation." };
@@ -875,7 +905,8 @@ export function buildStatusState(
 	};
 
 	const parallel = buildParallelSessionState(events, roadmapState);
-	const resume = buildResumeState(roadmapState, heartbeatLanes, nextStep);
+	const persistedFocusTaskId = latestPersistedFocusTaskId(events, roadmapState);
+	const resume = buildResumeState(roadmapState, heartbeatLanes, nextStep, persistedFocusTaskId);
 
 	const wikiSections: Record<string, any> = {
 		product: { id: "product", label: "Product", rows: [] },
@@ -961,10 +992,10 @@ export function buildStatusState(
 			sections: Object.values(wikiSections) as any[],
 		},
 		roadmap: {
-			focused_task_id: (roadmapState.views?.in_progress_task_ids || [])[0] || "",
+			focused_task_id: persistedFocusTaskId || (roadmapState.views?.in_progress_task_ids || [])[0] || "",
 			blocked_task_ids: roadmapState.views?.blocked_task_ids || [],
 			in_progress_task_ids: roadmapState.views?.in_progress_task_ids || [],
-			next_task_id: (roadmapState.views?.todo_task_ids || [])[0] || "",
+			next_task_id: String(resume.task_id || "") || (roadmapState.views?.todo_task_ids || [])[0] || "",
 			columns: roadmapColumns,
 		},
 		agents: {

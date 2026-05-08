@@ -41,16 +41,16 @@ function usage() {
   node scripts/codewiki-gateway.mjs apply <transaction.json> [repo]
   node scripts/codewiki-gateway.mjs run <script.js> [repo]
 
-Runs policy-bound .wiki exploration and validated transactions. Only stdout enters agent context.
+Runs policy-bound .codewiki exploration and validated transactions. Only stdout enters agent context.
 
 Transaction v1 ops:
-  {"kind":"patch","path":".wiki/knowledge/...","oldText":"...","newText":"..."}
-  {"kind":"append_jsonl","path":".wiki/evidence/...jsonl","value":{...}}
+  {"kind":"patch","path":".codewiki/kb/...","oldText":"...","newText":"..."}
+  {"kind":"append_jsonl","path":".codewiki/evidence/...jsonl","value":{...}}
 
 Note: run is read-only fallback and not a security sandbox.`;
 }
 
-function walk(repo, gateway, start = ".wiki") {
+function walk(repo, gateway, start = ".codewiki") {
 	const out = [];
 	const stack = [path.join(repo, start)];
 	while (stack.length) {
@@ -86,10 +86,10 @@ function makeApi(repo, gateway) {
 	return {
 		repo,
 		gateway: { ...gateway, deny_paths: [...(gateway.deny_paths ?? [])] },
-		tree: (start = ".wiki") => walk(repo, gateway, start),
+		tree: (start = ".codewiki") => walk(repo, gateway, start),
 		readText: readAllowedText,
 		readJson: (file) => JSON.parse(readAllowedText(file)),
-		grep: (pattern, start = ".wiki") => {
+		grep: (pattern, start = ".codewiki") => {
 			const regex = new RegExp(pattern, "i");
 			return walk(repo, gateway, start).flatMap((entry) => {
 				const text = readAllowedText(entry.path);
@@ -131,9 +131,8 @@ function capabilityManifest() {
 				args_schema: "codewikiTaskToolInputSchema",
 				result_schema: "CodeWiki task mutation result",
 				writes: [
-					".wiki/roadmap.json",
-					".wiki/roadmap/events.jsonl",
-					".wiki/evidence/*.jsonl",
+					".codewiki/roadmap.json",
+								".codewiki/evidence/*.jsonl",
 				],
 				audit: [
 					"repo",
@@ -151,7 +150,7 @@ function capabilityManifest() {
 					"Record Pi session focus and runtime notes linked to roadmap tasks.",
 				args_schema: "codewikiSessionToolInputSchema",
 				result_schema: "CodeWiki session link result",
-				writes: ["Pi session JSONL", ".wiki/events.jsonl"],
+				writes: ["Pi session JSONL", ""],
 				audit: ["repo", "action", "taskId", "session"],
 			},
 			{
@@ -161,7 +160,7 @@ function capabilityManifest() {
 					"Apply exact-text knowledge patches or append-only evidence transactions.",
 				args_schema: "transaction v1 JSON",
 				result_schema: "transaction apply result",
-				writes: [".wiki/knowledge/**/*.md", ".wiki/evidence/*.jsonl"],
+				writes: [".codewiki/kb/**/*.md", ".codewiki/evidence/*.jsonl"],
 				audit: ["repo", "summary", "ops", "paths"],
 			},
 			{
@@ -172,11 +171,9 @@ function capabilityManifest() {
 				args_schema: "rebuild command config",
 				result_schema: "rebuild result",
 				writes: [
-					".wiki/graph.json",
-					".wiki/lint.json",
-					".wiki/roadmap-state.json",
-					".wiki/status-state.json",
-					".wiki/roadmap/tasks/*/context.json",
+					".codewiki/index_graph.json",
+															"",
+					".codewiki/roadmap/tasks/*/context.json",
 				],
 				audit: ["repo", "command", "exitCode"],
 			},
@@ -185,13 +182,14 @@ function capabilityManifest() {
 }
 
 function currentTaskPack(repo, taskId) {
-	const status = readJson(path.join(repo, ".wiki", "status-state.json"), {});
-	const roadmap = readJson(path.join(repo, ".wiki", "roadmap-state.json"), {});
+	const indexGraph = readJson(path.join(repo, ".codewiki", "index_graph.json"), {});
+	const status = indexGraph.lenses?.status ?? {};
+	const roadmap = indexGraph.lenses?.roadmap ?? {};
 	const id =
 		taskId || status?.resume?.task_id || roadmap?.views?.open_task_ids?.[0];
 	const context = id
 		? readJson(
-				path.join(repo, ".wiki", "roadmap", "tasks", id, "context.json"),
+				path.join(repo, ".codewiki", "roadmap", "tasks", id, "context.json"),
 				null,
 			)
 		: null;
@@ -239,10 +237,10 @@ async function main() {
 				? second
 				: first;
 	const repo = findWikiRoot(repoArg || process.cwd());
-	if (!repo) throw new Error("No .wiki/config.json found");
+	if (!repo) throw new Error("No .codewiki/config.json found");
 	const gateway = loadGateway(repo);
 	if (!gateway.enabled)
-		throw new Error("Codewiki gateway disabled in .wiki/config.json");
+		throw new Error("Codewiki gateway disabled in .codewiki/config.json");
 	let output;
 	if (command === "manifest")
 		output = JSON.stringify(capabilityManifest(), null, 2);
@@ -256,7 +254,7 @@ async function main() {
 		);
 	else if (command === "apply")
 		output = JSON.stringify(
-			applyTransactionFile(repo, gateway, first),
+			await applyTransactionFile(repo, gateway, first),
 			null,
 			2,
 		);

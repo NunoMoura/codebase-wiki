@@ -16,7 +16,6 @@ import {
 	runRebuildUnlocked,
 } from "./state";
 import {
-	appendTaskSessionEvent,
 } from "./project";
 import {
 	nowIso,
@@ -78,13 +77,9 @@ export async function linkTaskSession(
 	const link = normalizeTaskSessionLinkInput(input);
 	let renamed = false;
 	await withLockedPaths(
-		[
-			resolve(project.root, project.eventsPath),
-			...((options.refresh ?? true) ? rebuildTargetPaths(project) : []),
-		],
+		[...((options.refresh ?? true) ? rebuildTargetPaths(project) : [])],
 		async () => {
 			await recordTaskSessionLinkUnlocked(pi, ctx, task, link);
-			await appendTaskSessionEvent(project, task, link, currentSessionId(ctx));
 			if (options.refresh ?? true) await runRebuildUnlocked(project);
 		},
 	);

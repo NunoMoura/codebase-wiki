@@ -37,7 +37,8 @@ export async function rebuildAndSummarize(
 	project: WikiProject,
 ): Promise<{ text: string; issueCount: number; report: LintReport }> {
 	await runRebuild(project);
-	const report = await readJson<LintReport>(project.lintPath);
+	const indexGraph = await readJson<any>(project.graphPath);
+	const report = indexGraph?.lenses?.lint as LintReport;
 	const kinds = Object.entries(report.counts)
 		.map(([kind, count]) => `${kind}=${count}`)
 		.join(" ");
@@ -80,30 +81,26 @@ export async function loadCodewikiStateArtifacts(
 		await runRebuild(project);
 		refreshPerformed = true;
 	}
-	let report = await maybeReadJson<LintReport>(project.lintPath);
-	let statusState = await maybeReadStatusState(project.statusStatePath);
-	let roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
-	let graph = await maybeReadJson<GraphFile>(project.graphPath);
-	
-	if (!report || !statusState || !roadmapState || !graph) {
-		if (!refreshPerformed) {
-			await runRebuild(project);
-			refreshPerformed = true;
-			report = await maybeReadJson<LintReport>(project.lintPath);
-			statusState = await maybeReadStatusState(project.statusStatePath);
-			roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
-			graph = await maybeReadJson<GraphFile>(project.graphPath);
-		}
+	let graph = await maybeReadJson<(GraphFile & { lenses?: { lint?: LintReport; status?: StatusStateFile; roadmap?: RoadmapStateFile } })>(project.graphPath);
+	if (!graph && !refreshPerformed) {
+		await runRebuild(project);
+		refreshPerformed = true;
+		graph = await maybeReadJson<(GraphFile & { lenses?: { lint?: LintReport; status?: StatusStateFile; roadmap?: RoadmapStateFile } })>(project.graphPath);
 	}
+	const report = graph?.lenses?.lint ?? null;
+	const statusState = graph?.lenses?.status ?? null;
+	const roadmapState = graph?.lenses?.roadmap ?? null;
 	return { refreshPerformed, report, statusState, roadmapState, graph };
 }
 
 export async function maybeReadStatusState(path: string): Promise<StatusStateFile | null> {
-	return maybeReadJson<StatusStateFile>(path);
+	const value = await maybeReadJson<any>(path);
+	return value?.lenses?.status ?? value ?? null;
 }
 
 export async function maybeReadRoadmapState(path: string): Promise<RoadmapStateFile | null> {
-	return maybeReadJson<RoadmapStateFile>(path);
+	const value = await maybeReadJson<any>(path);
+	return value?.lenses?.roadmap ?? value ?? null;
 }
 
 export async function maybeReadGraph(path: string): Promise<GraphFile | null> {
@@ -175,7 +172,7 @@ export function resolveTaskContextPath(
 	runtimeTask?: RoadmapStateTaskSummary | null,
 ): string {
 	const relative =
-		runtimeTask?.context_path || `.wiki/roadmap/tasks/${taskId}/context.json`;
+		runtimeTask?.context_path || `.codewiki/roadmap/tasks/${taskId}/context.json`;
 	return resolve(project.root, relative);
 }
 

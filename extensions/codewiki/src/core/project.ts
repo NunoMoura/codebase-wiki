@@ -26,42 +26,43 @@ export async function loadProject(
 	root: string,
 	files: CodewikiFileStorePort = defaultFileStore(),
 ): Promise<WikiProject> {
-	const configPath = resolve(root, ".wiki/config.json");
+	const configPath = resolve(root, ".codewiki/config.json");
 	let config: DocsConfig = {};
 	try {
 		config = await files.readJson<DocsConfig>(configPath);
 	} catch (error) {
-		throw new Error(`No .wiki/config.json found at ${configPath}. ${formatError(error)}`);
+		throw new Error(`No .codewiki/config.json found at ${configPath}. ${formatError(error)}`);
 	}
 
-	const metaRoot = config.meta_root || ".wiki/meta";
-	const viewsRoot = config.views_root || ".wiki/views";
+	const metaRoot = config.meta_root || ".codewiki";
+	const viewsRoot = config.views_root || ".codewiki/views";
+	const roadmapEventsPath = "";
 
 	return {
 		root,
 		config,
-		docsRoot: config.docs_root || "docs",
-		specsRoot: config.specs_root || "docs/specs",
-		evidenceRoot: config.evidence_root || "docs/evidence",
-		researchRoot: config.research_root || "docs/research",
-		indexPath: config.index_path || "docs/index.md",
-		roadmapPath: config.roadmap_path || "docs/roadmap.json",
-		roadmapDocPath: config.roadmap_doc_path || "docs/roadmap.md",
-		roadmapEventsPath: config.roadmap_events_path || "docs/roadmap-events.jsonl",
+		docsRoot: config.docs_root || ".codewiki/kb",
+		specsRoot: config.specs_root || config.docs_root || ".codewiki/kb",
+		evidenceRoot: config.evidence_root || ".codewiki/evidence",
+		researchRoot: config.research_root || config.evidence_root || ".codewiki/evidence",
+		indexPath: config.index_path || null,
+		roadmapPath: config.roadmap_path || ".codewiki/roadmap.json",
+		roadmapDocPath: config.roadmap_doc_path || null,
+		roadmapEventsPath,
 		metaRoot,
 		viewsRoot,
 		label: config.project_name || basename(root),
 		configPath,
-		graphPath: resolve(root, metaRoot, "graph.json"),
-		lintPath: resolve(root, metaRoot, "lint.json"),
-		roadmapStatePath: resolve(root, metaRoot, "roadmap-state.json"),
-		statusStatePath: resolve(root, metaRoot, "status-state.json"),
-		eventsPath: resolve(root, metaRoot, "events.jsonl"),
+		graphPath: resolve(root, metaRoot, "index_graph.json"),
+		lintPath: resolve(root, metaRoot, "index_graph.json"),
+		roadmapStatePath: resolve(root, metaRoot, "index_graph.json"),
+		statusStatePath: resolve(root, metaRoot, "index_graph.json"),
+		eventsPath: "",
 	};
 }
 
 /**
- * Find the wiki root by searching upwards for a .wiki directory.
+ * Find the wiki root by searching upwards for a .codewiki directory.
  */
 export async function findWikiRoot(
 	ctx: CodewikiContextPort,
@@ -70,7 +71,7 @@ export async function findWikiRoot(
 	let current = ctx.cwd || ctx.workspaceRoot;
 	if (!current) return null;
 	while (current !== "/") {
-		const wikiDir = resolve(current, ".wiki");
+		const wikiDir = resolve(current, ".codewiki");
 		if (await files.isDirectory(wikiDir)) return current;
 		current = dirname(current);
 	}
@@ -146,14 +147,14 @@ export async function reloadProjectConfig(project: WikiProject): Promise<WikiPro
 	return loadProject(project.root);
 }
 
-export const DEFAULT_DOCS_ROOT = "docs";
-export const DEFAULT_SPECS_ROOT = "docs/specs";
-export const DEFAULT_EVIDENCE_ROOT = "docs/evidence";
-export const DEFAULT_INDEX_PATH = "docs/index.md";
-export const DEFAULT_ROADMAP_PATH = "docs/roadmap.json";
-export const DEFAULT_ROADMAP_DOC_PATH = "docs/roadmap.md";
-export const DEFAULT_ROADMAP_EVENTS_PATH = "docs/roadmap-events.jsonl";
-export const DEFAULT_META_ROOT = ".wiki/meta";
+export const DEFAULT_DOCS_ROOT = ".codewiki/kb";
+export const DEFAULT_SPECS_ROOT = ".codewiki/kb";
+export const DEFAULT_EVIDENCE_ROOT = ".codewiki/evidence";
+export const DEFAULT_INDEX_PATH = "";
+export const DEFAULT_ROADMAP_PATH = ".codewiki/roadmap.json";
+export const DEFAULT_ROADMAP_DOC_PATH = "";
+export const DEFAULT_ROADMAP_EVENTS_PATH = "";
+export const DEFAULT_META_ROOT = ".codewiki";
 
 export async function rememberStatusDockProject(
 	project: WikiProject,
@@ -285,7 +286,7 @@ export async function resolveCommandProject(
 			}
 		}
 		throw new Error(
-			`${commandName}: No repo-local wiki found from ${ctx.cwd}. CodeWiki commands may be loaded globally, but each run targets one repo-local wiki. Use /wiki-bootstrap first, work inside a repo with .wiki/config.json, or pass an explicit repo path like /${commandName} /path/to/repo.`,
+			`${commandName}: No repo-local wiki found from ${ctx.cwd}. CodeWiki commands may be loaded globally, but each run targets one repo-local wiki. Use /wiki-bootstrap first, work inside a repo with .codewiki/config.json, or pass an explicit repo path like /${commandName} /path/to/repo.`,
 		);
 	}
 }

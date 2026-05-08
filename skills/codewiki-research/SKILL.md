@@ -1,6 +1,12 @@
 ---
 name: codewiki-research
-description: Research workflow for CodeWiki knowledge support. Use when external sources, library internals, implementation history, or citations are needed to justify `.wiki/knowledge` claims or planning decisions.
+description: Research workflow for CodeWiki knowledge support. Use when external sources, library internals, implementation history, or citations are needed to justify `.codewiki/kb` claims or planning decisions.
+id: skill.codewiki-research
+title: codewiki-research skill
+state: active
+summary: Packaged CodeWiki agent skill.
+owners: [maintainers]
+updated: "2026-05-07"
 ---
 
 # CodeWiki Research
@@ -13,12 +19,12 @@ Research supports canonical knowledge. It is not part of every implementation lo
 
 ## Rules
 
-- Research evidence supports `.wiki/knowledge/**` and planning decisions.
+- Research evidence supports `.codewiki/kb/**` and planning decisions.
 - Execution evidence supports task closure. Keep these concepts distinct.
 - Prefer local code inspection when the answer is inside the repo.
 - Use web/code research when external/library/source truth is needed.
 - Cite sources and capture stable facts, not generic summaries.
-- Do not create a parallel docs system outside `.wiki/knowledge`.
+- Do not create a parallel docs system outside `.codewiki/kb`.
 
 ## Workflow
 
@@ -52,4 +58,8 @@ Output: `SubagentResult`:
 - `proposals`: `knowledge_patch`, `task_delta`, or `follow_up` only; parent applies any canonical writes
 - `rationale`: uncertainty and recommendation
 
-Do not mutate `.wiki` from researcher worker context.
+Do not mutate `.codewiki/` from researcher worker context.
+
+## Related docs
+
+- ../../.codewiki/kb/system/v2-operating-model.md

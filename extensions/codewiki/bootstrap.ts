@@ -15,13 +15,8 @@ import {
 
 const execFileAsync = promisify(execFile);
 const GENERATED_OUTPUTS = [
-	".wiki/graph.json",
-	".wiki/lint.json",
-	".wiki/roadmap-state.json",
-	".wiki/status-state.json",
-	".wiki/roadmap/index.json",
-	".wiki/roadmap/state.json",
-	".wiki/roadmap/events.jsonl",
+					".codewiki/roadmap/index.json",
+	".codewiki/roadmap/state.json",
 ] as const;
 const CONTAINER_DIR_NAMES = new Set([
 	"apps",
@@ -38,7 +33,7 @@ const CONTAINER_DIR_NAMES = new Set([
 const EXCLUDED_DIR_NAMES = new Set([
 	".bandwagon",
 	".docs",
-	".wiki",
+	".codewiki",
 	".git",
 	".github",
 	".idea",

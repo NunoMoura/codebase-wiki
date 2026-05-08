@@ -6,18 +6,9 @@ export interface CoreRebuildRunner {
 	run(project: WikiProject): Promise<void>;
 }
 
-const GENERATED_METADATA_FILES = [
-	"graph.json",
-	"lint.json",
-	"roadmap-state.json",
-	"status-state.json",
-];
+const GENERATED_METADATA_FILES = ["index_graph.json"];
 
-const GENERATED_VIEW_FILES = [
-	"roadmap-summary.md",
-	"status-dock-v1.json",
-	"status-dock-v1.txt",
-];
+const GENERATED_VIEW_FILES: string[] = [];
 
 export function rebuildTargetPaths(project: WikiProject): string[] {
 	return [
@@ -25,7 +16,6 @@ export function rebuildTargetPaths(project: WikiProject): string[] {
 		...(project.roadmapDocPath
 			? [resolve(project.root, project.roadmapDocPath)]
 			: []),
-		resolve(project.root, project.eventsPath),
 		...GENERATED_METADATA_FILES.map((fileName) =>
 			resolve(project.root, project.metaRoot, fileName),
 		),

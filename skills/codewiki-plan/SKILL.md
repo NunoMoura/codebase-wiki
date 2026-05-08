@@ -1,65 +1,77 @@
 ---
 name: codewiki-plan
-description: Automatic outer planning loop for CodeWiki. Use when user intent, ideas, architecture changes, drift, or roadmap gaps need to become `.wiki/knowledge` updates and executable roadmap tasks before implementation.
+description: Documentation compiler for CodeWiki. Use when accepted feedback, architecture changes, drift, or roadmap gaps need to become `.codewiki/kb/**` updates and executable roadmap task packs before implementation.
+id: skill.codewiki-plan
+title: codewiki-plan skill
+state: active
+summary: Packaged CodeWiki agent skill.
+owners: [maintainers]
+updated: "2026-05-07"
 ---
 
 # CodeWiki Plan
 
-Run the outer loop. The user should not need to trigger each stage manually.
+Run the documentation compiler. The user should not need to trigger each stage manually once the feedback build is accepted.
 
 ```text
-clarify → inspect → research if needed → update knowledge → create/update roadmap tasks
+accepted feedback_build -> inspect current kb/roadmap/graph -> update knowledge -> create/update task packs -> documentation validation
 ```
-
-Pause only for ambiguity, product/architecture choice, destructive action, or approval policy.
 
 ## Rules
 
-- `.wiki/knowledge/**` is canonical intended behavior.
-- Research supports knowledge claims; it is not part of every task loop.
-- Roadmap tasks are the executable delta from intended behavior to current reality.
+- `.codewiki/kb/**` is canonical intended knowledge.
+- The feedback compiler owns unresolved user intent. If intent is ambiguous, escalate back to feedback instead of guessing.
+- Roadmap tasks are the executable delta from intended knowledge to current reality.
 - Keep decisions close to owning specs; do not create a parallel ADR system by default.
-- Use `codewiki_state` first; treat its status/view revisions as the parent session's RAM anchors.
-- Expand raw wiki files only when a view recommends them, a decision needs exact canonical source, or drift cannot be resolved from views.
-- For outer-loop planning, read the smallest useful path: status view → roadmap queue/task packet → linked product/system/flow docs.
-- Use a planner subagent when intent, architecture, and roadmap interactions exceed the parent context budget. Send `SubagentBrief` with `role: "planner"`; require `SubagentResult` proposals only. Parent creates or updates tasks.
-- Use available bounded context tools for repo-wide inventory, graph checks, or diff summarization instead of loading broad raw output. ThinkCode is optional and governed by its own skill when installed.
+- Use `codewiki_state` first; treat status/graph/build revisions as the parent session's RAM anchors.
+- Expand raw knowledge files only when graph/build context recommends them, a decision needs exact source, or drift cannot be resolved from graph/context.
 - Use `codewiki_task` for task creation/update. Do not edit roadmap JSON manually.
 
 ## Workflow
 
-1. **Clarify intent**
-   - Restate outcome, users, constraints, non-goals.
-   - Ask one question at a time only when the answer is not discoverable.
+1. **Confirm feedback build**
+   - Restate accepted outcome, constraints, non-goals, and unresolved questions.
+   - If no accepted feedback build exists, create one or escalate to feedback.
 
-2. **Inspect current repo/wiki**
+2. **Inspect current CodeWiki state**
    - Read compact CodeWiki state first.
-   - Use targeted repo tools or an available bounded context tool for programmatic context creation when raw output would be noisy.
-   - Surface drift instead of silently choosing between code and wiki.
+   - Use targeted repo tools or bounded context tools for programmatic context creation when raw output would be noisy.
+   - Surface drift instead of silently choosing between code and knowledge.
 
 3. **Research if needed**
-   - Use research only when external/library/source evidence is needed to support intended knowledge.
+   - Use research only when external/library/source evidence is needed.
    - Route deeper research to `codewiki-research`.
 
 4. **Update knowledge**
-   - Patch owning `.wiki/knowledge/**` specs when intended behavior changes.
+   - Patch owning `.codewiki/kb/**` specs when intended behavior changes.
    - Preserve stable ownership seams; avoid doc sprawl.
 
-5. **Create/update roadmap tasks**
-   - Each task needs outcome, acceptance, non-goals, verification, spec links, and code paths when known.
+5. **Create/update roadmap task packs**
+   - Each task needs outcome, acceptance, non-goals, validation expectations, spec links, and code paths when known.
    - Prefer thin vertical slices that are independently verifiable.
    - Mark human decision gates explicitly.
 
+6. **Emit documentation build**
+   - Record changed knowledge paths, task-pack changes, alignment checks, and deferred requirements under `.codewiki/builds/documentation/**` when useful.
+
+7. **Run documentation validation**
+   - Check feedback_build -> knowledge -> roadmap/task-pack vertical alignment.
+   - Check horizontal coherence between knowledge docs and between roadmap tasks.
+
 ## Planner subagent contract
 
-Input: `SubagentBrief` with `role: "planner"`, user intent, relevant views/specs, current roadmap queue, and constraints.
+Input: `SubagentBrief` with `role: "planner"`, accepted feedback build, relevant graph/specs, current roadmap queue, and constraints.
 
-Output: `SubagentResult` with `verdict: "pass" | "fail" | "block"`, compact findings, issues, and `proposals` of kind `knowledge_patch`, `task_delta`, or `follow_up`. Planner workers never write canonical `.wiki` files directly.
+Output: `SubagentResult` with `verdict: "pass" | "fail" | "block"`, compact findings, issues, and `proposals` of kind `knowledge_patch`, `task_delta`, or `follow_up`. Planner workers never write canonical `.codewiki/` files directly.
 
 ## Verification
 
 After planning:
 
-- Run `codewiki_state` with refresh.
+- Run `codewiki_state` with refresh when generated state may be stale.
 - Confirm open tasks cover active delta.
-- Confirm no unmapped spec/code drift was introduced.
+- Confirm no unmapped knowledge/code drift was introduced.
+
+## Related docs
+
+- ../../.codewiki/kb/system/v2-operating-model.md

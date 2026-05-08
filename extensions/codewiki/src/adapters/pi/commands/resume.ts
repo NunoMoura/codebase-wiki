@@ -15,6 +15,7 @@ import {
     maybeReadRoadmapState, 
     maybeReadGraph,
     maybeReadTaskContext,
+    maybeReadStatusState,
     rebuildAndSummarize,
     runRebuild
 } from "../../../core/state";
@@ -79,6 +80,10 @@ async function runResumeCommand(
 	const project = await resolveCommandProject(ctx, pathArg, commandName);
 	const summary = await rebuildAndSummarize(project);
 	const graph = await maybeReadGraph(project.graphPath);
+	const statusState = await maybeReadStatusState(project.statusStatePath);
+	const persistedFocusTaskId = requestedTaskId
+		? null
+		: String(statusState?.resume?.task_id || statusState?.roadmap?.focused_task_id || "").trim() || null;
 	const roadmap = await readRoadmapFile(
 		resolve(project.root, project.roadmapPath),
 	);
@@ -86,6 +91,7 @@ async function runResumeCommand(
 		roadmap,
 		currentTaskLink(ctx),
 		requestedTaskId,
+		persistedFocusTaskId,
 	);
 	if (!task) {
 		ctx.ui.notify(
@@ -119,6 +125,7 @@ async function runResumeCommand(
 		roadmap,
 		currentTaskLink(ctx),
 		requestedTaskId,
+		persistedFocusTaskId,
 		resumedTask,
 	);
 	const action: TaskSessionAction = "progress";
@@ -208,6 +215,7 @@ function resolveImplementationTask(
 	roadmap: RoadmapFile,
 	activeLink: TaskSessionLinkRecord | null,
 	requestedTaskId: string | null,
+	persistedFocusTaskId: string | null = null,
 ): RoadmapTaskRecord | null {
 	const ordered = roadmap.order
 		.map((taskId) => roadmap.tasks[taskId])
@@ -219,9 +227,18 @@ function resolveImplementationTask(
 		activeTask && isActiveLoopRoadmapStatus(activeTask.status)
 			? activeTask
 			: null;
+	const persistedTask = persistedFocusTaskId
+		? resolveRoadmapTask(roadmap, persistedFocusTaskId)
+		: null;
+	const persistedActiveLoopTask =
+		persistedTask && isActiveLoopRoadmapStatus(persistedTask.status)
+			? persistedTask
+			: null;
+	const orderedActiveLoopTask = ordered.find((task) =>
+		isActiveLoopRoadmapStatus(task.status),
+	);
 	const activeWorkTask =
-		linkedActiveLoopTask ??
-		ordered.find((task) => isActiveLoopRoadmapStatus(task.status));
+		linkedActiveLoopTask ?? persistedActiveLoopTask ?? orderedActiveLoopTask;
 
 	if (requestedTaskId) {
 		const requestedTask = resolveRoadmapTask(roadmap, requestedTaskId);
@@ -253,6 +270,7 @@ function describeResumeSelection(
 	roadmap: RoadmapFile,
 	activeLink: TaskSessionLinkRecord | null,
 	requestedTaskId: string | null,
+	persistedFocusTaskId: string | null,
 	task: RoadmapTaskRecord,
 ): string {
 	if (requestedTaskId) return `User requested ${task.id} explicitly.`;
@@ -269,6 +287,11 @@ function describeResumeSelection(
 		return hasOtherTodo
 			? `Continuing session-focused ${task.status} work before opening next todo task.`
 			: `Continuing session-focused ${task.status} work.`;
+	}
+	if (persistedFocusTaskId === task.id && isActiveLoopRoadmapStatus(task.status)) {
+		return hasOtherTodo
+			? `Continuing persisted ${task.status} focus before opening next todo task.`
+			: `Continuing persisted ${task.status} focus.`;
 	}
 	if (isActiveLoopRoadmapStatus(task.status)) {
 		return hasOtherTodo

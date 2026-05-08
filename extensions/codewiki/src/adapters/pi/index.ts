@@ -1,16 +1,18 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import type { ActiveStatusPanel } from "../../core/types";
 import { registerBootstrapFeatures } from "../../../bootstrap";
-import { codewikiHeartbeatToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema } from "../../core/schemas";
+import { codewikiBuildToolInputSchema, codewikiHeartbeatToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "../../core/schemas";
 import { registerConfigCommand } from "./commands/config";
 import { registerResumeCommand } from "./commands/resume";
 import { registerStatusCommand } from "./commands/status";
 import { currentTaskLink } from "../../core/session";
 import { readRoadmapTask } from "../../core/roadmap";
 import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../core/project";
+import { runRebuild } from "../../core/state";
 import { executeCodewikiHeartbeat } from "./tools/heartbeat";
 import { executeCodewikiSession } from "./tools/session";
 import { registerCodewikiStateTool } from "./tools/state";
+import { writeBuild, writeValidationReport } from "../../core/builds";
 import { executeCodewikiTask } from "./tools/task";
 import {
 	activeStatusPanelGlobal,
@@ -83,7 +85,7 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 				});
 				if (!resolved) {
 					ctx.ui.notify(
-						`No codewiki project resolved. Use /${COMMAND_PREFIX}-bootstrap first or work inside a repo with .wiki/config.json.`,
+						`No codewiki project resolved. Use /${COMMAND_PREFIX}-bootstrap first or work inside a repo with .codewiki/config.json.`,
 						"warning",
 					);
 					return;
@@ -118,6 +120,63 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 	});
 
 	registerCodewikiStateTool(pi);
+
+	pi.registerTool({
+		name: "codewiki_build",
+		label: "Codewiki Build",
+		description:
+			"Create transient compiler build artifacts (feedback_build, documentation_build, implementation_build) with lifecycle metadata.",
+		promptSnippet:
+			"Write accepted compiler handoff builds with lifecycle metadata",
+		promptGuidelines: [
+			"Use this after the user accepts feedback-loop decisions (kind='feedback') or when knowledge changes must become a documentation build (kind='documentation') or when implementation evidence must be captured (kind='implementation').",
+			"Builds are transient payloads, not long-term truth; canonical truth belongs in knowledge, roadmap, tests, and code.",
+			"Use kind='feedback' for accepted decisions. Use kind='documentation' when .codewiki/kb/ or roadmap tasks change. Use kind='implementation' to record test/code/check evidence for a task.",
+		],
+		parameters: codewikiBuildToolInputSchema,
+		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
+			const project = await resolveToolProject(
+				ctx.cwd,
+				params.repoPath,
+				"codewiki_build",
+			);
+			const result = await writeBuild(project, params as any);
+			if ((params as any).refresh ?? true) await runRebuild(project);
+			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
+			return {
+				content: [{ type: "text", text: `codewiki build: wrote ${result.path}` }],
+				details: result,
+			};
+		},
+	} as any);
+
+	pi.registerTool({
+		name: "codewiki_validation",
+		label: "Codewiki Validation",
+		description:
+			"Write a validation report (pass, fail, or block) for a compiler handoff or task close.",
+		promptSnippet:
+			"Write validation gateway reports with verdict and rationale",
+		promptGuidelines: [
+			"Use after running a validation gateway. Passing validation can be transient; fail/block/policy-required reports should persist under .codewiki/validation/.",
+			"Profile must match a known validation gateway profile: feedback, documentation, implementation, task-close, drift-audit, or graph-audit.",
+		],
+		parameters: codewikiValidationReportSchema,
+		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
+			const project = await resolveToolProject(
+				ctx.cwd,
+				params.repoPath,
+				"codewiki_validation",
+			);
+			const result = await writeValidationReport(project, params as any);
+			if ((params as any).refresh ?? true) await runRebuild(project);
+			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
+			return {
+				content: [{ type: "text", text: `codewiki validation: wrote ${result.path}` }],
+				details: result,
+			};
+		},
+	} as any);
 
 	pi.registerTool({
 		name: "codewiki_task",

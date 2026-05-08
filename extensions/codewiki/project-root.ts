@@ -1,7 +1,7 @@
 import { access, readdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
-export const PREFERRED_WIKI_CONFIG_RELATIVE_PATH = ".wiki/config.json";
+export const PREFERRED_WIKI_CONFIG_RELATIVE_PATH = ".codewiki/config.json";
 export const WIKI_CONFIG_RELATIVE_PATHS = [
 	PREFERRED_WIKI_CONFIG_RELATIVE_PATH,
 ] as const;
@@ -50,7 +50,7 @@ export async function findWikiRootsBelow(
 			return;
 		}
 
-		const hasWikiDir = entries.some((e) => e.name === ".wiki" && e.isDirectory());
+		const hasWikiDir = entries.some((e) => e.name === ".codewiki" && e.isDirectory());
 		if (hasWikiDir && await hasAnyPath(dir, WIKI_CONFIG_RELATIVE_PATHS)) {
 			roots.push(dir);
 			return;
@@ -78,7 +78,7 @@ export async function requireWikiRoot(startDir: string): Promise<string> {
 		[
 			`No ${WIKI_CONFIG_RELATIVE_PATHS.join(" or ")} found from ${startDir} upward.`,
 			"codewiki loads globally, but each command targets a repo-local wiki.",
-			"Next steps: cd into target repo, pass an explicit repo path to the wiki command, or run /wiki-bootstrap at the repo root if the repo has no wiki yet.",
+			"Next steps: cd into target repo, pass an explicit repo path to the codewiki command, or run /codewiki-bootstrap at the repo root if the repo has no codewiki yet.",
 		].join(" "),
 	);
 }
