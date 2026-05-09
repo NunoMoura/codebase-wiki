@@ -12,7 +12,7 @@ import { runRebuild } from "../../core/state";
 import { executeCodewikiHeartbeat } from "./tools/heartbeat";
 import { executeCodewikiSession } from "./tools/session";
 import { registerCodewikiStateTool } from "./tools/state";
-import { writeBuild, writeValidationReport } from "../../core/builds";
+import { writeBuild, writeValidationReport } from "../../application/builds";
 import { executeCodewikiTask } from "./tools/task";
 import {
 	activeStatusPanelGlobal,
