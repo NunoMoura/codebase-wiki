@@ -12,32 +12,7 @@ import {
 	clearSessionFocus,
 	recordSessionTaskAction,
 } from "../../../application/session";
-import { readFile, writeFile, appendFile } from "node:fs/promises";
-
-function piSessionPorts(pi: ExtensionAPI, ctx: ExtensionContext) {
-	return {
-		fileStore: {
-			readJson: async (path: string) => JSON.parse(await readFile(path, "utf8")),
-			maybeReadJson: async (path: string) => {
-				try { return JSON.parse(await readFile(path, "utf8")); } catch { return null; }
-			},
-			writeJson: async (path: string, data: unknown) => writeFile(path, JSON.stringify(data, null, 2), "utf8"),
-			appendJsonl: async (path: string, record: unknown) => appendFile(path, JSON.stringify(record) + "\n", "utf8"),
-		},
-		runtime: {
-			setSessionName: (name: string) => pi.setSessionName(name),
-			appendEntry: (type: string, data: unknown) => pi.appendEntry(type, data),
-		},
-		sessionStore: {
-			getCurrentSessionId: () => ctx.sessionManager.getSessionId(),
-			getSessionBranch: () => ctx.sessionManager.getBranch(),
-		},
-		notifier: {
-			notify: (message: string, level: "info" | "warning" | "error") => ctx.ui.setStatus("codewiki-session", `${level}: ${message}`),
-			setStatus: (key: string, value: string | undefined) => ctx.ui.setStatus(key, value),
-		},
-	};
-}
+import { piSessionPorts } from "../session";
 
 /**
  * Implementation of the codewiki_session tool.

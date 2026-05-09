@@ -4,6 +4,7 @@ import type {
 } from "../../../core/types";
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
 import { planHeartbeat } from "../../../application/heartbeat";
+import { piSessionStore } from "../session";
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 
 /**
@@ -59,12 +60,6 @@ function piRebuildRunner() {
 	};
 }
 
-function piSessionStore(ctx: ExtensionContext) {
-	return {
-		getCurrentSessionId: () => ctx.sessionManager?.getSessionId?.() ?? null,
-		getSessionBranch: () => ctx.sessionManager?.getBranch?.() ?? null,
-	};
-}
 
 function buildThinkCodeContextPlan(
 	mode: string,

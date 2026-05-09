@@ -85,7 +85,6 @@ export async function maybeLoadProject(
 	ctxOrPath: CodewikiContextPort | string,
 	files: CodewikiFileStorePort = defaultFileStore(),
 ): Promise<WikiProject | null> {
-	const { currentTaskLink } = await import("./session");
 	let wikiRoot: string | null = null;
 	if (typeof ctxOrPath === "string") {
 		wikiRoot = ctxOrPath;
@@ -93,14 +92,7 @@ export async function maybeLoadProject(
 		wikiRoot = await findWikiRoot(ctxOrPath, files);
 	}
 	if (!wikiRoot) return null;
-	const project = await loadProject(wikiRoot, files);
-	if (typeof ctxOrPath !== "string") {
-		const activeTask = currentTaskLink(ctxOrPath);
-		if (activeTask) {
-			// logic to handle active task if needed
-		}
-	}
-	return project;
+	return loadProject(wikiRoot, files);
 }
 
 /**

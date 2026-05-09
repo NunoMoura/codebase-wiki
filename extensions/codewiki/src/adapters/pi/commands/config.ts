@@ -23,7 +23,7 @@ import {
 	STATUS_DOCK_DENSITY_VALUES,
     type StatusDockMode,
 } from "../../../core/types";
-import { currentTaskLink } from "../../../core/session";
+import { currentTaskLink } from "../session";
 import { maybeReadStatusState } from "../../../core/state";
 import {
     formatStatusConfigSummary,

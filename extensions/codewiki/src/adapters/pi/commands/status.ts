@@ -14,7 +14,7 @@ import {
 	refreshStatusDock,
     activeStatusPanelGlobal,
 } from "../ui/manager";
-import { currentTaskLink } from "../../../core/session";
+import { currentTaskLink } from "../session";
 import { maybeReadStatusState, maybeReadRoadmapState } from "../../../core/state";
 import { maybeReadJson } from "../../../core/utils";
 import type { LintReport } from "../../../core/types";

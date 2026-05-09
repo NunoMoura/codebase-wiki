@@ -31,10 +31,8 @@ import {
     isClosedRoadmapStatus,
     isActiveLoopRoadmapStatus,
 } from "../../../core/roadmap";
-import { 
-    currentTaskLink, 
-    linkTaskSession 
-} from "../../../core/session";
+import { currentTaskLink, piSessionPorts } from "../session";
+import { recordSessionTaskAction } from "../../../application/session";
 import { 
     splitCommandArgs, 
     joinCommandArgs,
@@ -130,12 +128,12 @@ async function runResumeCommand(
 	);
 	const action: TaskSessionAction = "progress";
 	const sessionSummary = `Resumed roadmap work on ${resumedTask.id} through /${commandName}.`;
-	await linkTaskSession(pi, project, ctx, {
+	await recordSessionTaskAction(project, {
 		taskId: resumedTask.id,
 		action,
 		summary: sessionSummary,
 		setSessionName: false,
-	});
+	}, piSessionPorts(pi, ctx));
 	const activeLink: TaskSessionLinkRecord = {
 		taskId: resumedTask.id,
 		action,

@@ -90,7 +90,7 @@ import {
     isTaskBlocked,
     taskBoardColumn
 } from "../../../core/roadmap";
-import { currentTaskLink, setTaskSessionStatusText } from "../../../core/session";
+import { currentTaskLink, setTaskSessionStatusText } from "../session";
 import { maybeReadStatusState, maybeReadRoadmapState } from "../../../core/state";
 import { matchesKey, truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
 import { taskIdCandidates } from "../../../core/task-id";
@@ -427,7 +427,7 @@ export async function applyConfigValueChange(
 
 	const resolved = await resolveStatusDockProject(ctx);
 	if (resolved) {
-		const { currentTaskLink } = await import("../../../core/session");
+		const { currentTaskLink } = await import("../session");
 		await refreshStatusDock(resolved.project, ctx, currentTaskLink(ctx), resolved);
 	} else {
 		clearStatusDock(ctx);

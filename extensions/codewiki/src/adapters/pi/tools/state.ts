@@ -10,7 +10,7 @@ import type {
 import { codewikiStateToolInputSchema } from "../../../core/schemas";
 import { readCodewikiState } from "../../../application/state";
 import { resolveToolProject } from "../../../core/project";
-import { findLatestTaskSessionLink } from "../../../core/session";
+import { currentTaskLink, piSessionStore } from "../session";
 import { refreshStatusDock } from "../ui/manager";
 
 /**
@@ -44,7 +44,7 @@ export function registerCodewikiStateTool(pi: any) {
 				rebuildRunner: piRebuildRunner(),
 				sessionStore: piSessionStore(ctx),
 			});
-			await refreshStatusDock(project, ctx, findLatestTaskSessionLink(ctx.sessionManager?.getBranch?.()));
+			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
 			return {
 				content: [
 					{ type: "text", text: formatCodewikiStateSummary(project, result) },
@@ -79,12 +79,6 @@ function piRebuildRunner() {
 	};
 }
 
-function piSessionStore(ctx: ExtensionContext) {
-	return {
-		getCurrentSessionId: () => ctx.sessionManager?.getSessionId?.() ?? null,
-		getSessionBranch: () => ctx.sessionManager?.getBranch?.() ?? null,
-	};
-}
 
 export function formatCodewikiStateSummary(
 	project: WikiProject,

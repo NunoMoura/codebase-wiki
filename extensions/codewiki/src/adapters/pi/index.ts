@@ -5,7 +5,7 @@ import { codewikiBuildToolInputSchema, codewikiHeartbeatToolInputSchema, codewik
 import { registerConfigCommand } from "./commands/config";
 import { registerResumeCommand } from "./commands/resume";
 import { registerStatusCommand } from "./commands/status";
-import { currentTaskLink } from "../../core/session";
+import { currentTaskLink } from "./session";
 import { readRoadmapTask } from "../../core/roadmap";
 import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../core/project";
 import { runRebuild } from "../../core/state";
