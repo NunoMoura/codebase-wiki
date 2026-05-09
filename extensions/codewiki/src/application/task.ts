@@ -5,7 +5,7 @@
  * Orchestrates core/roadmap.ts domain logic behind port interfaces.
  */
 import type { WikiProject, RoadmapTaskRecord, RoadmapTaskInput, CodewikiTaskPatchInput, CodewikiTaskEvidenceInput, RoadmapTaskUpdateInput, RoadmapStatus } from "../domain/shared/types";
-import { appendRoadmapTasks, updateRoadmapTask, appendCodewikiTaskEvidence, readRoadmapTask, maybeRunAutomaticTaskVerifier, hasCodewikiTaskPatchChanges, buildRoadmapTaskUpdateFromCodewikiPatch, updateTaskLoop, hasRoadmapTaskUpdateFields, summarizeCodewikiTaskAction, type SemanticTaskVerifierRunner } from "../core/roadmap";
+import { appendRoadmapTasks, updateRoadmapTask, appendCodewikiTaskEvidence, readRoadmapTask, hasCodewikiTaskPatchChanges, buildRoadmapTaskUpdateFromCodewikiPatch, updateTaskLoop, hasRoadmapTaskUpdateFields, summarizeCodewikiTaskAction, type SemanticTaskVerifierRunner } from "../core/roadmap";
 import { maybeReadRoadmapState, roadmapApiTaskState, mapToolTaskStatusToRoadmapStatus, runRebuild } from "../core/state";
 import type { FileStore, RebuildRunner, MessageBus } from "./ports";
 
@@ -80,30 +80,10 @@ export async function closeCodewikiTask(
 	const task = await readRoadmapTask(project, taskId);
 	if (!task) throw new Error(`Roadmap task not found: ${taskId}`);
 
-	if (ports.runSemanticVerifier) {
-		const verifierResult = await maybeRunAutomaticTaskVerifier(
-			project,
-			task,
-			ports.runSemanticVerifier,
-			evidence,
-		);
-		if (verifierResult) {
-			if (verifierResult.verdict === "fail") {
-				return {
-					closed: false,
-					verification: verifierResult,
-					reason: "Task close blocked by automatic verifier (fail).",
-				};
-			}
-			if (verifierResult.verdict === "block") {
-				return {
-					closed: false,
-					verification: verifierResult,
-					reason: "Task close blocked by automatic verifier (block).",
-				};
-			}
-		}
-	}
+	// Deprecated automatic verifier removed during DDD refactor.
+	// The validation gateway now owns loop-exit and task-close decisions
+	// independently, not baked into the close path.
+	// See: .codewiki/kb/system/validation-gateway.md
 
 	// Close the task
 	await updateRoadmapTask(project, {
