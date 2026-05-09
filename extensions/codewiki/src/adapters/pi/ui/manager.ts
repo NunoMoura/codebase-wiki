@@ -37,7 +37,7 @@ import {
 import {
 	readStatusDockPrefs,
     resolveStatusDockPrefsPath,
-} from "../../../core/prefs";
+} from "../../../infrastructure/status-dock-prefs";
 import {
 	resolveStatusDockProject,
 	loadProject,
@@ -379,7 +379,7 @@ export async function applyConfigValueChange(
 	value: string,
 	ctx: ExtensionCommandContext | ExtensionContext,
 ): Promise<void> {
-    const { writeStatusDockPrefs } = await import("../../../core/prefs");
+    const { writeStatusDockPrefs } = await import("../../../infrastructure/status-dock-prefs");
 	const prefs = await readStatusDockPrefs();
 	if (kind === "summary-mode") {
 		const cleaned = value.replace(/^[◉◆○]\s*/, "").trim() as any;

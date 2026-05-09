@@ -7,8 +7,8 @@ import {
 	STATUS_DOCK_MODE_VALUES,
 	STATUS_DOCK_DENSITY_VALUES,
 } from "../domain/shared/types";
-import type { CodewikiFileStore } from "../infrastructure/file-store";
-import { nodeFileStore } from "../infrastructure/file-store";
+import type { CodewikiFileStore } from "./file-store";
+import { nodeFileStore } from "./file-store";
 
 export const STATUS_DOCK_PREFS_VERSION = 1;
 export const STATUS_DOCK_PREFS_ENV = "PI_CODEWIKI_STATUS_PREFS_PATH";

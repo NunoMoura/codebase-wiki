@@ -17,7 +17,7 @@ import {
 import {
 	readStatusDockPrefs,
 	writeStatusDockPrefs,
-} from "./prefs";
+} from "../infrastructure/status-dock-prefs";
 import { nodeFileStore } from "../infrastructure/file-store";
 
 export interface CodewikiUiPort {

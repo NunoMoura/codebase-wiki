@@ -70,7 +70,6 @@ const checks = [
 // visible as migration debt, and fail if new files are added there.
 const transitionalFileAllowlist = new Set([
 	"core/builds.ts",
-	"core/prefs.ts",
 	"core/project.ts",
 	"core/prompt.ts",
 	"core/roadmap.ts",

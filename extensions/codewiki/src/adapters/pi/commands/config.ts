@@ -10,7 +10,7 @@ import {
 import {
 	readStatusDockPrefs,
 	writeStatusDockPrefs,
-} from "../../../core/prefs";
+} from "../../../infrastructure/status-dock-prefs";
 import {
 	withUiErrorHandling,
 	openConfigPanel,
