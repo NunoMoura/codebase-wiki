@@ -17,9 +17,9 @@ import {
 	rebuildTargetPaths,
 	runRebuild as runApplicationRebuild,
 	runRebuildUnlocked as runApplicationRebuildUnlocked,
-} from "../application/rebuild";
-import type { RebuildRunner } from "../application/ports";
-export { rebuildTargetPaths } from "../application/rebuild";
+} from "./rebuild";
+import type { RebuildRunner } from "./ports";
+export { rebuildTargetPaths } from "./rebuild";
 import { TASK_PHASE_VALUES } from "../domain/shared/types"; // Assuming it's in types.ts
 
 

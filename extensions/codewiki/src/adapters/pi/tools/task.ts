@@ -32,7 +32,7 @@ import {
 	maybeReadGraph,
 	runRebuild,
 	maybeReadTaskContext,
-} from "../../../core/state";
+} from "../../../application/state-artifacts";
 import {
 	readRoadmapTask,
 	appendRoadmapTasks,

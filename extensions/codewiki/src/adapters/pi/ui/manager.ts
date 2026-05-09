@@ -94,7 +94,7 @@ import {
     taskIdCandidates
 } from "../../../core/roadmap";
 import { currentTaskLink, setTaskSessionStatusText } from "../session";
-import { maybeReadStatusState, maybeReadRoadmapState } from "../../../core/state";
+import { maybeReadStatusState, maybeReadRoadmapState } from "../../../application/state-artifacts";
 import { matchesKey, truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
 import { resolve, dirname, basename } from "node:path";
 import { readFileSync } from "node:fs";

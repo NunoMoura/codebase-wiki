@@ -173,7 +173,7 @@ export async function resolveStatusDockProject(
 	ctx: CodewikiContextPort,
 	options?: { allowWhenOff?: boolean },
 ): Promise<ResolvedStatusDockProject | null> {
-	const { maybeReadStatusState } = await import("../core/state");
+	const { maybeReadStatusState } = await import("./state-artifacts");
 	const prefs = await readStatusDockPrefs();
 	if (prefs.mode === "off" && !options?.allowWhenOff) return null;
 	const localProject = await maybeLoadProject(ctx.cwd);

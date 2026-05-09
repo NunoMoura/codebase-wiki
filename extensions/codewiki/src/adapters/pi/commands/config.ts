@@ -24,7 +24,7 @@ import {
     type StatusDockMode,
 } from "../../../domain/shared/types";
 import { currentTaskLink } from "../session";
-import { maybeReadStatusState } from "../../../core/state";
+import { maybeReadStatusState } from "../../../application/state-artifacts";
 import {
     formatStatusConfigSummary,
 } from "../ui/theme";

@@ -8,7 +8,7 @@ import { registerStatusCommand } from "./commands/status";
 import { currentTaskLink } from "./session";
 import { readRoadmapTask } from "../../core/roadmap";
 import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project";
-import { runRebuild } from "../../core/state";
+import { runRebuild } from "../../application/state-artifacts";
 import { executeCodewikiHeartbeat } from "./tools/heartbeat";
 import { executeCodewikiSession } from "./tools/session";
 import { registerCodewikiStateTool } from "./tools/state";

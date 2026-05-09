@@ -15,7 +15,7 @@ import {
     activeStatusPanelGlobal,
 } from "../ui/manager";
 import { currentTaskLink } from "../session";
-import { maybeReadStatusState, maybeReadRoadmapState } from "../../../core/state";
+import { maybeReadStatusState, maybeReadRoadmapState } from "../../../application/state-artifacts";
 import { maybeReadJson } from "../../../infrastructure/filesystem";
 import type { LintReport } from "../../../domain/shared/types";
 
