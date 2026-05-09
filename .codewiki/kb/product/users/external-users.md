@@ -2,10 +2,13 @@
 id: spec.product.users.external-users
 title: Future External Users
 state: active
-summary: Future humans, agents, and integrations that may consume CodeWiki through non-current access paths.
+summary: Future humans, agents, and integrations that may consume CodeWiki through
+  non-current access paths.
 owners:
-  - product
-updated: "2026-05-09"
+- product
+updated: '2026-05-09'
+code_paths:
+- skills
 ---
 
 # Future External Users

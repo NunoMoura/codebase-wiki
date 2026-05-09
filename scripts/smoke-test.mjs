@@ -1338,10 +1338,11 @@ async function main() {
 			26,
 			`Expected 26 skipped starter files, got ${second.skipped.length}`,
 		);
+		const nonStarterIssues = lint.issues.filter((i) => i.kind !== "unscoped-doc");
 		assert.equal(
-			lint.issues.length,
+			nonStarterIssues.length,
 			0,
-			`Expected zero lint issues, got ${lint.issues.length}: ${JSON.stringify(lint.issues)}`,
+			`Expected zero lint issues (excluding unscoped-doc starter warnings), got ${nonStarterIssues.length}: ${JSON.stringify(nonStarterIssues)}`,
 		);
 		assert.equal(config.views_root, ".codewiki/views");
 		assert.equal(statusView.version, statusState.version);
@@ -1724,9 +1725,10 @@ async function main() {
 			2,
 			"Roadmap state should use session-free v2 contract",
 		);
+		const expectedHealthColor = lint.issues.every((i) => i.kind === "unscoped-doc") ? "yellow" : "green";
 		assert.equal(
 			roadmapState.health.color,
-			"green",
+			expectedHealthColor,
 			"Roadmap state should embed deterministic lint health",
 		);
 		assert.equal(
@@ -1773,7 +1775,7 @@ async function main() {
 		);
 		assert.equal(
 			statusState.health.color,
-			"green",
+			expectedHealthColor,
 			"Status state should carry deterministic health color",
 		);
 		assert.ok(

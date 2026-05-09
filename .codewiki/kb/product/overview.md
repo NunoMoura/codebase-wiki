@@ -4,8 +4,10 @@ title: Product
 state: active
 summary: Product intent and navigation for CodeWiki's users, stories, and visual UIs.
 owners:
-  - product
-updated: "2026-05-09"
+- product
+updated: '2026-05-09'
+code_paths:
+- .codewiki/kb/product
 ---
 
 # Product

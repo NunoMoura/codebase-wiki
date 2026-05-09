@@ -2,10 +2,14 @@
 id: spec.product.users.maintainers
 title: Maintainers
 state: active
-summary: Human maintainers who use CodeWiki to keep project intent, work state, and evidence trustworthy.
+summary: Human maintainers who use CodeWiki to keep project intent, work state, and
+  evidence trustworthy.
 owners:
-  - product
-updated: "2026-05-09"
+- product
+updated: '2026-05-09'
+code_paths:
+- scripts/smoke-test.mjs
+- scripts/check-architecture.mjs
 ---
 
 # Maintainers

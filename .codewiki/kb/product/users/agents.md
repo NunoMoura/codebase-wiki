@@ -2,10 +2,14 @@
 id: spec.product.users.agents
 title: Agents and Subagents
 state: active
-summary: AI agents that use CodeWiki as persistent project memory and gated workflow state across harness adapters.
+summary: AI agents that use CodeWiki as persistent project memory and gated workflow
+  state across harness adapters.
 owners:
-  - product
-updated: "2026-05-09"
+- product
+updated: '2026-05-09'
+code_paths:
+- skills
+- extensions/codewiki
 ---
 
 # Agents and Subagents

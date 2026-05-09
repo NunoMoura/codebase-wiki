@@ -15,6 +15,7 @@ export interface ParsedDoc {
 	owners: string[];
 	tags: string[];
 	code_paths: string[];
+	spec_paths: string[];
 	doc_type: string;
 	links: string[];
 }
@@ -113,6 +114,7 @@ export function parseDoc(repoRoot: string, project: WikiProject, absolutePath: s
 		owners: Array.isArray(frontmatter.owners) ? frontmatter.owners : [],
 		tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : [],
 		code_paths: Array.isArray(frontmatter.code_paths) ? frontmatter.code_paths : [],
+		spec_paths: Array.isArray(frontmatter.spec_paths) ? frontmatter.spec_paths : [],
 		doc_type: docType,
 		links,
 	};

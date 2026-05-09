@@ -2,10 +2,14 @@
 id: spec.product.stories.automation
 title: Use Gated Agency
 state: active
-summary: CodeWiki should let agents advance roadmap work automatically inside explicit user-visible gates.
+summary: CodeWiki should let agents advance roadmap work automatically inside explicit
+  user-visible gates.
 owners:
-  - product
-updated: "2026-05-09"
+- product
+updated: '2026-05-09'
+code_paths:
+- skills/codewiki-task/SKILL.md
+- skills/codewiki-plan/SKILL.md
 ---
 
 # Use Gated Agency

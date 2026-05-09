@@ -2,10 +2,13 @@
 id: spec.product.stories.intent
 title: Maintain Fresh Intent
 state: active
-summary: CodeWiki should capture, challenge, and preserve current project intent so future work starts from agreed solutions instead of chat archaeology.
+summary: CodeWiki should capture, challenge, and preserve current project intent so
+  future work starts from agreed solutions instead of chat archaeology.
 owners:
-  - product
-updated: "2026-05-09"
+- product
+updated: '2026-05-09'
+code_paths:
+- skills/codewiki-feedback/SKILL.md
 ---
 
 # Maintain Fresh Intent

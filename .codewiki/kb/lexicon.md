@@ -2,11 +2,14 @@
 id: spec.lexicon
 title: Lexicon
 state: active
-summary: Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, validation gateways, and generated graph views.
+summary: Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, validation
+  gateways, and generated graph views.
 owners:
-  - product
-  - architecture
-updated: "2026-05-09"
+- product
+- architecture
+updated: '2026-05-09'
+code_paths:
+- .codewiki/kb
 ---
 
 # Lexicon

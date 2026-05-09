@@ -2,10 +2,14 @@
 id: spec.product.stories.drift
 title: Prevent Horizontal and Vertical Drift
 state: active
-summary: CodeWiki should expose contradictions between intent, knowledge, work, graph state, builds, validation, tests, and code.
+summary: CodeWiki should expose contradictions between intent, knowledge, work, graph
+  state, builds, validation, tests, and code.
 owners:
-  - product
-updated: "2026-05-09"
+- product
+updated: '2026-05-09'
+code_paths:
+- skills/codewiki-view-audit/SKILL.md
+- skills/codewiki-architecture/SKILL.md
 ---
 
 # Prevent Horizontal and Vertical Drift

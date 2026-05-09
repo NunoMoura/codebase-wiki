@@ -2,11 +2,14 @@
 id: spec.product.uis.board
 title: Board UI
 state: active
-summary: Product expectations for visual roadmap work, gated agency, approvals, and next-action visibility.
+summary: Product expectations for visual roadmap work, gated agency, approvals, and
+  next-action visibility.
 owners:
-  - product
-  - design
-updated: "2026-05-09"
+- product
+- design
+updated: '2026-05-09'
+code_paths:
+- extensions/codewiki/src/adapters/pi/ui/manager.ts
 ---
 
 # Board UI

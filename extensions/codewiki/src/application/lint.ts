@@ -63,6 +63,11 @@ export function lintMarkdownDocs(repoRoot: string, docs: ParsedDoc[]): LintIssue
 			}
 		}
 
+		const scoped = (Array.isArray(doc.code_paths) ? doc.code_paths.length : 0) + (Array.isArray(doc.spec_paths) ? doc.spec_paths.length : 0);
+		if (scoped === 0) {
+			issues.push(createIssue("warning", "unscoped-doc", doc.path, "Knowledge doc has no code_paths or spec_paths; consider adding cross-layer mapping."));
+		}
+
 		if (!doc.body.includes("## Related docs")) {
 			issues.push(createIssue("warning", "missing-related-docs", doc.path, "Live doc should end with '## Related docs'."));
 		}

@@ -4,9 +4,11 @@ title: Graph Navigation UI
 state: active
 summary: Product expectations for visual graph-backed navigation.
 owners:
-  - product
-  - design
-updated: "2026-05-09"
+- product
+- design
+updated: '2026-05-09'
+code_paths:
+- extensions/codewiki/src/adapters/pi/ui/manager.ts
 ---
 
 # Graph Navigation UI

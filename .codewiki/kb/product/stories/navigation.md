@@ -2,10 +2,14 @@
 id: spec.product.stories.navigation
 title: Navigate With Low Token Cost
 state: active
-summary: Humans and agents should start from compact graph-backed state and expand only to exact needed context.
+summary: Humans and agents should start from compact graph-backed state and expand
+  only to exact needed context.
 owners:
-  - product
-updated: "2026-05-09"
+- product
+updated: '2026-05-09'
+code_paths:
+- skills/codewiki/SKILL.md
+- extensions/codewiki/src/adapters/pi/ui
 ---
 
 # Navigate With Low Token Cost

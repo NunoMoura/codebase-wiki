@@ -2,10 +2,14 @@
 id: spec.product.users.package-authors
 title: Extension and Workflow Authors
 state: active
-summary: Authors who extend CodeWiki through package resources, workflow policy, adapters, skills, or visual surfaces.
+summary: Authors who extend CodeWiki through package resources, workflow policy, adapters,
+  skills, or visual surfaces.
 owners:
-  - product
-updated: "2026-05-09"
+- product
+updated: '2026-05-09'
+code_paths:
+- extensions/codewiki/index.ts
+- package.json
 ---
 
 # Extension and Workflow Authors

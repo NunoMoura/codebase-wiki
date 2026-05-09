@@ -2,10 +2,14 @@
 id: spec.product.stories.sanitation
 title: Sanitize Historical State
 state: active
-summary: CodeWiki should keep hot state small while full history remains recoverable through git and harness session storage.
+summary: CodeWiki should keep hot state small while full history remains recoverable
+  through git and harness session storage.
 owners:
-  - product
-updated: "2026-05-09"
+- product
+updated: '2026-05-09'
+code_paths:
+- scripts/smoke-test.mjs
+- scripts/check-architecture.mjs
 ---
 
 # Sanitize Historical State
