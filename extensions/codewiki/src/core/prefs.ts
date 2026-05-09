@@ -7,7 +7,8 @@ import {
 	STATUS_DOCK_MODE_VALUES,
 	STATUS_DOCK_DENSITY_VALUES,
 } from "../domain/shared/types";
-import type { CodewikiFileStorePort } from "./ports";
+import type { CodewikiFileStore } from "../infrastructure/file-store";
+import { nodeFileStore } from "../infrastructure/file-store";
 
 export const STATUS_DOCK_PREFS_VERSION = 1;
 export const STATUS_DOCK_PREFS_ENV = "PI_CODEWIKI_STATUS_PREFS_PATH";
@@ -27,7 +28,7 @@ export function resolveStatusDockPrefsPath(): string {
 }
 
 export async function readStatusDockPrefs(
-	files: CodewikiFileStorePort = defaultFileStore(),
+	files: CodewikiFileStore = nodeFileStore(),
 ): Promise<StatusDockPrefs> {
 	const path = resolveStatusDockPrefsPath();
 	if (!(await files.pathExists(path))) return defaultStatusDockPrefs();
@@ -63,22 +64,11 @@ export async function readStatusDockPrefs(
 
 export async function writeStatusDockPrefs(
 	prefs: StatusDockPrefs,
-	files: CodewikiFileStorePort = defaultFileStore(),
+	files: CodewikiFileStore = nodeFileStore(),
 ): Promise<void> {
 	const path = resolveStatusDockPrefsPath();
 	await files.writeText(
 		path,
 		`${JSON.stringify({ ...prefs, version: STATUS_DOCK_PREFS_VERSION }, null, 2)}\n`,
 	);
-}
-
-function defaultFileStore(): CodewikiFileStorePort {
-	return {
-		readText: async (path) => (await import("../infrastructure/filesystem")).readText(path),
-		writeText: async (path, content) => (await import("../infrastructure/filesystem")).writeText(path, content),
-		readJson: async (path) => (await import("../infrastructure/filesystem")).readJson(path),
-		maybeReadJson: async (path) => (await import("../infrastructure/filesystem")).maybeReadJson(path),
-		pathExists: async (path) => (await import("../infrastructure/filesystem")).pathExists(path),
-		isDirectory: async (path) => (await import("../infrastructure/filesystem")).isDirectory(path),
-	};
 }

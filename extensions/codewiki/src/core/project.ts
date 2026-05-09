@@ -1,5 +1,5 @@
 import { resolve, dirname, basename } from "node:path";
-import type { CodewikiContextPort, CodewikiFileStorePort } from "./ports";
+import type { CodewikiFileStore } from "../infrastructure/file-store";
 import type {
 	WikiProject,
 	ResolvedStatusDockProject,
@@ -18,13 +18,25 @@ import {
 	readStatusDockPrefs,
 	writeStatusDockPrefs,
 } from "./prefs";
+import { nodeFileStore } from "../infrastructure/file-store";
+
+export interface CodewikiUiPort {
+	setStatus(key: string, value: string | undefined): void;
+	input?(prompt: string, initial?: string): Promise<string>;
+}
+
+export interface CodewikiContextPort {
+	cwd: string;
+	workspaceRoot?: string;
+	ui: CodewikiUiPort;
+}
 
 /**
  * Load a wiki project from a root directory.
  */
 export async function loadProject(
 	root: string,
-	files: CodewikiFileStorePort = defaultFileStore(),
+	files: CodewikiFileStore = nodeFileStore(),
 ): Promise<WikiProject> {
 	const configPath = resolve(root, ".codewiki/config.json");
 	let config: DocsConfig = {};
@@ -66,7 +78,7 @@ export async function loadProject(
  */
 export async function findWikiRoot(
 	ctx: CodewikiContextPort,
-	files: CodewikiFileStorePort = defaultFileStore(),
+	files: CodewikiFileStore = nodeFileStore(),
 ): Promise<string | null> {
 	let current = ctx.cwd || ctx.workspaceRoot;
 	if (!current) return null;
@@ -83,7 +95,7 @@ export async function findWikiRoot(
  */
 export async function maybeLoadProject(
 	ctxOrPath: CodewikiContextPort | string,
-	files: CodewikiFileStorePort = defaultFileStore(),
+	files: CodewikiFileStore = nodeFileStore(),
 ): Promise<WikiProject | null> {
 	let wikiRoot: string | null = null;
 	if (typeof ctxOrPath === "string") {
@@ -294,15 +306,4 @@ async function pickCommandProjectRoot(
 		candidates[0],
 	);
 	return picked || null;
-}
-
-function defaultFileStore(): CodewikiFileStorePort {
-	return {
-		readText: async (path) => (await import("../infrastructure/filesystem")).readText(path),
-		writeText: async (path, content) => (await import("../infrastructure/filesystem")).writeText(path, content),
-		readJson: async (path) => (await import("../infrastructure/filesystem")).readJson(path),
-		maybeReadJson: async (path) => (await import("../infrastructure/filesystem")).maybeReadJson(path),
-		pathExists: async (path) => (await import("../infrastructure/filesystem")).pathExists(path),
-		isDirectory: async (path) => (await import("../infrastructure/filesystem")).isDirectory(path),
-	};
 }
