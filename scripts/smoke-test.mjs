@@ -94,26 +94,26 @@ async function main() {
 	);
 	initTheme("dark", false);
 	process.env.PI_CODEWIKI_SKIP_VERIFIER = "1";
-	const roadmapCoreSource = readFileSync(resolve(repoRoot, "extensions", "codewiki", "src", "core", "roadmap.ts"), "utf8");
+	const roadmapSource = readFileSync(resolve(repoRoot, "extensions", "codewiki", "src", "application", "roadmap.ts"), "utf8");
 	const taskAdapterSource = readFileSync(resolve(repoRoot, "extensions", "codewiki", "src", "adapters", "pi", "tools", "task.ts"), "utf8");
-	assert.match(roadmapCoreSource, /TaskVerifierProfile = "task-close"/, "Verifier gateway should define task-close profile contract");
-	assert.match(roadmapCoreSource, /runTaskClosePreflight/, "Verifier gateway should run deterministic task-close preflight");
-	assert.match(roadmapCoreSource, /Malformed verifier JSON output/, "Malformed verifier output should block closure");
-	assert.match(roadmapCoreSource, /strict JSON matching verdict_schema/, "Verifier gateway should require strict JSON without surrounding diagnostics");
-	assert.match(roadmapCoreSource, /compactVerifierContext/, "Verifier gateway should compact context packs before semantic verification");
-	assert.match(roadmapCoreSource, /SemanticTaskVerifierRunner/, "Core verifier gateway should depend on an adapter-provided semantic verifier runner");
-	assert.doesNotMatch(roadmapCoreSource, /execFileAsync\(\s*"pi"/, "Core verifier gateway should not spawn the Pi CLI directly");
+	assert.match(roadmapSource, /TaskVerifierProfile = "task-close"/, "Verifier gateway should define task-close profile contract");
+	assert.match(roadmapSource, /runTaskClosePreflight/, "Verifier gateway should run deterministic task-close preflight");
+	assert.match(roadmapSource, /Malformed verifier JSON output/, "Malformed verifier output should block closure");
+	assert.match(roadmapSource, /strict JSON matching verdict_schema/, "Verifier gateway should require strict JSON without surrounding diagnostics");
+	assert.match(roadmapSource, /compactVerifierContext/, "Verifier gateway should compact context packs before semantic verification");
+	assert.match(roadmapSource, /SemanticTaskVerifierRunner/, "Verifier gateway should depend on an adapter-provided semantic verifier runner");
+	assert.doesNotMatch(roadmapSource, /execFileAsync\(\s*"pi"/, "Verifier gateway should not spawn the Pi CLI directly");
 	assert.doesNotMatch(taskAdapterSource, /createAgentSession/, "Pi task adapter should not run semantic verification from the close path");
 	assert.doesNotMatch(taskAdapterSource, /SessionManager\.inMemory/, "Pi task adapter should not create verifier sessions during task mutation");
 	assert.doesNotMatch(taskAdapterSource, /runSemanticVerifier/, "TaskMutationPorts should not carry deprecated verifier runners");
-	assert.match(roadmapCoreSource, /\["pass", "fail", "block"\]/, "Verifier gateway should cover pass/fail/block verdicts");
+	assert.match(roadmapSource, /\["pass", "fail", "block"\]/, "Verifier gateway should cover pass/fail/block verdicts");
 
-	const verifierParserStart = roadmapCoreSource.indexOf("function taskVerifierBlock");
-	const verifierParserEnd = roadmapCoreSource.indexOf("/**\n * Run the automatic task verifier", verifierParserStart);
+	const verifierParserStart = roadmapSource.indexOf("function taskVerifierBlock");
+	const verifierParserEnd = roadmapSource.indexOf("/**\n * Run the automatic task verifier", verifierParserStart);
 	assert.ok(verifierParserStart >= 0 && verifierParserEnd > verifierParserStart, "Verifier parser source block should be discoverable for golden tests");
 	const verifierParserTs = [
 		"type TaskVerifierResult = any;",
-		roadmapCoreSource.slice(verifierParserStart, verifierParserEnd),
+		roadmapSource.slice(verifierParserStart, verifierParserEnd),
 		"export { extractVerifierJson };",
 	].join("\n");
 	const ts = require("typescript");
