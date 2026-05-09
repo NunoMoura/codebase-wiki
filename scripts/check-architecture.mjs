@@ -71,7 +71,6 @@ const checks = [
 const transitionalFileAllowlist = new Set([
 	"engine/gateway.ts",
 	"engine/rebuild.ts",
-	"engine/state.ts",
 	"engine/transaction.ts",
 ]);
 

@@ -6,7 +6,7 @@ import { loadGateway } from "./transaction";
 import { WikiProject } from "../domain/shared/types";
 import { buildGraph } from "../application/graph";
 import { buildLintReport } from "../application/lint";
-import { buildRoadmapState, buildStatusState } from "./state";
+import { buildRoadmapState, buildStatusState } from "../application/state-builders";
 import { parseDoc, ParsedDoc } from "../infrastructure/doc-parser";
 
 export class CodewikiRebuilder {
