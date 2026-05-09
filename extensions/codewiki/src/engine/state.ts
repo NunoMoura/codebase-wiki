@@ -11,7 +11,7 @@ import {
 	StatusStateSpecRow,
 	WikiProject,
 } from "../domain/shared/types";
-import { ParsedDoc } from "./parser";
+import { ParsedDoc } from "../infrastructure/doc-parser";
 import { nowIso } from "../domain/shared/utils";
 
 export function sha256Text(text: string): string {

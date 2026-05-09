@@ -71,8 +71,6 @@ const checks = [
 const transitionalFileAllowlist = new Set([
 	"engine/gateway.ts",
 	"engine/graph.ts",
-	"engine/lint.ts",
-	"engine/parser.ts",
 	"engine/rebuild.ts",
 	"engine/state.ts",
 	"engine/transaction.ts",

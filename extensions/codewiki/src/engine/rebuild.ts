@@ -5,9 +5,9 @@ import { GitCache } from "../infrastructure/git-cache";
 import { loadGateway } from "./transaction";
 import { WikiProject } from "../domain/shared/types";
 import { buildGraph } from "./graph";
-import { buildLintReport } from "./lint";
+import { buildLintReport } from "../application/lint";
 import { buildRoadmapState, buildStatusState } from "./state";
-import { parseDoc, ParsedDoc } from "./parser";
+import { parseDoc, ParsedDoc } from "../infrastructure/doc-parser";
 
 export class CodewikiRebuilder {
 	private readonly repoRoot: string;
