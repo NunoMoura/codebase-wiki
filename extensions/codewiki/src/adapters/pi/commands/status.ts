@@ -16,8 +16,8 @@ import {
 } from "../ui/manager";
 import { currentTaskLink } from "../session";
 import { maybeReadStatusState, maybeReadRoadmapState } from "../../../core/state";
-import { maybeReadJson } from "../../../core/utils";
-import type { LintReport } from "../../../core/types";
+import { maybeReadJson } from "../../../infrastructure/filesystem";
+import type { LintReport } from "../../../domain/shared/types";
 
 /**
  * Register the wiki-status command.

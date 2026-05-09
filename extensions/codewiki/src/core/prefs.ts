@@ -6,7 +6,7 @@ import {
 	type StatusDockDensity,
 	STATUS_DOCK_MODE_VALUES,
 	STATUS_DOCK_DENSITY_VALUES,
-} from "./types";
+} from "../domain/shared/types";
 import type { CodewikiFileStorePort } from "./ports";
 
 export const STATUS_DOCK_PREFS_VERSION = 1;

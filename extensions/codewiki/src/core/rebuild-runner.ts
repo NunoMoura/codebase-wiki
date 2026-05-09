@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import type { WikiProject } from "./types";
+import type { WikiProject } from "../domain/shared/types";
 import { withLockedPaths } from "../../mutation-queue";
 
 export interface CoreRebuildRunner {

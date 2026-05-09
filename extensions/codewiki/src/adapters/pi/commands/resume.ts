@@ -37,7 +37,7 @@ import {
     splitCommandArgs, 
     joinCommandArgs,
     nowIso
-} from "../../../core/utils";
+} from "../../../domain/shared/utils";
 import { 
     normalizeTaskPhaseValue,
     phaseLabel,
@@ -51,7 +51,7 @@ import type {
     TaskSessionLinkRecord,
     RoadmapStatus,
     TaskSessionAction
-} from "../../../core/types";
+} from "../../../domain/shared/types";
 
 /**
  * Register the wiki-resume command.

@@ -2,8 +2,8 @@ import type {
 	TaskSessionAction,
 	TaskSessionLinkInput,
 	TaskSessionLinkRecord,
-} from "./types";
-import { nowIso, unique } from "./utils";
+} from "../domain/shared/types";
+import { nowIso, unique } from "../domain/shared/utils";
 
 const TASK_SESSION_LINK_CUSTOM_TYPE = "codewiki.task-link";
 

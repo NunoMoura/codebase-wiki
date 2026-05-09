@@ -15,7 +15,7 @@ import type {
 	StatusStateFile,
     RoadmapTaskRecord,
     StatusStateAgentRow,
-} from "../../../core/types";
+} from "../../../domain/shared/types";
 import { basename } from "node:path";
 import { padToWidth, truncatePlain } from "./text";
 

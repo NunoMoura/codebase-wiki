@@ -1,7 +1,7 @@
 import type {
     WikiProject,
     HeartbeatToolInput,
-} from "../../../core/types";
+} from "../../../domain/shared/types";
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
 import { planHeartbeat } from "../../../application/heartbeat";
 import { piSessionStore } from "../session";

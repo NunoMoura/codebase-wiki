@@ -1,5 +1,5 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import type { ActiveStatusPanel } from "../../core/types";
+import type { ActiveStatusPanel } from "../../domain/shared/types";
 import { registerBootstrapFeatures } from "../../../bootstrap";
 import { codewikiBuildToolInputSchema, codewikiHeartbeatToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "../../core/schemas";
 import { registerConfigCommand } from "./commands/config";

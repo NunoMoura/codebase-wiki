@@ -8,12 +8,12 @@ import type {
 	TaskSessionLinkRecord,
 	StatusDockPrefs,
 	StatusDockMode,
-} from "./types";
+} from "../domain/shared/types";
 import {
 	nowIso,
 	unique,
 	formatError,
-} from "./utils";
+} from "../domain/shared/utils";
 import {
 	readStatusDockPrefs,
 	writeStatusDockPrefs,

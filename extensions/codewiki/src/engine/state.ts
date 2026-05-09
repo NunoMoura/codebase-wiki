@@ -10,9 +10,9 @@ import {
 	StatusStateHeartbeatLane,
 	StatusStateSpecRow,
 	WikiProject,
-} from "../core/types";
+} from "../domain/shared/types";
 import { ParsedDoc } from "./parser";
-import { nowIso } from "../core/utils";
+import { nowIso } from "../domain/shared/utils";
 
 export function sha256Text(text: string): string {
 	return createHash("sha256").update(text).digest("hex");

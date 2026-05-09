@@ -80,8 +80,6 @@ const transitionalFileAllowlist = new Set([
 	"core/session.ts",
 	"core/state.ts",
 	"core/task-id.ts",
-	"core/types.ts",
-	"core/utils.ts",
 	"engine/gateway.ts",
 	"engine/git-cache.ts",
 	"engine/graph.ts",

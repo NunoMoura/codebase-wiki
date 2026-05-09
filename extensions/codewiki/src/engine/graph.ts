@@ -1,4 +1,4 @@
-import { GraphEdge, GraphFile, GraphNode, GraphViews, RoadmapTaskRecord, WikiProject } from "../core/types";
+import { GraphEdge, GraphFile, GraphNode, GraphViews, RoadmapTaskRecord, WikiProject } from "../domain/shared/types";
 import { GitAnchor, GitCache } from "./git-cache";
 import { ParsedDoc } from "./parser";
 

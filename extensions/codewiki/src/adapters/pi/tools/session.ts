@@ -5,8 +5,8 @@ import type {
 import type {
 	WikiProject,
 	CodewikiSessionToolInput,
-} from "../../../core/types";
-import { nowIso } from "../../../core/utils";
+} from "../../../domain/shared/types";
+import { nowIso } from "../../../domain/shared/utils";
 import {
 	getFocusedTaskLink,
 	clearSessionFocus,

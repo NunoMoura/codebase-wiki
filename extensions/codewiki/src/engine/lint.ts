@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { resolve, dirname, relative } from "node:path";
-import { LintIssue, LintReport, RoadmapTaskRecord, WikiProject } from "../core/types";
+import { LintIssue, LintReport, RoadmapTaskRecord, WikiProject } from "../domain/shared/types";
 import { ParsedDoc, extractLinks } from "./parser";
 
 const DEFAULT_REQUIRED_FIELDS = ["id", "title", "state", "summary", "owners", "updated"];

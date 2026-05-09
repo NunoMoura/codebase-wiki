@@ -7,7 +7,7 @@
 import type { WikiProject, TaskSessionLinkRecord, TaskSessionAction, RoadmapTaskRecord, TaskSessionLinkInput } from "../domain/shared/types";
 import { findLatestTaskSessionLink, normalizeTaskSessionLinkInput } from "../core/session";
 import { readRoadmapTask } from "../core/roadmap";
-import { unique } from "../core/utils";
+import { unique } from "../domain/shared/utils";
 import type { FileStore, SessionStore, UserNotifier } from "./ports";
 
 const TASK_SESSION_LINK_CUSTOM_TYPE = "codewiki.task-link";

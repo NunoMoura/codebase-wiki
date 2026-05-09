@@ -1,5 +1,5 @@
 import { resolve, basename } from "node:path";
-import { unique } from "./utils";
+import { unique } from "../domain/shared/utils";
 import type { 
     WikiProject, 
     GraphFile, 
@@ -9,7 +9,7 @@ import type {
     StatusScope,
     RoadmapStatus,
     RoadmapStateTaskSummary
-} from "./types";
+} from "../domain/shared/types";
 import { 
     taskBoardColumn, 
     isTaskBlocked, 

@@ -14,7 +14,7 @@ import type {
 	RoadmapStatus,
     RoadmapTaskUpdateFields,
     CodewikiTaskEvidenceInput,
-} from "../../../core/types";
+} from "../../../domain/shared/types";
 import { resolve, dirname } from "node:path";
 import { mkdir, writeFile, appendFile, readdir, readFile, stat } from "node:fs/promises";
 import { gzipSync } from "node:zlib";
@@ -26,7 +26,7 @@ import {
 	nowIso,
 	unique,
 	formatError,
-} from "../../../core/utils";
+} from "../../../domain/shared/utils";
 import {
 	maybeReadRoadmapState,
 	maybeReadGraph,

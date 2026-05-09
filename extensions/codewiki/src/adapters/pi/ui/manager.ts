@@ -33,7 +33,7 @@ import {
     type StatusDockDensity,
     type ArchitecturePanelComponent,
     type TaskSessionAction,
-} from "../../../core/types";
+} from "../../../domain/shared/types";
 import {
 	readStatusDockPrefs,
     resolveStatusDockPrefsPath,
@@ -48,10 +48,12 @@ import {
 	formatError,
 	cycleIndex,
     unique,
+} from "../../../domain/shared/utils";
+import {
     maybeReadJson,
     pathExists,
     maybeReadJsonSync,
-} from "../../../core/utils";
+} from "../../../infrastructure/filesystem";
 import {
     padToWidth,
     truncatePlain,
@@ -59,7 +61,7 @@ import {
 import {
 	STATUS_DOCK_MODE_VALUES,
 	STATUS_DOCK_DENSITY_VALUES,
-} from "../../../core/types";
+} from "../../../domain/shared/types";
 import {
 	configSectionTabs,
 	renderChoiceRow,

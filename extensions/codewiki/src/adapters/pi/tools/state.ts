@@ -1,7 +1,7 @@
 import type {
 	WikiProject,
 	CodewikiStateToolInput,
-} from "../../../core/types";
+} from "../../../domain/shared/types";
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 import type {
 	ExtensionAPI,

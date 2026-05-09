@@ -11,8 +11,8 @@ import type {
 	RoadmapStatus,
 	ToolTaskStatus,
 	RoadmapStateTaskSummary,
-} from "./types";
-import { maybeReadJson, readJson } from "./utils";
+} from "../domain/shared/types";
+import { maybeReadJson, readJson } from "../infrastructure/filesystem";
 import {
 	rebuildTargetPaths,
 	runRebuildWithRunner,
@@ -20,7 +20,7 @@ import {
 	type CoreRebuildRunner,
 } from "./rebuild-runner";
 export { rebuildTargetPaths } from "./rebuild-runner";
-import { TASK_PHASE_VALUES } from "./types"; // Assuming it's in types.ts
+import { TASK_PHASE_VALUES } from "../domain/shared/types"; // Assuming it's in types.ts
 
 
 /**

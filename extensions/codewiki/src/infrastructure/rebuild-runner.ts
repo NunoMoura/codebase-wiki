@@ -1,5 +1,5 @@
-import type { WikiProject } from "../core/types";
-import { formatError } from "../core/utils";
+import type { WikiProject } from "../domain/shared/types";
+import { formatError } from "../domain/shared/utils";
 
 export async function runConfiguredOrDefaultRebuild(
 	project: WikiProject,

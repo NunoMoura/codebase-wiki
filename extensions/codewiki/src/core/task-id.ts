@@ -1,4 +1,4 @@
-import { unique } from "./utils";
+import { unique } from "../domain/shared/utils";
 
 /**
  * Parse a task ID sequence number.

@@ -3,7 +3,7 @@ import { existsSync, readFileSync, readdirSync, statSync, writeFileSync, mkdirSy
 import { join, relative, resolve } from "node:path";
 import { GitCache } from "./git-cache";
 import { loadGateway } from "./transaction";
-import { WikiProject } from "../core/types";
+import { WikiProject } from "../domain/shared/types";
 import { buildGraph } from "./graph";
 import { buildLintReport } from "./lint";
 import { buildRoadmapState, buildStatusState } from "./state";

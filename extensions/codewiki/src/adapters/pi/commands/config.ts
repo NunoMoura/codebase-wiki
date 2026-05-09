@@ -22,13 +22,13 @@ import {
 	STATUS_DOCK_MODE_VALUES,
 	STATUS_DOCK_DENSITY_VALUES,
     type StatusDockMode,
-} from "../../../core/types";
+} from "../../../domain/shared/types";
 import { currentTaskLink } from "../session";
 import { maybeReadStatusState } from "../../../core/state";
 import {
     formatStatusConfigSummary,
 } from "../ui/theme";
-import { splitCommandArgs } from "../../../core/utils";
+import { splitCommandArgs } from "../../../domain/shared/utils";
 
 /**
  * Register the wiki-config command.
