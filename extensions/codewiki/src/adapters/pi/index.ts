@@ -7,7 +7,7 @@ import { registerResumeCommand } from "./commands/resume";
 import { registerStatusCommand } from "./commands/status";
 import { currentTaskLink } from "./session";
 import { readRoadmapTask } from "../../core/roadmap";
-import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../core/project";
+import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project";
 import { runRebuild } from "../../core/state";
 import { executeCodewikiHeartbeat } from "./tools/heartbeat";
 import { executeCodewikiSession } from "./tools/session";

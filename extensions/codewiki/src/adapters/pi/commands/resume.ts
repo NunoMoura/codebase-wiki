@@ -5,7 +5,7 @@ import type {
 } from "@mariozechner/pi-coding-agent";
 import {
 	resolveCommandProject,
-} from "../../../core/project";
+} from "../../../application/project";
 import {
 	withUiErrorHandling,
 	refreshStatusDock,

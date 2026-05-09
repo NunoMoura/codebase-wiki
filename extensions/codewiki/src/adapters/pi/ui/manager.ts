@@ -43,7 +43,7 @@ import {
 	loadProject,
 	maybeLoadProject,
     rememberStatusDockProject,
-} from "../../../core/project";
+} from "../../../application/project";
 import {
 	formatError,
 	cycleIndex,

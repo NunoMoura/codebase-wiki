@@ -5,7 +5,7 @@
  * Discovers or configures a CodeWiki project, optionally bootstrapping starter files.
  */
 import type { WikiProject } from "../domain/shared/types";
-import { resolveToolProject } from "../core/project";
+import { resolveToolProject } from "./project";
 import type { FileStore, ProjectResolver } from "./ports";
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve, join } from "node:path";

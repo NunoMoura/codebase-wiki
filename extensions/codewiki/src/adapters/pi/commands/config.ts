@@ -6,7 +6,7 @@ import {
 	resolveCommandProject,
 	resolveStatusDockProject,
 	rememberStatusDockProject,
-} from "../../../core/project";
+} from "../../../application/project";
 import {
 	readStatusDockPrefs,
 	writeStatusDockPrefs,

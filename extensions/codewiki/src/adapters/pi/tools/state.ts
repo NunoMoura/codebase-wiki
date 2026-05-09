@@ -9,7 +9,7 @@ import type {
 } from "@mariozechner/pi-coding-agent";
 import { codewikiStateToolInputSchema } from "../schemas";
 import { readCodewikiState } from "../../../application/state";
-import { resolveToolProject } from "../../../core/project";
+import { resolveToolProject } from "../../../application/project";
 import { currentTaskLink, piSessionStore } from "../session";
 import { refreshStatusDock } from "../ui/manager";
 

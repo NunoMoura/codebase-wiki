@@ -116,7 +116,7 @@ export async function appendTaskSessionEvent(
 	link: TaskSessionLinkRecord,
 	sessionId: string,
 ): Promise<void> {
-    const { appendProjectEvent } = await import("./roadmap");
+    const { appendProjectEvent } = await import("../core/roadmap");
 	await appendProjectEvent(project, {
 		ts: nowIso(),
 		kind: "roadmap_task_session_link",
@@ -173,7 +173,7 @@ export async function resolveStatusDockProject(
 	ctx: CodewikiContextPort,
 	options?: { allowWhenOff?: boolean },
 ): Promise<ResolvedStatusDockProject | null> {
-	const { maybeReadStatusState } = await import("./state");
+	const { maybeReadStatusState } = await import("../core/state");
 	const prefs = await readStatusDockPrefs();
 	if (prefs.mode === "off" && !options?.allowWhenOff) return null;
 	const localProject = await maybeLoadProject(ctx.cwd);
