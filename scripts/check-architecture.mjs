@@ -65,11 +65,9 @@ const checks = [
 	},
 ];
 
-// `core/**` and `engine/**` are transitional directories. Target v2 architecture
-// is domain/application/infrastructure/shared/adapters only. Keep current files
-// visible as migration debt, and fail if new files are added there.
-const transitionalFileAllowlist = new Set([
-]);
+// Target v2 architecture is domain/application/infrastructure/shared/adapters only.
+// `core/**` and `engine/**` are removed; fail if they reappear.
+const transitionalFileAllowlist = new Set([]);
 
 function walk(dir) {
 	const out = [];

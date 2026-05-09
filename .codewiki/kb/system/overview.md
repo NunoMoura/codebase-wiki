@@ -124,9 +124,9 @@ Rules:
 - `infrastructure/**` implements application ports and owns concrete side effects.
 - `adapters/**` translate harness APIs into application use cases and translate results back into harness-specific commands, tools, visual UI, protocols, or messages.
 - `shared/**` stays small and cannot own business semantics.
-- Transitional `core/**` and `engine/**` code should be migrated into the target layers or deleted.
+- `core/**` and `engine/**` must not exist in target source; former responsibilities now live under `domain/**`, `application/**`, `infrastructure/**`, and `adapters/**`.
 
-`scripts/check-architecture.mjs` must enforce the target boundaries during `npm test` once the refactor begins.
+`scripts/check-architecture.mjs` enforces target boundaries during `npm test`.
 
 ## Knowledge-base organization rule
 

@@ -132,13 +132,13 @@ Rules:
 - `infrastructure/**` implements application ports and owns concrete side effects.
 - `adapters/**` translate harness APIs into application use cases and translate results back into harness-specific commands, tools, visual UI, protocols, or messages.
 - `shared/**` stays small and cannot own business semantics.
-- Transitional `core/**` and `engine/**` code should be migrated into the target layers or deleted.
+- `core/**` and `engine/**` must not exist in the target implementation; former responsibilities now live under `domain/**`, `application/**`, `infrastructure/**`, and `adapters/**`.
 
 ## Current migration warning
 
-The current repository still contains transitional `core/**`, `engine/**`, and generated task shards. These are migration sources, not the target architecture.
+The repository no longer contains transitional `core/**` or `engine/**` source folders. Generated task shards remain runtime outputs, not target source architecture.
 
-Runtime checks must cover direct Node execution and package loading, not only TypeScript typechecking. Node 26 exposed an extensionless TypeScript import failure in the current rebuild path; the refactor must fix runtime loading and packaging boundaries.
+Runtime checks must cover direct Node execution and package loading, not only TypeScript typechecking.
 
 ## Related docs
 
