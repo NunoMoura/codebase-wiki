@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-09T19:53:58Z",
+  "updated": "2026-05-09T22:48:34Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -31,7 +31,6 @@
     "TASK-027",
     "TASK-28",
     "TASK-29",
-    "TASK-30",
     "TASK-31",
     "TASK-32",
     "TASK-033",
@@ -103,11 +102,7 @@
       "spec_paths": [
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "extensions/codewiki",
-        "skills",
-        "scripts/smoke-test.mjs"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "brownfield",
@@ -184,11 +179,7 @@
         ".codewiki/kb/product/overview.md",
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "scripts/codewiki-gateway.mjs",
-        "extensions/codewiki",
-        "README.md"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "think-code",
@@ -233,10 +224,7 @@
       "spec_paths": [
         ".codewiki/kb/product/overview.md"
       ],
-      "code_paths": [
-        "skills/codewiki/SKILL.md",
-        "package.json"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "skills",
@@ -280,10 +268,7 @@
         ".codewiki/kb/product/overview.md",
         ".codewiki/kb/product/uis/board.md"
       ],
-      "code_paths": [
-        "skills/codewiki-plan/SKILL.md",
-        "skills/codewiki/SKILL.md"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "outer-loop",
@@ -328,10 +313,7 @@
       "spec_paths": [
         ".codewiki/kb/product/uis/board.md"
       ],
-      "code_paths": [
-        "skills/codewiki-task/SKILL.md",
-        "skills/codewiki-verify/SKILL.md"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "inner-loop",
@@ -339,7 +321,7 @@
         "think-code"
       ],
       "goal": {
-        "outcome": "Each roadmap task has an automatic implement→verify loop grounded in task context, tests, and evidence.",
+        "outcome": "Each roadmap task has an automatic implement\u2192verify loop grounded in task context, tests, and evidence.",
         "acceptance": [
           "Task loop is documented as load task/context, create compact context with think-code when useful, implement, run local checks, automatically invoke fresh verification when ready, append evidence, then close/block/follow-up.",
           "Local verification and fresh-context verification have distinct responsibilities.",
@@ -359,7 +341,7 @@
       },
       "delta": {
         "desired": "Task execution is automatic, evidence-backed, and resumable from implementation through verification.",
-        "current": "Implement→verify guidance exists but is not formalized as an automatic focused inner loop skill.",
+        "current": "Implement\u2192verify guidance exists but is not formalized as an automatic focused inner loop skill.",
         "closure": "Add inner-loop skill/spec guidance and link it to CodeWiki task/session tools and automatic verifier stage."
       },
       "created": "2026-05-01",
@@ -375,10 +357,7 @@
       "spec_paths": [
         ".codewiki/kb/product/overview.md"
       ],
-      "code_paths": [
-        "skills/codewiki-research/SKILL.md",
-        "skills/codewiki-task/SKILL.md"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "research",
@@ -418,11 +397,7 @@
       "kind": "agent-workflow",
       "summary": "Design and implement an automatic verifier stage that spawns a read-only agent when task execution reaches verification, while retaining a manual command only as an override/debug entrypoint.",
       "spec_paths": [],
-      "code_paths": [
-        "extensions/codewiki/index.ts",
-        "skills/codewiki-verify/SKILL.md",
-        "scripts/smoke-test.mjs"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "verification",
@@ -469,9 +444,7 @@
       "spec_paths": [
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "skills/codewiki-architecture/SKILL.md"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "architecture",
@@ -555,11 +528,7 @@
         ".codewiki/config.json",
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/index.ts",
-        "scripts/codewiki-gateway.mjs",
-        "extensions/codewiki/src/engine/rebuild.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "projection-firewall",
@@ -603,11 +572,7 @@
       "spec_paths": [
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/src/engine/rebuild.ts",
-        "scripts/smoke-test.mjs"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "projection-firewall",
@@ -651,9 +616,7 @@
         ".codewiki/kb/product/overview.md",
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        ".codewiki/kb"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "v2",
@@ -697,11 +660,7 @@
       "spec_paths": [
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/templates.ts",
-        "extensions/codewiki/src/engine/rebuild.ts",
-        "extensions/codewiki/index.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "v2",
@@ -746,10 +705,7 @@
         ".codewiki/kb/product/uis/status-panel.md",
         ".codewiki/kb/lexicon.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/templates.ts",
-        "scripts/smoke-test.mjs"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "v2",
@@ -792,9 +748,7 @@
       "spec_paths": [
         ".codewiki/kb/product/uis/status-panel.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/index.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "v2",
@@ -837,10 +791,7 @@
       "spec_paths": [
         ".codewiki/kb/lexicon.md"
       ],
-      "code_paths": [
-        "skills",
-        "extensions/codewiki/index.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "v2",
@@ -881,9 +832,7 @@
       "kind": "architecture",
       "summary": "Define and generate the small, revisioned read models agents and UI consume for status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence.",
       "spec_paths": [],
-      "code_paths": [
-        "extensions/codewiki/src/engine/rebuild.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "view-schema",
@@ -924,11 +873,7 @@
       "kind": "architecture",
       "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
       "spec_paths": [],
-      "code_paths": [
-        "extensions/codewiki/src/engine/rebuild.ts",
-        "extensions/codewiki/templates.ts",
-        "scripts/smoke-test.mjs"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "architecture-manifest",
@@ -971,9 +916,7 @@
       "kind": "agent-workflow",
       "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
       "spec_paths": [],
-      "code_paths": [
-        "skills"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "subagent-workers",
@@ -1015,10 +958,7 @@
       "spec_paths": [
         ".codewiki/kb/product/stories/intent.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/index.ts",
-        "skills"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "heartbeat-loop",
@@ -1058,11 +998,7 @@
       "kind": "integration",
       "summary": "Use ThinkCode for ad hoc programmatic context creation, view validation, graph checks, and staged edits without making it CodeWiki's memory layer.",
       "spec_paths": [],
-      "code_paths": [
-        "extensions/codewiki/index.ts",
-        "scripts/codewiki-gateway.mjs",
-        "skills"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "thinkcode-query",
@@ -1102,11 +1038,7 @@
       "kind": "architecture",
       "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
       "spec_paths": [],
-      "code_paths": [
-        "extensions/codewiki/src/engine/rebuild.ts",
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/templates.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "sanitation-policy",
@@ -1148,10 +1080,7 @@
       "spec_paths": [
         "README.md"
       ],
-      "code_paths": [
-        "README.md",
-        "skills/codewiki/SKILL.md"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "read-model-language"
@@ -1190,10 +1119,7 @@
       "spec_paths": [
         ".codewiki/kb/lexicon.md"
       ],
-      "code_paths": [
-        "skills",
-        "extensions/codewiki/index.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "v2",
@@ -1235,11 +1161,7 @@
       "spec_paths": [
         ".codewiki/kb/product/uis/status-panel.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/src/engine/rebuild.ts",
-        "scripts/smoke-test.mjs"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "status-panel",
@@ -1284,16 +1206,7 @@
       "spec_paths": [
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "extensions/codewiki",
-        "extensions/codewiki/src/adapters/pi",
-        "extensions/codewiki/src/core",
-        "extensions/codewiki/src/engine",
-        "extensions/codewiki/src/infrastructure",
-        "scripts/smoke-test.mjs",
-        "scripts/check-architecture.mjs",
-        "tsconfig.json"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "architecture",
@@ -1338,16 +1251,7 @@
       "spec_paths": [
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "scripts/check-architecture.mjs",
-        "package.json",
-        "scripts/smoke-test.mjs",
-        "extensions/codewiki",
-        "extensions/codewiki/src/adapters/pi",
-        "extensions/codewiki/src/core",
-        "extensions/codewiki/src/domain",
-        "extensions/codewiki/src/infrastructure"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "architecture",
@@ -1381,63 +1285,6 @@
       "created": "2026-05-05",
       "updated": "2026-05-09T09:11:10Z"
     },
-    "TASK-30": {
-      "id": "TASK-30",
-      "title": "Complete DDD application layer and port boundaries",
-      "status": "in_progress",
-      "priority": "high",
-      "kind": "architecture",
-      "summary": "Finish migrating CodeWiki behavior into harness-agnostic application use cases and ports while keeping domain pure, infrastructure concrete, and Pi behavior behind adapters.",
-      "spec_paths": [
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/file-structure.md",
-        ".codewiki/kb/system/api.md",
-        ".codewiki/kb/system/adapters.md",
-        ".codewiki/kb/system/extension.md"
-      ],
-      "code_paths": [
-        "extensions/codewiki/src/domain",
-        "extensions/codewiki/src/application",
-        "extensions/codewiki/src/infrastructure",
-        "extensions/codewiki/src/adapters/pi",
-        "scripts/check-architecture.mjs"
-      ],
-      "research_ids": [],
-      "labels": [
-        "ddd",
-        "application-layer",
-        "ports",
-        "adapter-boundary"
-      ],
-      "goal": {
-        "outcome": "CodeWiki runtime behavior is organized around application use cases and ports, with Pi and future harnesses consuming the same semantics through adapters.",
-        "acceptance": [
-          "Application use cases cover state reads, roadmap mutation, session focus, setup/bootstrap, graph rebuild orchestration, compiler/build/validation entrypoints, and gated agency hooks where appropriate.",
-          "Ports isolate filesystem, Git, process execution, session access, locking, notifications, and rebuild needs from domain/application semantics.",
-          "Domain and application modules do not import Pi SDK/TUI packages or concrete adapter modules.",
-          "Existing Pi tools, commands, status UI, and skills continue to work through adapter/application boundaries.",
-          "Architecture checks enforce target import direction or document temporary exceptions with removal criteria."
-        ],
-        "non_goals": [
-          "Do not implement CLI, MCP, Claude Code, or Codex adapters in this task.",
-          "Do not redesign product/system KB layout again.",
-          "Do not change public Pi command/tool names unless separately approved."
-        ],
-        "verification": [
-          "npm run typecheck",
-          "npm test",
-          "scripts/check-architecture.mjs or equivalent architecture check",
-          "Smoke current Pi CodeWiki tools/commands/status path where available."
-        ]
-      },
-      "delta": {
-        "desired": "Runtime code follows domain/application/infrastructure/adapters boundaries from the new system KB.",
-        "current": "Some seams exist, but task/status/session/build/graph behavior still has transitional core/engine/application overlap.",
-        "closure": "Application-layer ports are the default path for CodeWiki behavior, with Pi isolated behind adapters and checks preventing regression."
-      },
-      "created": "2026-05-05",
-      "updated": "2026-05-09T19:53:58Z"
-    },
     "TASK-31": {
       "id": "TASK-31",
       "title": "Move Pi surface into adapters and retire legacy core structure",
@@ -1448,13 +1295,7 @@
       "spec_paths": [
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/index.ts",
-        "extensions/codewiki/src/adapters/pi",
-        "extensions/codewiki/src/core",
-        "extensions/codewiki/src/engine",
-        "extensions/codewiki/src/infrastructure"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "architecture",
@@ -1499,12 +1340,7 @@
       "spec_paths": [
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/src/application",
-        "extensions/codewiki/src/core",
-        "extensions/codewiki/src/adapters",
-        "package.json"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "architecture",
@@ -1548,12 +1384,7 @@
       "spec_paths": [
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "extensions/codewiki",
-        "scripts/check-architecture.mjs",
-        "scripts/smoke-test.mjs",
-        "package.json"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "baseline",
@@ -1649,25 +1480,29 @@
     "TASK-035": {
       "id": "TASK-035",
       "title": "Enforce graph-backed traceability and active-roadmap policy",
-      "status": "todo",
+      "status": "implement",
       "priority": "high",
       "kind": "architecture",
       "summary": "Strengthen graph, lint, and roadmap retention so knowledge, builds, roadmap work, validation, tests, and code form a navigable state machine while the hot roadmap contains active work rather than long-term history.",
       "spec_paths": [
-        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/lexicon.md",
+        ".codewiki/kb/system/overview.md",
+        ".codewiki/kb/system/file-structure.md",
+        ".codewiki/kb/system/api.md",
         ".codewiki/kb/system/knowledge.md",
         ".codewiki/kb/system/roadmap.md",
-        ".codewiki/kb/system/builds.md",
+        ".codewiki/kb/system/graph.md",
         ".codewiki/kb/system/validation-gateway.md",
-        ".codewiki/kb/system/file-structure.md",
-        ".codewiki/kb/lexicon.md"
+        ".codewiki/kb/system/builds.md"
       ],
       "code_paths": [
-        "extensions/codewiki/src/engine/graph.ts",
-        "extensions/codewiki/src/engine/state.ts",
-        "extensions/codewiki/src/application",
-        "extensions/codewiki/src/core/roadmap.ts",
-        "scripts/codewiki-gateway.mjs"
+        "extensions/codewiki/src/application/lint.ts",
+        "extensions/codewiki/src/application/graph.ts",
+        "extensions/codewiki/src/application/state-builders.ts",
+        "extensions/codewiki/src/infrastructure/doc-parser.ts",
+        "extensions/codewiki/src/domain/shared/types.ts",
+        "extensions/codewiki/templates.ts",
+        "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts"
       ],
       "research_ids": [],
       "labels": [
@@ -1677,33 +1512,30 @@
         "lint"
       ],
       "goal": {
-        "outcome": "CodeWiki can detect stale cross-layer references, route work through the graph state machine, and keep active roadmap state lean while preserving history through git/builds/validation/checkpoints.",
+        "outcome": "Agents can reliably trace intended knowledge to roadmap delta to code ownership through enforced metadata and generated views.",
         "acceptance": [
-          "Graph generation indexes knowledge frontmatter, curated Markdown links, builds, roadmap work, validation reports, and available code/test facts.",
-          "Stale KB refs in roadmap, builds, skills, and validation metadata are detected or reported before handoff.",
-          "Roadmap tooling distinguishes active hot work from retained closed/cancelled history and defines a safe archive/purge path for old done tasks.",
-          "Traceability from feedback_build to documentation_build to roadmap item to implementation_build is visible in graph state.",
-          "Link checks and graph/roadmap validation are exposed through deterministic checks or status output."
+          "Knowledge frontmatter requirements are documented and enforced for ids, summaries, owners, and relevant code/spec links.",
+          "Roadmap tasks validate spec_paths, code_paths, goals, acceptance, non-goals, verification, and evidence links.",
+          "Lint/reporting identifies missing or broken horizontal and vertical mappings.",
+          "Generated views expose compact navigation packets for this mapping without becoming canonical truth."
         ],
         "non_goals": [
-          "Do not require one doc per code file.",
-          "Do not turn the roadmap into a full project-management suite.",
-          "Do not manually purge historical tasks without validated retention behavior."
+          "Do not require every code file to have a one-to-one doc.",
+          "Do not make roadmap tasks duplicate all knowledge content."
         ],
         "verification": [
-          "KB markdown link check",
-          "stale-reference grep for deleted KB paths",
-          "graph rebuild/status refresh",
-          "unit or smoke coverage for stale-ref/retention behavior where implemented."
+          "Run npm test.",
+          "Run a rebuild and confirm codewiki_state refresh=true passes.",
+          "Add/adjust smoke fixtures for invalid mapping cases."
         ]
       },
       "delta": {
-        "desired": "Graph state machine and roadmap retention enforce the new truth model.",
-        "current": "Graph/build tooling exists, but stale refs remain possible and old done tasks are still retained in hot roadmap storage.",
-        "closure": "Generated state reports traceability and stale refs, and roadmap retention can safely keep hot state active-only."
+        "desired": "Lint and graph catch broken cross-layer references; knowledge frontmatter is consistently present and validated.",
+        "current": "Lint already checks missing fields, broken links, and missing code paths. Graph already exposes reconciliation items. Frontmatter is partially validated. Stale spec_paths/code_paths on some roadmap tasks cause lint warnings. Knowledge docs need consistent frontmatter audit.",
+        "closure": "Lint errors drop to zero; cross-layer mapping is enforced and verifiable."
       },
       "created": "2026-05-06",
-      "updated": "2026-05-09T09:05:13Z"
+      "updated": "2026-05-09T22:48:34Z"
     },
     "TASK-036": {
       "id": "TASK-036",
@@ -1713,11 +1545,7 @@
       "kind": "architecture",
       "summary": "Cancelled in roadmap transition after KB boundary refactor: a sprint layer would overcomplicate the current model. Roadmap should stay active work truth, with builds as briefs and graph/gated agency handling routing. Revisit only if active-roadmap + graph workflow proves insufficient.",
       "spec_paths": [],
-      "code_paths": [
-        "extensions/codewiki/src/core/roadmap.ts",
-        "extensions/codewiki/src/core/types.ts",
-        "extensions/codewiki/templates.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "roadmap",
@@ -1760,10 +1588,7 @@
       "spec_paths": [
         ".codewiki/kb/product/uis/status-panel.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/src/adapters/pi/ui",
-        "package.json"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "ui",
@@ -1813,10 +1638,8 @@
         ".codewiki/kb/system/validation-gateway.md"
       ],
       "code_paths": [
-        "extensions/codewiki/src/application",
-        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
-        "extensions/codewiki/src/engine/graph.ts",
-        "extensions/codewiki/src/core/roadmap.ts"
+        "extensions/codewiki/src/application/state.ts",
+        "extensions/codewiki/src/application/roadmap.ts"
       ],
       "research_ids": [],
       "labels": [
@@ -1862,12 +1685,7 @@
       "kind": "architecture",
       "summary": "Cancelled in roadmap transition after KB boundary refactor: ThinkCode remains an optional agent helper, not core CodeWiki roadmap work. Recreate only if a concrete adapter/runtime need appears after API, graph, and agency semantics stabilize.",
       "spec_paths": [],
-      "code_paths": [
-        "scripts/codewiki-gateway.mjs",
-        "skills",
-        "README.md",
-        "package.json"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "think-code",
@@ -1911,13 +1729,7 @@
       "spec_paths": [
         ".codewiki/kb/lexicon.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/src/core/roadmap.ts",
-        "extensions/codewiki/src/adapters/pi/tools/task.ts",
-        "extensions/codewiki/src/core/schemas.ts",
-        "skills/codewiki-verify/SKILL.md",
-        "scripts/codewiki-gateway.mjs"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "p0",
@@ -1969,11 +1781,7 @@
       "spec_paths": [
         ".codewiki/kb/lexicon.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/src/engine/rebuild.ts",
-        "extensions/codewiki/src/engine/graph.ts",
-        "extensions/codewiki/src/engine/state.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "p0",
@@ -1989,7 +1797,7 @@
           "Benchmark or prototype four context strategies for representative task work: prebuilt pack only, progressive disclosure only, sandbox/programmatic exploration only, and hybrid pack plus sandbox.",
           "Define role-specific seed/context pack contracts for at least `grill`, `plan`, `build`, and `verify`, emphasizing minimal routing metadata instead of large precomputed context dumps.",
           "Define typed graph-slice views for task/sprint/roadmap scopes with `core`, `supporting`, `watch`, and `excluded` tiers plus edge reasons and confidence (`explicit` vs `inferred`).",
-          "Define horizontal and vertical observability signals only: knowledge/task/evidence/view alignment and intent → knowledge → roadmap → code → checks/evidence alignment; do not make observability a pass/fail gate.",
+          "Define horizontal and vertical observability signals only: knowledge/task/evidence/view alignment and intent \u2192 knowledge \u2192 roadmap \u2192 code \u2192 checks/evidence alignment; do not make observability a pass/fail gate.",
           "Define an acceptance/evidence matrix that maps criteria to spec paths, code paths, checks, and evidence for verifier consumption.",
           "Represent token budget as generator/test metadata (`estimated_tokens`, `max_tokens`, `over_budget`) rather than instructions the agent must maintain manually.",
           "Implement or prototype the smallest useful `task.build`, `task.verify`, and `task.graph` views needed by the hardened verification gateway, without blocking future sprint/roadmap expansion.",
@@ -2026,12 +1834,7 @@
       "kind": "bug",
       "summary": "Fix /wiki-resume without an explicit task so fresh Pi sessions use persisted CodeWiki focus/resume state instead of falling back to the first active roadmap task.",
       "spec_paths": [],
-      "code_paths": [
-        "extensions/codewiki/src/adapters/pi/commands/resume.ts",
-        "extensions/codewiki/src/engine/state.ts",
-        "extensions/codewiki/src/adapters/pi/tools/state.ts",
-        "scripts/smoke-test.mjs"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "dogfood",
@@ -2080,11 +1883,7 @@
         ".codewiki/kb/system/extension.md"
       ],
       "code_paths": [
-        "extensions/codewiki/src/application",
-        "extensions/codewiki/src/core/builds.ts",
-        "extensions/codewiki/src/adapters/pi/tools/session.ts",
-        "extensions/codewiki/src/adapters/pi/tools/task.ts",
-        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts"
+        "extensions/codewiki/src/application/builds.ts"
       ],
       "research_ids": [],
       "labels": [
@@ -2132,10 +1931,7 @@
       "spec_paths": [
         ".codewiki/kb/system/overview.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/src/engine/rebuild.ts",
-        ".codewiki/index_graph.json"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "compiler-model",
@@ -2178,10 +1974,7 @@
       "spec_paths": [
         ".codewiki/kb/lexicon.md"
       ],
-      "code_paths": [
-        "extensions/codewiki/src",
-        "extensions/codewiki/src/engine/rebuild.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "compiler-model",
@@ -2229,10 +2022,8 @@
         ".codewiki/kb/system/agency.md"
       ],
       "code_paths": [
-        "skills/codewiki-task/SKILL.md",
-        "skills/codewiki-verify/SKILL.md",
-        "extensions/codewiki/src/application",
-        "extensions/codewiki/src/core/builds.ts"
+        "extensions/codewiki/src/application/builds.ts",
+        "extensions/codewiki/src/application/task.ts"
       ],
       "research_ids": [],
       "labels": [
@@ -2279,21 +2070,7 @@
       "spec_paths": [
         ".codewiki/kb/lexicon.md"
       ],
-      "code_paths": [
-        ".codewiki/config.json",
-        "extensions/codewiki/src/core/project.ts",
-        "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
-        "extensions/codewiki/src/engine/rebuild.ts",
-        "extensions/codewiki/src/engine/state.ts",
-        "extensions/codewiki/src/adapters/pi/commands/resume.ts",
-        "extensions/codewiki/src/adapters/pi/tools/session.ts",
-        "extensions/codewiki/src/adapters/pi/tools/task.ts",
-        "extensions/codewiki/templates.ts",
-        "scripts/codewiki-gateway.mjs",
-        "scripts/codewiki-transaction.mjs",
-        "scripts/smoke-test.mjs",
-        "README.md"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "dogfood-blocker",
@@ -2346,10 +2123,7 @@
       "kind": "docs",
       "summary": "TASK-048: Per-compiler KB files and feedback compiler skill created.",
       "spec_paths": [],
-      "code_paths": [
-        "skills/codewiki/SKILL.md",
-        "skills/codewiki-feedback"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "compiler-model",
@@ -2393,12 +2167,7 @@
       "kind": "agent-workflow",
       "summary": "TASK-049: Feedback build writer implemented with lifecycle metadata and smoke coverage.",
       "spec_paths": [],
-      "code_paths": [
-        "extensions/codewiki/src/adapters/pi/tools",
-        "extensions/codewiki/src/core",
-        "extensions/codewiki/src/engine",
-        "skills/codewiki/SKILL.md"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "feedback-compiler",
@@ -2442,12 +2211,7 @@
       "kind": "architecture",
       "summary": "TASK-050: graph-backed reconciliation state machine and gateway routing implemented.",
       "spec_paths": [],
-      "code_paths": [
-        "extensions/codewiki/src/engine/graph.ts",
-        "extensions/codewiki/src/engine/state.ts",
-        "extensions/codewiki/src/adapters/pi/tools/state.ts",
-        "extensions/codewiki/src/engine/lint.ts"
-      ],
+      "code_paths": [],
       "research_ids": [],
       "labels": [
         "state-machine",
