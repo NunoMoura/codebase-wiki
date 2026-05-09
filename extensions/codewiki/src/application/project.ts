@@ -1,5 +1,5 @@
 import { resolve, dirname, basename } from "node:path";
-import type { CodewikiFileStore } from "../infrastructure/file-store";
+import type { CodewikiFileStore } from "../infrastructure/file-store.ts";
 import type {
 	WikiProject,
 	ResolvedStatusDockProject,
@@ -8,17 +8,17 @@ import type {
 	TaskSessionLinkRecord,
 	StatusDockPrefs,
 	StatusDockMode,
-} from "../domain/shared/types";
+} from "../domain/shared/types.ts";
 import {
 	nowIso,
 	unique,
 	formatError,
-} from "../domain/shared/utils";
+} from "../domain/shared/utils.ts";
 import {
 	readStatusDockPrefs,
 	writeStatusDockPrefs,
-} from "../infrastructure/status-dock-prefs";
-import { nodeFileStore } from "../infrastructure/file-store";
+} from "../infrastructure/status-dock-prefs.ts";
+import { nodeFileStore } from "../infrastructure/file-store.ts";
 
 export interface CodewikiUiPort {
 	setStatus(key: string, value: string | undefined): void;
@@ -116,7 +116,7 @@ export async function appendTaskSessionEvent(
 	link: TaskSessionLinkRecord,
 	sessionId: string,
 ): Promise<void> {
-    const { appendProjectEvent } = await import("./roadmap");
+    const { appendProjectEvent } = await import("./roadmap.ts");
 	await appendProjectEvent(project, {
 		ts: nowIso(),
 		kind: "roadmap_task_session_link",
@@ -173,7 +173,7 @@ export async function resolveStatusDockProject(
 	ctx: CodewikiContextPort,
 	options?: { allowWhenOff?: boolean },
 ): Promise<ResolvedStatusDockProject | null> {
-	const { maybeReadStatusState } = await import("./state-artifacts");
+	const { maybeReadStatusState } = await import("./state-artifacts.ts");
 	const prefs = await readStatusDockPrefs();
 	if (prefs.mode === "off" && !options?.allowWhenOff) return null;
 	const localProject = await maybeLoadProject(ctx.cwd);
@@ -257,7 +257,7 @@ export async function resolveCommandProject(
 	pathArg: string | null,
 	commandName: string,
 ): Promise<WikiProject> {
-	const { findWikiRootsBelow } = await import("../../project-root");
+	const { findWikiRootsBelow } = await import("../../project-root.ts");
 	if (pathArg) {
 		const requestedPath = resolve(ctx.cwd, pathArg);
 		try {

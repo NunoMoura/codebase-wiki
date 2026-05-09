@@ -5,12 +5,12 @@ import type {
 } from "@earendil-works/pi-coding-agent";
 import {
 	resolveCommandProject,
-} from "../../../application/project";
+} from "../../../application/project.ts";
 import {
 	withUiErrorHandling,
 	refreshStatusDock,
     queueAudit,
-} from "../ui/manager";
+} from "../ui/manager.ts";
 import { 
     maybeReadRoadmapState, 
     maybeReadGraph,
@@ -18,7 +18,7 @@ import {
     maybeReadStatusState,
     rebuildAndSummarize,
     runRebuild
-} from "../../../application/state-artifacts";
+} from "../../../application/state-artifacts.ts";
 import {
 	readRoadmapTask,
 	readRoadmapFile,
@@ -30,28 +30,28 @@ import {
     resolveRoadmapTask,
     isClosedRoadmapStatus,
     isActiveLoopRoadmapStatus,
-} from "../../../application/roadmap";
-import { currentTaskLink, piSessionPorts } from "../session";
-import { recordSessionTaskAction } from "../../../application/session";
+} from "../../../application/roadmap.ts";
+import { currentTaskLink, piSessionPorts } from "../session.ts";
+import { recordSessionTaskAction } from "../../../application/session.ts";
 import { 
     splitCommandArgs, 
     joinCommandArgs,
     nowIso
-} from "../../../domain/shared/utils";
+} from "../../../domain/shared/utils.ts";
 import { 
     normalizeTaskPhaseValue,
     phaseLabel,
     statusColor,
     statusLevel
-} from "../ui/theme";
-import { codePrompt } from "../../../application/prompt";
+} from "../ui/theme.ts";
+import { codePrompt } from "../../../application/prompt.ts";
 import type { 
     RoadmapFile, 
     RoadmapTaskRecord, 
     TaskSessionLinkRecord,
     RoadmapStatus,
     TaskSessionAction
-} from "../../../domain/shared/types";
+} from "../../../domain/shared/types.ts";
 
 /**
  * Register the wiki-resume command.

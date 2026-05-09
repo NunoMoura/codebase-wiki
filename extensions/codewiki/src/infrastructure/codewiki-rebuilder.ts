@@ -1,13 +1,14 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync, mkdirSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
-import { GitCache } from "./git-cache";
-import { loadGateway } from "./transaction";
-import { WikiProject } from "../domain/shared/types";
-import { buildGraph } from "../application/graph";
-import { buildLintReport } from "../application/lint";
-import { buildRoadmapState, buildStatusState } from "../application/state-builders";
-import { parseDoc, ParsedDoc } from "./doc-parser";
+import { GitCache } from "./git-cache.ts";
+import { loadGateway } from "./transaction.ts";
+import type { WikiProject } from "../domain/shared/types.ts";
+import { buildGraph } from "../application/graph.ts";
+import { buildLintReport } from "../application/lint.ts";
+import { buildRoadmapState, buildStatusState } from "../application/state-builders.ts";
+import { parseDoc } from "./doc-parser.ts";
+import type { ParsedDoc } from "./doc-parser.ts";
 
 export class CodewikiRebuilder {
 	private readonly repoRoot: string;

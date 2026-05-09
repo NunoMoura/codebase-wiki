@@ -13,11 +13,11 @@ import type {
 	RoadmapTaskContextPacket,
 	RoadmapStateTaskSummary,
 	TaskSessionLinkRecord,
-} from "../domain/shared/types";
-import { loadCodewikiStateArtifacts, roadmapApiTaskState, maybeReadTaskContext } from "./state-artifacts";
-import { readRoadmapTask } from "./roadmap";
-import { findLatestTaskSessionLink } from "../domain/shared/session";
-import type { FileStore, RebuildRunner, SessionStore } from "./ports";
+} from "../domain/shared/types.ts";
+import { loadCodewikiStateArtifacts, roadmapApiTaskState, maybeReadTaskContext } from "./state-artifacts.ts";
+import { readRoadmapTask } from "./roadmap.ts";
+import { findLatestTaskSessionLink } from "../domain/shared/session.ts";
+import type { FileStore, RebuildRunner, SessionStore } from "./ports.ts";
 
 // ---------------------------------------------------------------------------
 // Section include normalization (was inline in Pi adapter)

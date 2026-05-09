@@ -4,9 +4,9 @@
  * Project setup and bootstrap use cases.
  * Discovers or configures a CodeWiki project, optionally bootstrapping starter files.
  */
-import type { WikiProject } from "../domain/shared/types";
-import { resolveToolProject } from "./project";
-import type { FileStore, ProjectResolver } from "./ports";
+import type { WikiProject } from "../domain/shared/types.ts";
+import { resolveToolProject } from "./project.ts";
+import type { FileStore, ProjectResolver } from "./ports.ts";
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve, join } from "node:path";
 

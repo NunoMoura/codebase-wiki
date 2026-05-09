@@ -11,16 +11,16 @@ import type {
 	RoadmapStatus,
 	ToolTaskStatus,
 	RoadmapStateTaskSummary,
-} from "../domain/shared/types";
-import { maybeReadJson, readJson } from "../infrastructure/filesystem";
+} from "../domain/shared/types.ts";
+import { maybeReadJson, readJson } from "../infrastructure/filesystem.ts";
 import {
 	rebuildTargetPaths,
 	runRebuild as runApplicationRebuild,
 	runRebuildUnlocked as runApplicationRebuildUnlocked,
-} from "./rebuild";
-import type { RebuildRunner } from "./ports";
-export { rebuildTargetPaths } from "./rebuild";
-import { TASK_PHASE_VALUES } from "../domain/shared/types"; // Assuming it's in types.ts
+} from "./rebuild.ts";
+import type { RebuildRunner } from "./ports.ts";
+export { rebuildTargetPaths } from "./rebuild.ts";
+import { TASK_PHASE_VALUES } from "../domain/shared/types.ts"; // Assuming it's in types.ts
 
 
 /**
@@ -58,7 +58,7 @@ export async function runRebuildUnlocked(project: WikiProject): Promise<void> {
 
 const defaultRebuildRunner: RebuildRunner = {
 	run: async (project) => {
-		const { runConfiguredOrDefaultRebuild } = await import("../infrastructure/rebuild-runner");
+		const { runConfiguredOrDefaultRebuild } = await import("../infrastructure/rebuild-runner.ts");
 		await runConfiguredOrDefaultRebuild(project);
 	},
 };

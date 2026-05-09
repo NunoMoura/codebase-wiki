@@ -16,9 +16,9 @@ import type {
 	TaskVerifierResult,
 	RoadmapTaskInput,
 	TaskLoopUpdateInput,
-} from "../domain/shared/types";
-import { unique, nowIso, formatError } from "../domain/shared/utils";
-import { withLockedPaths } from "../../mutation-queue";
+} from "../domain/shared/types.ts";
+import { unique, nowIso, formatError } from "../domain/shared/utils.ts";
+import { withLockedPaths } from "../../mutation-queue.ts";
 import {
 	rebuildTargetPaths,
 	runRebuild,
@@ -27,7 +27,7 @@ import {
 	mapToolTaskStatusToRoadmapStatus,
 	maybeReadRoadmapState,
 	maybeReadTaskContext,
-} from "./state-artifacts";
+} from "./state-artifacts.ts";
 
 /**
  * Get the path to the roadmap archive file.
@@ -1069,7 +1069,7 @@ export function normalizeRoadmapPriority(priority: string | undefined): RoadmapP
  * Read and normalize a roadmap file.
  */
 export async function readRoadmapFile(path: string): Promise<RoadmapFile> {
-	const { pathExists, readJson } = await import("../infrastructure/filesystem");
+	const { pathExists, readJson } = await import("../infrastructure/filesystem.ts");
 	if (!(await pathExists(path))) {
 		return { version: 1, updated: nowIso(), order: [], tasks: {} };
 	}

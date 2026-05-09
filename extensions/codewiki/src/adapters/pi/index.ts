@@ -1,19 +1,19 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import type { ActiveStatusPanel } from "../../domain/shared/types";
-import { registerBootstrapFeatures } from "../../../bootstrap";
-import { codewikiBuildToolInputSchema, codewikiHeartbeatToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas";
-import { registerConfigCommand } from "./commands/config";
-import { registerResumeCommand } from "./commands/resume";
-import { registerStatusCommand } from "./commands/status";
-import { currentTaskLink } from "./session";
-import { readRoadmapTask } from "../../application/roadmap";
-import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project";
-import { runRebuild } from "../../application/state-artifacts";
-import { executeCodewikiHeartbeat } from "./tools/heartbeat";
-import { executeCodewikiSession } from "./tools/session";
-import { registerCodewikiStateTool } from "./tools/state";
-import { writeBuild, writeValidationReport } from "../../application/builds";
-import { executeCodewikiTask } from "./tools/task";
+import type { ActiveStatusPanel } from "../../domain/shared/types.ts";
+import { registerBootstrapFeatures } from "../../../bootstrap.ts";
+import { codewikiBuildToolInputSchema, codewikiHeartbeatToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas.ts";
+import { registerConfigCommand } from "./commands/config.ts";
+import { registerResumeCommand } from "./commands/resume.ts";
+import { registerStatusCommand } from "./commands/status.ts";
+import { currentTaskLink } from "./session.ts";
+import { readRoadmapTask } from "../../application/roadmap.ts";
+import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project.ts";
+import { runRebuild } from "../../application/state-artifacts.ts";
+import { executeCodewikiHeartbeat } from "./tools/heartbeat.ts";
+import { executeCodewikiSession } from "./tools/session.ts";
+import { registerCodewikiStateTool } from "./tools/state.ts";
+import { writeBuild, writeValidationReport } from "../../application/builds.ts";
+import { executeCodewikiTask } from "./tools/task.ts";
 import {
 	activeStatusPanelGlobal,
 	clearStatusDock,
@@ -22,7 +22,7 @@ import {
 	setActiveStatusPanelGlobal,
 	setTaskSessionStatus,
 	withUiErrorHandling,
-} from "./ui/manager";
+} from "./ui/manager.ts";
 
 const COMMAND_PREFIX = "wiki";
 

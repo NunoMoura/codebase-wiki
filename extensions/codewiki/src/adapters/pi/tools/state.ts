@@ -1,17 +1,17 @@
 import type {
 	WikiProject,
 	CodewikiStateToolInput,
-} from "../../../domain/shared/types";
+} from "../../../domain/shared/types.ts";
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 import type {
 	ExtensionAPI,
 	ExtensionContext,
 } from "@earendil-works/pi-coding-agent";
-import { codewikiStateToolInputSchema } from "../schemas";
-import { readCodewikiState } from "../../../application/state";
-import { resolveToolProject } from "../../../application/project";
-import { currentTaskLink, piSessionStore } from "../session";
-import { refreshStatusDock } from "../ui/manager";
+import { codewikiStateToolInputSchema } from "../schemas.ts";
+import { readCodewikiState } from "../../../application/state.ts";
+import { resolveToolProject } from "../../../application/project.ts";
+import { currentTaskLink, piSessionStore } from "../session.ts";
+import { refreshStatusDock } from "../ui/manager.ts";
 
 /**
  * Register the codewiki_state tool.
@@ -73,7 +73,7 @@ function piFileStore() {
 function piRebuildRunner() {
 	return {
 		run: async (project: WikiProject) => {
-			const { runConfiguredOrDefaultRebuild } = await import("../../../infrastructure/rebuild-runner");
+			const { runConfiguredOrDefaultRebuild } = await import("../../../infrastructure/rebuild-runner.ts");
 			await runConfiguredOrDefaultRebuild(project);
 		},
 	};

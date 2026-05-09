@@ -3,65 +3,32 @@ import type {
 	ExtensionContext,
 	ExtensionCommandContext,
 } from "@earendil-works/pi-coding-agent";
-import {
-	type ActiveStatusPanel,
-	type ActiveConfigPanel,
-	type WikiProject,
-	type StatusScope,
-	type TaskSessionLinkRecord,
-	type ResolvedStatusDockProject,
-	type StatusPanelSection,
-	type ConfigPanelSection,
-	type StatusStateFile,
-	type RoadmapStateFile,
-	type LintReport,
-    type RoadmapStateTaskSummary,
-    type RoadmapTaskContextPacket,
-    type RoadmapStatus,
-    type StatusStateHeartbeatLane,
-    type StatusStateParallelSession,
-    type TaskPhase,
-    type StatusStateAgentRow,
-    type StatusStateWikiSection,
-    type StatusStateRoadmapColumn,
-    type StatusStateBar,
-    type StatusStateSpecRow,
-    type StatusStateChannelRow,
-    type StatusPanelDetail,
-    type HomeIssue,
-    type StatusDockPrefs,
-    type StatusDockDensity,
-    type ArchitecturePanelComponent,
-    type TaskSessionAction,
-} from "../../../domain/shared/types";
+import type { ActiveStatusPanel, ActiveConfigPanel, WikiProject, StatusScope, TaskSessionLinkRecord, ResolvedStatusDockProject, StatusPanelSection, ConfigPanelSection, StatusStateFile, RoadmapStateFile, LintReport, RoadmapStateTaskSummary, RoadmapTaskContextPacket, RoadmapStatus, StatusStateHeartbeatLane, StatusStateParallelSession, TaskPhase, StatusStateAgentRow, StatusStateWikiSection, StatusStateRoadmapColumn, StatusStateBar, StatusStateSpecRow, StatusStateChannelRow, StatusPanelDetail, HomeIssue, StatusDockPrefs, StatusDockDensity, ArchitecturePanelComponent, TaskSessionAction } from "../../../domain/shared/types.ts";
 import {
 	readStatusDockPrefs,
     resolveStatusDockPrefsPath,
-} from "../../../infrastructure/status-dock-prefs";
+} from "../../../infrastructure/status-dock-prefs.ts";
 import {
 	resolveStatusDockProject,
 	loadProject,
 	maybeLoadProject,
     rememberStatusDockProject,
-} from "../../../application/project";
+} from "../../../application/project.ts";
 import {
 	formatError,
 	cycleIndex,
     unique,
-} from "../../../domain/shared/utils";
+} from "../../../domain/shared/utils.ts";
 import {
     maybeReadJson,
     pathExists,
     maybeReadJsonSync,
-} from "../../../infrastructure/filesystem";
+} from "../../../infrastructure/filesystem.ts";
 import {
     padToWidth,
     truncatePlain,
-} from "./text";
-import {
-	STATUS_DOCK_MODE_VALUES,
-	STATUS_DOCK_DENSITY_VALUES,
-} from "../../../domain/shared/types";
+} from "./text.ts";
+import { STATUS_DOCK_MODE_VALUES, STATUS_DOCK_DENSITY_VALUES } from "../../../domain/shared/types.ts";
 import {
 	configSectionTabs,
 	renderChoiceRow,
@@ -82,7 +49,7 @@ import {
     roadmapColumnLabel,
     agentStatusCircle,
     wikiActivityMarker,
-} from "./theme";
+} from "./theme.ts";
 import { 
     updateTaskLoop, 
     taskLoopPhase, 
@@ -92,9 +59,9 @@ import {
     isTaskBlocked,
     taskBoardColumn,
     taskIdCandidates
-} from "../../../application/roadmap";
-import { currentTaskLink, setTaskSessionStatusText } from "../session";
-import { maybeReadStatusState, maybeReadRoadmapState } from "../../../application/state-artifacts";
+} from "../../../application/roadmap.ts";
+import { currentTaskLink, setTaskSessionStatusText } from "../session.ts";
+import { maybeReadStatusState, maybeReadRoadmapState } from "../../../application/state-artifacts.ts";
 import { matchesKey, truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 import { resolve, dirname, basename } from "node:path";
 import { readFileSync } from "node:fs";
@@ -379,7 +346,7 @@ export async function applyConfigValueChange(
 	value: string,
 	ctx: ExtensionCommandContext | ExtensionContext,
 ): Promise<void> {
-    const { writeStatusDockPrefs } = await import("../../../infrastructure/status-dock-prefs");
+    const { writeStatusDockPrefs } = await import("../../../infrastructure/status-dock-prefs.ts");
 	const prefs = await readStatusDockPrefs();
 	if (kind === "summary-mode") {
 		const cleaned = value.replace(/^[◉◆○]\s*/, "").trim() as any;
@@ -429,7 +396,7 @@ export async function applyConfigValueChange(
 
 	const resolved = await resolveStatusDockProject(ctx);
 	if (resolved) {
-		const { currentTaskLink } = await import("../session");
+		const { currentTaskLink } = await import("../session.ts");
 		await refreshStatusDock(resolved.project, ctx, currentTaskLink(ctx), resolved);
 	} else {
 		clearStatusDock(ctx);
@@ -1055,7 +1022,7 @@ export async function discoverPinRepoChoices(
 	ctx: ExtensionCommandContext | ExtensionContext,
 	prefs: StatusDockPrefs,
 ): Promise<Array<{ root: string; label: string }>> {
-    const { findWikiRootsBelow } = await import("../../../../project-root");
+    const { findWikiRootsBelow } = await import("../../../../project-root.ts");
 	const roots = new Set<string>();
 	const localProject = await maybeLoadProject(ctx.cwd);
 	if (localProject) roots.add(localProject.root);

@@ -1,5 +1,5 @@
 import { resolve, basename } from "node:path";
-import { unique } from "../domain/shared/utils";
+import { unique } from "../domain/shared/utils.ts";
 import type { 
     WikiProject, 
     GraphFile, 
@@ -9,13 +9,13 @@ import type {
     StatusScope,
     RoadmapStatus,
     RoadmapStateTaskSummary
-} from "../domain/shared/types";
+} from "../domain/shared/types.ts";
 import { 
     taskBoardColumn, 
     isTaskBlocked, 
     taskLoopPhase, 
     taskLoopEvidenceLine 
-} from "./roadmap";
+} from "./roadmap.ts";
 
 export function statusColor(report: LintReport): "green" | "yellow" | "red" {
 	if (report.counts.error > 0) return "red";

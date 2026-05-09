@@ -1,4 +1,4 @@
-import type { FileStore } from "../application/ports";
+import type { FileStore } from "../application/ports.ts";
 import {
 	appendJsonl,
 	isDirectory,
@@ -8,7 +8,7 @@ import {
 	readText,
 	writeJson,
 	writeText,
-} from "./filesystem";
+} from "./filesystem.ts";
 
 export interface CodewikiFileStore extends FileStore {
 	readText(path: string): Promise<string>;

@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
-import type { CodewikiBuildToolInput, CodewikiValidationReportInput, WikiProject } from "../domain/shared/types";
-import { nowIso } from "../domain/shared/utils";
+import type { CodewikiBuildToolInput, CodewikiValidationReportInput, WikiProject } from "../domain/shared/types.ts";
+import { nowIso } from "../domain/shared/utils.ts";
 
 // ---------------------------------------------------------------------------
 // Shared helpers

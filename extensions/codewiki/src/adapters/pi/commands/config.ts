@@ -6,29 +6,26 @@ import {
 	resolveCommandProject,
 	resolveStatusDockProject,
 	rememberStatusDockProject,
-} from "../../../application/project";
+} from "../../../application/project.ts";
 import {
 	readStatusDockPrefs,
 	writeStatusDockPrefs,
-} from "../../../infrastructure/status-dock-prefs";
+} from "../../../infrastructure/status-dock-prefs.ts";
 import {
 	withUiErrorHandling,
 	openConfigPanel,
 	refreshStatusDock,
 	clearStatusDock,
 	activeStatusPanelGlobal,
-} from "../ui/manager";
-import {
-	STATUS_DOCK_MODE_VALUES,
-	STATUS_DOCK_DENSITY_VALUES,
-    type StatusDockMode,
-} from "../../../domain/shared/types";
-import { currentTaskLink } from "../session";
-import { maybeReadStatusState } from "../../../application/state-artifacts";
+} from "../ui/manager.ts";
+import { STATUS_DOCK_MODE_VALUES, STATUS_DOCK_DENSITY_VALUES } from "../../../domain/shared/types.ts";
+import type { StatusDockMode } from "../../../domain/shared/types.ts";
+import { currentTaskLink } from "../session.ts";
+import { maybeReadStatusState } from "../../../application/state-artifacts.ts";
 import {
     formatStatusConfigSummary,
-} from "../ui/theme";
-import { splitCommandArgs } from "../../../domain/shared/utils";
+} from "../ui/theme.ts";
+import { splitCommandArgs } from "../../../domain/shared/utils.ts";
 
 /**
  * Register the wiki-config command.

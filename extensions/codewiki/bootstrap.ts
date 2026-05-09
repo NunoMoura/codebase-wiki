@@ -4,14 +4,14 @@ import { basename, dirname, extname, resolve } from "node:path";
 import { promisify } from "node:util";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { Type } from "@sinclair/typebox";
-import { withLockedPaths } from "./mutation-queue";
-import { resolveSetupRoot } from "./project-root";
+import { withLockedPaths } from "./mutation-queue.ts";
+import { resolveSetupRoot } from "./project-root.ts";
 import {
 	type StarterBoundary,
 	type StarterBrownfieldHints,
 	starterDirectories,
 	starterFiles,
-} from "./templates";
+} from "./templates.ts";
 
 const execFileAsync = promisify(execFile);
 const GENERATED_OUTPUTS = [

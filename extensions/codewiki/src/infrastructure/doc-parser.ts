@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { basename, dirname, extname, join, relative, resolve } from "node:path";
 import yaml from "js-yaml";
-import { WikiProject } from "../domain/shared/types";
+import type { WikiProject } from "../domain/shared/types.ts";
 
 const H1_RE = /^#\s+(.+)$/m;
 const LINK_RE = /\]\(([^)]+)\)/g;

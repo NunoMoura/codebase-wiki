@@ -7,17 +7,17 @@ import {
 	resolveCommandProject,
 	resolveStatusDockProject,
 	rememberStatusDockProject,
-} from "../../../application/project";
+} from "../../../application/project.ts";
 import {
 	withUiErrorHandling,
 	openStatusPanel,
 	refreshStatusDock,
     activeStatusPanelGlobal,
-} from "../ui/manager";
-import { currentTaskLink } from "../session";
-import { maybeReadStatusState, maybeReadRoadmapState } from "../../../application/state-artifacts";
-import { maybeReadJson } from "../../../infrastructure/filesystem";
-import type { LintReport } from "../../../domain/shared/types";
+} from "../ui/manager.ts";
+import { currentTaskLink } from "../session.ts";
+import { maybeReadStatusState, maybeReadRoadmapState } from "../../../application/state-artifacts.ts";
+import { maybeReadJson } from "../../../infrastructure/filesystem.ts";
+import type { LintReport } from "../../../domain/shared/types.ts";
 
 /**
  * Register the wiki-status command.

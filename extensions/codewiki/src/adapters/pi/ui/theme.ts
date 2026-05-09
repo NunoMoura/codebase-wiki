@@ -15,16 +15,16 @@ import type {
 	StatusStateFile,
     RoadmapTaskRecord,
     StatusStateAgentRow,
-} from "../../../domain/shared/types";
+} from "../../../domain/shared/types.ts";
 import { basename } from "node:path";
-import { padToWidth, truncatePlain } from "./text";
+import { padToWidth, truncatePlain } from "./text.ts";
 
 import {
 	normalizeTaskPhaseValue,
 	roadmapTaskStage,
 	taskBoardColumn,
 	isTaskBlocked,
-} from "../../../application/roadmap";
+} from "../../../application/roadmap.ts";
 
 export {
 	normalizeTaskPhaseValue,

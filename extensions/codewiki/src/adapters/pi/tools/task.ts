@@ -14,25 +14,25 @@ import type {
 	RoadmapStatus,
     RoadmapTaskUpdateFields,
     CodewikiTaskEvidenceInput,
-} from "../../../domain/shared/types";
+} from "../../../domain/shared/types.ts";
 import { resolve, dirname } from "node:path";
 import { mkdir, writeFile, appendFile, readdir, readFile, stat } from "node:fs/promises";
 import { gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { withLockedPaths } from "../../../../mutation-queue";
+import { withLockedPaths } from "../../../../mutation-queue.ts";
 import {
 	nowIso,
 	unique,
 	formatError,
-} from "../../../domain/shared/utils";
+} from "../../../domain/shared/utils.ts";
 import {
 	maybeReadRoadmapState,
 	maybeReadGraph,
 	runRebuild,
 	maybeReadTaskContext,
-} from "../../../application/state-artifacts";
+} from "../../../application/state-artifacts.ts";
 import {
 	readRoadmapTask,
 	appendRoadmapTasks,
@@ -48,8 +48,8 @@ import {
     hasRoadmapTaskUpdateFields,
     readRoadmapFile,
     writeRoadmapFile,
-} from "../../../application/roadmap";
-import { buildCodewikiTaskDetail } from "../../../application/state";
+} from "../../../application/roadmap.ts";
+import { buildCodewikiTaskDetail } from "../../../application/state.ts";
 import {
 	createCodewikiTasks,
 	patchCodewikiTask,
@@ -57,7 +57,7 @@ import {
 	appendTaskEvidence,
 	cancelCodewikiTask,
 	type TaskMutationPorts,
-} from "../../../application/task";
+} from "../../../application/task.ts";
 
 const execFileAsync = promisify(execFile);
 
@@ -118,7 +118,7 @@ function piTaskPorts(ctx: ExtensionContext): TaskMutationPorts {
 		},
 		rebuildRunner: {
 			run: async (proj: WikiProject) => {
-				const { runConfiguredOrDefaultRebuild } = await import("../../../infrastructure/rebuild-runner");
+				const { runConfiguredOrDefaultRebuild } = await import("../../../infrastructure/rebuild-runner.ts");
 				await runConfiguredOrDefaultRebuild(proj);
 			},
 		},

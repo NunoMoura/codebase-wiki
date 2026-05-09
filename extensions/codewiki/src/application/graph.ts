@@ -1,6 +1,7 @@
-import { GraphEdge, GraphFile, GraphNode, GraphViews, RoadmapTaskRecord, WikiProject } from "../domain/shared/types";
-import { GitAnchor, GitCache } from "../infrastructure/git-cache";
-import { ParsedDoc } from "../infrastructure/doc-parser";
+import type { GraphEdge, GraphFile, GraphNode, GraphViews, RoadmapTaskRecord, WikiProject } from "../domain/shared/types.ts";
+import { GitCache } from "../infrastructure/git-cache.ts";
+import type { GitAnchor } from "../infrastructure/git-cache.ts";
+import type { ParsedDoc } from "../infrastructure/doc-parser.ts";
 
 export interface GraphBuildInputs {
 	project: WikiProject;

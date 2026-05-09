@@ -5,14 +5,14 @@ import type {
 import type {
 	WikiProject,
 	CodewikiSessionToolInput,
-} from "../../../domain/shared/types";
-import { nowIso } from "../../../domain/shared/utils";
+} from "../../../domain/shared/types.ts";
+import { nowIso } from "../../../domain/shared/utils.ts";
 import {
 	getFocusedTaskLink,
 	clearSessionFocus,
 	recordSessionTaskAction,
-} from "../../../application/session";
-import { piSessionPorts } from "../session";
+} from "../../../application/session.ts";
+import { piSessionPorts } from "../session.ts";
 
 /**
  * Implementation of the codewiki_session tool.

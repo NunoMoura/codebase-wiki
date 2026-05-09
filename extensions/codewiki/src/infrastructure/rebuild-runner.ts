@@ -1,5 +1,5 @@
-import type { WikiProject } from "../domain/shared/types";
-import { formatError } from "../domain/shared/utils";
+import type { WikiProject } from "../domain/shared/types.ts";
+import { formatError } from "../domain/shared/utils.ts";
 
 export async function runConfiguredOrDefaultRebuild(
 	project: WikiProject,
@@ -14,7 +14,7 @@ export async function runConfiguredOrDefaultRebuild(
 	}
 
 	try {
-		const { CodewikiRebuilder } = await import("./codewiki-rebuilder");
+		const { CodewikiRebuilder } = await import("./codewiki-rebuilder.ts");
 		await new CodewikiRebuilder(project.root).rebuildAll();
 	} catch (error) {
 		throw new Error(`Default rebuild failed: ${formatError(error)}`);

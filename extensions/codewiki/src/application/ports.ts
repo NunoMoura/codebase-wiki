@@ -6,7 +6,7 @@
  * The domain and application layers have zero knowledge of any specific agent.
  */
 
-import type { WikiProject } from "../domain/shared/types";
+import type { WikiProject } from "../domain/shared/types.ts";
 
 // ---------------------------------------------------------------------------
 // File I/O port

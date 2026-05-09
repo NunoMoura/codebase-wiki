@@ -1,14 +1,9 @@
 import { resolve } from "node:path";
 import { homedir } from "node:os";
-import {
-	type StatusDockPrefs,
-	type StatusDockMode,
-	type StatusDockDensity,
-	STATUS_DOCK_MODE_VALUES,
-	STATUS_DOCK_DENSITY_VALUES,
-} from "../domain/shared/types";
-import type { CodewikiFileStore } from "./file-store";
-import { nodeFileStore } from "./file-store";
+import { STATUS_DOCK_MODE_VALUES, STATUS_DOCK_DENSITY_VALUES } from "../domain/shared/types.ts";
+import type { StatusDockPrefs, StatusDockMode, StatusDockDensity } from "../domain/shared/types.ts";
+import type { CodewikiFileStore } from "./file-store.ts";
+import { nodeFileStore } from "./file-store.ts";
 
 export const STATUS_DOCK_PREFS_VERSION = 1;
 export const STATUS_DOCK_PREFS_ENV = "PI_CODEWIKI_STATUS_PREFS_PATH";

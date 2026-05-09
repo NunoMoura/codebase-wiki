@@ -11,7 +11,7 @@ import {
 	matchesAny,
 	normalizeRel,
 	readJson,
-} from "./transaction";
+} from "./transaction.ts";
 
 function usage(): string {
 	return `Usage:

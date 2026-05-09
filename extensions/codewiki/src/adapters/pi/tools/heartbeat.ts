@@ -1,10 +1,10 @@
 import type {
     WikiProject,
     HeartbeatToolInput,
-} from "../../../domain/shared/types";
+} from "../../../domain/shared/types.ts";
 import type { ExtensionContext } from "@earendil-works/pi-coding-agent";
-import { planHeartbeat } from "../../../application/heartbeat";
-import { piSessionStore } from "../session";
+import { planHeartbeat } from "../../../application/heartbeat.ts";
+import { piSessionStore } from "../session.ts";
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 
 /**
@@ -54,7 +54,7 @@ function piFileStore() {
 function piRebuildRunner() {
 	return {
 		run: async (project: WikiProject) => {
-			const { runConfiguredOrDefaultRebuild } = await import("../../../infrastructure/rebuild-runner");
+			const { runConfiguredOrDefaultRebuild } = await import("../../../infrastructure/rebuild-runner.ts");
 			await runConfiguredOrDefaultRebuild(project);
 		},
 	};

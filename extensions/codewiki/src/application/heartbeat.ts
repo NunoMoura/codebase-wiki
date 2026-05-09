@@ -4,10 +4,10 @@
  * "Run heartbeat planning" use case.
  * Selects the next bounded action from a plan-only loop.
  */
-import type { WikiProject, HeartbeatMode, HeartbeatBudget } from "../domain/shared/types";
-import { readCodewikiState } from "./state";
-import type { ReadStatePorts } from "./state";
-import type { FileStore, RebuildRunner } from "./ports";
+import type { WikiProject, HeartbeatMode, HeartbeatBudget } from "../domain/shared/types.ts";
+import { readCodewikiState } from "./state.ts";
+import type { ReadStatePorts } from "./state.ts";
+import type { FileStore, RebuildRunner } from "./ports.ts";
 
 // ---------------------------------------------------------------------------
 // Port dependencies

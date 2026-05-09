@@ -1,18 +1,9 @@
 import { createHash } from "node:crypto";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
-import {
-	GraphFile,
-	LintReport,
-	RoadmapStateFile,
-	RoadmapTaskRecord,
-	StatusStateFile,
-	StatusStateHeartbeatLane,
-	StatusStateSpecRow,
-	WikiProject,
-} from "../domain/shared/types";
-import { ParsedDoc } from "../infrastructure/doc-parser";
-import { nowIso } from "../domain/shared/utils";
+import type { GraphFile, LintReport, RoadmapStateFile, RoadmapTaskRecord, StatusStateFile, StatusStateHeartbeatLane, StatusStateSpecRow, WikiProject } from "../domain/shared/types.ts";
+import type { ParsedDoc } from "../infrastructure/doc-parser.ts";
+import { nowIso } from "../domain/shared/utils.ts";
 
 export function sha256Text(text: string): string {
 	return createHash("sha256").update(text).digest("hex");
@@ -311,7 +302,7 @@ export function laneStats(rows: any[]) {
 	};
 }
 
-import { GitCache } from "../infrastructure/git-cache";
+import { GitCache } from "../infrastructure/git-cache.ts";
 
 export function previousHeartbeatLane(previousStatus: any, laneId: string): any {
 	const heartbeat = previousStatus?.heartbeat || {};
