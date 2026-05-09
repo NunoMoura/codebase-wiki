@@ -44,7 +44,7 @@ import {
     statusColor,
     statusLevel
 } from "../ui/theme";
-import { codePrompt } from "../../../core/prompt";
+import { codePrompt } from "../../../application/prompt";
 import type { 
     RoadmapFile, 
     RoadmapTaskRecord, 
