@@ -1,0 +1,58 @@
+%% CodeWiki system architecture
+%% id: spec.system.architecture
+%% updated: 2026-05-09
+
+flowchart TD
+  User["User / agent intent"]
+  Extension["Extension\nextension.md"]
+  Adapters["Adapters\nadapters.md"]
+  API["CodeWiki API\napi.md"]
+  Agency["Agency controller\nagency.md"]
+  Compilers["Compilers\ncompilers.md"]
+  Gateway["Validation gateway\nvalidation-gateway.md"]
+  Knowledge["Knowledge\nknowledge.md"]
+  Builds["Builds\nbuilds.md"]
+  Roadmap["Roadmap\nroadmap.md"]
+  Graph["Graph state machine\ngraph.md"]
+  CodeTests["Code + tests\nexecutable truth"]
+  Publication["Publication support\ncommit / PR / issue / release / push"]
+
+  User --> Extension
+  Extension --> Adapters
+  Adapters --> API
+
+  API --> Agency
+  API --> Compilers
+  API --> Knowledge
+  API --> Builds
+  API --> Roadmap
+  API --> Graph
+  API --> Gateway
+
+  Agency --> Graph
+  Agency --> Roadmap
+  Agency --> Compilers
+  Agency --> Gateway
+
+  Compilers --> Builds
+  Compilers --> Knowledge
+  Compilers --> Roadmap
+  Compilers --> CodeTests
+  Compilers --> Gateway
+
+  Gateway --> Builds
+  Gateway --> Graph
+  Gateway --> Publication
+
+  Knowledge --> Graph
+  Builds --> Graph
+  Roadmap --> Graph
+  CodeTests --> Graph
+
+  Builds --> Publication
+  CodeTests --> Publication
+
+  classDef component fill:#eef7ff,stroke:#3b82f6,stroke-width:1px,color:#111827;
+  classDef artifact fill:#f8fafc,stroke:#94a3b8,stroke-width:1px,color:#111827;
+  class Extension,Adapters,API,Agency,Compilers,Gateway,Knowledge,Builds,Roadmap,Graph component;
+  class User,CodeTests,Publication artifact;

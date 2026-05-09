@@ -13,15 +13,11 @@ updated: "2026-05-07"
 
 ## Canonical knowledge base
 
-Durable current project truth under `.codewiki/kb/**`. It describes intended product behavior, product UIs, system clients, system design, ownership seams, and workflow rules. It should not contain tests, raw transcripts, generated context packs, or event logs.
+Durable current project truth under `.codewiki/kb/**`. It describes intended product behavior, visual product UIs, system access surfaces, system design, ownership seams, and workflow rules. It should not contain tests, raw transcripts, generated context packs, or event logs.
 
 ## Roadmap task
 
 An atomic tracked delta from current reality to intended knowledge. Tasks carry outcome, acceptance, non-goals, verification expectations, linked specs, linked code paths, and evidence.
-
-## Task pack
-
-The compiled task context handed from the documentation compiler to the implementation compiler. A task pack contains enough acceptance, constraints, links, and verification expectations for an agent to implement the task without reloading unrelated knowledge.
 
 ## Compiler
 
@@ -33,11 +29,11 @@ The compiler that turns user conversation and grounded reads into an accepted `f
 
 ## Documentation compiler
 
-The compiler that turns an accepted `feedback_build` into updated `.codewiki/kb/**` knowledge, roadmap updates, and task packs. It validates horizontal and vertical alignment before implementation work begins.
+The compiler that turns an accepted `feedback_build` into updated `.codewiki/kb/**` knowledge, roadmap updates, and a `documentation_build` implementation-spec brief. It validates horizontal and vertical alignment before implementation work begins.
 
 ## Implementation compiler
 
-The compiler that turns a task pack into tests, code, checks, and an `implementation_build`. It follows TDD when practical and keeps tests in code/test directories instead of knowledge artifacts.
+The compiler that turns a `documentation_build` and roadmap work item into tests, code, checks, and an `implementation_build`. It follows TDD when practical and keeps tests in code/test directories instead of knowledge artifacts.
 
 ## Feedback build
 
@@ -55,6 +51,14 @@ A compact artifact under `.codewiki/builds/implementation/**` that records test/
 
 A handoff gate that checks horizontal and vertical alignment for one compiler boundary. It can include deterministic preflight, mechanical checks, and a fresh read-only verifier. Passing validation need not be stored by default; failed, blocked, or policy-required reports are stored under `.codewiki/validation/**`.
 
+## Gated agency
+
+The user-facing product capability where an agent may advance roadmap work automatically inside explicit token, time, risk, validation, policy, and approval gates.
+
+## Heartbeat
+
+A system implementation mechanism for gated agency. A heartbeat cycle observes state, selects one bounded next action, checks gates, performs or declines the step, records evidence when needed, and stops or routes to the next loop. Heartbeat is not a product UI concept and not a fourth compiler.
+
 ## Verifier
 
 A read-only fresh process, session, or subagent used inside a validation gateway. It returns a deterministic `pass`, `fail`, or `block` verdict and does not mutate canonical truth.
@@ -64,7 +68,7 @@ A read-only fresh process, session, or subagent used inside a validation gateway
 Traceability through abstraction layers:
 
 ```text
-user intent -> feedback_build -> .codewiki/kb -> documentation_build -> roadmap task pack -> tests/code -> implementation_build
+user intent -> feedback_build -> .codewiki/kb -> documentation_build -> roadmap work item -> tests/code -> implementation_build
 ```
 
 ## Horizontal alignment
@@ -81,7 +85,7 @@ A generated read model. In the target model, broad view trees are replaced by th
 
 ## Tester
 
-An optional implementation worker that derives tests from a task pack before code changes. The tester helps reduce shared-context bias between test design and implementation.
+An optional implementation worker that derives tests from a documentation build and roadmap work item before code changes. The tester helps reduce shared-context bias between test design and implementation.
 
 ## Builder
 
@@ -105,11 +109,13 @@ An optional project-scoped sandbox runtime for agent-written programs. CodeWiki 
 
 ## Product UI
 
-A human or AI-facing interaction experience, such as agent tools, commands, status panel, board UI, skills, TUI, CLI, MCP, package APIs, or future adapters. Product UI expectations live under `.codewiki/kb/product/uis/**`.
+A visual user interface that a human can see and interact with, such as the status panel, board UI, graph navigation view, TUI screens, or editor panels. Product UI expectations live under `.codewiki/kb/product/uis/**`.
 
-## System client
+Tools, commands, skills, CLI access, MCP access, package APIs, and harness adapters are access surfaces, not product UIs.
 
-A technical distribution or adapter that delivers CodeWiki behavior, such as the Pi extension, packaged skills, CLI, TUI, MCP adapter, editor integration, service agent, or optional runtime program. System client details live under `.codewiki/kb/system/clients/**`.
+## System access surface
+
+A technical distribution, adapter, or capability surface that delivers CodeWiki behavior, such as the Pi extension, packaged skills, CLI, MCP adapter, package API, editor integration, service agent, or optional runtime program. Adapter details live in `.codewiki/kb/system/adapters.md`, with stable access contracts in `.codewiki/kb/system/api.md`.
 
 ## Sanitation
 
@@ -119,4 +125,4 @@ The policy that keeps hot CodeWiki state small. Knowledge stays fresh, graph/ind
 
 - [Product](product/overview.md)
 - [System Overview](system/overview.md)
-- [V2 Operating Model](system/v2-operating-model.md)
+- [System Overview](system/overview.md)

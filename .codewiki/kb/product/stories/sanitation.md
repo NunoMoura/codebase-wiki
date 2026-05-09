@@ -2,10 +2,10 @@
 id: spec.product.stories.sanitation
 title: Sanitize Historical State
 state: active
-summary: CodeWiki should keep hot state small while full history remains recoverable through git and session storage.
+summary: CodeWiki should keep hot state small while full history remains recoverable through git and harness session storage.
 owners:
   - product
-updated: "2026-05-07"
+updated: "2026-05-09"
 ---
 
 # Sanitize Historical State
@@ -15,13 +15,16 @@ As a maintainer, I want hot CodeWiki state to stay small while full history rema
 ## Acceptance signals
 
 - Git is the full historical recovery mechanism.
-- Pi session storage owns execution transcripts.
-- Closed tasks retain compact semantic summaries when needed.
+- Harness session storage owns execution transcripts; product docs do not store raw chat or event logs.
+- Closed roadmap work and compiler builds retain compact semantic summaries only when needed.
 - Generated graph/index state does not include cold history unless explicitly requested.
 - Raw event history is not stored by default.
+- Durable knowledge docs describe current intent instead of preserving archival chronology.
 
 ## Related docs
 
 - [Maintainers](../users/maintainers.md)
-- [Sanitation and Release Flow](../../system/flows/sanitation-release.md)
-- [V2 Operating Model](../../system/v2-operating-model.md)
+- [Builds](../../system/builds.md)
+- [Graph](../../system/graph.md)
+- [Knowledge](../../system/knowledge.md)
+- [System Overview](../../system/overview.md)

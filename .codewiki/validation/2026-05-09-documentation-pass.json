@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-09T08:10:04Z",
+  "profile": "documentation",
+  "verdict": "pass",
+  "rationale": "Accepted feedback decisions are reflected in the updated KB: product owns users, stories, and visual UIs; system owns flat component docs, access surfaces, API, adapters, agency/heartbeat mechanism, compilers, builds, graph, roadmap, and validation. Markdown link check passes, stale product/system boundary references were removed, and the system file set matches the flattened structure. No roadmap/graph/code changes were claimed.",
+  "checks": [
+    "python markdown link check over .codewiki/kb -> missing links: 0",
+    "grep stale refs: Resume and Automation|external-clients|system clients|System client|task pack|task packs|Agent Tools UI|Skills UI|Future Adapter UIs|Pi-native -> no matches",
+    "find .codewiki/kb/system -maxdepth 1 -type f -> flat 13-file system set",
+    "find .codewiki/kb/product -maxdepth 3 -type f -> users/stories/uis only"
+  ],
+  "issues": [],
+  "source": ".codewiki/builds/documentation/2026-05-09-kb-boundary-refactor-docs.json"
+}

@@ -1,27 +1,30 @@
 ---
 id: spec.product.stories.automation
-title: Resume and Automate Work Safely
+title: Use Gated Agency
 state: active
-summary: CodeWiki should resume focus and run bounded heartbeat work without losing alignment with user intent.
+summary: CodeWiki should let agents advance roadmap work automatically inside explicit user-visible gates.
 owners:
   - product
-updated: "2026-05-07"
+updated: "2026-05-09"
 ---
 
-# Resume and Automate Work Safely
+# Use Gated Agency
 
-As a Pi user, I want CodeWiki to resume focused work or run bounded heartbeat cycles without losing alignment with user intent.
+As a user, I want an agent to advance roadmap work automatically while staying bounded by explicit gates, so progress can continue without losing alignment with my intent.
 
 ## Acceptance signals
 
-- Session RAM is treated as volatile and expensive.
-- Subagents handle context-heavy validation and research.
-- Heartbeat modes have budgets, stop conditions, and write boundaries.
-- Observe mode reports only, maintain mode refreshes or audits safe generated state, and work mode resumes compiler or roadmap tasks within explicit risk limits.
-- Ambiguous or unsafe work escalates to the feedback compiler.
+- Agents can move through roadmap work automatically when the user allows it.
+- Automation is gated by token budget, time budget, risk level, approval requirements, validation results, and policy boundaries.
+- The agent stops on ambiguity, unsafe work, failed checks, policy gates, budget exhaustion, or missing approval.
+- Users can see what the agent plans to do next, why it is safe, and which gate would stop it.
+- Context-heavy validation and research can run in isolated fresh contexts and return compact findings.
+- Durable truth remains separated by role: knowledge, builds, roadmap, graph state, validation reports, code, and tests.
 
 ## Related docs
 
 - [Agents](../users/agents.md)
 - [Board UI](../uis/board.md)
-- [Implementation Compiler Flow](../../system/flows/task-loop.md)
+- [Compilers](../../system/compilers.md)
+- [Validation Gateway](../../system/validation-gateway.md)
+- [Roadmap](../../system/roadmap.md)

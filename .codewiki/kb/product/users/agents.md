@@ -1,29 +1,31 @@
 ---
 id: spec.product.users.agents
-title: Pi Agents and Subagents
+title: Agents and Subagents
 state: active
-summary: AI agents that use CodeWiki as persistent project memory and compiler workflow state.
+summary: AI agents that use CodeWiki as persistent project memory and gated workflow state across harness adapters.
 owners:
   - product
-updated: "2026-05-07"
+updated: "2026-05-09"
 ---
 
-# Pi Agents and Subagents
+# Agents and Subagents
 
-Pi coding agents use CodeWiki as persistent project memory. They should consume generated graph/index state for navigation, update canonical knowledge and roadmap tasks when intent changes, and avoid loading raw history by default.
+Agents use CodeWiki as persistent project memory through harness adapters. They need compact current state, clear source-of-truth boundaries, and explicit gates before they change knowledge, roadmap work, code, tests, or publication state.
 
 Subagents run focused work with fresh context windows. They support validation, research, architecture review, planning review, tester work, builder work, and other bounded tasks where isolated context reduces token cost and parent-session bias.
 
 ## Success signals
 
-- Agents start from `codewiki_state` or graph-backed status before broad reads.
-- Agents follow compiler artifacts: feedback build, documentation build, task pack, implementation build.
+- Agents start from compact graph-backed status before broad reads.
+- Agents follow compiler artifacts: feedback build, documentation build, roadmap work item, and implementation build.
+- Agents can advance roadmap work automatically only inside explicit token, time, risk, validation, policy, and approval gates.
 - Subagents return compact structured results rather than mutating canonical truth directly.
-- Ambiguous intent escalates back to the feedback compiler instead of being guessed.
+- Ambiguous intent escalates back to the feedback loop instead of being guessed.
 
 ## Related docs
 
 - [Low-Token Navigation](../stories/navigation.md)
-- [Resume and Automation](../stories/automation.md)
-- [Agent Tools UI](../uis/agent-tools.md)
-- [Context Memory Flow](../../system/flows/context-memory.md)
+- [Use Gated Agency](../stories/automation.md)
+- [CodeWiki API](../../system/api.md)
+- [Adapters](../../system/adapters.md)
+- [Graph](../../system/graph.md)

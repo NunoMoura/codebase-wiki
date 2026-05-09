@@ -2,46 +2,52 @@
 id: spec.product
 title: Product
 state: active
-summary: Product intent and navigation for CodeWiki's users, stories, and UIs.
+summary: Product intent and navigation for CodeWiki's users, stories, and visual UIs.
 owners:
   - product
-updated: "2026-05-07"
+updated: "2026-05-09"
 ---
 
 # Product
 
-CodeWiki exists to keep repository intent fresh, explicit, and actionable for Pi coding agents and humans. It turns user intent, product decisions, system structure, roadmap tasks, compiler builds, validation reports, and evidence into repo-local memory that agents can maintain and consume efficiently.
+CodeWiki exists to keep repository intent fresh, explicit, and actionable for humans and agents. It captures who the product serves, what jobs those users need done, and which visual interfaces make that work understandable.
 
 The product tower owns user-facing intent:
 
 - `users/**` describes who CodeWiki serves.
 - `stories/**` describes jobs, outcomes, and acceptance signals.
-- `uis/**` describes human and AI-facing interaction expectations.
+- `uis/**` describes visual user interfaces: screens, panels, boards, graph views, and other human-visible surfaces.
 - [Lexicon](../lexicon.md) defines shared project vocabulary.
 
 Folders do not need `overview.md` files by default. Add a navigation page only when the folder becomes hard to scan or needs explicit ownership rules.
 
 ## Product boundaries
 
-CodeWiki owns the `.codewiki` contract, canonical knowledge, roadmap tasks, compiler builds, validation reports, generated graph/index state, and Pi-native workflows around them. It should not become a general-purpose sandbox, telemetry stack, evaluation framework, or monolithic runtime.
+Product docs own user definitions, user stories, visual UI expectations, value, workflows, and non-goals. They should not own source layout, module boundaries, adapter protocols, runtime packaging, compiler implementation, graph storage mechanics, or distribution details.
 
-Product UI docs describe the experience that humans and agents should have. System client docs describe the technical distribution and adapter mechanisms that deliver those experiences.
+Tools, commands, skills, CLI access, MCP access, package APIs, and harness adapters are not product UIs. Product stories may describe the outcome those access paths must support, but the technical access contract belongs in [CodeWiki API](../system/api.md), [Adapters](../system/adapters.md), and [Extension](../system/extension.md).
+
+Visual UI docs should describe what users see and understand. System docs should describe how the product is delivered.
 
 ## Success signals
 
 - User intent is captured before implementation expands.
-- Product stories map to roadmap tasks and system components.
-- Agents consume compact graph/index state instead of rereading the entire knowledge base.
-- Knowledge remains fresh while historical recovery relies on git, session storage, and compact semantic summaries.
-- Pi sessions can resume work through roadmap tasks and generated graph-backed context.
+- Product stories map to system components and roadmap work without duplicating technical design.
+- Visual UI expectations stay separate from adapter, API, and distribution mechanics.
+- Agents and humans can understand current state through compact, trustworthy product surfaces.
+- Historical recovery relies on git, harness session storage, compact semantic summaries, and generated graph context rather than product doc event logs.
 
 ## Related docs
 
 - [Maintainers](users/maintainers.md)
 - [Agents](users/agents.md)
+- [Extension and Workflow Authors](users/package-authors.md)
+- [Future External Users](users/external-users.md)
 - [Maintain Fresh Intent](stories/intent.md)
+- [Use Gated Agency](stories/automation.md)
 - [Low-Token Navigation](stories/navigation.md)
 - [Status Panel UI](uis/status-panel.md)
 - [Board UI](uis/board.md)
+- [Graph Navigation UI](uis/graph-navigation.md)
 - [Lexicon](../lexicon.md)
 - [System Overview](../system/overview.md)

@@ -1,35 +1,40 @@
 ---
 id: spec.product.users.package-authors
-title: Package and Workflow Authors
+title: Extension and Workflow Authors
 state: active
-summary: Authors who extend CodeWiki through package resources, skills, adapters, or workflow policies.
+summary: Authors who extend CodeWiki through package resources, workflow policy, adapters, skills, or visual surfaces.
 owners:
   - product
-updated: "2026-05-07"
+updated: "2026-05-09"
 ---
 
-# Package and Workflow Authors
+# Extension and Workflow Authors
 
-Package and workflow authors use CodeWiki's structure and capability contracts without adopting CodeWiki as a sandbox, telemetry runtime, or general execution framework.
+Extension and workflow authors use CodeWiki's structure and capability contracts without adopting CodeWiki as a sandbox, telemetry runtime, or general execution framework.
 
 They need stable semantics for:
 
-- state reads,
-- task mutation,
+- compact state reads,
+- roadmap work mutation,
 - session focus notes,
 - compiler builds,
 - validation reports,
 - graph/index rebuilds,
-- packaged workflow skills.
+- gated agency controls,
+- publication support,
+- packaged workflow skills,
+- future visual or non-visual access surfaces.
 
 ## Success signals
 
 - Authors can extend workflows without bypassing `.codewiki/` semantics.
-- Skill packages compose with CodeWiki rather than replacing roadmap/task truth.
-- Technical clients use typed capabilities for semantic writes.
+- Skill packages compose with CodeWiki rather than replacing roadmap, build, validation, or graph truth.
+- Technical access surfaces use typed capabilities for semantic writes.
+- Visual surfaces read canonical and generated state rather than creating hidden UI-only truth.
 
 ## Related docs
 
-- [Skills UI](../uis/skills.md)
-- [Pi Extension Client](../../system/clients/pi-extension.md)
-- [Agent Skills Client](../../system/clients/agent-skills.md)
+- [CodeWiki API](../../system/api.md)
+- [Compilers](../../system/compilers.md)
+- [Extension](../../system/extension.md)
+- [Adapters](../../system/adapters.md)

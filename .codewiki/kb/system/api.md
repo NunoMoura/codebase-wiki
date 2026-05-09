@@ -1,0 +1,66 @@
+---
+id: spec.system.api
+title: CodeWiki API
+state: active
+summary: Harness-independent semantic access contract for CodeWiki state, loops, builds, validation, graph, and publication support.
+owners:
+  - architecture
+updated: "2026-05-09"
+code_paths:
+  - extensions/codewiki/src/application
+  - extensions/codewiki/src/domain
+  - extensions/codewiki/src/adapters
+---
+
+# CodeWiki API
+
+## Responsibility
+
+The CodeWiki API is the stable semantic contract used by adapters, CLI, MCP servers, scripts, and future harness integrations. Pi tools are one adapter over this API; they must not be the only way to access CodeWiki semantics.
+
+The API should expose CodeWiki operations as typed capabilities instead of asking external access surfaces to edit `.codewiki/` internals directly.
+
+## Capability groups
+
+| Capability group | Responsibility |
+| --- | --- |
+| `codewiki.state` | Read compact project status, graph state, active work, focused session, and exact linked context. |
+| `codewiki.feedback` | Capture proposed intent, present diff tables, record accepted feedback builds. |
+| `codewiki.documentation` | Apply accepted feedback to product/system knowledge and produce documentation builds. |
+| `codewiki.implementation` | Coordinate implementation work, evidence collection, and implementation builds. |
+| `codewiki.roadmap` | Manage work truth: queue, status, priority, blockers, progress, and closure. |
+| `codewiki.agency` | Run bounded roadmap automation through token, time, risk, validation, policy, and approval gates. |
+| `codewiki.build` | Read and write accepted compiler build briefs. |
+| `codewiki.validation` | Run validation gateways and persist failed, blocked, or policy-kept reports. |
+| `codewiki.graph` | Rebuild and read the generated graph state machine. |
+| `codewiki.transaction` | Apply validated knowledge patches or append-only evidence writes under policy. |
+| `codewiki.publication` | Prepare commit, PR, issue, changelog, release, and push-readiness outputs from implementation evidence. |
+
+## Access paths
+
+| Access surface | Path |
+| --- | --- |
+| Pi | Extension commands, tools, visual status UI, skills, and session integration. |
+| Claude Code | CLI or MCP adapter over the same API. |
+| Codex | CLI or MCP adapter over the same API. |
+| Other agents | CLI, MCP, or package API. |
+| Humans | CLI/status output, generated docs, and future visual UI surfaces. |
+
+All access surfaces must preserve the same `.codewiki/` semantics.
+
+## Write rules
+
+- Product/system changes flow through feedback and documentation loops.
+- Code/test changes flow through implementation loops.
+- Roadmap changes record work truth, not full requirements briefs.
+- Gated agency runs must respect token, time, risk, validation, policy, and approval gates.
+- Builds are accepted loop handoff briefs.
+- Generated graph/index state is never hand-edited.
+- Failed, blocked, policy-required, release, or audit-mode validation reports persist under `.codewiki/validation/**`.
+- Commit, push, release, and remote updates require implementation evidence plus validation/policy approval.
+
+## API boundary
+
+The API belongs in application use cases and domain contracts. Adapters translate harness-specific inputs and outputs. Infrastructure implements filesystem, Git, process, persistence, and graph rebuild ports.
+
+The API should stay stable while adapter protocols change.
