@@ -62,3 +62,9 @@ The Pi adapter owns:
 - Keep generated graph state read-only outside rebuild paths.
 - Keep package smoke, typecheck, architecture check, and pack dry-run green after structural moves.
 - Test runtime ESM/package loading, not only TypeScript typechecking.
+
+## Related docs
+
+- [Adapters](adapters.md)
+- [API](api.md)
+- [File Structure](file-structure.md)

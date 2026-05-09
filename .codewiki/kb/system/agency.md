@@ -71,3 +71,10 @@ When intent is unclear, it routes to feedback. When knowledge must change, it ro
 - The controller must not mutate generated graph state directly.
 - The controller must not bypass validation gateway or policy decisions.
 - Commit, push, release, and remote updates require explicit publication policy approval.
+
+## Related docs
+
+- [Roadmap](roadmap.md)
+- [Graph](graph.md)
+- [Validation Gateway](validation-gateway.md)
+- [Compilers](compilers.md)

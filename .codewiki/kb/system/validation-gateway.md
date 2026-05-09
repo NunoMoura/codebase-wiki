@@ -87,3 +87,9 @@ Persistent reports live under `.codewiki/validation/**`.
 - The gateway may recommend next routing: feedback, documentation, implementation, validation, observe, or block.
 - Gated agency must stop on fail/block verdicts or missing required approval.
 - Commit, push, release, or remote updates require gateway/policy approval when configured.
+
+## Related docs
+
+- [Builds](builds.md)
+- [Compilers](compilers.md)
+- [Agency Controller](agency.md)

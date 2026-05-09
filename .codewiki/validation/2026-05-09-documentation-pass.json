@@ -1,16 +1,27 @@
 {
   "version": 1,
   "kind": "validation_report",
-  "created": "2026-05-09T08:10:04Z",
+  "created": "2026-05-09T09:16:16Z",
   "profile": "documentation",
   "verdict": "pass",
-  "rationale": "Accepted feedback decisions are reflected in the updated KB: product owns users, stories, and visual UIs; system owns flat component docs, access surfaces, API, adapters, agency/heartbeat mechanism, compilers, builds, graph, roadmap, and validation. Markdown link check passes, stale product/system boundary references were removed, and the system file set matches the flattened structure. No roadmap/graph/code changes were claimed.",
+  "rationale": "Roadmap transition aligns with accepted decisions: KB now documents sparse curated links vs graph-owned machine relationships; roadmap docs/config move toward active-work hot state; active roadmap tasks are rewritten to flat system docs; deferred future-adapter/sprint/UI/ThinkCode work is cancelled; stale roadmap spec-path errors are cleared. Graph/state validation is yellow only because system/overview.md is large, not because of missing refs or open-task drift.",
   "checks": [
-    "python markdown link check over .codewiki/kb -> missing links: 0",
-    "grep stale refs: Resume and Automation|external-clients|system clients|System client|task pack|task packs|Agent Tools UI|Skills UI|Future Adapter UIs|Pi-native -> no matches",
-    "find .codewiki/kb/system -maxdepth 1 -type f -> flat 13-file system set",
-    "find .codewiki/kb/product -maxdepth 3 -type f -> users/stories/uis only"
+    "codewiki_state refresh=true -> health yellow, 0 errors, 1 warning, open 6, unmapped 0",
+    "KB markdown link check -> missing links: 0",
+    "roadmap spec/code path stale check -> stale refs: 0",
+    "active roadmap IDs -> TASK-30, TASK-034, TASK-035, TASK-038, TASK-043, TASK-046",
+    "roadmap status counts -> done 40, todo 6, cancelled 4",
+    "created documentation build .codewiki/builds/documentation/2026-05-09-roadmap-transition-baseline.json"
   ],
-  "issues": [],
-  "source": ".codewiki/builds/documentation/2026-05-09-kb-boundary-refactor-docs.json"
+  "issues": [
+    {
+      "severity": "low",
+      "summary": "Graph still warns that .codewiki/kb/system/overview.md is large; accepted as non-blocking until a future doc-splitting cleanup."
+    },
+    {
+      "severity": "low",
+      "summary": "Existing closed tasks remain in roadmap.json because current close/archive tooling blocked re-closing done tasks; TASK-035 now tracks validated active-roadmap retention cleanup."
+    }
+  ],
+  "source": ".codewiki/builds/documentation/2026-05-09-roadmap-transition-baseline.json"
 }

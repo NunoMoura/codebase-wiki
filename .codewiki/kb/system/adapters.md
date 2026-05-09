@@ -66,3 +66,9 @@ Global third-party skills should not mutate CodeWiki state unless adapted to the
 - Adapters should support bounded context and compact outputs.
 - Adapter differences must not create different truth semantics.
 - Adapter-exposed agency controls must route through the API and agency controller rather than running unbounded loops directly.
+
+## Related docs
+
+- [API](api.md)
+- [Extension](extension.md)
+- [Agency Controller](agency.md)

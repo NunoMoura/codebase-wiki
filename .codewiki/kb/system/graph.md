@@ -25,13 +25,15 @@ The graph is generated from:
 
 ```text
 .codewiki/config.json
-.codewiki/kb/**
+.codewiki/kb/** frontmatter, paths, explicit refs, and curated Markdown links
 .codewiki/builds/**
 .codewiki/roadmap/**
 .codewiki/validation/**
 code/test manifests
 Git/source fingerprints
 ```
+
+Curated Markdown links are one input, not the full graph. The graph should compute backlinks, stale references, cross-layer traceability, freshness, and routing relationships so humans do not need to maintain exhaustive wiki-link meshes by hand.
 
 ## Output
 
@@ -83,3 +85,11 @@ Graph state is valid only when it matches source fingerprints. If graph state an
 - The graph should route to exact files instead of inlining large docs, code, logs, or old task history.
 - The graph does not replace builds, knowledge, roadmap work items, validation reports, or code/tests.
 - The graph should make gated agency stop reasons explicit when state is stale, blocked, unsafe, or missing approval.
+- The graph should own machine backlinks and exhaustive relationship discovery; knowledge docs should keep only intentional human-facing links.
+
+## Related docs
+
+- [Knowledge](knowledge.md)
+- [Roadmap](roadmap.md)
+- [Builds](builds.md)
+- [Validation Gateway](validation-gateway.md)

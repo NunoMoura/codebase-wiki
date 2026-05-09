@@ -6,7 +6,7 @@ summary: Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, 
 owners:
   - product
   - architecture
-updated: "2026-05-07"
+updated: "2026-05-09"
 ---
 
 # Lexicon
@@ -17,7 +17,7 @@ Durable current project truth under `.codewiki/kb/**`. It describes intended pro
 
 ## Roadmap task
 
-An atomic tracked delta from current reality to intended knowledge. Tasks carry outcome, acceptance, non-goals, verification expectations, linked specs, linked code paths, and evidence.
+A tracked unit of active intended change. Tasks carry outcome, acceptance, non-goals, verification expectations, linked specs/builds/code paths, and evidence. Roadmap tasks are active work truth, not requirements briefs, chat to-do lists, or long-term archives. Closed or cancelled tasks should leave the hot roadmap after retention/checkpoint because git preserves full history.
 
 ## Compiler
 
@@ -41,7 +41,7 @@ A compact artifact under `.codewiki/builds/feedback/**` that records accepted us
 
 ## Documentation build
 
-A compact artifact under `.codewiki/builds/documentation/**` that records knowledge patches, roadmap/task-pack changes, alignment checks, and deferred requirements.
+A compact artifact under `.codewiki/builds/documentation/**` that records knowledge patches, roadmap changes, implementation specifications, alignment checks, and deferred requirements.
 
 ## Implementation build
 
@@ -77,7 +77,7 @@ Coherence within a layer: knowledge docs agree with each other, roadmap tasks ag
 
 ## Index graph
 
-The primary generated read model at `.codewiki/index_graph.json`. It maps knowledge, tasks, builds, tests, code components, and validation reports with typed nodes and edges. It is generated and must not be hand-edited.
+The primary generated read model at `.codewiki/index_graph.json`. It maps knowledge, tasks, builds, tests, code components, and validation reports with typed nodes and edges. It is generated and must not be hand-edited. Curated Markdown links are inputs to the graph, but the graph owns exhaustive machine backlinks, stale-reference detection, freshness, and routing.
 
 ## View
 
@@ -89,7 +89,7 @@ An optional implementation worker that derives tests from a documentation build 
 
 ## Builder
 
-An optional implementation worker that changes code until task-pack tests and required checks pass.
+An optional implementation worker that changes code until documentation-build requirements, roadmap acceptance, tests, and required checks pass.
 
 ## Evidence
 
@@ -125,4 +125,6 @@ The policy that keeps hot CodeWiki state small. Knowledge stays fresh, graph/ind
 
 - [Product](product/overview.md)
 - [System Overview](system/overview.md)
-- [System Overview](system/overview.md)
+- [Knowledge](system/knowledge.md)
+- [Graph](system/graph.md)
+- [Roadmap](system/roadmap.md)

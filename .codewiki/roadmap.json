@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-08T11:45:01Z",
+  "updated": "2026-05-09T09:15:07Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -101,8 +101,7 @@
       "kind": "architecture",
       "summary": "Refine the inferred boundary docs until wiki/system mirrors the repo's real ownership seams without creating doc sprawl.",
       "spec_paths": [
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/extensions/codewiki/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         "extensions/codewiki",
@@ -134,7 +133,7 @@
         "closure": "Add, remove, or rewrite inferred spec folders until they match real stable ownership seams."
       },
       "created": "2026-04-29",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:08:43Z"
     },
     "TASK-003": {
       "id": "TASK-003",
@@ -144,7 +143,6 @@
       "kind": "process",
       "summary": "Move drift and plan tracking into structured roadmap tasks instead of separate prose buckets.",
       "spec_paths": [
-        ".codewiki/kb/system/clients/pi-extension.md",
         ".codewiki/kb/product/uis/board.md"
       ],
       "code_paths": [],
@@ -173,7 +171,7 @@
         "closure": "Convert each active mismatch or sequence into a scoped roadmap task."
       },
       "created": "2026-04-29",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:08:46Z"
     },
     "TASK-004": {
       "id": "TASK-004",
@@ -184,8 +182,7 @@
       "summary": "Define the typed CodeWiki capabilities that Pi runtimes such as think-code can call without bypassing .codewiki semantics, including optional executor/fallback boundaries.",
       "spec_paths": [
         ".codewiki/kb/product/overview.md",
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/runtime/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         "scripts/codewiki-gateway.mjs",
@@ -224,7 +221,7 @@
         "closure": "Specify the manifest, fallback behavior, and follow-up implementation tasks."
       },
       "created": "2026-04-30",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:08:52Z"
     },
     "TASK-005": {
       "id": "TASK-005",
@@ -234,9 +231,7 @@
       "kind": "agent-workflow",
       "summary": "Replace the single monolithic CodeWiki skill with a package-level router plus focused CodeWiki skills for planning, task execution, research, and verification.",
       "spec_paths": [
-        ".codewiki/kb/product/overview.md",
-        ".codewiki/kb/system/clients/pi-extension.md",
-        ".codewiki/kb/system/extensions/codewiki/overview.md"
+        ".codewiki/kb/product/overview.md"
       ],
       "code_paths": [
         "skills/codewiki/SKILL.md",
@@ -272,7 +267,7 @@
         "closure": "Split skill files and keep a compact router/invariants skill."
       },
       "created": "2026-05-01",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:08:58Z"
     },
     "TASK-006": {
       "id": "TASK-006",
@@ -283,7 +278,6 @@
       "summary": "Specify the automatic outer loop that turns user intent into wiki knowledge updates and roadmap tasks before task execution begins, with user approval only at decision checkpoints.",
       "spec_paths": [
         ".codewiki/kb/product/overview.md",
-        ".codewiki/kb/system/clients/pi-extension.md",
         ".codewiki/kb/product/uis/board.md"
       ],
       "code_paths": [
@@ -322,7 +316,7 @@
         "closure": "Add planning-specific skill/spec guidance and ensure new tasks follow it with minimal user command choreography."
       },
       "created": "2026-05-01",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:09:04Z"
     },
     "TASK-007": {
       "id": "TASK-007",
@@ -332,7 +326,6 @@
       "kind": "agent-workflow",
       "summary": "Specify the automatic per-task loop that uses think-code context packets, implementation, local checks, fresh verification, and evidence before closure without requiring user-triggered verification commands.",
       "spec_paths": [
-        ".codewiki/kb/system/runtime/overview.md",
         ".codewiki/kb/product/uis/board.md"
       ],
       "code_paths": [
@@ -370,7 +363,7 @@
         "closure": "Add inner-loop skill/spec guidance and link it to CodeWiki task/session tools and automatic verifier stage."
       },
       "created": "2026-05-01",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:09:08Z"
     },
     "TASK-008": {
       "id": "TASK-008",
@@ -380,8 +373,7 @@
       "kind": "research",
       "summary": "Separate external/source research from task execution so research evidence supports `.codewiki/kb` claims rather than becoming part of every implementation loop.",
       "spec_paths": [
-        ".codewiki/kb/product/overview.md",
-        ".codewiki/kb/system/runtime/overview.md"
+        ".codewiki/kb/product/overview.md"
       ],
       "code_paths": [
         "skills/codewiki-research/SKILL.md",
@@ -416,7 +408,7 @@
         "closure": "Add research-specific workflow guidance and evidence classification."
       },
       "created": "2026-05-01",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:09:24Z"
     },
     "TASK-009": {
       "id": "TASK-009",
@@ -425,10 +417,7 @@
       "priority": "high",
       "kind": "agent-workflow",
       "summary": "Design and implement an automatic verifier stage that spawns a read-only agent when task execution reaches verification, while retaining a manual command only as an override/debug entrypoint.",
-      "spec_paths": [
-        ".codewiki/kb/system/clients/pi-extension.md",
-        ".codewiki/kb/system/runtime/overview.md"
-      ],
+      "spec_paths": [],
       "code_paths": [
         "extensions/codewiki/index.ts",
         "skills/codewiki-verify/SKILL.md",
@@ -468,7 +457,7 @@
         "closure": "Add automatic verifier stage, verifier prompt/protocol, evidence append path, and optional manual override."
       },
       "created": "2026-05-01",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:09:28Z"
     },
     "TASK-010": {
       "id": "TASK-010",
@@ -478,8 +467,7 @@
       "kind": "architecture",
       "summary": "Adapt deep-module and shared-language architecture review ideas into a CodeWiki-aware workflow for finding seams, locality problems, and roadmap-worthy refactors.",
       "spec_paths": [
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/extensions/codewiki/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         "skills/codewiki-architecture/SKILL.md"
@@ -513,7 +501,7 @@
         "closure": "Add CodeWiki-specific architecture review skill or section and validate against the repo."
       },
       "created": "2026-05-01",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:09:33Z"
     },
     "TASK-011": {
       "id": "TASK-011",
@@ -523,8 +511,7 @@
       "kind": "docs",
       "summary": "Document which general engineering skills should be installed or adapted globally for Pi without conflicting with CodeWiki-specific workflows.",
       "spec_paths": [
-        ".codewiki/kb/system/clients/agent-skills.md",
-        ".codewiki/kb/system/clients/pi-extension.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [],
       "research_ids": [],
@@ -555,7 +542,7 @@
         "closure": "Add durable decision guidance before installation or packaging."
       },
       "created": "2026-05-01",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:13:38Z"
     },
     "TASK-012": {
       "id": "TASK-012",
@@ -566,8 +553,7 @@
       "summary": "Projection firewall first slice completed: canonical/generated contract documented and refresh=false paths now avoid projection locks/rebuilds where safe.",
       "spec_paths": [
         ".codewiki/config.json",
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/runtime/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         "extensions/codewiki/index.ts",
@@ -605,7 +591,7 @@
         "closure": "Projection firewall documented and first write-amplification reduction implemented."
       },
       "created": "2026-05-01",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:09:42Z"
     },
     "TASK-013": {
       "id": "TASK-013",
@@ -615,8 +601,7 @@
       "kind": "architecture",
       "summary": "Closed-task retention no longer depends on generated projection rebuilds; refresh=false close path preserves archive retention.",
       "spec_paths": [
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/runtime/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         "extensions/codewiki/index.ts",
@@ -653,7 +638,7 @@
         "closure": "Task close retention is implemented in extension code and covered by smoke tests."
       },
       "created": "2026-05-01",
-      "updated": "2026-05-01"
+      "updated": "2026-05-09T09:09:45Z"
     },
     "TASK-014": {
       "id": "TASK-014",
@@ -664,8 +649,7 @@
       "summary": "CodeWiki v2 decisions are now durable wiki knowledge and mapped to executable roadmap tasks.",
       "spec_paths": [
         ".codewiki/kb/product/overview.md",
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/runtime/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         ".codewiki/kb"
@@ -701,7 +685,7 @@
         "closure": "Knowledge docs and roadmap tasks reflect the agreed v2 operating model."
       },
       "created": "2026-05-01",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:09:52Z"
     },
     "TASK-015": {
       "id": "TASK-015",
@@ -711,7 +695,6 @@
       "kind": "migration",
       "summary": "V2 layout compatibility is implemented: `.codewiki/**` is generated alongside legacy read models and bootstrap/rebuild understand the v2 views root.",
       "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
         ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
@@ -748,7 +731,7 @@
         "closure": "Bootstrap/migration and rebuild understand v2 paths with legacy compatibility."
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:09:56Z"
     },
     "TASK-016": {
       "id": "TASK-016",
@@ -807,8 +790,7 @@
       "kind": "ui",
       "summary": "Update the CodeWiki status panel to render the generated architecture view and show component or flow details when selected.",
       "spec_paths": [
-        ".codewiki/kb/product/uis/status-panel.md",
-        ".codewiki/kb/system/v2-operating-model.md"
+        ".codewiki/kb/product/uis/status-panel.md"
       ],
       "code_paths": [
         "extensions/codewiki/index.ts"
@@ -843,7 +825,7 @@
         "closure": "Panel can render graph and detail cards from generated views."
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:10:04Z"
     },
     "TASK-018": {
       "id": "TASK-018",
@@ -853,8 +835,6 @@
       "kind": "agent-workflow",
       "summary": "Teach agents when to use session RAM, views, canonical docs, subagents, and ThinkCode so default workflows minimize repeated token load.",
       "spec_paths": [
-        ".codewiki/kb/system/flows/context-memory.md",
-        ".codewiki/kb/system/v2-operating-model.md",
         ".codewiki/kb/lexicon.md"
       ],
       "code_paths": [
@@ -891,7 +871,7 @@
         "closure": "Skills and loop prompts encode the memory policy."
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:10:11Z"
     },
     "TASK-019": {
       "id": "TASK-019",
@@ -900,10 +880,7 @@
       "priority": "high",
       "kind": "architecture",
       "summary": "Define and generate the small, revisioned read models agents and UI consume for status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence.",
-      "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/flows/context-memory.md"
-      ],
+      "spec_paths": [],
       "code_paths": [
         "extensions/codewiki/src/engine/rebuild.ts"
       ],
@@ -937,7 +914,7 @@
         "closure": "View schemas and generation are implemented and verified."
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:10:15Z"
     },
     "TASK-020": {
       "id": "TASK-020",
@@ -946,10 +923,7 @@
       "priority": "high",
       "kind": "architecture",
       "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
-      "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/flows/context-memory.md"
-      ],
+      "spec_paths": [],
       "code_paths": [
         "extensions/codewiki/src/engine/rebuild.ts",
         "extensions/codewiki/templates.ts",
@@ -987,7 +961,7 @@
         "closure": "Architecture graph and Mermaid generation work with validation."
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:10:18Z"
     },
     "TASK-021": {
       "id": "TASK-021",
@@ -996,10 +970,7 @@
       "priority": "medium",
       "kind": "agent-workflow",
       "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
-      "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/flows/context-memory.md"
-      ],
+      "spec_paths": [],
       "code_paths": [
         "skills"
       ],
@@ -1032,7 +1003,7 @@
         "closure": "Contracts and at least one additional subagent workflow are implemented or stubbed with tests."
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:10:23Z"
     },
     "TASK-022": {
       "id": "TASK-022",
@@ -1042,7 +1013,6 @@
       "kind": "agent-workflow",
       "summary": "Add bounded observe, maintain, and work heartbeat modes that use views, subagents, and canonical writes safely.",
       "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
         ".codewiki/kb/product/stories/intent.md"
       ],
       "code_paths": [
@@ -1078,7 +1048,7 @@
         "closure": "Heartbeat command/tool contract and initial implementation are covered by tests."
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:10:28Z"
     },
     "TASK-023": {
       "id": "TASK-023",
@@ -1087,10 +1057,7 @@
       "priority": "medium",
       "kind": "integration",
       "summary": "Use ThinkCode for ad hoc programmatic context creation, view validation, graph checks, and staged edits without making it CodeWiki's memory layer.",
-      "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/runtime/overview.md"
-      ],
+      "spec_paths": [],
       "code_paths": [
         "extensions/codewiki/index.ts",
         "scripts/codewiki-gateway.mjs",
@@ -1125,7 +1092,7 @@
         "closure": "Integration seam and first use case are implemented with fallback."
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:10:44Z"
     },
     "TASK-024": {
       "id": "TASK-024",
@@ -1134,10 +1101,7 @@
       "priority": "medium",
       "kind": "architecture",
       "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
-      "spec_paths": [
-        ".codewiki/kb/system/flows/sanitation-release.md",
-        ".codewiki/kb/system/v2-operating-model.md"
-      ],
+      "spec_paths": [],
       "code_paths": [
         "extensions/codewiki/src/engine/rebuild.ts",
         "extensions/codewiki/index.ts",
@@ -1172,7 +1136,7 @@
         "closure": "Archive/checkpoint policy is implemented and documented."
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:10:46Z"
     },
     "TASK-025": {
       "id": "TASK-025",
@@ -1224,7 +1188,6 @@
       "kind": "agent-workflow",
       "summary": "Remove wording that frames ThinkCode as an enforced CodeWiki runtime and describe it only as optional compatible tooling.",
       "spec_paths": [
-        ".codewiki/kb/system/flows/context-memory.md",
         ".codewiki/kb/lexicon.md"
       ],
       "code_paths": [
@@ -1260,7 +1223,7 @@
         "closure": "Wording changed to optional/compatible tool language."
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:10:52Z"
     },
     "TASK-027": {
       "id": "TASK-027",
@@ -1270,8 +1233,7 @@
       "kind": "ui",
       "summary": "Update CodeWiki status panel UI to show repo-only header, Home/Product/System/Board tabs, deprecate Agents/Channels tabs, and render system Mermaid architecture with selectable components.",
       "spec_paths": [
-        ".codewiki/kb/product/uis/status-panel.md",
-        ".codewiki/kb/system/extensions/codewiki/overview.md"
+        ".codewiki/kb/product/uis/status-panel.md"
       ],
       "code_paths": [
         "extensions/codewiki/index.ts",
@@ -1310,7 +1272,7 @@
         "closure": ""
       },
       "created": "2026-05-02",
-      "updated": "2026-05-02"
+      "updated": "2026-05-09T09:10:56Z"
     },
     "TASK-28": {
       "id": "TASK-28",
@@ -1320,8 +1282,7 @@
       "kind": "architecture",
       "summary": "TASK-28 close: TASK-033 gate recorded fresh pass evidence; stabilizing refactor is complete.",
       "spec_paths": [
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/extensions/codewiki/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         "extensions/codewiki",
@@ -1365,7 +1326,7 @@
         "closure": "Baseline checks pass; current migration drift is documented; remaining future work lives in TASK-30/TASK-32."
       },
       "created": "2026-05-05",
-      "updated": "2026-05-08T10:27:14Z"
+      "updated": "2026-05-09T09:11:03Z"
     },
     "TASK-29": {
       "id": "TASK-29",
@@ -1375,8 +1336,7 @@
       "kind": "testing",
       "summary": "TASK-29 verified and closed during TASK-033 baseline gate.",
       "spec_paths": [
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/extensions/codewiki/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         "scripts/check-architecture.mjs",
@@ -1419,60 +1379,64 @@
         "closure": "Guardrail scripts and tests pass and are documented in package scripts."
       },
       "created": "2026-05-05",
-      "updated": "2026-05-08T09:34:02Z"
+      "updated": "2026-05-09T09:11:10Z"
     },
     "TASK-30": {
       "id": "TASK-30",
-      "title": "Extract agent-agnostic application use cases behind ports",
-      "status": "verify",
+      "title": "Complete DDD application layer and port boundaries",
+      "status": "todo",
       "priority": "high",
       "kind": "architecture",
-      "summary": "Application/core seams are improved and checks pass, but full use-case extraction for state/task/session/heartbeat/setup is not complete; carry remaining scope forward instead of closing the baseline gate dishonestly.",
+      "summary": "Finish migrating CodeWiki behavior into harness-agnostic application use cases and ports while keeping domain pure, infrastructure concrete, and Pi behavior behind adapters.",
       "spec_paths": [
         ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/extensions/codewiki/overview.md"
+        ".codewiki/kb/system/file-structure.md",
+        ".codewiki/kb/system/api.md",
+        ".codewiki/kb/system/adapters.md",
+        ".codewiki/kb/system/extension.md"
       ],
       "code_paths": [
+        "extensions/codewiki/src/domain",
         "extensions/codewiki/src/application",
-        "extensions/codewiki/src/core",
-        "extensions/codewiki/src/core/ports.ts",
-        "extensions/codewiki/src/core/rebuild-runner.ts",
         "extensions/codewiki/src/infrastructure",
         "extensions/codewiki/src/adapters/pi",
-        "extensions/codewiki/index.ts"
+        "scripts/check-architecture.mjs"
       ],
       "research_ids": [],
       "labels": [
-        "architecture",
-        "ports-adapters",
-        "migration"
+        "ddd",
+        "application-layer",
+        "ports",
+        "adapter-boundary"
       ],
       "goal": {
-        "outcome": "Core CodeWiki workflows are callable without Pi-specific types through stable application-layer use cases.",
+        "outcome": "CodeWiki runtime behavior is organized around application use cases and ports, with Pi and future harnesses consuming the same semantics through adapters.",
         "acceptance": [
-          "Application layer exposes use cases for read state, mutate task, manage session, run heartbeat, setup/bootstrap, and rebuild where appropriate.",
-          "Ports cover filesystem, project resolution, notification, session access, locking, message delivery, git/subprocess/rebuild needs without importing Pi types.",
-          "Domain/application modules do not import `@mariozechner/*` or Pi UI types.",
-          "Existing Pi tools and commands continue to work through adapters or compatibility wrappers."
+          "Application use cases cover state reads, roadmap mutation, session focus, setup/bootstrap, graph rebuild orchestration, compiler/build/validation entrypoints, and gated agency hooks where appropriate.",
+          "Ports isolate filesystem, Git, process execution, session access, locking, notifications, and rebuild needs from domain/application semantics.",
+          "Domain and application modules do not import Pi SDK/TUI packages or concrete adapter modules.",
+          "Existing Pi tools, commands, status UI, and skills continue to work through adapter/application boundaries.",
+          "Architecture checks enforce target import direction or document temporary exceptions with removal criteria."
         ],
         "non_goals": [
-          "Do not move UI rendering internals until application seams are stable.",
-          "Do not add MCP/Codex/Claude adapters in this task."
+          "Do not implement CLI, MCP, Claude Code, or Codex adapters in this task.",
+          "Do not redesign product/system KB layout again.",
+          "Do not change public Pi command/tool names unless separately approved."
         ],
         "verification": [
-          "Run `npm run typecheck`.",
-          "Run `npm test`.",
-          "Run architecture boundary check.",
-          "Exercise Pi tool wrappers through smoke coverage or targeted tests."
+          "npm run typecheck",
+          "npm test",
+          "scripts/check-architecture.mjs or equivalent architecture check",
+          "Smoke current Pi CodeWiki tools/commands/status path where available."
         ]
       },
       "delta": {
-        "desired": "Application use cases form the stable agent-agnostic API that future adapters can call.",
-        "current": "Core is Pi-free and ports/rebuild seams exist; Pi adapter wraps tools/commands/UI. Full application use-case extraction for state, task, session, heartbeat, setup/bootstrap remains incomplete and should be replanned as a focused follow-up.",
-        "closure": "Unblock by creating focused executable tasks for the remaining application use-case extraction slices, then verify adapter behavior through smoke coverage."
+        "desired": "Runtime code follows domain/application/infrastructure/adapters boundaries from the new system KB.",
+        "current": "Some seams exist, but task/status/session/build/graph behavior still has transitional core/engine/application overlap.",
+        "closure": "Application-layer ports are the default path for CodeWiki behavior, with Pi isolated behind adapters and checks preventing regression."
       },
       "created": "2026-05-05",
-      "updated": "2026-05-08T11:45:01Z"
+      "updated": "2026-05-09T09:05:06Z"
     },
     "TASK-31": {
       "id": "TASK-31",
@@ -1482,8 +1446,7 @@
       "kind": "migration",
       "summary": "TASK-31 verified and closed during TASK-033 baseline gate.",
       "spec_paths": [
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/extensions/codewiki/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         "extensions/codewiki/index.ts",
@@ -1524,18 +1487,17 @@
         "closure": "No duplicate migration artifacts remain and all public Pi behavior still passes tests."
       },
       "created": "2026-05-05",
-      "updated": "2026-05-08T09:35:19Z"
+      "updated": "2026-05-09T09:11:16Z"
     },
     "TASK-32": {
       "id": "TASK-32",
       "title": "Prove the adapter seam with a minimal CLI surface",
-      "status": "blocked",
+      "status": "cancelled",
       "priority": "low",
       "kind": "architecture",
-      "summary": "Adapter seams improved, but the minimal CLI proof was not implemented; keep task blocked/follow-up instead of closing baseline dishonestly.",
+      "summary": "Cancelled in roadmap transition after KB boundary refactor: minimal CLI proof is a future adapter option, not active work until the API/application seam is stable and there is a concrete access-surface need.",
       "spec_paths": [
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/extensions/codewiki/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         "extensions/codewiki/src/application",
@@ -1574,7 +1536,7 @@
         "closure": "Unblock by either implementing the minimal CLI proof or replacing it with a more relevant adapter proof task after application use-case extraction completes."
       },
       "created": "2026-05-05",
-      "updated": "2026-05-08T09:35:29Z"
+      "updated": "2026-05-09T09:11:21Z"
     },
     "TASK-033": {
       "id": "TASK-033",
@@ -1584,8 +1546,7 @@
       "kind": "verification",
       "summary": "TASK-033 baseline gate closed: stable dogfood checkpoint recorded with honest pass/block outcomes.",
       "spec_paths": [
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/extensions/codewiki/overview.md"
+        ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
         "extensions/codewiki",
@@ -1624,120 +1585,134 @@
         "closure": ""
       },
       "created": "2026-05-06",
-      "updated": "2026-05-08T09:39:08Z"
+      "updated": "2026-05-09T09:11:26Z"
     },
     "TASK-034": {
       "id": "TASK-034",
-      "title": "Design CodeWiki skill package and workflow assets",
+      "title": "Align CodeWiki skill package with compiler and API contracts",
       "status": "todo",
       "priority": "high",
       "kind": "agent-workflow",
-      "summary": "Define a CodeWiki skill package with router instructions, deterministic scripts, and grill/plan/build/verify workflow assets adapted from Matt Pocock's skills only where they fit CodeWiki semantics.",
+      "summary": "Update packaged CodeWiki skills and workflow assets so they route work through feedback, documentation, implementation, validation, graph, roadmap, build, and agency contracts without stale task-pack or nested-KB assumptions.",
       "spec_paths": [
-        ".codewiki/kb/system/clients/agent-skills.md",
-        ".codewiki/kb/system/v2-operating-model.md",
+        ".codewiki/kb/system/adapters.md",
+        ".codewiki/kb/system/api.md",
+        ".codewiki/kb/system/compilers.md",
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/agency.md",
         ".codewiki/kb/lexicon.md"
       ],
       "code_paths": [
-        "skills",
-        "README.md",
-        "package.json"
+        "skills/codewiki/SKILL.md",
+        "skills/codewiki-feedback/SKILL.md",
+        "skills/codewiki-plan/SKILL.md",
+        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-verify/SKILL.md",
+        "skills/codewiki-architecture/SKILL.md",
+        "skills/codewiki-view-audit/SKILL.md"
       ],
       "research_ids": [],
       "labels": [
         "skills",
-        "workflow",
-        "matt-pocock-adaptation"
+        "agent-workflow",
+        "compilers",
+        "api-contract"
       ],
       "goal": {
-        "outcome": "CodeWiki has a clear packaged skill contract that teaches agents how to operate `.codewiki/` without creating parallel documentation systems.",
+        "outcome": "CodeWiki packaged skills reflect the flat KB, builds-as-briefs model, gated agency, validation gateway, and active-roadmap truth boundaries.",
         "acceptance": [
-          "A skill-package structure is specified for `SKILL.md`, `scripts/`, and workflow assets.",
-          "`grill`, `plan`, `build`, and `verify` loops are described with CodeWiki-specific inputs, outputs, stop conditions, and canonical write rules.",
-          "Matt Pocock skill ideas are classified as adopt, adapt, or discard, with documentation-related conventions explicitly filtered through CodeWiki's knowledge model.",
-          "Repo-specific process customization lives under `.codewiki/kb/**` or config, while package workflow assets remain versioned and not casually self-mutated."
+          "Skills route ambiguous intent to feedback and accepted changes to documentation builds before implementation work.",
+          "Planning/task skills use documentation_build plus roadmap work item language instead of legacy requirements-packet briefs.",
+          "Verify/view-audit skills align with validation gateway and graph state-machine contracts.",
+          "Skills avoid stale references to deleted nested system docs and legacy operating-model paths.",
+          "Workflow guidance stays progressive-disclosure and does not bypass API/roadmap/build/validation semantics."
         ],
         "non_goals": [
-          "Do not blindly copy `CONTEXT.md`, `docs/adr`, issue-tracker, or PRD conventions when they duplicate CodeWiki knowledge/roadmap semantics.",
-          "Do not make agents hand-edit generated views."
+          "Do not copy external skill conventions that duplicate CodeWiki knowledge, roadmap, build, validation, or graph truth.",
+          "Do not make skills hand-edit generated graph or roadmap shards.",
+          "Do not implement runtime code refactors beyond skill/docs alignment."
         ],
         "verification": [
-          "Review packaged skill docs against `.codewiki/` invariants.",
-          "Run package smoke/test checks after any skill packaging changes.",
-          "Verify no parallel source of truth was introduced."
+          "grep skills for stale nested KB paths and task-pack terminology",
+          "Review skill router against system/api.md, compilers.md, validation-gateway.md, agency.md",
+          "Run existing smoke/tests if skill package loading is affected."
         ]
       },
       "delta": {
-        "desired": "",
-        "current": "",
-        "closure": ""
+        "desired": "Skills are aligned with the new CodeWiki compiler/API/graph/agency model.",
+        "current": "Skills still contain some old requirements-packet and legacy operating-model language.",
+        "closure": "Agent workflow assets route work using current KB truth boundaries and pass stale-reference grep."
       },
       "created": "2026-05-06",
-      "updated": "2026-05-06"
+      "updated": "2026-05-09T09:14:59Z"
     },
     "TASK-035": {
       "id": "TASK-035",
-      "title": "Enforce structured knowledge-roadmap-code mapping",
+      "title": "Enforce graph-backed traceability and active-roadmap policy",
       "status": "todo",
       "priority": "high",
       "kind": "architecture",
-      "summary": "Strengthen CodeWiki schemas, lint, and docs so knowledge docs, sprints, tasks, evidence, and code paths form a navigable vertical mapping for agents.",
+      "summary": "Strengthen graph, lint, and roadmap retention so knowledge, builds, roadmap work, validation, tests, and code form a navigable state machine while the hot roadmap contains active work rather than long-term history.",
       "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/components/knowledge.md",
-        ".codewiki/kb/system/components/roadmap.md",
-        ".codewiki/kb/system/components/views.md",
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/knowledge.md",
+        ".codewiki/kb/system/roadmap.md",
+        ".codewiki/kb/system/builds.md",
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/file-structure.md",
         ".codewiki/kb/lexicon.md"
       ],
       "code_paths": [
-        "extensions/codewiki/src/engine",
-        "extensions/codewiki/templates.ts",
-        "extensions/codewiki/src/engine/rebuild.ts"
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/engine/state.ts",
+        "extensions/codewiki/src/application",
+        "extensions/codewiki/src/core/roadmap.ts",
+        "scripts/codewiki-gateway.mjs"
       ],
       "research_ids": [],
       "labels": [
-        "schema",
-        "lint",
-        "mapping"
+        "graph",
+        "traceability",
+        "roadmap-retention",
+        "lint"
       ],
       "goal": {
-        "outcome": "Agents can reliably trace intended knowledge to roadmap delta to code ownership through enforced metadata and generated views.",
+        "outcome": "CodeWiki can detect stale cross-layer references, route work through the graph state machine, and keep active roadmap state lean while preserving history through git/builds/validation/checkpoints.",
         "acceptance": [
-          "Knowledge frontmatter requirements are documented and enforced for ids, summaries, owners, and relevant code/spec links.",
-          "Roadmap tasks validate `spec_paths`, `code_paths`, goals, acceptance, non-goals, verification, and evidence links.",
-          "Lint/reporting identifies missing or broken horizontal and vertical mappings.",
-          "Generated views expose compact navigation packets for this mapping without becoming canonical truth."
+          "Graph generation indexes knowledge frontmatter, curated Markdown links, builds, roadmap work, validation reports, and available code/test facts.",
+          "Stale KB refs in roadmap, builds, skills, and validation metadata are detected or reported before handoff.",
+          "Roadmap tooling distinguishes active hot work from retained closed/cancelled history and defines a safe archive/purge path for old done tasks.",
+          "Traceability from feedback_build to documentation_build to roadmap item to implementation_build is visible in graph state.",
+          "Link checks and graph/roadmap validation are exposed through deterministic checks or status output."
         ],
         "non_goals": [
-          "Do not require every code file to have a one-to-one doc.",
-          "Do not make roadmap tasks duplicate all knowledge content."
+          "Do not require one doc per code file.",
+          "Do not turn the roadmap into a full project-management suite.",
+          "Do not manually purge historical tasks without validated retention behavior."
         ],
         "verification": [
-          "Run `npm test`.",
-          "Run a rebuild and confirm `codewiki_state refresh=true` is green.",
-          "Add/adjust smoke fixtures for invalid mapping cases."
+          "KB markdown link check",
+          "stale-reference grep for deleted KB paths",
+          "graph rebuild/status refresh",
+          "unit or smoke coverage for stale-ref/retention behavior where implemented."
         ]
       },
       "delta": {
-        "desired": "",
-        "current": "",
-        "closure": ""
+        "desired": "Graph state machine and roadmap retention enforce the new truth model.",
+        "current": "Graph/build tooling exists, but stale refs remain possible and old done tasks are still retained in hot roadmap storage.",
+        "closure": "Generated state reports traceability and stale refs, and roadmap retention can safely keep hot state active-only."
       },
       "created": "2026-05-06",
-      "updated": "2026-05-06"
+      "updated": "2026-05-09T09:05:13Z"
     },
     "TASK-036": {
       "id": "TASK-036",
       "title": "Introduce sprint planning model",
-      "status": "todo",
+      "status": "cancelled",
       "priority": "high",
       "kind": "architecture",
-      "summary": "Add a roadmap sprint layer so the roadmap holds broad intent, future sprints stay outcome-level, and only the next sprint is decomposed into executable tasks.",
-      "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/components/roadmap.md",
-        ".codewiki/kb/system/flows/task-loop.md"
-      ],
+      "summary": "Cancelled in roadmap transition after KB boundary refactor: a sprint layer would overcomplicate the current model. Roadmap should stay active work truth, with builds as briefs and graph/gated agency handling routing. Revisit only if active-roadmap + graph workflow proves insufficient.",
+      "spec_paths": [],
       "code_paths": [
         "extensions/codewiki/src/core/roadmap.ts",
         "extensions/codewiki/src/core/types.ts",
@@ -1773,19 +1748,17 @@
         "closure": ""
       },
       "created": "2026-05-06",
-      "updated": "2026-05-06"
+      "updated": "2026-05-09T09:11:32Z"
     },
     "TASK-037": {
       "id": "TASK-037",
       "title": "Build standalone read-only CodeWiki UI",
-      "status": "todo",
+      "status": "cancelled",
       "priority": "medium",
       "kind": "architecture",
-      "summary": "Detach the human status interface from Pi by creating an agent-agnostic read-only UI that consumes generated `.codewiki/**` and renders Mermaid outside the Pi TUI constraints.",
+      "summary": "Cancelled in roadmap transition after KB boundary refactor: standalone read-only UI is deferred until graph/API/active-roadmap semantics are stable and a concrete visual UI need is accepted. Product visual UI docs remain as expectations, not immediate implementation work.",
       "spec_paths": [
-        ".codewiki/kb/product/uis/status-panel.md",
-        ".codewiki/kb/system/components/views.md",
-        ".codewiki/kb/system/components/extension.md"
+        ".codewiki/kb/product/uis/status-panel.md"
       ],
       "code_paths": [
         "extensions/codewiki/src/adapters/pi/ui",
@@ -1822,71 +1795,73 @@
         "closure": ""
       },
       "created": "2026-05-06",
-      "updated": "2026-05-06"
+      "updated": "2026-05-09T09:11:38Z"
     },
     "TASK-038": {
       "id": "TASK-038",
-      "title": "Implement trigger-based heartbeat agency loop",
+      "title": "Implement gated-agency heartbeat controller",
       "status": "todo",
-      "priority": "medium",
+      "priority": "high",
       "kind": "agent-workflow",
-      "summary": "Replace the current heartbeat planning stub with a bounded trigger-based loop whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
+      "summary": "Replace the heartbeat planning stub with a bounded agency controller that can advance roadmap work automatically through explicit token, time, risk, validation, policy, and approval gates.",
       "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/flows/task-loop.md",
-        ".codewiki/kb/system/flows/sanitation-release.md",
-        ".codewiki/kb/lexicon.md"
+        ".codewiki/kb/system/agency.md",
+        ".codewiki/kb/system/api.md",
+        ".codewiki/kb/system/roadmap.md",
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/compilers.md",
+        ".codewiki/kb/system/validation-gateway.md"
       ],
       "code_paths": [
+        "extensions/codewiki/src/application",
         "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
-        "extensions/codewiki/src/core/types.ts",
-        "skills/codewiki/SKILL.md"
+        "extensions/codewiki/src/engine/graph.ts",
+        "extensions/codewiki/src/core/roadmap.ts"
       ],
       "research_ids": [],
       "labels": [
+        "gated-agency",
         "heartbeat",
-        "agency",
         "automation",
-        "openclaw-inspired"
+        "roadmap"
       ],
       "goal": {
-        "outcome": "Users can choose understandable heartbeat triggers and safe autonomy budgets instead of opaque agency levels.",
+        "outcome": "CodeWiki supports gated agency: bounded heartbeat cycles can observe, maintain, or advance one safe roadmap/compiler step while stopping at configured gates.",
         "acceptance": [
-          "Heartbeat trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
-          "Each trigger maps to bounded observe/maintain/plan/work behavior with explicit budgets and stop conditions.",
-          "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
-          "Heartbeat can enter a brainstorm/planning loop only when trigger, budget, and risk policy allow it."
+          "Agency capability exposes observe, maintain, and work modes with explicit token/time/cycle/write/risk budgets.",
+          "Heartbeat consumes graph and roadmap state to choose one bounded next action rather than acting as a fourth compiler.",
+          "Controller stops on ambiguity, failed checks, fail/block validation, policy denial, destructive/publication action, missing approval, stale state, or budget exhaustion.",
+          "Pi-facing heartbeat entrypoint routes through application/API semantics and records compact evidence or stop reasons.",
+          "Status/board surfaces can show current gate, next action, and stop reason without treating heartbeat as product UI."
         ],
         "non_goals": [
           "Do not implement unbounded autonomous coding.",
-          "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks."
+          "Do not allow commit, push, release, archive, or destructive actions without explicit policy approval.",
+          "Do not make heartbeat responsible for compiler semantics."
         ],
         "verification": [
-          "Add tests or smoke coverage for trigger-to-action planning.",
-          "Run `npm test`.",
-          "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+          "Unit/smoke coverage for observe/maintain/work stop conditions",
+          "codewiki_heartbeat dry-run/manual smoke where available",
+          "validation gateway check for fail/block stop behavior",
+          "npm test if runtime code changes."
         ]
       },
       "delta": {
-        "desired": "",
-        "current": "",
-        "closure": ""
+        "desired": "Gated agency safely advances active roadmap work through bounded heartbeat cycles.",
+        "current": "Heartbeat exists as a planning stub/tool but agency semantics and gates are not fully implemented.",
+        "closure": "Heartbeat is a bounded agency controller with clear gates, stop reasons, and graph/roadmap/compiler routing."
       },
       "created": "2026-05-06",
-      "updated": "2026-05-06"
+      "updated": "2026-05-09T09:05:18Z"
     },
     "TASK-039": {
       "id": "TASK-039",
       "title": "Provide optional ThinkCode runtime adapter",
-      "status": "todo",
+      "status": "cancelled",
       "priority": "medium",
       "kind": "architecture",
-      "summary": "Make ThinkCode a first-class optional runtime for bounded CodeWiki context work while preserving native fallback paths for Pi, Codex, Claude Code, and other agent harnesses.",
-      "spec_paths": [
-        ".codewiki/kb/system/runtime/overview.md",
-        ".codewiki/kb/system/components/runtime-gateway.md",
-        ".codewiki/kb/system/v2-operating-model.md"
-      ],
+      "summary": "Cancelled in roadmap transition after KB boundary refactor: ThinkCode remains an optional agent helper, not core CodeWiki roadmap work. Recreate only if a concrete adapter/runtime need appears after API, graph, and agency semantics stabilize.",
+      "spec_paths": [],
       "code_paths": [
         "scripts/codewiki-gateway.mjs",
         "skills",
@@ -1924,7 +1899,7 @@
         "closure": ""
       },
       "created": "2026-05-06",
-      "updated": "2026-05-06"
+      "updated": "2026-05-09T09:11:42Z"
     },
     "TASK-040": {
       "id": "TASK-040",
@@ -1934,9 +1909,6 @@
       "kind": "testing",
       "summary": "Implement a first-class CodeWiki verification gateway/router before relying on existing verifier evidence to close the stable refactor baseline and start dogfooding.",
       "spec_paths": [
-        ".codewiki/kb/system/runtime/overview.md",
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/flows/task-loop.md",
         ".codewiki/kb/lexicon.md"
       ],
       "code_paths": [
@@ -1985,7 +1957,7 @@
         "closure": ""
       },
       "created": "2026-05-06",
-      "updated": "2026-05-06T22:01:08Z"
+      "updated": "2026-05-09T09:11:45Z"
     },
     "TASK-041": {
       "id": "TASK-041",
@@ -1995,10 +1967,6 @@
       "kind": "architecture",
       "summary": "Audit and redesign generated `.codewiki/**` as lightweight routing and observability read models, then benchmark prebuilt packs versus bounded programmatic exploration to choose the most token-efficient context strategy for task/sprint/roadmap work.",
       "spec_paths": [
-        ".codewiki/kb/system/components/views.md",
-        ".codewiki/kb/system/flows/context-memory.md",
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/flows/task-loop.md",
         ".codewiki/kb/lexicon.md"
       ],
       "code_paths": [
@@ -2048,7 +2016,7 @@
         "closure": ""
       },
       "created": "2026-05-06",
-      "updated": "2026-05-06T05:51:07Z"
+      "updated": "2026-05-09T09:11:52Z"
     },
     "TASK-042": {
       "id": "TASK-042",
@@ -2057,10 +2025,7 @@
       "priority": "critical",
       "kind": "bug",
       "summary": "Fix /wiki-resume without an explicit task so fresh Pi sessions use persisted CodeWiki focus/resume state instead of falling back to the first active roadmap task.",
-      "spec_paths": [
-        ".codewiki/kb/system/flows/task-loop.md",
-        ".codewiki/kb/system/runtime/overview.md"
-      ],
+      "spec_paths": [],
       "code_paths": [
         "extensions/codewiki/src/adapters/pi/commands/resume.ts",
         "extensions/codewiki/src/engine/state.ts",
@@ -2098,57 +2063,64 @@
         "closure": "Resume selection and generated views are aligned, covered, and verified."
       },
       "created": "2026-05-06",
-      "updated": "2026-05-08T00:21:24Z"
+      "updated": "2026-05-09T09:11:59Z"
     },
     "TASK-043": {
       "id": "TASK-043",
-      "title": "Automate post-task handoff and context compaction",
+      "title": "Automate implementation-build handoff and publication prep",
       "status": "todo",
       "priority": "high",
       "kind": "agent-workflow",
-      "summary": "Design and implement a safe post-task handoff flow that persists next focus, writes compact resume context, and integrates Pi/VCC/native compaction hooks after commit or push without unsafe automatic pushes by default.",
+      "summary": "Design and implement the post-task handoff flow so successful work produces compact resume context and implementation-build evidence suitable for commit, PR, issue, release, and push-readiness decisions without unsafe automatic publication.",
       "spec_paths": [
-        ".codewiki/kb/system/flows/task-loop.md",
-        ".codewiki/kb/system/runtime/overview.md"
+        ".codewiki/kb/system/builds.md",
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/roadmap.md",
+        ".codewiki/kb/system/agency.md",
+        ".codewiki/kb/system/extension.md"
       ],
       "code_paths": [
-        "extensions/codewiki/src/adapters/pi/commands/resume.ts",
-        "extensions/codewiki/src/core/session.ts",
-        "extensions/codewiki/src/engine/state.ts"
+        "extensions/codewiki/src/application",
+        "extensions/codewiki/src/core/builds.ts",
+        "extensions/codewiki/src/adapters/pi/tools/session.ts",
+        "extensions/codewiki/src/adapters/pi/tools/task.ts",
+        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts"
       ],
       "research_ids": [],
       "labels": [
-        "dogfood",
-        "context-window",
-        "compaction",
-        "pi-integration"
+        "implementation-build",
+        "handoff",
+        "publication",
+        "session"
       ],
       "goal": {
-        "outcome": "After closing and pushing a task, CodeWiki/Pi can start a fresh or compacted session from persisted handoff context with minimal token waste and no hidden chat dependency.",
+        "outcome": "After implementation work, CodeWiki records evidence and compact handoff context that can drive closure, resume, commit/PR/issue/release drafts, and push-readiness checks under validation/policy gates.",
         "acceptance": [
-          "A post-task handoff mechanism persists next task focus and a compact resume packet after successful task closure/checkpoint.",
-          "Pi integration point for VCC/native compaction is identified and implemented or documented with a safe fallback.",
-          "Default behavior does not automatically push or perform irreversible actions without explicit user opt-in/config.",
-          "Smoke or characterization coverage proves resume after handoff uses compact persisted context rather than stale chat state."
+          "Implementation builds include task/work refs, docs/spec refs, files changed, checks run, acceptance mapping, validation refs, risks, and publication draft fields when useful.",
+          "Task closure or checkpoint can persist next focus and compact resume context without relying on chat transcript memory.",
+          "Commit, push, release, and remote issue updates are prepared as recommendations and require explicit validation/policy approval before execution.",
+          "Pi/VCC/native compaction integration points are isolated in adapters or documented with safe fallbacks.",
+          "Smoke or characterization coverage proves resume after handoff uses persisted compact context rather than stale chat state."
         ],
         "non_goals": [
           "Do not make automatic remote push the default behavior.",
-          "Do not replace CodeWiki task packs with chat transcript summaries as source of truth.",
-          "Do not couple core CodeWiki to Pi-only compaction APIs."
+          "Do not replace builds, roadmap, or validation with chat transcript summaries.",
+          "Do not couple core CodeWiki semantics to Pi-only compaction APIs."
         ],
         "verification": [
-          "Run npm run typecheck.",
-          "Run npm test.",
-          "Run codewiki_state refresh=true and confirm green health."
+          "Create implementation_build for a documentation-only or small code task",
+          "Validate publication-ready fields without executing remote updates",
+          "Smoke resume/focus after handoff",
+          "npm test if runtime code changes."
         ]
       },
       "delta": {
-        "desired": "Task boundaries produce compact, persisted handoff context and optional Pi compaction/session reset automation.",
-        "current": "Agents rely on manual reload/new-session steps and may waste tokens or resume from stale branch-local state.",
-        "closure": "Post-task handoff and compaction path is implemented or explicitly staged with tested integration seams."
+        "desired": "Implementation evidence becomes the handoff source for closure, resume, and publication prep.",
+        "current": "Build writers exist, but post-task handoff/publication prep is not consistently integrated with task closure and session focus.",
+        "closure": "Implementation_build and compact resume handoff are created through the task workflow and gated before publication."
       },
       "created": "2026-05-06",
-      "updated": "2026-05-06"
+      "updated": "2026-05-09T09:05:23Z"
     },
     "TASK-044": {
       "id": "TASK-044",
@@ -2158,8 +2130,6 @@
       "kind": "migration",
       "summary": "TASK-044: Graph-first index with build/test/validation nodes, verifier removed, close flow simplified.",
       "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/components/views.md",
         ".codewiki/kb/system/overview.md"
       ],
       "code_paths": [
@@ -2196,7 +2166,7 @@
         "closure": ""
       },
       "created": "2026-05-07",
-      "updated": "2026-05-08T02:44:44Z"
+      "updated": "2026-05-09T09:12:04Z"
     },
     "TASK-045": {
       "id": "TASK-045",
@@ -2206,8 +2176,6 @@
       "kind": "architecture",
       "summary": "TASK-045: compiler build and validation report schemas complete.",
       "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/runtime/overview.md",
         ".codewiki/kb/lexicon.md"
       ],
       "code_paths": [
@@ -2244,55 +2212,62 @@
         "closure": ""
       },
       "created": "2026-05-07",
-      "updated": "2026-05-08T10:41:45Z"
+      "updated": "2026-05-09T09:12:12Z"
     },
     "TASK-046": {
       "id": "TASK-046",
-      "title": "Introduce tester and builder implementation roles",
+      "title": "Support tester and builder roles from documentation builds",
       "status": "todo",
       "priority": "medium",
       "kind": "agent-workflow",
-      "summary": "Add optional tester/builder workflow support so agent-created tests can be designed from task packs before code implementation.",
+      "summary": "Add optional tester/builder workflow support so agent-created tests can be derived from documentation builds and roadmap work items before code implementation, without relying on legacy requirements packets.",
       "spec_paths": [
-        ".codewiki/kb/system/flows/task-loop.md",
-        ".codewiki/kb/system/runtime/overview.md",
-        ".codewiki/kb/system/flows/context-memory.md"
+        ".codewiki/kb/system/compilers.md",
+        ".codewiki/kb/system/builds.md",
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/api.md",
+        ".codewiki/kb/system/agency.md"
       ],
       "code_paths": [
         "skills/codewiki-task/SKILL.md",
-        "extensions/codewiki/src/adapters/pi/tools/task.ts"
+        "skills/codewiki-verify/SKILL.md",
+        "extensions/codewiki/src/application",
+        "extensions/codewiki/src/core/builds.ts"
       ],
       "research_ids": [],
       "labels": [
-        "implementation-compiler",
         "tester-builder",
-        "tdd"
+        "implementation-loop",
+        "documentation-build",
+        "validation"
       ],
       "goal": {
-        "outcome": "Implementation compiler can optionally split agent-created tests into tester and builder roles.",
+        "outcome": "The implementation loop can optionally split tester and builder roles while preserving documentation_build, roadmap, validation, and implementation_build truth boundaries.",
         "acceptance": [
-          "Task workflow documentation and tool briefs can request a tester role before builder work.",
-          "Tester receives task pack and writes/updates tests without implementation changes when practical.",
-          "Builder receives task pack plus tests and makes checks pass.",
-          "Validation can distinguish test-design evidence from build evidence."
+          "Implementation workflow can request a tester role from a documentation_build and roadmap work item before code changes.",
+          "Tester output focuses on tests or test-design evidence and avoids implementation changes where practical.",
+          "Builder consumes documentation_build, roadmap item, and tests, then produces implementation evidence after checks pass.",
+          "Implementation_build distinguishes test-design evidence, code-change evidence, checks, acceptance mapping, and validation refs.",
+          "Validation gateway can review tester/builder split without requiring separate agents for every task."
         ],
         "non_goals": [
-          "Always require separate agents for every task.",
-          "Implement a generic multi-agent framework."
+          "Do not always require separate agents for every task.",
+          "Do not implement a generic multi-agent framework.",
+          "Do not revive legacy requirements packets as requirements briefs."
         ],
         "verification": [
-          "npm run typecheck",
-          "targeted tests or smoke coverage for generated briefs/workflow metadata",
-          "manual dry-run on one task pack"
+          "Update skill/tool docs for tester/builder inputs and outputs",
+          "Run stale grep for task-pack terminology",
+          "Exercise workflow on a small task or dry-run with documented evidence mapping."
         ]
       },
       "delta": {
-        "desired": "",
-        "current": "",
-        "closure": ""
+        "desired": "Tester/builder roles consume documentation builds and roadmap items instead of legacy requirements packets.",
+        "current": "Existing task guidance still references legacy requirements packets and lacks build/evidence split semantics.",
+        "closure": "Implementation workflow can optionally split tester and builder roles with validation-ready evidence."
       },
       "created": "2026-05-07",
-      "updated": "2026-05-07"
+      "updated": "2026-05-09T09:15:07Z"
     },
     "TASK-047": {
       "id": "TASK-047",
@@ -2302,10 +2277,6 @@
       "kind": "migration",
       "summary": "Make CodeWiki stable enough to dogfood by aligning canonical rebuild, event/state sources, tests, and validation before continuing graph/compiler/role refactors.",
       "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/components/views.md",
-        ".codewiki/kb/system/flows/task-loop.md",
-        ".codewiki/kb/system/runtime/overview.md",
         ".codewiki/kb/lexicon.md"
       ],
       "code_paths": [
@@ -2365,7 +2336,7 @@
         "closure": "TASK-042 and future CodeWiki tasks can be validated against the same rebuilt state that tests and agents use."
       },
       "created": "2026-05-08",
-      "updated": "2026-05-08T00:16:30Z"
+      "updated": "2026-05-09T09:12:14Z"
     },
     "TASK-048": {
       "id": "TASK-048",
@@ -2374,10 +2345,7 @@
       "priority": "high",
       "kind": "docs",
       "summary": "TASK-048: Per-compiler KB files and feedback compiler skill created.",
-      "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/components/views.md"
-      ],
+      "spec_paths": [],
       "code_paths": [
         "skills/codewiki/SKILL.md",
         "skills/codewiki-feedback"
@@ -2415,7 +2383,7 @@
         "closure": ""
       },
       "created": "2026-05-08",
-      "updated": "2026-05-08T02:51:53Z"
+      "updated": "2026-05-09T09:12:20Z"
     },
     "TASK-049": {
       "id": "TASK-049",
@@ -2424,10 +2392,7 @@
       "priority": "high",
       "kind": "agent-workflow",
       "summary": "TASK-049: Feedback build writer implemented with lifecycle metadata and smoke coverage.",
-      "spec_paths": [
-        ".codewiki/kb/system/compilers/feedback.md",
-        ".codewiki/kb/system/v2-operating-model.md"
-      ],
+      "spec_paths": [],
       "code_paths": [
         "extensions/codewiki/src/adapters/pi/tools",
         "extensions/codewiki/src/core",
@@ -2467,7 +2432,7 @@
         "closure": "Add schema/writer/workflow docs/tests so feedback_build creation is reliable and lifecycle-aware."
       },
       "created": "2026-05-08",
-      "updated": "2026-05-08T09:15:09Z"
+      "updated": "2026-05-09T09:12:26Z"
     },
     "TASK-050": {
       "id": "TASK-050",
@@ -2476,11 +2441,7 @@
       "priority": "high",
       "kind": "architecture",
       "summary": "TASK-050: graph-backed reconciliation state machine and gateway routing implemented.",
-      "spec_paths": [
-        ".codewiki/kb/system/v2-operating-model.md",
-        ".codewiki/kb/system/components/views.md",
-        ".codewiki/kb/system/compilers/validation-gateway.md"
-      ],
+      "spec_paths": [],
       "code_paths": [
         "extensions/codewiki/src/engine/graph.ts",
         "extensions/codewiki/src/engine/state.ts",
@@ -2520,7 +2481,7 @@
         "closure": "Add graph/state fields, routing logic, docs, and tests for state-machine reconciliation."
       },
       "created": "2026-05-08",
-      "updated": "2026-05-08T09:27:42Z"
+      "updated": "2026-05-09T09:12:31Z"
     }
   }
 }

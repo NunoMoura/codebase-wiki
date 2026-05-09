@@ -91,3 +91,9 @@ A change can originate in any layer:
 - Any compiler may escalate to feedback when intent is unclear.
 - Handoffs require validation gateway approval or an explicit block/fail result.
 - Automated compiler execution must run through gated agency controls, not through unbounded loops.
+
+## Related docs
+
+- [Builds](builds.md)
+- [Validation Gateway](validation-gateway.md)
+- [Agency Controller](agency.md)

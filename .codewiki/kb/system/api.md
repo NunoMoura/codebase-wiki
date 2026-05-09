@@ -64,3 +64,9 @@ All access surfaces must preserve the same `.codewiki/` semantics.
 The API belongs in application use cases and domain contracts. Adapters translate harness-specific inputs and outputs. Infrastructure implements filesystem, Git, process, persistence, and graph rebuild ports.
 
 The API should stay stable while adapter protocols change.
+
+## Related docs
+
+- [Adapters](adapters.md)
+- [Agency Controller](agency.md)
+- [Compilers](compilers.md)

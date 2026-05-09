@@ -49,7 +49,7 @@ Avoid nested component folders and avoid `overview.md` files except `product/ove
 | Validation gateway | `validation-gateway.md` | verifier skills, validation reports |
 | Knowledge | `knowledge.md` | `.codewiki/kb/**` |
 | Builds | `builds.md` | `.codewiki/builds/**` |
-| Roadmap | `roadmap.md` | `.codewiki/roadmap/**` |
+| Roadmap | `roadmap.md` | `.codewiki/roadmap.json`, active task state, release checkpoints, archive files |
 | Graph state machine | `graph.md` | `.codewiki/index_graph.json`, graph rebuild implementation |
 
 `architecture.mmd` may also show external artifacts such as users, code/tests, and publication outputs. Those are not system component docs unless they become owned system components.
@@ -139,3 +139,9 @@ Rules:
 The current repository still contains transitional `core/**`, `engine/**`, and generated task shards. These are migration sources, not the target architecture.
 
 Runtime checks must cover direct Node execution and package loading, not only TypeScript typechecking. Node 26 exposed an extensionless TypeScript import failure in the current rebuild path; the refactor must fix runtime loading and packaging boundaries.
+
+## Related docs
+
+- [Architecture Diagram](architecture.mmd)
+- [API](api.md)
+- [Adapters](adapters.md)

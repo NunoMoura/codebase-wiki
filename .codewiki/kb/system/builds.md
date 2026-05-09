@@ -74,3 +74,9 @@ proposed -> accepted -> applied -> validated -> archived -> purged
 ```
 
 Passing validation can be recorded in accepted build metadata. Failed, blocked, policy-required, release, or audit-mode validation reports should persist under `.codewiki/validation/**`.
+
+## Related docs
+
+- [Compilers](compilers.md)
+- [Validation Gateway](validation-gateway.md)
+- [Roadmap](roadmap.md)
