@@ -28,11 +28,14 @@ function piSessionPorts(pi: ExtensionAPI, ctx: ExtensionContext) {
 			setSessionName: (name: string) => pi.setSessionName(name),
 			appendEntry: (type: string, data: unknown) => pi.appendEntry(type, data),
 		},
-		context: ctx,
-		getSessionId: () => ctx.sessionManager.getSessionId(),
-		getSessionFile: () => ctx.sessionManager.getSessionFile() as string,
-		getSessionName: () => ctx.sessionManager.getSessionName(),
-		getSessionBranch: () => ctx.sessionManager.getBranch(),
+		sessionStore: {
+			getCurrentSessionId: () => ctx.sessionManager.getSessionId(),
+			getSessionBranch: () => ctx.sessionManager.getBranch(),
+		},
+		notifier: {
+			notify: (message: string, level: "info" | "warning" | "error") => ctx.ui.setStatus("codewiki-session", `${level}: ${message}`),
+			setStatus: (key: string, value: string | undefined) => ctx.ui.setStatus(key, value),
+		},
 	};
 }
 

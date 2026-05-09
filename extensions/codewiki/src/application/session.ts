@@ -4,26 +4,93 @@
  * Session focus management use cases.
  * Links runtime agent session state to the CodeWiki roadmap without importing Pi types.
  */
-import type { WikiProject, TaskSessionLinkRecord, TaskSessionAction } from "../domain/shared/types";
-import type { CodewikiContextPort, CodewikiRuntimePort } from "../core/ports";
-import { linkTaskSession, currentTaskLink as coreCurrentTaskLink } from "../core/session";
+import type { WikiProject, TaskSessionLinkRecord, TaskSessionAction, RoadmapTaskRecord, TaskSessionLinkInput } from "../domain/shared/types";
+import { findLatestTaskSessionLink, normalizeTaskSessionLinkInput } from "../core/session";
+import { readRoadmapTask } from "../core/roadmap";
 import { unique } from "../core/utils";
-import type { FileStore } from "./ports";
+import type { FileStore, SessionStore, UserNotifier } from "./ports";
+
+const TASK_SESSION_LINK_CUSTOM_TYPE = "codewiki.task-link";
+
+export interface SessionRuntime {
+	setSessionName(name: string): void;
+	appendEntry(type: string, data: unknown): void;
+}
 
 export interface SessionPorts {
 	fileStore: FileStore;
-	runtime: CodewikiRuntimePort;
-	context: CodewikiContextPort;
-	getSessionId: () => string | null;
-	getSessionFile: () => string;
-	getSessionName: () => string;
-	getSessionBranch: () => unknown[];
+	runtime: SessionRuntime;
+	sessionStore: SessionStore;
+	notifier: UserNotifier;
 }
 
 export function getFocusedTaskLink(
 	ports: SessionPorts,
 ): TaskSessionLinkRecord | null {
-	return coreCurrentTaskLink(ports.context);
+	return findLatestTaskSessionLink(ports.sessionStore.getSessionBranch());
+}
+
+async function linkTaskToSession(
+	project: WikiProject,
+	input: TaskSessionLinkInput,
+	ports: SessionPorts,
+): Promise<TaskSessionLinkRecord & { title: string; renamed: boolean }> {
+	const task = await readRoadmapTask(project, input.taskId);
+	if (!task) throw new Error(`Roadmap task not found: ${input.taskId}`);
+	const link = normalizeTaskSessionLinkInput(input);
+	const renamed = recordTaskSessionLink(task, link, input, ports);
+	return {
+		...link,
+		title: task.title,
+		renamed,
+	};
+}
+
+function recordTaskSessionLink(
+	task: RoadmapTaskRecord,
+	link: TaskSessionLinkRecord,
+	input: TaskSessionLinkInput,
+	ports: SessionPorts,
+): boolean {
+	if (link.action === "clear") {
+		ports.notifier.setStatus("codewiki-task", undefined);
+	} else {
+		setTaskSessionStatusText(ports, task.id, task.title, link.action);
+	}
+
+	const shouldSetSessionName = input.setSessionName ?? link.action === "focus";
+	let renamed = false;
+	if (shouldSetSessionName) {
+		try {
+			ports.runtime.setSessionName(`${task.id} ${task.title}`);
+			renamed = true;
+		} catch {
+			// Ignore optional runtime rename failures.
+		}
+	}
+
+	try {
+		ports.runtime.appendEntry(TASK_SESSION_LINK_CUSTOM_TYPE, {
+			taskId: task.id,
+			action: link.action,
+			summary: link.summary,
+			filesTouched: link.filesTouched,
+			spawnedTaskIds: link.spawnedTaskIds,
+		});
+	} catch {
+		// Ignore optional runtime history failures.
+	}
+	return renamed;
+}
+
+function setTaskSessionStatusText(
+	ports: SessionPorts,
+	taskId: string,
+	title: string,
+	action: TaskSessionAction,
+): void {
+	const label = action === "focus" ? "focused" : action;
+	ports.notifier.setStatus("codewiki-task", `${taskId} ${label}: ${title}`);
 }
 
 export async function recordSessionTaskAction(
@@ -48,10 +115,8 @@ export async function recordSessionTaskAction(
 		(opts.action === "focus"
 			? `Focused current session on ${taskId}.`
 			: `Recorded runtime session note for ${taskId}.`);
-	return linkTaskSession(
-		ports.runtime,
+	return linkTaskToSession(
 		project,
-		ports.context,
 		{
 			taskId,
 			action: opts.action,
@@ -60,7 +125,7 @@ export async function recordSessionTaskAction(
 			spawnedTaskIds: [],
 			setSessionName: opts.action === "focus" ? (opts.setSessionName ?? false) : false,
 		},
-		{ refresh: false },
+		ports,
 	);
 }
 
@@ -85,16 +150,14 @@ export async function clearSessionFocus(
 ): Promise<(TaskSessionLinkRecord & { title: string; renamed: boolean }) | null> {
 	const active = getFocusedTaskLink(ports);
 	if (!active) return null;
-	return linkTaskSession(
-		ports.runtime,
+	return linkTaskToSession(
 		project,
-		ports.context,
 		{
 			taskId: active.taskId,
 			action: "clear",
 			summary: summary?.trim() || `Cleared current session focus from ${active.taskId}.`,
 			setSessionName: false,
 		},
-		{ refresh: false },
+		ports,
 	);
 }
