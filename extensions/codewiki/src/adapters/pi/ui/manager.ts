@@ -90,12 +90,12 @@ import {
     roadmapTaskStage,
     normalizeTaskPhaseValue,
     isTaskBlocked,
-    taskBoardColumn
+    taskBoardColumn,
+    taskIdCandidates
 } from "../../../core/roadmap";
 import { currentTaskLink, setTaskSessionStatusText } from "../session";
 import { maybeReadStatusState, maybeReadRoadmapState } from "../../../core/state";
 import { matchesKey, truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
-import { taskIdCandidates } from "../../../core/task-id";
 import { resolve, dirname, basename } from "node:path";
 import { readFileSync } from "node:fs";
 

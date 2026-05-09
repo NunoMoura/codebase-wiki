@@ -16,7 +16,7 @@ import type {
 } from "../domain/shared/types";
 import { loadCodewikiStateArtifacts, roadmapApiTaskState, maybeReadTaskContext } from "../core/state";
 import { readRoadmapTask } from "../core/roadmap";
-import { findLatestTaskSessionLink } from "../core/session";
+import { findLatestTaskSessionLink } from "../domain/shared/session";
 import type { FileStore, RebuildRunner, SessionStore } from "./ports";
 
 // ---------------------------------------------------------------------------

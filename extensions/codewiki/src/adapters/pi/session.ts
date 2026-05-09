@@ -6,7 +6,7 @@ import type {
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 import type { TaskSessionAction, TaskSessionLinkRecord } from "../../domain/shared/types";
 import type { SessionPorts } from "../../application/session";
-import { findLatestTaskSessionLink } from "../../core/session";
+import { findLatestTaskSessionLink } from "../../domain/shared/session";
 
 export function currentTaskLink(
 	ctx: ExtensionContext | ExtensionCommandContext,
