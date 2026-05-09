@@ -7,7 +7,7 @@ import type {
 	ExtensionAPI,
 	ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
-import { codewikiStateToolInputSchema } from "../../../core/schemas";
+import { codewikiStateToolInputSchema } from "../schemas";
 import { readCodewikiState } from "../../../application/state";
 import { resolveToolProject } from "../../../core/project";
 import { currentTaskLink, piSessionStore } from "../session";

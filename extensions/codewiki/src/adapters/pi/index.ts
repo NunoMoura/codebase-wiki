@@ -1,7 +1,7 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import type { ActiveStatusPanel } from "../../domain/shared/types";
 import { registerBootstrapFeatures } from "../../../bootstrap";
-import { codewikiBuildToolInputSchema, codewikiHeartbeatToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "../../core/schemas";
+import { codewikiBuildToolInputSchema, codewikiHeartbeatToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas";
 import { registerConfigCommand } from "./commands/config";
 import { registerResumeCommand } from "./commands/resume";
 import { registerStatusCommand } from "./commands/status";

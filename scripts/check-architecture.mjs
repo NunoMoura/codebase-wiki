@@ -73,7 +73,6 @@ const transitionalFileAllowlist = new Set([
 	"core/project.ts",
 	"core/prompt.ts",
 	"core/roadmap.ts",
-	"core/schemas.ts",
 	"core/state.ts",
 	"engine/gateway.ts",
 	"engine/git-cache.ts",

@@ -1,5 +1,5 @@
 import { Type } from "@sinclair/typebox";
-import * as T from "../domain/shared/types";
+import * as T from "../../domain/shared/types";
 
 export const subagentRoleSchema = Type.Union(
 	T.SUBAGENT_ROLE_VALUES.map((value) => Type.Literal(value)),
