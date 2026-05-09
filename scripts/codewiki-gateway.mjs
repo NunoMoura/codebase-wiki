@@ -16,7 +16,7 @@ import {
 } from "./codewiki-transaction.mjs";
 
 try {
-	const { CodewikiRebuilder } = await import("../extensions/codewiki/src/engine/rebuild.ts");
+	const { CodewikiRebuilder } = await import("../extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts");
 	setRebuildRunner((repo) => new CodewikiRebuilder(repo).rebuildAll());
 } catch (error) {
 	const code = String(error?.code || "");

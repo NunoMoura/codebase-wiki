@@ -149,7 +149,7 @@ export function setRebuildRunner(runner) {
 export async function runRebuild(repo) {
 	if (rebuildRunner) return rebuildRunner(repo);
 	// Default TypeScript rebuild.
-	const { CodewikiRebuilder } = await import("../extensions/codewiki/src/engine/rebuild.ts");
+	const { CodewikiRebuilder } = await import("../extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts");
 	await new CodewikiRebuilder(repo).rebuildAll();
 }
 

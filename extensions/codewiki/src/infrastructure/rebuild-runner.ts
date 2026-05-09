@@ -14,7 +14,7 @@ export async function runConfiguredOrDefaultRebuild(
 	}
 
 	try {
-		const { CodewikiRebuilder } = await import("../engine/rebuild");
+		const { CodewikiRebuilder } = await import("./codewiki-rebuilder");
 		await new CodewikiRebuilder(project.root).rebuildAll();
 	} catch (error) {
 		throw new Error(`Default rebuild failed: ${formatError(error)}`);

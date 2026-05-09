@@ -293,7 +293,7 @@ function bootstrapTargetPaths(
 
 async function runRebuild(root: string): Promise<void> {
 	try {
-		const { CodewikiRebuilder } = await import("./src/engine/rebuild.js");
+		const { CodewikiRebuilder } = await import("./src/infrastructure/codewiki-rebuilder.js");
 		await new CodewikiRebuilder(root).rebuildAll();
 	} catch (error) {
 		console.error("Bootstrap rebuild failed with stack:", error);
