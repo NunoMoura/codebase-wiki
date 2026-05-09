@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-09T09:15:07Z",
+  "updated": "2026-05-09T19:53:58Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -1384,7 +1384,7 @@
     "TASK-30": {
       "id": "TASK-30",
       "title": "Complete DDD application layer and port boundaries",
-      "status": "todo",
+      "status": "in_progress",
       "priority": "high",
       "kind": "architecture",
       "summary": "Finish migrating CodeWiki behavior into harness-agnostic application use cases and ports while keeping domain pure, infrastructure concrete, and Pi behavior behind adapters.",
@@ -1436,7 +1436,7 @@
         "closure": "Application-layer ports are the default path for CodeWiki behavior, with Pi isolated behind adapters and checks preventing regression."
       },
       "created": "2026-05-05",
-      "updated": "2026-05-09T09:05:06Z"
+      "updated": "2026-05-09T19:53:58Z"
     },
     "TASK-31": {
       "id": "TASK-31",

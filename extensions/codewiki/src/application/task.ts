@@ -4,9 +4,9 @@
  * Task mutation use cases — create, update, close, append evidence.
  * Orchestrates core/roadmap.ts domain logic behind port interfaces.
  */
-import type { WikiProject, RoadmapTaskRecord, RoadmapTaskInput, CodewikiTaskPatchInput, CodewikiTaskEvidenceInput, RoadmapTaskUpdateInput, RoadmapStatus } from "../domain/shared/types";
-import { appendRoadmapTasks, updateRoadmapTask, appendCodewikiTaskEvidence, readRoadmapTask, hasCodewikiTaskPatchChanges, buildRoadmapTaskUpdateFromCodewikiPatch, updateTaskLoop, hasRoadmapTaskUpdateFields, summarizeCodewikiTaskAction, type SemanticTaskVerifierRunner } from "../core/roadmap";
-import { maybeReadRoadmapState, roadmapApiTaskState, mapToolTaskStatusToRoadmapStatus, runRebuild } from "../core/state";
+import type { WikiProject, RoadmapTaskRecord, RoadmapTaskInput, CodewikiTaskPatchInput, CodewikiTaskEvidenceInput, RoadmapStatus } from "../domain/shared/types";
+import { appendRoadmapTasks, updateRoadmapTask, appendCodewikiTaskEvidence, readRoadmapTask, hasCodewikiTaskPatchChanges, buildRoadmapTaskUpdateFromCodewikiPatch, hasRoadmapTaskUpdateFields } from "../core/roadmap";
+import { maybeReadRoadmapState } from "../core/state";
 import type { FileStore, RebuildRunner, MessageBus } from "./ports";
 
 // ---------------------------------------------------------------------------
@@ -17,7 +17,6 @@ export interface TaskMutationPorts {
 	fileStore: FileStore;
 	rebuildRunner: RebuildRunner;
 	messageBus: MessageBus;
-	runSemanticVerifier?: SemanticTaskVerifierRunner;
 }
 
 // ---------------------------------------------------------------------------
@@ -29,7 +28,7 @@ export async function createCodewikiTasks(
 	inputs: RoadmapTaskInput[],
 	ports: TaskMutationPorts,
 ): Promise<{ created: RoadmapTaskRecord[]; reused: RoadmapTaskRecord[] }> {
-	const result = await appendRoadmapTasks(null as any, project, null as any, inputs);
+	const result = await appendRoadmapTasks(null as any, project, null as any, inputs, { refresh: false });
 	await ports.rebuildRunner.run(project);
 	return result;
 }
@@ -56,10 +55,13 @@ export async function patchCodewikiTask(
 
 	const update = buildRoadmapTaskUpdateFromCodewikiPatch(task, runtimeTask, patch);
 
-	if (hasRoadmapTaskUpdateFields(update)) {
-		return updateRoadmapTask(project, update);
+	if (!hasRoadmapTaskUpdateFields(update)) {
+		return { task, changed: false };
 	}
-	return { task, changed: false };
+
+	const result = await updateRoadmapTask(project, update, { refresh: false });
+	if (result.changed) await ports.rebuildRunner.run(project);
+	return result;
 }
 
 // ---------------------------------------------------------------------------
@@ -90,7 +92,7 @@ export async function closeCodewikiTask(
 		taskId: task.id,
 		status: "done",
 		summary: summary?.trim() || evidence?.summary?.trim() || "Task closed.",
-	});
+	}, { refresh: false });
 
 	await ports.rebuildRunner.run(project);
 
@@ -113,7 +115,8 @@ export async function appendTaskEvidence(
 ): Promise<void> {
 	const task = await readRoadmapTask(project, taskId);
 	if (!task) throw new Error(`Roadmap task not found: ${taskId}`);
-	await appendCodewikiTaskEvidence(project, task, evidence);
+	await appendCodewikiTaskEvidence(project, task, evidence, false);
+	await ports.rebuildRunner.run(project);
 }
 
 // ---------------------------------------------------------------------------
@@ -133,6 +136,6 @@ export async function cancelCodewikiTask(
 		taskId: task.id,
 		status: "cancelled" as RoadmapStatus,
 		summary: summary ?? task.summary,
-	});
+	}, { refresh: false });
 	await ports.rebuildRunner.run(project);
 }

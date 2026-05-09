@@ -19,7 +19,8 @@ try {
 	const { CodewikiRebuilder } = await import("../extensions/codewiki/src/engine/rebuild.ts");
 	setRebuildRunner((repo) => new CodewikiRebuilder(repo).rebuildAll());
 } catch (error) {
-	if (!process.env.CODEWIKI_TSX_READY && String(error?.code) === "ERR_UNKNOWN_FILE_EXTENSION") {
+	const code = String(error?.code || "");
+	if (!process.env.CODEWIKI_TSX_READY && (code === "ERR_UNKNOWN_FILE_EXTENSION" || code === "ERR_MODULE_NOT_FOUND")) {
 		try {
 			execFileSync("npx", ["--yes", "tsx", fileURLToPath(import.meta.url), ...process.argv.slice(2)], {
 				stdio: "inherit",

@@ -103,11 +103,9 @@ async function main() {
 	assert.match(roadmapCoreSource, /compactVerifierContext/, "Verifier gateway should compact context packs before semantic verification");
 	assert.match(roadmapCoreSource, /SemanticTaskVerifierRunner/, "Core verifier gateway should depend on an adapter-provided semantic verifier runner");
 	assert.doesNotMatch(roadmapCoreSource, /execFileAsync\(\s*"pi"/, "Core verifier gateway should not spawn the Pi CLI directly");
-	assert.match(taskAdapterSource, /createAgentSession/, "Pi adapter should run semantic verification through Pi SDK sessions");
-	assert.match(taskAdapterSource, /SessionManager\.inMemory/, "Pi adapter verifier session should be ephemeral");
-	assert.match(taskAdapterSource, /noExtensions: true/, "Pi adapter verifier session should disable extensions");
-	assert.match(taskAdapterSource, /tools: \["read", "grep", "find", "ls"\]/, "Pi adapter verifier session should be read-only");
-	assert.match(taskAdapterSource, /assistantMessageEvent\.delta/, "Pi adapter verifier should collect SDK streaming text deltas");
+	assert.doesNotMatch(taskAdapterSource, /createAgentSession/, "Pi task adapter should not run semantic verification from the close path");
+	assert.doesNotMatch(taskAdapterSource, /SessionManager\.inMemory/, "Pi task adapter should not create verifier sessions during task mutation");
+	assert.doesNotMatch(taskAdapterSource, /runSemanticVerifier/, "TaskMutationPorts should not carry deprecated verifier runners");
 	assert.match(roadmapCoreSource, /\["pass", "fail", "block"\]/, "Verifier gateway should cover pass/fail/block verdicts");
 
 	const verifierParserStart = roadmapCoreSource.indexOf("function taskVerifierBlock");

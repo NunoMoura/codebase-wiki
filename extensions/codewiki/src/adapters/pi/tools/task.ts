@@ -1,9 +1,3 @@
-import {
-	createAgentSession,
-	DefaultResourceLoader,
-	getAgentDir,
-	SessionManager,
-} from "@mariozechner/pi-coding-agent";
 import type {
 	ExtensionAPI,
 	ExtensionContext,
@@ -109,66 +103,10 @@ async function computeCanonicalDigest(project: WikiProject): Promise<string> {
 	return `sha256:${hash.digest("hex")}`;
 }
 
-function extractTextContent(value: unknown): string {
-	if (typeof value === "string") return value;
-	if (Array.isArray(value)) {
-		return value.map((item) => typeof item?.text === "string" ? item.text : "").join("");
-	}
-	return "";
-}
-
-async function runPiTaskCloseVerifier(project: WikiProject, prompt: string): Promise<string> {
-	const loader = new DefaultResourceLoader({
-		cwd: project.root,
-		agentDir: getAgentDir(),
-		noExtensions: true,
-		noSkills: true,
-		noPromptTemplates: true,
-		noThemes: true,
-		noContextFiles: true,
-	});
-	await loader.reload();
-	const { session } = await createAgentSession({
-		cwd: project.root,
-		resourceLoader: loader,
-		sessionManager: SessionManager.inMemory(project.root),
-		tools: ["read", "grep", "find", "ls"],
-	});
-	let finalText = "";
-	const unsubscribe = session.subscribe((event) => {
-		const anyEvent = event as any;
-		if (
-			anyEvent?.type === "message_update" &&
-			anyEvent.assistantMessageEvent?.type === "text_delta" &&
-			typeof anyEvent.assistantMessageEvent.delta === "string"
-		) {
-			finalText += anyEvent.assistantMessageEvent.delta;
-		}
-		const message = anyEvent?.message;
-		if (message?.role === "assistant") {
-			const text = extractTextContent(message.content);
-			if (text) finalText = text;
-		}
-		if (anyEvent?.type === "agent_end" && Array.isArray(anyEvent.messages)) {
-			const assistantMessage = [...anyEvent.messages].reverse().find((item: any) => item?.role === "assistant");
-			const text = extractTextContent(assistantMessage?.content);
-			if (text) finalText = text;
-		}
-	});
-	try {
-		await session.prompt(prompt);
-		if (!finalText.trim()) throw new Error("Verifier session returned no assistant text");
-		return finalText;
-	} finally {
-		unsubscribe();
-		await session.dispose();
-	}
-}
-
 /**
  * Build TaskMutationPorts from Pi ExtensionContext.
  */
-function piTaskPorts(ctx: ExtensionContext, project: WikiProject): TaskMutationPorts {
+function piTaskPorts(ctx: ExtensionContext): TaskMutationPorts {
 	return {
 		fileStore: {
 			readJson: async (path: string) => JSON.parse(await readFile(path, "utf8")),
@@ -187,7 +125,6 @@ function piTaskPorts(ctx: ExtensionContext, project: WikiProject): TaskMutationP
 		messageBus: {
 			send: (_message: string) => { /* Pi adapter silences task output to caller */ },
 		},
-		runSemanticVerifier: (prompt: string) => runPiTaskCloseVerifier(project, prompt),
 	};
 }
 
@@ -281,7 +218,7 @@ export async function executeCodewikiTask(
 	if (input.action === "create") {
 		if (!input.tasks?.length)
 			throw new Error("codewiki_task create requires tasks.");
-		const result = await createCodewikiTasks(project, input.tasks, piTaskPorts(ctx, project));
+		const result = await createCodewikiTasks(project, input.tasks, piTaskPorts(ctx));
 		const details = {
 			action: "create" as const,
 			changed: result.created.length > 0,
@@ -346,7 +283,7 @@ export async function executeCodewikiTask(
 		const closeResult = await closeCodewikiTask(
 			project,
 			existingTask.id,
-			piTaskPorts(ctx, project),
+			piTaskPorts(ctx),
 			input.evidence,
 			input.summary,
 		);
@@ -377,12 +314,12 @@ export async function executeCodewikiTask(
 			});
 		}
 	} else if (input.action === "cancel") {
-		await cancelCodewikiTask(project, existingTask.id, piTaskPorts(ctx, project), input.summary);
+		await cancelCodewikiTask(project, existingTask.id, piTaskPorts(ctx), input.summary);
 		changed = true;
 		latestTask = (await readRoadmapTask(project, existingTask.id))!;
 	} else {
 		if (hasCodewikiTaskPatchChanges(input.patch)) {
-			const patchResult = await patchCodewikiTask(project, existingTask.id, input.patch, piTaskPorts(ctx, project));
+			const patchResult = await patchCodewikiTask(project, existingTask.id, input.patch, piTaskPorts(ctx));
 			latestTask = patchResult.task;
 			changed = patchResult.changed;
 			runtimeState = await maybeReadRoadmapState(project.roadmapStatePath);
@@ -412,7 +349,7 @@ export async function executeCodewikiTask(
 				const reloadedTask = await readRoadmapTask(project, latestTask.id);
 				if (reloadedTask) latestTask = reloadedTask;
 			} else {
-				await appendTaskEvidence(project, latestTask.id, input.evidence, piTaskPorts(ctx, project));
+				await appendTaskEvidence(project, latestTask.id, input.evidence, piTaskPorts(ctx));
 				evidenceRecorded = true;
 			}
 		}
