@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-09T22:48:34Z",
+  "updated": "2026-05-09T22:58:59Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -35,7 +35,6 @@
     "TASK-32",
     "TASK-033",
     "TASK-034",
-    "TASK-035",
     "TASK-036",
     "TASK-037",
     "TASK-038",
@@ -321,7 +320,7 @@
         "think-code"
       ],
       "goal": {
-        "outcome": "Each roadmap task has an automatic implement\u2192verify loop grounded in task context, tests, and evidence.",
+        "outcome": "Each roadmap task has an automatic implement→verify loop grounded in task context, tests, and evidence.",
         "acceptance": [
           "Task loop is documented as load task/context, create compact context with think-code when useful, implement, run local checks, automatically invoke fresh verification when ready, append evidence, then close/block/follow-up.",
           "Local verification and fresh-context verification have distinct responsibilities.",
@@ -341,7 +340,7 @@
       },
       "delta": {
         "desired": "Task execution is automatic, evidence-backed, and resumable from implementation through verification.",
-        "current": "Implement\u2192verify guidance exists but is not formalized as an automatic focused inner loop skill.",
+        "current": "Implement→verify guidance exists but is not formalized as an automatic focused inner loop skill.",
         "closure": "Add inner-loop skill/spec guidance and link it to CodeWiki task/session tools and automatic verifier stage."
       },
       "created": "2026-05-01",
@@ -1477,66 +1476,6 @@
       "created": "2026-05-06",
       "updated": "2026-05-09T09:14:59Z"
     },
-    "TASK-035": {
-      "id": "TASK-035",
-      "title": "Enforce graph-backed traceability and active-roadmap policy",
-      "status": "implement",
-      "priority": "high",
-      "kind": "architecture",
-      "summary": "Strengthen graph, lint, and roadmap retention so knowledge, builds, roadmap work, validation, tests, and code form a navigable state machine while the hot roadmap contains active work rather than long-term history.",
-      "spec_paths": [
-        ".codewiki/kb/lexicon.md",
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/file-structure.md",
-        ".codewiki/kb/system/api.md",
-        ".codewiki/kb/system/knowledge.md",
-        ".codewiki/kb/system/roadmap.md",
-        ".codewiki/kb/system/graph.md",
-        ".codewiki/kb/system/validation-gateway.md",
-        ".codewiki/kb/system/builds.md"
-      ],
-      "code_paths": [
-        "extensions/codewiki/src/application/lint.ts",
-        "extensions/codewiki/src/application/graph.ts",
-        "extensions/codewiki/src/application/state-builders.ts",
-        "extensions/codewiki/src/infrastructure/doc-parser.ts",
-        "extensions/codewiki/src/domain/shared/types.ts",
-        "extensions/codewiki/templates.ts",
-        "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts"
-      ],
-      "research_ids": [],
-      "labels": [
-        "graph",
-        "traceability",
-        "roadmap-retention",
-        "lint"
-      ],
-      "goal": {
-        "outcome": "Agents can reliably trace intended knowledge to roadmap delta to code ownership through enforced metadata and generated views.",
-        "acceptance": [
-          "Knowledge frontmatter requirements are documented and enforced for ids, summaries, owners, and relevant code/spec links.",
-          "Roadmap tasks validate spec_paths, code_paths, goals, acceptance, non-goals, verification, and evidence links.",
-          "Lint/reporting identifies missing or broken horizontal and vertical mappings.",
-          "Generated views expose compact navigation packets for this mapping without becoming canonical truth."
-        ],
-        "non_goals": [
-          "Do not require every code file to have a one-to-one doc.",
-          "Do not make roadmap tasks duplicate all knowledge content."
-        ],
-        "verification": [
-          "Run npm test.",
-          "Run a rebuild and confirm codewiki_state refresh=true passes.",
-          "Add/adjust smoke fixtures for invalid mapping cases."
-        ]
-      },
-      "delta": {
-        "desired": "Lint and graph catch broken cross-layer references; knowledge frontmatter is consistently present and validated.",
-        "current": "Lint already checks missing fields, broken links, and missing code paths. Graph already exposes reconciliation items. Frontmatter is partially validated. Stale spec_paths/code_paths on some roadmap tasks cause lint warnings. Knowledge docs need consistent frontmatter audit.",
-        "closure": "Lint errors drop to zero; cross-layer mapping is enforced and verifiable."
-      },
-      "created": "2026-05-06",
-      "updated": "2026-05-09T22:48:34Z"
-    },
     "TASK-036": {
       "id": "TASK-036",
       "title": "Introduce sprint planning model",
@@ -1797,7 +1736,7 @@
           "Benchmark or prototype four context strategies for representative task work: prebuilt pack only, progressive disclosure only, sandbox/programmatic exploration only, and hybrid pack plus sandbox.",
           "Define role-specific seed/context pack contracts for at least `grill`, `plan`, `build`, and `verify`, emphasizing minimal routing metadata instead of large precomputed context dumps.",
           "Define typed graph-slice views for task/sprint/roadmap scopes with `core`, `supporting`, `watch`, and `excluded` tiers plus edge reasons and confidence (`explicit` vs `inferred`).",
-          "Define horizontal and vertical observability signals only: knowledge/task/evidence/view alignment and intent \u2192 knowledge \u2192 roadmap \u2192 code \u2192 checks/evidence alignment; do not make observability a pass/fail gate.",
+          "Define horizontal and vertical observability signals only: knowledge/task/evidence/view alignment and intent → knowledge → roadmap → code → checks/evidence alignment; do not make observability a pass/fail gate.",
           "Define an acceptance/evidence matrix that maps criteria to spec paths, code paths, checks, and evidence for verifier consumption.",
           "Represent token budget as generator/test metadata (`estimated_tokens`, `max_tokens`, `over_budget`) rather than instructions the agent must maintain manually.",
           "Implement or prototype the smallest useful `task.build`, `task.verify`, and `task.graph` views needed by the hardened verification gateway, without blocking future sprint/roadmap expansion.",

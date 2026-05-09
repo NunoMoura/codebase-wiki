@@ -100,7 +100,7 @@ async function run() {
 		const valTool = extension.tools.get("codewiki_validation");
 		assert.ok(valTool, "Validation tool missing");
 		const passResult = await valTool.definition.execute(
-			"val-pass", { repoPath: projectDir, profile: "task-close", verdict: "pass", rationale: "All good." },
+			"val-pass", { repoPath: projectDir, profile: "task-close", task_id: "TASK-001", verdict: "pass", rationale: "All good.", source: implResult.details.path },
 			undefined, undefined, ctx,
 		);
 		assert.match(passResult.details.path, /\.codewiki\/validation\/.*task-close-pass.*\.json$/);
@@ -136,7 +136,7 @@ async function run() {
 		const items = graph.views?.reconciliation?.items || [];
 		assert.ok(items.some(i => i.source_id === `build:${fbResult.details.path}` && i.next_loop === "documentation"), "Feedback build not in reconciliation");
 		assert.ok(items.some(i => i.source_id === `build:${docResult.details.path}` && i.next_loop === "documentation"), "Doc build not in reconciliation");
-		assert.ok(items.some(i => i.source_id === `build:${implResult.details.path}` && i.next_loop === "implementation"), "Impl build not in reconciliation");
+		assert.ok(!items.some(i => i.source_id === `build:${implResult.details.path}` && i.next_loop === "implementation"), "Validated implementation build should not stay in reconciliation");
 		assert.ok(items.some(i => i.source_id === `validation:${failResult.details.path}` && i.next_loop === "documentation"), "Fail validation not routing to documentation");
 
 		console.log("✓ build and validation smoke tests passed");

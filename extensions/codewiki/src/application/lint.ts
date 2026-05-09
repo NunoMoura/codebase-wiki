@@ -13,6 +13,11 @@ const FORBIDDEN_HEADINGS = [
 ];
 const WORD_COUNT_WARN = 1000;
 const WORD_COUNT_EXEMPT = new Set([".codewiki/roadmap.md", "index.md"]);
+const OPEN_ROADMAP_STATUSES = new Set(["todo", "research", "implement", "verify", "in_progress", "blocked"]);
+
+function isOpenRoadmapStatus(status: string): boolean {
+	return OPEN_ROADMAP_STATUSES.has(String(status || "todo").trim());
+}
 
 export function createIssue(severity: string, kind: string, path: string, message: string): LintIssue {
 	return { severity, kind, path, message };
@@ -74,6 +79,12 @@ export function lintMarkdownDocs(repoRoot: string, docs: ParsedDoc[]): LintIssue
 	}
 
 	return issues;
+}
+
+export interface EvidenceLinkInput {
+	builds?: { path: string; kind: string; taskId?: string; data?: any }[];
+	validations?: { path: string; taskId?: string; verdict?: string; data?: any }[];
+	archivedTaskIds?: string[];
 }
 
 export function lintRoadmapEntries(repoRoot: string, project: WikiProject, entries: RoadmapTaskRecord[], research: any[]): LintIssue[] {
@@ -138,7 +149,7 @@ export function lintRoadmapEntries(repoRoot: string, project: WikiProject, entri
 			issues.push(createIssue("warning", "roadmap-missing-verification", sourcePath, `${entryId} goal should define at least one verification step`));
 		}
 
-		if (specPaths.length === 0 && codePaths.length === 0) {
+		if (isOpenRoadmapStatus(status) && specPaths.length === 0 && codePaths.length === 0) {
 			issues.push(createIssue("warning", "roadmap-unscoped", sourcePath, `${entryId} should reference at least one spec_paths or code_paths entry`));
 		}
 
@@ -164,10 +175,47 @@ export function lintRoadmapEntries(repoRoot: string, project: WikiProject, entri
 	return issues;
 }
 
-export function buildLintReport(repoRoot: string, project: WikiProject, docs: ParsedDoc[], roadmapEntries: RoadmapTaskRecord[], research: any[]): LintReport {
+export function lintEvidenceLinks(
+	project: WikiProject,
+	entries: RoadmapTaskRecord[],
+	evidence: EvidenceLinkInput = {},
+): LintIssue[] {
+	const issues: LintIssue[] = [];
+	const knownTaskIds = new Set([
+		...entries.map((entry) => String(entry.id || "").trim()).filter(Boolean),
+		...(evidence.archivedTaskIds || []).map((id) => String(id || "").trim()).filter(Boolean),
+	]);
+
+	for (const build of evidence.builds || []) {
+		const buildPath = String(build.path || "").trim();
+		const taskId = String(build.taskId || build.data?.task_id || build.data?.taskId || "").trim();
+		if (taskId && !knownTaskIds.has(taskId)) {
+			issues.push(createIssue("error", "evidence-missing-task", buildPath, `Build references unknown task: ${taskId}`));
+		}
+		if (String(build.kind || "") === "implementation_build") {
+			const mapping = Array.isArray(build.data?.acceptance_mapping) ? build.data.acceptance_mapping : [];
+			if (taskId && mapping.length === 0) {
+				issues.push(createIssue("warning", "implementation-build-missing-acceptance", buildPath, `Implementation build for ${taskId} should include acceptance_mapping evidence.`));
+			}
+		}
+	}
+
+	for (const validation of evidence.validations || []) {
+		const validationPath = String(validation.path || "").trim();
+		const taskId = String(validation.taskId || validation.data?.task_id || validation.data?.taskId || "").trim();
+		if (taskId && !knownTaskIds.has(taskId)) {
+			issues.push(createIssue("error", "evidence-missing-task", validationPath, `Validation report references unknown task: ${taskId}`));
+		}
+	}
+
+	return issues;
+}
+
+export function buildLintReport(repoRoot: string, project: WikiProject, docs: ParsedDoc[], roadmapEntries: RoadmapTaskRecord[], research: any[], evidence: EvidenceLinkInput = {}): LintReport {
 	const issues: LintIssue[] = [
 		...lintMarkdownDocs(repoRoot, docs),
-		...lintRoadmapEntries(repoRoot, project, roadmapEntries, research)
+		...lintRoadmapEntries(repoRoot, project, roadmapEntries, research),
+		...lintEvidenceLinks(project, roadmapEntries, evidence),
 	];
 
 	const counts: Record<string, number> = {};

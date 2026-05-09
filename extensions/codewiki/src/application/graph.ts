@@ -10,7 +10,7 @@ export interface GraphBuildInputs {
 	roadmapEntries: RoadmapTaskRecord[];
 	gitCache: GitCache;
 	builds: { path: string; kind: string; taskId?: string; status?: string; data: any }[];
-	validations: { path: string; taskId?: string; verdict?: string }[];
+	validations: { path: string; taskId?: string; verdict?: string; data?: any }[];
 	testFiles: string[];
 }
 
@@ -190,9 +190,16 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	// Process Builds
 	const buildTaskMap = new Map<string, string[]>();
 	const reconciliationItems: any[] = [];
+	const hasPassingValidationForBuild = (build: { path: string; taskId?: string }) => validations.some((validation) => {
+		if (String(validation.verdict || "") !== "pass") return false;
+		const source = String(validation.data?.source || "").trim();
+		if (source && source === build.path) return true;
+		return Boolean(build.taskId && validation.taskId === build.taskId);
+	});
 	for (const build of builds) {
 		const lifecycleState = String(build.data?.lifecycle?.state || build.data?.status || build.status || "").trim() || "unknown";
-		const buildAlignmentState = ["validated", "archived", "purged"].includes(lifecycleState) ? "aligned" : "drift";
+		const buildValidated = hasPassingValidationForBuild(build);
+		const buildAlignmentState = ["validated", "archived", "purged"].includes(lifecycleState) || buildValidated ? "aligned" : "drift";
 		const buildId = `build:${build.path}`;
 		addNode(buildId, {
 			kind: build.kind as any,
@@ -227,17 +234,17 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 				next_loop: "documentation",
 				reason: "Accepted documentation build should produce roadmap task packs before implementation.",
 			});
-		} else if (build.kind === "implementation_build" && lifecycleState === "accepted") {
+		} else if (build.kind === "implementation_build" && lifecycleState === "accepted" && !buildValidated) {
 			reconciliationItems.push({
 				id: `reconcile:${build.path}`,
 				source_id: buildId,
 				state: "drift",
-				direction: "downward",
-				from_layer: "roadmap",
-				to_layer: "code",
+				direction: "gateway",
+				from_layer: "build",
+				to_layer: "validation",
 				next_loop: "implementation",
 				task_id: build.taskId,
-				reason: "Accepted implementation build should trigger tests/code changes and validation gateway.",
+				reason: "Accepted implementation build still needs passing validation gateway evidence.",
 			});
 		} else if (["documentation_build", "implementation_build"].includes(build.kind) && lifecycleState === "applied") {
 			reconciliationItems.push({

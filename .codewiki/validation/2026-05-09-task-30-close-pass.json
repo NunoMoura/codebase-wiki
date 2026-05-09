@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-09T22:44:48Z",
+  "profile": "task-close",
+  "task_id": "TASK-30",
+  "verdict": "pass",
+  "rationale": "TASK-30 acceptance is met: code is split into target layers, core/engine removed, Pi imports isolated, deprecated scope blocked, tests and live CodeWiki refresh pass.",
+  "checks": [
+    "npx tsc --noEmit",
+    "node scripts/check-architecture.mjs",
+    "node -e \"import('./extensions/codewiki/index.ts')\"",
+    "npm test",
+    "codewiki_state refresh=true"
+  ],
+  "issues": [],
+  "source": ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json"
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-09T23:12:20Z",
+  "profile": "task-close",
+  "task_id": "TASK-035",
+  "verdict": "pass",
+  "rationale": "TASK-035 audit pass after follow-up: KB frontmatter is complete and scoped, lint validates roadmap fields and evidence links, stale queue generation now only includes open tasks, and checks pass.",
+  "checks": [
+    "npx tsc --noEmit",
+    "node scripts/check-architecture.mjs",
+    "npm test",
+    "codewiki_state refresh=true"
+  ],
+  "issues": [],
+  "source": ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json"
+}

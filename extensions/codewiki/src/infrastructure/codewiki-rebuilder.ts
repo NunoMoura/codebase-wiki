@@ -48,6 +48,31 @@ export class CodewikiRebuilder {
 		return mdFiles.map(p => relative(this.repoRoot, p).replace(/\\/g, "/"));
 	}
 
+	private writeRoadmapQueue(project: WikiProject, roadmapState: any): void {
+		const roadmapDir = join(this.repoRoot, project.metaRoot, "roadmap");
+		if (!existsSync(roadmapDir)) mkdirSync(roadmapDir, { recursive: true });
+
+		const taskIds = Array.isArray(roadmapState?.views?.open_task_ids)
+			? roadmapState.views.open_task_ids
+			: [];
+		const tasks = taskIds
+			.map((taskId: string) => roadmapState?.tasks?.[taskId])
+			.filter(Boolean)
+			.map((task: any) => ({
+				id: String(task.id || "").trim(),
+				title: String(task.title || "").trim(),
+				status: String(task.status || "todo").trim(),
+				phase: task.loop?.phase || null,
+				priority: String(task.priority || "medium").trim(),
+				kind: String(task.kind || "task").trim(),
+				summary: String(task.summary || "").trim(),
+				context_path: String(task.context_path || `${project.metaRoot}/roadmap/tasks/${task.id}/context.json`).trim(),
+				spec_paths: Array.isArray(task.spec_paths) ? task.spec_paths : [],
+				code_paths: Array.isArray(task.code_paths) ? task.code_paths : [],
+			}));
+		writeFileSync(join(roadmapDir, "queue.json"), JSON.stringify({ tasks }, null, 2));
+	}
+
 	private loadResearchCollections(project: WikiProject): any[] {
 		const collections: any[] = [];
 		const root = join(this.repoRoot, project.researchRoot);
@@ -141,6 +166,9 @@ export class CodewikiRebuilder {
 
 		const roadmapData = readJson(project.roadmapPath, { tasks: {} });
 		const roadmapEntries = Object.values(roadmapData.tasks || {}) as any[];
+		const archivePath = config.roadmap_retention?.archive_path || `${metaRoot}/roadmap/archive.jsonl`;
+		const archivedRoadmapEntries = readJsonLines(archivePath);
+		const archivedTaskIds = archivedRoadmapEntries.map((task: any) => String(task.id || "").trim()).filter(Boolean);
 		const events: any[] = [];
 
 		const research = this.loadResearchCollections(project);
@@ -169,7 +197,7 @@ export class CodewikiRebuilder {
 		}
 
 		console.log(`[Rebuild] Discovering validation reports...`);
-		const validations: { path: string; taskId?: string; verdict?: string }[] = [];
+		const validations: { path: string; taskId?: string; verdict?: string; data?: any }[] = [];
 		const validationRoot = join(this.repoRoot, ".codewiki", "validation");
 		if (existsSync(validationRoot)) {
 			const walk = (dir: string) => {
@@ -183,6 +211,7 @@ export class CodewikiRebuilder {
 						path: relPath,
 						taskId: vdata.taskId || vdata.task_id || undefined,
 						verdict: vdata.verdict,
+						data: vdata,
 					});
 				}
 			};
@@ -204,7 +233,7 @@ export class CodewikiRebuilder {
 		console.log(`[Rebuild] Graph and Lint dependencies resolving...`);
 
 		const graph = buildGraph({ project, docs, research, roadmapEntries, gitCache: this.gitCache, builds, validations, testFiles });
-		const lintReport = buildLintReport(this.repoRoot, project, docs, roadmapEntries, research);
+		const lintReport = buildLintReport(this.repoRoot, project, docs, roadmapEntries, research, { builds, validations, archivedTaskIds });
 		
 		console.log(`[Rebuild] Building UI state...`);
 		const roadmapState = buildRoadmapState(project, roadmapEntries, graph, lintReport, events);
@@ -225,6 +254,7 @@ export class CodewikiRebuilder {
 			},
 		};
 		writeFileSync(join(metaRootDir, "index_graph.json"), JSON.stringify(indexGraph, null, 2));
+		this.writeRoadmapQueue(project, roadmapState);
 
 		console.log(`[Rebuild] Engine pipeline completed successfully!`);
 	}
