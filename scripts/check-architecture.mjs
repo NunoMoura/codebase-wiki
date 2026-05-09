@@ -11,12 +11,14 @@ const checks = [
 		prefix: "domain/",
 		forbidden: [
 			/@mariozechner\//,
+			/@earendil-works\//,
 			/from\s+["']node:/,
 			/import\s+["']node:/,
 			/from\s+["']\.\.\/application/,
 			/from\s+["']\.\.\/infrastructure/,
 			/from\s+["']\.\.\/adapters/,
 			/from\s+["']\.\.\/core/,
+			/from\s+["']\.\.\/engine/,
 			/from\s+["']\.\.\/tools/,
 			/from\s+["']\.\.\/commands/,
 			/from\s+["']\.\.\/ui/,
@@ -27,6 +29,7 @@ const checks = [
 		prefix: "application/",
 		forbidden: [
 			/@mariozechner\//,
+			/@earendil-works\//,
 			/from\s+["']\.\.\/adapters/,
 			/from\s+["']\.\.\/tools/,
 			/from\s+["']\.\.\/commands/,
@@ -34,16 +37,60 @@ const checks = [
 		],
 	},
 	{
-		name: "infrastructure-does-not-use-pi",
+		name: "infrastructure-does-not-use-pi-or-adapters",
 		prefix: "infrastructure/",
-		forbidden: [/@mariozechner\//, /from\s+["']\.\.\/adapters/],
+		forbidden: [/@mariozechner\//, /@earendil-works\//, /from\s+["']\.\.\/adapters/],
 	},
 	{
-		name: "core-does-not-use-pi-or-adapters",
-		prefix: "core/",
-		forbidden: [/@mariozechner\//, /from\s+["']\.\.\/adapters/],
+		name: "shared-has-no-product-behavior",
+		prefix: "shared/",
+		forbidden: [
+			/@mariozechner\//,
+			/@earendil-works\//,
+			/from\s+["']node:/,
+			/import\s+["']node:/,
+			/from\s+["']\.\.\/domain/,
+			/from\s+["']\.\.\/application/,
+			/from\s+["']\.\.\/infrastructure/,
+			/from\s+["']\.\.\/adapters/,
+			/from\s+["']\.\.\/core/,
+			/from\s+["']\.\.\/engine/,
+		],
+	},
+	{
+		name: "pi-sdk-only-in-pi-adapter",
+		prefix: "",
+		forbiddenOutside: "adapters/pi/",
+		forbidden: [/@mariozechner\//, /@earendil-works\/pi-/],
 	},
 ];
+
+// `core/**` and `engine/**` are transitional directories. Target v2 architecture
+// is domain/application/infrastructure/shared/adapters only. Keep current files
+// visible as migration debt, and fail if new files are added there.
+const transitionalFileAllowlist = new Set([
+	"core/builds.ts",
+	"core/ports.ts",
+	"core/prefs.ts",
+	"core/project.ts",
+	"core/prompt.ts",
+	"core/rebuild-runner.ts",
+	"core/roadmap.ts",
+	"core/schemas.ts",
+	"core/session.ts",
+	"core/state.ts",
+	"core/task-id.ts",
+	"core/types.ts",
+	"core/utils.ts",
+	"engine/gateway.ts",
+	"engine/git-cache.ts",
+	"engine/graph.ts",
+	"engine/lint.ts",
+	"engine/parser.ts",
+	"engine/rebuild.ts",
+	"engine/state.ts",
+	"engine/transaction.ts",
+]);
 
 function walk(dir) {
 	const out = [];
@@ -57,17 +104,33 @@ function walk(dir) {
 }
 
 const failures = [];
+const warnings = [];
 for (const file of walk(SRC_ROOT)) {
 	const rel = relative(SRC_ROOT, file).replaceAll("\\", "/");
 	const text = readFileSync(file, "utf8");
+
+	if (rel.startsWith("core/") || rel.startsWith("engine/")) {
+		if (!transitionalFileAllowlist.has(rel)) {
+			failures.push(`transitional-layer-no-new-files: ${rel} is not in the core/engine migration allowlist`);
+		} else {
+			warnings.push(`transitional-layer-debt: ${rel}`);
+		}
+	}
+
 	for (const check of checks) {
 		if (!rel.startsWith(check.prefix)) continue;
+		if (check.forbiddenOutside && rel.startsWith(check.forbiddenOutside)) continue;
 		for (const pattern of check.forbidden) {
 			if (pattern.test(text)) {
 				failures.push(`${check.name}: ${rel} matches ${pattern}`);
 			}
 		}
 	}
+}
+
+if (warnings.length) {
+	console.warn("Architecture transition warnings:");
+	for (const warning of warnings) console.warn(`- ${warning}`);
 }
 
 if (failures.length) {
