@@ -4,7 +4,7 @@ import { join, relative, resolve } from "node:path";
 import { GitCache } from "../infrastructure/git-cache";
 import { loadGateway } from "./transaction";
 import { WikiProject } from "../domain/shared/types";
-import { buildGraph } from "./graph";
+import { buildGraph } from "../application/graph";
 import { buildLintReport } from "../application/lint";
 import { buildRoadmapState, buildStatusState } from "./state";
 import { parseDoc, ParsedDoc } from "../infrastructure/doc-parser";
