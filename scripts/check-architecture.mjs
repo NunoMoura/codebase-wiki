@@ -74,7 +74,6 @@ const transitionalFileAllowlist = new Set([
 	"core/prefs.ts",
 	"core/project.ts",
 	"core/prompt.ts",
-	"core/rebuild-runner.ts",
 	"core/roadmap.ts",
 	"core/schemas.ts",
 	"core/session.ts",

@@ -50,3 +50,14 @@ export async function runRebuild(
 		runner.run(project),
 	);
 }
+
+/**
+ * Run a rebuild without acquiring the rebuild lock.
+ * Caller must already hold the relevant lock.
+ */
+export async function runRebuildUnlocked(
+	project: WikiProject,
+	runner: RebuildRunner,
+): Promise<void> {
+	await runner.run(project);
+}

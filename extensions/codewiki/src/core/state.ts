@@ -15,11 +15,11 @@ import type {
 import { maybeReadJson, readJson } from "../infrastructure/filesystem";
 import {
 	rebuildTargetPaths,
-	runRebuildWithRunner,
-	runRebuildUnlockedWithRunner,
-	type CoreRebuildRunner,
-} from "./rebuild-runner";
-export { rebuildTargetPaths } from "./rebuild-runner";
+	runRebuild as runApplicationRebuild,
+	runRebuildUnlocked as runApplicationRebuildUnlocked,
+} from "../application/rebuild";
+import type { RebuildRunner } from "../application/ports";
+export { rebuildTargetPaths } from "../application/rebuild";
 import { TASK_PHASE_VALUES } from "../domain/shared/types"; // Assuming it's in types.ts
 
 
@@ -27,7 +27,7 @@ import { TASK_PHASE_VALUES } from "../domain/shared/types"; // Assuming it's in 
  * Run the rebuild command for a project.
  */
 export async function runRebuild(project: WikiProject): Promise<void> {
-	return runRebuildWithRunner(project, defaultRebuildRunner);
+	return runApplicationRebuild(project, defaultRebuildRunner);
 }
 
 /**
@@ -53,10 +53,10 @@ export async function rebuildAndSummarize(
  * Run the rebuild command without locking (caller must lock).
  */
 export async function runRebuildUnlocked(project: WikiProject): Promise<void> {
-	return runRebuildUnlockedWithRunner(project, defaultRebuildRunner);
+	return runApplicationRebuildUnlocked(project, defaultRebuildRunner);
 }
 
-const defaultRebuildRunner: CoreRebuildRunner = {
+const defaultRebuildRunner: RebuildRunner = {
 	run: async (project) => {
 		const { runConfiguredOrDefaultRebuild } = await import("../infrastructure/rebuild-runner");
 		await runConfiguredOrDefaultRebuild(project);
