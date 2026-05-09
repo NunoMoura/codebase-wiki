@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync, mkdirSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
-import { GitCache } from "./git-cache";
+import { GitCache } from "../infrastructure/git-cache";
 import { loadGateway } from "./transaction";
 import { WikiProject } from "../domain/shared/types";
 import { buildGraph } from "./graph";

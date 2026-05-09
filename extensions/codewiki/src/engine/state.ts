@@ -311,7 +311,7 @@ export function laneStats(rows: any[]) {
 	};
 }
 
-import { GitCache } from "./git-cache";
+import { GitCache } from "../infrastructure/git-cache";
 
 export function previousHeartbeatLane(previousStatus: any, laneId: string): any {
 	const heartbeat = previousStatus?.heartbeat || {};

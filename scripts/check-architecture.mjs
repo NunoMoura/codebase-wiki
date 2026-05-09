@@ -70,7 +70,6 @@ const checks = [
 // visible as migration debt, and fail if new files are added there.
 const transitionalFileAllowlist = new Set([
 	"engine/gateway.ts",
-	"engine/git-cache.ts",
 	"engine/graph.ts",
 	"engine/lint.ts",
 	"engine/parser.ts",
