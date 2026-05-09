@@ -2,7 +2,7 @@
  * application/task.ts
  *
  * Task mutation use cases — create, update, close, append evidence.
- * Orchestrates core/roadmap.ts domain logic behind port interfaces.
+ * Orchestrates roadmap task mutation helpers behind port interfaces.
  */
 import type { WikiProject, RoadmapTaskRecord, RoadmapTaskInput, CodewikiTaskPatchInput, CodewikiTaskEvidenceInput, RoadmapStatus } from "../domain/shared/types";
 import { appendRoadmapTasks, updateRoadmapTask, appendCodewikiTaskEvidence, readRoadmapTask, hasCodewikiTaskPatchChanges, buildRoadmapTaskUpdateFromCodewikiPatch, hasRoadmapTaskUpdateFields } from "./roadmap";
