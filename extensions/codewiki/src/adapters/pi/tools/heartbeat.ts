@@ -4,7 +4,6 @@ import type {
 } from "../../../core/types";
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
 import { planHeartbeat } from "../../../application/heartbeat";
-import { currentTaskLink } from "../../../core/session";
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 
 /**
@@ -30,7 +29,7 @@ export async function executeCodewikiHeartbeat(
 	}, {
 		fileStore: piFileStore(),
 		rebuildRunner: piRebuildRunner(),
-		getActiveSessionLink: () => currentTaskLink(ctx),
+		sessionStore: piSessionStore(ctx),
 	});
 
 	return {
@@ -57,6 +56,13 @@ function piRebuildRunner() {
 			const { runConfiguredOrDefaultRebuild } = await import("../../../infrastructure/rebuild-runner");
 			await runConfiguredOrDefaultRebuild(project);
 		},
+	};
+}
+
+function piSessionStore(ctx: ExtensionContext) {
+	return {
+		getCurrentSessionId: () => ctx.sessionManager?.getSessionId?.() ?? null,
+		getSessionBranch: () => ctx.sessionManager?.getBranch?.() ?? null,
 	};
 }
 

@@ -16,6 +16,7 @@ import type {
 } from "../domain/shared/types";
 import { loadCodewikiStateArtifacts, roadmapApiTaskState, maybeReadTaskContext } from "../core/state";
 import { readRoadmapTask } from "../core/roadmap";
+import { findLatestTaskSessionLink } from "../core/session";
 import type { FileStore, RebuildRunner, SessionStore } from "./ports";
 
 // ---------------------------------------------------------------------------
@@ -158,7 +159,7 @@ export function buildCodewikiTaskDetail(
 export interface ReadStatePorts {
 	fileStore: FileStore;
 	rebuildRunner: RebuildRunner;
-	getActiveSessionLink: () => TaskSessionLinkRecord | null;
+	sessionStore: SessionStore;
 }
 
 // ---------------------------------------------------------------------------
@@ -176,7 +177,7 @@ export async function readCodewikiState(
 ): Promise<Record<string, unknown>> {
 	const include = buildCodewikiStateInclude(opts.include, opts.taskId);
 	const artifacts = await loadCodewikiStateArtifacts(project, opts.refresh);
-	const activeLink = ports.getActiveSessionLink();
+	const activeLink = findLatestTaskSessionLink(ports.sessionStore.getSessionBranch());
 	const health = artifacts.statusState?.health ?? {
 		color: (artifacts.report?.issues.length ?? 0) > 0 ? "yellow" : "green",
 		errors: 0,
