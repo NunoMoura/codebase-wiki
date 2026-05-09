@@ -148,15 +148,15 @@ async function run() {
 // ---- helpers (minimal copies from smoke-test.mjs) ----
 function findPiRoot() {
 	const candidates = [
-		resolve(import.meta.dirname, "..", "..", "node_modules", "@mariozechner", "pi-coding-agent"),
-		resolve(import.meta.dirname, "..", "..", "..", "@mariozechner", "pi-coding-agent"),
+		resolve(import.meta.dirname, "..", "..", "node_modules", "@earendil-works", "pi-coding-agent"),
+		resolve(import.meta.dirname, "..", "..", "..", "@earendil-works", "pi-coding-agent"),
 	];
 	for (const c of candidates) {
 		try { if (readFileSync(resolve(c, "dist", "index.js"))) return c; } catch {}
 	}
 	try {
 		const globalRoot = execFileSync("npm", ["root", "-g"], { encoding: "utf8" }).trim();
-		const candidate = resolve(globalRoot, "@mariozechner", "pi-coding-agent");
+		const candidate = resolve(globalRoot, "@earendil-works", "pi-coding-agent");
 		try { if (readFileSync(resolve(candidate, "dist", "index.js"))) return candidate; } catch {}
 	} catch {}
 	throw new Error("Cannot find pi-coding-agent");

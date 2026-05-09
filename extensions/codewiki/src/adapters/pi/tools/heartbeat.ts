@@ -2,7 +2,7 @@ import type {
     WikiProject,
     HeartbeatToolInput,
 } from "../../../domain/shared/types";
-import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
+import type { ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { planHeartbeat } from "../../../application/heartbeat";
 import { piSessionStore } from "../session";
 import { readFile, writeFile, appendFile } from "node:fs/promises";

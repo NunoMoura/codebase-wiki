@@ -1,4 +1,4 @@
-import { withFileMutationQueue } from "@mariozechner/pi-coding-agent";
+import { withFileMutationQueue } from "@earendil-works/pi-coding-agent";
 
 export async function withLockedPaths<T>(paths: string[], fn: () => Promise<T>): Promise<T> {
   const uniquePaths = [...new Set(paths.filter(Boolean))].sort();

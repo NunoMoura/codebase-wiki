@@ -21,6 +21,7 @@ const repoRoot = resolve(__dirname, "..");
 const packageJsonPath = resolve(repoRoot, "package.json");
 const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
 const require = createRequire(import.meta.url);
+const PI_CODING_AGENT_PACKAGE = "@earendil-works/pi-coding-agent";
 const agentDir = resolve(
 	process.env.HOME ?? resolve(repoRoot, ".."),
 	".pi",
@@ -31,7 +32,7 @@ function findPiRoot() {
 	const fromEnv = process.env.PI_CODING_AGENT_ROOT;
 	const candidates = [
 		fromEnv,
-		resolve(repoRoot, "node_modules", "@mariozechner", "pi-coding-agent"),
+		resolve(repoRoot, "node_modules", "@earendil-works", "pi-coding-agent"),
 	].filter(Boolean);
 
 	for (const candidate of candidates) {
@@ -43,14 +44,14 @@ function findPiRoot() {
 		const globalRoot = execFileSync("npm", ["root", "-g"], {
 			encoding: "utf8",
 		}).trim();
-		const candidate = resolve(globalRoot, "@mariozechner", "pi-coding-agent");
+		const candidate = resolve(globalRoot, "@earendil-works", "pi-coding-agent");
 		if (existsSync(resolve(candidate, "dist", "index.js"))) return candidate;
 	} catch {
 		// Ignore and fall through to the final error.
 	}
 
 	throw new Error(
-		"Unable to locate @mariozechner/pi-coding-agent. Set PI_CODING_AGENT_ROOT or install pi-coding-agent locally/globally before running the smoke tests.",
+		`Unable to locate ${PI_CODING_AGENT_PACKAGE}. Set PI_CODING_AGENT_ROOT or install pi-coding-agent locally/globally before running the smoke tests.`,
 	);
 }
 
@@ -160,7 +161,7 @@ async function main() {
 		"Expected one Pi skill path in package.json",
 	);
 	assert.equal(
-		packageJson.peerDependencies?.["@mariozechner/pi-coding-agent"],
+		packageJson.peerDependencies?.[PI_CODING_AGENT_PACKAGE],
 		"*",
 		"Missing pi-coding-agent peer dependency",
 	);

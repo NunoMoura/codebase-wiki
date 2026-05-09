@@ -7,6 +7,11 @@ const SRC_ROOT = join(ROOT, "extensions", "codewiki", "src");
 
 const checks = [
 	{
+		name: "no-deprecated-pi-package-scope",
+		prefix: "",
+		forbidden: [/@mariozechner\//],
+	},
+	{
 		name: "domain-is-pure",
 		prefix: "domain/",
 		forbidden: [
@@ -61,7 +66,7 @@ const checks = [
 		name: "pi-sdk-only-in-pi-adapter",
 		prefix: "",
 		forbiddenOutside: "adapters/pi/",
-		forbidden: [/@mariozechner\//, /@earendil-works\/pi-/],
+		forbidden: [/@earendil-works\/pi-/],
 	},
 ];
 

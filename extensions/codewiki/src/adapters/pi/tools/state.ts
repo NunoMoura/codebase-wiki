@@ -6,7 +6,7 @@ import { readFile, writeFile, appendFile } from "node:fs/promises";
 import type {
 	ExtensionAPI,
 	ExtensionContext,
-} from "@mariozechner/pi-coding-agent";
+} from "@earendil-works/pi-coding-agent";
 import { codewikiStateToolInputSchema } from "../schemas";
 import { readCodewikiState } from "../../../application/state";
 import { resolveToolProject } from "../../../application/project";

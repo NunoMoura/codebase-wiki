@@ -2,7 +2,7 @@ import type {
 	ExtensionAPI,
 	ExtensionContext,
 	ExtensionCommandContext,
-} from "@mariozechner/pi-coding-agent";
+} from "@earendil-works/pi-coding-agent";
 import {
 	type ActiveStatusPanel,
 	type ActiveConfigPanel,
@@ -95,7 +95,7 @@ import {
 } from "../../../application/roadmap";
 import { currentTaskLink, setTaskSessionStatusText } from "../session";
 import { maybeReadStatusState, maybeReadRoadmapState } from "../../../application/state-artifacts";
-import { matchesKey, truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
+import { matchesKey, truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 import { resolve, dirname, basename } from "node:path";
 import { readFileSync } from "node:fs";
 

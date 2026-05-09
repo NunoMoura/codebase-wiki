@@ -465,7 +465,7 @@ The benchmark compares raw wiki truth, raw implementation/verification lifecycle
 If `pi-coding-agent` is not installed in a standard local/global location, set:
 
 ```bash
-PI_CODING_AGENT_ROOT=/absolute/path/to/@mariozechner/pi-coding-agent npm test
+PI_CODING_AGENT_ROOT=/absolute/path/to/@earendil-works/pi-coding-agent npm test
 ```
 
 ## License

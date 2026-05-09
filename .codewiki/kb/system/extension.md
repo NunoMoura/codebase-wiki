@@ -53,7 +53,7 @@ The Pi adapter owns:
 - Heartbeat behavior must enforce gated agency budgets and stop conditions instead of running unbounded work.
 - The package should not become a general sandbox, long-running runtime, or replacement for harness execution.
 - Runtime checks must validate actual package loading under supported Node versions.
-- Current `@mariozechner/*` imports are compatibility debt; the adapter should migrate to current Pi package names or isolate package-name compatibility in one place.
+- Pi package imports use current `@earendil-works/*` names; deprecated `@mariozechner/*` imports must not reappear.
 
 ## Invariants
 
