@@ -15,7 +15,7 @@ import type {
 	TaskSessionLinkRecord,
 } from "../domain/shared/types";
 import { loadCodewikiStateArtifacts, roadmapApiTaskState, maybeReadTaskContext } from "./state-artifacts";
-import { readRoadmapTask } from "../core/roadmap";
+import { readRoadmapTask } from "./roadmap";
 import { findLatestTaskSessionLink } from "../domain/shared/session";
 import type { FileStore, RebuildRunner, SessionStore } from "./ports";
 

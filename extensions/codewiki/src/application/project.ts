@@ -116,7 +116,7 @@ export async function appendTaskSessionEvent(
 	link: TaskSessionLinkRecord,
 	sessionId: string,
 ): Promise<void> {
-    const { appendProjectEvent } = await import("../core/roadmap");
+    const { appendProjectEvent } = await import("./roadmap");
 	await appendProjectEvent(project, {
 		ts: nowIso(),
 		kind: "roadmap_task_session_link",

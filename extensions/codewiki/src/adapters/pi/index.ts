@@ -6,7 +6,7 @@ import { registerConfigCommand } from "./commands/config";
 import { registerResumeCommand } from "./commands/resume";
 import { registerStatusCommand } from "./commands/status";
 import { currentTaskLink } from "./session";
-import { readRoadmapTask } from "../../core/roadmap";
+import { readRoadmapTask } from "../../application/roadmap";
 import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project";
 import { runRebuild } from "../../application/state-artifacts";
 import { executeCodewikiHeartbeat } from "./tools/heartbeat";

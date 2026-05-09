@@ -69,7 +69,6 @@ const checks = [
 // is domain/application/infrastructure/shared/adapters only. Keep current files
 // visible as migration debt, and fail if new files are added there.
 const transitionalFileAllowlist = new Set([
-	"core/roadmap.ts",
 	"engine/gateway.ts",
 	"engine/git-cache.ts",
 	"engine/graph.ts",

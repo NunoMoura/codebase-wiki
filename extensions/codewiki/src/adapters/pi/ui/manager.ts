@@ -92,7 +92,7 @@ import {
     isTaskBlocked,
     taskBoardColumn,
     taskIdCandidates
-} from "../../../core/roadmap";
+} from "../../../application/roadmap";
 import { currentTaskLink, setTaskSessionStatusText } from "../session";
 import { maybeReadStatusState, maybeReadRoadmapState } from "../../../application/state-artifacts";
 import { matchesKey, truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";

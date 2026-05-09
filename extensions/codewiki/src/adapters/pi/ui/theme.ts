@@ -24,7 +24,7 @@ import {
 	roadmapTaskStage,
 	taskBoardColumn,
 	isTaskBlocked,
-} from "../../../core/roadmap";
+} from "../../../application/roadmap";
 
 export {
 	normalizeTaskPhaseValue,

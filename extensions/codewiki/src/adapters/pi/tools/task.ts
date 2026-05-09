@@ -48,7 +48,7 @@ import {
     hasRoadmapTaskUpdateFields,
     readRoadmapFile,
     writeRoadmapFile,
-} from "../../../core/roadmap";
+} from "../../../application/roadmap";
 import { buildCodewikiTaskDetail } from "../../../application/state";
 import {
 	createCodewikiTasks,

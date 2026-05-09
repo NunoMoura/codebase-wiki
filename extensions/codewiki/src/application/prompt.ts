@@ -15,7 +15,7 @@ import {
     isTaskBlocked, 
     taskLoopPhase, 
     taskLoopEvidenceLine 
-} from "../core/roadmap";
+} from "./roadmap";
 
 export function statusColor(report: LintReport): "green" | "yellow" | "red" {
 	if (report.counts.error > 0) return "red";

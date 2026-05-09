@@ -27,7 +27,7 @@ import {
 	mapToolTaskStatusToRoadmapStatus,
 	maybeReadRoadmapState,
 	maybeReadTaskContext,
-} from "../application/state-artifacts";
+} from "./state-artifacts";
 
 /**
  * Get the path to the roadmap archive file.

@@ -30,7 +30,7 @@ import {
     resolveRoadmapTask,
     isClosedRoadmapStatus,
     isActiveLoopRoadmapStatus,
-} from "../../../core/roadmap";
+} from "../../../application/roadmap";
 import { currentTaskLink, piSessionPorts } from "../session";
 import { recordSessionTaskAction } from "../../../application/session";
 import { 
