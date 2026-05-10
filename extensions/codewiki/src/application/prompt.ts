@@ -324,7 +324,7 @@ export function codePrompt(
 		"- treat parent context as expensive RAM: keep focused task, loaded view revisions, and small decisions; do not load raw wiki trees by default",
 		"- consume status/task views first, expand linked canonical docs/code only when the view points there or exact source is required",
 		"- use subagents for fresh verification/research/architecture review and available bounded context tools for programmatic context packets; ThinkCode is optional and governed by its own skill",
-		"- if current phase is implement, build context through the gateway or compact task packet first, then change code or wiki surgically against specs and roadmap truth",
+		"- if current phase is implement, build context through the graph, roadmap item, linked builds, and exact specs first, then change code or wiki surgically against specs and roadmap truth",
 		"- during implement, use lint, typecheck, tests, runtime feedback, and Pi-lens as short-cycle correction signals for mechanical code quality",
 		"- if current phase is verify, use fresh-context alignment validation: check user intent, knowledge, architecture, code, evidence, and intra-layer coherence before recommending done",
 		"- codewiki verify should judge alignment/coherence; do not reduce it to linting or typechecking",

@@ -48,7 +48,7 @@ user conversation -> inspect .codewiki/kb and code -> propose feedback_build -> 
 
 ```text
 feedback compiler -> feedback_build
-  -> documentation compiler -> documentation_build + task packs
+  -> documentation compiler -> documentation_build + roadmap work items
     -> implementation compiler -> implementation_build
 ```
 

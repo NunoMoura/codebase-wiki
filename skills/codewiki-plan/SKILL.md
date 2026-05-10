@@ -1,6 +1,6 @@
 ---
 name: codewiki-plan
-description: Documentation compiler for CodeWiki. Use when accepted feedback, architecture changes, drift, or roadmap gaps need to become `.codewiki/kb/**` updates and executable roadmap task packs before implementation.
+description: Documentation compiler for CodeWiki. Use when accepted feedback, architecture changes, drift, or roadmap gaps need to become `.codewiki/kb/**` updates and executable roadmap work items before implementation.
 id: skill.codewiki-plan
 title: codewiki-plan skill
 state: active
@@ -14,7 +14,7 @@ updated: "2026-05-10"
 Run the documentation compiler. The user should not need to trigger each stage manually once the feedback build is accepted.
 
 ```text
-accepted feedback_build -> inspect current kb/roadmap/graph -> update knowledge -> create/update task packs -> documentation validation
+accepted feedback_build -> inspect current kb/roadmap/graph -> update knowledge -> create/update roadmap items -> documentation validation
 ```
 
 ## Rules
@@ -46,16 +46,16 @@ accepted feedback_build -> inspect current kb/roadmap/graph -> update knowledge 
    - Patch owning `.codewiki/kb/**` specs when intended behavior changes.
    - Preserve stable ownership seams; avoid doc sprawl.
 
-5. **Create/update roadmap task packs**
+5. **Create/update roadmap work items**
    - Each task needs outcome, acceptance, non-goals, validation expectations, spec links, and code paths when known.
    - Prefer thin vertical slices that are independently verifiable.
    - Mark human decision gates explicitly.
 
 6. **Emit documentation build**
-   - Record changed knowledge paths, task-pack changes, alignment checks, and deferred requirements under `.codewiki/builds/documentation/**` when useful.
+   - Record changed knowledge paths, roadmap item changes, alignment checks, and deferred requirements under `.codewiki/builds/documentation/**` when useful.
 
 7. **Run documentation validation**
-   - Check feedback_build -> knowledge -> roadmap/task-pack vertical alignment.
+   - Check feedback_build -> knowledge -> documentation_build -> roadmap item vertical alignment.
    - Check horizontal coherence between knowledge docs and between roadmap tasks.
 
 ## Planner subagent contract

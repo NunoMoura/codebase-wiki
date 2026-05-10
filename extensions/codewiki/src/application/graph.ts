@@ -232,7 +232,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 				from_layer: "knowledge",
 				to_layer: "roadmap",
 				next_loop: "documentation",
-				reason: "Accepted documentation build should produce roadmap task packs before implementation.",
+				reason: "Accepted documentation build should produce or update roadmap work items before implementation.",
 			});
 		} else if (build.kind === "implementation_build" && lifecycleState === "accepted" && !buildValidated) {
 			reconciliationItems.push({

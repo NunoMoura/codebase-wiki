@@ -14,8 +14,8 @@ updated: "2026-05-10"
 Use this as the package router. Load a focused skill when the task matches a workflow:
 
 - `codewiki-feedback` — feedback compiler: ground user intent, propose feedback_build, accept before documentation.
-- `codewiki-plan` — documentation compiler: turn accepted feedback into `.codewiki/kb/**` updates and roadmap/task packs.
-- `codewiki-task` — implementation compiler: execute task packs with tester/builder work, checks, implementation builds, and closure evidence.
+- `codewiki-plan` — documentation compiler: turn accepted feedback into `.codewiki/kb/**` updates and roadmap work items.
+- `codewiki-task` — implementation compiler: execute roadmap work items with linked builds/specs, optional tester/builder work, checks, implementation builds, and closure evidence.
 - `codewiki-research` — gather cited/source evidence that supports `.codewiki/kb/**` claims or planning decisions.
 - `codewiki-verify` — validation gateway: independently judge horizontal and vertical alignment from fresh context.
 - `codewiki-architecture` — review seams, locality, leverage, and roadmap-worthy architecture friction.
@@ -65,13 +65,13 @@ Internal agent tools:
 
 ```text
 feedback compiler -> feedback_build
-  -> documentation compiler -> documentation_build + task packs
+  -> documentation compiler -> documentation_build + roadmap work items
     -> implementation compiler -> implementation_build
 ```
 
 Use `codewiki_build` after accepted feedback-loop decisions so the handoff becomes a real `feedback_build` artifact, not chat-only intent. Use `codewiki_build kind='documentation'` to record knowledge/roadmap changes, and `codewiki_build kind='implementation'` to record test/code/check evidence.
 
-Use the feedback compiler as escalation whenever intent, requirements, risk, or task-pack meaning is ambiguous.
+Use the feedback compiler as escalation whenever intent, requirements, risk, or roadmap item meaning is ambiguous.
 
 ## Agency policy
 

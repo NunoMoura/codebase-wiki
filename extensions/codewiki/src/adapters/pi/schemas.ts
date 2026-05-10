@@ -289,6 +289,10 @@ export const codewikiBuildToolInputSchema = Type.Object({
 		criterion: Type.String(),
 		evidence: Type.String(),
 	}))),
+	test_design_evidence: Type.Optional(Type.Array(Type.String())),
+	code_change_evidence: Type.Optional(Type.Array(Type.String())),
+	tester_notes: Type.Optional(Type.Array(Type.String())),
+	builder_notes: Type.Optional(Type.Array(Type.String())),
 	validation_refs: Type.Optional(Type.Array(Type.String())),
 	risks: Type.Optional(Type.Array(Type.String())),
 	publication: Type.Optional(Type.Object({

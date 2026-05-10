@@ -165,7 +165,7 @@ export async function planAgency(
 				action: trigger === "sprint_end" ? "sprint_review" : "task_advance",
 				summary: trigger === "sprint_end"
 					? `Sprint-end trigger: consider sprint review and checkpoint. Next: ${nextTask}.`
-					: `Next task: ${nextTask}. Load task pack and execute implementation loop.`,
+					: `Next task: ${nextTask}. Load roadmap item, linked builds, and specs; execute implementation loop.`,
 				next_task: nextTask,
 				open_tasks: openTasks,
 				recommended_next_loop: trigger === "sprint_end" ? "documentation" : "implementation",

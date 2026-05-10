@@ -367,6 +367,10 @@ export interface CodewikiBuildToolInput {
 	code_files?: string[];
 	checks_run?: string[];
 	acceptance_mapping?: Array<{ criterion: string; evidence: string }>;
+	test_design_evidence?: string[];
+	code_change_evidence?: string[];
+	tester_notes?: string[];
+	builder_notes?: string[];
 	validation_refs?: string[];
 	risks?: string[];
 	publication?: {

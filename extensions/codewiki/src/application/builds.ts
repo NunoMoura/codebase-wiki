@@ -190,6 +190,10 @@ export async function writeImplementationBuild(
 	const testFiles = trimList(input.test_files);
 	const codeFiles = trimList(input.code_files);
 	const checksRun = trimList(input.checks_run);
+	const testDesignEvidence = trimList(input.test_design_evidence);
+	const codeChangeEvidence = trimList(input.code_change_evidence);
+	const testerNotes = trimList(input.tester_notes);
+	const builderNotes = trimList(input.builder_notes);
 	const validationRefs = trimList(input.validation_refs);
 	const risks = trimList(input.risks);
 	const openQuestions = trimList(input.open_questions);
@@ -205,7 +209,29 @@ export async function writeImplementationBuild(
 		acceptance: task?.goal?.acceptance ?? [],
 		verification: task?.goal?.verification ?? [],
 		checks_run: checksRun,
+		test_design_evidence: testDesignEvidence,
+		code_change_evidence: codeChangeEvidence,
 		validation_refs: validationRefs,
+	};
+	const roleEvidence = {
+		tester: {
+			role: "tester",
+			source_documentation_build: sourceDocumentationBuild || "",
+			roadmap_task_id: taskId,
+			test_files: testFiles,
+			evidence: testDesignEvidence,
+			notes: testerNotes,
+			boundary: "derive tests or test-design evidence before code changes where practical",
+		},
+		builder: {
+			role: "builder",
+			source_documentation_build: sourceDocumentationBuild || "",
+			roadmap_task_id: taskId,
+			code_files: codeFiles,
+			evidence: codeChangeEvidence,
+			notes: builderNotes,
+			boundary: "change code until tests, roadmap acceptance, and required checks pass",
+		},
 	};
 	const data = {
 		version: 1,
@@ -227,6 +253,9 @@ export async function writeImplementationBuild(
 		code_files: codeFiles,
 		files_changed: unique([...testFiles, ...codeFiles]),
 		checks_run: checksRun,
+		role_evidence: roleEvidence,
+		test_design_evidence: testDesignEvidence,
+		code_change_evidence: codeChangeEvidence,
 		acceptance_mapping: (input.acceptance_mapping ?? []).filter((m) => m.criterion.trim() && m.evidence.trim()),
 		validation_refs: validationRefs,
 		risks,

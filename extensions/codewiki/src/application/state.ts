@@ -37,6 +37,19 @@ export function buildCodewikiStateInclude(
 // Next-action recommendation
 // ---------------------------------------------------------------------------
 
+function isOpenRoadmapTaskStatus(status: string | undefined): boolean {
+	return status === "todo" || status === "in_progress" || status === "blocked";
+}
+
+function activeOpenTaskLink(
+	activeLink: TaskSessionLinkRecord | null,
+	roadmapState: RoadmapStateFile | null,
+): TaskSessionLinkRecord | null {
+	if (!activeLink || activeLink.action === "clear") return null;
+	const task = roadmapState?.tasks?.[activeLink.taskId];
+	return task && isOpenRoadmapTaskStatus(task.status) ? activeLink : null;
+}
+
 export function buildCodewikiNextAction(
 	statusState: StatusStateFile | null,
 	roadmapState: RoadmapStateFile | null,
@@ -48,17 +61,18 @@ export function buildCodewikiNextAction(
 	command?: string;
 	item_id?: string;
 } {
-	if (activeLink && activeLink.action !== "clear") {
+	const openActiveLink = activeOpenTaskLink(activeLink, roadmapState);
+	if (openActiveLink) {
 		return {
 			kind: "resume",
-			taskId: activeLink.taskId,
+			taskId: openActiveLink.taskId,
 			reason: "Active task focus detected in session.",
 		};
 	}
 	const persistedResumeTaskId = String(
 		statusState?.resume?.task_id || statusState?.roadmap?.focused_task_id || "",
 	).trim();
-	if (persistedResumeTaskId && roadmapState?.tasks?.[persistedResumeTaskId]) {
+	if (persistedResumeTaskId && isOpenRoadmapTaskStatus(roadmapState?.tasks?.[persistedResumeTaskId]?.status)) {
 		return {
 			kind: "resume",
 			taskId: persistedResumeTaskId,
@@ -184,10 +198,11 @@ export async function readCodewikiState(
 		warnings: artifacts.report?.issues.length ?? 0,
 		total_issues: artifacts.report?.issues.length ?? 0,
 	};
+	const activeTaskLink = activeOpenTaskLink(activeLink, artifacts.roadmapState);
 	const nextAction = buildCodewikiNextAction(
 		artifacts.statusState,
 		artifacts.roadmapState,
-		activeLink,
+		activeTaskLink,
 	);
 
 	const result: Record<string, unknown> = {
@@ -253,10 +268,9 @@ export async function readCodewikiState(
 
 	if (include.includes("session")) {
 		result.session = {
-			focused_task_id:
-				activeLink?.action === "clear" ? null : (activeLink?.taskId ?? null),
-			updated_at: activeLink?.timestamp ?? null,
-			summary: activeLink?.summary || null,
+			focused_task_id: activeTaskLink?.taskId ?? null,
+			updated_at: activeTaskLink?.timestamp ?? null,
+			summary: activeTaskLink?.summary || null,
 		};
 	}
 

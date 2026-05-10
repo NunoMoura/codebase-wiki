@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-10T06:57:39Z",
+  "updated": "2026-05-10T07:05:58Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -44,7 +44,6 @@
     "TASK-042",
     "TASK-044",
     "TASK-045",
-    "TASK-046",
     "TASK-047",
     "TASK-048",
     "TASK-049",
@@ -1422,7 +1421,7 @@
       "status": "done",
       "priority": "high",
       "kind": "agent-workflow",
-      "summary": "Update packaged CodeWiki skills and workflow assets so they route work through feedback, documentation, implementation, validation, graph, roadmap, build, and agency contracts without stale task-pack or nested-KB assumptions.",
+      "summary": "Update packaged CodeWiki skills and workflow assets so they route work through feedback, documentation, implementation, validation, graph, roadmap, build, and agency contracts without stale roadmap-work-item or nested-KB assumptions.",
       "spec_paths": [
         ".codewiki/kb/system/adapters.md",
         ".codewiki/kb/system/api.md",
@@ -1462,7 +1461,7 @@
           "Do not implement runtime code refactors beyond skill/docs alignment."
         ],
         "verification": [
-          "grep skills for stale nested KB paths and task-pack terminology",
+          "grep skills for stale nested KB paths and roadmap-work-item terminology",
           "Review skill router against system/api.md, compilers.md, validation-gateway.md, agency.md",
           "Run existing smoke/tests if skill package loading is affected."
         ]
@@ -1897,59 +1896,6 @@
       },
       "created": "2026-05-07",
       "updated": "2026-05-09T09:12:12Z"
-    },
-    "TASK-046": {
-      "id": "TASK-046",
-      "title": "Support tester and builder roles from documentation builds",
-      "status": "todo",
-      "priority": "medium",
-      "kind": "agent-workflow",
-      "summary": "Add optional tester/builder workflow support so agent-created tests can be derived from documentation builds and roadmap work items before code implementation, without relying on legacy requirements packets.",
-      "spec_paths": [
-        ".codewiki/kb/system/compilers.md",
-        ".codewiki/kb/system/builds.md",
-        ".codewiki/kb/system/validation-gateway.md",
-        ".codewiki/kb/system/api.md",
-        ".codewiki/kb/system/agency.md"
-      ],
-      "code_paths": [
-        "extensions/codewiki/src/application/builds.ts",
-        "extensions/codewiki/src/application/task.ts"
-      ],
-      "research_ids": [],
-      "labels": [
-        "tester-builder",
-        "implementation-loop",
-        "documentation-build",
-        "validation"
-      ],
-      "goal": {
-        "outcome": "The implementation loop can optionally split tester and builder roles while preserving documentation_build, roadmap, validation, and implementation_build truth boundaries.",
-        "acceptance": [
-          "Implementation workflow can request a tester role from a documentation_build and roadmap work item before code changes.",
-          "Tester output focuses on tests or test-design evidence and avoids implementation changes where practical.",
-          "Builder consumes documentation_build, roadmap item, and tests, then produces implementation evidence after checks pass.",
-          "Implementation_build distinguishes test-design evidence, code-change evidence, checks, acceptance mapping, and validation refs.",
-          "Validation gateway can review tester/builder split without requiring separate agents for every task."
-        ],
-        "non_goals": [
-          "Do not always require separate agents for every task.",
-          "Do not implement a generic multi-agent framework.",
-          "Do not revive legacy requirements packets as requirements briefs."
-        ],
-        "verification": [
-          "Update skill/tool docs for tester/builder inputs and outputs",
-          "Run stale grep for task-pack terminology",
-          "Exercise workflow on a small task or dry-run with documented evidence mapping."
-        ]
-      },
-      "delta": {
-        "desired": "Tester/builder roles consume documentation builds and roadmap items instead of legacy requirements packets.",
-        "current": "Existing task guidance still references legacy requirements packets and lacks build/evidence split semantics.",
-        "closure": "Implementation workflow can optionally split tester and builder roles with validation-ready evidence."
-      },
-      "created": "2026-05-07",
-      "updated": "2026-05-09T09:15:07Z"
     },
     "TASK-047": {
       "id": "TASK-047",

@@ -567,6 +567,10 @@ async function main() {
 				code_files: ["extensions/codewiki/index.ts"],
 				checks_run: ["npm test"],
 				acceptance_mapping: [{ criterion: "Schemas exist", evidence: "npm test pass" }],
+				test_design_evidence: ["Tester derived schema assertions from documentation build before code changes."],
+				code_change_evidence: ["Builder updated extension surface until smoke assertions passed."],
+				tester_notes: ["No implementation changes in tester role."],
+				builder_notes: ["Builder consumed tester evidence and checks."],
 				validation_refs: [".codewiki/validation/smoke-pass.json"],
 				risks: ["Smoke fixture only; no remote publication."],
 				publication: {
@@ -586,6 +590,12 @@ async function main() {
 		assert.equal(implBuild.task.id, "TASK-001");
 		assert.equal(implBuild.acceptance_mapping.length, 1);
 		assert.equal(implBuild.validation_refs[0], ".codewiki/validation/smoke-pass.json");
+		assert.equal(implBuild.test_design_evidence[0], "Tester derived schema assertions from documentation build before code changes.");
+		assert.equal(implBuild.code_change_evidence[0], "Builder updated extension surface until smoke assertions passed.");
+		assert.equal(implBuild.role_evidence.tester.role, "tester");
+		assert.equal(implBuild.role_evidence.builder.role, "builder");
+		assert.equal(implBuild.role_evidence.tester.source_documentation_build, docBuildResult.details.path);
+		assert.equal(implBuild.role_evidence.builder.code_files[0], "extensions/codewiki/index.ts");
 		assert.equal(implBuild.handoff.resume.source, "implementation_build");
 		assert.equal(implBuild.handoff.resume.command, "/wiki-resume TASK-001");
 		assert.equal(implBuild.handoff.resume.context.source, "implementation_build");

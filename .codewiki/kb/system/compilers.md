@@ -62,10 +62,10 @@ The implementation loop consumes a `documentation_build`, linked knowledge, and 
 
 For bias-sensitive or agent-created test work, it may split into:
 
-- `tester`: derives tests from the implementation spec before code changes,
-- `builder`: changes code until tests and required checks pass.
+- `tester`: consumes the documentation build and roadmap work item, then derives tests or test-design evidence before code changes where practical,
+- `builder`: consumes the documentation build, roadmap work item, tester output, and required checks, then changes code until tests and acceptance pass.
 
-The split is optional.
+The split is optional. The implementation build should distinguish tester evidence from builder evidence so validation can review the split without requiring separate agents for every task.
 
 ## Gated agency
 

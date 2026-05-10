@@ -58,6 +58,8 @@ An implementation build should include:
 - linked build and knowledge refs,
 - files changed,
 - tests and checks run with outcomes,
+- optional tester evidence for test design and test files,
+- optional builder evidence for code changes and implementation notes,
 - acceptance mapping,
 - validation verdict refs,
 - unresolved issues or risks,
@@ -65,7 +67,7 @@ An implementation build should include:
 - PR or issue update draft when useful,
 - push-readiness notes such as branch, checks, version, changelog, and policy status.
 
-The implementation build can recommend publication actions, but validation and policy decide whether commit, push, release, or remote updates are allowed. It may also carry compact handoff context for resume after closure or checkpoint: task id, linked specs/code, checks, validation refs, next-focus suggestion, and a `/wiki-resume TASK-###` command. This handoff context supplements graph/roadmap state; it does not replace builds, roadmap, validation, or code/tests with chat transcript summaries.
+The implementation build can recommend publication actions, but validation and policy decide whether commit, push, release, or remote updates are allowed. It may also carry compact handoff context for resume after closure or checkpoint: task id, linked specs/code, checks, validation refs, tester/builder evidence, next-focus suggestion, and a `/wiki-resume TASK-###` command. This handoff context supplements graph/roadmap state; it does not replace builds, roadmap, validation, or code/tests with chat transcript summaries.
 
 ## Lifecycle
 

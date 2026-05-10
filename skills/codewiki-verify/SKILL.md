@@ -18,7 +18,7 @@ Product term: **validation gateway**. Verifier is the read-only role inside the 
 ## Vertical alignment
 
 ```text
-user intent -> feedback_build -> .codewiki/kb -> documentation_build -> roadmap task pack -> tests/code -> implementation_build
+user intent -> feedback_build -> .codewiki/kb -> documentation_build -> roadmap item -> tests/code -> implementation_build
 ```
 
 ## Horizontal alignment
@@ -36,7 +36,7 @@ Use the smallest useful context:
 
 - status/graph state,
 - feedback/documentation/implementation build paths,
-- task pack,
+- roadmap item,
 - linked `.codewiki/kb/**` specs,
 - touched code/test paths,
 - checks run,
