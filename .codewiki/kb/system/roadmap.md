@@ -2,7 +2,7 @@
 id: spec.system.roadmap
 title: Roadmap
 state: active
-summary: Work truth for queue, priority, status, blockers, progress, and closure.
+summary: Work truth for active items, priority, status, blockers, progress, and closure.
 owners:
   - architecture
 updated: "2026-05-09"
@@ -21,7 +21,7 @@ The roadmap is not the long-term archive. Git preserves full historical task sta
 
 The roadmap is not the requirements brief. Requirements live in accepted builds and durable knowledge. Roadmap items reference those sources and track execution state.
 
-Gated agency uses roadmap state as the work queue, but the agency controller owns budgets, stop conditions, and autonomous step orchestration.
+Gated agency uses roadmap state as work truth. The graph derives queue order and next-action routing, while the agency controller owns budgets, stop conditions, and autonomous step orchestration.
 
 ## Roadmap item contents
 
@@ -63,16 +63,16 @@ The graph state machine owns reconciliation state such as drift, freshness, rout
 
 ## Gated agency support
 
-For automated roadmap progress, roadmap state should expose:
+For automated roadmap progress, roadmap state should expose canonical task fields needed to derive:
 
-- the next eligible work item,
+- eligible work items,
 - blocked and approval-required items,
 - linked builds and knowledge paths,
 - required validation gates,
 - known risk level,
 - evidence needed before closure.
 
-The roadmap should not decide whether an agent may continue. It supplies work truth to the agency controller and graph state machine.
+The roadmap should not decide whether an agent may continue or what queue order to present. It supplies work truth to the graph state machine and agency controller.
 
 ## Retention and history
 
@@ -83,7 +83,7 @@ Hot roadmap state should contain active work plus any recently closed/cancelled 
 - validation reports for fail/block/policy-kept decisions,
 - release checkpoints for compact closed-work summaries.
 
-This keeps the roadmap useful as an execution queue instead of an archive.
+This keeps the roadmap useful as active work truth instead of an archive.
 
 ## Closure
 

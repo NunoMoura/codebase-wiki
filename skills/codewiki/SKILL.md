@@ -39,13 +39,13 @@ Internal agent tools:
 - `codewiki_validation`
 - `codewiki_task`
 - `codewiki_session`
-- `codewiki_heartbeat`
+- `codewiki_agency`
 
 ## Memory policy
 
 - Treat the parent Pi context window as expensive session RAM: keep current user intent, focused task, loaded graph/build revisions, and small decisions only.
 - Treat `.codewiki/kb/**`, roadmap tasks, compiler builds, and validation reports as persistent CodeWiki memory.
-- Treat `.codewiki/index_graph.json` and any cached status/queue lenses as generated read models. Consume them; do not hand-edit them.
+- Treat `.codewiki/index_graph.json` as the primary generated read model. Extra cached status/queue files should be avoided unless a specific adapter needs them; if present, consume them as generated caches and do not hand-edit them.
 - Default first read is `codewiki_state` or graph-backed status. Expand exact knowledge, roadmap, build, validation, and code paths only when the graph/build points there or exact source is required.
 - Use bounded context tools for programmatic filtering, validation, and context packets when raw repo output would be noisy. ThinkCode is optional; fall back to CodeWiki graph/gateway/native Pi tools when unavailable.
 
@@ -73,9 +73,9 @@ Use `codewiki_build` after accepted feedback-loop decisions so the handoff becom
 
 Use the feedback compiler as escalation whenever intent, requirements, risk, or task-pack meaning is ambiguous.
 
-## Heartbeat policy
+## Agency policy
 
-Heartbeat modes are bounded:
+Agency modes are bounded:
 
 - `observe`: read status/graph only and report next action.
 - `maintain`: refresh/audit graph/index state and propose safe maintenance within write/subagent budgets.

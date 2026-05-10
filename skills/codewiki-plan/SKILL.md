@@ -60,7 +60,7 @@ accepted feedback_build -> inspect current kb/roadmap/graph -> update knowledge 
 
 ## Planner subagent contract
 
-Input: `SubagentBrief` with `role: "planner"`, accepted feedback build, relevant graph/specs, current roadmap queue, and constraints.
+Input: `SubagentBrief` with `role: "planner"`, accepted feedback build, relevant graph/specs, graph-derived open-task ordering, and constraints.
 
 Output: `SubagentResult` with `verdict: "pass" | "fail" | "block"`, compact findings, issues, and `proposals` of kind `knowledge_patch`, `task_delta`, or `follow_up`. Planner workers never write canonical `.codewiki/` files directly.
 

@@ -3,7 +3,7 @@ import type {
 	ExtensionContext,
 	ExtensionCommandContext,
 } from "@earendil-works/pi-coding-agent";
-import type { ActiveStatusPanel, ActiveConfigPanel, WikiProject, StatusScope, TaskSessionLinkRecord, ResolvedStatusDockProject, StatusPanelSection, ConfigPanelSection, StatusStateFile, RoadmapStateFile, LintReport, RoadmapStateTaskSummary, RoadmapTaskContextPacket, RoadmapStatus, StatusStateHeartbeatLane, StatusStateParallelSession, TaskPhase, StatusStateAgentRow, StatusStateWikiSection, StatusStateRoadmapColumn, StatusStateBar, StatusStateSpecRow, StatusStateChannelRow, StatusPanelDetail, HomeIssue, StatusDockPrefs, StatusDockDensity, ArchitecturePanelComponent, TaskSessionAction } from "../../../domain/shared/types.ts";
+import type { ActiveStatusPanel, ActiveConfigPanel, WikiProject, StatusScope, TaskSessionLinkRecord, ResolvedStatusDockProject, StatusPanelSection, ConfigPanelSection, StatusStateFile, RoadmapStateFile, LintReport, RoadmapStateTaskSummary, RoadmapTaskContextPacket, RoadmapStatus, StatusStateAgencyLane, StatusStateParallelSession, TaskPhase, StatusStateAgentRow, StatusStateWikiSection, StatusStateRoadmapColumn, StatusStateBar, StatusStateSpecRow, StatusStateChannelRow, StatusPanelDetail, HomeIssue, StatusDockPrefs, StatusDockDensity, ArchitecturePanelComponent, TaskSessionAction } from "../../../domain/shared/types.ts";
 import {
 	readStatusDockPrefs,
     resolveStatusDockPrefsPath,
@@ -512,10 +512,10 @@ export function buildResumeSnapshot(
 	taskId?: string;
 	verification: string;
 	evidence: string;
-	heartbeat: string;
+	agency: string;
 } {
 	const activeTask = activeRoadmapTaskSummary(roadmapState, activeLink);
-	const heartbeat = resumeHeartbeatLane(state);
+	const agency = resumeAgencyLane(state);
 	if (activeTask) {
 		const collisions = parallelTaskCollisions(state, activeTask.id);
 		const phase = taskLoopPhase(activeTask);
@@ -533,9 +533,9 @@ export function buildResumeSnapshot(
 				state.resume?.verification ??
 				"No explicit verification step yet.",
 			evidence: taskLoopEvidenceLine(activeTask),
-			heartbeat: heartbeat
-				? `${heartbeat.lane.title}: ${heartbeat.freshness.reason}`
-				: (state.resume?.heartbeat ?? "No stale heartbeat lane blocks resume."),
+			agency: agency
+				? `${agency.lane.title}: ${agency.freshness.reason}`
+				: (state.resume?.agency ?? "No stale agency lane blocks resume."),
 		};
 	}
 	if (state.resume?.heading && state.resume.command) {
@@ -547,18 +547,18 @@ export function buildResumeSnapshot(
 			phase: state.resume.phase ?? "implement",
 			verification: state.resume.verification,
 			evidence: state.resume.evidence ?? "No closure evidence recorded yet.",
-			heartbeat: state.resume.heartbeat,
+			agency: state.resume.agency,
 		};
 	}
-	if (heartbeat) {
+	if (agency) {
 		return {
-			heading: heartbeat.lane.title,
-			command: heartbeat.lane.recommendation.command,
-			reason: `Resume from stale heartbeat lane (${heartbeat.freshness.basis}).`,
+			heading: agency.lane.title,
+			command: agency.lane.recommendation.command,
+			reason: `Resume from stale agency lane (${agency.freshness.basis}).`,
 			phase: "implement",
-			verification: heartbeat.lane.recommendation.reason,
+			verification: agency.lane.recommendation.reason,
 			evidence: "No closure evidence recorded yet.",
-			heartbeat: heartbeat.freshness.reason,
+			agency: agency.freshness.reason,
 		};
 	}
 	return {
@@ -568,7 +568,7 @@ export function buildResumeSnapshot(
 		phase: "implement",
 		verification: "No urgent verification cue.",
 		evidence: "No closure evidence recorded yet.",
-		heartbeat: "All heartbeat lanes currently fresh.",
+		agency: "All agency lanes currently fresh.",
 	};
 }
 
@@ -600,8 +600,8 @@ export function resolvedNextStep(
 	};
 }
 
-export function heartbeatLaneFreshness(
-	lane: StatusStateHeartbeatLane,
+export function agencyLaneFreshness(
+	lane: StatusStateAgencyLane,
 	now = new Date(),
 ): {
 	status: "fresh" | "stale";
@@ -647,7 +647,7 @@ export function heartbeatLaneFreshness(
 			status: "stale",
 			basis: "unknown",
 			ageHours,
-			reason: "missing heartbeat check timestamp",
+			reason: "missing agency check timestamp",
 		};
 	}
 	if (ageHours > fallbackMaxAgeHours) {
@@ -666,7 +666,7 @@ export function heartbeatLaneFreshness(
 	};
 }
 
-export function summarizeHeartbeat(
+export function summarizeAgency(
 	state: StatusStateFile,
 	now = new Date(),
 ): {
@@ -676,8 +676,8 @@ export function summarizeHeartbeat(
 	time: number;
 	summary: string;
 } {
-	const lanes = state.heartbeat?.lanes ?? [];
-	const freshness = lanes.map((lane) => heartbeatLaneFreshness(lane, now));
+	const lanes = state.agency?.lanes ?? [];
+	const freshness = lanes.map((lane) => agencyLaneFreshness(lane, now));
 	const stale = freshness.filter((item) => item.status === "stale").length;
 	const work = freshness.filter(
 		(item) => item.status === "stale" && item.basis === "work",
@@ -687,7 +687,7 @@ export function summarizeHeartbeat(
 	).length;
 	if (lanes.length === 0)
 		return {
-			total: 0, stale: 0, work: 0, time: 0, summary: "no heartbeat lanes"
+			total: 0, stale: 0, work: 0, time: 0, summary: "no agency lanes"
 		};
 	if (stale === 0)
 		return {
@@ -783,17 +783,17 @@ export function summarizeRoadmapFocus(
 	return line.replace(/^-\s*/, "");
 }
 
-export function resumeHeartbeatLane(state: StatusStateFile): {
-	lane: StatusStateHeartbeatLane;
-	freshness: ReturnType<typeof heartbeatLaneFreshness>;
+export function resumeAgencyLane(state: StatusStateFile): {
+	lane: StatusStateAgencyLane;
+	freshness: ReturnType<typeof agencyLaneFreshness>;
 } | null {
-	for (const lane of state.heartbeat?.lanes ?? []) {
-		const freshness = heartbeatLaneFreshness(lane);
+	for (const lane of state.agency?.lanes ?? []) {
+		const freshness = agencyLaneFreshness(lane);
 		if (freshness.status === "stale" && freshness.basis === "work")
 			return { lane, freshness };
 	}
-	for (const lane of state.heartbeat?.lanes ?? []) {
-		const freshness = heartbeatLaneFreshness(lane);
+	for (const lane of state.agency?.lanes ?? []) {
+		const freshness = agencyLaneFreshness(lane);
 		if (freshness.status === "stale") return { lane, freshness };
 	}
 	return null;
@@ -1192,7 +1192,7 @@ export function renderHomeTab(
 		`Lint/issues: errors=${countIssuesBySeverity(report, "error")} warnings=${countIssuesBySeverity(report, "warning")}`,
 		`Specs: ${state.summary.aligned_specs}/${state.summary.total_specs} aligned · ${state.summary.untracked_specs} untracked · ${state.summary.unmapped_specs} unmapped`,
 		`Tasks: ${state.summary.open_task_count} open · ${state.summary.done_task_count} done`,
-		`Heartbeat: ${state.heartbeat?.lanes?.filter((lane) => lane.freshness?.status === "stale").length ?? 0} stale lane(s)`,
+		`Agency: ${state.agency?.lanes?.filter((lane) => lane.freshness?.status === "stale").length ?? 0} stale lane(s)`,
 	];
 	const lines = [
 		theme.bold(theme.fg("accent", "Project status")),

@@ -43,7 +43,7 @@ The primary graph output is:
 .codewiki/index_graph.json
 ```
 
-Optional status or queue lenses may exist for UI performance, but they are cached graph queries and not separate truth.
+The graph should serve status and queue-order reads directly. Extra queue files should not be generated unless a future adapter proves a concrete performance need; if such caches exist, they are generated graph queries and never separate truth.
 
 ## State machine
 
@@ -56,7 +56,7 @@ The graph should model cross-layer items with:
 - `reason`,
 - source fingerprints for freshness.
 
-The graph-backed reconciliation gateway is a controller, not a fourth compiler. It reads graph state and routes work into existing loops. Gated agency may consume graph state during heartbeat cycles, but the graph does not execute work itself.
+The graph-backed reconciliation gateway is a controller, not a fourth compiler. It reads graph state and routes work into existing loops. Gated agency consumes graph state during agency cycles, but the graph does not execute work itself.
 
 ## Edges
 

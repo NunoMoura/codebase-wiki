@@ -25,7 +25,7 @@ feedback loop -> validation gateway -> feedback_build
     -> implementation loop -> validation gateway -> implementation_build
 ```
 
-A compiler turns one layer of information into a validated brief for the next layer. The graph state machine can route work upward or downward depending on drift and missing intent. The agency controller can run bounded heartbeat cycles through these loops, but it is not a fourth compiler.
+A compiler turns one layer of information into a validated brief for the next layer. The graph state machine can route work upward or downward depending on drift and missing intent. The agency controller can run bounded agency cycles through these loops, but it is not a fourth compiler.
 
 ## Feedback loop
 
@@ -69,7 +69,7 @@ The split is optional.
 
 ## Gated agency
 
-Gated agency may advance roadmap work automatically by invoking compiler steps inside explicit token, time, risk, validation, policy, and approval gates. The heartbeat mechanism selects one bounded step, then stops, validates, or routes to the next loop.
+Gated agency may advance roadmap work automatically by invoking compiler steps inside explicit token, time, risk, validation, policy, and approval gates. The agency mechanism selects one bounded step, then stops, validates, or routes to the next loop.
 
 Compilers should remain deterministic handoff producers. They should not own autonomous scheduling, budget policy, or publication approval.
 

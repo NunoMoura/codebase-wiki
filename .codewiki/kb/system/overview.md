@@ -18,11 +18,11 @@ code_paths:
 CodeWiki maintains the repository-local `.codewiki/` contract and exposes it through agent-harness adapters. Pi is the only implemented adapter for now; the architecture keeps future Claude Code, Codex, CLI, MCP, or other harness adapters possible without making them immediate product commitments.
 
 - **Knowledge base semantics** own product specs, visual UI specs, system access-surface specs, system specs, architecture rules, and workflow vocabulary under `.codewiki/kb/**`.
-- **Agency controller** owns bounded roadmap automation through heartbeat cycles and explicit token, time, risk, validation, policy, and approval gates.
+- **Agency controller** owns bounded roadmap automation through agency cycles and explicit token, time, risk, validation, policy, and approval gates.
 - **Compiler builds** own validated intent, implementation-spec, and evidence briefs under `.codewiki/builds/**`.
-- **Roadmap semantics** own work truth: priorities, active work items, status, queue state, progress, and closure state under `.codewiki/roadmap/**`.
+- **Roadmap semantics** own work truth: priorities, active work items, status, progress, blockers, and closure state under `.codewiki/roadmap/**`.
 - **Validation gateways** decide whether a loop can end and whether a build can be accepted for handoff. Failed, blocked, or policy-kept validation reports live under `.codewiki/validation/**`.
-- **Graph state machine** owns generated reconciliation state in `.codewiki/index_graph.json`: drift detection, routing, loop selection, status, and freshness checks.
+- **Graph state machine** owns generated reconciliation state in `.codewiki/index_graph.json`: drift detection, routing, derived queue order, loop selection, status, and freshness checks.
 - **Application layer** owns harness-agnostic use cases for setup, state, compiler loops, validation, roadmap mutation, session focus, and rebuild orchestration.
 - **Domain layer** owns pure CodeWiki concepts, rules, entities, state-machine transitions, schemas, and invariants.
 - **Infrastructure layer** owns filesystem, Git, process execution, persistence, graph rebuild implementations, and other concrete side effects behind application ports.
@@ -39,8 +39,8 @@ CodeWiki separates truth by role so that agents can reason about the current sta
 | Intent truth | accepted `feedback_build` files under `.codewiki/builds/feedback/**` | Temporary validated brief of user intent for the documentation loop. |
 | Product and system truth | `.codewiki/kb/**/*.md` and `.codewiki/kb/**/*.json` | Durable intended behavior, product decisions, architecture, workflows, and non-goals. |
 | Implementation spec truth | accepted `documentation_build` files under `.codewiki/builds/documentation/**` | Temporary implementation-spec brief for the implementation loop. |
-| Work truth | `.codewiki/roadmap/**` | Work queue, priority, ownership, progress, status, blockers, and closure state. |
-| State truth | `.codewiki/index_graph.json` | Generated graph state machine for reconciliation, drift detection, routing, status, and freshness. |
+| Work truth | `.codewiki/roadmap/**` | Active work items, priority, ownership, progress, status, blockers, and closure state. |
+| State truth | `.codewiki/index_graph.json` | Generated graph state machine for reconciliation, drift detection, derived queue order, routing, status, and freshness. |
 | Executable truth | code and tests | Final behavior and automated proof. |
 | Evidence truth | accepted `implementation_build` files under `.codewiki/builds/implementation/**` | Temporary compiled evidence that changes were successfully implemented. |
 | Validation truth | validation gateway output, plus persisted reports when required | Decides loop exit and records fail, block, or policy-kept validation outcomes. |
@@ -79,7 +79,7 @@ Each compiler handoff is guarded by a validation gateway. Gateways check both ve
 - [API](api.md) owns the harness-independent CodeWiki access contract.
 - [Extension](extension.md) owns packaged distribution and the current Pi extension surface.
 - [Adapters](adapters.md) owns harness translation boundaries for Pi today and CLI/MCP/future harnesses later.
-- [Agency Controller](agency.md) owns bounded roadmap automation through heartbeat cycles and explicit gates.
+- [Agency Controller](agency.md) owns bounded roadmap automation through agency cycles and explicit gates.
 - [Compilers](compilers.md) owns the feedback, documentation, and implementation loops.
 - [Validation Gateway](validation-gateway.md) owns loop-exit validation semantics.
 - [Builds](builds.md) owns temporary handoff brief semantics.

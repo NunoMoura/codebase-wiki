@@ -1,7 +1,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import type { ActiveStatusPanel } from "../../domain/shared/types.ts";
 import { registerBootstrapFeatures } from "../../../bootstrap.ts";
-import { codewikiBuildToolInputSchema, codewikiHeartbeatToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas.ts";
+import { codewikiBuildToolInputSchema, codewikiAgencyToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas.ts";
 import { registerConfigCommand } from "./commands/config.ts";
 import { registerResumeCommand } from "./commands/resume.ts";
 import { registerStatusCommand } from "./commands/status.ts";
@@ -9,7 +9,7 @@ import { currentTaskLink } from "./session.ts";
 import { readRoadmapTask } from "../../application/roadmap.ts";
 import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project.ts";
 import { runRebuild } from "../../application/state-artifacts.ts";
-import { executeCodewikiHeartbeat } from "./tools/heartbeat.ts";
+import { executeCodewikiAgency } from "./tools/agency.ts";
 import { executeCodewikiSession } from "./tools/session.ts";
 import { registerCodewikiStateTool } from "./tools/state.ts";
 import { writeBuild, writeValidationReport } from "../../application/builds.ts";
@@ -235,26 +235,26 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 	} as any);
 
 	pi.registerTool({
-		name: "codewiki_heartbeat",
-		label: "Codewiki Heartbeat",
+		name: "codewiki_agency",
+		label: "Codewiki Agency",
 		description:
-			"Plan one bounded CodeWiki heartbeat run in observe, maintain, or work mode",
+			"Plan one bounded CodeWiki agency run in observe, maintain, or work mode",
 		promptSnippet:
-			"Run bounded CodeWiki heartbeat planning without unbounded autonomous edits",
+			"Run bounded CodeWiki agency planning without unbounded autonomous edits",
 		promptGuidelines: [
 			"Use observe for read-only status and next-action selection.",
 			"Use maintain for safe generated-view refresh and audit planning under write budget.",
 			"Use work only when user intent allows bounded implementation; stop on risk, ambiguity, or budget.",
 			"Parent agent remains responsible for any canonical writes, commits, pushes, or version bumps.",
 		],
-		parameters: codewikiHeartbeatToolInputSchema,
+		parameters: codewikiAgencyToolInputSchema,
 		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
 			const project = await resolveToolProject(
 				ctx.cwd,
 				params.repoPath,
-				"codewiki_heartbeat",
+				"codewiki_agency",
 			);
-			const result = await executeCodewikiHeartbeat(project, ctx, params);
+			const result = await executeCodewikiAgency(project, ctx, params);
 			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
 			return {
 				content: [{ type: "text", text: result.summary }],

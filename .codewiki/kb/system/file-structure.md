@@ -44,7 +44,7 @@ Avoid nested component folders and avoid `overview.md` files except `product/ove
 | Extension | `extension.md` | `extensions/codewiki/index.ts`, package support files |
 | Adapters | `adapters.md` | `extensions/codewiki/src/adapters/**`, `skills/**` |
 | CodeWiki API | `api.md` | `extensions/codewiki/src/application/**`, domain contracts |
-| Agency controller | `agency.md` | application use cases and adapter-exposed heartbeat entrypoints |
+| Agency controller | `agency.md` | application use cases and adapter-exposed agency entrypoints |
 | Compilers | `compilers.md` | compiler skills and application use cases |
 | Validation gateway | `validation-gateway.md` | verifier skills, validation reports |
 | Knowledge | `knowledge.md` | `.codewiki/kb/**` |

@@ -62,9 +62,9 @@ A handoff gate that checks horizontal and vertical alignment for one compiler bo
 
 The user-facing product capability where an agent may advance roadmap work automatically inside explicit token, time, risk, validation, policy, and approval gates.
 
-## Heartbeat
+## Agency
 
-A system implementation mechanism for gated agency. A heartbeat cycle observes state, selects one bounded next action, checks gates, performs or declines the step, records evidence when needed, and stops or routes to the next loop. Heartbeat is not a product UI concept and not a fourth compiler.
+The system implementation mechanism for gated agency. An agency cycle observes state, selects one bounded next action, checks gates, performs or declines the step, records evidence when needed, and stops or routes to the next loop. Agency is not a product UI concept and not a fourth compiler.
 
 ## Verifier
 
@@ -92,7 +92,7 @@ The graph's ability to hold the current state of all layers and, when any layer 
 
 ## View
 
-A generated read model. In the target model, broad view trees are replaced by the graph-first index. Small status or queue files may exist as cached graph queries, but they are not canonical truth.
+A generated read model. In the target model, broad view trees are replaced by the graph-first index. Extra status or queue files should be avoided unless an adapter proves a concrete performance need; if present, they are cached graph queries, not canonical truth.
 
 ## Tester
 

@@ -50,9 +50,9 @@ export const SUBAGENT_ROLE_VALUES = ["implementer", "auditor", "architect"] as c
 export const SUBAGENT_VERDICT_VALUES = ["pass", "fail", "block"] as const;
 export const SUBAGENT_PROPOSAL_VALUES = ["task", "refactor", "spec"] as const;
 export const CODEWIKI_STATE_SECTION_VALUES = ["repo", "health", "summary", "roadmap", "graph", "drift", "session", "task"] as const;
-export const HEARTBEAT_MODE_VALUES = ["auto", "dry-run", "manual", "observe", "maintain", "work"] as const;
-export const HEARTBEAT_TRIGGER_VALUES = ["manual", "task_end", "sprint_end", "roadmap_end", "budget_end"] as const;
-export const HEARTBEAT_RISK_VALUES = ["low", "medium", "high"] as const;
+export const AGENCY_MODE_VALUES = ["auto", "dry-run", "manual", "observe", "maintain", "work"] as const;
+export const AGENCY_TRIGGER_VALUES = ["manual", "task_end", "sprint_end", "roadmap_end", "budget_end"] as const;
+export const AGENCY_RISK_VALUES = ["low", "medium", "high"] as const;
 export const STATUS_DOCK_DENSITY_VALUES = ["minimal", "standard", "full"] as const;
 export const STATUS_DOCK_MODE_VALUES = ["auto", "pin", "off"] as const;
 export const STATUS_SCOPE_VALUES = ["repo", "task", "spec", "both", "docs", "code"] as const;
@@ -68,9 +68,9 @@ export type SubagentVerdict = (typeof SUBAGENT_VERDICT_VALUES)[number];
 export type TaskVerifierVerdict = SubagentVerdict;
 export type SubagentProposalKind = (typeof SUBAGENT_PROPOSAL_VALUES)[number];
 export type CodewikiStateSection = (typeof CODEWIKI_STATE_SECTION_VALUES)[number];
-export type HeartbeatMode = (typeof HEARTBEAT_MODE_VALUES)[number];
-export type HeartbeatTrigger = (typeof HEARTBEAT_TRIGGER_VALUES)[number];
-export type HeartbeatRisk = (typeof HEARTBEAT_RISK_VALUES)[number];
+export type AgencyMode = (typeof AGENCY_MODE_VALUES)[number];
+export type AgencyTrigger = (typeof AGENCY_TRIGGER_VALUES)[number];
+export type AgencyRisk = (typeof AGENCY_RISK_VALUES)[number];
 export type StatusDockDensity = (typeof STATUS_DOCK_DENSITY_VALUES)[number];
 export type StatusDockMode = (typeof STATUS_DOCK_MODE_VALUES)[number];
 export type StatusScope = (typeof STATUS_SCOPE_VALUES)[number];
@@ -288,23 +288,23 @@ export interface CodewikiTaskEvidenceInput {
 	issues?: string[];
 }
 
-export interface HeartbeatBudget {
+export interface AgencyBudget {
 	maxCycles?: number;
 	maxWallSeconds?: number;
 	maxWrites?: number;
 	maxSubagents?: number;
-	risk?: HeartbeatRisk;
+	risk?: AgencyRisk;
 }
 
-export interface CodewikiHeartbeatToolInput {
+export interface CodewikiAgencyToolInput {
 	repoPath?: string;
-	mode?: HeartbeatMode;
-	trigger?: HeartbeatTrigger;
-	budget?: HeartbeatBudget;
+	mode?: AgencyMode;
+	trigger?: AgencyTrigger;
+	budget?: AgencyBudget;
 	dryRun?: boolean;
 }
 
-export type HeartbeatToolInput = CodewikiHeartbeatToolInput;
+export type AgencyToolInput = CodewikiAgencyToolInput;
 
 export interface CodewikiTaskPatchInput {
 	title?: string;
@@ -471,7 +471,7 @@ export interface StatusStateFile {
 	};
 	direction: string[];
 	specs: StatusStateSpecRow[];
-	heartbeat: {
+	agency: {
 		generated_at: string;
 		summary: {
 			lane_count: number;
@@ -480,10 +480,10 @@ export interface StatusStateFile {
 			medium_cadence_lane_ids: string[];
 			low_cadence_lane_ids: string[];
 		};
-		lanes: StatusStateHeartbeatLane[];
+		lanes: StatusStateAgencyLane[];
 	};
 	resume: {
-		source: "task" | "heartbeat" | "next_step";
+		source: "task" | "agency" | "next_step";
 		task_id: string;
 		lane_id: string;
 		heading: string;
@@ -492,7 +492,7 @@ export interface StatusStateFile {
 		phase: string;
 		verification: string;
 		evidence: string;
-		heartbeat: string;
+		agency: string;
 	};
 	parallel: {
 		generated_at: string;
@@ -585,7 +585,7 @@ export interface StatusStateBar {
 	percent: number;
 }
 
-export interface StatusStateHeartbeatLane {
+export interface StatusStateAgencyLane {
 	id: string;
 	title: string;
 	cadence: string;

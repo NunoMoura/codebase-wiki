@@ -32,7 +32,7 @@ The Pi adapter owns:
 - `/wiki-*` commands,
 - `codewiki_*` tools,
 - `Alt+W` visual status UI,
-- `codewiki_heartbeat` as the current Pi-facing agency controller entrypoint,
+- `codewiki_agency` as the current Pi-facing agency controller entrypoint,
 - session lifecycle hooks,
 - packaged workflow skills,
 - bootstrap/adoption entrypoints,
@@ -50,7 +50,7 @@ The Pi adapter owns:
 
 - Pi SDK and TUI imports belong only in the Pi adapter.
 - Pi-specific behavior must translate into API use cases, not own domain semantics.
-- Heartbeat behavior must enforce gated agency budgets and stop conditions instead of running unbounded work.
+- Agency behavior must enforce gated agency budgets and stop conditions instead of running unbounded work.
 - The package should not become a general sandbox, long-running runtime, or replacement for harness execution.
 - Runtime checks must validate actual package loading under supported Node versions.
 - Pi package imports use current `@earendil-works/*` names; deprecated `@mariozechner/*` imports must not reappear.

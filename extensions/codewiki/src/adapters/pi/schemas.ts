@@ -138,22 +138,26 @@ export const repoPathToolField = Type.Optional(
 			"Optional repo root, or any path inside the target repo, when the current cwd is outside that repo.",
 	}),
 );
-export const heartbeatModeSchema = Type.Union(
-	T.HEARTBEAT_MODE_VALUES.map((value) => Type.Literal(value)),
+export const agencyModeSchema = Type.Union(
+	T.AGENCY_MODE_VALUES.map((value) => Type.Literal(value)),
 );
-export const heartbeatRiskSchema = Type.Union(
-	T.HEARTBEAT_RISK_VALUES.map((value) => Type.Literal(value)),
+export const agencyTriggerSchema = Type.Union(
+	T.AGENCY_TRIGGER_VALUES.map((value) => Type.Literal(value)),
 );
-export const codewikiHeartbeatToolInputSchema = Type.Object({
+export const agencyRiskSchema = Type.Union(
+	T.AGENCY_RISK_VALUES.map((value) => Type.Literal(value)),
+);
+export const codewikiAgencyToolInputSchema = Type.Object({
 	repoPath: repoPathToolField,
-	mode: Type.Optional(heartbeatModeSchema),
+	mode: Type.Optional(agencyModeSchema),
+	trigger: Type.Optional(agencyTriggerSchema),
 	budget: Type.Optional(
 		Type.Object({
 			maxCycles: Type.Optional(Type.Number()),
 			maxWallSeconds: Type.Optional(Type.Number()),
 			maxWrites: Type.Optional(Type.Number()),
 			maxSubagents: Type.Optional(Type.Number()),
-			risk: Type.Optional(heartbeatRiskSchema),
+			risk: Type.Optional(agencyRiskSchema),
 		}),
 	),
 	dryRun: Type.Optional(Type.Boolean()),

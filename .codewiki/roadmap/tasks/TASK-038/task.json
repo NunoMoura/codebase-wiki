@@ -1,52 +1,61 @@
 {
   "id": "TASK-038",
-  "title": "Implement trigger-based heartbeat agency loop",
-  "status": "todo",
-  "priority": "medium",
+  "title": "Implement trigger-based agency controller",
+  "status": "done",
+  "priority": "high",
   "kind": "agent-workflow",
-  "summary": "Replace the current heartbeat planning stub with a bounded trigger-based loop whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
+  "summary": "Replace the current agency planning stub with a bounded trigger-based controller whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
   "spec_paths": [
     ".codewiki/kb/system/agency.md",
     ".codewiki/kb/system/compilers.md",
     ".codewiki/kb/system/validation-gateway.md",
+    ".codewiki/kb/system/graph.md",
     ".codewiki/kb/lexicon.md"
   ],
   "code_paths": [
-    "extensions/codewiki/src/application/heartbeat.ts",
-    "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
+    "extensions/codewiki/src/application/agency.ts",
+    "extensions/codewiki/src/adapters/pi/tools/agency.ts",
+    "extensions/codewiki/src/adapters/pi/index.ts",
+    "extensions/codewiki/src/adapters/pi/schemas.ts",
     "extensions/codewiki/src/domain/shared/types.ts",
+    "extensions/codewiki/src/application/state-builders.ts",
+    "extensions/codewiki/src/adapters/pi/ui/manager.ts",
     "skills/codewiki/SKILL.md"
   ],
   "research_ids": [],
   "labels": [
-    "heartbeat",
     "agency",
     "automation",
-    "openclaw-inspired"
+    "gated-agency",
+    "openclaw-replaced"
   ],
   "goal": {
-    "outcome": "Users can choose understandable heartbeat triggers and safe autonomy budgets instead of opaque agency levels.",
+    "outcome": "Users can choose understandable agency triggers and safe autonomy budgets instead of opaque autonomy levels or OpenClaw-derived agency-loop terminology.",
     "acceptance": [
-      "Heartbeat trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
-      "Each trigger maps to bounded observe/maintain/plan/work behavior with explicit budgets and stop conditions.",
+      "Agency trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
+      "Each trigger maps to bounded observe/maintain/work behavior with explicit budgets and stop conditions.",
       "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
-      "Heartbeat can enter a brainstorm/planning loop only when trigger, budget, and risk policy allow it."
+      "Agency can route to feedback/documentation/implementation/validation only when trigger, budget, and risk policy allow it.",
+      "Old agency-loop terminology is removed from live KB, source, skills, README, and smoke tests."
     ],
     "non_goals": [
       "Do not implement unbounded autonomous coding.",
-      "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks."
+      "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks.",
+      "Do not keep queue.json as a generated queue lens; graph owns derived queue order."
     ],
     "verification": [
-      "Add tests or smoke coverage for trigger-to-action planning.",
+      "Add or update smoke coverage for agency tool registration and trigger-to-action planning.",
+      "Run `npx tsc --noEmit`.",
+      "Run `node scripts/check-architecture.mjs`.",
       "Run `npm test`.",
-      "Dry-run heartbeat scenarios and inspect returned stop reasons/actions."
+      "Verify live KB/source/docs contain no old agency-loop terminology and queue.json is not regenerated."
     ]
   },
   "delta": {
-    "desired": "Heartbeat planning is trigger-aware: task_end routes to implementation work, sprint_end to sprint review, roadmap_end to audit, budget_end to observation. Each trigger maps to bounded mode+default budget.",
-    "current": "planHeartbeat accepts trigger parameter. HEARTBEAT_TRIGGER_VALUES added to types. resolveModeAndTrigger maps trigger to mode. budgetForMode shapes budget by trigger+mode. Cycles include next_task, open_tasks, and recommended_next_loop.",
-    "closure": "Trigger-based heartbeat planning implemented; agent can run codewiki_heartbeat with trigger=task_end|sprint_end|roadmap_end|budget_end. All checks green."
+    "desired": "Agency planning is trigger-aware, graph-driven, and free of OpenClaw-derived agency-loop terminology. Graph owns derived queue order; roadmap owns work truth.",
+    "current": "planAgency accepts trigger parameter; codewiki_agency is the Pi-facing tool; state builders expose agency lanes; queue.json generation removed; KB clarifies agency and graph/roadmap boundaries.",
+    "closure": "Agency terminology and trigger-based planning implemented; queue.json removed; implementation build 2026-05-10-task-038-agency-controller.json validates closure."
   },
   "created": "2026-05-06",
-  "updated": "2026-05-06"
+  "updated": "2026-05-10"
 }

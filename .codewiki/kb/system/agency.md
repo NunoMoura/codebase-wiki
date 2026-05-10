@@ -2,7 +2,7 @@
 id: spec.system.agency
 title: Agency Controller
 state: active
-summary: System mechanism for bounded roadmap automation through heartbeat cycles and explicit gates.
+summary: System mechanism for bounded roadmap automation through agency cycles and explicit gates.
 owners:
   - architecture
   - engineering
@@ -18,14 +18,14 @@ code_paths:
 
 The agency controller is the system mechanism behind the product need for gated agency. It lets an agent advance roadmap work automatically while enforcing explicit token, time, risk, validation, policy, and approval gates.
 
-The product concept is gated agency. The implementation mechanism may use heartbeat cycles. Heartbeat is not a product UI concept; it is a bounded system loop that observes state, selects safe work, runs one small step, checks gates, and stops or routes to the next loop.
+The product concept is gated agency. The implementation mechanism is the agency controller running bounded agency cycles. An agency cycle observes state, selects safe work, runs one small step, checks gates, and stops or routes to the next loop.
 
 ## Inputs
 
 The controller reads:
 
 - graph state and recommended next actions,
-- roadmap queue, active work, blockers, and closure state,
+- roadmap active work, blockers, and closure state,
 - accepted builds and linked knowledge,
 - validation requirements and policy gates,
 - user-provided budgets such as token limit, time limit, cycle limit, write limit, and risk limit,
@@ -67,7 +67,7 @@ When intent is unclear, it routes to feedback. When knowledge must change, it ro
 ## Invariants
 
 - Agency is always gated; unbounded autonomous editing is not allowed.
-- Heartbeat cycles are bounded implementation steps, not a fourth compiler.
+- Agency cycles are bounded implementation steps, not a fourth compiler.
 - The controller must not mutate generated graph state directly.
 - The controller must not bypass validation gateway or policy decisions.
 - Commit, push, release, and remote updates require explicit publication policy approval.

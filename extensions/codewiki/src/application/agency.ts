@@ -1,10 +1,10 @@
 /**
- * application/heartbeat.ts
+ * application/agency.ts
  *
- * "Run heartbeat planning" use case.
+ * "Run agency planning" use case.
  * Plans the next bounded agency action from roadmap state, graph cues, and trigger.
  */
-import type { WikiProject, HeartbeatMode, HeartbeatTrigger, HeartbeatBudget } from "../domain/shared/types.ts";
+import type { WikiProject, AgencyMode, AgencyTrigger, AgencyBudget } from "../domain/shared/types.ts";
 import { readCodewikiState } from "./state.ts";
 import type { ReadStatePorts } from "./state.ts";
 import type { FileStore, RebuildRunner } from "./ports.ts";
@@ -13,7 +13,7 @@ import type { FileStore, RebuildRunner } from "./ports.ts";
 // Port dependencies
 // ---------------------------------------------------------------------------
 
-export interface HeartbeatPorts extends ReadStatePorts {
+export interface AgencyPorts extends ReadStatePorts {
 	fileStore: FileStore;
 	rebuildRunner: RebuildRunner;
 }
@@ -22,7 +22,7 @@ export interface HeartbeatPorts extends ReadStatePorts {
 // Budget presets
 // ---------------------------------------------------------------------------
 
-function budgetForMode(mode: HeartbeatMode, trigger: HeartbeatTrigger): HeartbeatBudget {
+function budgetForMode(mode: AgencyMode, trigger: AgencyTrigger): AgencyBudget {
 	switch (mode) {
 		case "observe":
 			return { maxWrites: 0, maxCycles: 1, maxWallSeconds: 30, risk: "low" };
@@ -39,9 +39,9 @@ function budgetForMode(mode: HeartbeatMode, trigger: HeartbeatTrigger): Heartbea
 }
 
 function resolveModeAndTrigger(
-	inputMode?: HeartbeatMode,
-	inputTrigger?: HeartbeatTrigger,
-): { mode: HeartbeatMode; trigger: HeartbeatTrigger } {
+	inputMode?: AgencyMode,
+	inputTrigger?: AgencyTrigger,
+): { mode: AgencyMode; trigger: AgencyTrigger } {
 	const trigger = inputTrigger ?? "manual";
 	if (inputMode) return { mode: inputMode, trigger };
 	switch (trigger) {
@@ -59,23 +59,23 @@ function resolveModeAndTrigger(
 }
 
 // ---------------------------------------------------------------------------
-// Plan next heartbeat action
+// Plan next agency action
 // ---------------------------------------------------------------------------
 
-export async function planHeartbeat(
+export async function planAgency(
 	project: WikiProject,
 	opts: {
-		mode?: HeartbeatMode;
-		trigger?: HeartbeatTrigger;
+		mode?: AgencyMode;
+		trigger?: AgencyTrigger;
 		dryRun: boolean;
-		budget?: Partial<HeartbeatBudget>;
+		budget?: Partial<AgencyBudget>;
 	},
-	ports: HeartbeatPorts,
+	ports: AgencyPorts,
 ): Promise<{
 	summary: string;
-	mode: HeartbeatMode;
-	trigger: HeartbeatTrigger;
-	budget: HeartbeatBudget;
+	mode: AgencyMode;
+	trigger: AgencyTrigger;
+	budget: AgencyBudget;
 	cycles: Array<Record<string, unknown>>;
 	stop: Record<string, unknown>;
 	policy: Record<string, unknown>;
@@ -85,7 +85,7 @@ export async function planHeartbeat(
 	const mode = resolved.mode;
 	const trigger = resolved.trigger;
 	const base = budgetForMode(mode, trigger);
-	const budget: HeartbeatBudget = opts.budget ? { ...base, ...opts.budget } : base;
+	const budget: AgencyBudget = opts.budget ? { ...base, ...opts.budget } : base;
 	const dryRun = opts.dryRun ?? true;
 
 	const state = await readCodewikiState(project, {
@@ -177,7 +177,7 @@ export async function planHeartbeat(
 	}
 
 	return {
-		summary: `Heartbeat [${trigger}]: ${mode} mode. ${cycles[0]?.summary ?? "No action."}`,
+		summary: `Agency [${trigger}]: ${mode} mode. ${cycles[0]?.summary ?? "No action."}`,
 		mode,
 		trigger,
 		budget,

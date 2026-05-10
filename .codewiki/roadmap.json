@@ -320,7 +320,7 @@
         "think-code"
       ],
       "goal": {
-        "outcome": "Each roadmap task has an automatic implement→verify loop grounded in task context, tests, and evidence.",
+        "outcome": "Each roadmap task has an automatic implement\u2192verify loop grounded in task context, tests, and evidence.",
         "acceptance": [
           "Task loop is documented as load task/context, create compact context with think-code when useful, implement, run local checks, automatically invoke fresh verification when ready, append evidence, then close/block/follow-up.",
           "Local verification and fresh-context verification have distinct responsibilities.",
@@ -340,7 +340,7 @@
       },
       "delta": {
         "desired": "Task execution is automatic, evidence-backed, and resumable from implementation through verification.",
-        "current": "Implement→verify guidance exists but is not formalized as an automatic focused inner loop skill.",
+        "current": "Implement\u2192verify guidance exists but is not formalized as an automatic focused inner loop skill.",
         "closure": "Add inner-loop skill/spec guidance and link it to CodeWiki task/session tools and automatic verifier stage."
       },
       "created": "2026-05-01",
@@ -624,12 +624,12 @@
         "memory-model"
       ],
       "goal": {
-        "outcome": "The wiki records the v2 canonical/view model, product split, memory policy, subagent/heartbeat/think-code roles, and sanitation/versioning policy as roadmap-backed intent.",
+        "outcome": "The wiki records the v2 canonical/view model, product split, memory policy, subagent/agency/think-code roles, and sanitation/versioning policy as roadmap-backed intent.",
         "acceptance": [
           "V2 decisions are captured in canonical knowledge docs, not only chat history.",
           "Product knowledge is split or prepared for users, stories, and surfaces.",
           "The system knowledge names the canonical/view boundary and view consumption model.",
-          "Roadmap tasks cover v2 migration, views, architecture graph, subagents, heartbeat, think-code, and sanitation/release policy.",
+          "Roadmap tasks cover v2 migration, views, architecture graph, subagents, agency, think-code, and sanitation/release policy.",
           "codewiki_state reports the new roadmap without drift."
         ],
         "non_goals": [
@@ -807,7 +807,7 @@
           "Task and outer-loop instructions explain when to spawn subagents or ThinkCode."
         ],
         "non_goals": [
-          "Implement full heartbeat scheduler.",
+          "Implement full agency scheduler.",
           "Build new view schemas from scratch if TASK-018 is not done."
         ],
         "verification": [
@@ -848,7 +848,7 @@
         ],
         "non_goals": [
           "Build status panel graph interaction.",
-          "Implement heartbeat autonomy."
+          "Implement agency autonomy."
         ],
         "verification": [
           "npm run typecheck -- --pretty false",
@@ -949,25 +949,25 @@
     },
     "TASK-022": {
       "id": "TASK-022",
-      "title": "Heartbeat modes budgets and stop conditions",
+      "title": "Agency modes budgets and stop conditions",
       "status": "done",
       "priority": "medium",
       "kind": "agent-workflow",
-      "summary": "Add bounded observe, maintain, and work heartbeat modes that use views, subagents, and canonical writes safely.",
+      "summary": "Add bounded observe, maintain, and work agency modes that use views, subagents, and canonical writes safely.",
       "spec_paths": [
         ".codewiki/kb/product/stories/intent.md"
       ],
       "code_paths": [],
       "research_ids": [],
       "labels": [
-        "heartbeat-loop",
+        "agency-loop",
         "autonomous-budget",
         "stop-conditions"
       ],
       "goal": {
         "outcome": "Users can run CodeWiki autonomously within explicit budgets and modes without losing alignment with wiki truth or project safety.",
         "acceptance": [
-          "Heartbeat supports observe, maintain, and work modes.",
+          "Agency supports observe, maintain, and work modes.",
           "Each cycle reads status, handles stale views, selects inner or outer loop action, records evidence, and stops on budget/risk/ambiguity.",
           "Budgets include max cycles, wall time, writes, subagents, and risk level.",
           "Push/version/archive behavior is gated by policy and checks."
@@ -982,9 +982,9 @@
         ]
       },
       "delta": {
-        "desired": "Heartbeat is a bounded CodeWiki loop with safe modes and stop conditions.",
-        "current": "Heartbeat is an idea but not a fully defined or implemented autonomous workflow.",
-        "closure": "Heartbeat command/tool contract and initial implementation are covered by tests."
+        "desired": "Agency is a bounded CodeWiki loop with safe modes and stop conditions.",
+        "current": "Agency is an idea but not a fully defined or implemented autonomous workflow.",
+        "closure": "Agency command/tool contract and initial implementation are covered by tests."
       },
       "created": "2026-05-02",
       "updated": "2026-05-09T09:10:28Z"
@@ -1400,7 +1400,7 @@
           "A release checkpoint records git SHA, canonical digest, view schema version, and closed-task summaries."
         ],
         "non_goals": [
-          "Do not implement new sprint, skill, UI, heartbeat, or runtime features in this gate.",
+          "Do not implement new sprint, skill, UI, agency, or runtime features in this gate.",
           "Do not rely on the previous weak verifier path for baseline closure."
         ],
         "verification": [
@@ -1420,7 +1420,7 @@
     "TASK-034": {
       "id": "TASK-034",
       "title": "Align CodeWiki skill package with compiler and API contracts",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "kind": "agent-workflow",
       "summary": "Update packaged CodeWiki skills and workflow assets so they route work through feedback, documentation, implementation, validation, graph, roadmap, build, and agency contracts without stale task-pack or nested-KB assumptions.",
@@ -1471,10 +1471,10 @@
       "delta": {
         "desired": "Skills are aligned with the new CodeWiki compiler/API/graph/agency model.",
         "current": "Skills still contain some old requirements-packet and legacy operating-model language.",
-        "closure": "Agent workflow assets route work using current KB truth boundaries and pass stale-reference grep."
+        "closure": "Skill docs aligned with current KB contracts; implementation build 2026-05-10-task-034-skill-alignment.json validates closure."
       },
       "created": "2026-05-06",
-      "updated": "2026-05-09T09:14:59Z"
+      "updated": "2026-05-10"
     },
     "TASK-036": {
       "id": "TASK-036",
@@ -1563,58 +1563,64 @@
     },
     "TASK-038": {
       "id": "TASK-038",
-      "title": "Implement gated-agency heartbeat controller",
-      "status": "todo",
+      "title": "Implement trigger-based agency controller",
+      "status": "done",
       "priority": "high",
       "kind": "agent-workflow",
-      "summary": "Replace the heartbeat planning stub with a bounded agency controller that can advance roadmap work automatically through explicit token, time, risk, validation, policy, and approval gates.",
+      "summary": "Replace the current agency planning stub with a bounded trigger-based controller whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
       "spec_paths": [
         ".codewiki/kb/system/agency.md",
-        ".codewiki/kb/system/api.md",
-        ".codewiki/kb/system/roadmap.md",
-        ".codewiki/kb/system/graph.md",
         ".codewiki/kb/system/compilers.md",
-        ".codewiki/kb/system/validation-gateway.md"
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/lexicon.md"
       ],
       "code_paths": [
-        "extensions/codewiki/src/application/state.ts",
-        "extensions/codewiki/src/application/roadmap.ts"
+        "extensions/codewiki/src/application/agency.ts",
+        "extensions/codewiki/src/adapters/pi/tools/agency.ts",
+        "extensions/codewiki/src/adapters/pi/index.ts",
+        "extensions/codewiki/src/adapters/pi/schemas.ts",
+        "extensions/codewiki/src/domain/shared/types.ts",
+        "extensions/codewiki/src/application/state-builders.ts",
+        "extensions/codewiki/src/adapters/pi/ui/manager.ts",
+        "skills/codewiki/SKILL.md"
       ],
       "research_ids": [],
       "labels": [
-        "gated-agency",
-        "heartbeat",
+        "agency",
         "automation",
-        "roadmap"
+        "gated-agency",
+        "openclaw-replaced"
       ],
       "goal": {
-        "outcome": "CodeWiki supports gated agency: bounded heartbeat cycles can observe, maintain, or advance one safe roadmap/compiler step while stopping at configured gates.",
+        "outcome": "Users can choose understandable agency triggers and safe autonomy budgets instead of opaque autonomy levels or OpenClaw-derived agency-loop terminology.",
         "acceptance": [
-          "Agency capability exposes observe, maintain, and work modes with explicit token/time/cycle/write/risk budgets.",
-          "Heartbeat consumes graph and roadmap state to choose one bounded next action rather than acting as a fourth compiler.",
-          "Controller stops on ambiguity, failed checks, fail/block validation, policy denial, destructive/publication action, missing approval, stale state, or budget exhaustion.",
-          "Pi-facing heartbeat entrypoint routes through application/API semantics and records compact evidence or stop reasons.",
-          "Status/board surfaces can show current gate, next action, and stop reason without treating heartbeat as product UI."
+          "Agency trigger names align with user-facing events: task-end, sprint-end, roadmap-end, and budget-end.",
+          "Each trigger maps to bounded observe/maintain/work behavior with explicit budgets and stop conditions.",
+          "Cron-like operation is limited to read-only or low-risk drift/audit maintenance unless explicit policy permits more.",
+          "Agency can route to feedback/documentation/implementation/validation only when trigger, budget, and risk policy allow it.",
+          "Old agency-loop terminology is removed from live KB, source, skills, README, and smoke tests."
         ],
         "non_goals": [
           "Do not implement unbounded autonomous coding.",
-          "Do not allow commit, push, release, archive, or destructive actions without explicit policy approval.",
-          "Do not make heartbeat responsible for compiler semantics."
+          "Do not push, release, archive, or mutate high-risk state without explicit approval and green checks.",
+          "Do not keep queue.json as a generated queue lens; graph owns derived queue order."
         ],
         "verification": [
-          "Unit/smoke coverage for observe/maintain/work stop conditions",
-          "codewiki_heartbeat dry-run/manual smoke where available",
-          "validation gateway check for fail/block stop behavior",
-          "npm test if runtime code changes."
+          "Add or update smoke coverage for agency tool registration and trigger-to-action planning.",
+          "Run `npx tsc --noEmit`.",
+          "Run `node scripts/check-architecture.mjs`.",
+          "Run `npm test`.",
+          "Verify live KB/source/docs contain no old agency-loop terminology and queue.json is not regenerated."
         ]
       },
       "delta": {
-        "desired": "Gated agency safely advances active roadmap work through bounded heartbeat cycles.",
-        "current": "Heartbeat exists as a planning stub/tool but agency semantics and gates are not fully implemented.",
-        "closure": "Heartbeat is a bounded agency controller with clear gates, stop reasons, and graph/roadmap/compiler routing."
+        "desired": "Agency planning is trigger-aware, graph-driven, and free of OpenClaw-derived agency-loop terminology. Graph owns derived queue order; roadmap owns work truth.",
+        "current": "planAgency accepts trigger parameter; codewiki_agency is the Pi-facing tool; state builders expose agency lanes; queue.json generation removed; KB clarifies agency and graph/roadmap boundaries.",
+        "closure": "Agency terminology and trigger-based planning implemented; queue.json removed; implementation build 2026-05-10-task-038-agency-controller.json validates closure."
       },
       "created": "2026-05-06",
-      "updated": "2026-05-09T09:05:18Z"
+      "updated": "2026-05-10"
     },
     "TASK-039": {
       "id": "TASK-039",
@@ -1736,7 +1742,7 @@
           "Benchmark or prototype four context strategies for representative task work: prebuilt pack only, progressive disclosure only, sandbox/programmatic exploration only, and hybrid pack plus sandbox.",
           "Define role-specific seed/context pack contracts for at least `grill`, `plan`, `build`, and `verify`, emphasizing minimal routing metadata instead of large precomputed context dumps.",
           "Define typed graph-slice views for task/sprint/roadmap scopes with `core`, `supporting`, `watch`, and `excluded` tiers plus edge reasons and confidence (`explicit` vs `inferred`).",
-          "Define horizontal and vertical observability signals only: knowledge/task/evidence/view alignment and intent → knowledge → roadmap → code → checks/evidence alignment; do not make observability a pass/fail gate.",
+          "Define horizontal and vertical observability signals only: knowledge/task/evidence/view alignment and intent \u2192 knowledge \u2192 roadmap \u2192 code \u2192 checks/evidence alignment; do not make observability a pass/fail gate.",
           "Define an acceptance/evidence matrix that maps criteria to spec paths, code paths, checks, and evidence for verifier consumption.",
           "Represent token budget as generator/test metadata (`estimated_tokens`, `max_tokens`, `over_budget`) rather than instructions the agent must maintain manually.",
           "Implement or prototype the smallest useful `task.build`, `task.verify`, and `task.graph` views needed by the hardened verification gateway, without blocking future sprint/roadmap expansion.",

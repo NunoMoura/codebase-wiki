@@ -252,7 +252,7 @@ async function main() {
 				"codewiki_validation",
 				"codewiki_task",
 				"codewiki_session",
-				"codewiki_heartbeat",
+				"codewiki_agency",
 			],
 			"extension tools",
 		);
@@ -459,13 +459,13 @@ async function main() {
 			/open \d+; next/i,
 			"State tool should return compact summary text",
 		);
-		const heartbeatTool = extension.tools.get("codewiki_heartbeat");
+		const agencyTool = extension.tools.get("codewiki_agency");
 		assert.ok(
-			heartbeatTool && typeof heartbeatTool.definition?.execute === "function",
-			"Heartbeat tool missing execute function",
+			agencyTool && typeof agencyTool.definition?.execute === "function",
+			"Agency tool missing execute function",
 		);
-		const heartbeatResult = await heartbeatTool.definition.execute(
-			"heartbeat-tool-smoke",
+		const agencyResult = await agencyTool.definition.execute(
+			"agency-tool-smoke",
 			{
 				repoPath: projectDir,
 				mode: "maintain",
@@ -476,25 +476,25 @@ async function main() {
 			undefined,
 			outsideToolCtx,
 		);
-		assert.equal(heartbeatResult.details.mode, "maintain");
-		assert.equal(heartbeatResult.details.budget.maxWrites, 1);
+		assert.equal(agencyResult.details.mode, "maintain");
+		assert.equal(agencyResult.details.budget.maxWrites, 1);
 		assert.ok(
-			typeof heartbeatResult.details.stop.condition === "string",
-			"Heartbeat stop should have a condition string",
+			typeof agencyResult.details.stop.condition === "string",
+			"Agency stop should have a condition string",
 		);
 		assert.equal(
-			heartbeatResult.details.bounded_context.preferred_executor,
+			agencyResult.details.bounded_context.preferred_executor,
 			"think_code_run",
-			"Heartbeat should expose optional ThinkCode context executor plan",
+			"Agency should expose optional ThinkCode context executor plan",
 		);
 		assert.equal(
-			heartbeatResult.details.bounded_context.availability,
+			agencyResult.details.bounded_context.availability,
 			"optional",
 			"ThinkCode must remain optional for CodeWiki",
 		);
 		assert.ok(
-			heartbeatResult.details.bounded_context.fallback.steps.length >= 1,
-			"Heartbeat should expose native fallback context steps",
+			agencyResult.details.bounded_context.fallback.steps.length >= 1,
+			"Agency should expose native fallback context steps",
 		);
 
 		const buildTool = extension.tools.get("codewiki_build");
@@ -1841,36 +1841,36 @@ async function main() {
 			"Status state should recommend a next step",
 		);
 		assert.equal(
-			statusState.heartbeat.summary.lane_count,
+			statusState.agency.summary.lane_count,
 			3,
-			"Status state should expose three heartbeat lanes",
+			"Status state should expose three agency lanes",
 		);
 		assert.equal(
-			statusState.heartbeat.summary.freshness_basis,
+			statusState.agency.summary.freshness_basis,
 			"work-first",
-			"Status state should describe heartbeat freshness as work-first",
+			"Status state should describe agency freshness as work-first",
 		);
 		assert.deepEqual(
-			statusState.heartbeat.summary.high_cadence_lane_ids,
+			statusState.agency.summary.high_cadence_lane_ids,
 			["system_code"],
 			"Status state should classify system↔code as high cadence",
 		);
 		assert.ok(
-			statusState.heartbeat.lanes.some(
+			statusState.agency.lanes.some(
 				(lane) =>
 					lane.id === "product_system" &&
 					lane.recommendation.command === "/wiki-status",
 			),
-			"Status state should expose heartbeat lane recommendations through wiki-status",
+			"Status state should expose agency lane recommendations through wiki-status",
 		);
 		assert.ok(
-			statusState.heartbeat.lanes.some(
+			statusState.agency.lanes.some(
 				(lane) =>
 					lane.id === "system_code" &&
 					lane.fallback_max_age_hours === 1 &&
 					lane.triggers.includes("code_change:mapped"),
 			),
-			"Status state should expose work-triggered freshness metadata for heartbeat lanes",
+			"Status state should expose work-triggered freshness metadata for agency lanes",
 		);
 		assert.equal(
 			statusState.resume.source,

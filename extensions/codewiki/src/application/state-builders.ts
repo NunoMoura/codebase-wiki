@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
-import type { GraphFile, LintReport, RoadmapStateFile, RoadmapTaskRecord, StatusStateFile, StatusStateHeartbeatLane, StatusStateSpecRow, WikiProject } from "../domain/shared/types.ts";
+import type { GraphFile, LintReport, RoadmapStateFile, RoadmapTaskRecord, StatusStateFile, StatusStateAgencyLane, StatusStateSpecRow, WikiProject } from "../domain/shared/types.ts";
 import type { ParsedDoc } from "../infrastructure/doc-parser.ts";
 import { nowIso } from "../domain/shared/utils.ts";
 
@@ -304,9 +304,9 @@ export function laneStats(rows: any[]) {
 
 import { GitCache } from "../infrastructure/git-cache.ts";
 
-export function previousHeartbeatLane(previousStatus: any, laneId: string): any {
-	const heartbeat = previousStatus?.heartbeat || {};
-	const lanes = Array.isArray(heartbeat.lanes) ? heartbeat.lanes : [];
+export function previousAgencyLane(previousStatus: any, laneId: string): any {
+	const agency = previousStatus?.agency || {};
+	const lanes = Array.isArray(agency.lanes) ? agency.lanes : [];
 	return lanes.find((lane: any) => String(lane.id).trim() === laneId) || null;
 }
 
@@ -369,7 +369,7 @@ export function laneFreshness(anchor: any, previousLane: any, checkedAt: string)
 			status: "fresh",
 			basis: "revision",
 			checked_at: checkedAt,
-			reason: "no previous heartbeat anchor; current revision captured",
+			reason: "no previous agency anchor; current revision captured",
 			stale_state_guidance: "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale.",
 		};
 	}
@@ -393,12 +393,12 @@ export function laneFreshness(anchor: any, previousLane: any, checkedAt: string)
 		status: "fresh",
 		basis: "revision",
 		checked_at: checkedAt,
-		reason: "revision anchors unchanged since previous heartbeat",
+		reason: "revision anchors unchanged since previous agency",
 		stale_state_guidance: "Prior drift analysis remains correlated with current spec, task, and mapped code revisions.",
 	};
 }
 
-export function buildHeartbeatLane(
+export function buildAgencyLane(
     repoRoot: string,
     gitCache: GitCache,
     roadmapRelPath: string,
@@ -445,7 +445,7 @@ export function buildHeartbeatLane(
 	const checkedAt = nowIso();
 	const normalizedOpenTaskIds = unique(openTaskIds);
 	const revision = laneRevisionAnchor(repoRoot, gitCache, rowPaths, codePaths, normalizedOpenTaskIds, specRowsByPath, roadmapEntries, roadmapRelPath);
-	const prevLane = previousHeartbeatLane(previousStatus, laneId);
+	const prevLane = previousAgencyLane(previousStatus, laneId);
 
 	return {
 		id: laneId,
@@ -484,7 +484,7 @@ export function latestPersistedFocusTaskId(events: any[], roadmapState: RoadmapS
 	return "";
 }
 
-export function buildResumeState(roadmapState: RoadmapStateFile, heartbeatLanes: any[], nextStep: any, persistedFocusTaskId = ""): any {
+export function buildResumeState(roadmapState: RoadmapStateFile, agencyLanes: any[], nextStep: any, persistedFocusTaskId = ""): any {
 	const views: any = roadmapState.views || {};
 	const tasks: any = roadmapState.tasks || {};
 	const inProgressIds = views.in_progress_task_ids || [];
@@ -523,12 +523,12 @@ export function buildResumeState(roadmapState: RoadmapStateFile, heartbeatLanes:
 			phase,
 			verification: verification[0] || "No explicit verification step yet.",
 			evidence: evidenceText,
-			heartbeat: "Roadmap task should stay grounded in current heartbeat cues.",
+			agency: "Roadmap task should stay grounded in current agency cues.",
 		};
 	}
 
 	let staleLane = null;
-	for (const lane of heartbeatLanes) {
+	for (const lane of agencyLanes) {
 		const freshness = lane.freshness || {};
 		const stats = lane.stats || {};
 		if (
@@ -545,16 +545,16 @@ export function buildResumeState(roadmapState: RoadmapStateFile, heartbeatLanes:
 
 	if (staleLane) {
 		return {
-			source: "heartbeat",
+			source: "agency",
 			task_id: "",
 			lane_id: String(staleLane.id || "").trim(),
 			heading: String(staleLane.title || "").trim(),
 			command: String(staleLane.recommendation?.command || "").trim(),
-			reason: "Resume from stale heartbeat lane.",
+			reason: "Resume from stale agency lane.",
 			phase: "implement",
 			verification: String(staleLane.recommendation?.reason || "").trim(),
 			evidence: "No closure evidence recorded yet.",
-			heartbeat:
+			agency:
 				String(staleLane.freshness?.stale_state_guidance || "").trim() ||
 				`${staleLane.risky_spec_paths?.length || 0} risky spec(s) and ${staleLane.open_task_ids?.length || 0} open task(s).`,
 		};
@@ -570,7 +570,7 @@ export function buildResumeState(roadmapState: RoadmapStateFile, heartbeatLanes:
 		phase: "implement",
 		verification: "No urgent verification cue.",
 		evidence: "No closure evidence recorded yet.",
-		heartbeat: "All heartbeat lanes currently fresh.",
+		agency: "All agency lanes currently fresh.",
 	};
 }
 
@@ -836,8 +836,8 @@ export function buildStatusState(
 	const systemSpecPaths = specRows.filter((r) => r.path.startsWith(SYSTEM_SPEC_PREFIX)).map((r) => r.path);
 	const uxSpecPaths = specRows.filter((r) => pathStartsWithAny(r.path, CLIENTS_SPEC_PREFIXES)).map((r) => r.path);
 
-	const heartbeatLanes = [
-		buildHeartbeatLane(
+	const agencyLanes = [
+		buildAgencyLane(
 			repoRoot, gitCache, project.roadmapPath,
 			"product_system", "Product ↔ System", "low", 24,
 			["spec_change:product", "spec_change:system", "task_close:architecture", "manual_review"],
@@ -846,7 +846,7 @@ export function buildStatusState(
 			{ kind: "status", command: "/wiki-status", reason: "Strategic intent drift should first be inspected through the canonical status surface." },
 			previousStatus
 		),
-		buildHeartbeatLane(
+		buildAgencyLane(
 			repoRoot, gitCache, project.roadmapPath,
 			"system_code", "System ↔ Code", "high", 1,
 			["spec_change:system", "code_change:mapped", "task_progress", "rebuild_complete", "pre_close_check"],
@@ -855,7 +855,7 @@ export function buildStatusState(
 			{ kind: "implement", command: "/wiki-resume", reason: "Implementation drift should be checked most frequently against owning system specs." },
 			previousStatus
 		),
-		buildHeartbeatLane(
+		buildAgencyLane(
 			repoRoot, gitCache, project.roadmapPath,
 			"product_system_ux", "Product + System ↔ UX", "medium", 6,
 			["spec_change:product", "spec_change:system", "spec_change:ux", "code_change:ux_surface", "manual_review"],
@@ -887,17 +887,17 @@ export function buildStatusState(
 		nextStep = { kind: "observe", command: "Observe — roadmap clear", reason: "No open deterministic drift requires action right now." };
 	}
 
-	const heartbeatSummary = {
-		lane_count: heartbeatLanes.length,
+	const agencySummary = {
+		lane_count: agencyLanes.length,
 		freshness_basis: "work-first",
-		high_cadence_lane_ids: heartbeatLanes.filter((l) => l.cadence === "high").map((l) => l.id),
-		medium_cadence_lane_ids: heartbeatLanes.filter((l) => l.cadence === "medium").map((l) => l.id),
-		low_cadence_lane_ids: heartbeatLanes.filter((l) => l.cadence === "low").map((l) => l.id),
+		high_cadence_lane_ids: agencyLanes.filter((l) => l.cadence === "high").map((l) => l.id),
+		medium_cadence_lane_ids: agencyLanes.filter((l) => l.cadence === "medium").map((l) => l.id),
+		low_cadence_lane_ids: agencyLanes.filter((l) => l.cadence === "low").map((l) => l.id),
 	};
 
 	const parallel = buildParallelSessionState(events, roadmapState);
 	const persistedFocusTaskId = latestPersistedFocusTaskId(events, roadmapState);
-	const resume = buildResumeState(roadmapState, heartbeatLanes, nextStep, persistedFocusTaskId);
+	const resume = buildResumeState(roadmapState, agencyLanes, nextStep, persistedFocusTaskId);
 
 	const wikiSections: Record<string, any> = {
 		product: { id: "product", label: "Product", rows: [] },
@@ -928,7 +928,7 @@ export function buildStatusState(
 	const direction = [
 		nextStep.reason,
 		`Parallel sessions: ${parallel.active_session_count} active, ${parallel.collision_task_ids.length} collision task(s).`,
-		`Heartbeat lanes: ${heartbeatSummary.lane_count} work-first (high=${heartbeatSummary.high_cadence_lane_ids.length}, medium=${heartbeatSummary.medium_cadence_lane_ids.length}, low=${heartbeatSummary.low_cadence_lane_ids.length}).`,
+		`Agency lanes: ${agencySummary.lane_count} work-first (high=${agencySummary.high_cadence_lane_ids.length}, medium=${agencySummary.medium_cadence_lane_ids.length}, low=${agencySummary.low_cadence_lane_ids.length}).`,
 		`Mapped specs: ${mappedSpecs}/${totalSpecs}.`,
 	];
 	if (driftTotal > 0) {
@@ -971,10 +971,10 @@ export function buildStatusState(
 		next_step: nextStep,
 		direction,
 		specs: specRows,
-		heartbeat: {
+		agency: {
 			generated_at: nowIso(),
-			summary: heartbeatSummary,
-			lanes: heartbeatLanes,
+			summary: agencySummary,
+			lanes: agencyLanes,
 		},
 		resume,
 		parallel,

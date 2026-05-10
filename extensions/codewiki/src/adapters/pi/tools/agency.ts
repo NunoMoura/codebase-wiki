@@ -1,21 +1,21 @@
 import type {
     WikiProject,
-    HeartbeatToolInput,
-    HeartbeatMode,
-    HeartbeatTrigger,
+    AgencyToolInput,
+    AgencyMode,
+    AgencyTrigger,
 } from "../../../domain/shared/types.ts";
 import type { ExtensionContext } from "@earendil-works/pi-coding-agent";
-import { planHeartbeat } from "../../../application/heartbeat.ts";
+import { planAgency } from "../../../application/agency.ts";
 import { piSessionStore } from "../session.ts";
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 
 /**
- * Execute the codewiki_heartbeat tool.
+ * Execute the codewiki_agency tool.
  */
-export async function executeCodewikiHeartbeat(
+export async function executeCodewikiAgency(
 	project: WikiProject,
 	ctx: ExtensionContext,
-	input: HeartbeatToolInput,
+	input: AgencyToolInput,
 ): Promise<{
     summary: string;
     mode: string;
@@ -25,9 +25,9 @@ export async function executeCodewikiHeartbeat(
     policy: Record<string, unknown>;
     bounded_context: Record<string, unknown>;
 }> {
-	const result = await planHeartbeat(project, {
-		mode: input.mode ? (input.mode as HeartbeatMode) : undefined,
-		trigger: input.trigger ? (input.trigger as HeartbeatTrigger) : undefined,
+	const result = await planAgency(project, {
+		mode: input.mode ? (input.mode as AgencyMode) : undefined,
+		trigger: input.trigger ? (input.trigger as AgencyTrigger) : undefined,
 		dryRun: input.dryRun ?? true,
 		budget: input.budget,
 	}, {
@@ -71,8 +71,8 @@ function buildThinkCodeContextPlan(
 ): Record<string, unknown> {
 	const script = [
 		'tc_emit "{\\\"kind\\\":\\\"codewiki-context\\\",\\\"source\\\":\\\"think-code\\\"}"',
-		'tc_context .codewiki/status.json .codewiki/roadmap/queue.json .codewiki/drift.json 2>/dev/null || true',
-		'tc_grep --json "stale|unmapped|blocked|TASK-" .codewiki/views .codewiki/roadmap 2>/dev/null || true',
+		'tc_context .codewiki/index_graph.json .codewiki/roadmap.json 2>/dev/null || true',
+		'tc_grep --json "stale|unmapped|blocked|TASK-" .codewiki/index_graph.json .codewiki/roadmap.json 2>/dev/null || true',
 	].join("\n");
 	return {
 		preferred_executor: "think_code_run",
@@ -88,8 +88,8 @@ function buildThinkCodeContextPlan(
 		fallback: {
 			executor: "native-codewiki",
 			steps: [
-				"codewiki_state refresh=true include=summary,roadmap,drift,session",
-				"read .codewiki/views/status.json or task context shard only when exact source is required",
+				"read .codewiki/index_graph.json and .codewiki/roadmap.json for graph state and work truth",
+				"read linked KB/code paths only when exact source is required",
 				"use scripts/codewiki-gateway.mjs pack/tree/manifest for compact reads",
 			],
 		},

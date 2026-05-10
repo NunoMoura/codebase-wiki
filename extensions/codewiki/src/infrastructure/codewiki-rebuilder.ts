@@ -48,31 +48,6 @@ export class CodewikiRebuilder {
 		return mdFiles.map(p => relative(this.repoRoot, p).replace(/\\/g, "/"));
 	}
 
-	private writeRoadmapQueue(project: WikiProject, roadmapState: any): void {
-		const roadmapDir = join(this.repoRoot, project.metaRoot, "roadmap");
-		if (!existsSync(roadmapDir)) mkdirSync(roadmapDir, { recursive: true });
-
-		const taskIds = Array.isArray(roadmapState?.views?.open_task_ids)
-			? roadmapState.views.open_task_ids
-			: [];
-		const tasks = taskIds
-			.map((taskId: string) => roadmapState?.tasks?.[taskId])
-			.filter(Boolean)
-			.map((task: any) => ({
-				id: String(task.id || "").trim(),
-				title: String(task.title || "").trim(),
-				status: String(task.status || "todo").trim(),
-				phase: task.loop?.phase || null,
-				priority: String(task.priority || "medium").trim(),
-				kind: String(task.kind || "task").trim(),
-				summary: String(task.summary || "").trim(),
-				context_path: String(task.context_path || `${project.metaRoot}/roadmap/tasks/${task.id}/context.json`).trim(),
-				spec_paths: Array.isArray(task.spec_paths) ? task.spec_paths : [],
-				code_paths: Array.isArray(task.code_paths) ? task.code_paths : [],
-			}));
-		writeFileSync(join(roadmapDir, "queue.json"), JSON.stringify({ tasks }, null, 2));
-	}
-
 	private loadResearchCollections(project: WikiProject): any[] {
 		const collections: any[] = [];
 		const root = join(this.repoRoot, project.researchRoot);
@@ -254,7 +229,6 @@ export class CodewikiRebuilder {
 			},
 		};
 		writeFileSync(join(metaRootDir, "index_graph.json"), JSON.stringify(indexGraph, null, 2));
-		this.writeRoadmapQueue(project, roadmapState);
 
 		console.log(`[Rebuild] Engine pipeline completed successfully!`);
 	}
