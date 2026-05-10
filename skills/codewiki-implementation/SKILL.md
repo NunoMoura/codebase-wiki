@@ -1,15 +1,15 @@
 ---
-name: codewiki-task
+name: codewiki-implementation
 description: Implementation compiler for CodeWiki roadmap tasks. Use when implementing, resuming, closing, or blocking a TASK-### with roadmap/build context, optional tester/builder work, checks, validation, implementation builds, and evidence.
-id: skill.codewiki-task
-title: codewiki-task skill
+id: skill.codewiki-implementation
+title: codewiki-implementation skill
 state: active
 summary: Packaged CodeWiki agent skill.
 owners: [maintainers]
 updated: "2026-05-10"
 ---
 
-# CodeWiki Task
+# CodeWiki Implementation
 
 Run the implementation compiler for one roadmap task.
 

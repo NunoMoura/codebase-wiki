@@ -41,7 +41,7 @@ user conversation -> inspect .codewiki/kb and code -> propose feedback_build -> 
    - Ask user to accept before documentation compiler runs.
 
 4. **Handoff**
-   - After acceptance, route to documentation compiler (`codewiki-plan`).
+   - After acceptance, route to documentation compiler (`codewiki-documentation`).
    - If the feedback loop is small (single decision), the main agent may skip a formal build and proceed directly.
 
 ## Compiler routing

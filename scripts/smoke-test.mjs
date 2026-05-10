@@ -282,10 +282,10 @@ async function main() {
 		const expectedSkillNames = [
 			"codewiki",
 			"codewiki-architecture",
+			"codewiki-documentation",
 			"codewiki-feedback",
-			"codewiki-plan",
+			"codewiki-implementation",
 			"codewiki-research",
-			"codewiki-task",
 			"codewiki-verify",
 			"codewiki-view-audit",
 		];
@@ -2097,7 +2097,7 @@ async function main() {
 		assert.ok(
 			taskStatuses.some(
 				(entry) =>
-					entry.key === "codewiki-task" &&
+					entry.key === "codewiki-focus" &&
 					/TASK-001 progress/i.test(String(entry.value)),
 			),
 			"wiki-resume should refresh task focus status",

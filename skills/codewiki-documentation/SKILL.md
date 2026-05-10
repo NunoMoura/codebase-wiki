@@ -1,15 +1,15 @@
 ---
-name: codewiki-plan
+name: codewiki-documentation
 description: Documentation compiler for CodeWiki. Use when accepted feedback, architecture changes, drift, or roadmap gaps need to become `.codewiki/kb/**` updates and executable roadmap work items before implementation.
-id: skill.codewiki-plan
-title: codewiki-plan skill
+id: skill.codewiki-documentation
+title: codewiki-documentation skill
 state: active
 summary: Packaged CodeWiki agent skill.
 owners: [maintainers]
 updated: "2026-05-10"
 ---
 
-# CodeWiki Plan
+# CodeWiki Documentation
 
 Run the documentation compiler. The user should not need to trigger each stage manually once the feedback build is accepted.
 

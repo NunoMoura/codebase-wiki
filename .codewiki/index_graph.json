@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-10T07:14:46.520Z",
+  "generated_at": "2026-05-10T07:35:57.741Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -15,7 +15,7 @@
       "kind": "code_path",
       "path": ".codewiki/kb",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/product/overview.md",
@@ -30,7 +30,7 @@
       "kind": "code_path",
       "path": ".codewiki/kb/product",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/product/stories/automation.md",
@@ -41,18 +41,18 @@
       "group": ".codewiki"
     },
     {
-      "id": "code:skills/codewiki-task/SKILL.md",
+      "id": "code:skills/codewiki-implementation/SKILL.md",
       "kind": "code_path",
-      "path": "skills/codewiki-task/SKILL.md",
+      "path": "skills/codewiki-implementation/SKILL.md",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
-      "id": "code:skills/codewiki-plan/SKILL.md",
+      "id": "code:skills/codewiki-documentation/SKILL.md",
       "kind": "code_path",
-      "path": "skills/codewiki-plan/SKILL.md",
+      "path": "skills/codewiki-documentation/SKILL.md",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/product/stories/drift.md",
@@ -89,7 +89,7 @@
       "kind": "code_path",
       "path": "skills/codewiki-feedback/SKILL.md",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/product/stories/navigation.md",
@@ -126,7 +126,7 @@
       "kind": "code_path",
       "path": "scripts/smoke-test.mjs",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:scripts/check-architecture.mjs",
@@ -239,7 +239,7 @@
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/agency.md",
@@ -261,7 +261,7 @@
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters/pi",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/api.md",
@@ -382,14 +382,14 @@
       "kind": "code_path",
       "path": ".codewiki/roadmap.json",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:.codewiki/roadmap",
       "kind": "code_path",
       "path": ".codewiki/roadmap",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/validation-gateway.md",
@@ -730,7 +730,7 @@
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters/pi/index.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:extensions/codewiki/src/adapters/pi/schemas.ts",
@@ -919,6 +919,26 @@
       "alignment_state": "drift"
     },
     {
+      "id": "build:.codewiki/builds/feedback/2026-05-10-skill-loop-naming-architecture.json",
+      "kind": "feedback_build",
+      "path": ".codewiki/builds/feedback/2026-05-10-skill-loop-naming-architecture.json",
+      "title": "user decision after Pi docs and web research review",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "drift"
+    },
+    {
+      "id": "build:.codewiki/builds/feedback/2026-05-10-skill-loop-no-aliases.json",
+      "kind": "feedback_build",
+      "path": ".codewiki/builds/feedback/2026-05-10-skill-loop-no-aliases.json",
+      "title": "user decision after TASK-051 creation",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "drift"
+    },
+    {
       "id": "build:.codewiki/builds/documentation/2026-05-07-compiler-kb-refactor.json",
       "kind": "documentation_build",
       "path": ".codewiki/builds/documentation/2026-05-07-compiler-kb-refactor.json",
@@ -973,6 +993,16 @@
       "kind": "documentation_build",
       "path": ".codewiki/builds/documentation/2026-05-10-graph-source-boundary-docs.json",
       "title": ".codewiki/builds/feedback/2026-05-10-graph-map-not-truth-clarification.json",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "drift"
+    },
+    {
+      "id": "build:.codewiki/builds/documentation/2026-05-10-skill-loop-naming-docs.json",
+      "kind": "documentation_build",
+      "path": ".codewiki/builds/documentation/2026-05-10-skill-loop-naming-docs.json",
+      "title": ".codewiki/builds/feedback/2026-05-10-skill-loop-naming-architecture.json",
       "status": "accepted",
       "layer": "build",
       "lifecycle_state": "accepted",
@@ -1049,6 +1079,16 @@
       "alignment_state": "aligned"
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-10-task-051-loop-skill-rename.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-10-task-051-loop-skill-rename.json",
+      "title": "TASK-051 implementation loop",
+      "status": "validated",
+      "layer": "build",
+      "lifecycle_state": "validated",
+      "alignment_state": "aligned"
+    },
+    {
       "id": "build:.codewiki/builds/implementation/2026-05-10-traceability-production.json",
       "kind": "implementation_build",
       "path": ".codewiki/builds/implementation/2026-05-10-traceability-production.json",
@@ -1086,6 +1126,12 @@
       "id": "validation:.codewiki/validation/2026-05-10-task-046-implementation-pass.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-10-task-046-implementation-pass.json",
+      "verdict": "pass"
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-10-task-051-implementation-pass.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-10-task-051-implementation-pass.json",
       "verdict": "pass"
     }
   ],
@@ -1228,12 +1274,12 @@
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/product/stories/automation.md",
-      "to": "code:skills/codewiki-task/SKILL.md"
+      "to": "code:skills/codewiki-implementation/SKILL.md"
     },
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/product/stories/automation.md",
-      "to": "code:skills/codewiki-plan/SKILL.md"
+      "to": "code:skills/codewiki-documentation/SKILL.md"
     },
     {
       "kind": "doc_link",
@@ -1673,12 +1719,12 @@
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/system/compilers.md",
-      "to": "code:skills/codewiki-plan/SKILL.md"
+      "to": "code:skills/codewiki-documentation/SKILL.md"
     },
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/system/compilers.md",
-      "to": "code:skills/codewiki-task/SKILL.md"
+      "to": "code:skills/codewiki-implementation/SKILL.md"
     },
     {
       "kind": "doc_link",
@@ -2153,12 +2199,12 @@
     {
       "kind": "task_code_path",
       "from": "task:TASK-034",
-      "to": "code:skills/codewiki-plan/SKILL.md"
+      "to": "code:skills/codewiki-documentation/SKILL.md"
     },
     {
       "kind": "task_code_path",
       "from": "task:TASK-034",
-      "to": "code:skills/codewiki-task/SKILL.md"
+      "to": "code:skills/codewiki-implementation/SKILL.md"
     },
     {
       "kind": "task_code_path",
@@ -2311,6 +2357,11 @@
       "to": "build:.codewiki/builds/feedback/2026-05-10-graph-map-not-truth-clarification.json"
     },
     {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/documentation/2026-05-10-skill-loop-naming-docs.json",
+      "to": "build:.codewiki/builds/feedback/2026-05-10-skill-loop-naming-architecture.json"
+    },
+    {
       "kind": "build_task",
       "from": "build:.codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
       "to": "task:TASK-035"
@@ -2341,6 +2392,11 @@
       "to": "task:TASK-046"
     },
     {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-10-task-051-loop-skill-rename.json",
+      "to": "task:TASK-051"
+    },
+    {
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-09-task-035-close-pass.json",
       "to": "task:TASK-035"
@@ -2359,6 +2415,11 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-10-task-046-implementation-pass.json",
       "to": "task:TASK-046"
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-10-task-051-implementation-pass.json",
+      "to": "task:TASK-051"
     }
   ],
   "views": {
@@ -2547,16 +2608,25 @@
         "scripts/smoke-test.mjs",
         "skills",
         "skills/codewiki-architecture/SKILL.md",
+        "skills/codewiki-documentation/SKILL.md",
         "skills/codewiki-feedback/SKILL.md",
-        "skills/codewiki-plan/SKILL.md",
-        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-implementation/SKILL.md",
         "skills/codewiki-verify/SKILL.md",
         "skills/codewiki-view-audit/SKILL.md",
         "skills/codewiki/SKILL.md"
       ],
       "dirty_paths": [
-        "codewiki/kb/system/graph.md",
-        "extensions/codewiki/src/application/prompt.ts",
+        ".codewiki/kb/product/stories/automation.md",
+        ".codewiki/kb/system/compilers.md",
+        ".codewiki/roadmap.json",
+        ".codewiki/roadmap/archive.jsonl",
+        "README.md",
+        "codewiki/index_graph.json",
+        "extensions/codewiki/src/adapters/pi/index.ts",
+        "extensions/codewiki/src/adapters/pi/session.ts",
+        "extensions/codewiki/src/application/session.ts",
+        "scripts/smoke-test.mjs",
+        "skills/codewiki-feedback/SKILL.md",
         "skills/codewiki-plan/SKILL.md",
         "skills/codewiki-task/SKILL.md",
         "skills/codewiki/SKILL.md"
@@ -2638,6 +2708,26 @@
           "reason": "Accepted feedback build must be applied to canonical knowledge before lower layers are reliable."
         },
         {
+          "id": "reconcile:.codewiki/builds/feedback/2026-05-10-skill-loop-naming-architecture.json",
+          "source_id": "build:.codewiki/builds/feedback/2026-05-10-skill-loop-naming-architecture.json",
+          "state": "drift",
+          "direction": "downward",
+          "from_layer": "intent",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Accepted feedback build must be applied to canonical knowledge before lower layers are reliable."
+        },
+        {
+          "id": "reconcile:.codewiki/builds/feedback/2026-05-10-skill-loop-no-aliases.json",
+          "source_id": "build:.codewiki/builds/feedback/2026-05-10-skill-loop-no-aliases.json",
+          "state": "drift",
+          "direction": "downward",
+          "from_layer": "intent",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Accepted feedback build must be applied to canonical knowledge before lower layers are reliable."
+        },
+        {
           "id": "reconcile:.codewiki/builds/documentation/2026-05-09-kb-boundary-refactor-docs.json",
           "source_id": "build:.codewiki/builds/documentation/2026-05-09-kb-boundary-refactor-docs.json",
           "state": "drift",
@@ -2678,8 +2768,18 @@
           "reason": "Accepted documentation build should produce or update roadmap work items before implementation."
         },
         {
-          "id": "reconcile:code:skills/codewiki-task/SKILL.md",
-          "source_id": "code:skills/codewiki-task/SKILL.md",
+          "id": "reconcile:.codewiki/builds/documentation/2026-05-10-skill-loop-naming-docs.json",
+          "source_id": "build:.codewiki/builds/documentation/2026-05-10-skill-loop-naming-docs.json",
+          "state": "drift",
+          "direction": "downward",
+          "from_layer": "knowledge",
+          "to_layer": "roadmap",
+          "next_loop": "documentation",
+          "reason": "Accepted documentation build should produce or update roadmap work items before implementation."
+        },
+        {
+          "id": "reconcile:code:.codewiki/kb",
+          "source_id": "code:.codewiki/kb",
           "state": "drift",
           "direction": "upward",
           "from_layer": "code",
@@ -2687,13 +2787,14 @@
           "next_loop": "documentation",
           "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
           "doc_paths": [
-            ".codewiki/kb/product/stories/automation.md",
-            ".codewiki/kb/system/compilers.md"
+            ".codewiki/kb/lexicon.md",
+            ".codewiki/kb/system/file-structure.md",
+            ".codewiki/kb/system/knowledge.md"
           ]
         },
         {
-          "id": "reconcile:code:skills/codewiki-plan/SKILL.md",
-          "source_id": "code:skills/codewiki-plan/SKILL.md",
+          "id": "reconcile:code:.codewiki/kb/product",
+          "source_id": "code:.codewiki/kb/product",
           "state": "drift",
           "direction": "upward",
           "from_layer": "code",
@@ -2701,7 +2802,20 @@
           "next_loop": "documentation",
           "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
           "doc_paths": [
-            ".codewiki/kb/product/stories/automation.md",
+            ".codewiki/kb/product/overview.md"
+          ]
+        },
+        {
+          "id": "reconcile:code:skills/codewiki-feedback/SKILL.md",
+          "source_id": "code:skills/codewiki-feedback/SKILL.md",
+          "state": "drift",
+          "direction": "upward",
+          "from_layer": "code",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
+          "doc_paths": [
+            ".codewiki/kb/product/stories/intent.md",
             ".codewiki/kb/system/compilers.md"
           ]
         },
@@ -2716,6 +2830,21 @@
           "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
           "doc_paths": [
             ".codewiki/kb/product/stories/navigation.md"
+          ]
+        },
+        {
+          "id": "reconcile:code:scripts/smoke-test.mjs",
+          "source_id": "code:scripts/smoke-test.mjs",
+          "state": "drift",
+          "direction": "upward",
+          "from_layer": "code",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
+          "doc_paths": [
+            ".codewiki/kb/product/stories/sanitation.md",
+            ".codewiki/kb/product/users/maintainers.md",
+            ".codewiki/kb/system/extension.md"
           ]
         },
         {
@@ -2751,6 +2880,20 @@
           ]
         },
         {
+          "id": "reconcile:code:extensions/codewiki/src/adapters",
+          "source_id": "code:extensions/codewiki/src/adapters",
+          "state": "drift",
+          "direction": "upward",
+          "from_layer": "code",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
+          "doc_paths": [
+            ".codewiki/kb/system/adapters.md",
+            ".codewiki/kb/system/api.md"
+          ]
+        },
+        {
           "id": "reconcile:code:extensions/codewiki/src/application",
           "source_id": "code:extensions/codewiki/src/application",
           "state": "drift",
@@ -2763,10 +2906,50 @@
             ".codewiki/kb/system/agency.md",
             ".codewiki/kb/system/api.md"
           ]
+        },
+        {
+          "id": "reconcile:code:extensions/codewiki/src/adapters/pi",
+          "source_id": "code:extensions/codewiki/src/adapters/pi",
+          "state": "drift",
+          "direction": "upward",
+          "from_layer": "code",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
+          "doc_paths": [
+            ".codewiki/kb/system/agency.md",
+            ".codewiki/kb/system/extension.md"
+          ]
+        },
+        {
+          "id": "reconcile:code:.codewiki/roadmap.json",
+          "source_id": "code:.codewiki/roadmap.json",
+          "state": "drift",
+          "direction": "upward",
+          "from_layer": "code",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
+          "doc_paths": [
+            ".codewiki/kb/system/roadmap.md"
+          ]
+        },
+        {
+          "id": "reconcile:code:.codewiki/roadmap",
+          "source_id": "code:.codewiki/roadmap",
+          "state": "drift",
+          "direction": "upward",
+          "from_layer": "code",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
+          "doc_paths": [
+            ".codewiki/kb/system/roadmap.md"
+          ]
         }
       ],
       "counts_by_loop": {
-        "documentation": 17
+        "documentation": 26
       },
       "next_action": {
         "loop": "documentation",
@@ -2785,7 +2968,7 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-10T07:14:46.526Z",
+      "generated_at": "2026-05-10T07:35:57.745Z",
       "counts": {
         "large-doc": 1
       },
@@ -2800,7 +2983,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-10T07:14:46Z",
+      "generated_at": "2026-05-10T07:35:57Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -3150,7 +3333,7 @@
             "outcome": "Agents load only the CodeWiki workflow instructions needed for the current job while preserving shared CodeWiki invariants.",
             "acceptance": [
               "A small `codewiki` router skill states package invariants and when to load each focused skill.",
-              "Focused skills exist for `codewiki-plan`, `codewiki-task`, `codewiki-research`, and `codewiki-verify`.",
+              "Focused skills exist for `codewiki-documentation`, `codewiki-implementation`, `codewiki-research`, and `codewiki-verify`.",
               "Skill descriptions are precise enough for Pi progressive disclosure and do not duplicate large workflow text.",
               "All focused skills preserve `.codewiki/kb` as canonical intent and roadmap/evidence as machine-managed operational truth."
             ],
@@ -4354,8 +4537,8 @@
           "code_paths": [
             "skills/codewiki/SKILL.md",
             "skills/codewiki-feedback/SKILL.md",
-            "skills/codewiki-plan/SKILL.md",
-            "skills/codewiki-task/SKILL.md",
+            "skills/codewiki-documentation/SKILL.md",
+            "skills/codewiki-implementation/SKILL.md",
             "skills/codewiki-verify/SKILL.md",
             "skills/codewiki-architecture/SKILL.md",
             "skills/codewiki-view-audit/SKILL.md"
@@ -4969,7 +5152,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-10T07:14:46Z",
+      "generated_at": "2026-05-10T07:35:57Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -5105,8 +5288,8 @@
           "summary": "CodeWiki should let agents advance roadmap work automatically inside explicit user-visible gates.",
           "drift_status": "aligned",
           "code_paths": [
-            "skills/codewiki-task/SKILL.md",
-            "skills/codewiki-plan/SKILL.md"
+            "skills/codewiki-implementation/SKILL.md",
+            "skills/codewiki-documentation/SKILL.md"
           ],
           "code_area": "skills +1 more",
           "issue_counts": {
@@ -5469,8 +5652,8 @@
           "drift_status": "aligned",
           "code_paths": [
             "skills/codewiki-feedback/SKILL.md",
-            "skills/codewiki-plan/SKILL.md",
-            "skills/codewiki-task/SKILL.md"
+            "skills/codewiki-documentation/SKILL.md",
+            "skills/codewiki-implementation/SKILL.md"
           ],
           "code_area": "skills +2 more",
           "issue_counts": {
@@ -5664,7 +5847,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-10T07:14:46Z",
+        "generated_at": "2026-05-10T07:35:57Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -5692,20 +5875,28 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-10T07:14:46Z",
+            "checked_at": "2026-05-10T07:35:57Z",
             "revision": {
               "git": {
-                "head": "2dea08a7554d3165acac28fa18889eef4d926b70",
+                "head": "7b72b1e114da38f2ee43f93b822a93e8ba891aab",
                 "dirty": true,
                 "dirty_paths": [
-                  "extensions/codewiki/src/application/prompt.ts",
+                  ".codewiki/kb/product/stories/automation.md",
+                  ".codewiki/kb/system/compilers.md",
+                  ".codewiki/roadmap.json",
+                  ".codewiki/roadmap/archive.jsonl",
+                  "extensions/codewiki/src/adapters/pi/index.ts",
+                  "extensions/codewiki/src/adapters/pi/session.ts",
+                  "extensions/codewiki/src/application/session.ts",
+                  "scripts/smoke-test.mjs",
+                  "skills/codewiki-feedback/SKILL.md",
                   "skills/codewiki-plan/SKILL.md",
                   "skills/codewiki-task/SKILL.md",
                   "skills/codewiki/SKILL.md"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "eae5481b128c599f9d2c56b0c19bb68c8a323696",
+                  ".codewiki/index_graph.json": "e255319e7e4ad2f0a30f8fed331d6795792ae8f9",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
                   ".codewiki/kb/product/overview.md": "ca1c24bb224268572d0e97afa45db739b7af62d7",
@@ -5728,7 +5919,7 @@
                   ".codewiki/kb/system/compilers.md": "e8bf4e292c34d313dd5d0fcb736c710b310e71a1",
                   ".codewiki/kb/system/extension.md": "095c0f865cdb99021c89fb00a2a657469a507276",
                   ".codewiki/kb/system/file-structure.md": "3c0b708ad3b34201a2e54281498c0557c875560c",
-                  ".codewiki/kb/system/graph.md": "4c8b8cf66b284ae029dfcc58de52ec4483063a8b",
+                  ".codewiki/kb/system/graph.md": "311bb4f42c4bf7d63411bc0172bffc1b97ac9954",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
                   ".codewiki/kb/system/overview.md": "64080eb0dc33c4a5c3271d5e1b49ae64c7a7f641",
                   ".codewiki/kb/system/roadmap.md": "d8ef90ce4e07870e34a8421d337732273689aa59",
@@ -5752,23 +5943,23 @@
                   "scripts/smoke-test.mjs": "789bfe8db52382176d15c593199c1bada1425297",
                   "skills": "",
                   "skills/codewiki-architecture/SKILL.md": "16c135ad735298d90850d09f6831a78c9da55f7e",
+                  "skills/codewiki-documentation/SKILL.md": "",
                   "skills/codewiki-feedback/SKILL.md": "509eec99d26517f6b6b34346e2a972f2c939878b",
-                  "skills/codewiki-plan/SKILL.md": "5ba6a3e00256126862acd0da9d2229237182ed95",
-                  "skills/codewiki-task/SKILL.md": "f73892f5512eabcfd7099c9bb88e6215dbedad41",
+                  "skills/codewiki-implementation/SKILL.md": "",
                   "skills/codewiki-verify/SKILL.md": "1ccc620991dee95eaa6326fd4f01fa5f3fdf88ab",
                   "skills/codewiki-view-audit/SKILL.md": "118c979408d3f3ed26e8df351d1fb46343878731",
-                  "skills/codewiki/SKILL.md": "e07569f1692e3c1320792950f24815d33c1e8477"
+                  "skills/codewiki/SKILL.md": "fdb4d8db6b7edcb8c461a6e011c76037849f2740"
                 }
               },
               "spec_digest": "20ab82d527fc003e5fd6592bd11bff1b4e7cecd6a514c70bb99dabac56edd605",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "91e32dead0703da51ace3f8f46e01ef016acdac447719c76727eea7702e79b77",
-              "digest": "1d59af688cb4c06a1f672ceee6fb78070c8548b9f35ed98ebf58c8aee58bcf17"
+              "code_digest": "6251c910ace33fbe815161a5802799981b1f0e966b396cb4a7dab4ef92ac0ebc",
+              "digest": "3361cdc28bd37548d6c7f14e5f28afe6c4b4d63674abb920d30f27e0fc32c4da"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-10T07:14:46Z",
+              "checked_at": "2026-05-10T07:35:57Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -5801,8 +5992,8 @@
             ],
             "code_paths": [
               ".codewiki/kb/product",
-              "skills/codewiki-task/SKILL.md",
-              "skills/codewiki-plan/SKILL.md",
+              "skills/codewiki-implementation/SKILL.md",
+              "skills/codewiki-documentation/SKILL.md",
               "skills/codewiki-view-audit/SKILL.md",
               "skills/codewiki-architecture/SKILL.md",
               "skills/codewiki-feedback/SKILL.md",
@@ -5863,20 +6054,28 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-10T07:14:46Z",
+            "checked_at": "2026-05-10T07:35:57Z",
             "revision": {
               "git": {
-                "head": "2dea08a7554d3165acac28fa18889eef4d926b70",
+                "head": "7b72b1e114da38f2ee43f93b822a93e8ba891aab",
                 "dirty": true,
                 "dirty_paths": [
-                  "extensions/codewiki/src/application/prompt.ts",
+                  ".codewiki/kb/product/stories/automation.md",
+                  ".codewiki/kb/system/compilers.md",
+                  ".codewiki/roadmap.json",
+                  ".codewiki/roadmap/archive.jsonl",
+                  "extensions/codewiki/src/adapters/pi/index.ts",
+                  "extensions/codewiki/src/adapters/pi/session.ts",
+                  "extensions/codewiki/src/application/session.ts",
+                  "scripts/smoke-test.mjs",
+                  "skills/codewiki-feedback/SKILL.md",
                   "skills/codewiki-plan/SKILL.md",
                   "skills/codewiki-task/SKILL.md",
                   "skills/codewiki/SKILL.md"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "eae5481b128c599f9d2c56b0c19bb68c8a323696",
+                  ".codewiki/index_graph.json": "e255319e7e4ad2f0a30f8fed331d6795792ae8f9",
                   ".codewiki/kb": "",
                   ".codewiki/kb/system/adapters.md": "9ba9e7740331e0f794567fda04c18db830ee0a30",
                   ".codewiki/kb/system/agency.md": "32171ff3cba37d325915052b0ca8370468144d80",
@@ -5885,7 +6084,7 @@
                   ".codewiki/kb/system/compilers.md": "e8bf4e292c34d313dd5d0fcb736c710b310e71a1",
                   ".codewiki/kb/system/extension.md": "095c0f865cdb99021c89fb00a2a657469a507276",
                   ".codewiki/kb/system/file-structure.md": "3c0b708ad3b34201a2e54281498c0557c875560c",
-                  ".codewiki/kb/system/graph.md": "4c8b8cf66b284ae029dfcc58de52ec4483063a8b",
+                  ".codewiki/kb/system/graph.md": "311bb4f42c4bf7d63411bc0172bffc1b97ac9954",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
                   ".codewiki/kb/system/overview.md": "64080eb0dc33c4a5c3271d5e1b49ae64c7a7f641",
                   ".codewiki/kb/system/roadmap.md": "d8ef90ce4e07870e34a8421d337732273689aa59",
@@ -5905,21 +6104,21 @@
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
                   "scripts/smoke-test.mjs": "789bfe8db52382176d15c593199c1bada1425297",
                   "skills": "",
+                  "skills/codewiki-documentation/SKILL.md": "",
                   "skills/codewiki-feedback/SKILL.md": "509eec99d26517f6b6b34346e2a972f2c939878b",
-                  "skills/codewiki-plan/SKILL.md": "5ba6a3e00256126862acd0da9d2229237182ed95",
-                  "skills/codewiki-task/SKILL.md": "f73892f5512eabcfd7099c9bb88e6215dbedad41",
+                  "skills/codewiki-implementation/SKILL.md": "",
                   "skills/codewiki-verify/SKILL.md": "1ccc620991dee95eaa6326fd4f01fa5f3fdf88ab"
                 }
               },
               "spec_digest": "d07d6c26409f47eb510335e9d20575744fd3bb42f5d137c958f12599df2524fa",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "c2bee42a9f2444b7cb2ea780eada5e1efbf762bce5fd6b2844169bb56d608135",
-              "digest": "695f1b554f78b6b3ef385b17193a7b10710377f561c6813778e64e72cbcd0542"
+              "code_digest": "c823f58a057f4ede41b3566ed73bb5ae1136138527e751596b6745f2b929cc84",
+              "digest": "96eb2a47d89ba7bd977ce02e7270a8a3fe149988fbdff9ebb0ccc426ec390b95"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-10T07:14:46Z",
+              "checked_at": "2026-05-10T07:35:57Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -5945,8 +6144,8 @@
               "extensions/codewiki/src/domain",
               ".codewiki/builds",
               "skills/codewiki-feedback/SKILL.md",
-              "skills/codewiki-plan/SKILL.md",
-              "skills/codewiki-task/SKILL.md",
+              "skills/codewiki-documentation/SKILL.md",
+              "skills/codewiki-implementation/SKILL.md",
               "extensions/codewiki/index.ts",
               "extensions/codewiki/bootstrap.ts",
               "extensions/codewiki/templates.ts",
@@ -5994,20 +6193,28 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-10T07:14:46Z",
+            "checked_at": "2026-05-10T07:35:57Z",
             "revision": {
               "git": {
-                "head": "2dea08a7554d3165acac28fa18889eef4d926b70",
+                "head": "7b72b1e114da38f2ee43f93b822a93e8ba891aab",
                 "dirty": true,
                 "dirty_paths": [
-                  "extensions/codewiki/src/application/prompt.ts",
+                  ".codewiki/kb/product/stories/automation.md",
+                  ".codewiki/kb/system/compilers.md",
+                  ".codewiki/roadmap.json",
+                  ".codewiki/roadmap/archive.jsonl",
+                  "extensions/codewiki/src/adapters/pi/index.ts",
+                  "extensions/codewiki/src/adapters/pi/session.ts",
+                  "extensions/codewiki/src/application/session.ts",
+                  "scripts/smoke-test.mjs",
+                  "skills/codewiki-feedback/SKILL.md",
                   "skills/codewiki-plan/SKILL.md",
                   "skills/codewiki-task/SKILL.md",
                   "skills/codewiki/SKILL.md"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "eae5481b128c599f9d2c56b0c19bb68c8a323696",
+                  ".codewiki/index_graph.json": "e255319e7e4ad2f0a30f8fed331d6795792ae8f9",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
                   ".codewiki/kb/product/overview.md": "ca1c24bb224268572d0e97afa45db739b7af62d7",
@@ -6030,7 +6237,7 @@
                   ".codewiki/kb/system/compilers.md": "e8bf4e292c34d313dd5d0fcb736c710b310e71a1",
                   ".codewiki/kb/system/extension.md": "095c0f865cdb99021c89fb00a2a657469a507276",
                   ".codewiki/kb/system/file-structure.md": "3c0b708ad3b34201a2e54281498c0557c875560c",
-                  ".codewiki/kb/system/graph.md": "4c8b8cf66b284ae029dfcc58de52ec4483063a8b",
+                  ".codewiki/kb/system/graph.md": "311bb4f42c4bf7d63411bc0172bffc1b97ac9954",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
                   ".codewiki/kb/system/overview.md": "64080eb0dc33c4a5c3271d5e1b49ae64c7a7f641",
                   ".codewiki/kb/system/roadmap.md": "d8ef90ce4e07870e34a8421d337732273689aa59",
@@ -6054,23 +6261,23 @@
                   "scripts/smoke-test.mjs": "789bfe8db52382176d15c593199c1bada1425297",
                   "skills": "",
                   "skills/codewiki-architecture/SKILL.md": "16c135ad735298d90850d09f6831a78c9da55f7e",
+                  "skills/codewiki-documentation/SKILL.md": "",
                   "skills/codewiki-feedback/SKILL.md": "509eec99d26517f6b6b34346e2a972f2c939878b",
-                  "skills/codewiki-plan/SKILL.md": "5ba6a3e00256126862acd0da9d2229237182ed95",
-                  "skills/codewiki-task/SKILL.md": "f73892f5512eabcfd7099c9bb88e6215dbedad41",
+                  "skills/codewiki-implementation/SKILL.md": "",
                   "skills/codewiki-verify/SKILL.md": "1ccc620991dee95eaa6326fd4f01fa5f3fdf88ab",
                   "skills/codewiki-view-audit/SKILL.md": "118c979408d3f3ed26e8df351d1fb46343878731",
-                  "skills/codewiki/SKILL.md": "e07569f1692e3c1320792950f24815d33c1e8477"
+                  "skills/codewiki/SKILL.md": "fdb4d8db6b7edcb8c461a6e011c76037849f2740"
                 }
               },
               "spec_digest": "20ab82d527fc003e5fd6592bd11bff1b4e7cecd6a514c70bb99dabac56edd605",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "91e32dead0703da51ace3f8f46e01ef016acdac447719c76727eea7702e79b77",
-              "digest": "1d59af688cb4c06a1f672ceee6fb78070c8548b9f35ed98ebf58c8aee58bcf17"
+              "code_digest": "6251c910ace33fbe815161a5802799981b1f0e966b396cb4a7dab4ef92ac0ebc",
+              "digest": "3361cdc28bd37548d6c7f14e5f28afe6c4b4d63674abb920d30f27e0fc32c4da"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-10T07:14:46Z",
+              "checked_at": "2026-05-10T07:35:57Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -6103,8 +6310,8 @@
             ],
             "code_paths": [
               ".codewiki/kb/product",
-              "skills/codewiki-task/SKILL.md",
-              "skills/codewiki-plan/SKILL.md",
+              "skills/codewiki-implementation/SKILL.md",
+              "skills/codewiki-documentation/SKILL.md",
               "skills/codewiki-view-audit/SKILL.md",
               "skills/codewiki-architecture/SKILL.md",
               "skills/codewiki-feedback/SKILL.md",
@@ -6166,7 +6373,7 @@
         "agency": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
       },
       "parallel": {
-        "generated_at": "2026-05-10T07:14:46Z",
+        "generated_at": "2026-05-10T07:35:57Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": []
@@ -6242,8 +6449,8 @@
             "summary": "CodeWiki should let agents advance roadmap work automatically inside explicit user-visible gates.",
             "drift_status": "aligned",
             "code_paths": [
-              "skills/codewiki-task/SKILL.md",
-              "skills/codewiki-plan/SKILL.md"
+              "skills/codewiki-implementation/SKILL.md",
+              "skills/codewiki-documentation/SKILL.md"
             ],
             "code_area": "skills +1 more",
             "issue_counts": {
@@ -6606,8 +6813,8 @@
             "drift_status": "aligned",
             "code_paths": [
               "skills/codewiki-feedback/SKILL.md",
-              "skills/codewiki-plan/SKILL.md",
-              "skills/codewiki-task/SKILL.md"
+              "skills/codewiki-documentation/SKILL.md",
+              "skills/codewiki-implementation/SKILL.md"
             ],
             "code_area": "skills +2 more",
             "issue_counts": {
@@ -6841,8 +7048,8 @@
                 "summary": "CodeWiki should let agents advance roadmap work automatically inside explicit user-visible gates.",
                 "drift_status": "aligned",
                 "code_paths": [
-                  "skills/codewiki-task/SKILL.md",
-                  "skills/codewiki-plan/SKILL.md"
+                  "skills/codewiki-implementation/SKILL.md",
+                  "skills/codewiki-documentation/SKILL.md"
                 ],
                 "code_area": "skills +1 more",
                 "issue_counts": {
@@ -7244,8 +7451,8 @@
                 "drift_status": "aligned",
                 "code_paths": [
                   "skills/codewiki-feedback/SKILL.md",
-                  "skills/codewiki-plan/SKILL.md",
-                  "skills/codewiki-task/SKILL.md"
+                  "skills/codewiki-documentation/SKILL.md",
+                  "skills/codewiki-implementation/SKILL.md"
                 ],
                 "code_area": "skills +2 more",
                 "issue_counts": {

@@ -49,7 +49,7 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 	pi.on("session_start", async (_event, ctx) => {
 		const resolved = await resolveStatusDockProject(ctx);
 		if (!resolved) {
-			ctx.ui.setStatus("codewiki-task", undefined);
+			ctx.ui.setStatus("codewiki-focus", undefined);
 			clearStatusDock(ctx);
 			return;
 		}
@@ -57,7 +57,7 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 		await withUiErrorHandling(ctx, async () => {
 			const active = currentTaskLink(ctx);
 			if (!active) {
-				ctx.ui.setStatus("codewiki-task", undefined);
+				ctx.ui.setStatus("codewiki-focus", undefined);
 				await refreshStatusDock(resolved.project, ctx, active, resolved);
 				return;
 			}

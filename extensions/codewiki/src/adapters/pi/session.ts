@@ -53,5 +53,5 @@ export function setTaskSessionStatusText(
 	action: TaskSessionAction,
 ): void {
 	const label = action === "focus" ? "focused" : action;
-	ctx.ui.setStatus("codewiki-task", `${taskId} ${label}: ${title}`);
+	ctx.ui.setStatus("codewiki-focus", `${taskId} ${label}: ${title}`);
 }

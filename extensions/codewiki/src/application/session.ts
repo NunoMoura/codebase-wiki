@@ -53,7 +53,7 @@ function recordTaskSessionLink(
 	ports: SessionPorts,
 ): boolean {
 	if (link.action === "clear") {
-		ports.notifier.setStatus("codewiki-task", undefined);
+		ports.notifier.setStatus("codewiki-focus", undefined);
 	} else {
 		setTaskSessionStatusText(ports, task.id, task.title, link.action);
 	}
@@ -90,7 +90,7 @@ function setTaskSessionStatusText(
 	action: TaskSessionAction,
 ): void {
 	const label = action === "focus" ? "focused" : action;
-	ports.notifier.setStatus("codewiki-task", `${taskId} ${label}: ${title}`);
+	ports.notifier.setStatus("codewiki-focus", `${taskId} ${label}: ${title}`);
 }
 
 export async function recordSessionTaskAction(

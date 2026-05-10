@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-10T07:05:58Z",
+  "updated": "2026-05-10T07:34:56Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -232,7 +232,7 @@
         "outcome": "Agents load only the CodeWiki workflow instructions needed for the current job while preserving shared CodeWiki invariants.",
         "acceptance": [
           "A small `codewiki` router skill states package invariants and when to load each focused skill.",
-          "Focused skills exist for `codewiki-plan`, `codewiki-task`, `codewiki-research`, and `codewiki-verify`.",
+          "Focused skills exist for `codewiki-documentation`, `codewiki-implementation`, `codewiki-research`, and `codewiki-verify`.",
           "Skill descriptions are precise enough for Pi progressive disclosure and do not duplicate large workflow text.",
           "All focused skills preserve `.codewiki/kb` as canonical intent and roadmap/evidence as machine-managed operational truth."
         ],
@@ -1433,8 +1433,8 @@
       "code_paths": [
         "skills/codewiki/SKILL.md",
         "skills/codewiki-feedback/SKILL.md",
-        "skills/codewiki-plan/SKILL.md",
-        "skills/codewiki-task/SKILL.md",
+        "skills/codewiki-documentation/SKILL.md",
+        "skills/codewiki-implementation/SKILL.md",
         "skills/codewiki-verify/SKILL.md",
         "skills/codewiki-architecture/SKILL.md",
         "skills/codewiki-view-audit/SKILL.md"

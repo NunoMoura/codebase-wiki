@@ -44,11 +44,13 @@ All internal `codewiki_*` tools accept optional `repoPath` so agents can target 
 ### Skills
 
 - `/skill:codewiki`
-- `/skill:codewiki-plan`
-- `/skill:codewiki-task`
-- `/skill:codewiki-research`
+- `/skill:codewiki-feedback`
+- `/skill:codewiki-documentation`
+- `/skill:codewiki-implementation`
 - `/skill:codewiki-verify`
+- `/skill:codewiki-research`
 - `/skill:codewiki-architecture`
+- `/skill:codewiki-view-audit`
 
 The router skill covers package invariants and points the agent to focused workflow skills for:
 
@@ -405,15 +407,19 @@ extensions/
 skills/
   codewiki/
     SKILL.md
-  codewiki-plan/
+  codewiki-feedback/
     SKILL.md
-  codewiki-task/
+  codewiki-documentation/
     SKILL.md
-  codewiki-research/
+  codewiki-implementation/
     SKILL.md
   codewiki-verify/
     SKILL.md
+  codewiki-research/
+    SKILL.md
   codewiki-architecture/
+    SKILL.md
+  codewiki-view-audit/
     SKILL.md
 LICENSE
 README.md

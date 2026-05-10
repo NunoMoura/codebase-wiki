@@ -14,8 +14,8 @@ updated: "2026-05-10"
 Use this as the package router. Load a focused skill when the task matches a workflow:
 
 - `codewiki-feedback` — feedback compiler: ground user intent, propose feedback_build, accept before documentation.
-- `codewiki-plan` — documentation compiler: turn accepted feedback into `.codewiki/kb/**` updates and roadmap work items.
-- `codewiki-task` — implementation compiler: execute roadmap work items with linked builds/specs, optional tester/builder work, checks, implementation builds, and closure evidence.
+- `codewiki-documentation` — documentation compiler: turn accepted feedback into `.codewiki/kb/**` updates and roadmap work items.
+- `codewiki-implementation` — implementation compiler: execute roadmap work items with linked builds/specs, optional tester/builder work, checks, implementation builds, and closure evidence.
 - `codewiki-research` — gather cited/source evidence that supports `.codewiki/kb/**` claims or planning decisions.
 - `codewiki-verify` — validation gateway: independently judge horizontal and vertical alignment from fresh context.
 - `codewiki-architecture` — review seams, locality, leverage, and roadmap-worthy architecture friction.
