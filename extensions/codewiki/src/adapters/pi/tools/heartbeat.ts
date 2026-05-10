@@ -1,6 +1,8 @@
 import type {
     WikiProject,
     HeartbeatToolInput,
+    HeartbeatMode,
+    HeartbeatTrigger,
 } from "../../../domain/shared/types.ts";
 import type { ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { planHeartbeat } from "../../../application/heartbeat.ts";
@@ -24,7 +26,8 @@ export async function executeCodewikiHeartbeat(
     bounded_context: Record<string, unknown>;
 }> {
 	const result = await planHeartbeat(project, {
-		mode: (input.mode as any) ?? "observe",
+		mode: input.mode ? (input.mode as HeartbeatMode) : undefined,
+		trigger: input.trigger ? (input.trigger as HeartbeatTrigger) : undefined,
 		dryRun: input.dryRun ?? true,
 		budget: input.budget,
 	}, {

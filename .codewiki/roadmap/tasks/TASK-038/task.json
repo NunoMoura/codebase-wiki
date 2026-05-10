@@ -6,14 +6,15 @@
   "kind": "agent-workflow",
   "summary": "Replace the current heartbeat planning stub with a bounded trigger-based loop whose names match user-facing moments such as task end, sprint end, roadmap end, and budget end.",
   "spec_paths": [
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/flows/task-loop.md",
-    ".codewiki/kb/system/flows/sanitation-release.md",
+    ".codewiki/kb/system/agency.md",
+    ".codewiki/kb/system/compilers.md",
+    ".codewiki/kb/system/validation-gateway.md",
     ".codewiki/kb/lexicon.md"
   ],
   "code_paths": [
+    "extensions/codewiki/src/application/heartbeat.ts",
     "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
-    "extensions/codewiki/src/core/types.ts",
+    "extensions/codewiki/src/domain/shared/types.ts",
     "skills/codewiki/SKILL.md"
   ],
   "research_ids": [],
@@ -42,9 +43,9 @@
     ]
   },
   "delta": {
-    "desired": "",
-    "current": "",
-    "closure": ""
+    "desired": "Heartbeat planning is trigger-aware: task_end routes to implementation work, sprint_end to sprint review, roadmap_end to audit, budget_end to observation. Each trigger maps to bounded mode+default budget.",
+    "current": "planHeartbeat accepts trigger parameter. HEARTBEAT_TRIGGER_VALUES added to types. resolveModeAndTrigger maps trigger to mode. budgetForMode shapes budget by trigger+mode. Cycles include next_task, open_tasks, and recommended_next_loop.",
+    "closure": "Trigger-based heartbeat planning implemented; agent can run codewiki_heartbeat with trigger=task_end|sprint_end|roadmap_end|budget_end. All checks green."
   },
   "created": "2026-05-06",
   "updated": "2026-05-06"

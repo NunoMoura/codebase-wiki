@@ -2,9 +2,9 @@
  * application/heartbeat.ts
  *
  * "Run heartbeat planning" use case.
- * Selects the next bounded action from a plan-only loop.
+ * Plans the next bounded agency action from roadmap state, graph cues, and trigger.
  */
-import type { WikiProject, HeartbeatMode, HeartbeatBudget } from "../domain/shared/types.ts";
+import type { WikiProject, HeartbeatMode, HeartbeatTrigger, HeartbeatBudget } from "../domain/shared/types.ts";
 import { readCodewikiState } from "./state.ts";
 import type { ReadStatePorts } from "./state.ts";
 import type { FileStore, RebuildRunner } from "./ports.ts";
@@ -22,26 +22,40 @@ export interface HeartbeatPorts extends ReadStatePorts {
 // Budget presets
 // ---------------------------------------------------------------------------
 
-function budgetForMode(mode: HeartbeatMode): HeartbeatBudget {
+function budgetForMode(mode: HeartbeatMode, trigger: HeartbeatTrigger): HeartbeatBudget {
 	switch (mode) {
 		case "observe":
 			return { maxWrites: 0, maxCycles: 1, maxWallSeconds: 30, risk: "low" };
 		case "maintain":
 			return { maxWrites: 12, maxCycles: 3, maxWallSeconds: 300, risk: "medium" };
+		case "work": {
+			if (trigger === "roadmap_end") return { maxWrites: 24, maxCycles: 4, maxWallSeconds: 600, risk: "medium" };
+			if (trigger === "sprint_end") return { maxWrites: 16, maxCycles: 3, maxWallSeconds: 480, risk: "medium" };
+			return { maxWrites: 8, maxCycles: 2, maxWallSeconds: 240, risk: "medium" };
+		}
 		default:
 			return { maxWrites: 12, maxCycles: 3, maxWallSeconds: 300, risk: "medium" };
 	}
 }
 
-function mergeBudget(mode: HeartbeatMode, input?: { budget?: Partial<HeartbeatBudget> }): HeartbeatBudget {
-	const base = budgetForMode(mode);
-	if (!input?.budget) return base;
-	return {
-		maxWrites: input.budget.maxWrites ?? base.maxWrites,
-		maxCycles: input.budget.maxCycles ?? base.maxCycles,
-		maxWallSeconds: input.budget.maxWallSeconds ?? base.maxWallSeconds,
-		risk: input.budget.risk ?? base.risk,
-	};
+function resolveModeAndTrigger(
+	inputMode?: HeartbeatMode,
+	inputTrigger?: HeartbeatTrigger,
+): { mode: HeartbeatMode; trigger: HeartbeatTrigger } {
+	const trigger = inputTrigger ?? "manual";
+	if (inputMode) return { mode: inputMode, trigger };
+	switch (trigger) {
+		case "task_end":
+			return { mode: "work", trigger };
+		case "sprint_end":
+			return { mode: "work", trigger };
+		case "roadmap_end":
+			return { mode: "maintain", trigger };
+		case "budget_end":
+			return { mode: "observe", trigger };
+		default:
+			return { mode: "observe", trigger };
+	}
 }
 
 // ---------------------------------------------------------------------------
@@ -51,7 +65,8 @@ function mergeBudget(mode: HeartbeatMode, input?: { budget?: Partial<HeartbeatBu
 export async function planHeartbeat(
 	project: WikiProject,
 	opts: {
-		mode: HeartbeatMode;
+		mode?: HeartbeatMode;
+		trigger?: HeartbeatTrigger;
 		dryRun: boolean;
 		budget?: Partial<HeartbeatBudget>;
 	},
@@ -59,78 +74,128 @@ export async function planHeartbeat(
 ): Promise<{
 	summary: string;
 	mode: HeartbeatMode;
+	trigger: HeartbeatTrigger;
 	budget: HeartbeatBudget;
 	cycles: Array<Record<string, unknown>>;
 	stop: Record<string, unknown>;
 	policy: Record<string, unknown>;
 	bounded_context: Record<string, unknown>;
 }> {
-	const mode = opts.mode ?? "observe";
-	const budget = mergeBudget(mode, opts);
+	const resolved = resolveModeAndTrigger(opts.mode, opts.trigger);
+	const mode = resolved.mode;
+	const trigger = resolved.trigger;
+	const base = budgetForMode(mode, trigger);
+	const budget: HeartbeatBudget = opts.budget ? { ...base, ...opts.budget } : base;
 	const dryRun = opts.dryRun ?? true;
 
 	const state = await readCodewikiState(project, {
 		include: ["summary", "roadmap", "drift", "session"],
-		refresh: mode !== "observe" && budget.maxWrites > 0 && !dryRun,
+		refresh: mode !== "observe" && (budget.maxWrites ?? 0) > 0 && !dryRun,
 		taskId: undefined,
 	}, ports);
 
-	const nextAction = state.next_action as Record<string, unknown> | undefined;
 	const health = state.health as Record<string, unknown> | undefined;
 	const summaryState = state.summary as Record<string, unknown> | undefined;
+	const roadmap = state.roadmap as Record<string, unknown> | undefined;
+	const openTasks = (Array.isArray(roadmap?.ordered_open_task_ids)
+		? roadmap.ordered_open_task_ids
+		: []) as string[];
+	const nextTask: string | null = openTasks[0] ?? null;
+
 	const needsViewRefresh = Boolean(
 		((health?.total_issues as number | undefined) ?? 0) ||
 		((summaryState?.unmapped_spec_count as number | undefined) ?? 0),
 	);
 
-	const action = mode === "observe"
-		? "report"
-		: mode === "maintain"
-			? (needsViewRefresh ? "refresh_views" : "plan_next")
-			: "plan_next";
-
+	// Build trigger-aware action plan
 	const cycles: Array<Record<string, unknown>> = [];
-	const stopCondition = "No further cycles planned.";
+	const stop: Record<string, unknown> = { condition: "", reason: "", completed: false };
 
-	if (action === "report") {
+	if (mode === "observe") {
 		cycles.push({
 			cycle: 1,
 			action: "report",
-			summary: "Reporting current CodeWiki state.",
+			summary: trigger === "budget_end"
+				? "Budget exhausted. Reporting current state for handoff."
+				: `Reporting CodeWiki state (trigger: ${trigger}).`,
+			next_task: nextTask,
+			open_tasks: openTasks,
 		});
-	} else if (action === "refresh_views") {
-		cycles.push({
-			cycle: 1,
-			action: "refresh_views",
-			summary: "Running view refresh.",
-		});
+		stop.condition = "Observation complete.";
+		stop.reason = "Observe mode — no writes permitted.";
+	} else if (mode === "maintain") {
+		if (needsViewRefresh) {
+			cycles.push({
+				cycle: 1,
+				action: "refresh_views",
+				summary: "Graph/views stale or lint issues present. Rebuild needed.",
+			});
+		} else if (trigger === "roadmap_end") {
+			cycles.push({
+				cycle: 1,
+				action: "audit_roadmap",
+				summary: "Roadmap-end trigger: audit open tasks for relevance, suggest cancellation or sprint planning.",
+				open_tasks: openTasks,
+			});
+		} else {
+			cycles.push({
+				cycle: 1,
+				action: "audit_graph",
+				summary: "Running graph/validation audit.",
+			});
+		}
+		stop.condition = "Maintenance complete.";
+		stop.reason = "Maintain mode budget reached.";
 	} else {
-		cycles.push({
-			cycle: 1,
-			action: "plan_next",
-			summary: "Planning next action from roadmap.",
-		});
+		// work mode
+		if (!nextTask) {
+			cycles.push({
+				cycle: 1,
+				action: "report",
+				summary: trigger === "task_end"
+					? "No open tasks remaining. Roadmap is clear."
+					: "No open tasks. Nothing to plan.",
+			});
+			stop.condition = "No open tasks.";
+			stop.reason = "Roadmap empty.";
+			stop.completed = true;
+		} else {
+			cycles.push({
+				cycle: 1,
+				action: trigger === "sprint_end" ? "sprint_review" : "task_advance",
+				summary: trigger === "sprint_end"
+					? `Sprint-end trigger: consider sprint review and checkpoint. Next: ${nextTask}.`
+					: `Next task: ${nextTask}. Load task pack and execute implementation loop.`,
+				next_task: nextTask,
+				open_tasks: openTasks,
+				recommended_next_loop: trigger === "sprint_end" ? "documentation" : "implementation",
+			});
+			stop.condition = "Work cycle planned.";
+			stop.reason = dryRun ? "Dry-run — no execution." : "Ready for execution.";
+			stop.next_task = nextTask;
+		}
 	}
 
 	return {
-		summary: `Heartbeat: ${action}. Next: ${nextAction?.kind ?? "none"}.`,
+		summary: `Heartbeat [${trigger}]: ${mode} mode. ${cycles[0]?.summary ?? "No action."}`,
 		mode,
+		trigger,
 		budget,
 		cycles,
-		stop: {
-			condition: stopCondition,
-			reason: "Budget reached.",
-			completed: false,
-		},
+		stop,
 		policy: {
-			mode: budget.risk === "low" ? "plan-only" : "plan-with-maintenance",
-			allowWrites: budget.maxWrites > 0 && !dryRun,
-			maxWrites: budget.maxWrites,
+			risk: budget.risk ?? "low",
+			allowWrites: (budget.maxWrites ?? 0) > 0 && !dryRun,
+			maxWrites: budget.maxWrites ?? 0,
+			maxCycles: budget.maxCycles ?? 1,
+			trigger,
 		},
 		bounded_context: {
 			token_budget: budget.maxCycles ?? 1,
-			observed_action: action,
-			current_mode: mode,
+			mode,
+			trigger,
+			next_task: nextTask,
+			action: cycles[0]?.action ?? "none",
 		},
 	};
 }

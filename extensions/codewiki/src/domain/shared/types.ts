@@ -50,7 +50,8 @@ export const SUBAGENT_ROLE_VALUES = ["implementer", "auditor", "architect"] as c
 export const SUBAGENT_VERDICT_VALUES = ["pass", "fail", "block"] as const;
 export const SUBAGENT_PROPOSAL_VALUES = ["task", "refactor", "spec"] as const;
 export const CODEWIKI_STATE_SECTION_VALUES = ["repo", "health", "summary", "roadmap", "graph", "drift", "session", "task"] as const;
-export const HEARTBEAT_MODE_VALUES = ["auto", "dry-run", "manual", "observe", "maintain"] as const;
+export const HEARTBEAT_MODE_VALUES = ["auto", "dry-run", "manual", "observe", "maintain", "work"] as const;
+export const HEARTBEAT_TRIGGER_VALUES = ["manual", "task_end", "sprint_end", "roadmap_end", "budget_end"] as const;
 export const HEARTBEAT_RISK_VALUES = ["low", "medium", "high"] as const;
 export const STATUS_DOCK_DENSITY_VALUES = ["minimal", "standard", "full"] as const;
 export const STATUS_DOCK_MODE_VALUES = ["auto", "pin", "off"] as const;
@@ -68,6 +69,7 @@ export type TaskVerifierVerdict = SubagentVerdict;
 export type SubagentProposalKind = (typeof SUBAGENT_PROPOSAL_VALUES)[number];
 export type CodewikiStateSection = (typeof CODEWIKI_STATE_SECTION_VALUES)[number];
 export type HeartbeatMode = (typeof HEARTBEAT_MODE_VALUES)[number];
+export type HeartbeatTrigger = (typeof HEARTBEAT_TRIGGER_VALUES)[number];
 export type HeartbeatRisk = (typeof HEARTBEAT_RISK_VALUES)[number];
 export type StatusDockDensity = (typeof STATUS_DOCK_DENSITY_VALUES)[number];
 export type StatusDockMode = (typeof STATUS_DOCK_MODE_VALUES)[number];
@@ -297,6 +299,7 @@ export interface HeartbeatBudget {
 export interface CodewikiHeartbeatToolInput {
 	repoPath?: string;
 	mode?: HeartbeatMode;
+	trigger?: HeartbeatTrigger;
 	budget?: HeartbeatBudget;
 	dryRun?: boolean;
 }
