@@ -15,9 +15,11 @@ code_paths:
 
 ## Responsibility
 
-The graph is the generated state truth for CodeWiki. It is a rebuildable state machine over canonical inputs and discoverable code/test facts.
+The graph is the generated map and state index for CodeWiki. It is a rebuildable state machine over canonical inputs and discoverable code/test facts.
 
 It routes agents to the smallest useful next context, detects drift, reports freshness, and selects the next loop: feedback, documentation, implementation, validation, or observe. It also supplies the agency controller with safe next-action and stop-reason signals.
+
+The graph does not decide intended behavior and does not replace source-of-truth reads. It points to the relevant documentation builds, roadmap items, KB specs, validation reports, and code/test paths; agents must read those sources directly before making semantic changes.
 
 ## Inputs
 
@@ -83,7 +85,7 @@ Graph state is valid only when it matches source fingerprints. If graph state an
 - `.codewiki/index_graph.json` is generated and must not be hand-edited.
 - The graph must be reproducible from canonical inputs and source fingerprints.
 - The graph should route to exact files instead of inlining large docs, code, logs, or old task history.
-- The graph does not replace builds, knowledge, roadmap work items, validation reports, or code/tests.
+- The graph does not replace builds, knowledge, roadmap work items, validation reports, or code/tests; those remain the sources of truth.
 - The graph should make gated agency stop reasons explicit when state is stale, blocked, unsafe, or missing approval.
 - The graph should own machine backlinks and exhaustive relationship discovery; knowledge docs should keep only intentional human-facing links.
 

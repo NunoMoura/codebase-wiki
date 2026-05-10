@@ -14,7 +14,7 @@ updated: "2026-05-10"
 Run the documentation compiler. The user should not need to trigger each stage manually once the feedback build is accepted.
 
 ```text
-accepted feedback_build -> inspect current kb/roadmap/graph -> update knowledge -> create/update roadmap items -> documentation validation
+accepted feedback_build -> use graph to locate sources -> read kb/roadmap/build truth -> update knowledge -> create/update roadmap items -> documentation validation
 ```
 
 ## Rules
@@ -23,8 +23,9 @@ accepted feedback_build -> inspect current kb/roadmap/graph -> update knowledge 
 - The feedback compiler owns unresolved user intent. If intent is ambiguous, escalate back to feedback instead of guessing.
 - Roadmap tasks are the executable delta from intended knowledge to current reality.
 - Keep decisions close to owning specs; do not create a parallel ADR system by default.
-- Use `codewiki_state` first; treat status/graph/build revisions as the parent session's RAM anchors.
-- Expand raw knowledge files only when graph/build context recommends them, a decision needs exact source, or drift cannot be resolved from graph/context.
+- Use `codewiki_state` first as a map and freshness/drift index; treat loaded graph/build revisions as parent-session RAM anchors.
+- Use the graph to locate relevant sources, then read KB, build, roadmap, validation, or code truth directly before making semantic changes.
+- Expand raw knowledge files only when graph/build context points there, a decision needs exact source, or drift cannot be resolved from the located sources.
 - Use `codewiki_task` for task creation/update. Do not edit roadmap JSON manually.
 
 ## Workflow
@@ -60,7 +61,7 @@ accepted feedback_build -> inspect current kb/roadmap/graph -> update knowledge 
 
 ## Planner subagent contract
 
-Input: `SubagentBrief` with `role: "planner"`, accepted feedback build, relevant graph/specs, graph-derived open-task ordering, and constraints.
+Input: `SubagentBrief` with `role: "planner"`, accepted feedback build, graph-located specs/roadmap/builds, graph-derived open-task ordering, and constraints.
 
 Output: `SubagentResult` with `verdict: "pass" | "fail" | "block"`, compact findings, issues, and `proposals` of kind `knowledge_patch`, `task_delta`, or `follow_up`. Planner workers never write canonical `.codewiki/` files directly.
 

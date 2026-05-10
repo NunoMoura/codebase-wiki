@@ -14,7 +14,7 @@ updated: "2026-05-10"
 Run the implementation compiler for one roadmap task.
 
 ```text
-documentation_build + roadmap item + linked specs
+graph locates -> documentation_build + roadmap item + linked specs/code
   -> optional tester -> optional builder -> checks
   -> implementation validation -> implementation_build -> close/block/follow-up
 ```
@@ -22,8 +22,8 @@ documentation_build + roadmap item + linked specs
 ## Rules
 
 - Use `codewiki_session` when starting or continuing a task; keep task id, graph/build revisions, and current decision state in parent RAM.
-- Use `codewiki_state`, the roadmap item, linked builds, and linked specs before reading broad raw files.
-- Read only linked specs, builds, validation reports, and code paths unless graph state proves broader context is needed.
+- Use `codewiki_state` as the map, then read the roadmap item, linked builds, linked specs, validation reports, and code/test paths as sources of truth before changing behavior.
+- Read only linked sources unless graph drift/freshness signals or those sources prove broader context is needed.
 - Tests live in code/test directories, not in `.codewiki/kb/**` or roadmap task folders.
 - If task meaning is ambiguous, escalate to the feedback compiler.
 - If knowledge, documentation build, or roadmap item is wrong/incomplete, return to the documentation compiler.
@@ -42,8 +42,9 @@ The split is optional. Use it when independence matters more than coordination c
 ## Workflow
 
 1. **Load implementation context**
-   - Read the roadmap item outcome, acceptance, non-goals, validation expectations, linked specs, linked builds, and code paths.
-   - Confirm the task is still aligned with current `codewiki_state`.
+   - Use graph/state only to locate relevant sources and freshness/drift signals.
+   - Read the roadmap item outcome, acceptance, non-goals, validation expectations, linked specs, linked builds, validation reports, and code paths directly.
+   - Confirm those sources are still aligned with current `codewiki_state`.
 
 2. **Plan tests**
    - Identify existing tests and missing tests.

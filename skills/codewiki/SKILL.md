@@ -45,8 +45,8 @@ Internal agent tools:
 
 - Treat the parent Pi context window as expensive session RAM: keep current user intent, focused task, loaded graph/build revisions, and small decisions only.
 - Treat `.codewiki/kb/**`, roadmap tasks, compiler builds, and validation reports as persistent CodeWiki memory.
-- Treat `.codewiki/index_graph.json` as the primary generated read model. Extra cached status/queue files should be avoided unless a specific adapter needs them; if present, consume them as generated caches and do not hand-edit them.
-- Default first read is `codewiki_state` or graph-backed status. Expand exact knowledge, roadmap, build, validation, and code paths only when the graph/build points there or exact source is required.
+- Treat `.codewiki/index_graph.json` as the primary generated map/state index, not as canonical intent or execution truth. Extra cached status/queue files should be avoided unless a specific adapter needs them; if present, consume them as generated caches and do not hand-edit them.
+- Default first read is `codewiki_state` or graph-backed status. Use it to locate exact knowledge, roadmap, build, validation, and code paths, then read those source-of-truth files directly before semantic edits.
 - Use bounded context tools for programmatic filtering, validation, and context packets when raw repo output would be noisy. ThinkCode is optional; fall back to CodeWiki graph/gateway/native Pi tools when unavailable.
 
 ## Invariants
