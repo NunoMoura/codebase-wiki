@@ -31,6 +31,7 @@ The graph is generated from:
 .codewiki/builds/**
 .codewiki/roadmap/**
 .codewiki/validation/**
+.codewiki/claims.json active scoped change claims
 code/test manifests
 Git/source fingerprints
 ```
@@ -45,7 +46,7 @@ The primary graph output is:
 .codewiki/index_graph.json
 ```
 
-The graph should serve status and queue-order reads directly. Extra queue files should not be generated unless a future adapter proves a concrete performance need; if such caches exist, they are generated graph queries and never separate truth.
+The graph should serve status, queue-order, and parallel-claim reads directly. Extra queue files should not be generated unless a future adapter proves a concrete performance need; if such caches exist, they are generated graph queries and never separate truth.
 
 ## State machine
 
@@ -74,7 +75,10 @@ Graph edges should explain why context is relevant. Useful edge kinds include:
 - `blocks`,
 - `depends_on`,
 - `drifts_from`,
-- `derives_from`.
+- `derives_from`,
+- `claim_task`,
+- `claim_build`,
+- `claim_scope`.
 
 ## Freshness
 
@@ -86,7 +90,8 @@ Graph state is valid only when it matches source fingerprints. If graph state an
 - The graph must be reproducible from canonical inputs and source fingerprints.
 - The graph should route to exact files instead of inlining large docs, code, logs, or old task history.
 - The graph does not replace builds, knowledge, roadmap work items, validation reports, or code/tests; those remain the sources of truth.
-- The graph should make gated agency stop reasons explicit when state is stale, blocked, unsafe, or missing approval.
+- The graph should make gated agency stop reasons explicit when state is stale, blocked, unsafe, missing approval, or blocked by overlapping write claims.
+- The graph should expose active claim counts, read/write warnings, and write/write conflicts, while claims remain temporary coordination state rather than source-of-truth behavior.
 - The graph should own machine backlinks and exhaustive relationship discovery; knowledge docs should keep only intentional human-facing links.
 
 ## Related docs

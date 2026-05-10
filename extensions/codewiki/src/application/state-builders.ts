@@ -1,9 +1,10 @@
 import { createHash } from "node:crypto";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
-import type { GraphFile, LintReport, RoadmapStateFile, RoadmapTaskRecord, StatusStateFile, StatusStateAgencyLane, StatusStateSpecRow, WikiProject } from "../domain/shared/types.ts";
+import type { ChangeClaimsFile, GraphFile, LintReport, RoadmapStateFile, RoadmapTaskRecord, StatusStateFile, StatusStateAgencyLane, StatusStateSpecRow, WikiProject } from "../domain/shared/types.ts";
 import type { ParsedDoc } from "../infrastructure/doc-parser.ts";
 import { nowIso } from "../domain/shared/utils.ts";
+import { buildChangeClaimState } from "./claims.ts";
 
 export function sha256Text(text: string): string {
 	return createHash("sha256").update(text).digest("hex");
@@ -666,7 +667,8 @@ export function buildStatusState(
 	lintReport: LintReport,
 	roadmapState: RoadmapStateFile,
 	events: any[],
-	previousStatus: any
+	previousStatus: any,
+	claims?: ChangeClaimsFile,
 ): StatusStateFile {
 	const health = lintHealth(lintReport);
 
@@ -895,7 +897,13 @@ export function buildStatusState(
 		low_cadence_lane_ids: agencyLanes.filter((l) => l.cadence === "low").map((l) => l.id),
 	};
 
-	const parallel = buildParallelSessionState(events, roadmapState);
+	const parallel: any = buildParallelSessionState(events, roadmapState);
+	const claimState = buildChangeClaimState(claims || { version: 1, updated_at: "", next_sequence: 1, claims: [] });
+	parallel.active_claim_count = claimState.active_claim_count;
+	parallel.claim_warning_count = claimState.warning_count;
+	parallel.claim_conflict_count = claimState.conflict_count;
+	parallel.claims = claimState.claims.slice(0, 12);
+	parallel.claim_conflicts = claimState.conflicts.slice(0, 12);
 	const persistedFocusTaskId = latestPersistedFocusTaskId(events, roadmapState);
 	const resume = buildResumeState(roadmapState, agencyLanes, nextStep, persistedFocusTaskId);
 
@@ -927,7 +935,7 @@ export function buildStatusState(
 
 	const direction = [
 		nextStep.reason,
-		`Parallel sessions: ${parallel.active_session_count} active, ${parallel.collision_task_ids.length} collision task(s).`,
+		`Parallel sessions: ${parallel.active_session_count} active, ${parallel.collision_task_ids.length} collision task(s), ${claimState.active_claim_count} active claim(s), ${claimState.conflict_count} claim conflict(s).`,
 		`Agency lanes: ${agencySummary.lane_count} work-first (high=${agencySummary.high_cadence_lane_ids.length}, medium=${agencySummary.medium_cadence_lane_ids.length}, low=${agencySummary.low_cadence_lane_ids.length}).`,
 		`Mapped specs: ${mappedSpecs}/${totalSpecs}.`,
 	];

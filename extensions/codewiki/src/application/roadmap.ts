@@ -522,7 +522,7 @@ export async function appendRoadmapTasks(
 					continue;
 				}
 
-				const id = input.id ?? formatTaskId(nextTaskIdSequence(roadmap));
+				const id = input.id ?? formatTaskId(await nextTaskIdSequenceForProject(project, roadmap));
 				const task: RoadmapTaskRecord = {
 					id,
 					title: input.title,
@@ -811,11 +811,35 @@ export function roadmapMutationTargetPaths(
 /**
  * Get the next task ID sequence number.
  */
-export function nextTaskIdSequence(roadmap: RoadmapFile): number {
-	const sequences = Object.keys(roadmap.tasks)
+export function nextTaskIdSequence(roadmap: RoadmapFile, extraTaskIds: string[] = []): number {
+	const sequences = [...Object.keys(roadmap.tasks), ...extraTaskIds]
 		.map(parseTaskIdSequence)
 		.filter((s): s is number => s !== null);
 	return sequences.length > 0 ? Math.max(...sequences) + 1 : 1;
+}
+
+async function nextTaskIdSequenceForProject(project: WikiProject, roadmap: RoadmapFile): Promise<number> {
+	return nextTaskIdSequence(roadmap, await archivedTaskIds(project));
+}
+
+async function archivedTaskIds(project: WikiProject): Promise<string[]> {
+	const configured = project.config.roadmap_retention?.archive_path || `${project.metaRoot}/roadmap/archive.jsonl`;
+	const archivePath = resolve(project.root, configured);
+	try {
+		const raw = await readFile(archivePath, "utf8");
+		return raw
+			.split(/\r?\n/)
+			.map((line) => line.trim())
+			.filter(Boolean)
+			.map((line) => {
+				try { return String(JSON.parse(line)?.id || "").trim(); }
+				catch { return ""; }
+			})
+			.filter(Boolean);
+	} catch (error: any) {
+		if (error?.code === "ENOENT") return [];
+		throw error;
+	}
 }
 
 /**

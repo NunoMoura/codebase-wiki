@@ -29,6 +29,7 @@ The API should expose CodeWiki operations as typed capabilities instead of askin
 | `codewiki.documentation` | Apply accepted feedback to product/system knowledge and produce documentation builds. |
 | `codewiki.implementation` | Coordinate implementation work, evidence collection, and implementation builds. |
 | `codewiki.roadmap` | Manage work truth: queue, status, priority, blockers, progress, and closure. |
+| `codewiki.claim` | Manage temporary scoped change claims for parallel session coordination across knowledge, roadmap, code, builds, validation, and graph/source refs. |
 | `codewiki.agency` | Run bounded roadmap automation through token, time, risk, validation, policy, and approval gates. |
 | `codewiki.build` | Read and write accepted compiler build briefs. |
 | `codewiki.validation` | Run validation gateways and persist failed, blocked, or policy-kept reports. |
@@ -53,6 +54,8 @@ All access surfaces must preserve the same `.codewiki/` semantics.
 - Product/system changes flow through feedback and documentation loops.
 - Code/test changes flow through implementation loops.
 - Roadmap changes record work truth, not full requirements briefs.
+- Parallel sessions should use scoped change claims before non-trivial overlapping documentation, roadmap, build, validation, or code edits.
+- Claims are temporary coordination leases; they do not replace roadmap tasks, builds, validation, git, or code review.
 - Gated agency runs must respect token, time, risk, validation, policy, and approval gates.
 - Builds are accepted loop handoff briefs.
 - Generated graph/index state is never hand-edited.

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-10T00:00:00Z",
+  "profile": "implementation",
+  "task_id": "TASK-052",
+  "verdict": "pass",
+  "rationale": "TASK-052 acceptance met: scoped change claims are implemented as temporary leases with arbitrary scopes, optional task/build anchors, TTL/release/heartbeat/list behavior, read/write warning and write/write conflict detection, graph/status/state exposure, docs/skills updates, smoke coverage, and archived task id reuse prevention.",
+  "checks": [
+    "npx tsc --noEmit",
+    "node scripts/check-architecture.mjs",
+    "npm test",
+    "direct current-source graph rebuild",
+    "codewiki_state refresh=false"
+  ],
+  "issues": [
+    {
+      "severity": "low",
+      "summary": "Live Pi must reload before the new codewiki_claim tool and claims include schema are available."
+    },
+    {
+      "severity": "low",
+      "summary": "First slice is local-file coordination, not distributed cross-machine locking."
+    }
+  ],
+  "source": ".codewiki/builds/implementation/2026-05-10-task-052-scoped-change-claims.json"
+}

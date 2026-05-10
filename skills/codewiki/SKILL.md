@@ -60,6 +60,7 @@ Internal agent tools:
 - `.codewiki/index_graph.json` is generated and must not be hand-edited.
 - Git is the full history mechanism; do not duplicate raw event history inside `.codewiki/`.
 - Pi sessions are execution history linked to tasks, not roadmap truth.
+- Scoped change claims are temporary coordination leases for parallel work; claim narrow docs/roadmap/build/validation/code scopes before non-trivial semantic edits when overlap risk exists.
 
 ## Compiler routing
 

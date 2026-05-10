@@ -23,6 +23,7 @@ graph locates -> documentation_build + roadmap item + linked specs/code
 
 - Use `codewiki_session` when starting or continuing a task; keep task id, graph/build revisions, and current decision state in parent RAM.
 - Use `codewiki_state` as the map, then read the roadmap item, linked builds, linked specs, validation reports, and code/test paths as sources of truth before changing behavior.
+- Claim narrow write scopes for non-trivial implementation work when parallel sessions may touch overlapping code, tests, docs, roadmap, builds, or validation refs.
 - Read only linked sources unless graph drift/freshness signals or those sources prove broader context is needed.
 - Tests live in code/test directories, not in `.codewiki/kb/**` or roadmap task folders.
 - If task meaning is ambiguous, escalate to the feedback compiler.

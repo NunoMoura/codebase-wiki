@@ -34,6 +34,7 @@ Pi is the only implemented adapter now. It packages:
 - visual status UI,
 - skills,
 - session integration,
+- scoped change claims for parallel work,
 - bootstrap and setup actions.
 
 ## Future adapters
@@ -56,7 +57,7 @@ Do not create empty adapter implementations before they are needed. Keep the str
 
 Packaged CodeWiki skills are adapter-facing workflow guidance for agents. They should remain progressive-disclosure prompts that route work into the same API and loop model.
 
-Global third-party skills should not mutate CodeWiki state unless adapted to the CodeWiki contract. General engineering skills are acceptable when they do not override CodeWiki knowledge, roadmap, build, validation, or graph semantics.
+Global third-party skills should not mutate CodeWiki state unless adapted to the CodeWiki contract. General engineering skills are acceptable when they do not override CodeWiki knowledge, roadmap, build, validation, claim, or graph semantics.
 
 ## Rules
 

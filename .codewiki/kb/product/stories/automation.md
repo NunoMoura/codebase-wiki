@@ -22,6 +22,7 @@ As a user, I want an agent to advance roadmap work automatically while staying b
 - Automation is gated by token budget, time budget, risk level, approval requirements, validation results, and policy boundaries.
 - The agent stops on ambiguity, unsafe work, failed checks, policy gates, budget exhaustion, or missing approval.
 - Users can see what the agent plans to do next, why it is safe, and which gate would stop it.
+- Parallel sessions can claim narrow change scopes, and automation can warn or stop when overlapping claims make work unsafe.
 - Context-heavy validation and research can run in isolated fresh contexts and return compact findings.
 - Durable truth remains separated by role: knowledge, builds, roadmap, graph state, validation reports, code, and tests.
 

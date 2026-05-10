@@ -240,6 +240,7 @@ function configJson(
 							".codewiki/kb/**",
 							".codewiki/roadmap/tasks/**",
 							".codewiki/evidence/**",
+							".codewiki/claims.json",
 																																			".codewiki/roadmap/index.json",
 							".codewiki/roadmap/state.json",
 							".codewiki/roadmap.json",

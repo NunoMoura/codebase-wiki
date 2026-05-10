@@ -49,7 +49,11 @@ export const TASK_EVIDENCE_RESULT_VALUES = [
 export const SUBAGENT_ROLE_VALUES = ["implementer", "auditor", "architect"] as const;
 export const SUBAGENT_VERDICT_VALUES = ["pass", "fail", "block"] as const;
 export const SUBAGENT_PROPOSAL_VALUES = ["task", "refactor", "spec"] as const;
-export const CODEWIKI_STATE_SECTION_VALUES = ["repo", "health", "summary", "roadmap", "graph", "drift", "session", "task"] as const;
+export const CODEWIKI_STATE_SECTION_VALUES = ["repo", "health", "summary", "roadmap", "graph", "drift", "session", "task", "claims"] as const;
+export const CHANGE_CLAIM_ACTION_VALUES = ["claim", "release", "heartbeat", "list"] as const;
+export const CHANGE_CLAIM_MODE_VALUES = ["read", "write"] as const;
+export const CHANGE_CLAIM_LAYER_VALUES = ["knowledge", "roadmap", "code", "build", "validation", "graph", "source"] as const;
+export const CHANGE_CLAIM_STATUS_VALUES = ["active", "released", "expired"] as const;
 export const AGENCY_MODE_VALUES = ["auto", "dry-run", "manual", "observe", "maintain", "work"] as const;
 export const AGENCY_TRIGGER_VALUES = ["manual", "task_end", "sprint_end", "roadmap_end", "budget_end"] as const;
 export const AGENCY_RISK_VALUES = ["low", "medium", "high"] as const;
@@ -61,6 +65,10 @@ export type RoadmapStatus = (typeof ROADMAP_STATUS_VALUES)[number];
 export type TaskPhase = (typeof TASK_PHASE_VALUES)[number];
 export type RoadmapPriority = (typeof ROADMAP_PRIORITY_VALUES)[number];
 export type TaskSessionAction = (typeof TASK_SESSION_ACTION_VALUES)[number];
+export type ChangeClaimAction = (typeof CHANGE_CLAIM_ACTION_VALUES)[number];
+export type ChangeClaimMode = (typeof CHANGE_CLAIM_MODE_VALUES)[number];
+export type ChangeClaimLayer = (typeof CHANGE_CLAIM_LAYER_VALUES)[number];
+export type ChangeClaimStatus = (typeof CHANGE_CLAIM_STATUS_VALUES)[number];
 export type ToolTaskStatus = (typeof TOOL_TASK_STATUS_VALUES)[number];
 export type TaskEvidenceResult = (typeof TASK_EVIDENCE_RESULT_VALUES)[number];
 export type SubagentRole = (typeof SUBAGENT_ROLE_VALUES)[number];
@@ -270,6 +278,54 @@ export interface TaskSessionLinkInput {
 	setSessionName?: boolean;
 }
 
+export interface ChangeClaimScope {
+	layer: ChangeClaimLayer;
+	path?: string;
+	task_id?: string;
+	ref?: string;
+	description?: string;
+}
+
+export interface ChangeClaimRecord {
+	id: string;
+	session_id: string;
+	agent_name: string;
+	status: ChangeClaimStatus;
+	mode: ChangeClaimMode;
+	summary: string;
+	task_id?: string;
+	build_ref?: string;
+	scopes: ChangeClaimScope[];
+	created_at: string;
+	updated_at: string;
+	expires_at: string;
+	released_at?: string;
+}
+
+export interface ChangeClaimsFile {
+	version: number;
+	updated_at: string;
+	next_sequence: number;
+	claims: ChangeClaimRecord[];
+}
+
+export interface ChangeClaimConflict {
+	kind: "warning" | "conflict";
+	claim_ids: string[];
+	sessions: string[];
+	scope: ChangeClaimScope;
+	reason: string;
+}
+
+export interface ChangeClaimState {
+	generated_at: string;
+	active_claim_count: number;
+	warning_count: number;
+	conflict_count: number;
+	claims: ChangeClaimRecord[];
+	conflicts: ChangeClaimConflict[];
+}
+
 export interface TaskLoopUpdateInput {
 	taskId: string;
 	action: "pass" | "fail" | "block";
@@ -405,6 +461,20 @@ export interface CodewikiSessionToolInput {
 	refresh?: boolean;
 }
 
+export interface CodewikiClaimToolInput {
+	repoPath?: string;
+	action: ChangeClaimAction;
+	claimId?: string;
+	taskId?: string;
+	buildRef?: string;
+	summary?: string;
+	mode?: ChangeClaimMode;
+	scopes?: ChangeClaimScope[];
+	ttl_minutes?: number;
+	force?: boolean;
+	refresh?: boolean;
+}
+
 export interface CodewikiStateToolInput {
 	repoPath?: string;
 	refresh?: boolean;
@@ -513,6 +583,11 @@ export interface StatusStateFile {
 		active_session_count: number;
 		collision_task_ids: string[];
 		sessions: StatusStateParallelSession[];
+		active_claim_count?: number;
+		claim_warning_count?: number;
+		claim_conflict_count?: number;
+		claims?: ChangeClaimRecord[];
+		claim_conflicts?: ChangeClaimConflict[];
 	};
 	wiki: {
 		rows: StatusStateSpecRow[];

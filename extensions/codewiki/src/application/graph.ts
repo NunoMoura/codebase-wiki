@@ -1,7 +1,8 @@
-import type { GraphEdge, GraphFile, GraphNode, GraphViews, RoadmapTaskRecord, WikiProject } from "../domain/shared/types.ts";
+import type { ChangeClaimsFile, GraphEdge, GraphFile, GraphNode, GraphViews, RoadmapTaskRecord, WikiProject } from "../domain/shared/types.ts";
 import { GitCache } from "../infrastructure/git-cache.ts";
 import type { GitAnchor } from "../infrastructure/git-cache.ts";
 import type { ParsedDoc } from "../infrastructure/doc-parser.ts";
+import { buildChangeClaimState, claimScopeLabels } from "./claims.ts";
 
 export interface GraphBuildInputs {
 	project: WikiProject;
@@ -12,6 +13,7 @@ export interface GraphBuildInputs {
 	builds: { path: string; kind: string; taskId?: string; status?: string; data: any }[];
 	validations: { path: string; taskId?: string; verdict?: string; data?: any }[];
 	testFiles: string[];
+	claims: ChangeClaimsFile;
 }
 
 function nowIso(): string {
@@ -63,7 +65,7 @@ function buildReconciliationAction(items: any[]) {
 }
 
 export function buildGraph(inputs: GraphBuildInputs): GraphFile {
-	const { project, docs, research, roadmapEntries, gitCache, builds, validations, testFiles } = inputs;
+	const { project, docs, research, roadmapEntries, gitCache, builds, validations, testFiles, claims } = inputs;
 	const nodes: GraphNode[] = [];
 	const edges: GraphEdge[] = [];
 	const seenNodes = new Set<string>();
@@ -277,6 +279,30 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		}
 	}
 
+	// Process active change claims
+	const claimState = buildChangeClaimState(claims);
+	for (const claim of claimState.claims) {
+		const claimId = `claim:${claim.id}`;
+		addNode(claimId, {
+			kind: "change_claim",
+			claim_id: claim.id,
+			session_id: claim.session_id,
+			agent_name: claim.agent_name,
+			mode: claim.mode,
+			status: claim.status,
+			summary: claim.summary,
+			expires_at: claim.expires_at,
+			scopes: claim.scopes,
+		});
+		if (claim.task_id) addEdge("claim_task", claimId, `task:${claim.task_id}`);
+		if (claim.build_ref) addEdge("claim_build", claimId, `build:${claim.build_ref}`);
+		for (const label of claimScopeLabels(claim.scopes)) {
+			const scopeId = `claim_scope:${label}`;
+			addNode(scopeId, { kind: "change_claim_scope", path: label });
+			addEdge("claim_scope", claimId, scopeId);
+		}
+	}
+
 	// Process Validations
 	for (const v of validations) {
 		const valNodeId = `validation:${v.path}`;
@@ -377,6 +403,13 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		code: {
 			paths: Array.from(codePaths).sort(),
 			dirty_paths: dirtyPaths,
+		},
+		claims: {
+			active_claim_count: claimState.active_claim_count,
+			warning_count: claimState.warning_count,
+			conflict_count: claimState.conflict_count,
+			claims: claimState.claims,
+			conflicts: claimState.conflicts,
 		},
 		reconciliation: {
 			version: 1,

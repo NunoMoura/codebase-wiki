@@ -245,6 +245,7 @@ export async function readCodewikiState(
 			doc_count: graph?.nodes.filter((n) => n.kind === "doc").length ?? 0,
 			code_path_count: graph?.nodes.filter((n) => n.kind === "code_path").length ?? 0,
 			source: "graph",
+			claims: (graph?.views as any)?.claims ?? null,
 			reconciliation: reconciliation
 				? {
 						controller: reconciliation.controller,
@@ -271,6 +272,24 @@ export async function readCodewikiState(
 			focused_task_id: activeTaskLink?.taskId ?? null,
 			updated_at: activeTaskLink?.timestamp ?? null,
 			summary: activeTaskLink?.summary || null,
+			claims: artifacts.statusState?.parallel
+				? {
+						active_claim_count: artifacts.statusState.parallel.active_claim_count ?? 0,
+						warning_count: artifacts.statusState.parallel.claim_warning_count ?? 0,
+						conflict_count: artifacts.statusState.parallel.claim_conflict_count ?? 0,
+					}
+				: null,
+		};
+	}
+
+	if (include.includes("claims")) {
+		const claimView = (artifacts.graph?.views as any)?.claims;
+		result.claims = claimView ?? {
+			active_claim_count: artifacts.statusState?.parallel.active_claim_count ?? 0,
+			warning_count: artifacts.statusState?.parallel.claim_warning_count ?? 0,
+			conflict_count: artifacts.statusState?.parallel.claim_conflict_count ?? 0,
+			claims: artifacts.statusState?.parallel.claims ?? [],
+			conflicts: artifacts.statusState?.parallel.claim_conflicts ?? [],
 		};
 	}
 

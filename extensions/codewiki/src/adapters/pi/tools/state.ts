@@ -99,6 +99,10 @@ export function formatCodewikiStateSummary(
 	if (session?.focused_task_id) {
 		parts.push(`Session: focusing on ${session.focused_task_id}`);
 	}
+	const claims = result.claims || result.graph?.claims || session?.claims;
+	if (claims) {
+		parts.push(`Claims: active ${claims.active_claim_count ?? 0}; warnings ${claims.warning_count ?? 0}; conflicts ${claims.conflict_count ?? 0}`);
+	}
 
 	parts.push(`Next Action [${nextAction.kind}]: ${nextAction.reason}`);
 	if (nextAction.taskId) parts.push(`Suggested task: ${nextAction.taskId}`);

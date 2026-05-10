@@ -251,6 +251,7 @@ async function main() {
 				"codewiki_build",
 				"codewiki_validation",
 				"codewiki_task",
+				"codewiki_claim",
 				"codewiki_session",
 				"codewiki_agency",
 			],
@@ -888,6 +889,125 @@ async function main() {
 			new RegExp(`\\.codewiki/roadmap/tasks/${appendedTaskId}/context\\.json`),
 			"State tool should point to task-local context shard",
 		);
+
+		const claimTool = extension.tools.get("codewiki_claim");
+		assert.ok(
+			claimTool && typeof claimTool.definition?.execute === "function",
+			"Claim tool missing execute function",
+		);
+		const claimResult = await claimTool.definition.execute(
+			"claim-create-smoke",
+			{
+				repoPath: projectDir,
+				action: "claim",
+				taskId: "TASK-001",
+				summary: "Claim product docs for smoke parallel work.",
+				mode: "write",
+				scopes: [{ layer: "knowledge", path: ".codewiki/kb/product/**" }],
+				ttl_minutes: 30,
+			},
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		assert.match(claimResult.details.claim.id, /^CLAIM-\d+$/, "Claim tool should allocate a claim id");
+		const otherSessionCtx = {
+			...outsideToolCtx,
+			sessionManager: {
+				...outsideToolCtx.sessionManager,
+				getSessionId: () => "session-smoke-2",
+				getBranch: () => [],
+			},
+		};
+		const readOverlapResult = await claimTool.definition.execute(
+			"claim-read-overlap-smoke",
+			{
+				repoPath: projectDir,
+				action: "claim",
+				summary: "Read overlapping product docs for smoke parallel work.",
+				mode: "read",
+				scopes: [{ layer: "knowledge", path: ".codewiki/kb/product/overview.md" }],
+				ttl_minutes: 30,
+			},
+			undefined,
+			undefined,
+			otherSessionCtx,
+		);
+		assert.ok(
+			readOverlapResult.details.conflicts.some((conflict) => conflict.kind === "warning"),
+			"Read/write overlap should create a warning",
+		);
+		await assert.rejects(
+			() => claimTool.definition.execute(
+				"claim-write-conflict-smoke",
+				{
+					repoPath: projectDir,
+					action: "claim",
+					summary: "Conflicting product docs write claim.",
+					mode: "write",
+					scopes: [{ layer: "knowledge", path: ".codewiki/kb/product/overview.md" }],
+				},
+				undefined,
+				undefined,
+				otherSessionCtx,
+			),
+			/codewiki_claim conflict/i,
+			"Write/write overlap should block by default",
+		);
+		const claimStateResult = await stateTool.definition.execute(
+			"state-claims-smoke",
+			{ repoPath: projectDir, refresh: true, include: ["claims", "session"] },
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		assert.equal(claimStateResult.details.claims.active_claim_count, 2, "State should expose active claims");
+		assert.equal(claimStateResult.details.claims.warning_count, 1, "State should expose claim warnings");
+		await claimTool.definition.execute(
+			"claim-release-smoke-1",
+			{ repoPath: projectDir, action: "release", claimId: claimResult.details.claim.id },
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		await claimTool.definition.execute(
+			"claim-release-smoke-2",
+			{ repoPath: projectDir, action: "release", claimId: readOverlapResult.details.claim.id },
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		const releasedClaimStateResult = await stateTool.definition.execute(
+			"state-claims-released-smoke",
+			{ repoPath: projectDir, refresh: true, include: ["claims"] },
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		assert.equal(releasedClaimStateResult.details.claims.active_claim_count, 0, "Released claims should leave active state");
+		const smokeClaimsPath = resolve(projectDir, ".codewiki", "claims.json");
+		const smokeClaims = JSON.parse(readFileSync(smokeClaimsPath, "utf8"));
+		smokeClaims.claims.push({
+			id: "CLAIM-999",
+			session_id: "session-expired",
+			agent_name: "Expired Agent",
+			status: "active",
+			mode: "write",
+			summary: "Expired claim fixture.",
+			scopes: [{ layer: "code", path: "extensions/codewiki/src/**" }],
+			created_at: "2000-01-01T00:00:00.000Z",
+			updated_at: "2000-01-01T00:00:00.000Z",
+			expires_at: "2000-01-01T00:00:00.000Z",
+		});
+		writeFileSync(smokeClaimsPath, JSON.stringify(smokeClaims, null, 2));
+		const expiredClaimStateResult = await stateTool.definition.execute(
+			"state-claims-expired-smoke",
+			{ repoPath: projectDir, refresh: true, include: ["claims"] },
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		assert.equal(expiredClaimStateResult.details.claims.active_claim_count, 0, "Expired claims should not be active");
 
 		const sessionTool = extension.tools.get("codewiki_session");
 		assert.ok(

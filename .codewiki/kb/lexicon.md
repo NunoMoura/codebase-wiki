@@ -16,11 +16,11 @@ code_paths:
 
 ## Canonical knowledge base
 
-Durable current project truth under `.codewiki/kb/**`. It describes intended product behavior, visual product UIs, system access surfaces, system design, ownership seams, and workflow rules. It should not contain tests, raw transcripts, generated context packs, or event logs.
+Durable project truth under `.codewiki/kb/**`: intended product behavior, visual UIs, system access surfaces, design seams, and workflow rules. It should not contain tests, raw transcripts, generated packs, or event logs.
 
 ## Roadmap task
 
-A tracked unit of active intended change. Tasks carry outcome, acceptance, non-goals, verification expectations, linked specs/builds/code paths, and evidence. Roadmap tasks are active work truth, not requirements briefs, chat to-do lists, or long-term archives. Closed or cancelled tasks should leave the hot roadmap after retention/checkpoint because git preserves full history.
+A tracked unit of active intended change with outcome, acceptance, non-goals, verification, linked specs/builds/code paths, and evidence. Tasks are active work truth, not requirements briefs, chat to-dos, or long-term archives. Closed or cancelled tasks should leave the hot roadmap after retention/checkpoint because git preserves full history.
 
 ## Sprint
 
@@ -44,27 +44,27 @@ The compiler that turns a `documentation_build` and roadmap work item into tests
 
 ## Feedback build
 
-A compact artifact under `.codewiki/builds/feedback/**` that records accepted user intent, decisions, constraints, unresolved ambiguities, and required downstream changes.
+Compact artifact under `.codewiki/builds/feedback/**` for accepted intent, decisions, constraints, ambiguities, and downstream changes.
 
 ## Documentation build
 
-A compact artifact under `.codewiki/builds/documentation/**` that records knowledge patches, roadmap changes, implementation specifications, alignment checks, and deferred requirements.
+Compact artifact under `.codewiki/builds/documentation/**` for knowledge patches, roadmap changes, implementation specs, alignment checks, and deferred requirements.
 
 ## Implementation build
 
-A compact artifact under `.codewiki/builds/implementation/**` that records test/code changes, checks run, acceptance mapping, and implementation evidence.
+Compact artifact under `.codewiki/builds/implementation/**` for test/code changes, checks, acceptance mapping, and implementation evidence.
 
 ## Validation gateway
 
-A handoff gate that checks horizontal and vertical alignment for one compiler boundary. It can include deterministic preflight, mechanical checks, and a fresh read-only verifier. Passing validation need not be stored by default; failed, blocked, or policy-required reports are stored under `.codewiki/validation/**`.
+Handoff gate for horizontal and vertical alignment at one compiler boundary. It can include deterministic preflight, checks, and a fresh read-only verifier. Failed, blocked, or policy-required reports live under `.codewiki/validation/**`.
 
 ## Gated agency
 
-The user-facing product capability where an agent may advance roadmap work automatically inside explicit token, time, risk, validation, policy, and approval gates.
+User-facing capability where an agent advances roadmap work inside explicit token, time, risk, validation, policy, and approval gates.
 
 ## Agency
 
-The system implementation mechanism for gated agency. An agency cycle observes state, selects one bounded next action, checks gates, performs or declines the step, records evidence when needed, and stops or routes to the next loop. Agency is not a product UI concept and not a fourth compiler.
+System mechanism for gated agency. A cycle observes state, selects one bounded next action, checks gates, performs or declines, records evidence when needed, and stops or routes to the next loop. Agency is not a product UI or fourth compiler.
 
 ## Verifier
 
@@ -72,7 +72,7 @@ A read-only fresh process, session, or subagent used inside a validation gateway
 
 ## Vertical alignment
 
-Traceability through abstraction layers:
+Traceability across layers:
 
 ```text
 user intent -> feedback_build -> .codewiki/kb -> documentation_build -> roadmap work item -> tests/code -> implementation_build
@@ -80,11 +80,11 @@ user intent -> feedback_build -> .codewiki/kb -> documentation_build -> roadmap 
 
 ## Horizontal alignment
 
-Coherence within a layer: knowledge docs agree with each other, roadmap tasks agree with each other, code components agree with each other, and tests agree with intended behavior.
+Coherence within one layer: knowledge, roadmap, code, and tests agree with peer artifacts.
 
 ## Index graph
 
-The primary generated read model at `.codewiki/index_graph.json`. It maps knowledge, tasks, builds, tests, code components, and validation reports with typed nodes and edges. It is generated and must not be hand-edited. Curated Markdown links are inputs to the graph, but the graph owns exhaustive machine backlinks, stale-reference detection, freshness, and routing.
+Primary generated read model at `.codewiki/index_graph.json`. It maps knowledge, tasks, builds, tests, code, and validation reports with typed nodes and edges. It is generated and must not be hand-edited. Curated Markdown links are inputs; the graph owns machine backlinks, stale-reference detection, freshness, and routing.
 
 ## Graph propagation
 
@@ -109,6 +109,10 @@ Compact proof or support for a claim. Research evidence supports knowledge and p
 ## Context window
 
 The active Pi agent session memory. It is volatile RAM and expensive because it is reloaded with each prompt in the session.
+
+## Change claim
+
+A temporary session-owned lease over narrow knowledge, roadmap, code, build, validation, or graph/source scopes. Claims coordinate parallel work and expire or release; they are not requirements, roadmap truth, or history.
 
 ## Subagent
 

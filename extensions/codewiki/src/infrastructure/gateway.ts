@@ -139,6 +139,16 @@ function capabilityManifest() {
 				audit: ["repo", "action", "taskId", "session"],
 			},
 			{
+				name: "codewiki.claim",
+				class: "coordination-write",
+				summary:
+					"Create, release, heartbeat, or list temporary scoped change claims for parallel work.",
+				args_schema: "codewikiClaimToolInputSchema",
+				result_schema: "CodeWiki scoped change claim result",
+				writes: [".codewiki/claims.json", ".codewiki/index_graph.json"],
+				audit: ["repo", "action", "claimId", "taskId", "scopes", "session"],
+			},
+			{
 				name: "codewiki.transaction",
 				class: "validated-write",
 				summary:

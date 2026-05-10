@@ -37,7 +37,8 @@ user conversation -> inspect .codewiki/kb and code -> propose feedback_build -> 
 
 3. **Propose feedback build**
    - Capture accepted decisions, assumptions, open questions, non-goals, risks.
-   - Map which knowledge or code artifacts may need to change.
+   - Map which knowledge, roadmap, build, validation, or code artifacts may need to change.
+   - Note likely scoped change claims when parallel-session overlap risk is visible.
    - Ask user to accept before documentation compiler runs.
 
 4. **Handoff**

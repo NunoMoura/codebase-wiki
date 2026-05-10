@@ -1,7 +1,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import type { ActiveStatusPanel } from "../../domain/shared/types.ts";
 import { registerBootstrapFeatures } from "../../../bootstrap.ts";
-import { codewikiBuildToolInputSchema, codewikiAgencyToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas.ts";
+import { codewikiBuildToolInputSchema, codewikiAgencyToolInputSchema, codewikiClaimToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas.ts";
 import { registerConfigCommand } from "./commands/config.ts";
 import { registerResumeCommand } from "./commands/resume.ts";
 import { registerStatusCommand } from "./commands/status.ts";
@@ -10,6 +10,7 @@ import { readRoadmapTask } from "../../application/roadmap.ts";
 import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project.ts";
 import { runRebuild } from "../../application/state-artifacts.ts";
 import { executeCodewikiAgency } from "./tools/agency.ts";
+import { executeCodewikiClaim } from "./tools/claim.ts";
 import { executeCodewikiSession } from "./tools/session.ts";
 import { registerCodewikiStateTool } from "./tools/state.ts";
 import { writeBuild, writeValidationReport } from "../../application/builds.ts";
@@ -199,6 +200,34 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 				"codewiki_task",
 			);
 			const result = await executeCodewikiTask(pi, project, ctx, params);
+			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
+			return {
+				content: [{ type: "text", text: result.summary }],
+				details: result,
+			};
+		},
+	} as any);
+
+	pi.registerTool({
+		name: "codewiki_claim",
+		label: "Codewiki Claim",
+		description:
+			"Create, release, heartbeat, or list scoped change claims for parallel CodeWiki work",
+		promptSnippet:
+			"Use scoped change claims to coordinate parallel sessions across docs, roadmap, builds, validation, and code.",
+		promptGuidelines: [
+			"Use this before non-trivial semantic changes when another session may touch overlapping docs, roadmap items, builds, validation reports, or code paths.",
+			"Claims are temporary leases, not requirements or source of truth; roadmap tasks, builds, validation, and code remain canonical truth.",
+			"Read/read overlap is safe, read/write overlap warns, and write/write overlap blocks unless explicitly forced.",
+		],
+		parameters: codewikiClaimToolInputSchema,
+		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
+			const project = await resolveToolProject(
+				ctx.cwd,
+				params.repoPath,
+				"codewiki_claim",
+			);
+			const result = await executeCodewikiClaim(pi, project, ctx, params);
 			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
 			return {
 				content: [{ type: "text", text: result.summary }],

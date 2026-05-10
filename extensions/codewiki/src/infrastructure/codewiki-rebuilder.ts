@@ -6,6 +6,7 @@ import { loadGateway } from "./transaction.ts";
 import type { WikiProject } from "../domain/shared/types.ts";
 import { buildGraph } from "../application/graph.ts";
 import { buildLintReport } from "../application/lint.ts";
+import { claimsFilePath, normalizeClaimsFile } from "../application/claims.ts";
 import { buildRoadmapState, buildStatusState } from "../application/state-builders.ts";
 import { parseDoc } from "./doc-parser.ts";
 import type { ParsedDoc } from "./doc-parser.ts";
@@ -141,6 +142,8 @@ export class CodewikiRebuilder {
 
 		const roadmapData = readJson(project.roadmapPath, { tasks: {} });
 		const roadmapEntries = Object.values(roadmapData.tasks || {}) as any[];
+		const claimsPath = claimsFilePath(project);
+		const claims = existsSync(claimsPath) ? normalizeClaimsFile(JSON.parse(readFileSync(claimsPath, "utf8"))) : normalizeClaimsFile(null);
 		const archivePath = config.roadmap_retention?.archive_path || `${metaRoot}/roadmap/archive.jsonl`;
 		const archivedRoadmapEntries = readJsonLines(archivePath);
 		const archivedTaskIds = archivedRoadmapEntries.map((task: any) => String(task.id || "").trim()).filter(Boolean);
@@ -207,7 +210,7 @@ export class CodewikiRebuilder {
 
 		console.log(`[Rebuild] Graph and Lint dependencies resolving...`);
 
-		const graph = buildGraph({ project, docs, research, roadmapEntries, gitCache: this.gitCache, builds, validations, testFiles });
+		const graph = buildGraph({ project, docs, research, roadmapEntries, gitCache: this.gitCache, builds, validations, testFiles, claims });
 		const lintReport = buildLintReport(this.repoRoot, project, docs, roadmapEntries, research, { builds, validations, archivedTaskIds });
 		
 		console.log(`[Rebuild] Building UI state...`);
@@ -215,7 +218,7 @@ export class CodewikiRebuilder {
 		
 		const previousStatusPath = join(this.repoRoot, project.statusStatePath);
 		const previousStatus = existsSync(previousStatusPath) ? JSON.parse(readFileSync(previousStatusPath, "utf8")) : {};
-		const statusState = buildStatusState(project, this.repoRoot, this.gitCache, docs, graph, roadmapEntries, lintReport, roadmapState, events, previousStatus);
+		const statusState = buildStatusState(project, this.repoRoot, this.gitCache, docs, graph, roadmapEntries, lintReport, roadmapState, events, previousStatus, claims);
 		
 		const metaRootDir = join(this.repoRoot, metaRoot);
 		if (!existsSync(metaRootDir)) mkdirSync(metaRootDir, { recursive: true });

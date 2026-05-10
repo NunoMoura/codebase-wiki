@@ -40,13 +40,14 @@ CodeWiki separates truth by role so that agents can reason about the current sta
 | Product and system truth | `.codewiki/kb/**/*.md` and `.codewiki/kb/**/*.json` | Durable intended behavior, product decisions, architecture, workflows, and non-goals. |
 | Implementation spec truth | accepted `documentation_build` files under `.codewiki/builds/documentation/**` | Temporary implementation-spec brief for the implementation loop. |
 | Work truth | `.codewiki/roadmap/**` | Active work items, priority, ownership, progress, status, blockers, and closure state. |
+| Coordination state | `.codewiki/claims.json` | Temporary scoped change claims for parallel sessions; expires/releases and never replaces durable truth. |
 | State truth | `.codewiki/index_graph.json` | Generated graph state machine for reconciliation, drift detection, derived queue order, routing, status, and freshness. |
 | Executable truth | code and tests | Final behavior and automated proof. |
 | Evidence truth | accepted `implementation_build` files under `.codewiki/builds/implementation/**` | Temporary compiled evidence that changes were successfully implemented. |
 | Validation truth | validation gateway output, plus persisted reports when required | Decides loop exit and records fail, block, or policy-kept validation outcomes. |
 | Publication truth | implementation builds, validation outcomes, and Git/remote results | Supports commit messages, PR bodies, issue updates, release notes, and push readiness. |
 
-Agents should not hand-edit generated graph/index files. Durable changes flow into knowledge, roadmap, code/tests, builds, or validation reports first; generated graph state is rebuilt afterward. If graph state and canonical inputs disagree, canonical inputs win and the graph is stale or broken.
+Agents should not hand-edit generated graph/index files. Durable changes flow into knowledge, roadmap, code/tests, builds, or validation reports first; generated graph state is rebuilt afterward. Parallel coordination flows through scoped claims, not graph edits. If graph state and canonical inputs disagree, canonical inputs win and the graph is stale or broken.
 
 Passing validation does not need a separate durable report by default when the accepted build records the validation result. Failed, blocked, policy-required, release, or audit-mode validation reports should be stored under `.codewiki/validation/**`.
 

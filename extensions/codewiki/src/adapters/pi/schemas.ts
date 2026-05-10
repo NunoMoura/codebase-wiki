@@ -129,6 +129,22 @@ export const toolTaskStatusSchema = Type.Union(
 export const taskEvidenceResultSchema = Type.Union(
 	T.TASK_EVIDENCE_RESULT_VALUES.map((value) => Type.Literal(value)),
 );
+export const changeClaimActionSchema = Type.Union(
+	T.CHANGE_CLAIM_ACTION_VALUES.map((value) => Type.Literal(value)),
+);
+export const changeClaimModeSchema = Type.Union(
+	T.CHANGE_CLAIM_MODE_VALUES.map((value) => Type.Literal(value)),
+);
+export const changeClaimLayerSchema = Type.Union(
+	T.CHANGE_CLAIM_LAYER_VALUES.map((value) => Type.Literal(value)),
+);
+export const changeClaimScopeSchema = Type.Object({
+	layer: changeClaimLayerSchema,
+	path: Type.Optional(Type.String({ description: "Repo-relative path or glob-like prefix, e.g. .codewiki/kb/system/**." })),
+	task_id: Type.Optional(Type.String({ description: "Roadmap task id when layer is roadmap or the claim targets task state." })),
+	ref: Type.Optional(Type.String({ description: "Build, validation, graph, branch, or other stable reference." })),
+	description: Type.Optional(Type.String({ description: "Short human label when no path/task/ref fits." })),
+});
 export const codewikiStateSectionSchema = Type.Union(
 	T.CODEWIKI_STATE_SECTION_VALUES.map((value) => Type.Literal(value)),
 );
@@ -343,4 +359,17 @@ export const codewikiSessionToolInputSchema = Type.Object({
 			description: "Rename current Pi session to TASK-### + title.",
 		}),
 	),
+});
+export const codewikiClaimToolInputSchema = Type.Object({
+	repoPath: repoPathToolField,
+	action: changeClaimActionSchema,
+	claimId: Type.Optional(Type.String({ minLength: 1, description: "Existing CLAIM-### id for release or heartbeat." })),
+	taskId: Type.Optional(toolTaskIdField),
+	buildRef: Type.Optional(Type.String({ minLength: 1, description: "Optional compiler build path anchoring this claim." })),
+	summary: Type.Optional(Type.String({ minLength: 1, description: "Short reason for the claim." })),
+	mode: Type.Optional(changeClaimModeSchema),
+	scopes: Type.Optional(Type.Array(changeClaimScopeSchema, { minItems: 1 })),
+	ttl_minutes: Type.Optional(Type.Number({ minimum: 1, description: "Lease TTL in minutes; default 120, max 1440." })),
+	force: Type.Optional(Type.Boolean({ default: false, description: "Allow creation despite write/write claim conflicts." })),
+	refresh: Type.Optional(Type.Boolean({ default: true, description: "Rebuild generated graph/status after claim mutation." })),
 });

@@ -31,7 +31,7 @@ A roadmap work item should record:
 - title,
 - priority,
 - status,
-- owner or agent role when needed,
+- owner or agent role when needed for durable work tracking,
 - linked knowledge paths,
 - linked build paths,
 - linked code/test paths when known,
@@ -42,6 +42,8 @@ A roadmap work item should record:
 - closure reason.
 
 It should not duplicate full feedback, documentation, or implementation briefs.
+
+Roadmap ownership is durable work ownership. Parallel execution ownership belongs to scoped change claims: a session can temporarily claim affected knowledge paths, roadmap task state, build refs, validation refs, or code paths while the roadmap item continues to describe why the work exists and how it closes.
 
 ## Status semantics
 
