@@ -985,7 +985,7 @@ async function main() {
 			outsideToolCtx,
 		);
 		assert.equal(releasedClaimStateResult.details.claims.active_claim_count, 0, "Released claims should leave active state");
-		const smokeClaimsPath = resolve(projectDir, ".codewiki", "claims.json");
+		const smokeClaimsPath = resolve(projectDir, ".codewiki", "runtime", "claims.json");
 		const smokeClaims = JSON.parse(readFileSync(smokeClaimsPath, "utf8"));
 		smokeClaims.claims.push({
 			id: "CLAIM-999",

@@ -50,7 +50,7 @@ Avoid nested component folders and avoid `overview.md` files except `product/ove
 | Knowledge | `knowledge.md` | `.codewiki/kb/**` |
 | Builds | `builds.md` | `.codewiki/builds/**` |
 | Roadmap | `roadmap.md` | `.codewiki/roadmap.json`, active task state, release checkpoints, archive files |
-| Parallel coordination | `api.md`, `adapters.md`, `graph.md` | `.codewiki/claims.json`, `codewiki_claim`, generated claim views |
+| Parallel coordination | `api.md`, `adapters.md`, `graph.md` | `.codewiki/runtime/claims.json`, `codewiki_claim`, generated claim views |
 | Graph state machine | `graph.md` | `.codewiki/index_graph.json`, graph rebuild implementation |
 
 `architecture.mmd` may also show external artifacts such as users, code/tests, and publication outputs. Those are not system component docs unless they become owned system components.

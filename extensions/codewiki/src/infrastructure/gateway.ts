@@ -145,7 +145,7 @@ function capabilityManifest() {
 					"Create, release, heartbeat, or list temporary scoped change claims for parallel work.",
 				args_schema: "codewikiClaimToolInputSchema",
 				result_schema: "CodeWiki scoped change claim result",
-				writes: [".codewiki/claims.json", ".codewiki/index_graph.json"],
+				writes: [".codewiki/runtime/claims.json", ".codewiki/index_graph.json"],
 				audit: ["repo", "action", "claimId", "taskId", "scopes", "session"],
 			},
 			{

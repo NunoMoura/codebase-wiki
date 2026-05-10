@@ -40,7 +40,7 @@ CodeWiki separates truth by role so that agents can reason about the current sta
 | Product and system truth | `.codewiki/kb/**/*.md` and `.codewiki/kb/**/*.json` | Durable intended behavior, product decisions, architecture, workflows, and non-goals. |
 | Implementation spec truth | accepted `documentation_build` files under `.codewiki/builds/documentation/**` | Temporary implementation-spec brief for the implementation loop. |
 | Work truth | `.codewiki/roadmap/**` | Active work items, priority, ownership, progress, status, blockers, and closure state. |
-| Coordination state | `.codewiki/claims.json` | Temporary scoped change claims for parallel sessions; expires/releases and never replaces durable truth. |
+| Coordination state | `.codewiki/runtime/claims.json` | Temporary scoped change claims for parallel sessions; expires/releases and never replaces durable truth. |
 | State truth | `.codewiki/index_graph.json` | Generated graph state machine for reconciliation, drift detection, derived queue order, routing, status, and freshness. |
 | Executable truth | code and tests | Final behavior and automated proof. |
 | Evidence truth | accepted `implementation_build` files under `.codewiki/builds/implementation/**` | Temporary compiled evidence that changes were successfully implemented. |

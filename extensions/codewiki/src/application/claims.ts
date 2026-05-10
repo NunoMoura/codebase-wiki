@@ -23,7 +23,7 @@ const EMPTY_CLAIMS_FILE: ChangeClaimsFile = {
 };
 
 export function claimsFilePath(project: WikiProject): string {
-	return resolve(project.root, `${project.metaRoot}/claims.json`);
+	return resolve(project.root, `${project.metaRoot}/runtime/claims.json`);
 }
 
 function cloneEmptyClaimsFile(): ChangeClaimsFile {

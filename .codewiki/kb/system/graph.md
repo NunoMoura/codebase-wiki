@@ -31,7 +31,7 @@ The graph is generated from:
 .codewiki/builds/**
 .codewiki/roadmap/**
 .codewiki/validation/**
-.codewiki/claims.json active scoped change claims
+.codewiki/runtime/claims.json active scoped change claims
 code/test manifests
 Git/source fingerprints
 ```
