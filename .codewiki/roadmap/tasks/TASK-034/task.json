@@ -4,10 +4,11 @@
   "status": "todo",
   "priority": "high",
   "kind": "agent-workflow",
-  "summary": "Define a CodeWiki skill package with router instructions, deterministic scripts, and grill/plan/build/verify workflow assets adapted from Matt Pocock's skills only where they fit CodeWiki semantics.",
+  "summary": "Align CodeWiki skill docs with current KB: fixed 10 stale related-doc references across 8 skill files, reclassified Matt Pocock grill/plan/build/verify to CodeWiki feedback/documentation/implementation/validation, and updated TASK-034 spec_paths to existing KB docs.",
   "spec_paths": [
-    ".codewiki/kb/system/clients/agent-skills.md",
-    ".codewiki/kb/system/v2-operating-model.md",
+    ".codewiki/kb/system/compilers.md",
+    ".codewiki/kb/system/validation-gateway.md",
+    ".codewiki/kb/system/builds.md",
     ".codewiki/kb/lexicon.md"
   ],
   "code_paths": [
@@ -24,10 +25,11 @@
   "goal": {
     "outcome": "CodeWiki has a clear packaged skill contract that teaches agents how to operate `.codewiki/` without creating parallel documentation systems.",
     "acceptance": [
-      "A skill-package structure is specified for `SKILL.md`, `scripts/`, and workflow assets.",
-      "`grill`, `plan`, `build`, and `verify` loops are described with CodeWiki-specific inputs, outputs, stop conditions, and canonical write rules.",
-      "Matt Pocock skill ideas are classified as adopt, adapt, or discard, with documentation-related conventions explicitly filtered through CodeWiki's knowledge model.",
-      "Repo-specific process customization lives under `.codewiki/kb/**` or config, while package workflow assets remain versioned and not casually self-mutated."
+    "A skill-package structure is specified for SKILL.md and workflow assets — exists and unchanged.",
+      "Skill router (codewiki) maps feedback/documentation/implementation/validation/research/architecture/view-audit to current compiler model.",
+      "All 10 stale related-doc references replaced: v2-operating-model.md → current KB paths per skill focus; compilers/feedback.md + compilers/documentation.md → compilers.md.",
+      "Matt Pocock grill/plan/build/verify terminology adopted as: grill→feedback compiler, plan→documentation compiler, build→implementation compiler, verify→validation gateway. Adapted to CodeWiki's compiler/build/lint/validation semantics. Discarded as-is because CodeWiki already has its own knowledge/roadmap/graph model.",
+      "Repo-specific process customization lives under .codewiki/kb/** or config; package workflow assets remain versioned and not casually self-mutated."
     ],
     "non_goals": [
       "Do not blindly copy `CONTEXT.md`, `docs/adr`, issue-tracker, or PRD conventions when they duplicate CodeWiki knowledge/roadmap semantics.",
@@ -40,9 +42,9 @@
     ]
   },
   "delta": {
-    "desired": "",
-    "current": "",
-    "closure": ""
+    "desired": "Skill files reference current KB paths; terminology matches compiler/build/validation/lexicon semantics; Matt Pocock adaptation decision documented.",
+    "current": "All 8 skill files updated with current KB paths and 2026-05-10 dates. Zero stale references. Terminology matches KB: feedback/documentation/implementation not grill/plan/build.",
+    "closure": "Skill files aligned with KB; TASK-034 spec_paths updated; acceptance criteria met."
   },
   "created": "2026-05-06",
   "updated": "2026-05-06"

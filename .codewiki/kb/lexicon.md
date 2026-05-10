@@ -22,6 +22,10 @@ Durable current project truth under `.codewiki/kb/**`. It describes intended pro
 
 A tracked unit of active intended change. Tasks carry outcome, acceptance, non-goals, verification expectations, linked specs/builds/code paths, and evidence. Roadmap tasks are active work truth, not requirements briefs, chat to-do lists, or long-term archives. Closed or cancelled tasks should leave the hot roadmap after retention/checkpoint because git preserves full history.
 
+## Sprint
+
+A bounded work wave through the compiler pipeline. A sprint groups one or more roadmap tasks that share a feedback build, documentation build, and consolidated implementation build as evidence. Sprints replace informal "wave" terminology.
+
 ## Compiler
 
 A CodeWiki workflow layer that validates one abstraction level and emits the smallest useful build artifact for the layer below.
@@ -81,6 +85,10 @@ Coherence within a layer: knowledge docs agree with each other, roadmap tasks ag
 ## Index graph
 
 The primary generated read model at `.codewiki/index_graph.json`. It maps knowledge, tasks, builds, tests, code components, and validation reports with typed nodes and edges. It is generated and must not be hand-edited. Curated Markdown links are inputs to the graph, but the graph owns exhaustive machine backlinks, stale-reference detection, freshness, and routing.
+
+## Graph propagation
+
+The graph's ability to hold the current state of all layers and, when any layer changes, expose what drifted downstream or upstream. Changing feedback triggers documentation drift. Changing knowledge triggers roadmap drift. Changing code triggers validation drift. The graph surfaces these as reconciliation items with explicit direction, layer, and next-loop routing so agents know exactly which loop needs to rerun — without manually tracing every consequence.
 
 ## View
 

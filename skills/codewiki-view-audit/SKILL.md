@@ -6,7 +6,7 @@ title: codewiki-view-audit skill
 state: active
 summary: Packaged CodeWiki agent skill.
 owners: [maintainers]
-updated: "2026-05-07"
+updated: "2026-05-10"
 ---
 
 # CodeWiki Graph Audit
@@ -46,4 +46,4 @@ Graph auditor is a read-only subagent role. It verifies generated graph/index st
 
 ## Related docs
 
-- ../../.codewiki/kb/system/v2-operating-model.md
+- ../../.codewiki/kb/system/graph.md

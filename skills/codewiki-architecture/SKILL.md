@@ -6,7 +6,7 @@ title: codewiki-architecture skill
 state: active
 summary: Packaged CodeWiki agent skill.
 owners: [maintainers]
-updated: "2026-05-07"
+updated: "2026-05-10"
 ---
 
 # CodeWiki Architecture
@@ -76,4 +76,6 @@ Output: `SubagentResult` with findings about ownership, locality, leverage, test
 
 ## Related docs
 
-- ../../.codewiki/kb/system/v2-operating-model.md
+- ../../.codewiki/kb/system/overview.md
+- ../../.codewiki/kb/system/file-structure.md
+- ../../.codewiki/kb/system/knowledge.md

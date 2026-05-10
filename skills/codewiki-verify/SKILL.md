@@ -6,7 +6,7 @@ title: codewiki-verify skill
 state: active
 summary: Packaged CodeWiki agent skill.
 owners: [maintainers]
-updated: "2026-05-07"
+updated: "2026-05-10"
 ---
 
 # CodeWiki Verify
@@ -78,4 +78,5 @@ Passing validation does not require durable storage by default. Failed, blocked,
 
 ## Related docs
 
-- ../../.codewiki/kb/system/v2-operating-model.md
+- ../../.codewiki/kb/system/validation-gateway.md
+- ../../.codewiki/kb/system/compilers.md

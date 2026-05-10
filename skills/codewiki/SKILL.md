@@ -6,7 +6,7 @@ title: codewiki skill
 state: active
 summary: Packaged CodeWiki agent skill.
 owners: [maintainers]
-updated: "2026-05-07"
+updated: "2026-05-10"
 ---
 
 # CodeWiki
@@ -92,4 +92,7 @@ Stop on budget exhaustion, medium/high risk beyond budget, ambiguity, destructiv
 
 ## Related docs
 
-- ../../.codewiki/kb/system/v2-operating-model.md
+- ../../.codewiki/kb/system/compilers.md
+- ../../.codewiki/kb/system/validation-gateway.md
+- ../../.codewiki/kb/system/builds.md
+- ../../.codewiki/kb/system/graph.md

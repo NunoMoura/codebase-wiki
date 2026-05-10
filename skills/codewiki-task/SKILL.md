@@ -6,7 +6,7 @@ title: codewiki-task skill
 state: active
 summary: Packaged CodeWiki agent skill.
 owners: [maintainers]
-updated: "2026-05-07"
+updated: "2026-05-10"
 ---
 
 # CodeWiki Task
@@ -73,4 +73,6 @@ A validator receives the task pack, linked knowledge paths, touched code/test pa
 
 ## Related docs
 
-- ../../.codewiki/kb/system/v2-operating-model.md
+- ../../.codewiki/kb/system/compilers.md
+- ../../.codewiki/kb/system/validation-gateway.md
+- ../../.codewiki/kb/system/builds.md

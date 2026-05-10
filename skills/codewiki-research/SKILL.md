@@ -6,7 +6,7 @@ title: codewiki-research skill
 state: active
 summary: Packaged CodeWiki agent skill.
 owners: [maintainers]
-updated: "2026-05-07"
+updated: "2026-05-10"
 ---
 
 # CodeWiki Research
@@ -62,4 +62,4 @@ Do not mutate `.codewiki/` from researcher worker context.
 
 ## Related docs
 
-- ../../.codewiki/kb/system/v2-operating-model.md
+- ../../.codewiki/kb/system/knowledge.md

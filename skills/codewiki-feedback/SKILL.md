@@ -6,7 +6,7 @@ title: codewiki-feedback skill
 state: active
 summary: Packaged CodeWiki agent skill.
 owners: [maintainers]
-updated: "2026-05-08"
+updated: "2026-05-10"
 ---
 
 # CodeWiki Feedback
@@ -56,6 +56,6 @@ The feedback compiler is always reachable as escalation.
 
 ## Related docs
 
-- ../../.codewiki/kb/system/compilers/feedback.md
-- ../../.codewiki/kb/system/compilers/documentation.md
-- ../../.codewiki/kb/system/v2-operating-model.md
+- ../../.codewiki/kb/system/compilers.md
+- ../../.codewiki/kb/system/validation-gateway.md
+- ../../.codewiki/kb/system/builds.md
