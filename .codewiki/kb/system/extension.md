@@ -50,6 +50,7 @@ The Pi adapter owns:
 
 - Pi SDK and TUI imports belong only in the Pi adapter.
 - Pi-specific behavior must translate into API use cases, not own domain semantics.
+- Pi/VCC/native compaction or session-reset hooks are adapter integration points. Core CodeWiki handoff truth lives in implementation builds, roadmap state, validation, and graph state, with safe adapter fallbacks when host compaction is unavailable.
 - Agency behavior must enforce gated agency budgets and stop conditions instead of running unbounded work.
 - The package should not become a general sandbox, long-running runtime, or replacement for harness execution.
 - Runtime checks must validate actual package loading under supported Node versions.

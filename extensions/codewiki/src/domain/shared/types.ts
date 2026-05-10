@@ -367,6 +367,16 @@ export interface CodewikiBuildToolInput {
 	code_files?: string[];
 	checks_run?: string[];
 	acceptance_mapping?: Array<{ criterion: string; evidence: string }>;
+	validation_refs?: string[];
+	risks?: string[];
+	publication?: {
+		commit_title?: string;
+		commit_body?: string;
+		pr_title?: string;
+		pr_body?: string;
+		issue_update?: string;
+		release_notes?: string;
+	};
 }
 
 export interface CodewikiValidationReportInput {

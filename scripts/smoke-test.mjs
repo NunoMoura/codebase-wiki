@@ -567,6 +567,12 @@ async function main() {
 				code_files: ["extensions/codewiki/index.ts"],
 				checks_run: ["npm test"],
 				acceptance_mapping: [{ criterion: "Schemas exist", evidence: "npm test pass" }],
+				validation_refs: [".codewiki/validation/smoke-pass.json"],
+				risks: ["Smoke fixture only; no remote publication."],
+				publication: {
+					commit_title: "test: record implementation build smoke evidence",
+					pr_body: "Smoke PR draft; not published.",
+				},
 				lifecycle: { ttl_days: 7 },
 			},
 			undefined,
@@ -577,7 +583,16 @@ async function main() {
 		const implBuild = JSON.parse(readFileSync(resolve(projectDir, implBuildResult.details.path), "utf8"));
 		assert.equal(implBuild.kind, "implementation_build");
 		assert.equal(implBuild.task_id, "TASK-001");
+		assert.equal(implBuild.task.id, "TASK-001");
 		assert.equal(implBuild.acceptance_mapping.length, 1);
+		assert.equal(implBuild.validation_refs[0], ".codewiki/validation/smoke-pass.json");
+		assert.equal(implBuild.handoff.resume.source, "implementation_build");
+		assert.equal(implBuild.handoff.resume.command, "/wiki-resume TASK-001");
+		assert.equal(implBuild.handoff.resume.context.source, "implementation_build");
+		assert.equal(implBuild.publication.policy.execution, "recommendation_only");
+		assert.equal(implBuild.publication.policy.approval_required, true);
+		assert.equal(implBuild.publication.push_readiness.allowed_by_default, false);
+		assert.equal(implBuild.publication.commit.title, "test: record implementation build smoke evidence");
 
 		// Validation report smoke
 		const validationTool = extension.tools.get("codewiki_validation");

@@ -1,7 +1,9 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
-import type { CodewikiBuildToolInput, CodewikiValidationReportInput, WikiProject } from "../domain/shared/types.ts";
-import { nowIso } from "../domain/shared/utils.ts";
+import type { CodewikiBuildToolInput, CodewikiValidationReportInput, WikiProject, RoadmapTaskRecord } from "../domain/shared/types.ts";
+import { nowIso, unique } from "../domain/shared/utils.ts";
+import { readRoadmapTask } from "./roadmap.ts";
+import { maybeReadGraph } from "./state-artifacts.ts";
 
 // ---------------------------------------------------------------------------
 // Shared helpers
@@ -34,6 +36,68 @@ function buildLifecycle(input: CodewikiBuildToolInput, created: string, defaultT
 function buildBuildPath(project: WikiProject, kind: string, slug: string, day: string): string {
 	const abs = resolve(project.root, `.codewiki/builds/${kind}/${day}-${slug}.json`);
 	return abs;
+}
+
+function trimList(values?: string[]): string[] {
+	return (values ?? []).map((value) => value.trim()).filter(Boolean);
+}
+
+function taskSnapshot(task: RoadmapTaskRecord | null) {
+	if (!task) return undefined;
+	return {
+		id: task.id,
+		title: task.title,
+		status: task.status,
+		priority: task.priority,
+		kind: task.kind,
+		summary: task.summary,
+		spec_paths: task.spec_paths,
+		code_paths: task.code_paths,
+		goal: task.goal,
+	};
+}
+
+async function nextFocusTaskId(project: WikiProject, currentTaskId: string): Promise<string> {
+	const graph = await maybeReadGraph(project.graphPath) as any;
+	const openTaskIds = Array.isArray(graph?.lenses?.roadmap?.views?.open_task_ids)
+		? graph.lenses.roadmap.views.open_task_ids.map((id: unknown) => String(id).trim()).filter(Boolean)
+		: [];
+	return openTaskIds.find((id: string) => id !== currentTaskId) || "";
+}
+
+function publicationDefaults(input: CodewikiBuildToolInput, task: RoadmapTaskRecord | null, checksRun: string[], validationRefs: string[]) {
+	const taskLabel = task ? `${task.id} ${task.title}` : input.task_id?.trim() || "implementation work";
+	const commitTitle = input.publication?.commit_title?.trim() || `chore(codewiki): record ${taskLabel} implementation evidence`;
+	const commitBody = input.publication?.commit_body?.trim() || [
+		input.summary.trim(),
+		"",
+		checksRun.length ? `Checks: ${checksRun.join(", ")}` : "Checks: not recorded in build input.",
+		validationRefs.length ? `Validation: ${validationRefs.join(", ")}` : "Validation: no durable validation refs recorded.",
+		"Remote publication requires explicit approval; this build is recommendation-only.",
+	].join("\n");
+	return {
+		policy: {
+			execution: "recommendation_only",
+			approval_required: true,
+			remote_updates: "blocked_until_explicit_approval",
+		},
+		commit: {
+			title: commitTitle,
+			body: commitBody,
+		},
+		pr: {
+			title: input.publication?.pr_title?.trim() || commitTitle,
+			body: input.publication?.pr_body?.trim() || commitBody,
+		},
+		issue_update: input.publication?.issue_update?.trim() || "",
+		release_notes: input.publication?.release_notes?.trim() || "",
+		push_readiness: {
+			checks_recorded: checksRun,
+			validation_refs: validationRefs,
+			approval_required: true,
+			allowed_by_default: false,
+		},
+	};
 }
 
 // ---------------------------------------------------------------------------
@@ -116,26 +180,69 @@ export async function writeImplementationBuild(
 	if (!input.summary?.trim()) throw new Error("Implementation build requires summary.");
 	if (!input.task_id?.trim()) throw new Error("Implementation build requires task_id.");
 
+	const taskId = input.task_id.trim();
+	const task = await readRoadmapTask(project, taskId);
 	const created = nowIso();
 	const slug = buildSlug(input.slug || input.summary, "implementation-build");
 	const day = created.slice(0, 10);
 	const absPath = buildBuildPath(project, "implementation", slug, day);
 	const lifecycle = buildLifecycle(input, created, 7);
+	const testFiles = trimList(input.test_files);
+	const codeFiles = trimList(input.code_files);
+	const checksRun = trimList(input.checks_run);
+	const validationRefs = trimList(input.validation_refs);
+	const risks = trimList(input.risks);
+	const openQuestions = trimList(input.open_questions);
+	const nextFocus = await nextFocusTaskId(project, taskId);
+	const sourceDocumentationBuild = (input.source_documentation_build ?? "").trim();
+	const compactContext = {
+		source: "implementation_build",
+		task_id: taskId,
+		title: task?.title ?? taskId,
+		summary: input.summary.trim(),
+		spec_paths: task?.spec_paths ?? [],
+		code_paths: unique([...(task?.code_paths ?? []), ...codeFiles]),
+		acceptance: task?.goal?.acceptance ?? [],
+		verification: task?.goal?.verification ?? [],
+		checks_run: checksRun,
+		validation_refs: validationRefs,
+	};
 	const data = {
 		version: 1,
 		kind: "implementation_build",
 		created,
 		source: input.source?.trim() || "codewiki_build tool",
-		source_documentation_build: (input.source_documentation_build ?? "").trim() || undefined,
-		task_id: input.task_id.trim(),
+		source_documentation_build: sourceDocumentationBuild || undefined,
+		task_id: taskId,
+		task: taskSnapshot(task),
 		status: lifecycle.state,
 		lifecycle,
 		summary: input.summary.trim(),
-		test_files: (input.test_files ?? []).map((v) => v.trim()).filter(Boolean),
-		code_files: (input.code_files ?? []).map((v) => v.trim()).filter(Boolean),
-		checks_run: (input.checks_run ?? []).map((v) => v.trim()).filter(Boolean),
+		linked_refs: {
+			documentation_build: sourceDocumentationBuild || "",
+			spec_paths: task?.spec_paths ?? [],
+			code_paths: task?.code_paths ?? [],
+		},
+		test_files: testFiles,
+		code_files: codeFiles,
+		files_changed: unique([...testFiles, ...codeFiles]),
+		checks_run: checksRun,
 		acceptance_mapping: (input.acceptance_mapping ?? []).filter((m) => m.criterion.trim() && m.evidence.trim()),
-		open_questions: (input.open_questions ?? []).map((v) => v.trim()).filter(Boolean),
+		validation_refs: validationRefs,
+		risks,
+		unresolved_issues: openQuestions,
+		open_questions: openQuestions,
+		handoff: {
+			resume: {
+				source: "implementation_build",
+				command: `/wiki-resume ${taskId}`,
+				task_id: taskId,
+				next_focus_task_id: nextFocus,
+				context: compactContext,
+			},
+			fallback: "Use codewiki_state refresh=true and this implementation_build; do not rely on chat transcript memory.",
+		},
+		publication: publicationDefaults(input, task, checksRun, validationRefs),
 	};
 	await mkdir(dirname(absPath), { recursive: true });
 	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");

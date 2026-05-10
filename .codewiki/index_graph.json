@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-10T06:35:30.617Z",
+  "generated_at": "2026-05-10T06:59:05.516Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -52,7 +52,7 @@
       "kind": "code_path",
       "path": "skills/codewiki-plan/SKILL.md",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/product/stories/drift.md",
@@ -67,7 +67,7 @@
       "kind": "code_path",
       "path": "skills/codewiki-view-audit/SKILL.md",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "code:skills/codewiki-architecture/SKILL.md",
@@ -104,14 +104,14 @@
       "kind": "code_path",
       "path": "skills/codewiki/SKILL.md",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "code:extensions/codewiki/src/adapters/pi/ui",
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters/pi/ui",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/product/stories/sanitation.md",
@@ -148,7 +148,7 @@
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters/pi/ui/manager.ts",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/product/uis/graph-navigation.md",
@@ -179,7 +179,7 @@
       "kind": "code_path",
       "path": "skills",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "code:extensions/codewiki",
@@ -351,7 +351,7 @@
       "kind": "code_path",
       "path": "extensions/codewiki/src/infrastructure",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/system/knowledge.md",
@@ -730,7 +730,7 @@
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters/pi/index.ts",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "code:extensions/codewiki/src/adapters/pi/schemas.ts",
@@ -751,7 +751,7 @@
       "kind": "code_path",
       "path": "extensions/codewiki/src/application/state-builders.ts",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "task:TASK-039",
@@ -786,21 +786,6 @@
       "alignment_state": "aligned"
     },
     {
-      "id": "task:TASK-043",
-      "kind": "roadmap_task",
-      "title": "Automate implementation-build handoff and publication prep",
-      "layer": "roadmap",
-      "status": "todo",
-      "alignment_state": "drift"
-    },
-    {
-      "id": "code:extensions/codewiki/src/application/builds.ts",
-      "kind": "code_path",
-      "path": "extensions/codewiki/src/application/builds.ts",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
       "id": "task:TASK-044",
       "kind": "roadmap_task",
       "title": "Generate graph-first CodeWiki index",
@@ -822,6 +807,13 @@
       "title": "Support tester and builder roles from documentation builds",
       "layer": "roadmap",
       "status": "todo",
+      "alignment_state": "drift"
+    },
+    {
+      "id": "code:extensions/codewiki/src/application/builds.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/application/builds.ts",
+      "layer": "code",
       "alignment_state": "drift"
     },
     {
@@ -1039,6 +1031,16 @@
       "alignment_state": "aligned"
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-10-task-043-handoff-publication-prep.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-10-task-043-handoff-publication-prep.json",
+      "title": "TASK-043 implementation loop",
+      "status": "validated",
+      "layer": "build",
+      "lifecycle_state": "validated",
+      "alignment_state": "aligned"
+    },
+    {
       "id": "build:.codewiki/builds/implementation/2026-05-10-traceability-production.json",
       "kind": "implementation_build",
       "path": ".codewiki/builds/implementation/2026-05-10-traceability-production.json",
@@ -1064,6 +1066,12 @@
       "id": "validation:.codewiki/validation/2026-05-09-task-30-close-pass.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-09-task-30-close-pass.json",
+      "verdict": "pass"
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-10-implementation-pass.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-10-implementation-pass.json",
       "verdict": "pass"
     }
   ],
@@ -2235,36 +2243,6 @@
     },
     {
       "kind": "task_spec",
-      "from": "task:TASK-043",
-      "to": "doc:.codewiki/kb/system/builds.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-043",
-      "to": "doc:.codewiki/kb/system/validation-gateway.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-043",
-      "to": "doc:.codewiki/kb/system/roadmap.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-043",
-      "to": "doc:.codewiki/kb/system/agency.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-043",
-      "to": "doc:.codewiki/kb/system/extension.md"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-043",
-      "to": "code:extensions/codewiki/src/application/builds.ts"
-    },
-    {
-      "kind": "task_spec",
       "from": "task:TASK-044",
       "to": "doc:.codewiki/kb/system/overview.md"
     },
@@ -2369,6 +2347,11 @@
       "to": "task:TASK-038"
     },
     {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-10-task-043-handoff-publication-prep.json",
+      "to": "task:TASK-043"
+    },
+    {
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-09-task-035-close-pass.json",
       "to": "task:TASK-035"
@@ -2377,6 +2360,11 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-09-task-30-close-pass.json",
       "to": "task:TASK-30"
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-10-implementation-pass.json",
+      "to": "task:TASK-043"
     }
   ],
   "views": {
@@ -2514,7 +2502,6 @@
         "TASK-040",
         "TASK-041",
         "TASK-042",
-        "TASK-043",
         "TASK-044",
         "TASK-045",
         "TASK-046",
@@ -2526,7 +2513,7 @@
       "status_counts": {
         "done": 42,
         "cancelled": 4,
-        "todo": 2
+        "todo": 1
       }
     },
     "research": {
@@ -2578,32 +2565,15 @@
         "skills/codewiki/SKILL.md"
       ],
       "dirty_paths": [
-        ".codewiki/kb/lexicon.md",
-        ".codewiki/kb/system/agency.md",
-        ".codewiki/kb/system/compilers.md",
+        ".codewiki/kb/system/builds.md",
         ".codewiki/kb/system/extension.md",
-        ".codewiki/kb/system/file-structure.md",
-        ".codewiki/kb/system/graph.md",
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/kb/system/roadmap.md",
         ".codewiki/roadmap.json",
-        ".codewiki/roadmap/queue.json",
-        ".codewiki/roadmap/tasks/TASK-034/task.json",
-        ".codewiki/roadmap/tasks/TASK-038/task.json",
-        "README.md",
+        ".codewiki/roadmap/archive.jsonl",
         "codewiki/index_graph.json",
-        "extensions/codewiki/src/adapters/pi/index.ts",
         "extensions/codewiki/src/adapters/pi/schemas.ts",
-        "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
-        "extensions/codewiki/src/adapters/pi/ui/manager.ts",
-        "extensions/codewiki/src/application/heartbeat.ts",
-        "extensions/codewiki/src/application/state-builders.ts",
+        "extensions/codewiki/src/application/builds.ts",
         "extensions/codewiki/src/domain/shared/types.ts",
-        "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
-        "scripts/smoke-test.mjs",
-        "skills/codewiki-plan/SKILL.md",
-        "skills/codewiki-view-audit/SKILL.md",
-        "skills/codewiki/SKILL.md"
+        "scripts/smoke-test.mjs"
       ]
     },
     "reconciliation": {
@@ -2702,17 +2672,6 @@
           "reason": "Accepted documentation build should produce roadmap task packs before implementation."
         },
         {
-          "id": "reconcile:task:TASK-043",
-          "source_id": "task:TASK-043",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "roadmap",
-          "to_layer": "code",
-          "next_loop": "implementation",
-          "task_id": "TASK-043",
-          "reason": "TASK-043 is open implementation delta below knowledge."
-        },
-        {
           "id": "reconcile:task:TASK-046",
           "source_id": "task:TASK-046",
           "state": "drift",
@@ -2739,8 +2698,8 @@
           ]
         },
         {
-          "id": "reconcile:code:skills/codewiki-view-audit/SKILL.md",
-          "source_id": "code:skills/codewiki-view-audit/SKILL.md",
+          "id": "reconcile:code:scripts/smoke-test.mjs",
+          "source_id": "code:scripts/smoke-test.mjs",
           "state": "drift",
           "direction": "upward",
           "from_layer": "code",
@@ -2748,48 +2707,9 @@
           "next_loop": "documentation",
           "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
           "doc_paths": [
-            ".codewiki/kb/product/stories/drift.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:skills/codewiki/SKILL.md",
-          "source_id": "code:skills/codewiki/SKILL.md",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/product/stories/navigation.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:extensions/codewiki/src/adapters/pi/ui",
-          "source_id": "code:extensions/codewiki/src/adapters/pi/ui",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/product/stories/navigation.md",
-            ".codewiki/kb/product/uis/status-panel.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:extensions/codewiki/src/adapters/pi/ui/manager.ts",
-          "source_id": "code:extensions/codewiki/src/adapters/pi/ui/manager.ts",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/product/uis/board.md",
-            ".codewiki/kb/product/uis/graph-navigation.md"
+            ".codewiki/kb/product/stories/sanitation.md",
+            ".codewiki/kb/product/users/maintainers.md",
+            ".codewiki/kb/system/extension.md"
           ]
         },
         {
@@ -2808,8 +2728,8 @@
           ]
         },
         {
-          "id": "reconcile:code:extensions/codewiki/src/infrastructure",
-          "source_id": "code:extensions/codewiki/src/infrastructure",
+          "id": "reconcile:code:.codewiki/roadmap.json",
+          "source_id": "code:.codewiki/roadmap.json",
           "state": "drift",
           "direction": "upward",
           "from_layer": "code",
@@ -2817,13 +2737,26 @@
           "next_loop": "documentation",
           "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
           "doc_paths": [
-            ".codewiki/kb/system/graph.md"
+            ".codewiki/kb/system/roadmap.md"
+          ]
+        },
+        {
+          "id": "reconcile:code:.codewiki/roadmap",
+          "source_id": "code:.codewiki/roadmap",
+          "state": "drift",
+          "direction": "upward",
+          "from_layer": "code",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
+          "doc_paths": [
+            ".codewiki/kb/system/roadmap.md"
           ]
         }
       ],
       "counts_by_loop": {
-        "documentation": 16,
-        "implementation": 2
+        "documentation": 14,
+        "implementation": 1
       },
       "next_action": {
         "loop": "documentation",
@@ -2842,7 +2775,7 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-10T06:35:30.623Z",
+      "generated_at": "2026-05-10T06:59:05.520Z",
       "counts": {
         "large-doc": 1
       },
@@ -2857,7 +2790,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-10T06:35:30Z",
+      "generated_at": "2026-05-10T06:59:05Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -2868,15 +2801,15 @@
         "task_context_root": ".codewiki/roadmap/tasks"
       },
       "summary": {
-        "task_count": 48,
-        "open_count": 2,
+        "task_count": 47,
+        "open_count": 1,
         "status_counts": {
           "done": 42,
           "cancelled": 4,
-          "todo": 2
+          "todo": 1
         },
         "priority_counts": {
-          "high": 27,
+          "high": 26,
           "medium": 14,
           "critical": 6,
           "low": 1
@@ -2924,7 +2857,6 @@
           "TASK-040",
           "TASK-041",
           "TASK-042",
-          "TASK-043",
           "TASK-044",
           "TASK-045",
           "TASK-046",
@@ -2934,12 +2866,10 @@
           "TASK-050"
         ],
         "open_task_ids": [
-          "TASK-043",
           "TASK-046"
         ],
         "in_progress_task_ids": [],
         "todo_task_ids": [
-          "TASK-043",
           "TASK-046"
         ],
         "blocked_task_ids": [],
@@ -3038,7 +2968,6 @@
           "TASK-004",
           "TASK-003",
           "TASK-002",
-          "TASK-043",
           "TASK-025",
           "TASK-016",
           "TASK-001"
@@ -4766,58 +4695,6 @@
             "evidence": null
           }
         },
-        "TASK-043": {
-          "id": "TASK-043",
-          "title": "Automate implementation-build handoff and publication prep",
-          "status": "todo",
-          "priority": "high",
-          "kind": "agent-workflow",
-          "summary": "Design and implement the post-task handoff flow so successful work produces compact resume context and implementation-build evidence suitable for commit, PR, issue, release, and push-readiness decisions without unsafe automatic publication.",
-          "labels": [
-            "implementation-build",
-            "handoff",
-            "publication",
-            "session"
-          ],
-          "goal": {
-            "outcome": "After implementation work, CodeWiki records evidence and compact handoff context that can drive closure, resume, commit/PR/issue/release drafts, and push-readiness checks under validation/policy gates.",
-            "acceptance": [
-              "Implementation builds include task/work refs, docs/spec refs, files changed, checks run, acceptance mapping, validation refs, risks, and publication draft fields when useful.",
-              "Task closure or checkpoint can persist next focus and compact resume context without relying on chat transcript memory.",
-              "Commit, push, release, and remote issue updates are prepared as recommendations and require explicit validation/policy approval before execution.",
-              "Pi/VCC/native compaction integration points are isolated in adapters or documented with safe fallbacks.",
-              "Smoke or characterization coverage proves resume after handoff uses persisted compact context rather than stale chat state."
-            ],
-            "non_goals": [
-              "Do not make automatic remote push the default behavior.",
-              "Do not replace builds, roadmap, or validation with chat transcript summaries.",
-              "Do not couple core CodeWiki semantics to Pi-only compaction APIs."
-            ],
-            "verification": [
-              "Create implementation_build for a documentation-only or small code task",
-              "Validate publication-ready fields without executing remote updates",
-              "Smoke resume/focus after handoff",
-              "npm test if runtime code changes."
-            ]
-          },
-          "spec_paths": [
-            ".codewiki/kb/system/builds.md",
-            ".codewiki/kb/system/validation-gateway.md",
-            ".codewiki/kb/system/roadmap.md",
-            ".codewiki/kb/system/agency.md",
-            ".codewiki/kb/system/extension.md"
-          ],
-          "code_paths": [
-            "extensions/codewiki/src/application/builds.ts"
-          ],
-          "updated": "2026-05-09T09:05:23Z",
-          "context_path": ".codewiki/roadmap/tasks/TASK-043/context.json",
-          "loop": {
-            "phase": "implement",
-            "updated_at": "",
-            "evidence": null
-          }
-        },
         "TASK-044": {
           "id": "TASK-044",
           "title": "Generate graph-first CodeWiki index",
@@ -5141,7 +5018,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-10T06:35:30Z",
+      "generated_at": "2026-05-10T06:59:05Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -5156,27 +5033,27 @@
       "summary": {
         "total_specs": 11,
         "mapped_specs": 11,
-        "aligned_specs": 18,
-        "tracked_specs": 7,
+        "aligned_specs": 20,
+        "tracked_specs": 5,
         "untracked_specs": 1,
         "blocked_specs": 0,
         "unmapped_specs": 0,
-        "task_count": 48,
-        "open_task_count": 2,
+        "task_count": 47,
+        "open_task_count": 1,
         "done_task_count": 42
       },
       "bars": {
         "tracked_drift": {
           "label": "Tracked Drift",
-          "value": 7,
-          "total": 8,
-          "percent": 88
+          "value": 5,
+          "total": 6,
+          "percent": 83
         },
         "roadmap_done": {
           "label": "Roadmap Done",
           "value": 42,
-          "total": 48,
-          "percent": 88
+          "total": 47,
+          "percent": 89
         },
         "spec_mapping": {
           "label": "Spec Mapping",
@@ -5191,9 +5068,7 @@
           ".codewiki/kb/system/api.md",
           ".codewiki/kb/system/builds.md",
           ".codewiki/kb/system/compilers.md",
-          ".codewiki/kb/system/extension.md",
           ".codewiki/kb/system/overview.md",
-          ".codewiki/kb/system/roadmap.md",
           ".codewiki/kb/system/validation-gateway.md"
         ],
         "top_risky_spec_paths": [
@@ -5201,13 +5076,10 @@
           ".codewiki/kb/system/api.md",
           ".codewiki/kb/system/builds.md",
           ".codewiki/kb/system/compilers.md",
-          ".codewiki/kb/system/extension.md",
           ".codewiki/kb/system/overview.md",
-          ".codewiki/kb/system/roadmap.md",
           ".codewiki/kb/system/validation-gateway.md"
         ],
         "open_task_ids": [
-          "TASK-043",
           "TASK-046"
         ]
       },
@@ -5222,7 +5094,7 @@
         "Parallel sessions: 0 active, 0 collision task(s).",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 11/11.",
-        "Tracked drift coverage: 7/8."
+        "Tracked drift coverage: 5/6."
       ],
       "specs": [
         {
@@ -5241,18 +5113,17 @@
             "total": 0
           },
           "related_task_ids": [
-            "TASK-043",
             "TASK-046",
             "TASK-034",
             "TASK-038"
           ],
           "primary_task": {
-            "id": "TASK-043",
+            "id": "TASK-046",
             "status": "todo",
-            "title": "Automate implementation-build handoff and publication prep"
+            "title": "Support tester and builder roles from documentation builds"
           },
           "revision": {},
-          "note": "tracked by TASK-043"
+          "note": "tracked by TASK-046"
         },
         {
           "path": ".codewiki/kb/system/api.md",
@@ -5297,16 +5168,15 @@
             "total": 0
           },
           "related_task_ids": [
-            "TASK-043",
             "TASK-046"
           ],
           "primary_task": {
-            "id": "TASK-043",
+            "id": "TASK-046",
             "status": "todo",
-            "title": "Automate implementation-build handoff and publication prep"
+            "title": "Support tester and builder roles from documentation builds"
           },
           "revision": {},
-          "note": "tracked by TASK-043"
+          "note": "tracked by TASK-046"
         },
         {
           "path": ".codewiki/kb/system/compilers.md",
@@ -5338,63 +5208,6 @@
           "note": "tracked by TASK-046"
         },
         {
-          "path": ".codewiki/kb/system/extension.md",
-          "title": "Extension",
-          "summary": "Packaged CodeWiki distribution and current Pi extension surface.",
-          "drift_status": "tracked",
-          "code_paths": [
-            "extensions/codewiki/index.ts",
-            "extensions/codewiki/bootstrap.ts",
-            "extensions/codewiki/templates.ts",
-            "extensions/codewiki/src/adapters/pi",
-            "skills",
-            "scripts/smoke-test.mjs",
-            "scripts/check-architecture.mjs"
-          ],
-          "code_area": "extensions, skills +1 more",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-043"
-          ],
-          "primary_task": {
-            "id": "TASK-043",
-            "status": "todo",
-            "title": "Automate implementation-build handoff and publication prep"
-          },
-          "revision": {},
-          "note": "tracked by TASK-043"
-        },
-        {
-          "path": ".codewiki/kb/system/roadmap.md",
-          "title": "Roadmap",
-          "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
-          "drift_status": "tracked",
-          "code_paths": [
-            ".codewiki/roadmap.json",
-            ".codewiki/roadmap"
-          ],
-          "code_area": ".codewiki +1 more",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-043"
-          ],
-          "primary_task": {
-            "id": "TASK-043",
-            "status": "todo",
-            "title": "Automate implementation-build handoff and publication prep"
-          },
-          "revision": {},
-          "note": "tracked by TASK-043"
-        },
-        {
           "path": ".codewiki/kb/system/validation-gateway.md",
           "title": "Validation Gateway",
           "summary": "Loop-exit gateway that checks vertical and horizontal alignment before handoff, closure, release, or publication.",
@@ -5410,18 +5223,17 @@
             "total": 0
           },
           "related_task_ids": [
-            "TASK-043",
             "TASK-046",
             "TASK-034",
             "TASK-038"
           ],
           "primary_task": {
-            "id": "TASK-043",
+            "id": "TASK-046",
             "status": "todo",
-            "title": "Automate implementation-build handoff and publication prep"
+            "title": "Support tester and builder roles from documentation builds"
           },
           "revision": {},
-          "note": "tracked by TASK-043"
+          "note": "tracked by TASK-046"
         },
         {
           "path": ".codewiki/kb/lexicon.md",
@@ -5777,6 +5589,31 @@
           "note": "no deterministic drift signals"
         },
         {
+          "path": ".codewiki/kb/system/extension.md",
+          "title": "Extension",
+          "summary": "Packaged CodeWiki distribution and current Pi extension surface.",
+          "drift_status": "aligned",
+          "code_paths": [
+            "extensions/codewiki/index.ts",
+            "extensions/codewiki/bootstrap.ts",
+            "extensions/codewiki/templates.ts",
+            "extensions/codewiki/src/adapters/pi",
+            "skills",
+            "scripts/smoke-test.mjs",
+            "scripts/check-architecture.mjs"
+          ],
+          "code_area": "extensions, skills +1 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [],
+          "primary_task": null,
+          "revision": {},
+          "note": "no deterministic drift signals"
+        },
+        {
           "path": ".codewiki/kb/system/file-structure.md",
           "title": "File Structure",
           "summary": "Target knowledge-base and package file structure for CodeWiki.",
@@ -5842,6 +5679,26 @@
           "note": "no deterministic drift signals"
         },
         {
+          "path": ".codewiki/kb/system/roadmap.md",
+          "title": "Roadmap",
+          "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
+          "drift_status": "aligned",
+          "code_paths": [
+            ".codewiki/roadmap.json",
+            ".codewiki/roadmap"
+          ],
+          "code_area": ".codewiki +1 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [],
+          "primary_task": null,
+          "revision": {},
+          "note": "no deterministic drift signals"
+        },
+        {
           "path": ".codewiki/kb/system/overview.md",
           "title": "System Overview",
           "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
@@ -5878,7 +5735,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-10T06:35:30Z",
+        "generated_at": "2026-05-10T06:59:05Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -5906,40 +5763,24 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-10T06:35:30Z",
+            "checked_at": "2026-05-10T06:59:05Z",
             "revision": {
               "git": {
-                "head": "ab1fd6bee950505a921fd7a9b0b4010d4bfb7426",
+                "head": "d9fade49871db555ec36ab6a2f7709c010480f0b",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/kb/lexicon.md",
-                  ".codewiki/kb/system/agency.md",
-                  ".codewiki/kb/system/compilers.md",
+                  ".codewiki/kb/system/builds.md",
                   ".codewiki/kb/system/extension.md",
-                  ".codewiki/kb/system/file-structure.md",
-                  ".codewiki/kb/system/graph.md",
-                  ".codewiki/kb/system/overview.md",
-                  ".codewiki/kb/system/roadmap.md",
                   ".codewiki/roadmap.json",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-034/task.json",
-                  ".codewiki/roadmap/tasks/TASK-038/task.json",
-                  "extensions/codewiki/src/adapters/pi/index.ts",
+                  ".codewiki/roadmap/archive.jsonl",
                   "extensions/codewiki/src/adapters/pi/schemas.ts",
-                  "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
-                  "extensions/codewiki/src/adapters/pi/ui/manager.ts",
-                  "extensions/codewiki/src/application/heartbeat.ts",
-                  "extensions/codewiki/src/application/state-builders.ts",
+                  "extensions/codewiki/src/application/builds.ts",
                   "extensions/codewiki/src/domain/shared/types.ts",
-                  "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
-                  "scripts/smoke-test.mjs",
-                  "skills/codewiki-plan/SKILL.md",
-                  "skills/codewiki-view-audit/SKILL.md",
-                  "skills/codewiki/SKILL.md"
+                  "scripts/smoke-test.mjs"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "6ac007d8f82c0dc89c168cafb4feeb2ae9aee9d8",
+                  ".codewiki/index_graph.json": "e7a2c7c1d2e3dfc3b8dee8e28405effa204a191c",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
                   ".codewiki/kb/product/overview.md": "ca1c24bb224268572d0e97afa45db739b7af62d7",
@@ -5956,19 +5797,19 @@
                   ".codewiki/kb/product/users/maintainers.md": "6b48e26d5f0cf5fa9a35c703af37c87ba91d6047",
                   ".codewiki/kb/product/users/package-authors.md": "81d5d10b01cb961753ff46364e1fd471f0c9b1bf",
                   ".codewiki/kb/system/adapters.md": "9ba9e7740331e0f794567fda04c18db830ee0a30",
-                  ".codewiki/kb/system/agency.md": "44fa49eb5a3d125cdade20153a4da850034b4e06",
+                  ".codewiki/kb/system/agency.md": "32171ff3cba37d325915052b0ca8370468144d80",
                   ".codewiki/kb/system/api.md": "2fabd12ace5a61cd72e22262740f44241fb6454c",
                   ".codewiki/kb/system/builds.md": "0405f30bba8490500e14edb581a7bd11bd5f26cd",
-                  ".codewiki/kb/system/compilers.md": "18b13a88dceec5059cb5df5ec0824dbe62ff81c8",
-                  ".codewiki/kb/system/extension.md": "dd94d0f91859dcaea4c46f90f0d3f1e410cffb53",
-                  ".codewiki/kb/system/file-structure.md": "03a996fe452078b366ea25c4ba9e7f8b846f4024",
-                  ".codewiki/kb/system/graph.md": "dfc556318fe1b76feead358053886686aa2de684",
+                  ".codewiki/kb/system/compilers.md": "1b5232ef72ed9d6c09ca5e6b43f4aefad0700ffb",
+                  ".codewiki/kb/system/extension.md": "fac1eaa18a6cce9173b6c464fd759eaf153cfa76",
+                  ".codewiki/kb/system/file-structure.md": "3c0b708ad3b34201a2e54281498c0557c875560c",
+                  ".codewiki/kb/system/graph.md": "4c8b8cf66b284ae029dfcc58de52ec4483063a8b",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
-                  ".codewiki/kb/system/overview.md": "481bb39cce239c201802d52c9c907fad77665afb",
-                  ".codewiki/kb/system/roadmap.md": "325a161263839094aeeeb69986184f793d2a9b68",
+                  ".codewiki/kb/system/overview.md": "64080eb0dc33c4a5c3271d5e1b49ae64c7a7f641",
+                  ".codewiki/kb/system/roadmap.md": "d8ef90ce4e07870e34a8421d337732273689aa59",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "97180ec1fac7b0bff08d40413ca2a3711b7704f6",
+                  ".codewiki/roadmap.json": "4291a346a91d3856f63919fa16c95e1a82667de5",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -5976,33 +5817,33 @@
                   "extensions/codewiki/src/adapters": "",
                   "extensions/codewiki/src/adapters/pi": "",
                   "extensions/codewiki/src/adapters/pi/ui": "",
-                  "extensions/codewiki/src/adapters/pi/ui/manager.ts": "055d38dabf2ecaf19bf30429b10287e478e07ec1",
+                  "extensions/codewiki/src/adapters/pi/ui/manager.ts": "c0318f7dff7bedc2d41b27a0908d17d3557d033c",
                   "extensions/codewiki/src/application": "",
                   "extensions/codewiki/src/domain": "",
                   "extensions/codewiki/src/infrastructure": "",
                   "extensions/codewiki/templates.ts": "a841ad066521eb20b3be3f391a9624376e634937",
                   "package.json": "539ec5a3a92e2df15270cb5b23b0fd99642ee8d2",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "063e0e7f9d82e7f484ce4e950db6cc748f583b76",
+                  "scripts/smoke-test.mjs": "7f79f21cb899d9764ea403e6e6466af73a5d15a9",
                   "skills": "",
                   "skills/codewiki-architecture/SKILL.md": "16c135ad735298d90850d09f6831a78c9da55f7e",
                   "skills/codewiki-feedback/SKILL.md": "1f43bf56da45ab40de3bf00c670d532facafb815",
-                  "skills/codewiki-plan/SKILL.md": "8347b00eb9ed45b2376c8264b561f50c1b42214d",
+                  "skills/codewiki-plan/SKILL.md": "e1a4a16e1c3d59c73eea901537988bb146076a66",
                   "skills/codewiki-task/SKILL.md": "3f58004d21260d07a91d5e721a892ad66d078d10",
                   "skills/codewiki-verify/SKILL.md": "c24184e63673baa9dd1556b80ca61518ea387282",
-                  "skills/codewiki-view-audit/SKILL.md": "b30c8fe51c8d76ac8afe173ffebf957f43cc0daa",
-                  "skills/codewiki/SKILL.md": "637752f2e96e62995d842ef5f66e4fed0309a473"
+                  "skills/codewiki-view-audit/SKILL.md": "118c979408d3f3ed26e8df351d1fb46343878731",
+                  "skills/codewiki/SKILL.md": "9da79591e08f4f481981dd9d73dfc5636ef5fbb8"
                 }
               },
               "spec_digest": "20ab82d527fc003e5fd6592bd11bff1b4e7cecd6a514c70bb99dabac56edd605",
-              "task_digest": "97929dc0c718b5e2e39ff356139469e70ae37e35216e38beeeda65b56f767709",
-              "code_digest": "84759090f060678d40e013000a8d30edc9e74b97c164fcb1e3c5e3fc50702a6b",
-              "digest": "82e37ab4d3a91ac12e285e24dbd3d6372c937dddaa92dd1b9cb32f5a4dcbb714"
+              "task_digest": "a651f0d547ad413e7cf312388dac8911d776d5afbf4d3281e07e1f026d0040b5",
+              "code_digest": "8ff5ab2f7a6646d579a82ec8a5251c724951fcddccde0cdc198eb25e1977818a",
+              "digest": "27363d368f31cc2cc2a2ce76eb884d5714f59908823619a9bda4284c37a1ed21"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-10T06:35:30Z",
+              "checked_at": "2026-05-10T06:59:05Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -6024,13 +5865,13 @@
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
-              ".codewiki/kb/system/extension.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/adapters.md",
+              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/knowledge.md",
+              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/overview.md"
             ],
             "code_paths": [
@@ -6054,19 +5895,18 @@
               "extensions/codewiki/src/domain",
               "extensions/codewiki/src/adapters",
               ".codewiki/builds",
-              "extensions/codewiki/bootstrap.ts",
-              "extensions/codewiki/templates.ts",
-              ".codewiki/roadmap.json",
-              ".codewiki/roadmap",
               "skills/codewiki-verify/SKILL.md",
               ".codewiki/validation",
+              "extensions/codewiki/bootstrap.ts",
+              "extensions/codewiki/templates.ts",
               ".codewiki/kb",
               ".codewiki/index_graph.json",
-              "extensions/codewiki/src/infrastructure"
+              "extensions/codewiki/src/infrastructure",
+              ".codewiki/roadmap.json",
+              ".codewiki/roadmap"
             ],
             "code_area": ".codewiki, skills +3 more",
             "open_task_ids": [
-              "TASK-043",
               "TASK-046"
             ],
             "risky_spec_paths": [
@@ -6074,15 +5914,13 @@
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
-              ".codewiki/kb/system/extension.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/overview.md"
             ],
             "stats": {
               "total_specs": 25,
-              "aligned_specs": 17,
-              "tracked_specs": 7,
+              "aligned_specs": 19,
+              "tracked_specs": 5,
               "untracked_specs": 1,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -6107,55 +5945,39 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-10T06:35:30Z",
+            "checked_at": "2026-05-10T06:59:05Z",
             "revision": {
               "git": {
-                "head": "ab1fd6bee950505a921fd7a9b0b4010d4bfb7426",
+                "head": "d9fade49871db555ec36ab6a2f7709c010480f0b",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/kb/lexicon.md",
-                  ".codewiki/kb/system/agency.md",
-                  ".codewiki/kb/system/compilers.md",
+                  ".codewiki/kb/system/builds.md",
                   ".codewiki/kb/system/extension.md",
-                  ".codewiki/kb/system/file-structure.md",
-                  ".codewiki/kb/system/graph.md",
-                  ".codewiki/kb/system/overview.md",
-                  ".codewiki/kb/system/roadmap.md",
                   ".codewiki/roadmap.json",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-034/task.json",
-                  ".codewiki/roadmap/tasks/TASK-038/task.json",
-                  "extensions/codewiki/src/adapters/pi/index.ts",
+                  ".codewiki/roadmap/archive.jsonl",
                   "extensions/codewiki/src/adapters/pi/schemas.ts",
-                  "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
-                  "extensions/codewiki/src/adapters/pi/ui/manager.ts",
-                  "extensions/codewiki/src/application/heartbeat.ts",
-                  "extensions/codewiki/src/application/state-builders.ts",
+                  "extensions/codewiki/src/application/builds.ts",
                   "extensions/codewiki/src/domain/shared/types.ts",
-                  "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
-                  "scripts/smoke-test.mjs",
-                  "skills/codewiki-plan/SKILL.md",
-                  "skills/codewiki-view-audit/SKILL.md",
-                  "skills/codewiki/SKILL.md"
+                  "scripts/smoke-test.mjs"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "6ac007d8f82c0dc89c168cafb4feeb2ae9aee9d8",
+                  ".codewiki/index_graph.json": "e7a2c7c1d2e3dfc3b8dee8e28405effa204a191c",
                   ".codewiki/kb": "",
                   ".codewiki/kb/system/adapters.md": "9ba9e7740331e0f794567fda04c18db830ee0a30",
-                  ".codewiki/kb/system/agency.md": "44fa49eb5a3d125cdade20153a4da850034b4e06",
+                  ".codewiki/kb/system/agency.md": "32171ff3cba37d325915052b0ca8370468144d80",
                   ".codewiki/kb/system/api.md": "2fabd12ace5a61cd72e22262740f44241fb6454c",
                   ".codewiki/kb/system/builds.md": "0405f30bba8490500e14edb581a7bd11bd5f26cd",
-                  ".codewiki/kb/system/compilers.md": "18b13a88dceec5059cb5df5ec0824dbe62ff81c8",
-                  ".codewiki/kb/system/extension.md": "dd94d0f91859dcaea4c46f90f0d3f1e410cffb53",
-                  ".codewiki/kb/system/file-structure.md": "03a996fe452078b366ea25c4ba9e7f8b846f4024",
-                  ".codewiki/kb/system/graph.md": "dfc556318fe1b76feead358053886686aa2de684",
+                  ".codewiki/kb/system/compilers.md": "1b5232ef72ed9d6c09ca5e6b43f4aefad0700ffb",
+                  ".codewiki/kb/system/extension.md": "fac1eaa18a6cce9173b6c464fd759eaf153cfa76",
+                  ".codewiki/kb/system/file-structure.md": "3c0b708ad3b34201a2e54281498c0557c875560c",
+                  ".codewiki/kb/system/graph.md": "4c8b8cf66b284ae029dfcc58de52ec4483063a8b",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
-                  ".codewiki/kb/system/overview.md": "481bb39cce239c201802d52c9c907fad77665afb",
-                  ".codewiki/kb/system/roadmap.md": "325a161263839094aeeeb69986184f793d2a9b68",
+                  ".codewiki/kb/system/overview.md": "64080eb0dc33c4a5c3271d5e1b49ae64c7a7f641",
+                  ".codewiki/kb/system/roadmap.md": "d8ef90ce4e07870e34a8421d337732273689aa59",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "97180ec1fac7b0bff08d40413ca2a3711b7704f6",
+                  ".codewiki/roadmap.json": "4291a346a91d3856f63919fa16c95e1a82667de5",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -6167,23 +5989,23 @@
                   "extensions/codewiki/src/infrastructure": "",
                   "extensions/codewiki/templates.ts": "a841ad066521eb20b3be3f391a9624376e634937",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "063e0e7f9d82e7f484ce4e950db6cc748f583b76",
+                  "scripts/smoke-test.mjs": "7f79f21cb899d9764ea403e6e6466af73a5d15a9",
                   "skills": "",
                   "skills/codewiki-feedback/SKILL.md": "1f43bf56da45ab40de3bf00c670d532facafb815",
-                  "skills/codewiki-plan/SKILL.md": "8347b00eb9ed45b2376c8264b561f50c1b42214d",
+                  "skills/codewiki-plan/SKILL.md": "e1a4a16e1c3d59c73eea901537988bb146076a66",
                   "skills/codewiki-task/SKILL.md": "3f58004d21260d07a91d5e721a892ad66d078d10",
                   "skills/codewiki-verify/SKILL.md": "c24184e63673baa9dd1556b80ca61518ea387282"
                 }
               },
               "spec_digest": "d07d6c26409f47eb510335e9d20575744fd3bb42f5d137c958f12599df2524fa",
-              "task_digest": "97929dc0c718b5e2e39ff356139469e70ae37e35216e38beeeda65b56f767709",
-              "code_digest": "ef42c88789135b847e8de7dba7700c381dc1e5e9afe7d8d7bfb8a7cddd5c6bc5",
-              "digest": "009c683d40c65d36f3cde516bf4369442689a79b0747168bd6ae54efc0f50e0a"
+              "task_digest": "a651f0d547ad413e7cf312388dac8911d776d5afbf4d3281e07e1f026d0040b5",
+              "code_digest": "ca9bc787621c1b9af0c5e46e710c5a17d772809c23c0ed99b2bcb50610ae19e1",
+              "digest": "d17181d5cbcf39a64a3f4233603392df0b989199cfc6bae227030c1f4254dedb"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-10T06:35:30Z",
+              "checked_at": "2026-05-10T06:59:05Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -6192,13 +6014,13 @@
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
-              ".codewiki/kb/system/extension.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/adapters.md",
+              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/knowledge.md",
+              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/overview.md"
             ],
             "code_paths": [
@@ -6210,24 +6032,23 @@
               "skills/codewiki-feedback/SKILL.md",
               "skills/codewiki-plan/SKILL.md",
               "skills/codewiki-task/SKILL.md",
+              "skills/codewiki-verify/SKILL.md",
+              ".codewiki/validation",
+              "skills",
               "extensions/codewiki/index.ts",
               "extensions/codewiki/bootstrap.ts",
               "extensions/codewiki/templates.ts",
-              "skills",
               "scripts/smoke-test.mjs",
               "scripts/check-architecture.mjs",
-              ".codewiki/roadmap.json",
-              ".codewiki/roadmap",
-              "skills/codewiki-verify/SKILL.md",
-              ".codewiki/validation",
               ".codewiki/kb",
               "extensions/codewiki",
               ".codewiki/index_graph.json",
-              "extensions/codewiki/src/infrastructure"
+              "extensions/codewiki/src/infrastructure",
+              ".codewiki/roadmap.json",
+              ".codewiki/roadmap"
             ],
             "code_area": "extensions, .codewiki +2 more",
             "open_task_ids": [
-              "TASK-043",
               "TASK-046"
             ],
             "risky_spec_paths": [
@@ -6235,15 +6056,13 @@
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
-              ".codewiki/kb/system/extension.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/overview.md"
             ],
             "stats": {
               "total_specs": 12,
-              "aligned_specs": 4,
-              "tracked_specs": 7,
+              "aligned_specs": 6,
+              "tracked_specs": 5,
               "untracked_specs": 1,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -6268,40 +6087,24 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-10T06:35:30Z",
+            "checked_at": "2026-05-10T06:59:05Z",
             "revision": {
               "git": {
-                "head": "ab1fd6bee950505a921fd7a9b0b4010d4bfb7426",
+                "head": "d9fade49871db555ec36ab6a2f7709c010480f0b",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/kb/lexicon.md",
-                  ".codewiki/kb/system/agency.md",
-                  ".codewiki/kb/system/compilers.md",
+                  ".codewiki/kb/system/builds.md",
                   ".codewiki/kb/system/extension.md",
-                  ".codewiki/kb/system/file-structure.md",
-                  ".codewiki/kb/system/graph.md",
-                  ".codewiki/kb/system/overview.md",
-                  ".codewiki/kb/system/roadmap.md",
                   ".codewiki/roadmap.json",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-034/task.json",
-                  ".codewiki/roadmap/tasks/TASK-038/task.json",
-                  "extensions/codewiki/src/adapters/pi/index.ts",
+                  ".codewiki/roadmap/archive.jsonl",
                   "extensions/codewiki/src/adapters/pi/schemas.ts",
-                  "extensions/codewiki/src/adapters/pi/tools/heartbeat.ts",
-                  "extensions/codewiki/src/adapters/pi/ui/manager.ts",
-                  "extensions/codewiki/src/application/heartbeat.ts",
-                  "extensions/codewiki/src/application/state-builders.ts",
+                  "extensions/codewiki/src/application/builds.ts",
                   "extensions/codewiki/src/domain/shared/types.ts",
-                  "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
-                  "scripts/smoke-test.mjs",
-                  "skills/codewiki-plan/SKILL.md",
-                  "skills/codewiki-view-audit/SKILL.md",
-                  "skills/codewiki/SKILL.md"
+                  "scripts/smoke-test.mjs"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "6ac007d8f82c0dc89c168cafb4feeb2ae9aee9d8",
+                  ".codewiki/index_graph.json": "e7a2c7c1d2e3dfc3b8dee8e28405effa204a191c",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
                   ".codewiki/kb/product/overview.md": "ca1c24bb224268572d0e97afa45db739b7af62d7",
@@ -6318,19 +6121,19 @@
                   ".codewiki/kb/product/users/maintainers.md": "6b48e26d5f0cf5fa9a35c703af37c87ba91d6047",
                   ".codewiki/kb/product/users/package-authors.md": "81d5d10b01cb961753ff46364e1fd471f0c9b1bf",
                   ".codewiki/kb/system/adapters.md": "9ba9e7740331e0f794567fda04c18db830ee0a30",
-                  ".codewiki/kb/system/agency.md": "44fa49eb5a3d125cdade20153a4da850034b4e06",
+                  ".codewiki/kb/system/agency.md": "32171ff3cba37d325915052b0ca8370468144d80",
                   ".codewiki/kb/system/api.md": "2fabd12ace5a61cd72e22262740f44241fb6454c",
                   ".codewiki/kb/system/builds.md": "0405f30bba8490500e14edb581a7bd11bd5f26cd",
-                  ".codewiki/kb/system/compilers.md": "18b13a88dceec5059cb5df5ec0824dbe62ff81c8",
-                  ".codewiki/kb/system/extension.md": "dd94d0f91859dcaea4c46f90f0d3f1e410cffb53",
-                  ".codewiki/kb/system/file-structure.md": "03a996fe452078b366ea25c4ba9e7f8b846f4024",
-                  ".codewiki/kb/system/graph.md": "dfc556318fe1b76feead358053886686aa2de684",
+                  ".codewiki/kb/system/compilers.md": "1b5232ef72ed9d6c09ca5e6b43f4aefad0700ffb",
+                  ".codewiki/kb/system/extension.md": "fac1eaa18a6cce9173b6c464fd759eaf153cfa76",
+                  ".codewiki/kb/system/file-structure.md": "3c0b708ad3b34201a2e54281498c0557c875560c",
+                  ".codewiki/kb/system/graph.md": "4c8b8cf66b284ae029dfcc58de52ec4483063a8b",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
-                  ".codewiki/kb/system/overview.md": "481bb39cce239c201802d52c9c907fad77665afb",
-                  ".codewiki/kb/system/roadmap.md": "325a161263839094aeeeb69986184f793d2a9b68",
+                  ".codewiki/kb/system/overview.md": "64080eb0dc33c4a5c3271d5e1b49ae64c7a7f641",
+                  ".codewiki/kb/system/roadmap.md": "d8ef90ce4e07870e34a8421d337732273689aa59",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "97180ec1fac7b0bff08d40413ca2a3711b7704f6",
+                  ".codewiki/roadmap.json": "4291a346a91d3856f63919fa16c95e1a82667de5",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -6338,33 +6141,33 @@
                   "extensions/codewiki/src/adapters": "",
                   "extensions/codewiki/src/adapters/pi": "",
                   "extensions/codewiki/src/adapters/pi/ui": "",
-                  "extensions/codewiki/src/adapters/pi/ui/manager.ts": "055d38dabf2ecaf19bf30429b10287e478e07ec1",
+                  "extensions/codewiki/src/adapters/pi/ui/manager.ts": "c0318f7dff7bedc2d41b27a0908d17d3557d033c",
                   "extensions/codewiki/src/application": "",
                   "extensions/codewiki/src/domain": "",
                   "extensions/codewiki/src/infrastructure": "",
                   "extensions/codewiki/templates.ts": "a841ad066521eb20b3be3f391a9624376e634937",
                   "package.json": "539ec5a3a92e2df15270cb5b23b0fd99642ee8d2",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "063e0e7f9d82e7f484ce4e950db6cc748f583b76",
+                  "scripts/smoke-test.mjs": "7f79f21cb899d9764ea403e6e6466af73a5d15a9",
                   "skills": "",
                   "skills/codewiki-architecture/SKILL.md": "16c135ad735298d90850d09f6831a78c9da55f7e",
                   "skills/codewiki-feedback/SKILL.md": "1f43bf56da45ab40de3bf00c670d532facafb815",
-                  "skills/codewiki-plan/SKILL.md": "8347b00eb9ed45b2376c8264b561f50c1b42214d",
+                  "skills/codewiki-plan/SKILL.md": "e1a4a16e1c3d59c73eea901537988bb146076a66",
                   "skills/codewiki-task/SKILL.md": "3f58004d21260d07a91d5e721a892ad66d078d10",
                   "skills/codewiki-verify/SKILL.md": "c24184e63673baa9dd1556b80ca61518ea387282",
-                  "skills/codewiki-view-audit/SKILL.md": "b30c8fe51c8d76ac8afe173ffebf957f43cc0daa",
-                  "skills/codewiki/SKILL.md": "637752f2e96e62995d842ef5f66e4fed0309a473"
+                  "skills/codewiki-view-audit/SKILL.md": "118c979408d3f3ed26e8df351d1fb46343878731",
+                  "skills/codewiki/SKILL.md": "9da79591e08f4f481981dd9d73dfc5636ef5fbb8"
                 }
               },
               "spec_digest": "20ab82d527fc003e5fd6592bd11bff1b4e7cecd6a514c70bb99dabac56edd605",
-              "task_digest": "97929dc0c718b5e2e39ff356139469e70ae37e35216e38beeeda65b56f767709",
-              "code_digest": "84759090f060678d40e013000a8d30edc9e74b97c164fcb1e3c5e3fc50702a6b",
-              "digest": "82e37ab4d3a91ac12e285e24dbd3d6372c937dddaa92dd1b9cb32f5a4dcbb714"
+              "task_digest": "a651f0d547ad413e7cf312388dac8911d776d5afbf4d3281e07e1f026d0040b5",
+              "code_digest": "8ff5ab2f7a6646d579a82ec8a5251c724951fcddccde0cdc198eb25e1977818a",
+              "digest": "27363d368f31cc2cc2a2ce76eb884d5714f59908823619a9bda4284c37a1ed21"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-10T06:35:30Z",
+              "checked_at": "2026-05-10T06:59:05Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -6386,13 +6189,13 @@
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
-              ".codewiki/kb/system/extension.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/adapters.md",
+              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/knowledge.md",
+              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/overview.md"
             ],
             "code_paths": [
@@ -6416,19 +6219,18 @@
               "extensions/codewiki/src/domain",
               "extensions/codewiki/src/adapters",
               ".codewiki/builds",
-              "extensions/codewiki/bootstrap.ts",
-              "extensions/codewiki/templates.ts",
-              ".codewiki/roadmap.json",
-              ".codewiki/roadmap",
               "skills/codewiki-verify/SKILL.md",
               ".codewiki/validation",
+              "extensions/codewiki/bootstrap.ts",
+              "extensions/codewiki/templates.ts",
               ".codewiki/kb",
               ".codewiki/index_graph.json",
-              "extensions/codewiki/src/infrastructure"
+              "extensions/codewiki/src/infrastructure",
+              ".codewiki/roadmap.json",
+              ".codewiki/roadmap"
             ],
             "code_area": ".codewiki, skills +3 more",
             "open_task_ids": [
-              "TASK-043",
               "TASK-046"
             ],
             "risky_spec_paths": [
@@ -6436,15 +6238,13 @@
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
-              ".codewiki/kb/system/extension.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/overview.md"
             ],
             "stats": {
               "total_specs": 25,
-              "aligned_specs": 17,
-              "tracked_specs": 7,
+              "aligned_specs": 19,
+              "tracked_specs": 5,
               "untracked_specs": 1,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -6459,18 +6259,18 @@
       },
       "resume": {
         "source": "task",
-        "task_id": "TASK-043",
+        "task_id": "TASK-046",
         "lane_id": "",
-        "heading": "TASK-043 — Automate implementation-build handoff and publication prep",
-        "command": "/wiki-resume TASK-043",
+        "heading": "TASK-046 — Support tester and builder roles from documentation builds",
+        "command": "/wiki-resume TASK-046",
         "reason": "Resume roadmap task (todo · implement).",
         "phase": "implement",
-        "verification": "Create implementation_build for a documentation-only or small code task",
+        "verification": "Update skill/tool docs for tester/builder inputs and outputs",
         "evidence": "No closure evidence recorded yet.",
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-10T06:35:30Z",
+        "generated_at": "2026-05-10T06:59:05Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": []
@@ -6493,18 +6293,17 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-043",
               "TASK-046",
               "TASK-034",
               "TASK-038"
             ],
             "primary_task": {
-              "id": "TASK-043",
+              "id": "TASK-046",
               "status": "todo",
-              "title": "Automate implementation-build handoff and publication prep"
+              "title": "Support tester and builder roles from documentation builds"
             },
             "revision": {},
-            "note": "tracked by TASK-043"
+            "note": "tracked by TASK-046"
           },
           {
             "path": ".codewiki/kb/system/api.md",
@@ -6549,16 +6348,15 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-043",
               "TASK-046"
             ],
             "primary_task": {
-              "id": "TASK-043",
+              "id": "TASK-046",
               "status": "todo",
-              "title": "Automate implementation-build handoff and publication prep"
+              "title": "Support tester and builder roles from documentation builds"
             },
             "revision": {},
-            "note": "tracked by TASK-043"
+            "note": "tracked by TASK-046"
           },
           {
             "path": ".codewiki/kb/system/compilers.md",
@@ -6590,63 +6388,6 @@
             "note": "tracked by TASK-046"
           },
           {
-            "path": ".codewiki/kb/system/extension.md",
-            "title": "Extension",
-            "summary": "Packaged CodeWiki distribution and current Pi extension surface.",
-            "drift_status": "tracked",
-            "code_paths": [
-              "extensions/codewiki/index.ts",
-              "extensions/codewiki/bootstrap.ts",
-              "extensions/codewiki/templates.ts",
-              "extensions/codewiki/src/adapters/pi",
-              "skills",
-              "scripts/smoke-test.mjs",
-              "scripts/check-architecture.mjs"
-            ],
-            "code_area": "extensions, skills +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-043"
-            ],
-            "primary_task": {
-              "id": "TASK-043",
-              "status": "todo",
-              "title": "Automate implementation-build handoff and publication prep"
-            },
-            "revision": {},
-            "note": "tracked by TASK-043"
-          },
-          {
-            "path": ".codewiki/kb/system/roadmap.md",
-            "title": "Roadmap",
-            "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
-            "drift_status": "tracked",
-            "code_paths": [
-              ".codewiki/roadmap.json",
-              ".codewiki/roadmap"
-            ],
-            "code_area": ".codewiki +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-043"
-            ],
-            "primary_task": {
-              "id": "TASK-043",
-              "status": "todo",
-              "title": "Automate implementation-build handoff and publication prep"
-            },
-            "revision": {},
-            "note": "tracked by TASK-043"
-          },
-          {
             "path": ".codewiki/kb/system/validation-gateway.md",
             "title": "Validation Gateway",
             "summary": "Loop-exit gateway that checks vertical and horizontal alignment before handoff, closure, release, or publication.",
@@ -6662,18 +6403,17 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-043",
               "TASK-046",
               "TASK-034",
               "TASK-038"
             ],
             "primary_task": {
-              "id": "TASK-043",
+              "id": "TASK-046",
               "status": "todo",
-              "title": "Automate implementation-build handoff and publication prep"
+              "title": "Support tester and builder roles from documentation builds"
             },
             "revision": {},
-            "note": "tracked by TASK-043"
+            "note": "tracked by TASK-046"
           },
           {
             "path": ".codewiki/kb/lexicon.md",
@@ -7029,6 +6769,31 @@
             "note": "no deterministic drift signals"
           },
           {
+            "path": ".codewiki/kb/system/extension.md",
+            "title": "Extension",
+            "summary": "Packaged CodeWiki distribution and current Pi extension surface.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "extensions/codewiki/index.ts",
+              "extensions/codewiki/bootstrap.ts",
+              "extensions/codewiki/templates.ts",
+              "extensions/codewiki/src/adapters/pi",
+              "skills",
+              "scripts/smoke-test.mjs",
+              "scripts/check-architecture.mjs"
+            ],
+            "code_area": "extensions, skills +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {},
+            "note": "no deterministic drift signals"
+          },
+          {
             "path": ".codewiki/kb/system/file-structure.md",
             "title": "File Structure",
             "summary": "Target knowledge-base and package file structure for CodeWiki.",
@@ -7083,6 +6848,26 @@
               ".codewiki/kb"
             ],
             "code_area": ".codewiki/kb",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {},
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".codewiki/kb/system/roadmap.md",
+            "title": "Roadmap",
+            "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
+            "drift_status": "aligned",
+            "code_paths": [
+              ".codewiki/roadmap.json",
+              ".codewiki/roadmap"
+            ],
+            "code_area": ".codewiki +1 more",
             "issue_counts": {
               "errors": 0,
               "warnings": 0,
@@ -7450,18 +7235,17 @@
                   "total": 0
                 },
                 "related_task_ids": [
-                  "TASK-043",
                   "TASK-046",
                   "TASK-034",
                   "TASK-038"
                 ],
                 "primary_task": {
-                  "id": "TASK-043",
+                  "id": "TASK-046",
                   "status": "todo",
-                  "title": "Automate implementation-build handoff and publication prep"
+                  "title": "Support tester and builder roles from documentation builds"
                 },
                 "revision": {},
-                "note": "tracked by TASK-043"
+                "note": "tracked by TASK-046"
               },
               {
                 "path": ".codewiki/kb/system/api.md",
@@ -7506,16 +7290,15 @@
                   "total": 0
                 },
                 "related_task_ids": [
-                  "TASK-043",
                   "TASK-046"
                 ],
                 "primary_task": {
-                  "id": "TASK-043",
+                  "id": "TASK-046",
                   "status": "todo",
-                  "title": "Automate implementation-build handoff and publication prep"
+                  "title": "Support tester and builder roles from documentation builds"
                 },
                 "revision": {},
-                "note": "tracked by TASK-043"
+                "note": "tracked by TASK-046"
               },
               {
                 "path": ".codewiki/kb/system/compilers.md",
@@ -7547,63 +7330,6 @@
                 "note": "tracked by TASK-046"
               },
               {
-                "path": ".codewiki/kb/system/extension.md",
-                "title": "Extension",
-                "summary": "Packaged CodeWiki distribution and current Pi extension surface.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  "extensions/codewiki/index.ts",
-                  "extensions/codewiki/bootstrap.ts",
-                  "extensions/codewiki/templates.ts",
-                  "extensions/codewiki/src/adapters/pi",
-                  "skills",
-                  "scripts/smoke-test.mjs",
-                  "scripts/check-architecture.mjs"
-                ],
-                "code_area": "extensions, skills +1 more",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-043"
-                ],
-                "primary_task": {
-                  "id": "TASK-043",
-                  "status": "todo",
-                  "title": "Automate implementation-build handoff and publication prep"
-                },
-                "revision": {},
-                "note": "tracked by TASK-043"
-              },
-              {
-                "path": ".codewiki/kb/system/roadmap.md",
-                "title": "Roadmap",
-                "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  ".codewiki/roadmap.json",
-                  ".codewiki/roadmap"
-                ],
-                "code_area": ".codewiki +1 more",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-043"
-                ],
-                "primary_task": {
-                  "id": "TASK-043",
-                  "status": "todo",
-                  "title": "Automate implementation-build handoff and publication prep"
-                },
-                "revision": {},
-                "note": "tracked by TASK-043"
-              },
-              {
                 "path": ".codewiki/kb/system/validation-gateway.md",
                 "title": "Validation Gateway",
                 "summary": "Loop-exit gateway that checks vertical and horizontal alignment before handoff, closure, release, or publication.",
@@ -7619,18 +7345,17 @@
                   "total": 0
                 },
                 "related_task_ids": [
-                  "TASK-043",
                   "TASK-046",
                   "TASK-034",
                   "TASK-038"
                 ],
                 "primary_task": {
-                  "id": "TASK-043",
+                  "id": "TASK-046",
                   "status": "todo",
-                  "title": "Automate implementation-build handoff and publication prep"
+                  "title": "Support tester and builder roles from documentation builds"
                 },
                 "revision": {},
-                "note": "tracked by TASK-043"
+                "note": "tracked by TASK-046"
               },
               {
                 "path": ".codewiki/kb/lexicon.md",
@@ -7688,6 +7413,31 @@
                   "status": "done",
                   "title": "Align CodeWiki skill package with compiler and API contracts"
                 },
+                "revision": {},
+                "note": "no deterministic drift signals"
+              },
+              {
+                "path": ".codewiki/kb/system/extension.md",
+                "title": "Extension",
+                "summary": "Packaged CodeWiki distribution and current Pi extension surface.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  "extensions/codewiki/index.ts",
+                  "extensions/codewiki/bootstrap.ts",
+                  "extensions/codewiki/templates.ts",
+                  "extensions/codewiki/src/adapters/pi",
+                  "skills",
+                  "scripts/smoke-test.mjs",
+                  "scripts/check-architecture.mjs"
+                ],
+                "code_area": "extensions, skills +1 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [],
+                "primary_task": null,
                 "revision": {},
                 "note": "no deterministic drift signals"
               },
@@ -7757,6 +7507,26 @@
                 "note": "no deterministic drift signals"
               },
               {
+                "path": ".codewiki/kb/system/roadmap.md",
+                "title": "Roadmap",
+                "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  ".codewiki/roadmap.json",
+                  ".codewiki/roadmap"
+                ],
+                "code_area": ".codewiki +1 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [],
+                "primary_task": null,
+                "revision": {},
+                "note": "no deterministic drift signals"
+              },
+              {
                 "path": ".codewiki/kb/system/overview.md",
                 "title": "System Overview",
                 "summary": "Main runtime areas and ownership boundaries for CodeWiki.",
@@ -7804,13 +7574,12 @@
         "focused_task_id": "",
         "blocked_task_ids": [],
         "in_progress_task_ids": [],
-        "next_task_id": "TASK-043",
+        "next_task_id": "TASK-046",
         "columns": [
           {
             "id": "todo",
             "label": "Todo",
             "task_ids": [
-              "TASK-043",
               "TASK-046"
             ]
           },

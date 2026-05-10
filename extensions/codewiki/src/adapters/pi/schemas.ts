@@ -289,6 +289,16 @@ export const codewikiBuildToolInputSchema = Type.Object({
 		criterion: Type.String(),
 		evidence: Type.String(),
 	}))),
+	validation_refs: Type.Optional(Type.Array(Type.String())),
+	risks: Type.Optional(Type.Array(Type.String())),
+	publication: Type.Optional(Type.Object({
+		commit_title: Type.Optional(Type.String()),
+		commit_body: Type.Optional(Type.String()),
+		pr_title: Type.Optional(Type.String()),
+		pr_body: Type.Optional(Type.String()),
+		issue_update: Type.Optional(Type.String()),
+		release_notes: Type.Optional(Type.String()),
+	})),
 });
 export const codewikiValidationReportSchema = Type.Object({
 	repoPath: repoPathToolField,
