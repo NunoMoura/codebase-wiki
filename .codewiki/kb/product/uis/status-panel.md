@@ -6,7 +6,7 @@ summary: Product expectations for compact visual status and panel-first CodeWiki
 owners:
   - product
   - design
-updated: "2026-05-09"
+updated: "2026-05-11"
 code_paths:
   - extensions/codewiki/src/adapters/pi/ui
 ---
@@ -22,12 +22,13 @@ The status panel header shows only the repo name. Its tabs are:
 - Home — overall traffic-light status, current focus, gates, and influencing factors.
 - Product — users, stories, and visual UIs.
 - System — architecture graph with selectable components.
-- Board — tracked work, gated agency controls, approvals, and next actions.
+- Board — tracked work, sprint/task scopes, gated agency controls, approvals, diff-table decisions, and next actions.
 
 ## Success signals
 
 - Users can open a primary visual status surface for health, inferred delta, gates, and tracked work.
 - Users can see what needs attention without reading generated JSON.
+- Users can approve, reject, defer, or propose alternatives for feedback diff-table rows before they become accepted build truth.
 - Product and system tabs route to canonical knowledge rather than hidden UI-only truth.
 - Visual status reads graph-backed relationships and roadmap work truth instead of duplicating them.
 

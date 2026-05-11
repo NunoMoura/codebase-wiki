@@ -6,7 +6,7 @@ summary: System mechanism for bounded roadmap automation through agency cycles a
 owners:
   - architecture
   - engineering
-updated: "2026-05-09"
+updated: "2026-05-11"
 code_paths:
   - extensions/codewiki/src/application
   - extensions/codewiki/src/adapters/pi
@@ -16,7 +16,7 @@ code_paths:
 
 ## Responsibility
 
-The agency controller is the system mechanism behind the product need for gated agency. It lets an agent advance roadmap work automatically while enforcing explicit token, time, risk, validation, policy, and approval gates.
+The agency controller is the system mechanism behind the product need for gated agency. It lets an agent advance roadmap work automatically while enforcing explicit token, time, cost, write, session, risk, validation, policy, and approval gates.
 
 The product concept is gated agency. The implementation mechanism is the agency controller running bounded agency cycles. An agency cycle observes state, selects safe work, runs one small step, checks gates, and stops or routes to the next loop.
 
@@ -25,11 +25,24 @@ The product concept is gated agency. The implementation mechanism is the agency 
 The controller reads:
 
 - graph state and recommended next actions,
-- roadmap active work, blockers, and closure state,
+- roadmap active sprints, active tasks, blockers, and closure state,
 - accepted builds and linked knowledge,
 - validation requirements and policy gates,
-- user-provided budgets such as token limit, time limit, cycle limit, write limit, and risk limit,
+- user-provided budgets such as token limit, time limit, cost limit, cycle limit, write limit, session limit, and risk limit,
+- configured agency scope such as roadmap, sprint, or task,
 - harness capabilities exposed through adapters.
+
+## Scopes
+
+Agency can run at three scopes:
+
+| Scope | Responsibility |
+| --- | --- |
+| `roadmap` | Audit or maintain the whole active roadmap inside conservative budgets. |
+| `sprint` | Advance a bounded cohort of related tasks with shared budget, claims, and closure checkpoint. |
+| `task` | Advance one atomic roadmap work item. |
+
+Sprint scope is the default target for parallel work once a sprint model exists. If the harness can spawn sessions, CodeWiki may create one session per sprint or bounded sprint workstream; otherwise it should emit compact handoff prompts and claims for manual or external spawning.
 
 ## Modes
 
@@ -45,7 +58,7 @@ These modes are implementation controls, not product stories. Product docs shoul
 
 The controller must stop when any gate fails:
 
-- token, time, cycle, or write budget exhausted,
+- token, time, cost, cycle, session, or write budget exhausted,
 - risk exceeds the configured limit,
 - user approval is required,
 - intent is ambiguous,
@@ -59,7 +72,7 @@ The controller must stop when any gate fails:
 The controller does not replace the graph, compilers, roadmap, or validation gateway. It coordinates them:
 
 ```text
-graph state -> roadmap focus -> compiler step -> validation gateway -> build/evidence -> next graph state
+graph state -> scoped roadmap/sprint/task focus -> compiler step -> validation gateway -> build/evidence -> next graph state
 ```
 
 When intent is unclear, it routes to feedback. When knowledge must change, it routes to documentation. When code/tests must change, it routes to implementation. When evidence is ready, it routes to validation or closure.
@@ -71,6 +84,7 @@ When intent is unclear, it routes to feedback. When knowledge must change, it ro
 - The controller must not mutate generated graph state directly.
 - The controller must not bypass validation gateway or policy decisions.
 - Commit, push, release, and remote updates require explicit publication policy approval.
+- Parallel sprint execution must claim narrow scopes and stop on write/write conflicts unless policy explicitly permits override.
 
 ## Related docs
 

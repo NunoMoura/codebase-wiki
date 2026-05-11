@@ -7,7 +7,7 @@ summary: Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, 
 owners:
 - product
 - architecture
-updated: '2026-05-09'
+updated: '2026-05-11'
 code_paths:
 - .codewiki/kb
 ---
@@ -42,9 +42,13 @@ The compiler that turns an accepted `feedback_build` into updated `.codewiki/kb/
 
 The compiler that turns a `documentation_build` and roadmap work item into tests, code, checks, and an `implementation_build`. It follows TDD when practical and keeps tests in code/test directories instead of knowledge artifacts.
 
+## Diff table
+
+Feedback-loop decision surface that compares current state to desired state before canonical edits. Pending rows can live in runtime/session UI state. Approved rows compile into a `feedback_build`.
+
 ## Feedback build
 
-Compact artifact under `.codewiki/builds/feedback/**` for accepted intent, decisions, constraints, ambiguities, and downstream changes.
+Compact artifact under `.codewiki/builds/feedback/**` for approved diff rows, accepted intent, decisions, constraints, ambiguities, and downstream changes.
 
 ## Documentation build
 
@@ -52,7 +56,11 @@ Compact artifact under `.codewiki/builds/documentation/**` for knowledge patches
 
 ## Implementation build
 
-Compact artifact under `.codewiki/builds/implementation/**` for test/code changes, checks, acceptance mapping, and implementation evidence.
+Compact artifact under `.codewiki/builds/implementation/**` for test/code changes, checks, acceptance mapping, closure brief, and implementation evidence.
+
+## Closure brief
+
+User-facing implementation summary that proves accepted intent moved through knowledge, roadmap, code/tests, checks, and validation. It belongs in the implementation build and should stay compact.
 
 ## Validation gateway
 

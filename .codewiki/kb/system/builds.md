@@ -2,7 +2,7 @@
 id: spec.system.builds
 title: Builds
 state: active
-summary: Temporary compiler handoff briefs for intent, implementation specs, and implementation evidence.
+summary: High-signal compiler handoff contracts for intent, implementation specs, closure evidence, and graph reconciliation.
 owners:
   - architecture
 updated: "2026-05-11"
@@ -16,7 +16,9 @@ code_paths:
 
 ## Responsibility
 
-Builds are temporary handoff briefs between loops. They compact validated intent, implementation specs, or implementation evidence so the next loop can work without relying on chat memory.
+Builds are temporary handoff contracts between loops. They compact validated intent, implementation specs, or implementation evidence so the next loop can work without relying on chat memory.
+
+Builds must be high-signal and low-noise. They should carry the smallest useful contract for the next layer plus enough user-facing evidence to prove intent was preserved across layers.
 
 Builds are not permanent archives. They can be archived or purged after downstream truth absorbs them and validation confirms alignment.
 
@@ -33,13 +35,15 @@ Builds are not permanent archives. They can be archived or purged after downstre
 A feedback build should include:
 
 - user intention or problem,
+- approved diff-table rows,
 - accepted decisions,
 - assumptions,
 - open questions,
 - non-goals,
 - blind spots and risks surfaced during feedback,
-- approved diff-table rows,
 - expected lower-layer changes.
+
+The approved diff table is mandatory for new feedback builds because it is the user-facing intent contract. Each row records current state, desired state, rationale, affected layers, risk, and user action. Pending or rejected rows can live in runtime/session UI state; only approved rows become canonical feedback build content.
 
 ## Documentation build
 
@@ -65,16 +69,28 @@ An implementation build should include:
 - acceptance mapping,
 - validation verdict refs,
 - unresolved issues or risks,
+- a mandatory closure brief,
 - recommended commit title/body,
 - PR or issue update draft when useful,
 - push-readiness notes such as branch, checks, version, changelog, and policy status.
 
+The closure brief is the user-facing proof that implementation satisfied the accepted intent. It should summarize original user intent, implemented changes, layers updated, acceptance evidence, checks, preserved non-goals, and remaining risks.
+
 The implementation build can recommend publication actions, but validation and policy decide whether commit, push, release, or remote updates are allowed. It may also carry compact handoff context for resume after closure or checkpoint: task id, linked specs/code, checks, validation refs, tester/builder evidence, next-focus suggestion, and a `/wiki-resume TASK-###` command. This handoff context supplements graph/roadmap state; it does not replace builds, roadmap, validation, or code/tests with chat transcript summaries.
+
+## Contract fields
+
+New builds should expose explicit DAG fields:
+
+- `consumes`: upstream build, roadmap, validation, or source refs this build depends on,
+- `produces`: downstream knowledge, roadmap, code, test, validation, publication, or closure refs this build creates or updates.
+
+Graph reconciliation should prefer these explicit edges over inferred legacy fields.
 
 ## Lifecycle
 
 ```text
-proposed -> accepted -> applied -> validated -> archived -> purged
+proposed -> accepted -> consumed -> validated -> archived -> purged
 ```
 
 Passing validation can be recorded in accepted build metadata. Failed, blocked, policy-required, release, or audit-mode validation reports should persist under `.codewiki/validation/**`.

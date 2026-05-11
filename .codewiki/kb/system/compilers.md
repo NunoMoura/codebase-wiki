@@ -6,7 +6,7 @@ summary: Feedback, documentation, and implementation loops that create validated
 owners:
   - architecture
   - product
-updated: "2026-05-09"
+updated: "2026-05-11"
 code_paths:
   - skills/codewiki-feedback/SKILL.md
   - skills/codewiki-documentation/SKILL.md
@@ -40,9 +40,9 @@ It should surface:
 - conflicts with current product, system, architecture, or code truth,
 - affected layers.
 
-The feedback loop should present diff tables before canonical edits. Each row should show current state, proposed state, rationale, affected docs/code, risk, and a user action such as approve, edit, reject, or defer.
+The feedback loop should present diff tables before canonical edits. Each row should show current state, desired state, rationale, affected docs/code, risk, and a user action such as approve, edit, reject, or defer.
 
-Accepted rows compile into a `feedback_build`.
+Accepted rows compile into a `feedback_build`. Pending, rejected, or deferred rows can remain in runtime/session UI state or be summarized as open questions, non-goals, or future candidates, but they should not silently become implementation requirements.
 
 ## Documentation loop
 
@@ -58,14 +58,14 @@ The documentation loop should:
 
 ## Implementation loop
 
-The implementation loop consumes a `documentation_build`, linked knowledge, and roadmap work item state. It creates or updates tests and code, runs checks, collects evidence, and produces an `implementation_build`.
+The implementation loop consumes a `documentation_build`, linked knowledge, and roadmap work item state. It creates or updates tests and code, runs checks, collects evidence, and produces an `implementation_build` with a compact closure brief for user review.
 
 For bias-sensitive or agent-created test work, it may split into:
 
 - `tester`: consumes the documentation build and roadmap work item, then derives tests or test-design evidence before code changes where practical,
 - `builder`: consumes the documentation build, roadmap work item, tester output, and required checks, then changes code until tests and acceptance pass.
 
-The split is optional. The implementation build should distinguish tester evidence from builder evidence so validation can review the split without requiring separate agents for every task.
+The split is optional. The implementation build should distinguish tester evidence from builder evidence so validation can review the split without requiring separate agents for every task. Its closure brief should prove that accepted user intent, knowledge updates, roadmap work, code/tests, checks, and validation evidence align.
 
 ## Gated agency
 

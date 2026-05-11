@@ -5,7 +5,7 @@ state: active
 summary: Work truth for active items, priority, status, blockers, progress, and closure.
 owners:
   - architecture
-updated: "2026-05-09"
+updated: "2026-05-11"
 code_paths:
   - .codewiki/roadmap.json
   - .codewiki/roadmap
@@ -17,11 +17,28 @@ code_paths:
 
 The roadmap owns active work truth. It records work that is todo, in progress, blocked, under verification, or briefly retained after closure for handoff.
 
+The roadmap can group related tasks into sprints. A sprint is a bounded cohort of tasks with a shared outcome, scope, budget, and closure checkpoint. Sprints help users and agency runs work at roadmap, sprint, or task granularity without turning CodeWiki into a full project-management suite.
+
 The roadmap is not the long-term archive. Git preserves full historical task state. Builds and validation reports preserve semantic handoff/evidence when needed. Closed or cancelled tasks should leave the hot roadmap after a short retention window or release checkpoint.
 
 The roadmap is not the requirements brief. Requirements live in accepted builds and durable knowledge. Roadmap items reference those sources and track execution state.
 
-Gated agency uses roadmap state as work truth. The graph derives queue order and next-action routing, while the agency controller owns budgets, stop conditions, and autonomous step orchestration.
+Gated agency uses roadmap state as work truth. The graph derives scoped views, queue order, and next-action routing, while the agency controller owns budgets, stop conditions, and autonomous step orchestration.
+
+## Sprint contents
+
+A sprint should record:
+
+- id,
+- title,
+- outcome,
+- status such as `planned`, `active`, `review`, or `closed`,
+- task ids,
+- scope across knowledge, roadmap, builds, validation, code, or tests,
+- budget limits such as time, token, cost, write, session, and risk limits,
+- closure gates such as validation, checkpoint, and garbage collection.
+
+Future sprints can stay outcome-level. The active sprint should be decomposed into executable roadmap tasks.
 
 ## Roadmap item contents
 
@@ -65,12 +82,13 @@ The graph state machine owns reconciliation state such as drift, freshness, rout
 
 ## Gated agency support
 
-For automated roadmap progress, roadmap state should expose canonical task fields needed to derive:
+For automated roadmap progress, roadmap state should expose canonical sprint/task fields needed to derive:
 
-- eligible work items,
+- eligible work items by roadmap, sprint, or task scope,
 - blocked and approval-required items,
 - linked builds and knowledge paths,
 - required validation gates,
+- configured time, token, cost, write, session, and risk budgets,
 - known risk level,
 - evidence needed before closure.
 
@@ -78,7 +96,7 @@ The roadmap should not decide whether an agent may continue or what queue order 
 
 ## Retention and history
 
-Hot roadmap state should contain active work plus any recently closed/cancelled work still needed for immediate handoff. After checkpoint or retention expiry, closed/cancelled task detail should move out of the active roadmap and rely on:
+Hot roadmap state should contain active sprints, active work, and any recently closed/cancelled work still needed for immediate handoff. After sprint checkpoint or retention expiry, closed/cancelled task detail should move out of the active roadmap and rely on:
 
 - git for full history,
 - implementation builds for implementation evidence,

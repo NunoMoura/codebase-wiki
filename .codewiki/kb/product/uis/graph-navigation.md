@@ -6,7 +6,7 @@ summary: Product expectations for visual graph-backed navigation.
 owners:
 - product
 - design
-updated: '2026-05-09'
+updated: '2026-05-11'
 code_paths:
 - extensions/codewiki/src/adapters/pi/ui/manager.ts
 ---
@@ -23,8 +23,9 @@ Product expectations:
 - explain why a node, edge, missing link, or stale link matters,
 - show affected product, system, roadmap, build, validation, test, and code layers,
 - avoid broad context dumps,
-- route from user intent to knowledge, roadmap work, builds, validation reports, tests, and code,
-- make canonical source links visible.
+- route from user intent to feedback diff rows, knowledge, roadmap work, builds, validation reports, tests, and code,
+- make canonical source links visible,
+- show sprint/task scoped graph slices when agency is bounded to a cohort or single task.
 
 ## Success signals
 
