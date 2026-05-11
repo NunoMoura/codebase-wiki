@@ -9,7 +9,11 @@ import {
 	buildControlRoomSystemModel,
 	startControlRoomServer,
 } from "../../extensions/codewiki/src/adapters/web/control-room.ts";
-import { parseUiArgs } from "../../extensions/codewiki/src/adapters/pi/commands/ui.ts";
+import {
+	buildBrowserOpenCommand,
+	formatControlRoomLaunchMessage,
+	parseUiArgs,
+} from "../../extensions/codewiki/src/adapters/pi/commands/ui.ts";
 
 const root = await mkdtemp(join(tmpdir(), "codewiki-control-room-"));
 let server;
@@ -85,6 +89,18 @@ Owns generated graph state.
 
 	assert.deepEqual(parseUiArgs("3030 /tmp/repo"), { pathArg: "/tmp/repo", port: 3030 });
 	assert.deepEqual(parseUiArgs("/tmp/repo"), { pathArg: "/tmp/repo", port: undefined });
+	assert.deepEqual(buildBrowserOpenCommand("http://127.0.0.1:3000/", "darwin"), { command: "open", args: ["http://127.0.0.1:3000/"] });
+	assert.deepEqual(buildBrowserOpenCommand("http://127.0.0.1:3000/", "linux"), { command: "xdg-open", args: ["http://127.0.0.1:3000/"] });
+	assert.deepEqual(buildBrowserOpenCommand("http://127.0.0.1:3000/", "win32"), { command: "cmd", args: ["/c", "start", "", "http://127.0.0.1:3000/"] });
+	assert.equal(buildBrowserOpenCommand("http://127.0.0.1:3000/", "aix"), null);
+	assert.equal(
+		formatControlRoomLaunchMessage("repo", "http://127.0.0.1:3000/", { opened: true }, false),
+		"repo Control Room started; opened browser. URL: http://127.0.0.1:3000/",
+	);
+	assert.match(
+		formatControlRoomLaunchMessage("repo", "http://127.0.0.1:3000/", { opened: false, error: "missing" }, true),
+		/Open: http:\/\/127\.0\.0\.1:3000\//,
+	);
 
 	server = await startControlRoomServer(project, { port: 0 });
 	assert.equal(server.host, "127.0.0.1");

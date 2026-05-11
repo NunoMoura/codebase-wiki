@@ -24,7 +24,7 @@ Public command surface is intentionally small:
 - `Alt+W`
   - toggles compact live Codewiki status panel
 - `/wiki-ui [repo-path] [port]`
-  - starts the standalone local CodeWiki Control Room and prints its browser URL
+  - starts the standalone local CodeWiki Control Room, opens the browser when possible, and prints its local URL fallback
 - `/wiki-config`
   - opens interactive Codewiki configuration with option lists and toggles
   - optional args remain available for direct fallback updates: `[show|auto|pin|off|minimal|standard|full] [repo-path]`
@@ -307,7 +307,7 @@ Starter bootstrap includes:
 
 ### Status, fix, and review
 
-`/wiki-ui` starts the standalone local Control Room on `127.0.0.1` and prints the browser URL. It is the rich visual surface for System and Graph navigation and is independent of Pi TUI rendering.
+`/wiki-ui` starts the standalone local Control Room on `127.0.0.1`, attempts to open the browser, and prints the plain local URL as a fallback. It is the rich visual surface for System and Graph navigation and is independent of Pi TUI rendering.
 
 `Alt+W` opens the compact live status panel backed by the same drift-first read model. It remains useful as a host-native launcher/fallback when the full Control Room is not needed.
 

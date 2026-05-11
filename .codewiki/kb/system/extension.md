@@ -32,7 +32,7 @@ The Pi adapter owns:
 - `/wiki-*` commands,
 - `codewiki_*` tools,
 - `Alt+W` compact visual status UI,
-- `/wiki-ui [repo-path] [port]` to start the local Control Room and print its URL,
+- `/wiki-ui [repo-path] [port]` to start the local Control Room, attempt to open its browser URL, and print a plain local URL fallback,
 - `codewiki_agency` as the current Pi-facing agency controller entrypoint,
 - session lifecycle hooks,
 - packaged workflow skills,

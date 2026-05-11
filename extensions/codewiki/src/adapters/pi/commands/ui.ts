@@ -1,9 +1,21 @@
+import { spawn } from "node:child_process";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { resolveCommandProject } from "../../../application/project.ts";
 import { startControlRoomServer, type ControlRoomServerHandle } from "../../web/control-room.ts";
 import { withUiErrorHandling } from "../ui/manager.ts";
 
 const activeControlRooms = new Map<string, ControlRoomServerHandle>();
+
+export interface BrowserOpenCommand {
+	command: string;
+	args: string[];
+}
+
+export interface BrowserOpenResult {
+	opened: boolean;
+	command?: string;
+	error?: string;
+}
 
 export function registerUiCommand(pi: ExtensionAPI): void {
 	pi.registerCommand("wiki-ui", {
@@ -14,12 +26,14 @@ export function registerUiCommand(pi: ExtensionAPI): void {
 				const project = await resolveCommandProject(ctx, parsed.pathArg, "wiki-ui");
 				const existing = activeControlRooms.get(project.root);
 				if (existing) {
-					ctx.ui.notify(`${project.label} Control Room already running: ${existing.url}`, "info");
+					const opened = await tryOpenUrlInBrowser(existing.url);
+					ctx.ui.notify(formatControlRoomLaunchMessage(project.label, existing.url, opened, true), opened.opened ? "info" : "warning");
 					return;
 				}
 				const server = await startControlRoomServer(project, { port: parsed.port });
 				activeControlRooms.set(project.root, server);
-				ctx.ui.notify(`${project.label} Control Room: ${server.url}`, "info");
+				const opened = await tryOpenUrlInBrowser(server.url);
+				ctx.ui.notify(formatControlRoomLaunchMessage(project.label, server.url, opened, false), opened.opened ? "info" : "warning");
 			});
 		},
 	});
@@ -40,4 +54,59 @@ export function parseUiArgs(args: string): { pathArg: string | null; port?: numb
 		remaining.push(part);
 	}
 	return { pathArg: remaining.join(" ") || null, port };
+}
+
+export function buildBrowserOpenCommand(
+	url: string,
+	platform: NodeJS.Platform = process.platform,
+): BrowserOpenCommand | null {
+	if (platform === "darwin") return { command: "open", args: [url] };
+	if (platform === "win32") return { command: "cmd", args: ["/c", "start", "", url] };
+	if (["linux", "freebsd", "openbsd", "netbsd"].includes(platform)) {
+		return { command: "xdg-open", args: [url] };
+	}
+	return null;
+}
+
+export async function tryOpenUrlInBrowser(url: string): Promise<BrowserOpenResult> {
+	const browserCommand = buildBrowserOpenCommand(url);
+	if (!browserCommand) {
+		return { opened: false, error: `No browser opener configured for ${process.platform}.` };
+	}
+	return new Promise<BrowserOpenResult>((resolve) => {
+		let settled = false;
+		const settle = (result: BrowserOpenResult) => {
+			if (settled) return;
+			settled = true;
+			resolve(result);
+		};
+		try {
+			const child = spawn(browserCommand.command, browserCommand.args, {
+				detached: true,
+				stdio: "ignore",
+				windowsHide: true,
+			});
+			const commandText = [browserCommand.command, ...browserCommand.args].join(" ");
+			child.once("error", (error) => settle({ opened: false, command: commandText, error: error.message }));
+			child.once("spawn", () => {
+				child.unref();
+				settle({ opened: true, command: commandText });
+			});
+		} catch (error) {
+			settle({ opened: false, command: browserCommand.command, error: error instanceof Error ? error.message : String(error) });
+		}
+	});
+}
+
+export function formatControlRoomLaunchMessage(
+	projectLabel: string,
+	url: string,
+	result: BrowserOpenResult,
+	alreadyRunning: boolean,
+): string {
+	const prefix = alreadyRunning ? `${projectLabel} Control Room already running` : `${projectLabel} Control Room started`;
+	if (result.opened) {
+		return `${prefix}; opened browser. URL: ${url}`;
+	}
+	return `${prefix}; browser open failed${result.error ? ` (${result.error})` : ""}. Open: ${url}`;
 }

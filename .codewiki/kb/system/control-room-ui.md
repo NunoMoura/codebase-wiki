@@ -34,7 +34,7 @@ codewiki ui or harness launcher
         -> repo-local .codewiki files, graph state, code paths, and git metadata
 ```
 
-The server should bind to `127.0.0.1` by default, choose an available port, and open or print a local URL. It should not require hosted infrastructure, accounts, or internet access.
+The server should bind to `127.0.0.1` by default, choose an available port, attempt to open the local URL in the system browser when launched from an interactive host, and always print a plain `http://127.0.0.1:<port>/` fallback. It should not require hosted infrastructure, accounts, or internet access.
 
 Optional shared LAN/server mode may be added later with an explicit flag, token authentication, and clear warnings. It must never be the default.
 
@@ -44,7 +44,7 @@ Harnesses launch or connect to the Control Room; they do not fork the UI semanti
 
 | Harness or access surface | Expected role |
 | --- | --- |
-| Pi | Provide a command or shortcut that launches the local Control Room and keep the compact TUI status panel as a fallback. |
+| Pi | Provide a command or shortcut that launches the local Control Room, attempts to open the local URL in the browser, prints a plain URL fallback, and keeps the compact TUI status panel as a fallback. |
 | CLI | Start the local server and print or open the URL. |
 | MCP | Expose the same API capabilities for non-visual agent access. |
 | Claude Code | Launch through CLI or MCP when implemented. |
@@ -99,7 +99,7 @@ Multiple computers using separate clones synchronize durable truth through git. 
 
 ## Success signals
 
-- A user can launch a local browser Control Room from the current repo.
+- A user can launch a local browser Control Room from the current repo, with automatic browser opening when available and a plain local URL fallback when not.
 - The Control Room renders a retro terminal-style shell without depending on Pi TUI rendering.
 - The visual theme uses muted green as a base, white/off-white as primary highlight, amber/old-gold as secondary accent, and avoids blue highlight dependency.
 - Product, System, Graph, Roadmap, Builds, Validation, Diff, and Settings have recognizable source-backed representations.
