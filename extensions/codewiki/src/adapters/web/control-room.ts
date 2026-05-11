@@ -619,6 +619,9 @@ a { color: var(--highlight); }
 
 const CONTROL_ROOM_JS = String.raw`
 const state = { model: null, system: null, graph: null, selected: null, systemZoom: 0.92, graphZoom: 1, drawnEdges: [], cy: null };
+const GRAPH_FIT_PADDING = 72;
+const GRAPH_LAYOUT_SPACING = 180;
+const GRAPH_NODE_REPULSION = 26000;
 const $ = (id) => document.getElementById(id);
 const esc = (value) => String(value ?? '').replace(/[&<>"]/g, (ch) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 
@@ -856,15 +859,19 @@ function drawGraphMap() {
     container,
     elements: buildCytoscapeElements(nodes, edges),
     wheelSensitivity: 0.18,
-    minZoom: 0.18,
-    maxZoom: 2.4,
+    minZoom: 0.05,
+    maxZoom: 2.8,
     style: createGraphStyle(),
     layout: layoutForGraph(nodes, edges),
   });
   state.cy = cy;
   cy.on('tap', 'node', (event) => inspectGraphNode(String(event.target.data('id'))));
   cy.on('tap', 'edge', (event) => inspectGraphEdge(Number(event.target.data('index'))));
-  cy.ready(() => cy.fit(undefined, 46));
+  cy.one('layoutstop', () => fitGraph(cy));
+  cy.ready(() => {
+    fitGraph(cy);
+    window.requestAnimationFrame(() => fitGraph(cy));
+  });
 }
 
 function destroyGraphRenderer() {
@@ -872,6 +879,10 @@ function destroyGraphRenderer() {
     state.cy.destroy();
     state.cy = null;
   }
+}
+
+function fitGraph(cy) {
+  cy.fit(cy.elements(), GRAPH_FIT_PADDING);
 }
 
 function buildCytoscapeElements(nodes, edges) {
@@ -970,20 +981,29 @@ function createGraphStyle() {
 }
 
 function layoutForGraph(nodes, edges) {
-  if (nodes.length <= 8) return { name: 'circle', fit: true, padding: 46 };
-  if (edges.length === 0) return { name: 'grid', fit: true, padding: 46, avoidOverlap: true };
+  if (nodes.length <= 8) {
+    return { name: 'circle', fit: true, padding: GRAPH_FIT_PADDING, avoidOverlap: true, nodeDimensionsIncludeLabels: true, spacingFactor: 1.8 };
+  }
+  if (edges.length === 0) {
+    return { name: 'grid', fit: true, padding: GRAPH_FIT_PADDING, avoidOverlap: true, nodeDimensionsIncludeLabels: true, spacingFactor: 2.1 };
+  }
   return {
     name: 'cose',
     animate: false,
-    componentSpacing: 90,
-    edgeElasticity: 90,
+    componentSpacing: GRAPH_LAYOUT_SPACING,
+    coolingFactor: 0.96,
+    edgeElasticity: 48,
     fit: true,
-    idealEdgeLength: 118,
-    nestingFactor: 1.2,
-    nodeOverlap: 16,
-    nodeRepulsion: 9000,
-    numIter: 700,
-    padding: 46,
+    gravity: 0.08,
+    idealEdgeLength: GRAPH_LAYOUT_SPACING,
+    initialTemp: 300,
+    minTemp: 1,
+    nestingFactor: 1.0,
+    nodeDimensionsIncludeLabels: true,
+    nodeOverlap: 72,
+    nodeRepulsion: GRAPH_NODE_REPULSION,
+    numIter: 1400,
+    padding: GRAPH_FIT_PADDING,
     randomize: true,
   };
 }
@@ -1040,8 +1060,8 @@ function controlGraphViewport(action) {
     drawGraphMap();
     return;
   }
-  if (action === 'fit') { state.cy.fit(undefined, 46); return; }
-  if (action === 'reset') { state.cy.reset(); state.cy.fit(undefined, 46); return; }
+  if (action === 'fit') { fitGraph(state.cy); return; }
+  if (action === 'reset') { state.cy.reset(); fitGraph(state.cy); return; }
   const box = state.cy.container().getBoundingClientRect();
   const renderedPosition = { x: box.width / 2, y: box.height / 2 };
   const factor = action === 'in' ? 1.18 : 1 / 1.18;

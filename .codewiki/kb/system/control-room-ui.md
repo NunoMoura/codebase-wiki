@@ -78,7 +78,7 @@ The component inspector should extract the corresponding Markdown document front
 
 The Graph view reads `.codewiki/index_graph.json` and renders nodes and edges visually. It should support filtering by node kind, edge kind, active task or sprint scope, drift, stale state, and build DAG relationships.
 
-The renderer should provide zoom in, zoom out, fit, and reset controls. Large graphs should default to useful scoped or filtered slices instead of rendering all relationships at once. The graph canvas should support scrolling or panning so users can inspect details without losing the left navigation rail or right inspector.
+The renderer should provide zoom in, zoom out, fit, and reset controls. Large graphs should default to useful scoped or filtered slices instead of rendering all relationships at once. The default Cytoscape layout should use a spread configuration with larger node repulsion and component spacing than the compact prototype, then auto-fit the visible slice into the viewport with consistent padding. The graph canvas should support scrolling or panning so users can inspect details without losing the left navigation rail or right inspector.
 
 The first graph renderer is Cytoscape.js, served from the installed `cytoscape` npm package through the local Control Room server. The browser UI must not depend on a CDN. If the local vendor asset cannot be loaded, the Graph view should show a clear renderer-unavailable error instead of silently rendering an empty canvas.
 

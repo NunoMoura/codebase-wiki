@@ -123,6 +123,11 @@ Owns generated graph state.
 	assert.match(js, /scope <select id="graphScope"/);
 	assert.match(js, /window\.cytoscape/);
 	assert.match(js, /state\.cy/);
+	assert.match(js, /GRAPH_FIT_PADDING = 72/);
+	assert.match(js, /GRAPH_LAYOUT_SPACING = 180/);
+	assert.match(js, /minZoom: 0\.05/);
+	assert.match(js, /nodeRepulsion: GRAPH_NODE_REPULSION/);
+	assert.match(js, /fitGraph\(state\.cy\)/);
 	const apiState = await fetch(new URL("/api/state", server.url)).then((res) => res.json());
 	assert.equal(apiState.project.label, "control-room-smoke");
 } finally {
