@@ -5,6 +5,7 @@ import { codewikiBuildToolInputSchema, codewikiAgencyToolInputSchema, codewikiCl
 import { registerConfigCommand } from "./commands/config.ts";
 import { registerResumeCommand } from "./commands/resume.ts";
 import { registerStatusCommand } from "./commands/status.ts";
+import { registerUiCommand } from "./commands/ui.ts";
 import { currentTaskLink } from "./session.ts";
 import { readRoadmapTask } from "../../application/roadmap.ts";
 import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project.ts";
@@ -71,6 +72,7 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 
 	registerConfigCommand(pi);
 	registerStatusCommand(pi);
+	registerUiCommand(pi);
 	registerResumeCommand(pi);
 
 	pi.registerShortcut("alt+w", {

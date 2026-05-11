@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-11T07:50:55Z",
+  "profile": "task-close",
+  "task_id": "TASK-059",
+  "verdict": "pass",
+  "rationale": "TASK-059 acceptance is satisfied by System model parsing architecture.mmd, custom local SVG diagram rendering, selectable components, Markdown frontmatter/section inspector, source paths, and green checks.",
+  "checks": [
+    "npx tsc --noEmit",
+    "npm test"
+  ],
+  "issues": [],
+  "source": "implementation build .codewiki/builds/implementation/2026-05-11-task-059-system-diagram-inspector.json"
+}

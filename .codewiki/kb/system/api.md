@@ -16,7 +16,7 @@ code_paths:
 
 ## Responsibility
 
-The CodeWiki API is the stable semantic contract used by adapters, CLI, MCP servers, scripts, and future harness integrations. Pi tools are one adapter over this API; they must not be the only way to access CodeWiki semantics.
+The CodeWiki API is the stable semantic contract used by adapters, the local Control Room UI, CLI, MCP servers, scripts, and future harness integrations. Pi tools are one adapter over this API; they must not be the only way to access CodeWiki semantics.
 
 The API should expose CodeWiki operations as typed capabilities instead of asking external access surfaces to edit `.codewiki/` internals directly.
 
@@ -35,6 +35,7 @@ The API should expose CodeWiki operations as typed capabilities instead of askin
 | `codewiki.build` | Read and write accepted compiler build briefs. |
 | `codewiki.validation` | Run validation gateways and persist failed, blocked, or policy-kept reports. |
 | `codewiki.graph` | Rebuild and read the generated graph state machine. |
+| `codewiki.control_room` | Serve local-first UI read models and route UI actions through existing CodeWiki capabilities. |
 | `codewiki.transaction` | Apply validated knowledge patches or append-only evidence writes under policy. |
 | `codewiki.publication` | Prepare commit, PR, issue, changelog, release, and push-readiness outputs from implementation evidence. |
 
@@ -42,11 +43,12 @@ The API should expose CodeWiki operations as typed capabilities instead of askin
 
 | Access surface | Path |
 | --- | --- |
-| Pi | Extension commands, tools, visual status UI, skills, and session integration. |
+| Control Room UI | Local browser command center over the same API and generated graph state. |
+| Pi | Extension commands, tools, compact visual status UI, Control Room launcher, skills, and session integration. |
 | Claude Code | CLI or MCP adapter over the same API. |
 | Codex | CLI or MCP adapter over the same API. |
 | Other agents | CLI, MCP, or package API. |
-| Humans | CLI/status output, generated docs, and future visual UI surfaces. |
+| Humans | Local Control Room, CLI/status output, generated docs, and host-native compact panels. |
 
 All access surfaces must preserve the same `.codewiki/` semantics.
 
@@ -58,7 +60,7 @@ All access surfaces must preserve the same `.codewiki/` semantics.
 - Parallel sessions should use scoped change claims before non-trivial overlapping documentation, roadmap, build, validation, or code edits.
 - Claims are temporary coordination leases; they do not replace roadmap tasks, builds, validation, git, or code review.
 - Gated agency runs must respect token, time, cost, write, session, risk, validation, policy, and approval gates.
-- Pending diff tables are runtime/session decision surfaces; accepted rows become feedback build truth. The status panel Diff tab can approve, reject, defer, or attach alternatives to pending rows.
+- Pending diff tables are runtime/session decision surfaces; accepted rows become feedback build truth. The Control Room Diff view and compact status-panel Diff tab can approve, reject, defer, or attach alternatives to pending rows.
 - Builds are accepted loop handoff briefs and should expose explicit consumes/produces edges.
 - Config schema v4 defines quiet rebuild defaults, scoped agency budgets, parallelism/session-per-sprint policy, and hot/warm/cold/purge garbage-collection windows.
 - Generated graph/index state is never hand-edited.
@@ -67,12 +69,13 @@ All access surfaces must preserve the same `.codewiki/` semantics.
 
 ## API boundary
 
-The API belongs in application use cases and domain contracts. Adapters translate harness-specific inputs and outputs. Infrastructure implements filesystem, Git, process, persistence, and graph rebuild ports.
+The API belongs in application use cases and domain contracts. Adapters and the Control Room transport translate external inputs and outputs. Infrastructure implements filesystem, Git, process, persistence, and graph rebuild ports.
 
 The API should stay stable while adapter protocols change.
 
 ## Related docs
 
+- [Control Room UI](control-room-ui.md)
 - [Adapters](adapters.md)
 - [Agency Controller](agency.md)
 - [Compilers](compilers.md)

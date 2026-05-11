@@ -9,12 +9,13 @@ owners:
 - design
 updated: '2026-05-09'
 code_paths:
+- extensions/codewiki/src/adapters/web
 - extensions/codewiki/src/adapters/pi/ui/manager.ts
 ---
 
 # Board UI
 
-The board UI should make roadmap work, inferred delta, approvals, gates, blockers, and next actions visible before users inspect raw machine state files.
+The board UI should make roadmap work, inferred delta, approvals, gates, blockers, and next actions visible before users inspect raw machine state files. In the standalone Control Room it should become the primary roadmap/work view; in host-native status panels it may remain a compact summary.
 
 Roadmap work is work truth, not a requirements brief. Planning notes, drift findings, architecture candidates, validation failures, and implementation follow-ups should become structured work items or evidence instead of scattered prose buckets. Full intent and implementation specifications should live in accepted builds and linked knowledge.
 
@@ -29,6 +30,7 @@ Roadmap work is work truth, not a requirements brief. Planning notes, drift find
 ## Related docs
 
 - [Use Gated Agency](../stories/automation.md)
+- [Control Room UI](control-room.md)
 - [Status Panel UI](status-panel.md)
 - [Roadmap](../../system/roadmap.md)
 - [Builds](../../system/builds.md)

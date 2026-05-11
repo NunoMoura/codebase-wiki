@@ -26,7 +26,8 @@ Use this as the package router. Load a focused skill when the task matches a wor
 Public commands:
 
 - `/wiki-bootstrap [project name] [--force]`
-- `Alt+W` to toggle the live status panel
+- `Alt+W` to toggle the compact live status panel
+- `/wiki-ui [repo-path] [port]` to start the standalone local Control Room
 - `/wiki-config`
 - `/wiki-resume [TASK-###]`
 
@@ -88,7 +89,7 @@ Stop on budget exhaustion, medium/high risk beyond budget, ambiguity, destructiv
 
 1. If `.codewiki/config.json` is absent, use `/wiki-bootstrap` or internal `codewiki_setup`/`codewiki_bootstrap`.
 2. If commands are missing after install, ask the user to run `/reload`.
-3. Use `Alt+W` and `codewiki_state` as primary status surfaces.
+3. Use `/wiki-ui` for the rich local Control Room; use `Alt+W` and `codewiki_state` as compact status surfaces.
 4. If CodeWiki itself is unstable while editing this repo, stop using CodeWiki tools for the refactor, restore typecheck/test stability with plain tools, then update knowledge/skills after checks pass.
 
 ## Related docs

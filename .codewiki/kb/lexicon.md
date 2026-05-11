@@ -132,7 +132,7 @@ An optional project-scoped sandbox runtime for agent-written programs. CodeWiki 
 
 ## Product UI
 
-A visual user interface that a human can see and interact with, such as the status panel, board UI, graph navigation view, TUI screens, or editor panels. Product UI expectations live under `.codewiki/kb/product/uis/**`.
+A visual user interface that a human can see and interact with, such as the Control Room, status panel, board UI, graph navigation view, TUI screens, browser screens, or editor panels. Product UI expectations live under `.codewiki/kb/product/uis/**`.
 
 Tools, commands, skills, CLI access, MCP access, package APIs, and harness adapters are access surfaces, not product UIs.
 

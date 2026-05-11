@@ -22,7 +22,9 @@ Public command surface is intentionally small:
 
 - `/wiki-bootstrap [project name] [--force]`
 - `Alt+W`
-  - toggles live Codewiki status panel
+  - toggles compact live Codewiki status panel
+- `/wiki-ui [repo-path] [port]`
+  - starts the standalone local CodeWiki Control Room and prints its browser URL
 - `/wiki-config`
   - opens interactive Codewiki configuration with option lists and toggles
   - optional args remain available for direct fallback updates: `[show|auto|pin|off|minimal|standard|full] [repo-path]`
@@ -172,6 +174,7 @@ CodeWiki rebuild runs through the packaged TypeScript engine. Runtime requires N
 ```text
 /wiki-config
 /wiki-status
+/wiki-ui
 /wiki-resume
 ```
 
@@ -230,13 +233,19 @@ Recommended loop:
 /wiki-status
 ```
 
-4. When roadmap work is ready to continue, run:
+4. For the standalone browser Control Room, run:
+
+```text
+/wiki-ui
+```
+
+5. When roadmap work is ready to continue, run:
 
 ```text
 /wiki-resume
 ```
 
-5. Let the agent use internal roadmap/task tools when work maps to existing tasks or when unresolved delta should become a new task.
+6. Let the agent use internal roadmap/task tools when work maps to existing tasks or when unresolved delta should become a new task.
 
 Working rule for this repo:
 
@@ -298,13 +307,15 @@ Starter bootstrap includes:
 
 ### Status, fix, and review
 
-`Alt+W` is now the primary status UX. It opens a live status panel backed by the same drift-first read model and lets the user inspect the current roadmap/task situation without consuming permanent editor space.
+`/wiki-ui` starts the standalone local Control Room on `127.0.0.1` and prints the browser URL. It is the rich visual surface for System and Graph navigation and is independent of Pi TUI rendering.
+
+`Alt+W` opens the compact live status panel backed by the same drift-first read model. It remains useful as a host-native launcher/fallback when the full Control Room is not needed.
 
 The always-on surface is optional. When enabled it uses Pi's status area for a one-line summary instead of a tall above-editor dock. `/wiki-config` owns summary visibility, pinning, and panel density through an interactive settings panel.
 
-`/wiki-status` is the canonical inspection command. It opens the live status surface, shows roadmap and drift state, and is the right default when the next action is not yet obvious.
+`/wiki-status` is the canonical compact inspection command. It opens the live status surface, shows roadmap and drift state, and is the right default when the next action is not yet obvious.
 
-`/wiki-config`, `/wiki-status`, and `/wiki-resume` all accept an optional repo path when relevant. If Pi is running outside a repo with `.codewiki/`, pass the target repo path explicitly. In UI mode, commands can also offer a repo picker when no repo-local wiki is found from current cwd.
+`/wiki-config`, `/wiki-status`, `/wiki-ui`, and `/wiki-resume` all accept an optional repo path when relevant. If Pi is running outside a repo with `.codewiki/`, pass the target repo path explicitly. In UI mode, commands can also offer a repo picker when no repo-local wiki is found from current cwd.
 
 `/wiki-resume` is the implementation segue. With no argument it resumes the current focused roadmap task when one exists, otherwise it picks the next open task from the roadmap working set. Pass `TASK-###` to force a specific open task.
 
@@ -314,7 +325,7 @@ For token efficiency, agents should avoid raw wiki truth, full lifecycle logs, a
 
 ### Status summary and panel
 
-The extension renders an optional one-line status summary plus a live status panel toggled with `Alt+W`. Both read `.codewiki/index_graph.json`, prefer the current repo under cwd, keep the most recently resolved wiki repo visible across global and new-session starts when cwd is elsewhere, can still fall back to a pinned repo, and support three panel densities:
+The extension renders an optional one-line status summary plus a compact live status panel toggled with `Alt+W`. The standalone Control Room is available through `/wiki-ui`. These surfaces read `.codewiki/index_graph.json`, prefer the current repo under cwd, keep the most recently resolved wiki repo visible across global and new-session starts when cwd is elsewhere, can still fall back to a pinned repo, and support three panel densities:
 
 - `minimal`
 - `standard`
@@ -329,7 +340,7 @@ Per Pi's settings model, project settings are loaded from `<cwd>/.pi/settings.js
 Runtime rule:
 
 - first resolve the nearest ancestor containing `.codewiki/config.json` from current cwd
-- if no repo-local wiki exists from current cwd, `/wiki-status`, `/wiki-config`, and `/wiki-resume` may target an explicit repo path instead
+- if no repo-local wiki exists from current cwd, `/wiki-status`, `/wiki-config`, `/wiki-ui`, and `/wiki-resume` may target an explicit repo path instead
 - in UI mode, those commands may offer a picker across candidate repos discovered below current cwd
 - summary visibility and pinned-repo fallback are user-owned UI preferences, not repo-owned wiki files
 - if no wiki exists yet, `/wiki-bootstrap` targets the enclosing git repo root when present, else the current working directory

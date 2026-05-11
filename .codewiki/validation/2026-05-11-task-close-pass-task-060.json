@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-11T07:51:02Z",
+  "profile": "task-close",
+  "task_id": "TASK-060",
+  "verdict": "pass",
+  "rationale": "TASK-060 acceptance is satisfied by generated graph read model, SVG graph rendering, node/edge kind filters, search, node and edge inspectors, generated-state guidance, tests, and green checks.",
+  "checks": [
+    "npx tsc --noEmit",
+    "npm test"
+  ],
+  "issues": [],
+  "source": "implementation build .codewiki/builds/implementation/2026-05-11-task-060-graph-visual-map.json"
+}

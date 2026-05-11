@@ -18,7 +18,7 @@ code_paths:
 
 The graph is the generated map and state index for CodeWiki. It is a rebuildable state machine over canonical inputs and discoverable code/test facts.
 
-It routes agents to the smallest useful next context, detects drift, reports freshness, exposes scoped roadmap/sprint/task views, and selects the next loop: feedback, documentation, implementation, validation, or observe. It also supplies the agency controller with safe next-action and stop-reason signals.
+It routes agents to the smallest useful next context, detects drift, reports freshness, exposes scoped roadmap/sprint/task views, and selects the next loop: feedback, documentation, implementation, validation, or observe. It also supplies the agency controller and Control Room UI with safe next-action and stop-reason signals.
 
 The graph does not decide intended behavior and does not replace source-of-truth reads. It points to the relevant documentation builds, roadmap items, KB specs, validation reports, and code/test paths; agents must read those sources directly before making semantic changes.
 
@@ -47,6 +47,8 @@ The primary graph output is:
 ```text
 .codewiki/index_graph.json
 ```
+
+The Control Room graph view reads this file through CodeWiki API or local UI transport and renders it visually. The visual graph is a generated-state projection; it must not become separate truth.
 
 The graph should serve status, queue-order, and parallel-claim reads directly. Extra queue files should not be generated unless a future adapter proves a concrete performance need; if such caches exist, they are generated graph queries and never separate truth.
 
@@ -101,12 +103,13 @@ Graph state is valid only when it matches source fingerprints. If graph state an
 - The graph must be reproducible from canonical inputs and source fingerprints.
 - The graph should route to exact files instead of inlining large docs, code, logs, or old task history.
 - The graph does not replace builds, knowledge, roadmap work items, validation reports, or code/tests; those remain the sources of truth.
-- The graph should make gated agency stop reasons explicit when state is stale, blocked, unsafe, missing approval, or blocked by overlapping write claims.
+- The graph should make gated agency and Control Room stop reasons explicit when state is stale, blocked, unsafe, missing approval, or blocked by overlapping write claims.
 - The graph should expose active claim counts, read/write warnings, and write/write conflicts, while claims remain temporary coordination state rather than source-of-truth behavior.
 - The graph should own machine backlinks and exhaustive relationship discovery; knowledge docs should keep only intentional human-facing links.
 
 ## Related docs
 
+- [Control Room UI](control-room-ui.md)
 - [Knowledge](knowledge.md)
 - [Roadmap](roadmap.md)
 - [Builds](builds.md)

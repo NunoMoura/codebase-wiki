@@ -41,6 +41,7 @@ Avoid nested component folders and avoid `overview.md` files except `product/ove
 
 | Architecture node | Owning doc | Primary paths |
 | --- | --- | --- |
+| Control Room UI | `control-room-ui.md` | `extensions/codewiki/src/adapters/web/**`, Control Room launch commands |
 | Extension | `extension.md` | `extensions/codewiki/index.ts`, package support files |
 | Adapters | `adapters.md` | `extensions/codewiki/src/adapters/**`, `skills/**` |
 | CodeWiki API | `api.md` | `extensions/codewiki/src/application/**`, domain contracts |
@@ -74,6 +75,7 @@ The CodeWiki project should use this flattened system set:
   graph.md
   knowledge.md
   roadmap.md
+  control-room-ui.md
 ```
 
 Legacy system KB paths removed by the flattening migration:
@@ -107,6 +109,7 @@ extensions/codewiki/
     shared/
     adapters/
       pi/
+      web/
 ```
 
 Future adapter directories may be introduced only when there is an implementation need:
@@ -131,7 +134,7 @@ Rules:
 - `domain/**` has no Node I/O, no Pi imports, no adapter imports, and no infrastructure imports.
 - `application/**` owns use-case orchestration and depends on domain contracts plus ports, not concrete infrastructure or adapters.
 - `infrastructure/**` implements application ports and owns concrete side effects.
-- `adapters/**` translate harness APIs into application use cases and translate results back into harness-specific commands, tools, visual UI, protocols, or messages.
+- `adapters/**` translate harness APIs, local web UI transport, or protocol surfaces into application use cases and translate results back into commands, tools, visual UI, protocols, or messages.
 - `shared/**` stays small and cannot own business semantics.
 - `core/**` and `engine/**` must not exist in the target implementation; former responsibilities now live under `domain/**`, `application/**`, `infrastructure/**`, and `adapters/**`.
 

@@ -36,7 +36,7 @@ Visual UI docs should describe what users see and understand. System docs should
 - User intent is captured before implementation expands.
 - Product stories map to system components and roadmap work without duplicating technical design.
 - Visual UI expectations stay separate from adapter, API, and distribution mechanics.
-- Agents and humans can understand current state through compact, trustworthy product surfaces.
+- Agents and humans can understand current state through trustworthy product surfaces, from compact host panels to the standalone Control Room.
 - Historical recovery relies on git, harness session storage, compact semantic summaries, and generated graph context rather than product doc event logs.
 
 ## Related docs
@@ -48,6 +48,7 @@ Visual UI docs should describe what users see and understand. System docs should
 - [Maintain Fresh Intent](stories/intent.md)
 - [Use Gated Agency](stories/automation.md)
 - [Low-Token Navigation](stories/navigation.md)
+- [Control Room UI](uis/control-room.md)
 - [Status Panel UI](uis/status-panel.md)
 - [Board UI](uis/board.md)
 - [Graph Navigation UI](uis/graph-navigation.md)

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-11T07:50:34Z",
+  "profile": "task-close",
+  "task_id": "TASK-058",
+  "verdict": "pass",
+  "rationale": "TASK-058 acceptance is satisfied by local web server, /wiki-ui command, typed state API, Pi-independent web adapter, tests, and manual server smoke.",
+  "checks": [
+    "npx tsc --noEmit",
+    "node scripts/check-architecture.mjs",
+    "npm test",
+    "manual local server smoke"
+  ],
+  "issues": [],
+  "source": "implementation build .codewiki/builds/implementation/2026-05-11-task-058-control-room-shell.json"
+}

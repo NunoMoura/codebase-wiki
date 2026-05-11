@@ -15,7 +15,7 @@ code_paths:
 
 ## Main boundaries
 
-CodeWiki maintains the repository-local `.codewiki/` contract and exposes it through agent-harness adapters. Pi is the only implemented adapter for now; the architecture keeps future Claude Code, Codex, CLI, MCP, or other harness adapters possible without making them immediate product commitments.
+CodeWiki maintains the repository-local `.codewiki/` contract and exposes it through agent-harness adapters and a standalone local Control Room UI. Pi is the only implemented harness adapter for now; the architecture keeps future Claude Code, Codex, CLI, MCP, or other harness adapters possible without making them immediate product commitments.
 
 - **Knowledge base semantics** own product specs, visual UI specs, system access-surface specs, system specs, architecture rules, and workflow vocabulary under `.codewiki/kb/**`.
 - **Agency controller** owns bounded roadmap automation through agency cycles and explicit token, time, risk, validation, policy, and approval gates.
@@ -23,6 +23,7 @@ CodeWiki maintains the repository-local `.codewiki/` contract and exposes it thr
 - **Roadmap semantics** own work truth: priorities, active work items, status, progress, blockers, and closure state under `.codewiki/roadmap/**`.
 - **Validation gateways** decide whether a loop can end and whether a build can be accepted for handoff. Failed, blocked, or policy-kept validation reports live under `.codewiki/validation/**`.
 - **Graph state machine** owns generated reconciliation state in `.codewiki/index_graph.json`: drift detection, routing, derived queue order, loop selection, status, and freshness checks.
+- **Control Room UI** owns the standalone local browser command center for humans while delegating all semantics to the CodeWiki API.
 - **Application layer** owns harness-agnostic use cases for setup, state, compiler loops, validation, roadmap mutation, session focus, and rebuild orchestration.
 - **Domain layer** owns pure CodeWiki concepts, rules, entities, state-machine transitions, schemas, and invariants.
 - **Infrastructure layer** owns filesystem, Git, process execution, persistence, graph rebuild implementations, and other concrete side effects behind application ports.
@@ -78,6 +79,7 @@ Each compiler handoff is guarded by a validation gateway. Gateways check both ve
 - [Architecture Map](architecture.mmd) is the component source map for the system architecture.
 - [File Structure](file-structure.md) owns the target repository and knowledge-base structure rules.
 - [API](api.md) owns the harness-independent CodeWiki access contract.
+- [Control Room UI](control-room-ui.md) owns standalone local web UI hosting and launch semantics.
 - [Extension](extension.md) owns packaged distribution and the current Pi extension surface.
 - [Adapters](adapters.md) owns harness translation boundaries for Pi today and CLI/MCP/future harnesses later.
 - [Agency Controller](agency.md) owns bounded roadmap automation through agency cycles and explicit gates.
@@ -88,7 +90,7 @@ Each compiler handoff is guarded by a validation gateway. Gateways check both ve
 - [Knowledge](knowledge.md) owns product/system knowledge-base structure and persistence semantics.
 - [Roadmap](roadmap.md) owns work truth: queue, priority, status, blockers, progress, and closure semantics.
 
-CodeWiki should not implement a general sandbox or duplicate Pi observability/eval packages. It defines `.codewiki/` semantics and exposes them through a stable API that Pi, CLI, MCP, or future harness adapters can use safely.
+CodeWiki should not implement a general sandbox, hosted SaaS, or duplicate Pi observability/eval packages. It defines `.codewiki/` semantics and exposes them through a stable API and local Control Room that Pi, CLI, MCP, or future harness adapters can use safely.
 
 ## Target package architecture
 
@@ -105,7 +107,8 @@ extensions/codewiki/
     infrastructure/        # filesystem, Git, process, persistence, graph rebuild implementations
     shared/                # minimal cross-cutting helpers/types only
     adapters/
-      pi/                  # current Pi commands, tools, visual UI, lifecycle hooks, skills integration
+      pi/                  # current Pi commands, tools, compact visual UI, lifecycle hooks, skills integration
+      web/                 # standalone local Control Room UI and local HTTP transport when implemented
       cli/                 # future directory only when implementation need exists
       mcp/                 # future directory only when implementation need exists
 ```
@@ -178,5 +181,6 @@ When review exposes ambiguity, hidden risk, or unmapped user intent, the work es
 - [Architecture Map](architecture.mmd)
 - [File Structure](file-structure.md)
 - [API](api.md)
+- [Control Room UI](control-room-ui.md)
 - [Extension](extension.md)
 - [Agency Controller](agency.md)

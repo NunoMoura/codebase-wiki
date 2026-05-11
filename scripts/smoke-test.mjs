@@ -213,13 +213,13 @@ async function main() {
 		const commandNames = [...extension.commands.keys()];
 		ensureIncludes(
 			commandNames,
-			["wiki-bootstrap", "wiki-config", "wiki-status", "wiki-resume"],
+			["wiki-bootstrap", "wiki-config", "wiki-status", "wiki-ui", "wiki-resume"],
 			"extension commands",
 		);
 		assert.equal(
 			commandNames.length,
-			4,
-			`Expected exactly 4 public commands, got ${commandNames.length}: ${commandNames.join(", ")}`,
+			5,
+			`Expected exactly 5 public commands, got ${commandNames.length}: ${commandNames.join(", ")}`,
 		);
 		for (const legacyCommand of [
 			"wiki-fix",

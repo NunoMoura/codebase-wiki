@@ -2,7 +2,7 @@
 id: spec.system.extension
 title: Extension
 state: active
-summary: Packaged CodeWiki distribution and current Pi extension surface.
+summary: Packaged CodeWiki distribution, current Pi extension surface, and Control Room launch integration.
 owners:
   - architecture
   - engineering
@@ -21,9 +21,9 @@ code_paths:
 
 ## Responsibility
 
-The extension package distributes CodeWiki for the current Pi host runtime. It registers Pi commands, tools, visual status UI, lifecycle hooks, packaged skills, bootstrap templates, and resource discovery, then delegates semantic work to the CodeWiki API.
+The extension package distributes CodeWiki for the current Pi host runtime. It registers Pi commands, tools, compact visual status UI, Control Room launch integration, lifecycle hooks, packaged skills, bootstrap templates, and resource discovery, then delegates semantic work to the CodeWiki API.
 
-The extension is not the product boundary. CodeWiki is the repo-local contract, compiler workflow, graph state machine, and API. Pi is the current adapter and distribution channel.
+The extension is not the product boundary. CodeWiki is the repo-local contract, compiler workflow, graph state machine, API, and standalone local Control Room. Pi is the current adapter and distribution channel.
 
 ## Current Pi surface
 
@@ -31,7 +31,8 @@ The Pi adapter owns:
 
 - `/wiki-*` commands,
 - `codewiki_*` tools,
-- `Alt+W` visual status UI,
+- `Alt+W` compact visual status UI,
+- `/wiki-ui [repo-path] [port]` to start the local Control Room and print its URL,
 - `codewiki_agency` as the current Pi-facing agency controller entrypoint,
 - session lifecycle hooks,
 - packaged workflow skills,
@@ -49,10 +50,11 @@ The Pi adapter owns:
 ## Boundaries
 
 - Pi SDK and TUI imports belong only in the Pi adapter.
+- Browser UI and local web-server code must not depend on Pi SDK or Pi TUI packages.
 - Pi-specific behavior must translate into API use cases, not own domain semantics.
 - Pi/VCC/native compaction or session-reset hooks are adapter integration points. Core CodeWiki handoff truth lives in implementation builds, roadmap state, validation, and graph state, with safe adapter fallbacks when host compaction is unavailable.
 - Agency behavior must enforce gated agency budgets and stop conditions instead of running unbounded work.
-- The package should not become a general sandbox, long-running runtime, or replacement for harness execution.
+- The package should not become a general sandbox, hosted service, unbounded long-running runtime, or replacement for harness execution.
 - Runtime checks must validate actual package loading under supported Node versions.
 - Pi package imports use current `@earendil-works/*` names; deprecated `@mariozechner/*` imports must not reappear.
 
@@ -66,6 +68,7 @@ The Pi adapter owns:
 
 ## Related docs
 
+- [Control Room UI](control-room-ui.md)
 - [Adapters](adapters.md)
 - [API](api.md)
 - [File Structure](file-structure.md)

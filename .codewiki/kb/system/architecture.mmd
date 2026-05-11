@@ -4,6 +4,7 @@
 
 flowchart TD
   User["User / agent intent"]
+  ControlRoom["Control Room UI\ncontrol-room-ui.md"]
   Extension["Extension\nextension.md"]
   Adapters["Adapters\nadapters.md"]
   API["CodeWiki API\napi.md"]
@@ -17,8 +18,11 @@ flowchart TD
   CodeTests["Code + tests\nexecutable truth"]
   Publication["Publication support\ncommit / PR / issue / release / push"]
 
+  User --> ControlRoom
   User --> Extension
+  Extension --> ControlRoom
   Extension --> Adapters
+  ControlRoom --> API
   Adapters --> API
 
   API --> Agency
@@ -54,5 +58,5 @@ flowchart TD
 
   classDef component fill:#eef7ff,stroke:#3b82f6,stroke-width:1px,color:#111827;
   classDef artifact fill:#f8fafc,stroke:#94a3b8,stroke-width:1px,color:#111827;
-  class Extension,Adapters,API,Agency,Compilers,Gateway,Knowledge,Builds,Roadmap,Graph component;
+  class ControlRoom,Extension,Adapters,API,Agency,Compilers,Gateway,Knowledge,Builds,Roadmap,Graph component;
   class User,CodeTests,Publication artifact;
