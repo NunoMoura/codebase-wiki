@@ -61,6 +61,7 @@ export async function executeCodewikiSession(
 		action: input.action,
 		summary: input.summary,
 		filesTouched: input.files_touched,
+		cursor: input.cursor,
 		setSessionName: input.action === "focus" ? (input.setSessionName ?? false) : false,
 	}, ports);
 	return {

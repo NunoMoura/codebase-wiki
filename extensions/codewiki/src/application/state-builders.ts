@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
-import type { ChangeClaimsFile, GraphFile, LintReport, RoadmapStateFile, RoadmapTaskRecord, StatusStateFile, StatusStateAgencyLane, StatusStateSpecRow, WikiProject } from "../domain/shared/types.ts";
+import type { ChangeClaimsFile, GraphFile, LintReport, RoadmapStateFile, RoadmapSprintRecord, RoadmapTaskRecord, StatusStateFile, StatusStateAgencyLane, StatusStateSpecRow, WikiProject } from "../domain/shared/types.ts";
 import type { ParsedDoc } from "../infrastructure/doc-parser.ts";
 import { nowIso } from "../domain/shared/utils.ts";
 import { buildChangeClaimState } from "./claims.ts";
@@ -116,11 +116,13 @@ export function buildRoadmapState(
 	entries: RoadmapTaskRecord[],
 	graph: GraphFile,
 	lintReport: LintReport,
-	events: any[] = []
+	events: any[] = [],
+	sprints: RoadmapSprintRecord[] = [],
 ): RoadmapStateFile {
 	const graphViews = graph.views || {};
 	const graphRoadmap = graphViews.roadmap || {};
 	const ordered = entries.map((item) => String(item.id || "").trim()).filter(Boolean);
+	const graphSprints = Array.isArray((graphRoadmap as any).sprints) ? (graphRoadmap as any).sprints : sprints;
 
 	const statusCounts: Record<string, number> = {};
 	const priorityCounts: Record<string, number> = {};
@@ -205,16 +207,21 @@ export function buildRoadmapState(
 		summary: {
 			task_count: entries.length,
 			open_count: openTaskIds.length,
+			sprint_count: graphSprints.length,
+			active_sprint_count: ((graphRoadmap as any).active_sprint_ids || []).length,
 			status_counts: (graphRoadmap as any).status_counts || statusCounts,
 			priority_counts: priorityCounts,
 		} as any,
 		views: {
-			ordered_task_ids: (graphRoadmap as any).task_ids || ordered,
-			open_task_ids: (graphRoadmap as any).open_task_ids || openTaskIds,
-			in_progress_task_ids: (graphRoadmap as any).in_progress_task_ids || inProgressIds,
-			todo_task_ids: (graphRoadmap as any).todo_task_ids || todoIds,
-			blocked_task_ids: (graphRoadmap as any).blocked_task_ids || blockedTaskIds,
-			done_task_ids: (graphRoadmap as any).done_task_ids || sortedEntries.filter((t) => String(t.status) === "done").map((t) => t.id),
+			ordered_task_ids: ordered,
+			open_task_ids: openTaskIds,
+			sprint_ids: (graphRoadmap as any).sprint_ids || graphSprints.map((sprint: any) => sprint.id),
+			active_sprint_ids: (graphRoadmap as any).active_sprint_ids || graphSprints.filter((sprint: any) => !["closed", "cancelled"].includes(String(sprint.status))).map((sprint: any) => sprint.id),
+			sprints: graphSprints,
+			in_progress_task_ids: inProgressIds,
+			todo_task_ids: todoIds,
+			blocked_task_ids: blockedTaskIds,
+			done_task_ids: sortedEntries.filter((t) => String(t.status) === "done").map((t) => t.id),
 			cancelled_task_ids: (graphRoadmap as any).cancelled_task_ids || sortedEntries.filter((t) => String(t.status) === "cancelled").map((t) => t.id),
 			recent_task_ids: (graphRoadmap as any).recent_task_ids || recentEntries.map((t) => t.id),
 		},
@@ -906,6 +913,16 @@ export function buildStatusState(
 	parallel.claim_conflicts = claimState.conflicts.slice(0, 12);
 	const persistedFocusTaskId = latestPersistedFocusTaskId(events, roadmapState);
 	const resume = buildResumeState(roadmapState, agencyLanes, nextStep, persistedFocusTaskId);
+	const graphViews: any = graph.views || {};
+	const workflowCursor = graphViews.workflow_cursor || {
+		active_loop: String(nextStep.kind || "observe") === "code" ? "implementation" : "observe",
+		reason: String(nextStep.reason || ""),
+		expected_output: String(nextStep.kind || "") === "code" ? "implementation_build" : "observation",
+		exit_gate: "validation pass or no drift",
+		scope: (roadmapState.views?.active_sprint_ids || [])[0]
+			? { kind: "sprint", id: (roadmapState.views?.active_sprint_ids || [])[0] }
+			: (resume.task_id ? { kind: "task", id: resume.task_id } : { kind: "roadmap" }),
+	};
 
 	const wikiSections: Record<string, any> = {
 		product: { id: "product", label: "Product", rows: [] },
@@ -975,8 +992,12 @@ export function buildStatusState(
 			risky_spec_paths: riskyPaths,
 			top_risky_spec_paths: riskyPaths.slice(0, 10),
 			open_task_ids: roadmapState.views?.open_task_ids || [],
+			sprint_ids: (roadmapState.views as any)?.sprint_ids || [],
+			active_sprint_ids: (roadmapState.views as any)?.active_sprint_ids || [],
 		},
 		next_step: nextStep,
+		workflow_cursor: workflowCursor,
+		gc: graphViews.gc || {},
 		direction,
 		specs: specRows,
 		agency: {
@@ -995,6 +1016,9 @@ export function buildStatusState(
 			blocked_task_ids: roadmapState.views?.blocked_task_ids || [],
 			in_progress_task_ids: roadmapState.views?.in_progress_task_ids || [],
 			next_task_id: String(resume.task_id || "") || (roadmapState.views?.todo_task_ids || [])[0] || "",
+			sprint_ids: (roadmapState.views as any)?.sprint_ids || [],
+			active_sprint_ids: (roadmapState.views as any)?.active_sprint_ids || [],
+			sprints: (roadmapState.views as any)?.sprints || [],
 			columns: roadmapColumns,
 		},
 		agents: {

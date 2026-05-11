@@ -196,6 +196,7 @@ function configJson(
 		JSON.stringify(
 			{
 				version: 2,
+				schema_version: 4,
 				project_name: projectName,
 				template: {
 					name: "codewiki-starter",
@@ -233,6 +234,32 @@ function configJson(
 				},
 				codewiki: {
 					name: `${projectName} codebase wiki`,
+					rebuild: {
+						quiet: true,
+						freshness_check: true,
+						debounce_ms: 250,
+					},
+					agency: {
+						default_scope: { kind: "roadmap" },
+						budgets: {
+							default: { maxCycles: 3, maxWallSeconds: 600, maxTokens: 60000, maxCostUsd: 3, maxWrites: 24, maxSessions: 2, risk: "medium" },
+							roadmap: { maxCycles: 4, maxWallSeconds: 900, maxTokens: 90000, maxCostUsd: 5, maxWrites: 40, maxSessions: 3, risk: "medium" },
+							sprint: { maxCycles: 3, maxWallSeconds: 600, maxTokens: 60000, maxCostUsd: 3, maxWrites: 24, maxSessions: 3, risk: "medium" },
+							task: { maxCycles: 2, maxWallSeconds: 300, maxTokens: 25000, maxCostUsd: 1, maxWrites: 12, maxSessions: 1, risk: "medium" },
+						},
+						parallelism: {
+							max_sessions: 3,
+							session_per_sprint: true,
+							require_claims: true,
+						},
+					},
+					gc: {
+						hot_days: 7,
+						warm_days: 30,
+						cold_days: 90,
+						purge_days: 180,
+						sprint_close_hook: true,
+					},
 					gateway: {
 						enabled: true,
 						mode: "read-only",
@@ -862,9 +889,23 @@ function roadmapJson(projectName: string, date: string): string {
 	return (
 		JSON.stringify(
 			{
-				version: 1,
+				version: 2,
 				updated: date,
 				order: ["TASK-001", "TASK-002", "TASK-003"],
+				sprints: {
+					"SPRINT-001": {
+						id: "SPRINT-001",
+						title: "Foundation",
+						status: "active",
+						outcome: "Project intent, ownership, and roadmap truth become usable by agents and humans.",
+						task_ids: ["TASK-001", "TASK-002", "TASK-003"],
+						scope: { knowledge: [".codewiki/kb/**"], code: [] },
+						budget: { maxCycles: 3, maxWallSeconds: 600, maxTokens: 60000, maxCostUsd: 3, maxWrites: 24, maxSessions: 2, risk: "medium" },
+						gates: ["validation", "checkpoint"],
+						created: date,
+						updated: date,
+					},
+				},
 				tasks: {
 					"TASK-001": {
 						id: "TASK-001",

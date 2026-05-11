@@ -29,6 +29,7 @@ export async function executeCodewikiAgency(
 		mode: input.mode ? (input.mode as AgencyMode) : undefined,
 		trigger: input.trigger ? (input.trigger as AgencyTrigger) : undefined,
 		dryRun: input.dryRun ?? true,
+		scope: input.scope,
 		budget: input.budget,
 	}, {
 		fileStore: piFileStore(),

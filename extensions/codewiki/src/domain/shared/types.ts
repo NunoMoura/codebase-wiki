@@ -57,6 +57,10 @@ export const CHANGE_CLAIM_STATUS_VALUES = ["active", "released", "expired"] as c
 export const AGENCY_MODE_VALUES = ["auto", "dry-run", "manual", "observe", "maintain", "work"] as const;
 export const AGENCY_TRIGGER_VALUES = ["manual", "task_end", "sprint_end", "roadmap_end", "budget_end"] as const;
 export const AGENCY_RISK_VALUES = ["low", "medium", "high"] as const;
+export const AGENCY_SCOPE_KIND_VALUES = ["roadmap", "sprint", "task"] as const;
+export const WORKFLOW_LOOP_VALUES = ["feedback", "documentation", "implementation", "validation", "observe"] as const;
+export const GC_ARTIFACT_TEMPERATURE_VALUES = ["hot", "warm", "cold", "purgeable"] as const;
+export const SPRINT_STATUS_VALUES = ["planned", "active", "review", "closed", "cancelled"] as const;
 export const STATUS_DOCK_DENSITY_VALUES = ["minimal", "standard", "full"] as const;
 export const STATUS_DOCK_MODE_VALUES = ["auto", "pin", "off"] as const;
 export const STATUS_SCOPE_VALUES = ["repo", "task", "spec", "both", "docs", "code"] as const;
@@ -79,6 +83,10 @@ export type CodewikiStateSection = (typeof CODEWIKI_STATE_SECTION_VALUES)[number
 export type AgencyMode = (typeof AGENCY_MODE_VALUES)[number];
 export type AgencyTrigger = (typeof AGENCY_TRIGGER_VALUES)[number];
 export type AgencyRisk = (typeof AGENCY_RISK_VALUES)[number];
+export type AgencyScopeKind = (typeof AGENCY_SCOPE_KIND_VALUES)[number];
+export type WorkflowLoop = (typeof WORKFLOW_LOOP_VALUES)[number];
+export type GcArtifactTemperature = (typeof GC_ARTIFACT_TEMPERATURE_VALUES)[number];
+export type SprintStatus = (typeof SPRINT_STATUS_VALUES)[number];
 export type StatusDockDensity = (typeof STATUS_DOCK_DENSITY_VALUES)[number];
 export type StatusDockMode = (typeof STATUS_DOCK_MODE_VALUES)[number];
 export type StatusScope = (typeof STATUS_SCOPE_VALUES)[number];
@@ -155,11 +163,28 @@ export interface RoadmapTaskRecord {
 	updated: string;
 }
 
+export interface RoadmapSprintRecord {
+	id: string;
+	title: string;
+	status: SprintStatus;
+	outcome: string;
+	task_ids: string[];
+	scope?: {
+		knowledge?: string[];
+		code?: string[];
+	};
+	budget?: AgencyBudget;
+	gates?: string[];
+	created: string;
+	updated: string;
+}
+
 export interface RoadmapFile {
 	version: number;
 	updated: string;
 	order: string[];
 	tasks: Record<string, RoadmapTaskRecord>;
+	sprints?: Record<string, RoadmapSprintRecord>;
 }
 
 export interface WikiProject {
@@ -186,6 +211,7 @@ export interface WikiProject {
 
 export interface DocsConfig {
 	project_name?: string;
+	schema_version?: number;
 	wiki_root?: string;
 	docs_root?: string;
 	specs_root?: string;
@@ -205,6 +231,27 @@ export interface DocsConfig {
 	codewiki?: {
 		self_drift_scope?: ScopeConfig;
 		code_drift_scope?: CodeDriftScopeConfig;
+		rebuild?: {
+			quiet?: boolean;
+			freshness_check?: boolean;
+			debounce_ms?: number;
+		};
+		agency?: {
+			default_scope?: AgencyScope;
+			budgets?: Partial<Record<AgencyScopeKind | "default", AgencyBudget>>;
+			parallelism?: {
+				max_sessions?: number;
+				session_per_sprint?: boolean;
+				require_claims?: boolean;
+			};
+		};
+		gc?: {
+			hot_days?: number;
+			warm_days?: number;
+			cold_days?: number;
+			purge_days?: number;
+			sprint_close_hook?: boolean;
+		};
 	};
 }
 
@@ -241,6 +288,8 @@ export interface RoadmapStateFile {
 	summary: {
 		task_count: number;
 		open_count: number;
+		sprint_count?: number;
+		active_sprint_count?: number;
 		status_counts: Record<string, number>;
 		priority_counts: Record<string, number>;
 	};
@@ -253,11 +302,28 @@ export interface RoadmapStateFile {
 		done_task_ids: string[];
 		cancelled_task_ids: string[];
 		recent_task_ids: string[];
+		sprint_ids?: string[];
+		active_sprint_ids?: string[];
+		sprints?: any[];
 	};
 	tasks: Record<string, RoadmapStateTaskSummary>;
 	source?: {
 		task_context_root: string;
 	};
+}
+
+export interface AgencyScope {
+	kind: AgencyScopeKind;
+	id?: string;
+}
+
+export interface WorkflowCursor {
+	active_loop: WorkflowLoop;
+	reason?: string;
+	input_refs?: string[];
+	expected_output?: string;
+	exit_gate?: string;
+	scope?: AgencyScope;
 }
 
 export interface TaskSessionLinkRecord {
@@ -266,6 +332,7 @@ export interface TaskSessionLinkRecord {
 	summary: string;
 	filesTouched: string[];
 	spawnedTaskIds: string[];
+	cursor?: WorkflowCursor;
 	timestamp: string;
 }
 
@@ -275,6 +342,7 @@ export interface TaskSessionLinkInput {
 	summary?: string;
 	filesTouched?: string[];
 	spawnedTaskIds?: string[];
+	cursor?: WorkflowCursor;
 	setSessionName?: boolean;
 }
 
@@ -347,7 +415,10 @@ export interface CodewikiTaskEvidenceInput {
 export interface AgencyBudget {
 	maxCycles?: number;
 	maxWallSeconds?: number;
+	maxTokens?: number;
+	maxCostUsd?: number;
 	maxWrites?: number;
+	maxSessions?: number;
 	maxSubagents?: number;
 	risk?: AgencyRisk;
 }
@@ -356,6 +427,7 @@ export interface CodewikiAgencyToolInput {
 	repoPath?: string;
 	mode?: AgencyMode;
 	trigger?: AgencyTrigger;
+	scope?: AgencyScope;
 	budget?: AgencyBudget;
 	dryRun?: boolean;
 }
@@ -509,6 +581,7 @@ export interface CodewikiSessionToolInput {
 	taskId?: string;
 	summary?: string;
 	files_touched?: string[];
+	cursor?: WorkflowCursor;
 	setSessionName?: boolean;
 	refresh?: boolean;
 }
@@ -599,12 +672,16 @@ export interface StatusStateFile {
 		risky_spec_paths: string[];
 		top_risky_spec_paths: string[];
 		open_task_ids: string[];
+		sprint_ids?: string[];
+		active_sprint_ids?: string[];
 	};
 	next_step: {
 		kind: string;
 		command: string;
 		reason: string;
 	};
+	workflow_cursor?: WorkflowCursor;
+	gc?: any;
 	direction: string[];
 	specs: StatusStateSpecRow[];
 	agency: {
@@ -650,6 +727,9 @@ export interface StatusStateFile {
 		blocked_task_ids: string[];
 		in_progress_task_ids: string[];
 		next_task_id: string;
+		sprint_ids?: string[];
+		active_sprint_ids?: string[];
+		sprints?: any[];
 		columns: StatusStateRoadmapColumn[];
 	};
 	agents: {
@@ -847,6 +927,8 @@ export interface ActiveStatusPanel {
 	animationTick: number;
 	roadmapColumnIndex: number;
 	roadmapRowIndex: number;
+	graphRowIndex?: number;
+	diffRowIndex?: number;
 	agentRowIndex: number;
 	channelRowIndex: number;
 	animationTimer?: any;

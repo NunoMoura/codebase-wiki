@@ -1,7 +1,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import type { ActiveStatusPanel } from "../../domain/shared/types.ts";
 import { registerBootstrapFeatures } from "../../../bootstrap.ts";
-import { codewikiBuildToolInputSchema, codewikiAgencyToolInputSchema, codewikiClaimToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas.ts";
+import { codewikiBuildToolInputSchema, codewikiAgencyToolInputSchema, codewikiClaimToolInputSchema, codewikiDiffTableToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas.ts";
 import { registerConfigCommand } from "./commands/config.ts";
 import { registerResumeCommand } from "./commands/resume.ts";
 import { registerStatusCommand } from "./commands/status.ts";
@@ -11,6 +11,7 @@ import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject
 import { runRebuild } from "../../application/state-artifacts.ts";
 import { executeCodewikiAgency } from "./tools/agency.ts";
 import { executeCodewikiClaim } from "./tools/claim.ts";
+import { executeDiffTableAction } from "../../application/diff-table.ts";
 import { executeCodewikiSession } from "./tools/session.ts";
 import { registerCodewikiStateTool } from "./tools/state.ts";
 import { writeBuild, writeValidationReport } from "../../application/builds.ts";
@@ -231,6 +232,22 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
 			return {
 				content: [{ type: "text", text: result.summary }],
+				details: result,
+			};
+		},
+	} as any);
+
+	pi.registerTool({
+		name: "codewiki_diff_table",
+		label: "Codewiki Diff Table",
+		description: "Create or update pending feedback diff tables before accepted feedback builds are compiled.",
+		promptSnippet: "Use pending diff tables for interactive feedback approval before writing accepted feedback builds.",
+		parameters: codewikiDiffTableToolInputSchema,
+		execute: async (_id: string, params: any, _notify: any, _progress: any, ctx: any) => {
+			const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_diff_table");
+			const result = await executeDiffTableAction(project, params);
+			return {
+				content: [{ type: "text", text: `codewiki diff_table: ${params.action}` }],
 				details: result,
 			};
 		},

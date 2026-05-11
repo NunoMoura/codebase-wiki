@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-11T06:11:03Z",
+  "profile": "implementation",
+  "task_id": "TASK-056",
+  "verdict": "pass",
+  "rationale": "TASK-056 acceptance is met: config schema v4 is present in project config/templates/types; roadmap supports canonical sprint cohorts and generated sprint/scope views; workflow cursor is available from graph/state/session; build DAG edges from TASK-055 feed graph; hot/warm/cold/purgeable GC views and sprint-close hooks are generated; agency planning accepts roadmap/sprint/task scope with token/time/cost/write/session/risk budgets and emits a plan-only session_spawn_plan gated by config, claims, and scope.",
+  "checks": [
+    "npx tsc --noEmit",
+    "node scripts/check-architecture.mjs",
+    "npm test",
+    "source CodewikiRebuilder rebuildAll"
+  ],
+  "issues": [],
+  "source": "TASK-056 implementation audit"
+}

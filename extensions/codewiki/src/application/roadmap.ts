@@ -3,6 +3,7 @@ import { readFile, stat, writeFile } from "node:fs/promises";
 import type {
 	WikiProject,
 	RoadmapFile,
+	RoadmapSprintRecord,
 	RoadmapTaskRecord,
 	RoadmapTaskUpdateInput,
 	RoadmapStatus,
@@ -1089,6 +1090,34 @@ export function normalizeRoadmapPriority(priority: string | undefined): RoadmapP
 	return p; // Should ideally validate against ROADMAP_PRIORITY_VALUES
 }
 
+export function normalizeSprintStatus(status: string | undefined): RoadmapSprintRecord["status"] {
+	const value = String(status || "planned").trim();
+	return value === "active" || value === "review" || value === "closed" || value === "cancelled" ? value : "planned";
+}
+
+export function normalizeRoadmapSprints(raw: unknown): Record<string, RoadmapSprintRecord> {
+	if (!raw || typeof raw !== "object") return {};
+	return Object.fromEntries(Object.entries(raw as Record<string, any>).map(([sprintId, sprint]) => {
+		const id = String(sprint?.id || sprintId).trim() || sprintId;
+		const scope = sprint?.scope && typeof sprint.scope === "object" ? sprint.scope : {};
+		return [id, {
+			id,
+			title: String(sprint?.title || id).trim(),
+			status: normalizeSprintStatus(sprint?.status),
+			outcome: String(sprint?.outcome || sprint?.summary || "").trim(),
+			task_ids: unique(Array.isArray(sprint?.task_ids) ? sprint.task_ids.map(String) : []),
+			scope: {
+				knowledge: unique(Array.isArray(scope.knowledge) ? scope.knowledge.map(String) : []),
+				code: unique(Array.isArray(scope.code) ? scope.code.map(String) : []),
+			},
+			budget: sprint?.budget && typeof sprint.budget === "object" ? sprint.budget : undefined,
+			gates: unique(Array.isArray(sprint?.gates) ? sprint.gates.map(String) : []),
+			created: typeof sprint?.created === "string" && sprint.created.trim() ? sprint.created : todayIso(),
+			updated: typeof sprint?.updated === "string" && sprint.updated.trim() ? sprint.updated : todayIso(),
+		} satisfies RoadmapSprintRecord];
+	}));
+}
+
 /**
  * Read and normalize a roadmap file.
  */
@@ -1160,5 +1189,6 @@ export async function readRoadmapFile(path: string): Promise<RoadmapFile> {
 		updated: data.updated ?? nowIso(),
 		order: Array.isArray(data.order) ? data.order.filter(Boolean) : [],
 		tasks,
+		sprints: normalizeRoadmapSprints((data as any).sprints),
 	};
 }

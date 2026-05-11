@@ -1,7 +1,10 @@
 import type {
+	AgencyScope,
 	TaskSessionAction,
 	TaskSessionLinkInput,
 	TaskSessionLinkRecord,
+	WorkflowCursor,
+	WorkflowLoop,
 } from "./types.ts";
 import { nowIso, unique } from "./utils.ts";
 
@@ -16,8 +19,36 @@ export function normalizeTaskSessionLinkInput(
 		summary: typeof input.summary === "string" ? input.summary : "",
 		filesTouched: unique(input.filesTouched ?? []),
 		spawnedTaskIds: unique(input.spawnedTaskIds ?? []),
+		...(input.cursor ? { cursor: normalizeWorkflowCursor(input.cursor) } : {}),
 		timestamp: nowIso(),
 	};
+}
+
+export function normalizeAgencyScope(scope: unknown): AgencyScope | undefined {
+	const value = scope as { kind?: string; id?: string } | null | undefined;
+	const kind = String(value?.kind || "").trim();
+	if (kind !== "roadmap" && kind !== "sprint" && kind !== "task") return undefined;
+	const id = String(value?.id || "").trim();
+	return { kind, ...(id ? { id } : {}) };
+}
+
+export function normalizeWorkflowCursor(cursor: unknown): WorkflowCursor | undefined {
+	const value = cursor as Record<string, unknown> | null | undefined;
+	const activeLoop = String(value?.active_loop || "").trim();
+	if (!isWorkflowLoop(activeLoop)) return undefined;
+	const scope = normalizeAgencyScope(value?.scope);
+	return {
+		active_loop: activeLoop,
+		...(typeof value?.reason === "string" && value.reason.trim() ? { reason: value.reason.trim() } : {}),
+		input_refs: Array.isArray(value?.input_refs) ? unique(value.input_refs.map(String).map((v) => v.trim()).filter(Boolean)) : [],
+		...(typeof value?.expected_output === "string" && value.expected_output.trim() ? { expected_output: value.expected_output.trim() } : {}),
+		...(typeof value?.exit_gate === "string" && value.exit_gate.trim() ? { exit_gate: value.exit_gate.trim() } : {}),
+		...(scope ? { scope } : {}),
+	};
+}
+
+function isWorkflowLoop(value: string): value is WorkflowLoop {
+	return value === "feedback" || value === "documentation" || value === "implementation" || value === "validation" || value === "observe";
 }
 
 export function normalizeTaskSessionAction(
@@ -59,6 +90,7 @@ export function parseTaskSessionLinkEntry(
 			summary?: string;
 			filesTouched?: string[];
 			spawnedTaskIds?: string[];
+			cursor?: unknown;
 		};
 	};
 	if (
@@ -79,6 +111,7 @@ export function parseTaskSessionLinkEntry(
 			spawnedTaskIds: Array.isArray(value.data.spawnedTaskIds)
 				? unique(value.data.spawnedTaskIds)
 				: [],
+			...(normalizeWorkflowCursor(value.data.cursor) ? { cursor: normalizeWorkflowCursor(value.data.cursor) } : {}),
 			timestamp:
 				typeof value.timestamp === "string" ? value.timestamp : nowIso(),
 		};

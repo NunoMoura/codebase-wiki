@@ -76,6 +76,7 @@ function recordTaskSessionLink(
 			summary: link.summary,
 			filesTouched: link.filesTouched,
 			spawnedTaskIds: link.spawnedTaskIds,
+			...(link.cursor ? { cursor: link.cursor } : {}),
 		});
 	} catch {
 		// Ignore optional runtime history failures.
@@ -100,6 +101,7 @@ export async function recordSessionTaskAction(
 		action: TaskSessionAction;
 		summary?: string;
 		filesTouched?: string[];
+		cursor?: TaskSessionLinkInput["cursor"];
 		setSessionName?: boolean;
 	},
 	ports: SessionPorts,
@@ -123,6 +125,7 @@ export async function recordSessionTaskAction(
 			summary,
 			filesTouched: unique(opts.filesTouched ?? []),
 			spawnedTaskIds: [],
+			cursor: opts.cursor,
 			setSessionName: opts.action === "focus" ? (opts.setSessionName ?? false) : false,
 		},
 		ports,

@@ -252,6 +252,7 @@ async function main() {
 				"codewiki_validation",
 				"codewiki_task",
 				"codewiki_claim",
+				"codewiki_diff_table",
 				"codewiki_session",
 				"codewiki_agency",
 			],
@@ -497,6 +498,26 @@ async function main() {
 			agencyResult.details.bounded_context.fallback.steps.length >= 1,
 			"Agency should expose native fallback context steps",
 		);
+
+		const diffTableTool = extension.tools.get("codewiki_diff_table");
+		assert.ok(
+			diffTableTool && typeof diffTableTool.definition?.execute === "function",
+			"Diff table tool missing execute function",
+		);
+		const diffResult = await diffTableTool.definition.execute(
+			"diff-table-smoke",
+			{
+				repoPath: projectDir,
+				action: "propose",
+				table_id: "DT-SMOKE",
+				summary: "Smoke diff rows",
+				rows: [{ id: "DTR-001", current_state: "Old", desired_state: "New", rationale: "Smoke", affected_layers: ["roadmap"], risk: "low", user_action: "pending" }],
+			},
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		assert.equal(diffResult.details.table.rows[0].id, "DTR-001");
 
 		const buildTool = extension.tools.get("codewiki_build");
 		assert.ok(

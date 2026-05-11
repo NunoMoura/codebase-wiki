@@ -42,7 +42,7 @@ Agency can run at three scopes:
 | `sprint` | Advance a bounded cohort of related tasks with shared budget, claims, and closure checkpoint. |
 | `task` | Advance one atomic roadmap work item. |
 
-Sprint scope is the default target for parallel work once a sprint model exists. If the harness can spawn sessions, CodeWiki may create one session per sprint or bounded sprint workstream; otherwise it should emit compact handoff prompts and claims for manual or external spawning.
+Sprint scope is the default target for parallel work when a sprint is active. If the harness can spawn sessions, CodeWiki may create one session per sprint or bounded sprint workstream; otherwise it emits a plan-only `session_spawn_plan` with task ids, required claims, and stop reasons for manual or external spawning.
 
 ## Modes
 
@@ -85,6 +85,7 @@ When intent is unclear, it routes to feedback. When knowledge must change, it ro
 - The controller must not bypass validation gateway or policy decisions.
 - Commit, push, release, and remote updates require explicit publication policy approval.
 - Parallel sprint execution must claim narrow scopes and stop on write/write conflicts unless policy explicitly permits override.
+- Agency plans must expose token, time, cost, write, session, and risk budgets in bounded context and policy output.
 
 ## Related docs
 

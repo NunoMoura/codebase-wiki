@@ -58,8 +58,9 @@ All access surfaces must preserve the same `.codewiki/` semantics.
 - Parallel sessions should use scoped change claims before non-trivial overlapping documentation, roadmap, build, validation, or code edits.
 - Claims are temporary coordination leases; they do not replace roadmap tasks, builds, validation, git, or code review.
 - Gated agency runs must respect token, time, cost, write, session, risk, validation, policy, and approval gates.
-- Pending diff tables are runtime/session decision surfaces; accepted rows become feedback build truth.
+- Pending diff tables are runtime/session decision surfaces; accepted rows become feedback build truth. The status panel Diff tab can approve, reject, defer, or attach alternatives to pending rows.
 - Builds are accepted loop handoff briefs and should expose explicit consumes/produces edges.
+- Config schema v4 defines quiet rebuild defaults, scoped agency budgets, parallelism/session-per-sprint policy, and hot/warm/cold/purge garbage-collection windows.
 - Generated graph/index state is never hand-edited.
 - Failed, blocked, policy-required, release, or audit-mode validation reports persist under `.codewiki/validation/**`.
 - Commit, push, release, and remote updates require implementation evidence plus validation/policy approval.

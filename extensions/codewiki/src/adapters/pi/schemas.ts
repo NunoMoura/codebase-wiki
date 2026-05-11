@@ -163,19 +163,40 @@ export const agencyTriggerSchema = Type.Union(
 export const agencyRiskSchema = Type.Union(
 	T.AGENCY_RISK_VALUES.map((value) => Type.Literal(value)),
 );
+export const agencyScopeKindSchema = Type.Union(
+	T.AGENCY_SCOPE_KIND_VALUES.map((value) => Type.Literal(value)),
+);
+export const workflowLoopSchema = Type.Union(
+	T.WORKFLOW_LOOP_VALUES.map((value) => Type.Literal(value)),
+);
+export const agencyScopeSchema = Type.Object({
+	kind: agencyScopeKindSchema,
+	id: Type.Optional(Type.String({ minLength: 1 })),
+});
+export const agencyBudgetSchema = Type.Object({
+	maxCycles: Type.Optional(Type.Number()),
+	maxWallSeconds: Type.Optional(Type.Number()),
+	maxTokens: Type.Optional(Type.Number()),
+	maxCostUsd: Type.Optional(Type.Number()),
+	maxWrites: Type.Optional(Type.Number()),
+	maxSessions: Type.Optional(Type.Number()),
+	maxSubagents: Type.Optional(Type.Number()),
+	risk: Type.Optional(agencyRiskSchema),
+});
+export const workflowCursorSchema = Type.Object({
+	active_loop: workflowLoopSchema,
+	reason: Type.Optional(Type.String({ minLength: 1 })),
+	input_refs: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	expected_output: Type.Optional(Type.String({ minLength: 1 })),
+	exit_gate: Type.Optional(Type.String({ minLength: 1 })),
+	scope: Type.Optional(agencyScopeSchema),
+});
 export const codewikiAgencyToolInputSchema = Type.Object({
 	repoPath: repoPathToolField,
 	mode: Type.Optional(agencyModeSchema),
 	trigger: Type.Optional(agencyTriggerSchema),
-	budget: Type.Optional(
-		Type.Object({
-			maxCycles: Type.Optional(Type.Number()),
-			maxWallSeconds: Type.Optional(Type.Number()),
-			maxWrites: Type.Optional(Type.Number()),
-			maxSubagents: Type.Optional(Type.Number()),
-			risk: Type.Optional(agencyRiskSchema),
-		}),
-	),
+	scope: Type.Optional(agencyScopeSchema),
+	budget: Type.Optional(agencyBudgetSchema),
 	dryRun: Type.Optional(Type.Boolean()),
 });
 
@@ -390,6 +411,27 @@ export const codewikiValidationReportSchema = Type.Object({
 	source: Type.Optional(Type.String()),
 	refresh: Type.Optional(Type.Boolean({ default: true })),
 });
+export const codewikiDiffTableToolInputSchema = Type.Object({
+	repoPath: repoPathToolField,
+	action: Type.Union([
+		Type.Literal("propose"),
+		Type.Literal("revise"),
+		Type.Literal("accept"),
+		Type.Literal("reject"),
+		Type.Literal("defer"),
+		Type.Literal("alternative"),
+		Type.Literal("archive"),
+		Type.Literal("list"),
+	]),
+	table_id: Type.Optional(Type.String({ minLength: 1 })),
+	row_id: Type.Optional(Type.String({ minLength: 1 })),
+	summary: Type.Optional(Type.String({ minLength: 1 })),
+	source: Type.Optional(Type.String({ minLength: 1 })),
+	scope: Type.Optional(agencyScopeSchema),
+	rows: Type.Optional(Type.Array(codewikiDiffTableRowSchema)),
+	alternative: Type.Optional(Type.String({ minLength: 1 })),
+});
+
 export const codewikiSessionToolInputSchema = Type.Object({
 	repoPath: repoPathToolField,
 	action: Type.Union([
@@ -402,6 +444,7 @@ export const codewikiSessionToolInputSchema = Type.Object({
 	checks_run: Type.Optional(Type.Array(Type.String(), { default: [] })),
 	files_touched: Type.Optional(Type.Array(Type.String(), { default: [] })),
 	issues: Type.Optional(Type.Array(Type.String(), { default: [] })),
+	cursor: Type.Optional(workflowCursorSchema),
 	setSessionName: Type.Optional(
 		Type.Boolean({
 			default: false,

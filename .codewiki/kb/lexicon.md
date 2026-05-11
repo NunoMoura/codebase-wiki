@@ -24,7 +24,7 @@ A tracked unit of active intended change with outcome, acceptance, non-goals, ve
 
 ## Sprint
 
-A bounded work wave through the compiler pipeline. A sprint groups one or more roadmap tasks that share a feedback build, documentation build, and consolidated implementation build as evidence. Sprints replace informal "wave" terminology.
+A bounded work wave through the compiler pipeline. A sprint groups one or more roadmap tasks with a shared outcome, scope, budget, gates, and closure checkpoint. Sprints let agents and users scope execution at roadmap, sprint, or task level.
 
 ## Compiler
 
@@ -44,7 +44,7 @@ The compiler that turns a `documentation_build` and roadmap work item into tests
 
 ## Diff table
 
-Feedback-loop decision surface that compares current state to desired state before canonical edits. Pending rows can live in runtime/session UI state. Approved rows compile into a `feedback_build`.
+Feedback-loop decision surface that compares current state to desired state before canonical edits. Pending rows can live in runtime/session UI state and be approved, rejected, deferred, or edited with alternatives. Approved rows compile into a `feedback_build`.
 
 ## Feedback build
 

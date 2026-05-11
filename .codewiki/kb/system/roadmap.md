@@ -38,7 +38,7 @@ A sprint should record:
 - budget limits such as time, token, cost, write, session, and risk limits,
 - closure gates such as validation, checkpoint, and garbage collection.
 
-Future sprints can stay outcome-level. The active sprint should be decomposed into executable roadmap tasks.
+Future sprints can stay outcome-level. The active sprint should be decomposed into executable roadmap tasks. The canonical roadmap JSON supports a top-level `sprints` map; generated graph and roadmap state expose sprint ids, active sprint ids, task membership, scope, budget, and gates.
 
 ## Roadmap item contents
 
@@ -96,7 +96,7 @@ The roadmap should not decide whether an agent may continue or what queue order 
 
 ## Retention and history
 
-Hot roadmap state should contain active sprints, active work, and any recently closed/cancelled work still needed for immediate handoff. After sprint checkpoint or retention expiry, closed/cancelled task detail should move out of the active roadmap and rely on:
+Hot roadmap state should contain active sprints, active work, active claims, unconsumed builds, fail/block validation, and any recently closed/cancelled work still needed for immediate handoff. Warm state contains recent pass evidence and accepted handoffs. Cold state contains consumed/validated history. Purgeable state contains expired runtime artifacts. After sprint checkpoint or retention expiry, closed/cancelled task detail should move out of the active roadmap and rely on:
 
 - git for full history,
 - implementation builds for implementation evidence,

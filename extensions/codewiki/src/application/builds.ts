@@ -436,7 +436,8 @@ export async function writeValidationReport(
 	if (!input.rationale.trim()) throw new Error("Validation report requires rationale.");
 
 	const created = nowIso();
-	const slug = buildSlug(`${input.profile}-${input.verdict}`, "validation-report");
+	const taskPart = input.task_id?.trim() ? `-${input.task_id.trim()}` : "";
+	const slug = buildSlug(`${input.profile}-${input.verdict}${taskPart}`, "validation-report");
 	const day = created.slice(0, 10);
 	const absPath = resolve(project.root, `.codewiki/validation/${day}-${slug}.json`);
 	const data = {

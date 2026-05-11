@@ -159,6 +159,8 @@ export function statusSectionTabs(
 		{ key: "product", label: "Product" },
 		{ key: "system", label: "System" },
 		{ key: "roadmap", label: "Board" },
+		{ key: "graph", label: "Graph" },
+		{ key: "diff", label: "Diff" },
 	];
 	return tabs
 		.map((tab) =>

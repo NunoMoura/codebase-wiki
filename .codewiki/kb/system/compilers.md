@@ -44,6 +44,8 @@ The feedback loop should present diff tables before canonical edits. Each row sh
 
 Accepted rows compile into a `feedback_build`. Pending, rejected, or deferred rows can remain in runtime/session UI state or be summarized as open questions, non-goals, or future candidates, but they should not silently become implementation requirements.
 
+The workflow cursor records the active loop, expected output, exit gate, and roadmap/sprint/task scope. Runtime session state may override the generated graph cursor, but canonical truth stays in builds, roadmap, validation, knowledge, tests, and code.
+
 ## Documentation loop
 
 The documentation loop consumes an accepted `feedback_build` and updates durable product/system knowledge. It also produces a `documentation_build` as the implementation-spec brief.

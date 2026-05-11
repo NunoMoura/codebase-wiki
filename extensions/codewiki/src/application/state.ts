@@ -220,6 +220,7 @@ export async function readCodewikiState(
 			open_task_count: artifacts.statusState?.summary.open_task_count ?? 0,
 			active_task_ids: artifacts.roadmapState?.views.in_progress_task_ids ?? [],
 			blocked_task_ids: artifacts.roadmapState?.views.blocked_task_ids ?? [],
+			active_sprint_ids: (artifacts.roadmapState?.views as any)?.active_sprint_ids ?? [],
 			next_task_id: nextAction.taskId ?? null,
 			unmapped_spec_count: artifacts.statusState?.summary.unmapped_specs ?? 0,
 		},
@@ -232,6 +233,9 @@ export async function readCodewikiState(
 			active_task_ids: artifacts.roadmapState?.views.in_progress_task_ids ?? [],
 			blocked_task_ids: artifacts.roadmapState?.views.blocked_task_ids ?? [],
 			recent_task_ids: artifacts.roadmapState?.views.recent_task_ids ?? [],
+			sprint_ids: (artifacts.roadmapState?.views as any)?.sprint_ids ?? [],
+			active_sprint_ids: (artifacts.roadmapState?.views as any)?.active_sprint_ids ?? [],
+			sprints: (artifacts.roadmapState?.views as any)?.sprints ?? [],
 		};
 	}
 
@@ -246,6 +250,9 @@ export async function readCodewikiState(
 			code_path_count: graph?.nodes.filter((n) => n.kind === "code_path").length ?? 0,
 			source: "graph",
 			claims: (graph?.views as any)?.claims ?? null,
+			scope_views: (graph?.views as any)?.scope_views ?? null,
+			workflow_cursor: (graph?.views as any)?.workflow_cursor ?? null,
+			gc: (graph?.views as any)?.gc ?? null,
 			reconciliation: reconciliation
 				? {
 						controller: reconciliation.controller,
@@ -272,6 +279,7 @@ export async function readCodewikiState(
 			focused_task_id: activeTaskLink?.taskId ?? null,
 			updated_at: activeTaskLink?.timestamp ?? null,
 			summary: activeTaskLink?.summary || null,
+			workflow_cursor: activeTaskLink?.cursor ?? (artifacts.statusState as any)?.workflow_cursor ?? (artifacts.graph?.views as any)?.workflow_cursor ?? null,
 			claims: artifacts.statusState?.parallel
 				? {
 						active_claim_count: artifacts.statusState.parallel.active_claim_count ?? 0,

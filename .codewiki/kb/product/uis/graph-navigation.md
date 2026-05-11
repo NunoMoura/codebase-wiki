@@ -19,13 +19,16 @@ Agent navigation belongs to the system graph/API contract; this document covers 
 
 Product expectations:
 
-- show the next useful read or next useful decision,
+- render a compact Graph tab in the status panel,
+- show graph node/edge counts, build DAG edges, scoped roadmap/sprint/task slices, and the next reconciliation action,
 - explain why a node, edge, missing link, or stale link matters,
 - show affected product, system, roadmap, build, validation, test, and code layers,
 - avoid broad context dumps,
 - route from user intent to feedback diff rows, knowledge, roadmap work, builds, validation reports, tests, and code,
 - make canonical source links visible,
 - show sprint/task scoped graph slices when agency is bounded to a cohort or single task.
+
+The Graph tab is an inspection surface, not an editor. Selecting a row opens a compact detail card; canonical edits still flow through CodeWiki tools and compiler loops.
 
 ## Success signals
 

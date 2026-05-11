@@ -17,7 +17,7 @@ import {
 import { currentTaskLink } from "../session.ts";
 import { maybeReadStatusState, maybeReadRoadmapState } from "../../../application/state-artifacts.ts";
 import { maybeReadJson } from "../../../infrastructure/filesystem.ts";
-import type { LintReport } from "../../../domain/shared/types.ts";
+import type { LintReport, StatusPanelSection } from "../../../domain/shared/types.ts";
 
 /**
  * Register the wiki-status command.
@@ -25,10 +25,16 @@ import type { LintReport } from "../../../domain/shared/types.ts";
 export function registerStatusCommand(pi: ExtensionAPI): void {
 	pi.registerCommand(`wiki-status`, {
 		description:
-			"Open Codewiki project status panel. Usage: /wiki-status [repo-path]",
+			"Open Codewiki project status panel. Usage: /wiki-status [repo-path] [home|product|system|roadmap|graph|diff]",
 		handler: async (args, ctx) => {
 			await withUiErrorHandling(ctx, async () => {
-				const pathArg = args.trim() || null;
+				const parts = args.trim().split(/\s+/).filter(Boolean);
+				const sectionCandidate = parts[parts.length - 1];
+				const section = ["home", "product", "system", "roadmap", "graph", "diff"].includes(sectionCandidate || "")
+					? (sectionCandidate as StatusPanelSection)
+					: "home";
+				if (sectionCandidate === section) parts.pop();
+				const pathArg = parts.join(" ") || null;
 				const project = pathArg
 					? await resolveCommandProject(
 							ctx,
@@ -60,7 +66,7 @@ export function registerStatusCommand(pi: ExtensionAPI): void {
 					(activeStatusPanelRef) => {
                         // Global state update should be handled in manager.ts via openStatusPanel
 					},
-					"product",
+					section,
 				);
 				if (!opened) {
 					const state = await maybeReadStatusState(project.statusStatePath);

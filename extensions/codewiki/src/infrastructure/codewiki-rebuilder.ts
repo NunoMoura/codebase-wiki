@@ -14,10 +14,16 @@ import type { ParsedDoc } from "./doc-parser.ts";
 export class CodewikiRebuilder {
 	private readonly repoRoot: string;
 	private readonly gitCache: GitCache;
+	private readonly quietOverride?: boolean;
 
-	constructor(repoRoot: string) {
+	constructor(repoRoot: string, options: { quiet?: boolean } = {}) {
 		this.repoRoot = repoRoot;
 		this.gitCache = new GitCache(repoRoot);
+		this.quietOverride = options.quiet;
+	}
+
+	private log(message: string, quiet: boolean): void {
+		if (!quiet) console.log(message);
 	}
 
 	private findMarkdownFiles(project: WikiProject): string[] {
@@ -87,14 +93,14 @@ export class CodewikiRebuilder {
 	}
 
 	public async rebuildAll(): Promise<void> {
-		console.log(`[Rebuild] Starting full rebuild for repo: ${this.repoRoot}`);
-		
-		console.log(`[Rebuild] Warming up git cache...`);
-		this.gitCache.prefetchAllBlobOids();
-
 		const configPath = join(this.repoRoot, ".codewiki", "config.json");
 		const config = existsSync(configPath) ? JSON.parse(readFileSync(configPath, "utf8")) : {};
-		
+		const quiet = this.quietOverride ?? (process.env.CODEWIKI_REBUILD_VERBOSE === "1" ? false : config?.codewiki?.rebuild?.quiet !== false);
+		this.log(`[Rebuild] Starting full rebuild for repo: ${this.repoRoot}`, quiet);
+
+		this.log(`[Rebuild] Warming up git cache...`, quiet);
+		this.gitCache.prefetchAllBlobOids();
+
 		const metaRoot = config.meta_root || ".codewiki";
 		const project: WikiProject = {
 			root: this.repoRoot,
@@ -118,18 +124,18 @@ export class CodewikiRebuilder {
 			statusStatePath: join(metaRoot, "index_graph.json"),
 		};
 
-		console.log(`[Rebuild] Loading docs...`);
+		this.log(`[Rebuild] Loading docs...`, quiet);
 		const mdFiles = this.findMarkdownFiles(project);
 		const docs: ParsedDoc[] = [];
 		for (const relPath of mdFiles) {
 			try {
 				docs.push(parseDoc(this.repoRoot, project, resolve(this.repoRoot, relPath)));
 			} catch (err) {
-				console.error(`[Rebuild] Failed to parse doc: ${relPath}`);
+				this.log(`[Rebuild] Failed to parse doc: ${relPath}`, quiet);
 			}
 		}
 
-		console.log(`[Rebuild] Loading state JSONs...`);
+		this.log(`[Rebuild] Loading state JSONs...`, quiet);
 		const readJson = (file: string, fallback: any) => {
 			const p = join(this.repoRoot, file);
 			return existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : fallback;
@@ -140,8 +146,9 @@ export class CodewikiRebuilder {
 			return readFileSync(p, "utf8").split("\n").filter(l => l.trim()).map(l => JSON.parse(l));
 		};
 
-		const roadmapData = readJson(project.roadmapPath, { tasks: {} });
+		const roadmapData = readJson(project.roadmapPath, { tasks: {}, sprints: {} });
 		const roadmapEntries = Object.values(roadmapData.tasks || {}) as any[];
+		const roadmapSprints = Object.values(roadmapData.sprints || {}) as any[];
 		const claimsPath = claimsFilePath(project);
 		const claims = existsSync(claimsPath) ? normalizeClaimsFile(JSON.parse(readFileSync(claimsPath, "utf8"))) : normalizeClaimsFile(null);
 		const archivePath = config.roadmap_retention?.archive_path || `${metaRoot}/roadmap/archive.jsonl`;
@@ -151,7 +158,7 @@ export class CodewikiRebuilder {
 
 		const research = this.loadResearchCollections(project);
 
-		console.log(`[Rebuild] Discovering build artifacts...`);
+		this.log(`[Rebuild] Discovering build artifacts...`, quiet);
 		const builds: { path: string; kind: string; taskId?: string; status?: string; data: any }[] = [];
 		const buildsRoot = join(this.repoRoot, ".codewiki", "builds");
 		if (existsSync(buildsRoot)) {
@@ -174,7 +181,7 @@ export class CodewikiRebuilder {
 			}
 		}
 
-		console.log(`[Rebuild] Discovering validation reports...`);
+		this.log(`[Rebuild] Discovering validation reports...`, quiet);
 		const validations: { path: string; taskId?: string; verdict?: string; data?: any }[] = [];
 		const validationRoot = join(this.repoRoot, ".codewiki", "validation");
 		if (existsSync(validationRoot)) {
@@ -196,7 +203,7 @@ export class CodewikiRebuilder {
 			walk(validationRoot);
 		}
 
-		console.log(`[Rebuild] Discovering test files...`);
+		this.log(`[Rebuild] Discovering test files...`, quiet);
 		const testFiles: string[] = [];
 		const scriptsDir = join(this.repoRoot, "scripts");
 		if (existsSync(scriptsDir)) {
@@ -208,13 +215,13 @@ export class CodewikiRebuilder {
 			}
 		}
 
-		console.log(`[Rebuild] Graph and Lint dependencies resolving...`);
+		this.log(`[Rebuild] Graph and Lint dependencies resolving...`, quiet);
 
-		const graph = buildGraph({ project, docs, research, roadmapEntries, gitCache: this.gitCache, builds, validations, testFiles, claims });
+		const graph = buildGraph({ project, docs, research, roadmapEntries, roadmapSprints, gitCache: this.gitCache, builds, validations, testFiles, claims });
 		const lintReport = buildLintReport(this.repoRoot, project, docs, roadmapEntries, research, { builds, validations, archivedTaskIds });
 		
-		console.log(`[Rebuild] Building UI state...`);
-		const roadmapState = buildRoadmapState(project, roadmapEntries, graph, lintReport, events);
+		this.log(`[Rebuild] Building UI state...`, quiet);
+		const roadmapState = buildRoadmapState(project, roadmapEntries, graph, lintReport, events, roadmapSprints);
 		
 		const previousStatusPath = join(this.repoRoot, project.statusStatePath);
 		const previousStatus = existsSync(previousStatusPath) ? JSON.parse(readFileSync(previousStatusPath, "utf8")) : {};
@@ -233,12 +240,12 @@ export class CodewikiRebuilder {
 		};
 		writeFileSync(join(metaRootDir, "index_graph.json"), JSON.stringify(indexGraph, null, 2));
 
-		console.log(`[Rebuild] Engine pipeline completed successfully!`);
+		this.log(`[Rebuild] Engine pipeline completed successfully!`, quiet);
 	}
 }
 
 export async function rebuildMain(args: string[]) {
 	const repo = args[0] || process.cwd();
-	const builder = new CodewikiRebuilder(repo);
+	const builder = new CodewikiRebuilder(repo, { quiet: false });
 	await builder.rebuildAll();
 }

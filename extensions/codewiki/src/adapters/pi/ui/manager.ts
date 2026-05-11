@@ -64,7 +64,7 @@ import { currentTaskLink, setTaskSessionStatusText } from "../session.ts";
 import { maybeReadStatusState, maybeReadRoadmapState } from "../../../application/state-artifacts.ts";
 import { matchesKey, truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 import { resolve, dirname, basename } from "node:path";
-import { readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 
 export const STATUS_DOCK_WIDGET_KEY = "codewiki-status-dock";
 
@@ -900,6 +900,8 @@ export function nextStatusPanelSection(
 	if (section === "home") return "product";
 	if (section === "product") return "system";
 	if (section === "system") return "roadmap";
+	if (section === "roadmap") return "graph";
+	if (section === "graph") return "diff";
 	return "home";
 }
 
@@ -1123,6 +1125,98 @@ export function readArchitecturePanelData(project: WikiProject): {
 	return { mermaid, components };
 }
 
+export function readGraphPanelData(project: WikiProject): {
+	stats: Record<string, number>;
+	nextAction: any;
+	scopeLines: string[];
+	dagEdges: Array<{ label: string; from: string; to: string }>;
+	issues: string[];
+} {
+	const graph = maybeReadJsonSync<any>(project.graphPath) || {};
+	const views = graph.views || {};
+	const reconciliation = views.reconciliation || {};
+	const scopeViews = views.scope_views || {};
+	const edges = Array.isArray(graph.edges) ? graph.edges : [];
+	const dagEdges = edges
+		.filter((edge: any) => String(edge.kind || "").startsWith("build_"))
+		.slice(0, 24)
+		.map((edge: any) => ({ label: String(edge.kind || "edge"), from: String(edge.from || ""), to: String(edge.to || "") }));
+	const sprintViews = Object.values(scopeViews.sprints || {}) as any[];
+	return {
+		stats: {
+			nodes: Array.isArray(graph.nodes) ? graph.nodes.length : 0,
+			edges: Array.isArray(graph.edges) ? graph.edges.length : 0,
+			build_edges: dagEdges.length,
+			reconciliation_items: Array.isArray(reconciliation.items) ? reconciliation.items.length : 0,
+		},
+		nextAction: reconciliation.next_action || views.workflow_cursor || {},
+		scopeLines: [
+			`roadmap open=${scopeViews.roadmap?.open_task_ids?.length || 0} tasks=${scopeViews.roadmap?.task_ids?.length || 0}`,
+			...sprintViews.slice(0, 6).map((sprint: any) => `${sprint.id} ${sprint.status} open=${sprint.open_task_ids?.length || 0} tasks=${sprint.task_ids?.length || 0}`),
+		],
+		dagEdges,
+		issues: Array.isArray(reconciliation.items)
+			? reconciliation.items.slice(0, 8).map((item: any) => `${item.next_loop || "observe"}: ${item.reason || item.source_id || item.id}`)
+			: [],
+	};
+}
+
+export function readDiffTablePanelData(project: WikiProject): {
+	rows: Array<{ tableId: string; rowId: string; status: string; current: string; desired: string; risk: string; source: string; alternatives: string[]; readOnly: boolean }>;
+	summary: string;
+} {
+	const rows: Array<{ tableId: string; rowId: string; status: string; current: string; desired: string; risk: string; source: string; alternatives: string[]; readOnly: boolean }> = [];
+	const runtimePath = resolve(project.root, ".codewiki/runtime/diff-tables.json");
+	const runtime = maybeReadJsonSync<any>(runtimePath);
+	for (const table of Array.isArray(runtime?.tables) ? runtime.tables : []) {
+		if (String(table.status || "pending") !== "pending") continue;
+		for (const row of Array.isArray(table.rows) ? table.rows : []) rows.push({
+			tableId: String(table.id || ""),
+			rowId: String(row.id || ""),
+			status: String(row.user_action || "pending"),
+			current: String(row.current_state || ""),
+			desired: String(row.desired_state || ""),
+			risk: String(row.risk || "medium"),
+			source: String(table.summary || table.id || "pending"),
+			alternatives: Array.isArray(row.alternatives) ? row.alternatives.map(String) : [],
+			readOnly: false,
+		});
+	}
+	const feedbackDir = resolve(project.root, ".codewiki/builds/feedback");
+	if (rows.length === 0 && existsSync(feedbackDir)) {
+		for (const file of readdirSync(feedbackDir).filter((name) => name.endsWith(".json")).sort().reverse().slice(0, 3)) {
+			const build = maybeReadJsonSync<any>(resolve(feedbackDir, file));
+			for (const row of Array.isArray(build?.diff_table) ? build.diff_table : []) rows.push({
+				tableId: file,
+				rowId: String(row.id || ""),
+				status: String(row.user_action || "pending"),
+				current: String(row.current_state || ""),
+				desired: String(row.desired_state || ""),
+				risk: String(row.risk || "medium"),
+				source: String(build?.summary || file),
+				alternatives: Array.isArray(row.alternatives) ? row.alternatives.map(String) : [],
+				readOnly: true,
+			});
+		}
+	}
+	return { rows, summary: rows.some((row) => !row.readOnly) ? "Pending feedback diff table" : "Latest accepted feedback diff rows (read-only)" };
+}
+
+export function updateRuntimeDiffRow(project: WikiProject, tableId: string, rowId: string, action: "approved" | "rejected" | "deferred" | "edited", alternative?: string): boolean {
+	const path = resolve(project.root, ".codewiki/runtime/diff-tables.json");
+	const data = maybeReadJsonSync<any>(path) || { version: 1, tables: [] };
+	const table = Array.isArray(data.tables) ? data.tables.find((item: any) => String(item.id) === tableId) : null;
+	const row = table && Array.isArray(table.rows) ? table.rows.find((item: any) => String(item.id) === rowId) : null;
+	if (!row) return false;
+	row.user_action = action;
+	if (alternative) row.alternatives = [...(Array.isArray(row.alternatives) ? row.alternatives : []), alternative];
+	data.updated_at = new Date().toISOString();
+	table.updated_at = data.updated_at;
+	mkdirSync(dirname(path), { recursive: true });
+	writeFileSync(path, JSON.stringify(data, null, 2) + "\n", "utf8");
+	return true;
+}
+
 export function renderStatusDetailWindow(
 	title: string,
 	section: StatusPanelSection,
@@ -1188,10 +1282,15 @@ export function renderHomeTab(
 	const currentState = activeTask
 		? `${activeTask.title} is in ${phaseUserLabel(taskLoopPhase(activeTask)).toLowerCase()}. ${issues[0]?.title ?? "No blocking issue detected."}`
 		: `${resume.heading}. ${issues[0]?.title ?? "No blocking issue detected."}`;
+	const cursor: any = (state as any).workflow_cursor || {};
+	const gc: any = (state as any).gc || {};
 	const statusFactors = [
 		`Lint/issues: errors=${countIssuesBySeverity(report, "error")} warnings=${countIssuesBySeverity(report, "warning")}`,
 		`Specs: ${state.summary.aligned_specs}/${state.summary.total_specs} aligned · ${state.summary.untracked_specs} untracked · ${state.summary.unmapped_specs} unmapped`,
 		`Tasks: ${state.summary.open_task_count} open · ${state.summary.done_task_count} done`,
+		`Scope: ${cursor.scope?.kind || "roadmap"}${cursor.scope?.id ? `:${cursor.scope.id}` : ""} · loop=${cursor.active_loop || "observe"} → ${cursor.expected_output || "observation"}`,
+		`Budget: ${(project.config.codewiki?.agency?.budgets as any)?.default?.maxTokens || 0} tok · $${(project.config.codewiki?.agency?.budgets as any)?.default?.maxCostUsd || 0} · sessions=${project.config.codewiki?.agency?.parallelism?.max_sessions || 1}`,
+		`Claims/GC: claims=${state.parallel?.active_claim_count ?? 0} conflicts=${state.parallel?.claim_conflict_count ?? 0} hot=${gc?.classes?.hot?.task_ids?.length ?? 0} task(s)`,
 		`Agency: ${state.agency?.lanes?.filter((lane) => lane.freshness?.status === "stale").length ?? 0} stale lane(s)`,
 	];
 	const lines = [
@@ -1617,6 +1716,38 @@ export function renderStatusPanelLines(
 			);
 	}
 
+	if (section === "graph") {
+		const graph = readGraphPanelData(project);
+		const rows = [...graph.scopeLines, ...graph.dagEdges.map((edge) => `${edge.label}: ${edge.from} → ${edge.to}`), ...graph.issues.map((issue) => `drift: ${issue}`)];
+		panelState.graphRowIndex = Math.min(Math.max(0, panelState.graphRowIndex ?? 0), Math.max(0, rows.length - 1));
+		body.push(theme.bold(theme.fg("accent", "Graph scope + DAG")));
+		body.push(theme.fg("muted", `nodes=${graph.stats.nodes} edges=${graph.stats.edges} build_edges=${graph.stats.build_edges} reconciliation=${graph.stats.reconciliation_items}`));
+		body.push(theme.fg("muted", `next=${graph.nextAction.command || graph.nextAction.active_loop || "observe"}`));
+		body.push("");
+		for (const [index, row] of rows.slice(0, 18).entries()) {
+			const selected = index === panelState.graphRowIndex;
+			body.push(highlightSelectable(theme, `${selected ? "▸" : " "} ${truncatePlain(row, Math.max(12, width - 4))}`, selected));
+		}
+		if (!rows.length) body.push(theme.fg("muted", "Graph has no scoped rows yet."));
+	}
+
+	if (section === "diff") {
+		const diff = readDiffTablePanelData(project);
+		panelState.diffRowIndex = Math.min(Math.max(0, panelState.diffRowIndex ?? 0), Math.max(0, diff.rows.length - 1));
+		body.push(theme.bold(theme.fg("accent", "Feedback diff table")));
+		body.push(theme.fg("muted", diff.summary));
+		body.push(theme.fg("muted", "a approve · x reject · d defer · p alternative · Enter details"));
+		body.push("");
+		for (const [index, row] of diff.rows.slice(0, 12).entries()) {
+			const selected = index === panelState.diffRowIndex;
+			const mode = row.readOnly ? "ro" : "edit";
+			body.push(highlightSelectable(theme, `${selected ? "▸" : " "} ${row.status} [${row.risk}/${mode}] ${truncatePlain(row.desired, Math.max(12, width - 24))}`, selected));
+			body.push(theme.fg("muted", truncatePlain(`${row.tableId}/${row.rowId} · ${row.current}`, Math.max(12, width - 4))));
+			if (row.alternatives.length) body.push(theme.fg("muted", truncatePlain(`alts: ${row.alternatives.join(" | ")}`, Math.max(12, width - 4))));
+		}
+		if (!diff.rows.length) body.push(theme.fg("muted", "No pending or accepted diff rows found."));
+	}
+
 	return renderPinnedTopPanel(
 		title,
 		statusSectionTabs(theme, section),
@@ -1658,6 +1789,8 @@ export async function openStatusPanel(
 		wikiRowIndex: 0,
 		roadmapColumnIndex: 0,
 		roadmapRowIndex: 0,
+		graphRowIndex: 0,
+		diffRowIndex: 0,
 		agentRowIndex: 0,
 		channelRowIndex: 0,
 		detail: null,
@@ -1848,7 +1981,33 @@ export async function openStatusPanel(
 							panelState.roadmapRowIndex - 1,
 						);
 					if (matchesKey(data, "down")) panelState.roadmapRowIndex += 1;
+				} else if (panelState.section === "graph") {
+					if (matchesKey(data, "up") || matchesKey(data, "left")) panelState.graphRowIndex = Math.max(0, (panelState.graphRowIndex ?? 0) - 1);
+					if (matchesKey(data, "down") || matchesKey(data, "right")) panelState.graphRowIndex = (panelState.graphRowIndex ?? 0) + 1;
+				} else if (panelState.section === "diff") {
+					if (matchesKey(data, "up") || matchesKey(data, "left")) panelState.diffRowIndex = Math.max(0, (panelState.diffRowIndex ?? 0) - 1);
+					if (matchesKey(data, "down") || matchesKey(data, "right")) panelState.diffRowIndex = (panelState.diffRowIndex ?? 0) + 1;
 				}
+				renderWidget();
+				return { consume: true };
+			}
+			if (!panelState.detail && panelState.section === "diff" && ["a", "x", "d", "p"].includes(data.toLowerCase())) {
+				const diff = readDiffTablePanelData(panelState.project);
+				const row = diff.rows[panelState.diffRowIndex ?? 0];
+				if (!row || row.readOnly) {
+					ui.notify?.("No editable pending diff row selected.", "warning");
+					return { consume: true };
+				}
+				if (data.toLowerCase() === "p") {
+					void (async () => {
+						const alternative = (await ui.input?.("Alternative desired state", row.desired))?.trim();
+						if (alternative) updateRuntimeDiffRow(panelState.project, row.tableId, row.rowId, "edited", alternative);
+						renderWidget();
+					})().catch((error: unknown) => ui.notify?.(error instanceof Error ? error.message : String(error), "error"));
+					return { consume: true };
+				}
+				const action = data.toLowerCase() === "a" ? "approved" : data.toLowerCase() === "x" ? "rejected" : "deferred";
+				updateRuntimeDiffRow(panelState.project, row.tableId, row.rowId, action as any);
 				renderWidget();
 				return { consume: true };
 			}
@@ -1993,6 +2152,15 @@ export async function openStatusPanel(
 					const task = taskId ? snapshot.roadmapState?.tasks?.[taskId] : null;
 					if (task)
 						openStatusPanelDetail(panelState, buildRoadmapTaskDetail(task));
+				} else if (panelState.section === "graph") {
+					const graph = readGraphPanelData(panelState.project);
+					const rows = [...graph.scopeLines, ...graph.dagEdges.map((edge) => `${edge.label}: ${edge.from} → ${edge.to}`), ...graph.issues.map((issue) => `drift: ${issue}`)];
+					const line = rows[panelState.graphRowIndex ?? 0];
+					if (line) openStatusPanelDetail(panelState, { kind: "graph", title: "Graph row", lines: [line, "", `Next: ${graph.nextAction.command || graph.nextAction.active_loop || "observe"}`] });
+				} else if (panelState.section === "diff") {
+					const diff = readDiffTablePanelData(panelState.project);
+					const row = diff.rows[panelState.diffRowIndex ?? 0];
+					if (row) openStatusPanelDetail(panelState, { kind: "diff", title: `${row.tableId}/${row.rowId}`, lines: [`Status: ${row.status}${row.readOnly ? " (read-only)" : ""}`, `Risk: ${row.risk}`, "", `Current: ${row.current}`, "", `Desired: ${row.desired}`, ...(row.alternatives.length ? ["", "Alternatives:", ...row.alternatives] : [])] });
 				}
 				renderWidget();
 				return { consume: true };

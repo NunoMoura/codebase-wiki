@@ -9,6 +9,7 @@ export interface GraphBuildInputs {
 	docs: ParsedDoc[];
 	research: any[];
 	roadmapEntries: RoadmapTaskRecord[];
+	roadmapSprints?: any[];
 	gitCache: GitCache;
 	builds: { path: string; kind: string; taskId?: string; status?: string; data: any }[];
 	validations: { path: string; taskId?: string; verdict?: string; data?: any }[];
@@ -142,7 +143,7 @@ function indexPush(map: Map<string, BuildArtifact[]>, key: string, build: BuildA
 }
 
 export function buildGraph(inputs: GraphBuildInputs): GraphFile {
-	const { project, docs, research, roadmapEntries, gitCache, builds, validations, testFiles, claims } = inputs;
+	const { project, docs, research, roadmapEntries, roadmapSprints = [], gitCache, builds, validations, testFiles, claims } = inputs;
 	const nodes: GraphNode[] = [];
 	const edges: GraphEdge[] = [];
 	const seenNodes = new Set<string>();
@@ -166,6 +167,23 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	const researchEntryIds: string[] = [];
 	const docsByCodePath = new Map<string, string[]>();
 	const openTasksBySpec = new Map<string, string[]>();
+	const normalizedSprints = roadmapSprints.map((sprint: any) => ({
+		id: String(sprint?.id || "").trim(),
+		title: String(sprint?.title || sprint?.id || "").trim(),
+		status: String(sprint?.status || "planned").trim(),
+		outcome: String(sprint?.outcome || sprint?.summary || "").trim(),
+		task_ids: stringList(sprint?.task_ids).filter((id) => /^TASK-/.test(id)),
+		scope: sprint?.scope || {},
+		budget: sprint?.budget || {},
+		gates: stringList(sprint?.gates),
+	})).filter((sprint) => sprint.id);
+	const sprintByTaskId = new Map<string, string[]>();
+	for (const sprint of normalizedSprints) {
+		for (const taskId of sprint.task_ids) {
+			if (!sprintByTaskId.has(taskId)) sprintByTaskId.set(taskId, []);
+			sprintByTaskId.get(taskId)!.push(sprint.id);
+		}
+	}
 	let dirtyPaths: string[] = [];
 	try {
 		dirtyPaths = gitCache.getDirtyPaths();
@@ -216,6 +234,28 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 				title: entry.title,
 			});
 			addEdge("collection_contains_entry", collectionId, entryNodeId);
+		}
+	}
+
+	// Process Roadmap Sprints
+	for (const sprint of normalizedSprints) {
+		const sprintNodeId = `sprint:${sprint.id}`;
+		addNode(sprintNodeId, {
+			kind: "roadmap_sprint",
+			title: sprint.title,
+			layer: "roadmap",
+			status: sprint.status,
+			outcome: sprint.outcome,
+			budget: sprint.budget,
+			gates: sprint.gates,
+			alignment_state: ["closed", "cancelled"].includes(sprint.status) ? "aligned" : "drift",
+		});
+		for (const taskId of sprint.task_ids) addEdge("sprint_task", sprintNodeId, `task:${taskId}`);
+		for (const docPath of stringList(sprint.scope?.knowledge)) addEdge("sprint_knowledge_scope", sprintNodeId, `doc:${docPath}`);
+		for (const codePath of stringList(sprint.scope?.code)) {
+			codePaths.add(codePath);
+			addNode(`code:${codePath}`, { kind: "code_path", path: codePath, layer: "code" });
+			addEdge("sprint_code_scope", sprintNodeId, `code:${codePath}`);
 		}
 	}
 
@@ -540,6 +580,91 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		acc[loop] = (acc[loop] || 0) + 1;
 		return acc;
 	}, {});
+	const openTaskIds = roadmapEntries.filter((task) => isOpenTaskStatus(String(task.status || "todo"))).map((task) => task.id);
+	const inProgressTaskIds = roadmapEntries.filter((task) => isActiveTaskStatus(String(task.status || "todo"))).map((task) => task.id);
+	const todoTaskIds = roadmapEntries.filter((task) => String(task.status || "todo") === "todo").map((task) => task.id);
+	const blockedTaskIds = roadmapEntries.filter((task) => String(task.status || "todo") === "blocked").map((task) => task.id);
+	const doneTaskIds = roadmapEntries.filter((task) => String(task.status || "todo") === "done").map((task) => task.id);
+	const cancelledTaskIds = roadmapEntries.filter((task) => String(task.status || "todo") === "cancelled").map((task) => task.id);
+	const sprintViews = normalizedSprints.map((sprint) => {
+		const sprintOpenTaskIds = sprint.task_ids.filter((taskId) => openTaskIds.includes(taskId));
+		return {
+			id: sprint.id,
+			title: sprint.title,
+			status: sprint.status,
+			outcome: sprint.outcome,
+			task_ids: sprint.task_ids,
+			open_task_ids: sprintOpenTaskIds,
+			budget: sprint.budget,
+			gates: sprint.gates,
+			scope: sprint.scope,
+		};
+	});
+	const activeSprintIds = sprintViews.filter((sprint) => !["closed", "cancelled"].includes(sprint.status) && (sprint.open_task_ids.length > 0 || sprint.status === "active")).map((sprint) => sprint.id);
+	const taskScopeViews = Object.fromEntries(roadmapEntries.map((task) => [task.id, {
+		kind: "task",
+		id: task.id,
+		task_ids: [task.id],
+		open_task_ids: isOpenTaskStatus(String(task.status || "todo")) ? [task.id] : [],
+		sprint_ids: sprintByTaskId.get(task.id) || [],
+		spec_paths: task.spec_paths || [],
+		code_paths: task.code_paths || [],
+	}]));
+	const hotBuildPaths = builds.filter((build) => {
+		const lifecycleState = String(build.data?.lifecycle?.state || build.data?.status || build.status || "").trim();
+		const validated = hasPassingValidationForBuild(build);
+		const consumed = build.kind === "feedback_build" ? feedbackConsumed(build) : build.kind === "documentation_build" ? documentationConsumed(build) : false;
+		return !isLifecycleComplete(lifecycleState) && !validated && !consumed;
+	}).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean);
+	const passValidationPaths = validations.filter((v) => String(v.verdict || "") === "pass").map((v) => v.path);
+	const failValidationPaths = validations.filter((v) => ["fail", "block"].includes(String(v.verdict || ""))).map((v) => v.path);
+	const gc = {
+		policy: {
+			hot_days: project.config.codewiki?.gc?.hot_days ?? 7,
+			warm_days: project.config.codewiki?.gc?.warm_days ?? 30,
+			cold_days: project.config.codewiki?.gc?.cold_days ?? 90,
+			purge_days: project.config.codewiki?.gc?.purge_days ?? 180,
+			sprint_close_hook: project.config.codewiki?.gc?.sprint_close_hook ?? true,
+		},
+		classes: {
+			hot: {
+				task_ids: openTaskIds,
+				sprint_ids: activeSprintIds,
+				build_paths: hotBuildPaths,
+				validation_paths: failValidationPaths,
+				claim_ids: claimState.claims.map((claim) => claim.id),
+			},
+			warm: {
+				build_paths: builds.filter((build) => String(build.data?.lifecycle?.state || build.status || "") === "accepted" && !hotBuildPaths.includes(normalizeCodewikiRef(build.path))).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean),
+				validation_paths: passValidationPaths.slice(0, 20),
+			},
+			cold: {
+				task_ids: [...doneTaskIds, ...cancelledTaskIds],
+				build_paths: builds.filter((build) => isLifecycleComplete(String(build.data?.lifecycle?.state || build.status || "")) || hasPassingValidationForBuild(build)).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean),
+			},
+			purgeable: {
+				build_paths: builds.filter((build) => String(build.data?.lifecycle?.state || build.status || "") === "purged").map((build) => normalizeCodewikiRef(build.path)).filter(Boolean),
+			},
+		},
+		sprint_close_hooks: [
+			"mark consumed builds cold after downstream evidence exists",
+			"move pass validation reports to warm/cold evidence",
+			"checkpoint closed task shards",
+			"purge expired runtime claims and pending diff tables",
+		],
+	};
+	const cursorScope = activeSprintIds[0]
+		? { kind: "sprint", id: activeSprintIds[0] }
+		: openTaskIds[0]
+			? { kind: "task", id: openTaskIds[0] }
+			: { kind: "roadmap" };
+	const workflowCursor = {
+		active_loop: reconciliationAction.loop,
+		reason: reconciliationAction.reason,
+		expected_output: reconciliationAction.loop === "feedback" ? "feedback_build" : reconciliationAction.loop === "documentation" ? "documentation_build" : reconciliationAction.loop === "implementation" ? "implementation_build" : reconciliationAction.loop === "validation" ? "validation_report" : "observation",
+		exit_gate: reconciliationAction.loop === "observe" ? "no drift" : "validation pass or explicit user decision",
+		scope: cursorScope,
+	};
 
 	// Construct Views
 	const docPaths = sortedDocs.map(d => d.path);
@@ -560,7 +685,16 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		},
 		roadmap: {
 			task_ids: roadmapEntries.map(t => t.id),
+			open_task_ids: openTaskIds,
+			in_progress_task_ids: inProgressTaskIds,
+			todo_task_ids: todoTaskIds,
+			blocked_task_ids: blockedTaskIds,
+			done_task_ids: doneTaskIds,
+			cancelled_task_ids: cancelledTaskIds,
 			status_counts: statusCounts,
+			sprint_ids: sprintViews.map((sprint) => sprint.id),
+			active_sprint_ids: activeSprintIds,
+			sprints: sprintViews,
 		},
 		research: {
 			collection_paths: research.map(c => c.path),
@@ -577,6 +711,18 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			claims: claimState.claims,
 			conflicts: claimState.conflicts,
 		},
+		scope_views: {
+			roadmap: {
+				kind: "roadmap",
+				task_ids: roadmapEntries.map((task) => task.id),
+				open_task_ids: openTaskIds,
+				sprint_ids: sprintViews.map((sprint) => sprint.id),
+			},
+			sprints: Object.fromEntries(sprintViews.map((sprint) => [sprint.id, { kind: "sprint", ...sprint }])),
+			tasks: taskScopeViews,
+		},
+		workflow_cursor: workflowCursor,
+		gc,
 		reconciliation: {
 			version: 1,
 			controller: "reconciliation_gateway",

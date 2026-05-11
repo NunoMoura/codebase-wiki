@@ -18,7 +18,7 @@ code_paths:
 
 The graph is the generated map and state index for CodeWiki. It is a rebuildable state machine over canonical inputs and discoverable code/test facts.
 
-It routes agents to the smallest useful next context, detects drift, reports freshness, and selects the next loop: feedback, documentation, implementation, validation, or observe. It also supplies the agency controller with safe next-action and stop-reason signals.
+It routes agents to the smallest useful next context, detects drift, reports freshness, exposes scoped roadmap/sprint/task views, and selects the next loop: feedback, documentation, implementation, validation, or observe. It also supplies the agency controller with safe next-action and stop-reason signals.
 
 The graph does not decide intended behavior and does not replace source-of-truth reads. It points to the relevant documentation builds, roadmap items, KB specs, validation reports, and code/test paths; agents must read those sources directly before making semantic changes.
 
@@ -33,6 +33,7 @@ The graph is generated from:
 .codewiki/roadmap/**
 .codewiki/validation/**
 .codewiki/runtime/claims.json active scoped change claims
+.codewiki/runtime/diff-tables.json pending feedback decision rows
 code/test manifests
 Git/source fingerprints
 ```
@@ -62,7 +63,9 @@ The graph should model cross-layer items with:
 
 The graph-backed reconciliation gateway is a controller, not a fourth compiler. It reads graph state and routes work into existing loops. Gated agency consumes graph state during agency cycles, but the graph does not execute work itself.
 
-Reconciliation items should represent actionable, unconsumed handoffs. Accepted feedback or documentation builds are not drift once downstream builds, roadmap changes, implementation evidence, or passing validation link back to them. This keeps the graph as a generated map over evidence instead of making lifecycle metadata the only source of completion truth.
+Reconciliation items should represent actionable, unconsumed handoffs. Accepted feedback or documentation builds are not drift once explicit consumes/produces build DAG edges, downstream builds, roadmap changes, implementation evidence, or passing validation link back to them. This keeps the graph as a generated map over evidence instead of making lifecycle metadata the only source of completion truth.
+
+The graph also exposes hot/warm/cold/purgeable artifact classes for garbage-collection planning. Hot contains active tasks, active sprints, active claims, unconsumed handoffs, and fail/block validation. Warm and cold evidence stays queryable without becoming default context.
 
 ## Edges
 
@@ -81,7 +84,12 @@ Graph edges should explain why context is relevant. Useful edge kinds include:
 - `derives_from`,
 - `claim_task`,
 - `claim_build`,
-- `claim_scope`.
+- `claim_scope`,
+- `sprint_task`,
+- `sprint_knowledge_scope`,
+- `sprint_code_scope`,
+- `build_consumes_*`,
+- `build_produces_*`.
 
 ## Freshness
 
