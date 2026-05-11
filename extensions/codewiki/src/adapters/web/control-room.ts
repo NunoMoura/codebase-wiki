@@ -1,9 +1,14 @@
+import { readFile } from "node:fs/promises";
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
+import { createRequire } from "node:module";
 import type { AddressInfo } from "node:net";
 import { relative, resolve } from "node:path";
 import type { WikiProject } from "../../domain/shared/types.ts";
 import { maybeReadGraph, maybeReadRoadmapState, maybeReadStatusState } from "../../application/state-artifacts.ts";
 import { maybeReadJson, pathExists, readText } from "../../infrastructure/filesystem.ts";
+
+const nodeRequire = createRequire(import.meta.url);
+let cytoscapeAssetCache: Promise<string> | null = null;
 
 export interface ControlRoomServerOptions {
 	host?: string;
@@ -255,6 +260,9 @@ async function handleControlRoomRequest(
 			case "/assets/control-room.js":
 				writeTextResponse(res, 200, CONTROL_ROOM_JS, "text/javascript; charset=utf-8");
 				return;
+			case "/assets/vendor/cytoscape.min.js":
+				writeTextResponse(res, 200, await readCytoscapeVendorAsset(), "text/javascript; charset=utf-8");
+				return;
 			case "/api/state":
 				writeJsonResponse(res, 200, await buildControlRoomStateModel(project));
 				return;
@@ -273,6 +281,11 @@ async function handleControlRoomRequest(
 	} catch (error) {
 		writeJsonResponse(res, 500, { error: String(error instanceof Error ? error.message : error) });
 	}
+}
+
+function readCytoscapeVendorAsset(): Promise<string> {
+	cytoscapeAssetCache ??= readFile(nodeRequire.resolve("cytoscape/dist/cytoscape.min.js"), "utf8");
+	return cytoscapeAssetCache;
 }
 
 function writeTextResponse(res: ServerResponse, status: number, body: string, contentType: string): void {
@@ -444,6 +457,7 @@ const CONTROL_ROOM_HTML = `<!doctype html>
   <aside id="inspector" class="inspector"></aside>
   <footer id="status" class="status">booting control room…</footer>
 </div>
+<script src="/assets/vendor/cytoscape.min.js"></script>
 <script src="/assets/control-room.js"></script>
 </body>
 </html>`;
@@ -561,7 +575,19 @@ button { color: inherit; }
 .source-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 0.75rem; }
 .source-card code, pre code { color: var(--highlight); }
 .canvas { width: 100%; min-height: calc(100vh - 7.2rem); overflow: auto; background: transparent; }
-.diagram, .graphmap { width: 100%; min-height: calc(100vh - 7.2rem); overflow: auto; background: transparent; }
+.diagram { width: 100%; min-height: calc(100vh - 7.2rem); overflow: auto; background: transparent; }
+.graphmap {
+  width: 100%;
+  min-height: calc(100vh - 7.2rem);
+  height: calc(100vh - 7.2rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(244,241,232,0.035), transparent 28rem),
+    rgba(0,0,0,0.12);
+  border: 1px solid var(--line-dim);
+}
+.graphmap canvas { outline: none; }
+.cy-error { border: 1px solid rgba(212,106,102,0.45); color: var(--red); padding: 1rem; }
 svg text { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
 .node rect, .g-node circle, .g-edge { cursor: pointer; }
 .node.selected rect { stroke: var(--highlight); stroke-width: 3; filter: drop-shadow(0 0 8px rgba(244,241,232,0.45)); }
@@ -592,7 +618,7 @@ a { color: var(--highlight); }
 `;
 
 const CONTROL_ROOM_JS = String.raw`
-const state = { model: null, system: null, graph: null, selected: null, systemZoom: 0.92, graphZoom: 0.82, drawnEdges: [] };
+const state = { model: null, system: null, graph: null, selected: null, systemZoom: 0.92, graphZoom: 1, drawnEdges: [], cy: null };
 const $ = (id) => document.getElementById(id);
 const esc = (value) => String(value ?? '').replace(/[&<>"]/g, (ch) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 
@@ -807,6 +833,7 @@ function renderGraph() {
 }
 
 function drawGraphMap() {
+  const container = $('graphMap');
   const model = state.graph;
   const scope = $('graphScope')?.value || 'core';
   const nodeKind = $('nodeKind')?.value || 'all';
@@ -817,42 +844,148 @@ function drawGraphMap() {
   const ids = new Set(nodes.map((node) => String(node.id)));
   const edges = model.edges.filter((edge) => ids.has(String(edge.from)) && ids.has(String(edge.to)) && (edgeKind === 'all' || edge.kind === edgeKind)).slice(0, scope === 'all' ? 280 : 150);
   state.drawnEdges = edges;
-  const pos = layoutGraph(nodes, edges);
-  const width = Math.max(900, Math.max(0, ...Array.from(pos.values()).map((p) => p.x)) + 240);
-  const height = Math.max(560, Math.max(0, ...Array.from(pos.values()).map((p) => p.y)) + 120);
-  const zoom = state.graphZoom;
-  let svg = '<svg width="' + Math.round(width * zoom) + '" height="' + Math.round(height * zoom) + '" viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-label="CodeWiki generated graph">';
-  edges.forEach((edge, index) => {
-    const a = pos.get(String(edge.from)), b = pos.get(String(edge.to)); if (!a || !b) return;
-    svg += '<line class="g-edge" data-edge="' + index + '" x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '" /><text x="' + ((a.x + b.x) / 2) + '" y="' + ((a.y + b.y) / 2 - 4) + '" fill="#899488" font-size="9">' + esc(trim(edge.kind, 18)) + '</text>';
-  });
-  for (const node of nodes) {
-    const p = pos.get(String(node.id));
-    svg += '<g class="g-node" data-id="' + esc(node.id) + '"><circle cx="' + p.x + '" cy="' + p.y + '" r="16" fill="' + colorForKind(node.kind) + '" stroke="rgba(180,190,172,0.55)" />'
-      + '<text x="' + (p.x + 24) + '" y="' + (p.y - 3) + '" fill="#f4f1e8" font-size="12">' + esc(trim(node.label || node.id, 24)) + '</text>'
-      + '<text x="' + (p.x + 24) + '" y="' + (p.y + 13) + '" fill="#899488" font-size="10">' + esc(node.kind) + '</text></g>';
+  $('graphStats').textContent = 'shown ' + nodes.length + '/' + model.stats.total_nodes + ' · edges ' + edges.length + '/' + model.stats.total_edges + ' · cytoscape';
+  destroyGraphRenderer();
+  if (!container) return;
+  container.innerHTML = '';
+  if (!window.cytoscape) {
+    container.innerHTML = '<div class="cy-error"><h2>Graph renderer unavailable</h2><p>Cytoscape.js did not load from the local vendor asset.</p><pre>/assets/vendor/cytoscape.min.js</pre></div>';
+    return;
   }
-  svg += '</svg>';
-  $('graphMap').innerHTML = svg;
-  $('graphStats').textContent = 'shown ' + nodes.length + '/' + model.stats.total_nodes + ' · edges ' + edges.length + '/' + model.stats.total_edges;
-  document.querySelectorAll('#graphMap .g-node').forEach((node) => node.addEventListener('click', () => inspectGraphNode(node.dataset.id)));
-  document.querySelectorAll('#graphMap .g-edge').forEach((edge) => edge.addEventListener('click', () => inspectGraphEdge(Number(edge.dataset.edge))));
+  const cy = window.cytoscape({
+    container,
+    elements: buildCytoscapeElements(nodes, edges),
+    wheelSensitivity: 0.18,
+    minZoom: 0.18,
+    maxZoom: 2.4,
+    style: createGraphStyle(),
+    layout: layoutForGraph(nodes, edges),
+  });
+  state.cy = cy;
+  cy.on('tap', 'node', (event) => inspectGraphNode(String(event.target.data('id'))));
+  cy.on('tap', 'edge', (event) => inspectGraphEdge(Number(event.target.data('index'))));
+  cy.ready(() => cy.fit(undefined, 46));
 }
 
-function layoutGraph(nodes, edges) {
-  const incoming = new Map();
-  const outgoing = new Map();
-  for (const node of nodes) { incoming.set(String(node.id), 0); outgoing.set(String(node.id), 0); }
-  for (const edge of edges) {
-    incoming.set(String(edge.to), (incoming.get(String(edge.to)) || 0) + 1);
-    outgoing.set(String(edge.from), (outgoing.get(String(edge.from)) || 0) + 1);
+function destroyGraphRenderer() {
+  if (state.cy) {
+    state.cy.destroy();
+    state.cy = null;
   }
-  const sorted = [...nodes].sort((a, b) => ((incoming.get(String(a.id)) || 0) - (incoming.get(String(b.id)) || 0)) || String(a.kind).localeCompare(String(b.kind)) || String(a.id).localeCompare(String(b.id)));
-  const cols = Math.max(3, Math.ceil(Math.sqrt(sorted.length || 1)));
-  const cellW = 215, cellH = 86;
-  const pos = new Map();
-  sorted.forEach((node, i) => pos.set(String(node.id), { x: 45 + (i % cols) * cellW, y: 52 + Math.floor(i / cols) * cellH }));
-  return pos;
+}
+
+function buildCytoscapeElements(nodes, edges) {
+  const elements = [];
+  for (const node of nodes) {
+    const id = String(node.id);
+    elements.push({
+      group: 'nodes',
+      data: {
+        id,
+        kind: String(node.kind || 'unknown'),
+        label: String(node.label || node.path || node.id || 'node'),
+        displayLabel: trim(node.label || node.path || node.id, 28),
+        path: node.path || '',
+        color: colorForKind(node.kind),
+      },
+    });
+  }
+  edges.forEach((edge, index) => {
+    elements.push({
+      group: 'edges',
+      data: {
+        id: 'edge:' + index + ':' + edge.from + '->' + edge.to,
+        source: String(edge.from),
+        target: String(edge.to),
+        kind: String(edge.kind || 'edge'),
+        displayKind: trim(edge.kind || 'edge', 18),
+        label: edge.label || '',
+        index,
+      },
+    });
+  });
+  return elements;
+}
+
+function createGraphStyle() {
+  return [
+    {
+      selector: 'core',
+      style: { 'active-bg-color': '#f4f1e8', 'active-bg-opacity': 0.08, 'selection-box-color': '#f4f1e8', 'selection-box-opacity': 0.08, 'selection-box-border-color': '#f4f1e8' },
+    },
+    {
+      selector: 'node',
+      style: {
+        'background-color': 'data(color)',
+        'border-color': '#b4beac',
+        'border-opacity': 0.5,
+        'border-width': 1.4,
+        'color': '#f4f1e8',
+        'font-family': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+        'font-size': 10,
+        'height': 26,
+        'label': 'data(displayLabel)',
+        'min-zoomed-font-size': 6,
+        'overlay-color': '#f4f1e8',
+        'overlay-opacity': 0.04,
+        'shape': 'round-rectangle',
+        'text-background-color': '#050604',
+        'text-background-opacity': 0.72,
+        'text-background-padding': 2,
+        'text-halign': 'right',
+        'text-margin-x': 8,
+        'text-valign': 'center',
+        'width': 26,
+      },
+    },
+    {
+      selector: 'edge',
+      style: {
+        'color': '#899488',
+        'curve-style': 'bezier',
+        'font-family': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+        'font-size': 8,
+        'label': 'data(displayKind)',
+        'line-color': '#899488',
+        'min-zoomed-font-size': 7,
+        'opacity': 0.64,
+        'target-arrow-color': '#c7a35a',
+        'target-arrow-shape': 'triangle',
+        'text-background-color': '#050604',
+        'text-background-opacity': 0.7,
+        'text-background-padding': 1,
+        'text-rotation': 'autorotate',
+        'width': 1.1,
+      },
+    },
+    {
+      selector: 'node:selected',
+      style: { 'border-color': '#f4f1e8', 'border-width': 4, 'color': '#f4f1e8' },
+    },
+    {
+      selector: 'edge:selected',
+      style: { 'line-color': '#f4f1e8', 'opacity': 1, 'target-arrow-color': '#f4f1e8', 'width': 2.6 },
+    },
+  ];
+}
+
+function layoutForGraph(nodes, edges) {
+  if (nodes.length <= 8) return { name: 'circle', fit: true, padding: 46 };
+  if (edges.length === 0) return { name: 'grid', fit: true, padding: 46, avoidOverlap: true };
+  return {
+    name: 'cose',
+    animate: false,
+    componentSpacing: 90,
+    edgeElasticity: 90,
+    fit: true,
+    idealEdgeLength: 118,
+    nestingFactor: 1.2,
+    nodeOverlap: 16,
+    nodeRepulsion: 9000,
+    numIter: 700,
+    padding: 46,
+    randomize: true,
+  };
 }
 
 function isCoreGraphNode(node) {
@@ -864,8 +997,11 @@ function isCoreGraphNode(node) {
 }
 
 function inspectGraphNode(id) {
-  document.querySelectorAll('#graphMap .g-node').forEach((node) => node.classList.toggle('selected', node.dataset.id === id));
-  document.querySelectorAll('#graphMap .g-edge').forEach((edge) => edge.classList.remove('selected'));
+  if (state.cy) {
+    state.cy.elements().unselect();
+    const selected = state.cy.getElementById(id);
+    if (selected?.length) selected.select();
+  }
   const node = state.graph.nodes.find((item) => String(item.id) === id);
   if (!node) return;
   const links = state.graph.edges.filter((edge) => edge.from === id || edge.to === id).slice(0, 20);
@@ -873,8 +1009,11 @@ function inspectGraphNode(id) {
 }
 
 function inspectGraphEdge(index) {
-  document.querySelectorAll('#graphMap .g-node').forEach((node) => node.classList.remove('selected'));
-  document.querySelectorAll('#graphMap .g-edge').forEach((edge) => edge.classList.toggle('selected', Number(edge.dataset.edge) === index));
+  if (state.cy) {
+    state.cy.elements().unselect();
+    const selected = state.cy.edges().filter((edge) => Number(edge.data('index')) === index);
+    if (selected.length) selected.select();
+  }
   const edge = state.drawnEdges?.[index];
   if (!edge) return;
   $('inspector').innerHTML = '<h2>Graph edge</h2><p><span class="badge">' + esc(edge.kind) + '</span></p><pre>' + esc(JSON.stringify(edge, null, 2)) + '</pre><p class="muted">Generated graph relationship. Use source paths and compiler loops for canonical changes.</p>';
@@ -889,11 +1028,25 @@ function wireZoomControls() {
         drawSystemDiagram(state.system);
       }
       if (target === 'graph') {
-        state.graphZoom = nextZoom(state.graphZoom, action, 0.68, 0.9);
-        drawGraphMap();
+        controlGraphViewport(action);
       }
     };
   });
+}
+
+function controlGraphViewport(action) {
+  if (!state.cy) {
+    state.graphZoom = nextZoom(state.graphZoom, action, 0.68, 1);
+    drawGraphMap();
+    return;
+  }
+  if (action === 'fit') { state.cy.fit(undefined, 46); return; }
+  if (action === 'reset') { state.cy.reset(); state.cy.fit(undefined, 46); return; }
+  const box = state.cy.container().getBoundingClientRect();
+  const renderedPosition = { x: box.width / 2, y: box.height / 2 };
+  const factor = action === 'in' ? 1.18 : 1 / 1.18;
+  const level = Math.max(state.cy.minZoom(), Math.min(state.cy.maxZoom(), state.cy.zoom() * factor));
+  state.cy.zoom({ level, renderedPosition });
 }
 
 function nextZoom(current, action, fitValue, resetValue) {

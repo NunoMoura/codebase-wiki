@@ -61,6 +61,8 @@ Graph should provide a visual representation of `.codewiki/index_graph.json`. It
 
 Users should be able to filter by node kind, edge kind, active task, active sprint, stale items, drift items, and build DAG edges. The graph should provide zoom in, zoom out, fit, and reset controls. The default view should avoid showing every node and edge at once when that would be unreadable; it should start from a useful scoped or filtered slice and let users expand from there. Selecting a node or edge should show source paths, relationship reason, freshness state, and the smallest useful next reads.
 
+The Graph view should use Cytoscape.js as its first open-source graph visualization engine. Cytoscape.js fits the local vanilla browser surface because it provides built-in pan, zoom, selection, event handling, styles, and layouts without requiring a React migration or a hosted service. The asset should be served from the installed package rather than a CDN so the Control Room remains local-first.
+
 The graph view is an inspection and navigation surface. Canonical edits still flow through CodeWiki API operations and compiler loops.
 
 ## Knowledge, Board, Builds, Validation, and Diff views

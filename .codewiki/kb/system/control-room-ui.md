@@ -80,6 +80,8 @@ The Graph view reads `.codewiki/index_graph.json` and renders nodes and edges vi
 
 The renderer should provide zoom in, zoom out, fit, and reset controls. Large graphs should default to useful scoped or filtered slices instead of rendering all relationships at once. The graph canvas should support scrolling or panning so users can inspect details without losing the left navigation rail or right inspector.
 
+The first graph renderer is Cytoscape.js, served from the installed `cytoscape` npm package through the local Control Room server. The browser UI must not depend on a CDN. If the local vendor asset cannot be loaded, the Graph view should show a clear renderer-unavailable error instead of silently rendering an empty canvas.
+
 The graph is generated state, not canonical truth. Every node or edge detail should link back to canonical files when available.
 
 ## Session and multi-computer model
@@ -91,6 +93,7 @@ Multiple computers using separate clones synchronize durable truth through git. 
 ## Boundaries
 
 - Browser UI code and local web-server code must not import Pi SDK or Pi TUI packages.
+- Browser UI vendor assets must be served locally from package dependencies or bundled package files, not from hosted CDNs.
 - Pi launch commands belong in the Pi adapter.
 - CLI and MCP launch surfaces should live in their own adapters when implemented.
 - Domain and application layers must remain browser/UI agnostic.
