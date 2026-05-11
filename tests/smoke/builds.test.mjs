@@ -70,13 +70,25 @@ async function run() {
 		const buildTool = extension.tools.get("codewiki_build");
 		assert.ok(buildTool, "Build tool missing");
 
+		await assert.rejects(
+			() => buildTool.definition.execute(
+				"build-fb-missing-diff", { repoPath: projectDir, kind: "feedback", summary: "Missing diff rows.", decisions: ["Do X."], lifecycle: { ttl_days: 7 } },
+				undefined, undefined, ctx,
+			),
+			/approved diff_table row/,
+		);
+
 		const fbResult = await buildTool.definition.execute(
-			"build-fb", { repoPath: projectDir, kind: "feedback", summary: "Smoke intent.", decisions: ["Do X."], lower_layer_delta: { knowledge: ["Document X"], roadmap: ["Create TASK-001"], code: ["src/index.ts"] }, lifecycle: { ttl_days: 7 } },
+			"build-fb", { repoPath: projectDir, kind: "feedback", summary: "Smoke intent.", diff_table: [{ id: "DTR-001", current_state: "X is undocumented.", desired_state: "Document and implement X.", rationale: "Smoke coverage needs accepted intent.", affected_layers: ["knowledge", "roadmap", "code"], risk: "low", user_action: "approved" }], lower_layer_delta: { knowledge: ["Document X"], roadmap: ["TASK-001"], code: ["src/index.ts"] }, lifecycle: { ttl_days: 7 } },
 			undefined, undefined, ctx,
 		);
 		assert.match(fbResult.details.path, /\.codewiki\/builds\/feedback\/.*\.json$/);
 		const fb = JSON.parse(readFileSync(resolve(projectDir, fbResult.details.path), "utf8"));
 		assert.equal(fb.kind, "feedback_build");
+		assert.equal(fb.schema_version, 2);
+		assert.equal(fb.diff_table[0].user_action, "approved");
+		assert.deepEqual(fb.approved_diff_rows, ["DTR-001"]);
+		assert.deepEqual(fb.produces.code, ["src/index.ts"]);
 
 		// codewiki_build: documentation
 		const docResult = await buildTool.definition.execute(
@@ -86,15 +98,28 @@ async function run() {
 		assert.match(docResult.details.path, /\.codewiki\/builds\/documentation\/.*\.json$/);
 		const doc = JSON.parse(readFileSync(resolve(projectDir, docResult.details.path), "utf8"));
 		assert.equal(doc.kind, "documentation_build");
+		assert.deepEqual(doc.consumes.feedback, [fbResult.details.path]);
+		assert.deepEqual(doc.produces.roadmap, ["TASK-001 created/updated"]);
 
 		// codewiki_build: implementation
+		await assert.rejects(
+			() => buildTool.definition.execute(
+				"build-impl-missing-closure", { repoPath: projectDir, kind: "implementation", summary: "Impl missing closure.", source_documentation_build: docResult.details.path, task_id: "TASK-001", test_files: ["test.js"], code_files: ["src/index.ts"], checks_run: ["npm test"], acceptance_mapping: [{ criterion: "Works", evidence: "Pass" }], lifecycle: { ttl_days: 7 } },
+				undefined, undefined, ctx,
+			),
+			/closure_brief/,
+		);
+
 		const implResult = await buildTool.definition.execute(
-			"build-impl", { repoPath: projectDir, kind: "implementation", summary: "Impl done.", source_documentation_build: docResult.details.path, task_id: "TASK-001", test_files: ["test.js"], code_files: ["src/index.ts"], checks_run: ["npm test"], acceptance_mapping: [{ criterion: "Works", evidence: "Pass" }], lifecycle: { ttl_days: 7 } },
+			"build-impl", { repoPath: projectDir, kind: "implementation", summary: "Impl done.", source_documentation_build: docResult.details.path, task_id: "TASK-001", test_files: ["test.js"], code_files: ["src/index.ts"], checks_run: ["npm test"], acceptance_mapping: [{ criterion: "Works", evidence: "Pass" }], validation_refs: [".codewiki/validation/smoke-pass.json"], closure_brief: { user_intent: "Document and implement X.", implemented_changes: ["Updated tests and code for X."], layers_updated: { roadmap: ["TASK-001"], code: ["src/index.ts"], tests: ["test.js"], validation: [".codewiki/validation/smoke-pass.json"] }, acceptance_evidence: ["Works: Pass"], checks: ["npm test"], non_goals_preserved: [], remaining_risks: [] }, lifecycle: { ttl_days: 7 } },
 			undefined, undefined, ctx,
 		);
 		assert.match(implResult.details.path, /\.codewiki\/builds\/implementation\/.*\.json$/);
 		const impl = JSON.parse(readFileSync(resolve(projectDir, implResult.details.path), "utf8"));
 		assert.equal(impl.kind, "implementation_build");
+		assert.equal(impl.closure_brief.user_intent, "Document and implement X.");
+		assert.deepEqual(impl.consumes.documentation, [docResult.details.path]);
+		assert.deepEqual(impl.produces.closure, ["TASK-001"]);
 
 		// codewiki_validation: pass
 		const valTool = extension.tools.get("codewiki_validation");
@@ -120,11 +145,11 @@ async function run() {
 		assert.match(blockResult.details.path, /\.codewiki\/validation\/.*implementation-block.*\.json$/);
 
 		const unconsumedFbResult = await buildTool.definition.execute(
-			"build-unconsumed-fb", { repoPath: projectDir, kind: "feedback", summary: "Needs documentation.", decisions: ["Document Y."], lower_layer_delta: { knowledge: ["Document Y"] }, lifecycle: { ttl_days: 7 } },
+			"build-unconsumed-fb", { repoPath: projectDir, kind: "feedback", summary: "Needs documentation.", diff_table: [{ id: "DTR-002", current_state: "Y missing docs.", desired_state: "Document Y.", rationale: "Coverage for unconsumed feedback.", affected_layers: ["knowledge"], risk: "low", user_action: "approved" }], lower_layer_delta: { knowledge: ["Document Y"] }, lifecycle: { ttl_days: 7 } },
 			undefined, undefined, ctx,
 		);
 		const downstreamFbResult = await buildTool.definition.execute(
-			"build-downstream-fb", { repoPath: projectDir, kind: "feedback", summary: "Needs downstream work.", decisions: ["Build Z."], lower_layer_delta: { code: ["src/z.ts"] }, lifecycle: { ttl_days: 7 } },
+			"build-downstream-fb", { repoPath: projectDir, kind: "feedback", summary: "Needs downstream work.", diff_table: [{ id: "DTR-003", current_state: "Z not built.", desired_state: "Build Z.", rationale: "Coverage for downstream work.", affected_layers: ["code"], risk: "medium", user_action: "approved" }], lower_layer_delta: { code: ["src/z.ts"] }, lifecycle: { ttl_days: 7 } },
 			undefined, undefined, ctx,
 		);
 		const unconsumedDocResult = await buildTool.definition.execute(

@@ -259,6 +259,7 @@ export const codewikiBuildLifecycleSchema = Type.Object({
 	state: Type.Optional(Type.Union([
 		Type.Literal("proposed"),
 		Type.Literal("accepted"),
+		Type.Literal("consumed"),
 		Type.Literal("applied"),
 		Type.Literal("validated"),
 		Type.Literal("archived"),
@@ -266,6 +267,48 @@ export const codewikiBuildLifecycleSchema = Type.Object({
 	ttl_days: Type.Optional(Type.Number({ minimum: 1 })),
 	archive_after: Type.Optional(Type.String()),
 	purge_after: Type.Optional(Type.String()),
+});
+export const codewikiDiffTableRowSchema = Type.Object({
+	id: Type.Optional(Type.String({ minLength: 1 })),
+	current_state: Type.String({ minLength: 1 }),
+	desired_state: Type.String({ minLength: 1 }),
+	rationale: Type.String({ minLength: 1 }),
+	affected_layers: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	risk: Type.Optional(Type.String({ minLength: 1 })),
+	user_action: Type.Optional(Type.String({ minLength: 1 })),
+	alternatives: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+});
+const codewikiBuildRefsSchema = Type.Object({
+	feedback: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	documentation: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	implementation: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	roadmap: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	validation: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	source: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+});
+const codewikiBuildProducesSchema = Type.Object({
+	knowledge: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	roadmap: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	code: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	tests: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	validation: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	publication: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	closure: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+});
+const codewikiClosureBriefSchema = Type.Object({
+	user_intent: Type.String({ minLength: 1 }),
+	implemented_changes: Type.Array(Type.String({ minLength: 1 }), { minItems: 1 }),
+	layers_updated: Type.Optional(Type.Object({
+		knowledge: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+		roadmap: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+		code: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+		tests: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+		validation: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	})),
+	acceptance_evidence: Type.Array(Type.String({ minLength: 1 }), { minItems: 1 }),
+	checks: Type.Array(Type.String({ minLength: 1 }), { minItems: 1 }),
+	non_goals_preserved: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	remaining_risks: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
 });
 export const codewikiBuildToolInputSchema = Type.Object({
 	repoPath: repoPathToolField,
@@ -279,9 +322,14 @@ export const codewikiBuildToolInputSchema = Type.Object({
 	summary: Type.String({ minLength: 1 }),
 	slug: Type.Optional(Type.String({ minLength: 1 })),
 	source: Type.Optional(Type.String({ minLength: 1 })),
+	schema_version: Type.Optional(Type.Number()),
+	consumes: Type.Optional(codewikiBuildRefsSchema),
+	produces: Type.Optional(codewikiBuildProducesSchema),
 	lifecycle: Type.Optional(codewikiBuildLifecycleSchema),
 	refresh: Type.Optional(Type.Boolean({ default: true })),
 	// Feedback-specific
+	diff_table: Type.Optional(Type.Array(codewikiDiffTableRowSchema)),
+	approved_diff_rows: Type.Optional(Type.Array(Type.String({ minLength: 1 }))),
 	decisions: Type.Optional(Type.Array(Type.String({ minLength: 1 }))),
 	assumptions: Type.Optional(Type.Array(Type.String(), { default: [] })),
 	open_questions: Type.Optional(Type.Array(Type.String(), { default: [] })),
@@ -311,6 +359,7 @@ export const codewikiBuildToolInputSchema = Type.Object({
 	builder_notes: Type.Optional(Type.Array(Type.String())),
 	validation_refs: Type.Optional(Type.Array(Type.String())),
 	risks: Type.Optional(Type.Array(Type.String())),
+	closure_brief: Type.Optional(codewikiClosureBriefSchema),
 	publication: Type.Optional(Type.Object({
 		commit_title: Type.Optional(Type.String()),
 		commit_body: Type.Optional(Type.String()),

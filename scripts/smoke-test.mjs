@@ -511,7 +511,15 @@ async function main() {
 				summary: "Accepted feedback smoke build.",
 				slug: "feedback-smoke",
 				source: "smoke-test",
-				decisions: ["Feedback builds must be durable handoff payloads."],
+				diff_table: [{
+					id: "DTR-001",
+					current_state: "Feedback intent is not persisted as approved diff rows.",
+					desired_state: "Feedback builds persist approved diff rows as durable handoff payloads.",
+					rationale: "The next compiler loop needs a compact user-approved intent contract.",
+					affected_layers: ["feedback", "builds"],
+					risk: "low",
+					user_action: "approved",
+				}],
 				assumptions: ["Smoke fixture can create build artifacts."],
 				lower_layer_delta: {
 					knowledge: ["Document feedback build workflow."],
@@ -529,6 +537,8 @@ async function main() {
 		assert.equal(feedbackBuild.kind, "feedback_build");
 		assert.equal(feedbackBuild.status, "accepted");
 		assert.equal(feedbackBuild.lifecycle.ttl_days, 7);
+		assert.equal(feedbackBuild.schema_version, 2);
+		assert.equal(feedbackBuild.diff_table[0].user_action, "approved");
 		assert.equal(feedbackBuild.accepted_decisions[0].id, "D1");
 
 		// Documentation build smoke
@@ -553,6 +563,8 @@ async function main() {
 		assert.equal(docBuild.kind, "documentation_build");
 		assert.equal(docBuild.source_feedback_build, buildResult.details.path);
 		assert.equal(docBuild.lifecycle.ttl_days, 14);
+		assert.deepEqual(docBuild.consumes.feedback, [buildResult.details.path]);
+		assert.deepEqual(docBuild.produces.roadmap, ["TASK-001"]);
 
 		// Implementation build smoke
 		const implBuildResult = await buildTool.definition.execute(
@@ -573,6 +585,20 @@ async function main() {
 				tester_notes: ["No implementation changes in tester role."],
 				builder_notes: ["Builder consumed tester evidence and checks."],
 				validation_refs: [".codewiki/validation/smoke-pass.json"],
+				closure_brief: {
+					user_intent: "Feedback builds must be durable handoff payloads.",
+					implemented_changes: ["Recorded implementation build smoke evidence."],
+					layers_updated: {
+						roadmap: ["TASK-001"],
+						code: ["extensions/codewiki/index.ts"],
+						tests: ["tests/smoke-test.mjs"],
+						validation: [".codewiki/validation/smoke-pass.json"],
+					},
+					acceptance_evidence: ["Schemas exist: npm test pass"],
+					checks: ["npm test"],
+					non_goals_preserved: ["No remote publication."],
+					remaining_risks: ["Smoke fixture only; no remote publication."],
+				},
 				risks: ["Smoke fixture only; no remote publication."],
 				publication: {
 					commit_title: "test: record implementation build smoke evidence",
@@ -591,6 +617,9 @@ async function main() {
 		assert.equal(implBuild.task.id, "TASK-001");
 		assert.equal(implBuild.acceptance_mapping.length, 1);
 		assert.equal(implBuild.validation_refs[0], ".codewiki/validation/smoke-pass.json");
+		assert.equal(implBuild.closure_brief.user_intent, "Feedback builds must be durable handoff payloads.");
+		assert.deepEqual(implBuild.consumes.documentation, [docBuildResult.details.path]);
+		assert.deepEqual(implBuild.produces.closure, ["TASK-001"]);
 		assert.equal(implBuild.test_design_evidence[0], "Tester derived schema assertions from documentation build before code changes.");
 		assert.equal(implBuild.code_change_evidence[0], "Builder updated extension surface until smoke assertions passed.");
 		assert.equal(implBuild.role_evidence.tester.role, "tester");

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-05-11T02:57:46Z",
+  "updated": "2026-05-11T03:26:15Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -48,7 +48,6 @@
     "TASK-048",
     "TASK-049",
     "TASK-050",
-    "TASK-055",
     "TASK-056",
     "TASK-057"
   ],
@@ -2086,68 +2085,6 @@
       },
       "created": "2026-05-08",
       "updated": "2026-05-09T09:12:31Z"
-    },
-    "TASK-055": {
-      "id": "TASK-055",
-      "title": "Implement Build Contract v2 and closure briefs",
-      "status": "todo",
-      "priority": "critical",
-      "kind": "architecture",
-      "summary": "Make compiler builds high-signal transition contracts by adding mandatory feedback diff rows, implementation closure briefs, explicit consumes/produces edges, schema/lint enforcement, and compact user-facing closure output.",
-      "spec_paths": [
-        ".codewiki/kb/system/builds.md",
-        ".codewiki/kb/system/compilers.md",
-        ".codewiki/kb/system/api.md",
-        ".codewiki/kb/lexicon.md",
-        ".codewiki/builds/feedback/2026-05-11-build-contract-v2-and-efficiency-sprints.json"
-      ],
-      "code_paths": [
-        "extensions/codewiki/src/application/builds.ts",
-        "extensions/codewiki/src/adapters/pi/schemas.ts",
-        "extensions/codewiki/src/application/lint.ts",
-        "extensions/codewiki/src/application/graph.ts",
-        "extensions/codewiki/src/adapters/pi/tools/task.ts",
-        "tests/smoke/builds.test.mjs",
-        "scripts/smoke-test.mjs",
-        "skills/codewiki-feedback/SKILL.md"
-      ],
-      "research_ids": [],
-      "labels": [
-        "sprint:build-contract-v2",
-        "builds",
-        "feedback",
-        "closure-brief",
-        "token-efficiency"
-      ],
-      "goal": {
-        "outcome": "New builds are compact, structured, and trustworthy transition points that preserve user intent and prove task closure through all layers.",
-        "acceptance": [
-          "`codewiki_build` accepts and persists feedback diff-table rows with current state, desired state, rationale, affected layers, risk, and user action.",
-          "New accepted feedback builds require approved diff rows and expose them as canonical intent contract data.",
-          "`codewiki_build kind=implementation` accepts and persists a compact closure_brief with user intent, implemented changes, layers updated, acceptance evidence, checks, non-goals preserved, and remaining risks.",
-          "New builds expose explicit `consumes` and `produces` fields; graph reconciliation prefers those edges over legacy inference.",
-          "Lint/schema/tests flag missing v2 required fields for new builds while treating historical builds as legacy cold artifacts.",
-          "Task-close or implementation summary can show the closure brief so users can trust their intent was implemented through knowledge, roadmap, code/tests, checks, and validation."
-        ],
-        "non_goals": [
-          "Do not migrate every historical build immediately.",
-          "Do not implement the interactive diff-table UI in this task.",
-          "Do not make pending unapproved diff rows canonical truth."
-        ],
-        "verification": [
-          "npx tsc --noEmit",
-          "node scripts/check-architecture.mjs",
-          "npm test",
-          "Create smoke feedback/documentation/implementation builds using v2 fields and confirm graph edges/closure brief output."
-        ]
-      },
-      "delta": {
-        "desired": "Build artifacts are concise v2 DAG handoffs with mandatory user-facing intent and closure contracts.",
-        "current": "Builds are mixed v1 structures; feedback diff tables and implementation closure briefs are not enforced by schema or writer code.",
-        "closure": "Build schema/writer/lint/graph/tests enforce v2 while preserving historical legacy reads."
-      },
-      "created": "2026-05-11",
-      "updated": "2026-05-11"
     },
     "TASK-056": {
       "id": "TASK-056",

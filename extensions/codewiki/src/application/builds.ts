@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
-import type { CodewikiBuildToolInput, CodewikiValidationReportInput, WikiProject, RoadmapTaskRecord } from "../domain/shared/types.ts";
+import type { CodewikiBuildProducesInput, CodewikiBuildRefsInput, CodewikiBuildToolInput, CodewikiClosureBriefInput, CodewikiDiffTableRowInput, CodewikiValidationReportInput, WikiProject, RoadmapTaskRecord } from "../domain/shared/types.ts";
 import { nowIso, unique } from "../domain/shared/utils.ts";
 import { readRoadmapTask } from "./roadmap.ts";
 import { maybeReadGraph } from "./state-artifacts.ts";
@@ -40,6 +40,79 @@ function buildBuildPath(project: WikiProject, kind: string, slug: string, day: s
 
 function trimList(values?: string[]): string[] {
 	return (values ?? []).map((value) => value.trim()).filter(Boolean);
+}
+
+function trimRefGroups(input?: CodewikiBuildRefsInput): CodewikiBuildRefsInput {
+	return {
+		feedback: trimList(input?.feedback),
+		documentation: trimList(input?.documentation),
+		implementation: trimList(input?.implementation),
+		roadmap: trimList(input?.roadmap),
+		validation: trimList(input?.validation),
+		source: trimList(input?.source),
+	};
+}
+
+function trimProduces(input?: CodewikiBuildProducesInput): CodewikiBuildProducesInput {
+	return {
+		knowledge: trimList(input?.knowledge),
+		roadmap: trimList(input?.roadmap),
+		code: trimList(input?.code),
+		tests: trimList(input?.tests),
+		validation: trimList(input?.validation),
+		publication: trimList(input?.publication),
+		closure: trimList(input?.closure),
+	};
+}
+
+function mergeProduces(base: CodewikiBuildProducesInput, overrides?: CodewikiBuildProducesInput): CodewikiBuildProducesInput {
+	const extra = trimProduces(overrides);
+	return {
+		knowledge: unique([...(base.knowledge ?? []), ...(extra.knowledge ?? [])]),
+		roadmap: unique([...(base.roadmap ?? []), ...(extra.roadmap ?? [])]),
+		code: unique([...(base.code ?? []), ...(extra.code ?? [])]),
+		tests: unique([...(base.tests ?? []), ...(extra.tests ?? [])]),
+		validation: unique([...(base.validation ?? []), ...(extra.validation ?? [])]),
+		publication: unique([...(base.publication ?? []), ...(extra.publication ?? [])]),
+		closure: unique([...(base.closure ?? []), ...(extra.closure ?? [])]),
+	};
+}
+
+function normalizeDiffTable(rows?: CodewikiDiffTableRowInput[]) {
+	return (rows ?? []).map((row, index) => ({
+		id: String(row.id || `DTR-${String(index + 1).padStart(3, "0")}`).trim(),
+		current_state: String(row.current_state || "").trim(),
+		desired_state: String(row.desired_state || "").trim(),
+		rationale: String(row.rationale || "").trim(),
+		affected_layers: trimList(row.affected_layers),
+		risk: String(row.risk || "medium").trim(),
+		user_action: String(row.user_action || "pending").trim(),
+		alternatives: trimList(row.alternatives),
+	})).filter((row) => row.current_state && row.desired_state && row.rationale);
+}
+
+function approvedDiffRows(rows: ReturnType<typeof normalizeDiffTable>, approvedIds?: string[]) {
+	const explicitApproved = new Set(trimList(approvedIds));
+	return rows.filter((row) => row.user_action === "approved" || explicitApproved.has(row.id));
+}
+
+function normalizeClosureBrief(input: CodewikiClosureBriefInput | undefined, task: RoadmapTaskRecord | null, checksRun: string[], acceptanceEvidence: string[], validationRefs: string[], risks: string[]) {
+	if (!input) return null;
+	return {
+		user_intent: String(input.user_intent || task?.goal?.outcome || "").trim(),
+		implemented_changes: trimList(input.implemented_changes),
+		layers_updated: {
+			knowledge: trimList(input.layers_updated?.knowledge),
+			roadmap: trimList(input.layers_updated?.roadmap),
+			code: trimList(input.layers_updated?.code),
+			tests: trimList(input.layers_updated?.tests),
+			validation: unique([...trimList(input.layers_updated?.validation), ...validationRefs]),
+		},
+		acceptance_evidence: trimList(input.acceptance_evidence).length ? trimList(input.acceptance_evidence) : acceptanceEvidence,
+		checks: trimList(input.checks).length ? trimList(input.checks) : checksRun,
+		non_goals_preserved: trimList(input.non_goals_preserved),
+		remaining_risks: trimList(input.remaining_risks).length ? trimList(input.remaining_risks) : risks,
+	};
 }
 
 function taskSnapshot(task: RoadmapTaskRecord | null) {
@@ -108,32 +181,50 @@ export async function writeFeedbackBuild(
 	project: WikiProject,
 	input: CodewikiBuildToolInput,
 ) {
-	const decisions = (input.decisions ?? []).map((v) => v.trim()).filter(Boolean);
+	const diffTable = normalizeDiffTable(input.diff_table);
+	const approvedRows = approvedDiffRows(diffTable, input.approved_diff_rows);
+	const decisions = trimList(input.decisions).length
+		? trimList(input.decisions)
+		: approvedRows.map((row) => row.desired_state);
 	if (!input.summary?.trim()) throw new Error("Feedback build requires summary.");
-	if (!decisions.length) throw new Error("Feedback build requires at least one accepted decision.");
 
 	const created = nowIso();
 	const slug = buildSlug(input.slug || input.summary, "feedback-build");
 	const day = created.slice(0, 10);
 	const absPath = buildBuildPath(project, "feedback", slug, day);
 	const lifecycle = buildLifecycle(input, created, 30);
+	if (lifecycle.state === "accepted" && approvedRows.length === 0) {
+		throw new Error("Accepted feedback build requires at least one approved diff_table row.");
+	}
+	if (!decisions.length) throw new Error("Feedback build requires at least one accepted decision or approved diff_table row.");
+	const lowerLayerDelta = {
+		knowledge: trimList(input.lower_layer_delta?.knowledge),
+		roadmap: trimList(input.lower_layer_delta?.roadmap),
+		code: trimList(input.lower_layer_delta?.code),
+	};
+	const produces = mergeProduces({
+		knowledge: lowerLayerDelta.knowledge,
+		roadmap: lowerLayerDelta.roadmap,
+		code: lowerLayerDelta.code,
+	}, input.produces);
 	const data = {
 		version: 1,
+		schema_version: input.schema_version ?? 2,
 		kind: "feedback_build",
 		created,
 		source: input.source?.trim() || "codewiki_build tool",
 		status: lifecycle.state,
 		lifecycle,
 		summary: input.summary.trim(),
+		diff_table: diffTable,
+		approved_diff_rows: approvedRows.map((row) => row.id),
 		accepted_decisions: decisions.map((summary, index) => ({ id: `D${index + 1}`, summary })),
-		assumptions: (input.assumptions ?? []).map((v) => v.trim()).filter(Boolean),
-		open_questions: (input.open_questions ?? []).map((v) => v.trim()).filter(Boolean),
-		non_goals: (input.non_goals ?? []).map((v) => v.trim()).filter(Boolean),
-		lower_layer_delta: {
-			knowledge: input.lower_layer_delta?.knowledge ?? [],
-			roadmap: input.lower_layer_delta?.roadmap ?? [],
-			code: input.lower_layer_delta?.code ?? [],
-		},
+		assumptions: trimList(input.assumptions),
+		open_questions: trimList(input.open_questions),
+		non_goals: trimList(input.non_goals),
+		lower_layer_delta: lowerLayerDelta,
+		consumes: trimRefGroups(input.consumes),
+		produces,
 	};
 	await mkdir(dirname(absPath), { recursive: true });
 	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");
@@ -153,8 +244,19 @@ export async function writeDocumentationBuild(
 	const day = created.slice(0, 10);
 	const absPath = buildBuildPath(project, "documentation", slug, day);
 	const lifecycle = buildLifecycle(input, created, 14);
+	const knowledgeChanges = trimList(input.knowledge_changes);
+	const roadmapChanges = trimList(input.roadmap_changes);
+	const consumes = trimRefGroups({
+		...input.consumes,
+		feedback: unique([input.source_feedback_build.trim(), ...(input.consumes?.feedback ?? [])]),
+	});
+	const produces = mergeProduces({
+		knowledge: knowledgeChanges,
+		roadmap: roadmapChanges,
+	}, input.produces);
 	const data = {
 		version: 1,
+		schema_version: input.schema_version ?? 2,
 		kind: "documentation_build",
 		created,
 		source: input.source?.trim() || "codewiki_build tool",
@@ -162,10 +264,12 @@ export async function writeDocumentationBuild(
 		status: lifecycle.state,
 		lifecycle,
 		summary: input.summary.trim(),
-		knowledge_changes: (input.knowledge_changes ?? []).map((v) => v.trim()).filter(Boolean),
-		roadmap_changes: (input.roadmap_changes ?? []).map((v) => v.trim()).filter(Boolean),
-		assumptions: (input.assumptions ?? []).map((v) => v.trim()).filter(Boolean),
-		open_questions: (input.open_questions ?? []).map((v) => v.trim()).filter(Boolean),
+		knowledge_changes: knowledgeChanges,
+		roadmap_changes: roadmapChanges,
+		assumptions: trimList(input.assumptions),
+		open_questions: trimList(input.open_questions),
+		consumes,
+		produces,
 	};
 	await mkdir(dirname(absPath), { recursive: true });
 	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");
@@ -199,6 +303,15 @@ export async function writeImplementationBuild(
 	const openQuestions = trimList(input.open_questions);
 	const nextFocus = await nextFocusTaskId(project, taskId);
 	const sourceDocumentationBuild = (input.source_documentation_build ?? "").trim();
+	const acceptanceMapping = (input.acceptance_mapping ?? []).filter((m) => m.criterion.trim() && m.evidence.trim());
+	const acceptanceEvidence = acceptanceMapping.map((mapping) => `${mapping.criterion}: ${mapping.evidence}`);
+	const closureBrief = normalizeClosureBrief(input.closure_brief, task, checksRun, acceptanceEvidence, validationRefs, risks);
+	if (lifecycle.state === "accepted" && !closureBrief) {
+		throw new Error("Accepted implementation build requires closure_brief.");
+	}
+	if (closureBrief && (!closureBrief.user_intent || closureBrief.implemented_changes.length === 0 || closureBrief.acceptance_evidence.length === 0 || closureBrief.checks.length === 0)) {
+		throw new Error("closure_brief requires user_intent, implemented_changes, acceptance_evidence, and checks.");
+	}
 	const compactContext = {
 		source: "implementation_build",
 		task_id: taskId,
@@ -233,8 +346,20 @@ export async function writeImplementationBuild(
 			boundary: "change code until tests, roadmap acceptance, and required checks pass",
 		},
 	};
+	const consumes = trimRefGroups({
+		...input.consumes,
+		documentation: unique([...(sourceDocumentationBuild ? [sourceDocumentationBuild] : []), ...(input.consumes?.documentation ?? [])]),
+		roadmap: unique([taskId, ...(input.consumes?.roadmap ?? [])]),
+	});
+	const produces = mergeProduces({
+		code: codeFiles,
+		tests: testFiles,
+		validation: validationRefs,
+		closure: [taskId],
+	}, input.produces);
 	const data = {
 		version: 1,
+		schema_version: input.schema_version ?? 2,
 		kind: "implementation_build",
 		created,
 		source: input.source?.trim() || "codewiki_build tool",
@@ -244,6 +369,8 @@ export async function writeImplementationBuild(
 		status: lifecycle.state,
 		lifecycle,
 		summary: input.summary.trim(),
+		consumes,
+		produces,
 		linked_refs: {
 			documentation_build: sourceDocumentationBuild || "",
 			spec_paths: task?.spec_paths ?? [],
@@ -256,8 +383,9 @@ export async function writeImplementationBuild(
 		role_evidence: roleEvidence,
 		test_design_evidence: testDesignEvidence,
 		code_change_evidence: codeChangeEvidence,
-		acceptance_mapping: (input.acceptance_mapping ?? []).filter((m) => m.criterion.trim() && m.evidence.trim()),
+		acceptance_mapping: acceptanceMapping,
 		validation_refs: validationRefs,
+		closure_brief: closureBrief || undefined,
 		risks,
 		unresolved_issues: openQuestions,
 		open_questions: openQuestions,

@@ -83,7 +83,24 @@ function normalizeCodewikiRef(value: any): string {
 }
 
 function buildRefs(data: any, key: "feedback" | "documentation" | "implementation"): string[] {
-	return stringList(data?.linked_builds?.[key]).map(normalizeCodewikiRef).filter(Boolean);
+	return [
+		...stringList(data?.linked_builds?.[key]),
+		...stringList(data?.consumes?.[key]),
+	].map(normalizeCodewikiRef).filter(Boolean);
+}
+
+function consumedBuildRefs(data: any): string[] {
+	return [
+		...stringList(data?.source_feedback_build),
+		...stringList(data?.source_documentation_build),
+		...stringList(data?.consumes?.feedback),
+		...stringList(data?.consumes?.documentation),
+		...stringList(data?.consumes?.implementation),
+	].map(normalizeCodewikiRef).filter(Boolean);
+}
+
+function producedRefs(data: any, key: "knowledge" | "roadmap" | "code" | "tests" | "validation" | "publication" | "closure"): string[] {
+	return stringList(data?.produces?.[key]).map(normalizeCodewikiRef).filter(Boolean);
 }
 
 function buildTaskIds(build: BuildArtifact): string[] {
@@ -94,7 +111,9 @@ function buildTaskIds(build: BuildArtifact): string[] {
 		...stringList(data.taskId),
 		...stringList(data.task?.id),
 		...stringList(data.roadmap_work_items),
-	].map((id) => id.trim()).filter(Boolean)));
+		...stringList(data.consumes?.roadmap),
+		...stringList(data.produces?.roadmap),
+	].map((id) => id.trim()).filter((id) => /^TASK-/.test(id))));
 }
 
 function firstTaskId(build: BuildArtifact): string | undefined {
@@ -104,15 +123,15 @@ function firstTaskId(build: BuildArtifact): string | undefined {
 function hasActionableLowerLayerDelta(build: BuildArtifact | undefined): boolean {
 	if (!build) return false;
 	const delta = build.data?.lower_layer_delta || {};
-	return stringList(delta.roadmap).length > 0 || stringList(delta.code).length > 0;
+	return stringList(delta.roadmap).length > 0 || stringList(delta.code).length > 0 || producedRefs(build.data, "roadmap").length > 0 || producedRefs(build.data, "code").length > 0 || producedRefs(build.data, "tests").length > 0;
 }
 
 function hasRoadmapChanges(build: BuildArtifact): boolean {
-	return stringList(build.data?.roadmap_changes).length > 0;
+	return stringList(build.data?.roadmap_changes).length > 0 || producedRefs(build.data, "roadmap").length > 0;
 }
 
 function isLifecycleComplete(state: string): boolean {
-	return ["validated", "archived", "purged"].includes(state);
+	return ["consumed", "validated", "archived", "purged"].includes(state);
 }
 
 function indexPush(map: Map<string, BuildArtifact[]>, key: string, build: BuildArtifact) {
@@ -262,6 +281,9 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	for (const build of builds) {
 		if (build.kind === "documentation_build") {
 			indexPush(documentationByFeedback, build.data?.source_feedback_build, build);
+			for (const ref of buildRefs(build.data, "feedback")) {
+				indexPush(documentationByFeedback, ref, build);
+			}
 		} else if (build.kind === "implementation_build") {
 			for (const ref of [normalizeCodewikiRef(build.data?.source_documentation_build), ...buildRefs(build.data, "documentation")]) {
 				indexPush(implementationByDocumentation, ref, build);
@@ -275,7 +297,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	const hasPassingValidationForBuild = (build: BuildArtifact) => {
 		const buildPath = normalizeCodewikiRef(build.path);
 		const taskIds = new Set(buildTaskIds(build));
-		const validationRefs = new Set(stringList(build.data?.validation_refs).map(normalizeCodewikiRef).filter(Boolean));
+		const validationRefs = new Set([...stringList(build.data?.validation_refs), ...producedRefs(build.data, "validation")].map(normalizeCodewikiRef).filter(Boolean));
 		if (String(build.data?.validation_verdict?.verdict || "").trim() === "pass") return true;
 		return validations.some((validation: ValidationArtifact) => {
 			if (String(validation.verdict || "") !== "pass") return false;
@@ -383,14 +405,38 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			if (!buildTaskMap.has(taskId)) buildTaskMap.set(taskId, []);
 			buildTaskMap.get(taskId)!.push(buildPath);
 		}
-		for (const ref of [
-			normalizeCodewikiRef(build.data?.source_feedback_build),
-			normalizeCodewikiRef(build.data?.source_documentation_build),
-			...buildRefs(build.data, "feedback"),
-			...buildRefs(build.data, "documentation"),
-			...buildRefs(build.data, "implementation"),
-		]) {
+		for (const ref of consumedBuildRefs(build.data)) {
 			if (ref) addEdge("build_derives_from", buildId, `build:${ref}`);
+		}
+		for (const ref of stringList(build.data?.consumes?.roadmap)) {
+			if (/^TASK-/.test(ref)) addEdge("build_consumes_task", buildId, `task:${ref}`);
+		}
+		for (const ref of stringList(build.data?.consumes?.validation).map(normalizeCodewikiRef)) {
+			if (ref) addEdge("build_consumes_validation", buildId, `validation:${ref}`);
+		}
+		for (const ref of stringList(build.data?.consumes?.source).map(normalizeCodewikiRef)) {
+			if (ref) addEdge("build_consumes_source", buildId, `source:${ref}`);
+		}
+		for (const ref of producedRefs(build.data, "knowledge")) {
+			addEdge("build_produces_knowledge", buildId, `doc:${ref}`);
+		}
+		for (const ref of producedRefs(build.data, "roadmap")) {
+			if (/^TASK-/.test(ref)) addEdge("build_produces_task", buildId, `task:${ref}`);
+		}
+		for (const ref of producedRefs(build.data, "code")) {
+			addNode(`code:${ref}`, { kind: "code_path", path: ref, layer: "code" });
+			addEdge("build_produces_code", buildId, `code:${ref}`);
+		}
+		for (const ref of producedRefs(build.data, "tests")) {
+			addNode(`test:${ref}`, { kind: "test_file", path: ref });
+			addEdge("build_produces_test", buildId, `test:${ref}`);
+		}
+		for (const ref of producedRefs(build.data, "validation")) {
+			addEdge("build_produces_validation", buildId, `validation:${ref}`);
+		}
+		for (const ref of producedRefs(build.data, "closure")) {
+			addNode(`closure:${ref}`, { kind: "closure_brief", path: ref });
+			addEdge("build_produces_closure", buildId, `closure:${ref}`);
 		}
 		for (const v of validations) {
 			if (v.path.includes(build.path.replace(/\\.[^.]+$/, "")) || build.path.includes(v.path.replace(/\\.[^.]+$/, ""))) {

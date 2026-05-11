@@ -388,6 +388,52 @@ export interface CodewikiTaskToolInput {
 	refresh?: boolean;
 }
 
+export interface CodewikiDiffTableRowInput {
+	id?: string;
+	current_state: string;
+	desired_state: string;
+	rationale: string;
+	affected_layers?: string[];
+	risk?: "low" | "medium" | "high" | string;
+	user_action?: "pending" | "approved" | "rejected" | "deferred" | "edited" | string;
+	alternatives?: string[];
+}
+
+export interface CodewikiBuildRefsInput {
+	feedback?: string[];
+	documentation?: string[];
+	implementation?: string[];
+	roadmap?: string[];
+	validation?: string[];
+	source?: string[];
+}
+
+export interface CodewikiBuildProducesInput {
+	knowledge?: string[];
+	roadmap?: string[];
+	code?: string[];
+	tests?: string[];
+	validation?: string[];
+	publication?: string[];
+	closure?: string[];
+}
+
+export interface CodewikiClosureBriefInput {
+	user_intent: string;
+	implemented_changes: string[];
+	layers_updated?: {
+		knowledge?: string[];
+		roadmap?: string[];
+		code?: string[];
+		tests?: string[];
+		validation?: string[];
+	};
+	acceptance_evidence: string[];
+	checks: string[];
+	non_goals_preserved?: string[];
+	remaining_risks?: string[];
+}
+
 export interface CodewikiBuildToolInput {
 	repoPath?: string;
 	kind: "feedback" | "documentation" | "implementation";
@@ -396,13 +442,18 @@ export interface CodewikiBuildToolInput {
 	summary: string;
 	slug?: string;
 	source?: string;
+	schema_version?: number;
+	consumes?: CodewikiBuildRefsInput;
+	produces?: CodewikiBuildProducesInput;
 	lifecycle?: {
-		state?: "proposed" | "accepted" | "applied" | "validated" | "archived";
+		state?: "proposed" | "accepted" | "consumed" | "applied" | "validated" | "archived";
 		ttl_days?: number;
 		archive_after?: string;
 		purge_after?: string;
 	};
 	/** Feedback-specific */
+	diff_table?: CodewikiDiffTableRowInput[];
+	approved_diff_rows?: string[];
 	decisions?: string[];
 	assumptions?: string[];
 	open_questions?: string[];
@@ -429,6 +480,7 @@ export interface CodewikiBuildToolInput {
 	builder_notes?: string[];
 	validation_refs?: string[];
 	risks?: string[];
+	closure_brief?: CodewikiClosureBriefInput;
 	publication?: {
 		commit_title?: string;
 		commit_body?: string;

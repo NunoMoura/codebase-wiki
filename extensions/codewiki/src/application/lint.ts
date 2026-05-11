@@ -175,6 +175,72 @@ export function lintRoadmapEntries(repoRoot: string, project: WikiProject, entri
 	return issues;
 }
 
+function list(value: any): any[] {
+	return Array.isArray(value) ? value : [];
+}
+
+function isBuildV2(build: { data?: any }): boolean {
+	return Number(build.data?.schema_version || 0) >= 2;
+}
+
+function lintFeedbackBuildV2(buildPath: string, data: any): LintIssue[] {
+	const issues: LintIssue[] = [];
+	const rows = list(data?.diff_table);
+	const approved = rows.filter((row) => String(row?.user_action || "").trim() === "approved" || list(data?.approved_diff_rows).includes(row?.id));
+	if (rows.length === 0) {
+		issues.push(createIssue("error", "feedback-build-missing-diff-table", buildPath, "Feedback build v2 requires diff_table rows."));
+	}
+	if (String(data?.status || data?.lifecycle?.state || "") === "accepted" && approved.length === 0) {
+		issues.push(createIssue("error", "feedback-build-missing-approved-diff-row", buildPath, "Accepted feedback build v2 requires at least one approved diff_table row."));
+	}
+	rows.forEach((row, index) => {
+		const rowId = String(row?.id || `row ${index + 1}`);
+		for (const field of ["current_state", "desired_state", "rationale", "user_action"]) {
+			if (!String(row?.[field] || "").trim()) {
+				issues.push(createIssue("error", "feedback-build-bad-diff-row", buildPath, `${rowId} missing ${field}.`));
+			}
+		}
+		if (!Array.isArray(row?.affected_layers) || row.affected_layers.length === 0) {
+			issues.push(createIssue("warning", "feedback-build-diff-row-unscoped", buildPath, `${rowId} should list affected_layers.`));
+		}
+	});
+	return issues;
+}
+
+function lintImplementationBuildV2(buildPath: string, data: any): LintIssue[] {
+	const issues: LintIssue[] = [];
+	const closure = data?.closure_brief || null;
+	if (!closure) {
+		issues.push(createIssue("error", "implementation-build-missing-closure-brief", buildPath, "Implementation build v2 requires closure_brief."));
+		return issues;
+	}
+	if (!String(closure.user_intent || "").trim()) issues.push(createIssue("error", "implementation-build-bad-closure-brief", buildPath, "closure_brief missing user_intent."));
+	for (const field of ["implemented_changes", "acceptance_evidence", "checks"]) {
+		if (!Array.isArray(closure[field]) || closure[field].length === 0) {
+			issues.push(createIssue("error", "implementation-build-bad-closure-brief", buildPath, `closure_brief missing ${field}.`));
+		}
+	}
+	return issues;
+}
+
+function lintBuildContractV2(build: { path: string; kind: string; data?: any }): LintIssue[] {
+	if (!isBuildV2(build)) return [];
+	const issues: LintIssue[] = [];
+	const consumes = build.data?.consumes || {};
+	const produces = build.data?.produces || {};
+	const consumeCount = Object.values(consumes).reduce<number>((count, value) => count + list(value).length, 0);
+	const produceCount = Object.values(produces).reduce<number>((count, value) => count + list(value).length, 0);
+	if (produceCount === 0) {
+		issues.push(createIssue("warning", "build-v2-missing-produces", build.path, "Build v2 should expose produces edges."));
+	}
+	if (build.kind !== "feedback_build" && consumeCount === 0) {
+		issues.push(createIssue("warning", "build-v2-missing-consumes", build.path, "Build v2 should expose consumes edges."));
+	}
+	if (build.kind === "feedback_build") issues.push(...lintFeedbackBuildV2(build.path, build.data));
+	if (build.kind === "implementation_build") issues.push(...lintImplementationBuildV2(build.path, build.data));
+	return issues;
+}
+
 export function lintEvidenceLinks(
 	project: WikiProject,
 	entries: RoadmapTaskRecord[],
@@ -187,6 +253,7 @@ export function lintEvidenceLinks(
 	]);
 
 	for (const build of evidence.builds || []) {
+		issues.push(...lintBuildContractV2(build));
 		const buildPath = String(build.path || "").trim();
 		const taskId = String(build.taskId || build.data?.task_id || build.data?.taskId || "").trim();
 		if (taskId && !knownTaskIds.has(taskId)) {
