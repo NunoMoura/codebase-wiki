@@ -6,7 +6,7 @@ title: codewiki-feedback skill
 state: active
 summary: Packaged CodeWiki agent skill.
 owners: [maintainers]
-updated: "2026-05-10"
+updated: "2026-05-11"
 ---
 
 # CodeWiki Feedback
@@ -21,6 +21,7 @@ user conversation -> inspect .codewiki/kb and code -> propose feedback_build -> 
 
 - May read `.codewiki/kb/**` and code for grounding. Does not write canonical knowledge until the build is accepted.
 - Surfaces ambiguity, risk, and blind spots.
+- Must present a compact diff table before asking the user to accept feedback. The table is the feedback-loop decision surface.
 - Uses `ask_user` for decision handoffs. Never guesses user intent silently.
 - Any compiler may escalate back here when it finds ambiguous or missing intent.
 
@@ -36,6 +37,8 @@ user conversation -> inspect .codewiki/kb and code -> propose feedback_build -> 
    - Surface drift between knowledge and code instead of choosing silently.
 
 3. **Propose feedback build**
+   - Present a markdown diff table before acceptance with these columns: `Current state`, `Desired state`, `Rationale`, `Affected layers`, `Risk`, `User action`.
+   - Keep rows high-signal and decision-oriented. Prefer 3-7 rows; split unrelated decisions into separate feedback handoffs.
    - Capture accepted decisions, assumptions, open questions, non-goals, risks.
    - Map which knowledge, roadmap, build, validation, or code artifacts may need to change.
    - Note likely scoped change claims when parallel-session overlap risk is visible.
