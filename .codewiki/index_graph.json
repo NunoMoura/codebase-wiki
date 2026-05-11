@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-11T09:56:22.220Z",
+  "generated_at": "2026-05-11T20:25:30.078Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -1658,6 +1658,27 @@
       "path": "TASK-063"
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "title": "codewiki_build tool",
+      "status": "validated",
+      "layer": "build",
+      "lifecycle_state": "validated",
+      "alignment_state": "aligned"
+    },
+    {
+      "id": "code:tests/smoke/control-room.test.mjs",
+      "kind": "code_path",
+      "path": "tests/smoke/control-room.test.mjs",
+      "layer": "code"
+    },
+    {
+      "id": "closure:TASK-064",
+      "kind": "closure_brief",
+      "path": "TASK-064"
+    },
+    {
       "id": "validation:.codewiki/validation/2026-05-09-documentation-pass.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-09-documentation-pass.json",
@@ -1775,6 +1796,12 @@
       "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-063.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-11-task-close-pass-task-063.json",
+      "verdict": "pass"
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-064.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-11-task-close-pass-task-064.json",
       "verdict": "pass"
     }
   ],
@@ -4315,6 +4342,66 @@
       "to": "closure:TASK-063"
     },
     {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "task:TASK-064"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "task:TASK-064"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "doc:.codewiki/kb/product/uis/control-room.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "doc:.codewiki/kb/system/control-room-ui.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "code:extensions/codewiki/src/adapters/web/control-room.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "code:.codewiki/kb/product/uis/control-room.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "code:.codewiki/kb/system/control-room-ui.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "code:tests/smoke/control-room.test.mjs"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "test:tests/smoke/control-room.test.mjs"
+    },
+    {
+      "kind": "build_produces_validation",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "validation:npx tsc --noEmit"
+    },
+    {
+      "kind": "build_produces_validation",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "validation:npm test"
+    },
+    {
+      "kind": "build_produces_closure",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+      "to": "closure:TASK-064"
+    },
+    {
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-09-task-035-close-pass.json",
       "to": "task:TASK-035"
@@ -4398,6 +4485,11 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-063.json",
       "to": "task:TASK-063"
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-064.json",
+      "to": "task:TASK-064"
     }
   ],
   "views": {
@@ -5657,7 +5749,8 @@
             ".codewiki/builds/implementation/2026-05-11-task-060-graph-visual-map.json",
             ".codewiki/builds/implementation/2026-05-11-task-061-control-room-refinement.json",
             ".codewiki/builds/implementation/2026-05-11-task-062-wiki-ui-browser-open.json",
-            ".codewiki/builds/implementation/2026-05-11-task-063-cytoscape-control-room-graph.json"
+            ".codewiki/builds/implementation/2026-05-11-task-063-cytoscape-control-room-graph.json",
+            ".codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json"
           ]
         },
         "purgeable": {
@@ -5693,7 +5786,7 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-11T09:56:22.227Z",
+      "generated_at": "2026-05-11T20:25:30.089Z",
       "counts": {
         "large-doc": 4
       },
@@ -5708,13 +5801,13 @@
           "severity": "warning",
           "kind": "large-doc",
           "path": ".codewiki/kb/product/uis/control-room.md",
-          "message": "Live doc has 1026 words; consider split or cut."
+          "message": "Live doc has 1059 words; consider split or cut."
         },
         {
           "severity": "warning",
           "kind": "large-doc",
           "path": ".codewiki/kb/system/control-room-ui.md",
-          "message": "Live doc has 1040 words; consider split or cut."
+          "message": "Live doc has 1071 words; consider split or cut."
         },
         {
           "severity": "warning",
@@ -5726,7 +5819,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-11T09:56:22Z",
+      "generated_at": "2026-05-11T20:25:30Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -7973,7 +8066,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-11T09:56:22Z",
+      "generated_at": "2026-05-11T20:25:30Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -8209,7 +8302,8 @@
               ".codewiki/builds/implementation/2026-05-11-task-060-graph-visual-map.json",
               ".codewiki/builds/implementation/2026-05-11-task-061-control-room-refinement.json",
               ".codewiki/builds/implementation/2026-05-11-task-062-wiki-ui-browser-open.json",
-              ".codewiki/builds/implementation/2026-05-11-task-063-cytoscape-control-room-graph.json"
+              ".codewiki/builds/implementation/2026-05-11-task-063-cytoscape-control-room-graph.json",
+              ".codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json"
             ]
           },
           "purgeable": {
@@ -8902,7 +8996,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-11T09:56:22Z",
+        "generated_at": "2026-05-11T20:25:30Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -8930,15 +9024,15 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-11T09:56:22Z",
+            "checked_at": "2026-05-11T20:25:30Z",
             "revision": {
               "git": {
-                "head": "0590a71fd7d0b56d54a6eed2dd3de4ed93430bdb",
+                "head": "08efb5931dc9f43865c3e83c81340d8188b2ae33",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "90c7a88a415c186c4d316099c452a797922bce5f",
+                  ".codewiki/index_graph.json": "75df66d3935159f69d95d3c3041e2cebda1f03e3",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
                   ".codewiki/kb/product/overview.md": "51a6923ec5ddaa491bf131b549e6acecb8e85909",
@@ -8948,7 +9042,7 @@
                   ".codewiki/kb/product/stories/navigation.md": "9ad9b9c0f29c355f476617679368da4f105f4f8b",
                   ".codewiki/kb/product/stories/sanitation.md": "763c72c21222e585fadfed7cf09ccd649e3e1512",
                   ".codewiki/kb/product/uis/board.md": "084eced67db301cc5f11e6d831ab7a12ea2c49a9",
-                  ".codewiki/kb/product/uis/control-room.md": "d3ce023ac2b1876ec4714267ea5f98c914e37407",
+                  ".codewiki/kb/product/uis/control-room.md": "7e81bd24f3b065858cce31280edcc0b2c48a5e67",
                   ".codewiki/kb/product/uis/graph-navigation.md": "d010f0be2b4a6dde734c9e0b112602e3235355b1",
                   ".codewiki/kb/product/uis/status-panel.md": "0ce74ad961250fd23537e4e71cd56d32e9ca4600",
                   ".codewiki/kb/product/users/agents.md": "bbe8e5c8d5e525182b29a961537bf75e41a4ff0b",
@@ -8960,7 +9054,7 @@
                   ".codewiki/kb/system/api.md": "d699da2bb3af11fd5388cd4fb2911ee4fce1e1fa",
                   ".codewiki/kb/system/builds.md": "ed28a87fdee173a1e83a1f4ef1bc671f3c31f1a9",
                   ".codewiki/kb/system/compilers.md": "0fa593c7954a5bba9684601dd2cd2be56b695b90",
-                  ".codewiki/kb/system/control-room-ui.md": "236d667c38f51614d032115ace60ce51c491938f",
+                  ".codewiki/kb/system/control-room-ui.md": "bbdaf8b7aa6a553bb7c527d72e9dba456cca0c00",
                   ".codewiki/kb/system/extension.md": "1b857185640c6d62249a292af437b26f33bbc43d",
                   ".codewiki/kb/system/file-structure.md": "083959262d957bec0d3a129bf1cdcd748023bdb1",
                   ".codewiki/kb/system/graph.md": "d47fcca6a42b56e55a4b1d3c3c6df182714ba80c",
@@ -8969,7 +9063,7 @@
                   ".codewiki/kb/system/roadmap.md": "ac562f428c4d109df43ae474eb900901aaeb2fba",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "2774483dead8c323890922116d366226154291f0",
+                  ".codewiki/roadmap.json": "85210b8e21a8669eb6ac9fc2159c0a2b1e55ea46",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -9001,13 +9095,13 @@
               },
               "spec_digest": "3ebb38f9a3f0b959324a7fa24c0edd3b42ecab3e2f9b9b06ee1f34c470c2c7f2",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "ee2ec48efb47f154fe5d4e23f8e6977324c9f2451fa7ea5e33b01f4e2ccf2d82",
-              "digest": "33217d2e1d7aadebc4cb17e72a4bd9d948c8f1d71e715965a97060e6b0135e5d"
+              "code_digest": "2cc9d49d3fa21295d931b4abee69a011eee02487ed2f69c09972d0b6f36bd06e",
+              "digest": "1cb1a610850d8990dd0d3e19aacc8f87511944ce5bbca410a8bba52be08972c7"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T09:56:22Z",
+              "checked_at": "2026-05-11T20:25:30Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -9110,22 +9204,22 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-11T09:56:22Z",
+            "checked_at": "2026-05-11T20:25:30Z",
             "revision": {
               "git": {
-                "head": "0590a71fd7d0b56d54a6eed2dd3de4ed93430bdb",
+                "head": "08efb5931dc9f43865c3e83c81340d8188b2ae33",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "90c7a88a415c186c4d316099c452a797922bce5f",
+                  ".codewiki/index_graph.json": "75df66d3935159f69d95d3c3041e2cebda1f03e3",
                   ".codewiki/kb": "",
                   ".codewiki/kb/system/adapters.md": "3d49aa440303f88027231494d9c45c1d71974653",
                   ".codewiki/kb/system/agency.md": "0c562d69bdd9113090944bc4862672b75c44230c",
                   ".codewiki/kb/system/api.md": "d699da2bb3af11fd5388cd4fb2911ee4fce1e1fa",
                   ".codewiki/kb/system/builds.md": "ed28a87fdee173a1e83a1f4ef1bc671f3c31f1a9",
                   ".codewiki/kb/system/compilers.md": "0fa593c7954a5bba9684601dd2cd2be56b695b90",
-                  ".codewiki/kb/system/control-room-ui.md": "236d667c38f51614d032115ace60ce51c491938f",
+                  ".codewiki/kb/system/control-room-ui.md": "bbdaf8b7aa6a553bb7c527d72e9dba456cca0c00",
                   ".codewiki/kb/system/extension.md": "1b857185640c6d62249a292af437b26f33bbc43d",
                   ".codewiki/kb/system/file-structure.md": "083959262d957bec0d3a129bf1cdcd748023bdb1",
                   ".codewiki/kb/system/graph.md": "d47fcca6a42b56e55a4b1d3c3c6df182714ba80c",
@@ -9134,7 +9228,7 @@
                   ".codewiki/kb/system/roadmap.md": "ac562f428c4d109df43ae474eb900901aaeb2fba",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "2774483dead8c323890922116d366226154291f0",
+                  ".codewiki/roadmap.json": "85210b8e21a8669eb6ac9fc2159c0a2b1e55ea46",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -9160,13 +9254,13 @@
               },
               "spec_digest": "fe3ffafbb8e8f430c1ce398a5702fb7e355acfac6f38c3987e3802a57766e4fb",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "18f377b2edceca6c39d4f45fcfca40787d1961579919200857344c21075bbfcf",
-              "digest": "1faedcf1acae3d51f00881987589fecf11f7abea679bc32ce226283f7e50704a"
+              "code_digest": "e519fc037575dc9451fab2e3fd7d420fcb421fef1a3e4ccd6ce6b63f8af07e7a",
+              "digest": "af57c79de20f815b2ec31944413436c3b0f3fba88a2b3c1f0cfaf684b48f8518"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T09:56:22Z",
+              "checked_at": "2026-05-11T20:25:30Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -9247,15 +9341,15 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-11T09:56:22Z",
+            "checked_at": "2026-05-11T20:25:30Z",
             "revision": {
               "git": {
-                "head": "0590a71fd7d0b56d54a6eed2dd3de4ed93430bdb",
+                "head": "08efb5931dc9f43865c3e83c81340d8188b2ae33",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "90c7a88a415c186c4d316099c452a797922bce5f",
+                  ".codewiki/index_graph.json": "75df66d3935159f69d95d3c3041e2cebda1f03e3",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
                   ".codewiki/kb/product/overview.md": "51a6923ec5ddaa491bf131b549e6acecb8e85909",
@@ -9265,7 +9359,7 @@
                   ".codewiki/kb/product/stories/navigation.md": "9ad9b9c0f29c355f476617679368da4f105f4f8b",
                   ".codewiki/kb/product/stories/sanitation.md": "763c72c21222e585fadfed7cf09ccd649e3e1512",
                   ".codewiki/kb/product/uis/board.md": "084eced67db301cc5f11e6d831ab7a12ea2c49a9",
-                  ".codewiki/kb/product/uis/control-room.md": "d3ce023ac2b1876ec4714267ea5f98c914e37407",
+                  ".codewiki/kb/product/uis/control-room.md": "7e81bd24f3b065858cce31280edcc0b2c48a5e67",
                   ".codewiki/kb/product/uis/graph-navigation.md": "d010f0be2b4a6dde734c9e0b112602e3235355b1",
                   ".codewiki/kb/product/uis/status-panel.md": "0ce74ad961250fd23537e4e71cd56d32e9ca4600",
                   ".codewiki/kb/product/users/agents.md": "bbe8e5c8d5e525182b29a961537bf75e41a4ff0b",
@@ -9277,7 +9371,7 @@
                   ".codewiki/kb/system/api.md": "d699da2bb3af11fd5388cd4fb2911ee4fce1e1fa",
                   ".codewiki/kb/system/builds.md": "ed28a87fdee173a1e83a1f4ef1bc671f3c31f1a9",
                   ".codewiki/kb/system/compilers.md": "0fa593c7954a5bba9684601dd2cd2be56b695b90",
-                  ".codewiki/kb/system/control-room-ui.md": "236d667c38f51614d032115ace60ce51c491938f",
+                  ".codewiki/kb/system/control-room-ui.md": "bbdaf8b7aa6a553bb7c527d72e9dba456cca0c00",
                   ".codewiki/kb/system/extension.md": "1b857185640c6d62249a292af437b26f33bbc43d",
                   ".codewiki/kb/system/file-structure.md": "083959262d957bec0d3a129bf1cdcd748023bdb1",
                   ".codewiki/kb/system/graph.md": "d47fcca6a42b56e55a4b1d3c3c6df182714ba80c",
@@ -9286,7 +9380,7 @@
                   ".codewiki/kb/system/roadmap.md": "ac562f428c4d109df43ae474eb900901aaeb2fba",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "2774483dead8c323890922116d366226154291f0",
+                  ".codewiki/roadmap.json": "85210b8e21a8669eb6ac9fc2159c0a2b1e55ea46",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -9318,13 +9412,13 @@
               },
               "spec_digest": "3ebb38f9a3f0b959324a7fa24c0edd3b42ecab3e2f9b9b06ee1f34c470c2c7f2",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "ee2ec48efb47f154fe5d4e23f8e6977324c9f2451fa7ea5e33b01f4e2ccf2d82",
-              "digest": "33217d2e1d7aadebc4cb17e72a4bd9d948c8f1d71e715965a97060e6b0135e5d"
+              "code_digest": "2cc9d49d3fa21295d931b4abee69a011eee02487ed2f69c09972d0b6f36bd06e",
+              "digest": "1cb1a610850d8990dd0d3e19aacc8f87511944ce5bbca410a8bba52be08972c7"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T09:56:22Z",
+              "checked_at": "2026-05-11T20:25:30Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -9428,7 +9522,7 @@
         "agency": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
       },
       "parallel": {
-        "generated_at": "2026-05-11T09:56:22Z",
+        "generated_at": "2026-05-11T20:25:30Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
