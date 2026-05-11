@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-11T02:59:22.202Z",
+  "generated_at": "2026-05-11T03:26:57.665Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -848,35 +848,6 @@
       "alignment_state": "aligned"
     },
     {
-      "id": "task:TASK-055",
-      "kind": "roadmap_task",
-      "title": "Implement Build Contract v2 and closure briefs",
-      "layer": "roadmap",
-      "status": "todo",
-      "alignment_state": "drift"
-    },
-    {
-      "id": "code:extensions/codewiki/src/application/lint.ts",
-      "kind": "code_path",
-      "path": "extensions/codewiki/src/application/lint.ts",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
-      "id": "code:extensions/codewiki/src/adapters/pi/tools/task.ts",
-      "kind": "code_path",
-      "path": "extensions/codewiki/src/adapters/pi/tools/task.ts",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
-      "id": "code:tests/smoke/builds.test.mjs",
-      "kind": "code_path",
-      "path": "tests/smoke/builds.test.mjs",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
       "id": "task:TASK-056",
       "kind": "roadmap_task",
       "title": "Plan Efficiency Foundation sprint",
@@ -1075,6 +1046,12 @@
       "layer": "build",
       "lifecycle_state": "accepted",
       "alignment_state": "aligned"
+    },
+    {
+      "id": "code:Later implementation will update build schemas/writers/lint/graph/API and eventually UI.",
+      "kind": "code_path",
+      "path": "Later implementation will update build schemas/writers/lint/graph/API and eventually UI.",
+      "layer": "code"
     },
     {
       "id": "build:.codewiki/builds/feedback/2026-05-11-reconciliation-lifecycle.json",
@@ -1317,6 +1294,38 @@
       "alignment_state": "aligned"
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "title": "TASK-055 implementation compiler",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned"
+    },
+    {
+      "id": "code:extensions/codewiki/src/application/lint.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/application/lint.ts",
+      "layer": "code"
+    },
+    {
+      "id": "code:.codewiki/builds/feedback/2026-05-11-build-contract-v2-and-efficiency-sprints.json",
+      "kind": "code_path",
+      "path": ".codewiki/builds/feedback/2026-05-11-build-contract-v2-and-efficiency-sprints.json",
+      "layer": "code"
+    },
+    {
+      "id": "test:tests/smoke/builds.test.mjs",
+      "kind": "test_file",
+      "path": "tests/smoke/builds.test.mjs"
+    },
+    {
+      "id": "closure:TASK-055",
+      "kind": "closure_brief",
+      "path": "TASK-055"
+    },
+    {
       "id": "validation:.codewiki/validation/2026-05-09-documentation-pass.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-09-documentation-pass.json",
@@ -1368,6 +1377,12 @@
       "id": "validation:.codewiki/validation/2026-05-11-documentation-pass.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-11-documentation-pass.json",
+      "verdict": "pass"
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-11-implementation-pass.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-11-implementation-pass.json",
       "verdict": "pass"
     },
     {
@@ -2581,71 +2596,6 @@
     },
     {
       "kind": "task_spec",
-      "from": "task:TASK-055",
-      "to": "doc:.codewiki/kb/system/builds.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-055",
-      "to": "doc:.codewiki/kb/system/compilers.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-055",
-      "to": "doc:.codewiki/kb/system/api.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-055",
-      "to": "doc:.codewiki/kb/lexicon.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-055",
-      "to": "doc:.codewiki/builds/feedback/2026-05-11-build-contract-v2-and-efficiency-sprints.json"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-055",
-      "to": "code:extensions/codewiki/src/application/builds.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-055",
-      "to": "code:extensions/codewiki/src/adapters/pi/schemas.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-055",
-      "to": "code:extensions/codewiki/src/application/lint.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-055",
-      "to": "code:extensions/codewiki/src/application/graph.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-055",
-      "to": "code:extensions/codewiki/src/adapters/pi/tools/task.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-055",
-      "to": "code:tests/smoke/builds.test.mjs"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-055",
-      "to": "code:scripts/smoke-test.mjs"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-055",
-      "to": "code:skills/codewiki-feedback/SKILL.md"
-    },
-    {
-      "kind": "task_spec",
       "from": "task:TASK-056",
       "to": "doc:.codewiki/kb/system/roadmap.md"
     },
@@ -2770,6 +2720,16 @@
       "to": "code:scripts/smoke-test.mjs"
     },
     {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/feedback/2026-05-11-build-contract-v2-and-efficiency-sprints.json",
+      "to": "doc:Document Build Contract v2, mandatory feedback diff rows, mandatory implementation closure brief, roadmap sprint cohorts, agency scope/budgets, and future diff-table UI."
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/feedback/2026-05-11-build-contract-v2-and-efficiency-sprints.json",
+      "to": "code:Later implementation will update build schemas/writers/lint/graph/API and eventually UI."
+    },
+    {
       "kind": "build_derives_from",
       "from": "build:.codewiki/builds/documentation/2026-05-07-compiler-kb-refactor.json",
       "to": "build:.codewiki/builds/feedback/2026-05-07-compiler-model.json"
@@ -2870,26 +2830,6 @@
       "to": "task:TASK-042"
     },
     {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-10-architecture-refactoring-production.json",
-      "to": "build:.codewiki/builds/feedback/2026-05-07-compiler-model.json"
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-10-architecture-refactoring-production.json",
-      "to": "build:.codewiki/builds/documentation/2026-05-07-compiler-kb-refactor.json"
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-10-architecture-refactoring-production.json",
-      "to": "build:.codewiki/builds/documentation/2026-05-09-roadmap-transition-baseline.json"
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-10-architecture-refactoring-production.json",
-      "to": "build:.codewiki/builds/documentation/2026-05-09-kb-boundary-refactor-docs.json"
-    },
-    {
       "kind": "build_task",
       "from": "build:.codewiki/builds/implementation/2026-05-10-task-034-skill-alignment.json",
       "to": "task:TASK-034"
@@ -2898,16 +2838,6 @@
       "kind": "build_task",
       "from": "build:.codewiki/builds/implementation/2026-05-10-task-038-agency-controller.json",
       "to": "task:TASK-038"
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-10-task-038-agency-controller.json",
-      "to": "build:.codewiki/builds/feedback/2026-05-10-agency-terminology-and-graph-queue.json"
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-10-task-038-agency-controller.json",
-      "to": "build:.codewiki/builds/documentation/2026-05-10-agency-and-graph-queue-boundary.json"
     },
     {
       "kind": "build_task",
@@ -2950,21 +2880,6 @@
       "to": "task:TASK-035"
     },
     {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-10-traceability-production.json",
-      "to": "build:.codewiki/builds/feedback/2026-05-09-roadmap-transition-decisions.json"
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-10-traceability-production.json",
-      "to": "build:.codewiki/builds/documentation/2026-05-09-roadmap-transition-baseline.json"
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-10-traceability-production.json",
-      "to": "build:.codewiki/builds/documentation/2026-05-09-kb-boundary-refactor-docs.json"
-    },
-    {
       "kind": "build_task",
       "from": "build:.codewiki/builds/implementation/2026-05-11-task-054-reconciliation-lifecycle.json",
       "to": "task:TASK-054"
@@ -2973,6 +2888,71 @@
       "kind": "build_derives_from",
       "from": "build:.codewiki/builds/implementation/2026-05-11-task-054-reconciliation-lifecycle.json",
       "to": "build:.codewiki/builds/documentation/2026-05-11-reconciliation-lifecycle-docs.json"
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "task:TASK-055"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "build:.codewiki/builds/documentation/2026-05-11-build-contract-v2-and-efficiency-sprints-docs.json"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "task:TASK-055"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "code:extensions/codewiki/src/application/builds.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "code:extensions/codewiki/src/adapters/pi/schemas.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "code:extensions/codewiki/src/domain/shared/types.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "code:extensions/codewiki/src/application/lint.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "code:extensions/codewiki/src/application/graph.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "code:.codewiki/builds/feedback/2026-05-11-build-contract-v2-and-efficiency-sprints.json"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "test:tests/smoke/builds.test.mjs"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "test:scripts/smoke-test.mjs"
+    },
+    {
+      "kind": "build_produces_validation",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "validation:.codewiki/validation/2026-05-11-implementation-pass.json"
+    },
+    {
+      "kind": "build_produces_closure",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
+      "to": "closure:TASK-055"
     },
     {
       "kind": "validation_task",
@@ -3008,6 +2988,11 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-10-task-053-implementation-pass.json",
       "to": "task:TASK-053"
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-11-implementation-pass.json",
+      "to": "task:TASK-055"
     },
     {
       "kind": "validation_task",
@@ -3156,14 +3141,13 @@
         "TASK-048",
         "TASK-049",
         "TASK-050",
-        "TASK-055",
         "TASK-056",
         "TASK-057"
       ],
       "status_counts": {
         "done": 42,
         "cancelled": 4,
-        "todo": 3
+        "todo": 2
       }
     },
     "research": {
@@ -3193,7 +3177,6 @@
         "extensions/codewiki/src/adapters/pi/index.ts",
         "extensions/codewiki/src/adapters/pi/schemas.ts",
         "extensions/codewiki/src/adapters/pi/tools/agency.ts",
-        "extensions/codewiki/src/adapters/pi/tools/task.ts",
         "extensions/codewiki/src/adapters/pi/ui",
         "extensions/codewiki/src/adapters/pi/ui/manager.ts",
         "extensions/codewiki/src/adapters/pi/ui/text.ts",
@@ -3203,7 +3186,6 @@
         "extensions/codewiki/src/application/builds.ts",
         "extensions/codewiki/src/application/claims.ts",
         "extensions/codewiki/src/application/graph.ts",
-        "extensions/codewiki/src/application/lint.ts",
         "extensions/codewiki/src/application/roadmap.ts",
         "extensions/codewiki/src/application/session.ts",
         "extensions/codewiki/src/application/state-builders.ts",
@@ -3221,8 +3203,7 @@
         "skills/codewiki-implementation/SKILL.md",
         "skills/codewiki-verify/SKILL.md",
         "skills/codewiki-view-audit/SKILL.md",
-        "skills/codewiki/SKILL.md",
-        "tests/smoke/builds.test.mjs"
+        "skills/codewiki/SKILL.md"
       ],
       "dirty_paths": [
         "codewiki/index_graph.json"
@@ -3240,17 +3221,6 @@
       "controller": "reconciliation_gateway",
       "model": "graph-backed-state-machine",
       "items": [
-        {
-          "id": "reconcile:task:TASK-055",
-          "source_id": "task:TASK-055",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "roadmap",
-          "to_layer": "code",
-          "next_loop": "implementation",
-          "task_id": "TASK-055",
-          "reason": "TASK-055 is open implementation delta below knowledge."
-        },
         {
           "id": "reconcile:task:TASK-056",
           "source_id": "task:TASK-056",
@@ -3275,13 +3245,13 @@
         }
       ],
       "counts_by_loop": {
-        "implementation": 3
+        "implementation": 2
       },
       "next_action": {
         "loop": "implementation",
-        "command": "/wiki-resume TASK-055",
-        "reason": "TASK-055 is open implementation delta below knowledge.",
-        "item_id": "reconcile:task:TASK-055"
+        "command": "/wiki-resume TASK-056",
+        "reason": "TASK-056 is open implementation delta below knowledge.",
+        "item_id": "reconcile:task:TASK-056"
       },
       "layer_states": {
         "intent": "aligned",
@@ -3294,7 +3264,7 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-11T02:59:22.209Z",
+      "generated_at": "2026-05-11T03:26:57.671Z",
       "counts": {
         "large-doc": 2
       },
@@ -3315,7 +3285,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-11T02:59:22Z",
+      "generated_at": "2026-05-11T03:26:57Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -3326,17 +3296,17 @@
         "task_context_root": ".codewiki/roadmap/tasks"
       },
       "summary": {
-        "task_count": 49,
-        "open_count": 3,
+        "task_count": 48,
+        "open_count": 2,
         "status_counts": {
           "done": 42,
           "cancelled": 4,
-          "todo": 3
+          "todo": 2
         },
         "priority_counts": {
           "high": 27,
           "medium": 14,
-          "critical": 7,
+          "critical": 6,
           "low": 1
         }
       },
@@ -3388,18 +3358,15 @@
           "TASK-048",
           "TASK-049",
           "TASK-050",
-          "TASK-055",
           "TASK-056",
           "TASK-057"
         ],
         "open_task_ids": [
-          "TASK-055",
           "TASK-056",
           "TASK-057"
         ],
         "in_progress_task_ids": [],
         "todo_task_ids": [
-          "TASK-055",
           "TASK-056",
           "TASK-057"
         ],
@@ -3457,7 +3424,6 @@
         "recent_task_ids": [
           "TASK-057",
           "TASK-056",
-          "TASK-055",
           "TASK-038",
           "TASK-034",
           "TASK-011",
@@ -5495,67 +5461,6 @@
             "evidence": null
           }
         },
-        "TASK-055": {
-          "id": "TASK-055",
-          "title": "Implement Build Contract v2 and closure briefs",
-          "status": "todo",
-          "priority": "critical",
-          "kind": "architecture",
-          "summary": "Make compiler builds high-signal transition contracts by adding mandatory feedback diff rows, implementation closure briefs, explicit consumes/produces edges, schema/lint enforcement, and compact user-facing closure output.",
-          "labels": [
-            "sprint:build-contract-v2",
-            "builds",
-            "feedback",
-            "closure-brief",
-            "token-efficiency"
-          ],
-          "goal": {
-            "outcome": "New builds are compact, structured, and trustworthy transition points that preserve user intent and prove task closure through all layers.",
-            "acceptance": [
-              "`codewiki_build` accepts and persists feedback diff-table rows with current state, desired state, rationale, affected layers, risk, and user action.",
-              "New accepted feedback builds require approved diff rows and expose them as canonical intent contract data.",
-              "`codewiki_build kind=implementation` accepts and persists a compact closure_brief with user intent, implemented changes, layers updated, acceptance evidence, checks, non-goals preserved, and remaining risks.",
-              "New builds expose explicit `consumes` and `produces` fields; graph reconciliation prefers those edges over legacy inference.",
-              "Lint/schema/tests flag missing v2 required fields for new builds while treating historical builds as legacy cold artifacts.",
-              "Task-close or implementation summary can show the closure brief so users can trust their intent was implemented through knowledge, roadmap, code/tests, checks, and validation."
-            ],
-            "non_goals": [
-              "Do not migrate every historical build immediately.",
-              "Do not implement the interactive diff-table UI in this task.",
-              "Do not make pending unapproved diff rows canonical truth."
-            ],
-            "verification": [
-              "npx tsc --noEmit",
-              "node scripts/check-architecture.mjs",
-              "npm test",
-              "Create smoke feedback/documentation/implementation builds using v2 fields and confirm graph edges/closure brief output."
-            ]
-          },
-          "spec_paths": [
-            ".codewiki/kb/system/builds.md",
-            ".codewiki/kb/system/compilers.md",
-            ".codewiki/kb/system/api.md",
-            ".codewiki/kb/lexicon.md",
-            ".codewiki/builds/feedback/2026-05-11-build-contract-v2-and-efficiency-sprints.json"
-          ],
-          "code_paths": [
-            "extensions/codewiki/src/application/builds.ts",
-            "extensions/codewiki/src/adapters/pi/schemas.ts",
-            "extensions/codewiki/src/application/lint.ts",
-            "extensions/codewiki/src/application/graph.ts",
-            "extensions/codewiki/src/adapters/pi/tools/task.ts",
-            "tests/smoke/builds.test.mjs",
-            "scripts/smoke-test.mjs",
-            "skills/codewiki-feedback/SKILL.md"
-          ],
-          "updated": "2026-05-11",
-          "context_path": ".codewiki/roadmap/tasks/TASK-055/context.json",
-          "loop": {
-            "phase": "implement",
-            "updated_at": "",
-            "evidence": null
-          }
-        },
         "TASK-056": {
           "id": "TASK-056",
           "title": "Plan Efficiency Foundation sprint",
@@ -5678,7 +5583,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-11T02:59:22Z",
+      "generated_at": "2026-05-11T03:26:57Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -5693,27 +5598,27 @@
       "summary": {
         "total_specs": 11,
         "mapped_specs": 11,
-        "aligned_specs": 16,
-        "tracked_specs": 9,
+        "aligned_specs": 17,
+        "tracked_specs": 8,
         "untracked_specs": 1,
         "blocked_specs": 0,
         "unmapped_specs": 0,
-        "task_count": 49,
-        "open_task_count": 3,
+        "task_count": 48,
+        "open_task_count": 2,
         "done_task_count": 42
       },
       "bars": {
         "tracked_drift": {
           "label": "Tracked Drift",
-          "value": 9,
-          "total": 10,
-          "percent": 90
+          "value": 8,
+          "total": 9,
+          "percent": 89
         },
         "roadmap_done": {
           "label": "Roadmap Done",
           "value": 42,
-          "total": 49,
-          "percent": 86
+          "total": 48,
+          "percent": 88
         },
         "spec_mapping": {
           "label": "Spec Mapping",
@@ -5730,7 +5635,6 @@
           ".codewiki/kb/system/agency.md",
           ".codewiki/kb/system/api.md",
           ".codewiki/kb/system/builds.md",
-          ".codewiki/kb/system/compilers.md",
           ".codewiki/kb/system/graph.md",
           ".codewiki/kb/system/overview.md",
           ".codewiki/kb/system/roadmap.md"
@@ -5742,29 +5646,27 @@
           ".codewiki/kb/system/agency.md",
           ".codewiki/kb/system/api.md",
           ".codewiki/kb/system/builds.md",
-          ".codewiki/kb/system/compilers.md",
           ".codewiki/kb/system/graph.md",
           ".codewiki/kb/system/overview.md",
           ".codewiki/kb/system/roadmap.md"
         ],
         "open_task_ids": [
-          "TASK-055",
           "TASK-056",
           "TASK-057"
         ]
       },
       "next_step": {
         "kind": "reconciliation:implementation",
-        "command": "/wiki-resume TASK-055",
-        "reason": "TASK-055 is open implementation delta below knowledge.",
-        "item_id": "reconcile:task:TASK-055"
+        "command": "/wiki-resume TASK-056",
+        "reason": "TASK-056 is open implementation delta below knowledge.",
+        "item_id": "reconcile:task:TASK-056"
       },
       "direction": [
-        "TASK-055 is open implementation delta below knowledge.",
+        "TASK-056 is open implementation delta below knowledge.",
         "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s).",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 11/11.",
-        "Tracked drift coverage: 9/10."
+        "Tracked drift coverage: 8/9."
       ],
       "specs": [
         {
@@ -5782,7 +5684,6 @@
             "total": 1
           },
           "related_task_ids": [
-            "TASK-055",
             "TASK-056",
             "TASK-016",
             "TASK-018",
@@ -5795,12 +5696,12 @@
             "TASK-047"
           ],
           "primary_task": {
-            "id": "TASK-055",
+            "id": "TASK-056",
             "status": "todo",
-            "title": "Implement Build Contract v2 and closure briefs"
+            "title": "Plan Efficiency Foundation sprint"
           },
           "revision": {},
-          "note": "tracked by TASK-055"
+          "note": "tracked by TASK-056"
         },
         {
           "path": ".codewiki/kb/product/uis/graph-navigation.md",
@@ -5900,18 +5801,17 @@
             "total": 0
           },
           "related_task_ids": [
-            "TASK-055",
             "TASK-056",
             "TASK-057",
             "TASK-034"
           ],
           "primary_task": {
-            "id": "TASK-055",
+            "id": "TASK-056",
             "status": "todo",
-            "title": "Implement Build Contract v2 and closure briefs"
+            "title": "Plan Efficiency Foundation sprint"
           },
           "revision": {},
-          "note": "tracked by TASK-055"
+          "note": "tracked by TASK-056"
         },
         {
           "path": ".codewiki/kb/system/builds.md",
@@ -5930,45 +5830,15 @@
             "total": 0
           },
           "related_task_ids": [
-            "TASK-055",
             "TASK-056"
           ],
           "primary_task": {
-            "id": "TASK-055",
+            "id": "TASK-056",
             "status": "todo",
-            "title": "Implement Build Contract v2 and closure briefs"
+            "title": "Plan Efficiency Foundation sprint"
           },
           "revision": {},
-          "note": "tracked by TASK-055"
-        },
-        {
-          "path": ".codewiki/kb/system/compilers.md",
-          "title": "Compilers",
-          "summary": "Feedback, documentation, and implementation loops that create validated build briefs.",
-          "drift_status": "tracked",
-          "code_paths": [
-            "skills/codewiki-feedback/SKILL.md",
-            "skills/codewiki-documentation/SKILL.md",
-            "skills/codewiki-implementation/SKILL.md"
-          ],
-          "code_area": "skills +2 more",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-055",
-            "TASK-034",
-            "TASK-038"
-          ],
-          "primary_task": {
-            "id": "TASK-055",
-            "status": "todo",
-            "title": "Implement Build Contract v2 and closure briefs"
-          },
-          "revision": {},
-          "note": "tracked by TASK-055"
+          "note": "tracked by TASK-056"
         },
         {
           "path": ".codewiki/kb/system/graph.md",
@@ -6299,6 +6169,34 @@
           "note": "no deterministic drift signals"
         },
         {
+          "path": ".codewiki/kb/system/compilers.md",
+          "title": "Compilers",
+          "summary": "Feedback, documentation, and implementation loops that create validated build briefs.",
+          "drift_status": "aligned",
+          "code_paths": [
+            "skills/codewiki-feedback/SKILL.md",
+            "skills/codewiki-documentation/SKILL.md",
+            "skills/codewiki-implementation/SKILL.md"
+          ],
+          "code_area": "skills +2 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [
+            "TASK-034",
+            "TASK-038"
+          ],
+          "primary_task": {
+            "id": "TASK-034",
+            "status": "done",
+            "title": "Align CodeWiki skill package with compiler and API contracts"
+          },
+          "revision": {},
+          "note": "no deterministic drift signals"
+        },
+        {
           "path": ".codewiki/kb/system/extension.md",
           "title": "Extension",
           "summary": "Packaged CodeWiki distribution and current Pi extension surface.",
@@ -6426,7 +6324,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-11T02:59:22Z",
+        "generated_at": "2026-05-11T03:26:57Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -6454,15 +6352,15 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-11T02:59:22Z",
+            "checked_at": "2026-05-11T03:26:57Z",
             "revision": {
               "git": {
-                "head": "f09dacafae5898d83ab2ee78d462987efc6eb275",
+                "head": "28df4d74f2ca8c9cf0f031234499e92e6825b82b",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "ac675b8f9e364dc4d4c03e3215ce81df4df0f312",
+                  ".codewiki/index_graph.json": "358c4ff7808c4c00c814d3286fa1afa5ccd7bbbe",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
                   ".codewiki/kb/product/overview.md": "ca1c24bb224268572d0e97afa45db739b7af62d7",
@@ -6491,7 +6389,7 @@
                   ".codewiki/kb/system/roadmap.md": "b6869d87b87e050583f86177ac4b5ea7d3119df5",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "e3d7ae8361f1f814ab57dd3a79fbae79e5ad7d69",
+                  ".codewiki/roadmap.json": "60b2f9f207fee70dde48250fdae3b9363f82a976",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -6501,14 +6399,14 @@
                   "extensions/codewiki/src/adapters/pi/ui": "",
                   "extensions/codewiki/src/adapters/pi/ui/manager.ts": "c0318f7dff7bedc2d41b27a0908d17d3557d033c",
                   "extensions/codewiki/src/application": "",
-                  "extensions/codewiki/src/application/builds.ts": "993e9bfb5deb8a4e15c5b5d927ce12aba3e4e3a1",
-                  "extensions/codewiki/src/application/graph.ts": "337f0df3ca5b5da5ce2c542e0429115ef3a19db5",
+                  "extensions/codewiki/src/application/builds.ts": "20f49e2038929e9199f996542786518288e26611",
+                  "extensions/codewiki/src/application/graph.ts": "f1dd0abb59a2f07e3f765b3ae4246a7bbab4243d",
                   "extensions/codewiki/src/domain": "",
                   "extensions/codewiki/src/infrastructure": "",
                   "extensions/codewiki/templates.ts": "a095cbc529805e7a97d85e154a067d5cf2591ce9",
                   "package.json": "539ec5a3a92e2df15270cb5b23b0fd99642ee8d2",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "e01ce011187aaccff8aacdce1dd79c8eb7e14708",
+                  "scripts/smoke-test.mjs": "ef631dd4e2a9c98844f854645fbed7d17e7fe7a4",
                   "skills": "",
                   "skills/codewiki-architecture/SKILL.md": "16c135ad735298d90850d09f6831a78c9da55f7e",
                   "skills/codewiki-documentation/SKILL.md": "8c7824585ecfef05be172d013b90454a9f83e1e5",
@@ -6520,14 +6418,14 @@
                 }
               },
               "spec_digest": "20ab82d527fc003e5fd6592bd11bff1b4e7cecd6a514c70bb99dabac56edd605",
-              "task_digest": "4868560ab1a58c56ec462b53d8aeef01ed78d8281b9967e9422342078b294a64",
-              "code_digest": "71e8610f81a31fa30da4c428793cf392f0c0e5220987c6dd464db76c1127a32b",
-              "digest": "f59e6e5e6daf1262f5b959399dbb87c3d8bf957556b592ec8cdd0a836ddb38e0"
+              "task_digest": "109c1990932f821843eb5d416cfb8e36feda2ddc604629857edfdad58788257d",
+              "code_digest": "810769d3bd8d9b5b1c54e3443d34a44fcfa9d782a8704d3df8b1493ecd23bb60",
+              "digest": "d6c9c1cb310e3730851d6e5c6e5fcf52119b61e06a924ecd045ea8062001f0a5"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T02:59:22Z",
+              "checked_at": "2026-05-11T03:26:57Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -6548,10 +6446,10 @@
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
-              ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/adapters.md",
+              ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/knowledge.md",
@@ -6593,7 +6491,6 @@
             ],
             "code_area": "extensions, .codewiki +3 more",
             "open_task_ids": [
-              "TASK-055",
               "TASK-056",
               "TASK-057"
             ],
@@ -6603,15 +6500,14 @@
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
-              ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/overview.md"
             ],
             "stats": {
               "total_specs": 25,
-              "aligned_specs": 16,
-              "tracked_specs": 8,
+              "aligned_specs": 17,
+              "tracked_specs": 7,
               "untracked_specs": 1,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -6636,15 +6532,15 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-11T02:59:22Z",
+            "checked_at": "2026-05-11T03:26:57Z",
             "revision": {
               "git": {
-                "head": "f09dacafae5898d83ab2ee78d462987efc6eb275",
+                "head": "28df4d74f2ca8c9cf0f031234499e92e6825b82b",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "ac675b8f9e364dc4d4c03e3215ce81df4df0f312",
+                  ".codewiki/index_graph.json": "358c4ff7808c4c00c814d3286fa1afa5ccd7bbbe",
                   ".codewiki/kb": "",
                   ".codewiki/kb/system/adapters.md": "8303572014c5286c00b2604cd76ee4f2470099c5",
                   ".codewiki/kb/system/agency.md": "e6d4f6908f82dc78f52e3faeaeedef51092ab53f",
@@ -6659,7 +6555,7 @@
                   ".codewiki/kb/system/roadmap.md": "b6869d87b87e050583f86177ac4b5ea7d3119df5",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "e3d7ae8361f1f814ab57dd3a79fbae79e5ad7d69",
+                  ".codewiki/roadmap.json": "60b2f9f207fee70dde48250fdae3b9363f82a976",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -6667,13 +6563,13 @@
                   "extensions/codewiki/src/adapters": "",
                   "extensions/codewiki/src/adapters/pi": "",
                   "extensions/codewiki/src/application": "",
-                  "extensions/codewiki/src/application/builds.ts": "993e9bfb5deb8a4e15c5b5d927ce12aba3e4e3a1",
-                  "extensions/codewiki/src/application/graph.ts": "337f0df3ca5b5da5ce2c542e0429115ef3a19db5",
+                  "extensions/codewiki/src/application/builds.ts": "20f49e2038929e9199f996542786518288e26611",
+                  "extensions/codewiki/src/application/graph.ts": "f1dd0abb59a2f07e3f765b3ae4246a7bbab4243d",
                   "extensions/codewiki/src/domain": "",
                   "extensions/codewiki/src/infrastructure": "",
                   "extensions/codewiki/templates.ts": "a095cbc529805e7a97d85e154a067d5cf2591ce9",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "e01ce011187aaccff8aacdce1dd79c8eb7e14708",
+                  "scripts/smoke-test.mjs": "ef631dd4e2a9c98844f854645fbed7d17e7fe7a4",
                   "skills": "",
                   "skills/codewiki-documentation/SKILL.md": "8c7824585ecfef05be172d013b90454a9f83e1e5",
                   "skills/codewiki-feedback/SKILL.md": "3ff6d457ef9f1a6c39f485f0acf34276171854a3",
@@ -6682,14 +6578,14 @@
                 }
               },
               "spec_digest": "d07d6c26409f47eb510335e9d20575744fd3bb42f5d137c958f12599df2524fa",
-              "task_digest": "4868560ab1a58c56ec462b53d8aeef01ed78d8281b9967e9422342078b294a64",
-              "code_digest": "22ac75b4de9c471e02fa2ee532a86730b20ce492552ca907d56383951b5748cb",
-              "digest": "331e58e6bfc8ef475f32cbec0a5e3a620fb7be94ebd061f468f0aae4e744a245"
+              "task_digest": "109c1990932f821843eb5d416cfb8e36feda2ddc604629857edfdad58788257d",
+              "code_digest": "d160d82cfc278b4951671c535768bae0857a454085b5b12d5eaac19ca9a07d5b",
+              "digest": "bd441f864935ce92f6236947ef2bec04bf7d5a8c5197f65bf6f1cae41d6c4019"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T02:59:22Z",
+              "checked_at": "2026-05-11T03:26:57Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -6697,10 +6593,10 @@
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
-              ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/adapters.md",
+              ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/knowledge.md",
@@ -6715,14 +6611,14 @@
               ".codewiki/builds",
               "extensions/codewiki/src/application/builds.ts",
               "extensions/codewiki/src/application/graph.ts",
-              "skills/codewiki-feedback/SKILL.md",
-              "skills/codewiki-documentation/SKILL.md",
-              "skills/codewiki-implementation/SKILL.md",
               ".codewiki/index_graph.json",
               "extensions/codewiki/src/infrastructure",
               ".codewiki/roadmap.json",
               ".codewiki/roadmap",
               "skills",
+              "skills/codewiki-feedback/SKILL.md",
+              "skills/codewiki-documentation/SKILL.md",
+              "skills/codewiki-implementation/SKILL.md",
               "extensions/codewiki/index.ts",
               "extensions/codewiki/bootstrap.ts",
               "extensions/codewiki/templates.ts",
@@ -6735,7 +6631,6 @@
             ],
             "code_area": "extensions, .codewiki +2 more",
             "open_task_ids": [
-              "TASK-055",
               "TASK-056",
               "TASK-057"
             ],
@@ -6743,15 +6638,14 @@
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
-              ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/overview.md"
             ],
             "stats": {
               "total_specs": 12,
-              "aligned_specs": 5,
-              "tracked_specs": 6,
+              "aligned_specs": 6,
+              "tracked_specs": 5,
               "untracked_specs": 1,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -6776,15 +6670,15 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-11T02:59:22Z",
+            "checked_at": "2026-05-11T03:26:57Z",
             "revision": {
               "git": {
-                "head": "f09dacafae5898d83ab2ee78d462987efc6eb275",
+                "head": "28df4d74f2ca8c9cf0f031234499e92e6825b82b",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "ac675b8f9e364dc4d4c03e3215ce81df4df0f312",
+                  ".codewiki/index_graph.json": "358c4ff7808c4c00c814d3286fa1afa5ccd7bbbe",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
                   ".codewiki/kb/product/overview.md": "ca1c24bb224268572d0e97afa45db739b7af62d7",
@@ -6813,7 +6707,7 @@
                   ".codewiki/kb/system/roadmap.md": "b6869d87b87e050583f86177ac4b5ea7d3119df5",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "e3d7ae8361f1f814ab57dd3a79fbae79e5ad7d69",
+                  ".codewiki/roadmap.json": "60b2f9f207fee70dde48250fdae3b9363f82a976",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -6823,14 +6717,14 @@
                   "extensions/codewiki/src/adapters/pi/ui": "",
                   "extensions/codewiki/src/adapters/pi/ui/manager.ts": "c0318f7dff7bedc2d41b27a0908d17d3557d033c",
                   "extensions/codewiki/src/application": "",
-                  "extensions/codewiki/src/application/builds.ts": "993e9bfb5deb8a4e15c5b5d927ce12aba3e4e3a1",
-                  "extensions/codewiki/src/application/graph.ts": "337f0df3ca5b5da5ce2c542e0429115ef3a19db5",
+                  "extensions/codewiki/src/application/builds.ts": "20f49e2038929e9199f996542786518288e26611",
+                  "extensions/codewiki/src/application/graph.ts": "f1dd0abb59a2f07e3f765b3ae4246a7bbab4243d",
                   "extensions/codewiki/src/domain": "",
                   "extensions/codewiki/src/infrastructure": "",
                   "extensions/codewiki/templates.ts": "a095cbc529805e7a97d85e154a067d5cf2591ce9",
                   "package.json": "539ec5a3a92e2df15270cb5b23b0fd99642ee8d2",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "e01ce011187aaccff8aacdce1dd79c8eb7e14708",
+                  "scripts/smoke-test.mjs": "ef631dd4e2a9c98844f854645fbed7d17e7fe7a4",
                   "skills": "",
                   "skills/codewiki-architecture/SKILL.md": "16c135ad735298d90850d09f6831a78c9da55f7e",
                   "skills/codewiki-documentation/SKILL.md": "8c7824585ecfef05be172d013b90454a9f83e1e5",
@@ -6842,14 +6736,14 @@
                 }
               },
               "spec_digest": "20ab82d527fc003e5fd6592bd11bff1b4e7cecd6a514c70bb99dabac56edd605",
-              "task_digest": "4868560ab1a58c56ec462b53d8aeef01ed78d8281b9967e9422342078b294a64",
-              "code_digest": "71e8610f81a31fa30da4c428793cf392f0c0e5220987c6dd464db76c1127a32b",
-              "digest": "f59e6e5e6daf1262f5b959399dbb87c3d8bf957556b592ec8cdd0a836ddb38e0"
+              "task_digest": "109c1990932f821843eb5d416cfb8e36feda2ddc604629857edfdad58788257d",
+              "code_digest": "810769d3bd8d9b5b1c54e3443d34a44fcfa9d782a8704d3df8b1493ecd23bb60",
+              "digest": "d6c9c1cb310e3730851d6e5c6e5fcf52119b61e06a924ecd045ea8062001f0a5"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T02:59:22Z",
+              "checked_at": "2026-05-11T03:26:57Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -6870,10 +6764,10 @@
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
-              ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/adapters.md",
+              ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/knowledge.md",
@@ -6915,7 +6809,6 @@
             ],
             "code_area": "extensions, .codewiki +3 more",
             "open_task_ids": [
-              "TASK-055",
               "TASK-056",
               "TASK-057"
             ],
@@ -6925,15 +6818,14 @@
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
-              ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/overview.md"
             ],
             "stats": {
               "total_specs": 25,
-              "aligned_specs": 16,
-              "tracked_specs": 8,
+              "aligned_specs": 17,
+              "tracked_specs": 7,
               "untracked_specs": 1,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -6948,10 +6840,10 @@
       },
       "resume": {
         "source": "task",
-        "task_id": "TASK-055",
+        "task_id": "TASK-056",
         "lane_id": "",
-        "heading": "TASK-055 — Implement Build Contract v2 and closure briefs",
-        "command": "/wiki-resume TASK-055",
+        "heading": "TASK-056 — Plan Efficiency Foundation sprint",
+        "command": "/wiki-resume TASK-056",
         "reason": "Resume roadmap task (todo · implement).",
         "phase": "implement",
         "verification": "npx tsc --noEmit",
@@ -6959,7 +6851,7 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-11T02:59:22Z",
+        "generated_at": "2026-05-11T03:26:57Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
@@ -6986,7 +6878,6 @@
               "total": 1
             },
             "related_task_ids": [
-              "TASK-055",
               "TASK-056",
               "TASK-016",
               "TASK-018",
@@ -6999,12 +6890,12 @@
               "TASK-047"
             ],
             "primary_task": {
-              "id": "TASK-055",
+              "id": "TASK-056",
               "status": "todo",
-              "title": "Implement Build Contract v2 and closure briefs"
+              "title": "Plan Efficiency Foundation sprint"
             },
             "revision": {},
-            "note": "tracked by TASK-055"
+            "note": "tracked by TASK-056"
           },
           {
             "path": ".codewiki/kb/product/uis/graph-navigation.md",
@@ -7104,18 +6995,17 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-055",
               "TASK-056",
               "TASK-057",
               "TASK-034"
             ],
             "primary_task": {
-              "id": "TASK-055",
+              "id": "TASK-056",
               "status": "todo",
-              "title": "Implement Build Contract v2 and closure briefs"
+              "title": "Plan Efficiency Foundation sprint"
             },
             "revision": {},
-            "note": "tracked by TASK-055"
+            "note": "tracked by TASK-056"
           },
           {
             "path": ".codewiki/kb/system/builds.md",
@@ -7134,45 +7024,15 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-055",
               "TASK-056"
             ],
             "primary_task": {
-              "id": "TASK-055",
+              "id": "TASK-056",
               "status": "todo",
-              "title": "Implement Build Contract v2 and closure briefs"
+              "title": "Plan Efficiency Foundation sprint"
             },
             "revision": {},
-            "note": "tracked by TASK-055"
-          },
-          {
-            "path": ".codewiki/kb/system/compilers.md",
-            "title": "Compilers",
-            "summary": "Feedback, documentation, and implementation loops that create validated build briefs.",
-            "drift_status": "tracked",
-            "code_paths": [
-              "skills/codewiki-feedback/SKILL.md",
-              "skills/codewiki-documentation/SKILL.md",
-              "skills/codewiki-implementation/SKILL.md"
-            ],
-            "code_area": "skills +2 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-055",
-              "TASK-034",
-              "TASK-038"
-            ],
-            "primary_task": {
-              "id": "TASK-055",
-              "status": "todo",
-              "title": "Implement Build Contract v2 and closure briefs"
-            },
-            "revision": {},
-            "note": "tracked by TASK-055"
+            "note": "tracked by TASK-056"
           },
           {
             "path": ".codewiki/kb/system/graph.md",
@@ -7493,6 +7353,34 @@
             },
             "related_task_ids": [
               "TASK-034"
+            ],
+            "primary_task": {
+              "id": "TASK-034",
+              "status": "done",
+              "title": "Align CodeWiki skill package with compiler and API contracts"
+            },
+            "revision": {},
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".codewiki/kb/system/compilers.md",
+            "title": "Compilers",
+            "summary": "Feedback, documentation, and implementation loops that create validated build briefs.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "skills/codewiki-feedback/SKILL.md",
+              "skills/codewiki-documentation/SKILL.md",
+              "skills/codewiki-implementation/SKILL.md"
+            ],
+            "code_area": "skills +2 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-034",
+              "TASK-038"
             ],
             "primary_task": {
               "id": "TASK-034",
@@ -7956,7 +7844,6 @@
                   "total": 1
                 },
                 "related_task_ids": [
-                  "TASK-055",
                   "TASK-056",
                   "TASK-016",
                   "TASK-018",
@@ -7969,12 +7856,12 @@
                   "TASK-047"
                 ],
                 "primary_task": {
-                  "id": "TASK-055",
+                  "id": "TASK-056",
                   "status": "todo",
-                  "title": "Implement Build Contract v2 and closure briefs"
+                  "title": "Plan Efficiency Foundation sprint"
                 },
                 "revision": {},
-                "note": "tracked by TASK-055"
+                "note": "tracked by TASK-056"
               },
               {
                 "path": ".codewiki/kb/system/agency.md",
@@ -8021,18 +7908,17 @@
                   "total": 0
                 },
                 "related_task_ids": [
-                  "TASK-055",
                   "TASK-056",
                   "TASK-057",
                   "TASK-034"
                 ],
                 "primary_task": {
-                  "id": "TASK-055",
+                  "id": "TASK-056",
                   "status": "todo",
-                  "title": "Implement Build Contract v2 and closure briefs"
+                  "title": "Plan Efficiency Foundation sprint"
                 },
                 "revision": {},
-                "note": "tracked by TASK-055"
+                "note": "tracked by TASK-056"
               },
               {
                 "path": ".codewiki/kb/system/builds.md",
@@ -8051,45 +7937,15 @@
                   "total": 0
                 },
                 "related_task_ids": [
-                  "TASK-055",
                   "TASK-056"
                 ],
                 "primary_task": {
-                  "id": "TASK-055",
+                  "id": "TASK-056",
                   "status": "todo",
-                  "title": "Implement Build Contract v2 and closure briefs"
+                  "title": "Plan Efficiency Foundation sprint"
                 },
                 "revision": {},
-                "note": "tracked by TASK-055"
-              },
-              {
-                "path": ".codewiki/kb/system/compilers.md",
-                "title": "Compilers",
-                "summary": "Feedback, documentation, and implementation loops that create validated build briefs.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  "skills/codewiki-feedback/SKILL.md",
-                  "skills/codewiki-documentation/SKILL.md",
-                  "skills/codewiki-implementation/SKILL.md"
-                ],
-                "code_area": "skills +2 more",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-055",
-                  "TASK-034",
-                  "TASK-038"
-                ],
-                "primary_task": {
-                  "id": "TASK-055",
-                  "status": "todo",
-                  "title": "Implement Build Contract v2 and closure briefs"
-                },
-                "revision": {},
-                "note": "tracked by TASK-055"
+                "note": "tracked by TASK-056"
               },
               {
                 "path": ".codewiki/kb/system/graph.md",
@@ -8162,6 +8018,34 @@
                 },
                 "related_task_ids": [
                   "TASK-034"
+                ],
+                "primary_task": {
+                  "id": "TASK-034",
+                  "status": "done",
+                  "title": "Align CodeWiki skill package with compiler and API contracts"
+                },
+                "revision": {},
+                "note": "no deterministic drift signals"
+              },
+              {
+                "path": ".codewiki/kb/system/compilers.md",
+                "title": "Compilers",
+                "summary": "Feedback, documentation, and implementation loops that create validated build briefs.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  "skills/codewiki-feedback/SKILL.md",
+                  "skills/codewiki-documentation/SKILL.md",
+                  "skills/codewiki-implementation/SKILL.md"
+                ],
+                "code_area": "skills +2 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [
+                  "TASK-034",
+                  "TASK-038"
                 ],
                 "primary_task": {
                   "id": "TASK-034",
@@ -8310,13 +8194,12 @@
         "focused_task_id": "",
         "blocked_task_ids": [],
         "in_progress_task_ids": [],
-        "next_task_id": "TASK-055",
+        "next_task_id": "TASK-056",
         "columns": [
           {
             "id": "todo",
             "label": "Todo",
             "task_ids": [
-              "TASK-055",
               "TASK-056",
               "TASK-057"
             ]
