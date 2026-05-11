@@ -44,11 +44,14 @@ Home is a mission briefing, not a raw status dump. It should show:
 - active claims and conflicts,
 - open gates or blockers,
 - latest feedback, documentation, implementation, and validation signals,
-- compact previews of the system diagram and generated graph.
+- compact previews of the system diagram and generated graph,
+- a source-backed representation of major CodeWiki areas: Product, System, Graph, Roadmap, Builds, Validation, Diff, and Settings.
 
 ## System view
 
 System should render `.codewiki/kb/system/architecture.mmd` as a visual architecture diagram. Components are selectable. Selecting a component shows an inspector populated from the matching `.codewiki/kb/system/<component>.md` file.
+
+The system diagram should use readable lane or group placement, enough spacing, routed edges, and edge drawing behind nodes so arrows do not sit on top of components. The view should use the available workspace as a canvas rather than nesting the diagram inside unnecessary inner panels.
 
 The inspector should show the component title, summary, responsibility, rules or invariants, code paths, related docs, and any graph-backed drift warnings. Selecting an edge should explain the relationship between components when the source map exposes it.
 
@@ -56,7 +59,7 @@ The inspector should show the component title, summary, responsibility, rules or
 
 Graph should provide a visual representation of `.codewiki/index_graph.json`. It should show nodes and edges for knowledge docs, roadmap work, builds, validation reports, code paths, tests, claims, diff tables, and reconciliation items.
 
-Users should be able to filter by node kind, active task, active sprint, stale items, drift items, and build DAG edges. Selecting a node or edge should show source paths, relationship reason, freshness state, and the smallest useful next reads.
+Users should be able to filter by node kind, edge kind, active task, active sprint, stale items, drift items, and build DAG edges. The graph should provide zoom in, zoom out, fit, and reset controls. The default view should avoid showing every node and edge at once when that would be unreadable; it should start from a useful scoped or filtered slice and let users expand from there. Selecting a node or edge should show source paths, relationship reason, freshness state, and the smallest useful next reads.
 
 The graph view is an inspection and navigation surface. Canonical edits still flow through CodeWiki API operations and compiler loops.
 
@@ -70,14 +73,18 @@ The Control Room should keep the retro terminal feeling associated with Pi while
 
 - dark background,
 - monospace typography,
-- phosphor green, cyan, amber, and red accents,
+- muted monochrome green as the base terminal tone,
+- white or off-white as the primary highlight color,
+- amber or old-gold as the secondary accent for focus, warnings, and important affordances,
+- red only for errors or destructive states,
+- no cyan or blue highlight dependency,
 - visible terminal-style borders,
 - keyboard-first navigation,
 - command palette,
 - optional subtle glow or scanline effects,
 - accessible contrast and reduced-motion support.
 
-The style should feel like a terminal command center, not a modern SaaS dashboard. Visual nostalgia must not reduce legibility or keyboard accessibility.
+The style should feel like a terminal command center, not a modern SaaS dashboard. Visual nostalgia must not reduce legibility, keyboard accessibility, or the ability to use the center workspace as the primary canvas.
 
 ## Multi-computer behavior
 

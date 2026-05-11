@@ -419,10 +419,11 @@ const CONTROL_ROOM_HTML = `<!doctype html>
   </header>
   <nav class="rail" aria-label="Control Room sections">
     <button data-view="home" class="active">Home</button>
+    <button data-view="product">Product</button>
     <button data-view="system">System</button>
     <button data-view="graph">Graph</button>
     <button data-view="knowledge">Knowledge</button>
-    <button data-view="board">Board</button>
+    <button data-view="roadmap">Roadmap</button>
     <button data-view="builds">Builds</button>
     <button data-view="validation">Validation</button>
     <button data-view="diff">Diff</button>
@@ -430,11 +431,12 @@ const CONTROL_ROOM_HTML = `<!doctype html>
   </nav>
   <main class="workspace">
     <section id="home" class="view active"></section>
+    <section id="product" class="view"></section>
     <section id="system" class="view"></section>
     <section id="graph" class="view"></section>
-    <section id="knowledge" class="view placeholder"></section>
-    <section id="board" class="view placeholder"></section>
-    <section id="builds" class="view placeholder"></section>
+    <section id="knowledge" class="view"></section>
+    <section id="roadmap" class="view"></section>
+    <section id="builds" class="view"></section>
     <section id="validation" class="view placeholder"></section>
     <section id="diff" class="view placeholder"></section>
     <section id="settings" class="view placeholder"></section>
@@ -449,30 +451,32 @@ const CONTROL_ROOM_HTML = `<!doctype html>
 const CONTROL_ROOM_CSS = String.raw`
 :root {
   color-scheme: dark;
-  --bg: #050807;
-  --panel: #07110f;
-  --panel2: #0b1815;
-  --line: #1cff9a;
-  --line-dim: rgba(28, 255, 154, 0.32);
-  --cyan: #42f5ff;
-  --amber: #ffcc66;
-  --red: #ff5f6d;
-  --text: #d8ffe8;
-  --muted: #77a891;
-  --shadow: rgba(28, 255, 154, 0.18);
+  --bg: #050604;
+  --panel: #090b08;
+  --panel2: #10140f;
+  --line: #7f927f;
+  --line-dim: rgba(180, 190, 172, 0.24);
+  --highlight: #f4f1e8;
+  --accent: #c7a35a;
+  --accent-dim: rgba(199, 163, 90, 0.38);
+  --red: #d46a66;
+  --text: #dfddd2;
+  --muted: #899488;
+  --shadow: rgba(244, 241, 232, 0.10);
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
   min-height: 100vh;
   background:
-    linear-gradient(rgba(255,255,255,0.025) 50%, rgba(0,0,0,0.08) 50%) 0 0 / 100% 4px,
-    radial-gradient(circle at 25% 0%, rgba(66,245,255,0.11), transparent 32rem),
+    linear-gradient(rgba(255,255,255,0.018) 50%, rgba(0,0,0,0.055) 50%) 0 0 / 100% 4px,
+    radial-gradient(circle at 50% 0%, rgba(244,241,232,0.055), transparent 34rem),
     var(--bg);
   color: var(--text);
   font: 14px/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 button, select, input { font: inherit; }
+button { color: inherit; }
 .shell {
   display: grid;
   grid-template-columns: 11rem minmax(0, 1fr) 24rem;
@@ -482,7 +486,7 @@ button, select, input { font: inherit; }
   background: var(--line-dim);
 }
 .topbar, .rail, .workspace, .inspector, .status {
-  background: rgba(5, 8, 7, 0.96);
+  background: rgba(5, 6, 4, 0.97);
 }
 .topbar {
   grid-column: 1 / 4;
@@ -493,15 +497,15 @@ button, select, input { font: inherit; }
   border-bottom: 1px solid var(--line-dim);
   box-shadow: 0 0 24px var(--shadow);
 }
-.sigil, .title { color: var(--line); text-shadow: 0 0 10px var(--shadow); }
+.sigil, .title { color: var(--highlight); text-shadow: 0 0 10px var(--shadow); }
 .title { font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
 .muted { color: var(--muted); }
-.command { color: var(--cyan); }
+.command { color: var(--accent); }
 .rail {
   padding: 0.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 .rail button {
   color: var(--muted);
@@ -512,12 +516,12 @@ button, select, input { font: inherit; }
   cursor: pointer;
 }
 .rail button:hover, .rail button.active {
-  color: var(--text);
+  color: var(--highlight);
   border-color: var(--line-dim);
-  background: rgba(28, 255, 154, 0.08);
-  box-shadow: inset 0 0 18px rgba(28, 255, 154, 0.06);
+  background: rgba(244, 241, 232, 0.055);
+  box-shadow: inset 0 0 18px rgba(244, 241, 232, 0.045);
 }
-.workspace { overflow: auto; padding: 1rem; }
+.workspace { overflow: auto; padding: 0.75rem; }
 .inspector { overflow: auto; padding: 1rem; border-left: 1px solid var(--line-dim); }
 .status {
   grid-column: 1 / 4;
@@ -528,42 +532,54 @@ button, select, input { font: inherit; }
 .view { display: none; min-height: 100%; }
 .view.active { display: block; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.75rem; }
-.card, .terminal-panel {
+.card, .area-card, .source-card, .empty-state {
   border: 1px solid var(--line-dim);
-  background: linear-gradient(180deg, rgba(11, 24, 21, 0.95), rgba(4, 9, 8, 0.94));
+  background: linear-gradient(180deg, rgba(16, 20, 15, 0.86), rgba(5, 6, 4, 0.72));
   padding: 0.85rem;
-  box-shadow: 0 0 18px rgba(28, 255, 154, 0.05);
+  box-shadow: 0 0 16px rgba(244, 241, 232, 0.035);
 }
-.card h3, .terminal-panel h2, .terminal-panel h3 { margin: 0 0 0.55rem; color: var(--line); }
-.big { font-size: 2rem; color: var(--cyan); }
-.badge { display: inline-block; padding: 0.1rem 0.35rem; border: 1px solid var(--line-dim); color: var(--line); margin-right: 0.35rem; }
-.badge.yellow { color: var(--amber); border-color: rgba(255, 204, 102, 0.45); }
-.badge.red { color: var(--red); border-color: rgba(255, 95, 109, 0.45); }
-.toolbar { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin: 0 0 0.75rem; }
-.toolbar select, .toolbar input {
+.card h3, .area-card h3, .source-card h3, .section-head h2, .empty-state h2 { margin: 0 0 0.55rem; color: var(--highlight); }
+.big { font-size: 2rem; color: var(--highlight); }
+.badge { display: inline-block; padding: 0.1rem 0.35rem; border: 1px solid var(--line-dim); color: var(--highlight); margin-right: 0.35rem; }
+.badge.yellow { color: var(--accent); border-color: var(--accent-dim); }
+.badge.red { color: var(--red); border-color: rgba(212, 106, 102, 0.45); }
+.toolbar { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin: 0 0 0.6rem; }
+.toolbar select, .toolbar input, .toolbar button {
   color: var(--text);
-  background: #030605;
+  background: #050604;
   border: 1px solid var(--line-dim);
   padding: 0.35rem 0.45rem;
 }
-.diagram, .graphmap { width: 100%; min-height: 32rem; border: 1px solid var(--line-dim); background: rgba(0,0,0,0.25); }
+.toolbar button { cursor: pointer; }
+.toolbar button:hover { color: var(--highlight); border-color: var(--highlight); }
+.section-head { margin: 0 0 0.75rem; }
+.section-head p { margin: 0.25rem 0 0; color: var(--muted); }
+.area-map { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 0.75rem; margin-top: 0.75rem; }
+.area-card { width: 100%; min-height: 8rem; text-align: left; cursor: pointer; }
+.area-card:hover, .area-card.active { border-color: var(--highlight); background: rgba(244, 241, 232, 0.055); }
+.area-card .glyph { color: var(--accent); font-size: 1.1rem; }
+.source-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 0.75rem; }
+.source-card code, pre code { color: var(--highlight); }
+.canvas { width: 100%; min-height: calc(100vh - 7.2rem); overflow: auto; background: transparent; }
+.diagram, .graphmap { width: 100%; min-height: calc(100vh - 7.2rem); overflow: auto; background: transparent; }
 svg text { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
-.node rect, .g-node circle { cursor: pointer; }
-.node.selected rect { stroke: var(--cyan); stroke-width: 3; filter: drop-shadow(0 0 8px rgba(66,245,255,0.6)); }
-.edge { stroke: rgba(66,245,255,0.45); stroke-width: 1.4; marker-end: url(#arrow); }
-.g-edge { stroke: rgba(119,168,145,0.42); stroke-width: 1; cursor: pointer; }
-.g-edge:hover, .g-edge.selected { stroke: var(--cyan); stroke-width: 2.5; filter: drop-shadow(0 0 5px rgba(66,245,255,0.75)); }
-.g-node.selected circle { stroke: var(--cyan); stroke-width: 3; }
+.node rect, .g-node circle, .g-edge { cursor: pointer; }
+.node.selected rect { stroke: var(--highlight); stroke-width: 3; filter: drop-shadow(0 0 8px rgba(244,241,232,0.45)); }
+.edge { fill: none; stroke: rgba(180,190,172,0.42); stroke-width: 1.35; marker-end: url(#arrow); }
+.edge:hover, .edge.selected { stroke: var(--highlight); stroke-width: 2.4; }
+.g-edge { stroke: rgba(137,148,136,0.36); stroke-width: 1; }
+.g-edge:hover, .g-edge.selected { stroke: var(--highlight); stroke-width: 2.5; filter: drop-shadow(0 0 5px rgba(244,241,232,0.42)); }
+.g-node.selected circle { stroke: var(--highlight); stroke-width: 3; }
 pre {
   white-space: pre-wrap;
   word-break: break-word;
   color: var(--text);
   border: 1px solid var(--line-dim);
   padding: 0.65rem;
-  background: rgba(0,0,0,0.28);
+  background: rgba(0,0,0,0.22);
 }
-a { color: var(--cyan); }
-.placeholder::before { content: "▹ planned Control Room surface"; color: var(--amber); }
+a { color: var(--highlight); }
+.empty-state { color: var(--muted); }
 @media (max-width: 980px) {
   .shell { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto auto; }
   .topbar, .status { grid-column: 1; }
@@ -576,9 +592,21 @@ a { color: var(--cyan); }
 `;
 
 const CONTROL_ROOM_JS = String.raw`
-const state = { model: null, system: null, graph: null, selected: null };
+const state = { model: null, system: null, graph: null, selected: null, systemZoom: 0.92, graphZoom: 0.82, drawnEdges: [] };
 const $ = (id) => document.getElementById(id);
 const esc = (value) => String(value ?? '').replace(/[&<>"]/g, (ch) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+
+const AREAS = [
+  { id: 'product', label: 'Product', glyph: '◇', summary: 'User intent, stories, visual UI expectations, and product non-goals.', sources: ['.codewiki/kb/product/overview.md', '.codewiki/kb/product/users/**', '.codewiki/kb/product/stories/**', '.codewiki/kb/product/uis/**'] },
+  { id: 'system', label: 'System', glyph: '▧', summary: 'Architecture, API, adapters, package boundaries, and implementation seams.', sources: ['.codewiki/kb/system/architecture.mmd', '.codewiki/kb/system/overview.md', '.codewiki/kb/system/*.md'] },
+  { id: 'graph', label: 'Graph', glyph: '✣', summary: 'Generated relationship map, drift signals, lenses, and next action routing.', sources: ['.codewiki/index_graph.json', '.codewiki/kb/system/graph.md'] },
+  { id: 'knowledge', label: 'Knowledge', glyph: '▤', summary: 'Canonical repo-local intended truth under product and system knowledge.', sources: ['.codewiki/kb/**', '.codewiki/kb/lexicon.md'] },
+  { id: 'roadmap', label: 'Roadmap', glyph: '▦', summary: 'Executable delta from intent to implementation, including tasks and closure evidence.', sources: ['.codewiki/roadmap.json', '.codewiki/kb/system/roadmap.md'] },
+  { id: 'builds', label: 'Builds', glyph: '▣', summary: 'Feedback, documentation, and implementation handoff artifacts.', sources: ['.codewiki/builds/**', '.codewiki/kb/system/builds.md'] },
+  { id: 'validation', label: 'Validation', glyph: '✓', summary: 'Gateway verdicts, failures, blockers, and policy-kept reports.', sources: ['.codewiki/validation/**', '.codewiki/kb/system/validation-gateway.md'] },
+  { id: 'diff', label: 'Diff', glyph: '↯', summary: 'Pending feedback decision tables and accepted user intent deltas.', sources: ['.codewiki/runtime/diff-tables.json'] },
+  { id: 'settings', label: 'Settings', glyph: '⚙', summary: 'Repo config, local UI host, harness surface, and local-first runtime preferences.', sources: ['.codewiki/config.json', '~/.pi/codewiki-status-prefs.json'] },
+];
 
 async function getJson(url) {
   const res = await fetch(url, { cache: 'no-store' });
@@ -593,19 +621,15 @@ async function boot() {
     state.model = model; state.system = system; state.graph = graph;
     $('repo').textContent = ' :: ' + model.project.label;
     renderHome();
+    renderAreaView('product');
     renderSystem();
     renderGraph();
-    renderPlaceholder('knowledge', 'Knowledge browser will navigate product/system specs with source paths.');
-    renderPlaceholder('board', 'Board will show roadmap tasks, sprints, gates, evidence, and next action.');
-    renderPlaceholder('builds', 'Builds will show compiler handoff timeline and consumes/produces edges.');
-    renderPlaceholder('validation', 'Validation will show gates, failures, blockers, and policy-kept reports.');
-    renderPlaceholder('diff', 'Diff will show pending feedback decisions and accepted rows.');
-    renderPlaceholder('settings', 'Settings will show local server, repo, harness, and multi-computer state.');
+    ['knowledge', 'roadmap', 'builds', 'validation', 'diff', 'settings'].forEach(renderAreaView);
     inspectHome();
     $('status').textContent = 'ready · graph ' + model.graph.nodes + ' nodes / ' + model.graph.edges + ' edges · local repo ' + model.project.root;
   } catch (err) {
     $('status').textContent = 'error · ' + err.message;
-    $('home').innerHTML = '<div class="terminal-panel"><h2>Boot failed</h2><pre>' + esc(err.stack || err.message) + '</pre></div>';
+    $('home').innerHTML = '<div class="empty-state"><h2>Boot failed</h2><pre>' + esc(err.stack || err.message) + '</pre></div>';
   }
 }
 
@@ -619,81 +643,140 @@ function activateView(view) {
   document.querySelectorAll('.rail button').forEach((button) => button.classList.toggle('active', button.dataset.view === view));
   document.querySelectorAll('.view').forEach((el) => el.classList.toggle('active', el.id === view));
   if (view === 'home') inspectHome();
-  if (view === 'system' && state.system?.components?.[0]) inspectComponent(state.system.components[0].id);
-  if (view === 'graph' && state.graph?.nodes?.[0]) inspectGraphNode(String(state.graph.nodes[0].id));
+  else if (view === 'system' && state.system?.components?.[0]) inspectComponent(state.system.components[0].id);
+  else if (view === 'graph' && state.graph?.nodes?.[0]) inspectGraphNode(String(state.graph.nodes[0].id));
+  else inspectArea(view);
 }
 
 function renderHome() {
   const m = state.model;
-  $('home').innerHTML = '<div class="grid">'
+  $('home').innerHTML = '<div class="section-head"><h2>Mission briefing</h2><p>CodeWiki as local-first control room. Pick an area to inspect canonical truth.</p></div><div class="grid">'
     + card('Health', '<span class="badge ' + healthClass(m.health.color) + '">' + esc(m.health.color) + '</span><div class="big">' + m.health.errors + '/' + m.health.warnings + '</div><div class="muted">errors / warnings</div>')
     + card('Roadmap', '<div class="big">' + m.roadmap.open + '</div><div>open tasks</div><div class="muted">next: ' + esc(m.roadmap.next || 'none') + '</div>')
     + card('Claims', '<div class="big">' + m.claims.active + '</div><div>active claims</div><div class="muted">conflicts: ' + m.claims.conflicts + '</div>')
     + card('Graph', '<div class="big">' + m.graph.nodes + '</div><div>nodes</div><div class="muted">edges: ' + m.graph.edges + '</div>')
-    + '</div><div class="terminal-panel" style="margin-top:0.75rem"><h2>Next safe action</h2><p><span class="badge">' + esc(m.next_action.kind) + '</span>' + esc(m.next_action.summary) + '</p><pre>' + esc(m.next_action.command || 'Use the rail to inspect System or Graph.') + '</pre></div>';
+    + '</div><div class="section-head" style="margin-top:1rem"><h2>CodeWiki map</h2><p>Major product/system surfaces. Each card points back to source files.</p></div>'
+    + renderAreaCards()
+    + '<div class="empty-state" style="margin-top:0.75rem"><h2>Next safe action</h2><p><span class="badge">' + esc(m.next_action.kind) + '</span>' + esc(m.next_action.summary) + '</p><pre>' + esc(m.next_action.command || 'Use the rail to inspect System or Graph.') + '</pre></div>';
+  wireAreaCards();
 }
 
 function card(title, body) { return '<article class="card"><h3>' + esc(title) + '</h3>' + body + '</article>'; }
 function healthClass(color) { return color === 'red' ? 'red' : color === 'yellow' ? 'yellow' : ''; }
 
+function renderAreaCards(activeId) {
+  return '<div class="area-map">' + AREAS.map((area) => '<button class="area-card' + (area.id === activeId ? ' active' : '') + '" data-area="' + esc(area.id) + '"><div class="glyph">' + esc(area.glyph) + '</div><h3>' + esc(area.label) + '</h3><p>' + esc(area.summary) + '</p><p class="muted">' + esc(area.sources[0]) + '</p></button>').join('') + '</div>';
+}
+
+function wireAreaCards() {
+  document.querySelectorAll('.area-card').forEach((button) => {
+    button.addEventListener('click', () => {
+      const id = button.dataset.area;
+      if (id === 'system' || id === 'graph' || id === 'product') activateView(id);
+      else activateView(id);
+      inspectArea(id);
+    });
+  });
+}
+
+function renderAreaView(id) {
+  const area = areaById(id);
+  if (!area || id === 'system' || id === 'graph') return;
+  const sourceCards = area.sources.map((source) => '<article class="source-card"><h3>source</h3><code>' + esc(source) + '</code></article>').join('');
+  $(id).innerHTML = '<div class="section-head"><h2>' + esc(area.glyph + ' ' + area.label) + '</h2><p>' + esc(area.summary) + '</p></div>' + renderAreaCards(id) + '<div class="section-head" style="margin-top:1rem"><h2>Source anchors</h2><p>UI representation stays tied to canonical or generated CodeWiki files.</p></div><div class="source-grid">' + sourceCards + '</div>';
+  wireAreaCards();
+}
+
+function areaById(id) { return AREAS.find((area) => area.id === id); }
+
+function inspectArea(id) {
+  const area = areaById(id);
+  if (!area) return;
+  document.querySelectorAll('.area-card').forEach((button) => button.classList.toggle('active', button.dataset.area === id));
+  $('inspector').innerHTML = '<h2>' + esc(area.glyph + ' ' + area.label) + '</h2><p>' + esc(area.summary) + '</p><h3>Source anchors</h3><pre>' + esc(area.sources.join('\n')) + '</pre><p class="muted">Representation only. Canonical truth remains in source files and graph state.</p>';
+}
+
 function renderSystem() {
   const model = state.system;
-  const controls = '<div class="toolbar"><span class="badge">' + esc(model.architecture_path) + '</span><span class="muted">click component → source-backed inspector</span></div>';
-  $('system').innerHTML = controls + '<div id="systemDiagram" class="diagram"></div>';
+  const controls = '<div class="toolbar"><span class="badge">' + esc(model.architecture_path) + '</span><span class="muted">click component → source-backed inspector</span><button data-zoom="system:out">−</button><button data-zoom="system:in">+</button><button data-zoom="system:fit">fit</button><button data-zoom="system:reset">reset</button></div>';
+  $('system').innerHTML = controls + '<div id="systemDiagram" class="diagram canvas"></div>';
+  wireZoomControls();
   drawSystemDiagram(model);
 }
 
 function drawSystemDiagram(model) {
-  const boxW = 170, boxH = 54, gapX = 235, gapY = 86;
-  const ids = model.components.map((c) => c.id);
-  const levels = computeLevels(ids, model.edges);
-  const rowsByLevel = new Map();
-  for (const id of ids) {
-    const level = levels.get(id) || 0;
-    if (!rowsByLevel.has(level)) rowsByLevel.set(level, []);
-    rowsByLevel.get(level).push(id);
-  }
-  const pos = new Map();
-  for (const [level, rowIds] of rowsByLevel) {
-    rowIds.forEach((id, row) => pos.set(id, { x: 30 + level * gapX, y: 30 + row * gapY }));
-  }
-  const width = Math.max(720, 80 + (Math.max(...Array.from(levels.values()), 0) + 1) * gapX);
-  const maxRows = Math.max(...Array.from(rowsByLevel.values()).map((r) => r.length), 1);
-  const height = Math.max(420, 90 + maxRows * gapY);
-  let svg = '<svg viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-label="CodeWiki architecture diagram"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(66,245,255,0.65)" /></marker></defs>';
-  for (const edge of model.edges) {
-    const a = pos.get(edge.from), b = pos.get(edge.to);
-    if (!a || !b) continue;
-    svg += '<line class="edge" x1="' + (a.x + boxW) + '" y1="' + (a.y + boxH/2) + '" x2="' + b.x + '" y2="' + (b.y + boxH/2) + '" />';
-  }
+  const layout = layoutSystem(model.components);
+  const boxW = layout.boxW, boxH = layout.boxH;
+  let svg = '<svg width="' + Math.round(layout.width * state.systemZoom) + '" height="' + Math.round(layout.height * state.systemZoom) + '" viewBox="0 0 ' + layout.width + ' ' + layout.height + '" role="img" aria-label="CodeWiki architecture diagram"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c7a35a" /></marker></defs>';
+  for (const lane of layout.lanes) svg += '<text x="' + lane.x + '" y="22" fill="#899488" font-size="11">' + esc(lane.label) + '</text>';
+  model.edges.forEach((edge, index) => {
+    const a = layout.pos.get(edge.from), b = layout.pos.get(edge.to);
+    if (!a || !b) return;
+    svg += '<path class="edge" data-edge="' + index + '" d="' + routeEdge(a, b, boxW, boxH) + '" />';
+  });
   for (const c of model.components) {
-    const p = pos.get(c.id); if (!p) continue;
-    const fill = c.kind === 'component' ? 'rgba(28,255,154,0.09)' : 'rgba(66,245,255,0.07)';
-    svg += '<g class="node" data-id="' + esc(c.id) + '"><rect x="' + p.x + '" y="' + p.y + '" width="' + boxW + '" height="' + boxH + '" rx="6" fill="' + fill + '" stroke="rgba(28,255,154,0.45)" />'
-      + '<text x="' + (p.x + 12) + '" y="' + (p.y + 24) + '" fill="#d8ffe8" font-size="13">' + esc(trim(c.title, 22)) + '</text>'
-      + '<text x="' + (p.x + 12) + '" y="' + (p.y + 42) + '" fill="#77a891" font-size="11">' + esc(c.doc_path || c.kind) + '</text></g>';
+    const p = layout.pos.get(c.id); if (!p) continue;
+    const fill = c.kind === 'component' ? 'rgba(180,190,172,0.10)' : 'rgba(199,163,90,0.08)';
+    svg += '<g class="node" data-id="' + esc(c.id) + '"><rect x="' + p.x + '" y="' + p.y + '" width="' + boxW + '" height="' + boxH + '" rx="4" fill="' + fill + '" stroke="rgba(180,190,172,0.42)" />'
+      + '<text x="' + (p.x + 12) + '" y="' + (p.y + 25) + '" fill="#f4f1e8" font-size="13">' + esc(trim(c.title, 24)) + '</text>'
+      + '<text x="' + (p.x + 12) + '" y="' + (p.y + 44) + '" fill="#899488" font-size="10">' + esc(c.doc_path || c.kind) + '</text></g>';
   }
   svg += '</svg>';
   $('systemDiagram').innerHTML = svg;
   document.querySelectorAll('#systemDiagram .node').forEach((node) => node.addEventListener('click', () => inspectComponent(node.dataset.id)));
+  document.querySelectorAll('#systemDiagram .edge').forEach((edge) => edge.addEventListener('click', () => inspectSystemEdge(Number(edge.dataset.edge))));
 }
 
-function computeLevels(ids, edges) {
-  const levels = new Map(ids.map((id) => [id, 0]));
-  for (let i = 0; i < ids.length; i++) {
-    let changed = false;
-    for (const edge of edges) {
-      const next = (levels.get(edge.from) || 0) + 1;
-      if (next > (levels.get(edge.to) || 0)) { levels.set(edge.to, next); changed = true; }
-    }
-    if (!changed) break;
+function layoutSystem(components) {
+  const boxW = 205, boxH = 62, colW = 260, rowH = 108, marginX = 34, marginY = 44;
+  const manual = {
+    User: [0, 2],
+    ControlRoom: [1, 1], Extension: [1, 3],
+    Adapters: [2, 3],
+    API: [3, 2],
+    Agency: [4, 0], Compilers: [4, 2], Gateway: [4, 4],
+    Knowledge: [5, 0], Builds: [5, 1.35], Roadmap: [5, 2.7], CodeTests: [5, 4.05],
+    Graph: [6, 1.35],
+    Publication: [7, 2.7]
+  };
+  const pos = new Map();
+  let fallback = 0;
+  for (const c of components) {
+    const pair = manual[c.id] || [2 + (fallback % 4), 5.2 + Math.floor(fallback / 4)];
+    if (!manual[c.id]) fallback++;
+    pos.set(c.id, { x: marginX + pair[0] * colW, y: marginY + pair[1] * rowH });
   }
-  return levels;
+  const values = Array.from(pos.values());
+  const width = Math.max(980, Math.max(...values.map((p) => p.x)) + boxW + marginX);
+  const height = Math.max(650, Math.max(...values.map((p) => p.y)) + boxH + marginY);
+  const lanes = [
+    { x: marginX, label: 'intent' },
+    { x: marginX + colW, label: 'surface' },
+    { x: marginX + 2 * colW, label: 'adapter' },
+    { x: marginX + 3 * colW, label: 'api' },
+    { x: marginX + 4 * colW, label: 'loops' },
+    { x: marginX + 5 * colW, label: 'truth' },
+    { x: marginX + 6 * colW, label: 'state' },
+    { x: marginX + 7 * colW, label: 'output' }
+  ];
+  return { pos, lanes, boxW, boxH, width, height };
+}
+
+function routeEdge(a, b, boxW, boxH) {
+  const forward = b.x > a.x + 8;
+  const sameColumn = Math.abs(b.x - a.x) <= 8;
+  const sx = forward || sameColumn ? a.x + boxW : a.x;
+  const sy = a.y + boxH / 2;
+  const ex = forward ? b.x : sameColumn ? b.x + boxW : b.x + boxW;
+  const ey = b.y + boxH / 2;
+  const midX = sameColumn ? sx + 42 : (sx + ex) / 2;
+  return 'M ' + sx + ' ' + sy + ' H ' + midX + ' V ' + ey + ' H ' + ex;
 }
 
 function inspectComponent(id) {
   state.selected = id;
   document.querySelectorAll('#systemDiagram .node').forEach((node) => node.classList.toggle('selected', node.dataset.id === id));
+  document.querySelectorAll('#systemDiagram .edge').forEach((edge) => edge.classList.remove('selected'));
   const c = state.system.components.find((item) => item.id === id);
   if (!c) return;
   $('inspector').innerHTML = '<h2>' + esc(c.title) + '</h2><p>' + esc(c.summary) + '</p>'
@@ -702,47 +785,82 @@ function inspectComponent(id) {
     + c.sections.map((s) => '<h3>' + esc(s.title) + '</h3><pre>' + esc(s.body) + '</pre>').join('');
 }
 
+function inspectSystemEdge(index) {
+  document.querySelectorAll('#systemDiagram .node').forEach((node) => node.classList.remove('selected'));
+  document.querySelectorAll('#systemDiagram .edge').forEach((edge) => edge.classList.toggle('selected', Number(edge.dataset.edge) === index));
+  const edge = state.system.edges[index];
+  if (!edge) return;
+  $('inspector').innerHTML = '<h2>Architecture edge</h2><p><span class="badge">' + esc(edge.kind) + '</span></p><pre>' + esc(edge.from + ' -> ' + edge.to) + '</pre><p class="muted">Source: ' + esc(state.system.architecture_path) + '</p>';
+}
+
 function renderGraph() {
   const model = state.graph;
   const nodeOptions = ['all'].concat(model.node_kinds).map((kind) => '<option value="' + esc(kind) + '">' + esc(kind) + '</option>').join('');
   const edgeOptions = ['all'].concat(model.edge_kinds).map((kind) => '<option value="' + esc(kind) + '">' + esc(kind) + '</option>').join('');
-  $('graph').innerHTML = '<div class="toolbar"><label>node kind <select id="nodeKind">' + nodeOptions + '</select></label><label>edge kind <select id="edgeKind">' + edgeOptions + '</select></label><label>search <input id="graphSearch" placeholder="node id/path"></label><span class="badge">shown ' + model.stats.shown_nodes + '/' + model.stats.total_nodes + '</span></div><div id="graphMap" class="graphmap"></div>';
+  $('graph').innerHTML = '<div class="toolbar"><label>scope <select id="graphScope"><option value="core">core</option><option value="all">all</option></select></label><label>node kind <select id="nodeKind">' + nodeOptions + '</select></label><label>edge kind <select id="edgeKind">' + edgeOptions + '</select></label><label>search <input id="graphSearch" placeholder="node id/path"></label><button data-zoom="graph:out">−</button><button data-zoom="graph:in">+</button><button data-zoom="graph:fit">fit</button><button data-zoom="graph:reset">reset</button><span id="graphStats" class="badge">shown ' + model.stats.shown_nodes + '/' + model.stats.total_nodes + '</span></div><div id="graphMap" class="graphmap canvas"></div>';
+  $('graphScope').addEventListener('change', drawGraphMap);
   $('nodeKind').addEventListener('change', drawGraphMap);
   $('edgeKind').addEventListener('change', drawGraphMap);
   $('graphSearch').addEventListener('input', drawGraphMap);
+  wireZoomControls();
   drawGraphMap();
 }
 
 function drawGraphMap() {
   const model = state.graph;
+  const scope = $('graphScope')?.value || 'core';
   const nodeKind = $('nodeKind')?.value || 'all';
   const edgeKind = $('edgeKind')?.value || 'all';
   const query = ($('graphSearch')?.value || '').toLowerCase();
-  const nodes = model.nodes.filter((node) => (nodeKind === 'all' || node.kind === nodeKind) && (!query || String(node.id + ' ' + (node.path || '') + ' ' + (node.label || '')).toLowerCase().includes(query))).slice(0, 120);
+  const maxNodes = scope === 'all' ? 150 : 75;
+  const nodes = model.nodes.filter((node) => (scope === 'all' || isCoreGraphNode(node)) && (nodeKind === 'all' || node.kind === nodeKind) && (!query || String(node.id + ' ' + (node.path || '') + ' ' + (node.label || '')).toLowerCase().includes(query))).slice(0, maxNodes);
   const ids = new Set(nodes.map((node) => String(node.id)));
-  const edges = model.edges.filter((edge) => ids.has(String(edge.from)) && ids.has(String(edge.to)) && (edgeKind === 'all' || edge.kind === edgeKind)).slice(0, 240);
+  const edges = model.edges.filter((edge) => ids.has(String(edge.from)) && ids.has(String(edge.to)) && (edgeKind === 'all' || edge.kind === edgeKind)).slice(0, scope === 'all' ? 280 : 150);
   state.drawnEdges = edges;
-  const cols = Math.max(2, Math.ceil(Math.sqrt(nodes.length || 1)));
-  const cellW = 190, cellH = 82;
-  const pos = new Map();
-  nodes.forEach((node, i) => pos.set(String(node.id), { x: 40 + (i % cols) * cellW, y: 42 + Math.floor(i / cols) * cellH }));
-  const width = Math.max(720, 90 + cols * cellW);
-  const height = Math.max(420, 110 + Math.ceil((nodes.length || 1) / cols) * cellH);
-  let svg = '<svg viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-label="CodeWiki generated graph">';
+  const pos = layoutGraph(nodes, edges);
+  const width = Math.max(900, Math.max(0, ...Array.from(pos.values()).map((p) => p.x)) + 240);
+  const height = Math.max(560, Math.max(0, ...Array.from(pos.values()).map((p) => p.y)) + 120);
+  const zoom = state.graphZoom;
+  let svg = '<svg width="' + Math.round(width * zoom) + '" height="' + Math.round(height * zoom) + '" viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-label="CodeWiki generated graph">';
   edges.forEach((edge, index) => {
     const a = pos.get(String(edge.from)), b = pos.get(String(edge.to)); if (!a || !b) return;
-    svg += '<line class="g-edge" data-edge="' + index + '" x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '" /><text x="' + ((a.x + b.x) / 2) + '" y="' + ((a.y + b.y) / 2 - 4) + '" fill="#77a891" font-size="9">' + esc(trim(edge.kind, 18)) + '</text>';
+    svg += '<line class="g-edge" data-edge="' + index + '" x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '" /><text x="' + ((a.x + b.x) / 2) + '" y="' + ((a.y + b.y) / 2 - 4) + '" fill="#899488" font-size="9">' + esc(trim(edge.kind, 18)) + '</text>';
   });
   for (const node of nodes) {
     const p = pos.get(String(node.id));
-    svg += '<g class="g-node" data-id="' + esc(node.id) + '"><circle cx="' + p.x + '" cy="' + p.y + '" r="16" fill="' + colorForKind(node.kind) + '" stroke="rgba(28,255,154,0.55)" />'
-      + '<text x="' + (p.x + 24) + '" y="' + (p.y - 3) + '" fill="#d8ffe8" font-size="12">' + esc(trim(node.label || node.id, 24)) + '</text>'
-      + '<text x="' + (p.x + 24) + '" y="' + (p.y + 13) + '" fill="#77a891" font-size="10">' + esc(node.kind) + '</text></g>';
+    svg += '<g class="g-node" data-id="' + esc(node.id) + '"><circle cx="' + p.x + '" cy="' + p.y + '" r="16" fill="' + colorForKind(node.kind) + '" stroke="rgba(180,190,172,0.55)" />'
+      + '<text x="' + (p.x + 24) + '" y="' + (p.y - 3) + '" fill="#f4f1e8" font-size="12">' + esc(trim(node.label || node.id, 24)) + '</text>'
+      + '<text x="' + (p.x + 24) + '" y="' + (p.y + 13) + '" fill="#899488" font-size="10">' + esc(node.kind) + '</text></g>';
   }
   svg += '</svg>';
   $('graphMap').innerHTML = svg;
+  $('graphStats').textContent = 'shown ' + nodes.length + '/' + model.stats.total_nodes + ' · edges ' + edges.length + '/' + model.stats.total_edges;
   document.querySelectorAll('#graphMap .g-node').forEach((node) => node.addEventListener('click', () => inspectGraphNode(node.dataset.id)));
   document.querySelectorAll('#graphMap .g-edge').forEach((edge) => edge.addEventListener('click', () => inspectGraphEdge(Number(edge.dataset.edge))));
+}
+
+function layoutGraph(nodes, edges) {
+  const incoming = new Map();
+  const outgoing = new Map();
+  for (const node of nodes) { incoming.set(String(node.id), 0); outgoing.set(String(node.id), 0); }
+  for (const edge of edges) {
+    incoming.set(String(edge.to), (incoming.get(String(edge.to)) || 0) + 1);
+    outgoing.set(String(edge.from), (outgoing.get(String(edge.from)) || 0) + 1);
+  }
+  const sorted = [...nodes].sort((a, b) => ((incoming.get(String(a.id)) || 0) - (incoming.get(String(b.id)) || 0)) || String(a.kind).localeCompare(String(b.kind)) || String(a.id).localeCompare(String(b.id)));
+  const cols = Math.max(3, Math.ceil(Math.sqrt(sorted.length || 1)));
+  const cellW = 215, cellH = 86;
+  const pos = new Map();
+  sorted.forEach((node, i) => pos.set(String(node.id), { x: 45 + (i % cols) * cellW, y: 52 + Math.floor(i / cols) * cellH }));
+  return pos;
+}
+
+function isCoreGraphNode(node) {
+  const id = String(node.id || '');
+  const kind = String(node.kind || '');
+  if (kind.includes('code_path') || id.startsWith('code:')) return false;
+  if (id.includes('/builds/') && !id.includes('2026-05-11')) return false;
+  return true;
 }
 
 function inspectGraphNode(id) {
@@ -762,23 +880,42 @@ function inspectGraphEdge(index) {
   $('inspector').innerHTML = '<h2>Graph edge</h2><p><span class="badge">' + esc(edge.kind) + '</span></p><pre>' + esc(JSON.stringify(edge, null, 2)) + '</pre><p class="muted">Generated graph relationship. Use source paths and compiler loops for canonical changes.</p>';
 }
 
+function wireZoomControls() {
+  document.querySelectorAll('[data-zoom]').forEach((button) => {
+    button.onclick = () => {
+      const [target, action] = button.dataset.zoom.split(':');
+      if (target === 'system') {
+        state.systemZoom = nextZoom(state.systemZoom, action, 0.78, 1);
+        drawSystemDiagram(state.system);
+      }
+      if (target === 'graph') {
+        state.graphZoom = nextZoom(state.graphZoom, action, 0.68, 0.9);
+        drawGraphMap();
+      }
+    };
+  });
+}
+
+function nextZoom(current, action, fitValue, resetValue) {
+  if (action === 'in') return Math.min(1.8, Math.round((current + 0.12) * 100) / 100);
+  if (action === 'out') return Math.max(0.45, Math.round((current - 0.12) * 100) / 100);
+  if (action === 'fit') return fitValue;
+  return resetValue;
+}
+
 function inspectHome() {
   const m = state.model;
   if (!m) return;
   $('inspector').innerHTML = '<h2>Current repo</h2><pre>' + esc(m.project.root) + '</pre><h3>Source contract</h3><p>Every view points back to .codewiki canonical truth or generated graph state.</p><p><span class="badge">local-first</span><span class="badge">retro terminal</span></p>';
 }
 
-function renderPlaceholder(id, text) {
-  $(id).innerHTML = '<div class="terminal-panel"><h2>' + esc(id) + '</h2><p>' + esc(text) + '</p></div>';
-}
-
 function colorForKind(kind) {
   const value = String(kind || 'unknown');
-  if (value.includes('task') || value.includes('roadmap')) return '#ffcc66';
-  if (value.includes('build')) return '#42f5ff';
-  if (value.includes('validation')) return '#ff5f6d';
-  if (value.includes('doc') || value.includes('knowledge')) return '#1cff9a';
-  return '#77a891';
+  if (value.includes('task') || value.includes('roadmap')) return '#c7a35a';
+  if (value.includes('build')) return '#a7a06d';
+  if (value.includes('validation')) return '#d46a66';
+  if (value.includes('doc') || value.includes('knowledge')) return '#f4f1e8';
+  return '#7f927f';
 }
 
 function trim(value, max) {

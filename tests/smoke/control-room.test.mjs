@@ -90,6 +90,17 @@ Owns generated graph state.
 	assert.equal(server.host, "127.0.0.1");
 	const html = await fetch(server.url).then((res) => res.text());
 	assert.match(html, /CodeWiki Control Room/);
+	assert.match(html, /data-view="product"/);
+	assert.match(html, /data-view="roadmap"/);
+	const css = await fetch(new URL("/assets/control-room.css", server.url)).then((res) => res.text());
+	assert.match(css, /--highlight: #f4f1e8/);
+	assert.match(css, /--accent: #c7a35a/);
+	assert.doesNotMatch(css, /42f5ff|--cyan/i);
+	const js = await fetch(new URL("/assets/control-room.js", server.url)).then((res) => res.text());
+	assert.match(js, /CodeWiki map/);
+	assert.match(js, /data-zoom="graph:in"/);
+	assert.match(js, /data-zoom="system:fit"/);
+	assert.match(js, /scope <select id="graphScope"/);
 	const apiState = await fetch(new URL("/api/state", server.url)).then((res) => res.json());
 	assert.equal(apiState.project.label, "control-room-smoke");
 } finally {

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-11T08:29:35Z",
+  "profile": "task-close",
+  "task_id": "TASK-061",
+  "verdict": "pass",
+  "rationale": "TASK-061 acceptance is satisfied: palette refined to muted green/off-white/amber with blue removed, CodeWiki area map and source-backed views added, System layout uses lanes/routed edges/zoom, Graph has scope and zoom controls, center canvases use available workspace, side columns preserved, and checks passed.",
+  "checks": [
+    "npx tsc --noEmit",
+    "node scripts/check-architecture.mjs",
+    "npm test",
+    "manual local server smoke"
+  ],
+  "issues": [],
+  "source": ".codewiki/builds/implementation/2026-05-11-task-061-control-room-refinement.json"
+}

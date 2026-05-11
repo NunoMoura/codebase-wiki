@@ -70,11 +70,15 @@ Write endpoints should be added only when the view needs a real action. They mus
 
 The System view reads `.codewiki/kb/system/architecture.mmd` and maps each selectable component to a matching `.codewiki/kb/system/<component>.md` file. The diagram renderer may use Mermaid-compatible parsing or a custom renderer, but the source of the architecture remains the `.mmd` file.
 
+The renderer should arrange components into readable lanes or groups, route edges around node boxes, draw edges behind nodes, and use the available workspace as a canvas. Arrows should not cover components or labels.
+
 The component inspector should extract the corresponding Markdown document frontmatter and sections. It should show source paths and preserve links to related docs.
 
 ## Graph view contract
 
 The Graph view reads `.codewiki/index_graph.json` and renders nodes and edges visually. It should support filtering by node kind, edge kind, active task or sprint scope, drift, stale state, and build DAG relationships.
+
+The renderer should provide zoom in, zoom out, fit, and reset controls. Large graphs should default to useful scoped or filtered slices instead of rendering all relationships at once. The graph canvas should support scrolling or panning so users can inspect details without losing the left navigation rail or right inspector.
 
 The graph is generated state, not canonical truth. Every node or edge detail should link back to canonical files when available.
 
@@ -97,8 +101,10 @@ Multiple computers using separate clones synchronize durable truth through git. 
 
 - A user can launch a local browser Control Room from the current repo.
 - The Control Room renders a retro terminal-style shell without depending on Pi TUI rendering.
-- System architecture is visual and component selections are backed by matching system Markdown files.
-- The generated graph is visible and source-backed.
+- The visual theme uses muted green as a base, white/off-white as primary highlight, amber/old-gold as secondary accent, and avoids blue highlight dependency.
+- Product, System, Graph, Roadmap, Builds, Validation, Diff, and Settings have recognizable source-backed representations.
+- System architecture is visual, readable, edge-routed, and component selections are backed by matching system Markdown files.
+- The generated graph is visible, zoomable, filterable, and source-backed.
 - Pi remains able to provide a compact status panel, but the rich visual experience is not Pi-specific.
 - Future harnesses can reuse the same UI and API surface without changing CodeWiki semantics.
 
