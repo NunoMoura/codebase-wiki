@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-11T20:25:30.078Z",
+  "generated_at": "2026-05-11T20:35:28.993Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -1141,6 +1141,22 @@
       "alignment_state": "aligned"
     },
     {
+      "id": "build:.codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
+      "kind": "feedback_build",
+      "path": ".codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
+      "title": "User stated CodeWiki should learn iteratively: new requests should check existing tasks/sprints and refine them instead of creating new tasks every time.",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned"
+    },
+    {
+      "id": "code:Implement deterministic active task reuse/refinement in codewiki_task create.",
+      "kind": "code_path",
+      "path": "Implement deterministic active task reuse/refinement in codewiki_task create.",
+      "layer": "code"
+    },
+    {
       "id": "build:.codewiki/builds/feedback/2026-05-11-reconciliation-lifecycle.json",
       "kind": "feedback_build",
       "path": ".codewiki/builds/feedback/2026-05-11-reconciliation-lifecycle.json",
@@ -1275,6 +1291,16 @@
       "kind": "documentation_build",
       "path": ".codewiki/builds/documentation/2026-05-11-cytoscape-control-room-graph-docs.json",
       "title": ".codewiki/builds/feedback/2026-05-11-cytoscape-graph-visualization-selection.json",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned"
+    },
+    {
+      "id": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "kind": "documentation_build",
+      "path": ".codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "title": ".codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
       "status": "accepted",
       "layer": "build",
       "lifecycle_state": "accepted",
@@ -1679,6 +1705,57 @@
       "path": "TASK-064"
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "title": "codewiki_build tool",
+      "status": "validated",
+      "layer": "build",
+      "lifecycle_state": "validated",
+      "alignment_state": "aligned"
+    },
+    {
+      "id": "code:extensions/codewiki/src/application/task.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/application/task.ts",
+      "layer": "code"
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi/tools/task.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi/tools/task.ts",
+      "layer": "code"
+    },
+    {
+      "id": "code:.codewiki/kb/system/roadmap.md",
+      "kind": "code_path",
+      "path": ".codewiki/kb/system/roadmap.md",
+      "layer": "code"
+    },
+    {
+      "id": "code:.codewiki/kb/system/compilers.md",
+      "kind": "code_path",
+      "path": ".codewiki/kb/system/compilers.md",
+      "layer": "code"
+    },
+    {
+      "id": "code:.codewiki/kb/system/api.md",
+      "kind": "code_path",
+      "path": ".codewiki/kb/system/api.md",
+      "layer": "code"
+    },
+    {
+      "id": "code:.codewiki/kb/system/adapters.md",
+      "kind": "code_path",
+      "path": ".codewiki/kb/system/adapters.md",
+      "layer": "code"
+    },
+    {
+      "id": "closure:TASK-065",
+      "kind": "closure_brief",
+      "path": "TASK-065"
+    },
+    {
       "id": "validation:.codewiki/validation/2026-05-09-documentation-pass.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-09-documentation-pass.json",
@@ -1802,6 +1879,12 @@
       "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-064.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-11-task-close-pass-task-064.json",
+      "verdict": "pass"
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-065.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-11-task-close-pass-task-065.json",
       "verdict": "pass"
     }
   ],
@@ -3337,6 +3420,26 @@
       "to": "task:TASK-063"
     },
     {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
+      "to": "task:TASK-065"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
+      "to": "doc:Document progressive refinement in roadmap/compiler/API/adapter specs."
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
+      "to": "task:TASK-065"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
+      "to": "code:Implement deterministic active task reuse/refinement in codewiki_task create."
+    },
+    {
       "kind": "build_derives_from",
       "from": "build:.codewiki/builds/documentation/2026-05-07-compiler-kb-refactor.json",
       "to": "build:.codewiki/builds/feedback/2026-05-07-compiler-model.json"
@@ -3595,6 +3698,81 @@
       "kind": "build_produces_task",
       "from": "build:.codewiki/builds/documentation/2026-05-11-cytoscape-control-room-graph-docs.json",
       "to": "task:TASK-063"
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "task:TASK-065"
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "task:TASK-065 covers code implementation of progressive task reuse/refinement."
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "build:.codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "task:TASK-065"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "doc:Roadmap spec now states active tasks/sprints must be checked before creating new work and related user intent should refine existing tasks instead of spawning duplicates."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "doc:Roadmap item contents now define additive concise refinement fields."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "doc:Compiler spec now says documentation loop should refine related active tasks and sprint scope before creating duplicate tasks."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "doc:API write rules now require task creation to check active work for related intent."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "doc:Adapter spec now requires guidance for agents to inspect/refine active tasks and sprints first."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "doc:.codewiki/kb/system/roadmap.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "doc:.codewiki/kb/system/compilers.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "doc:.codewiki/kb/system/api.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "doc:.codewiki/kb/system/adapters.md"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "task:TASK-065 covers code implementation of progressive task reuse/refinement."
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
+      "to": "task:TASK-065"
     },
     {
       "kind": "build_derives_from",
@@ -4402,6 +4580,111 @@
       "to": "closure:TASK-064"
     },
     {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "task:TASK-065"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "build:.codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "build:.codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "task:TASK-065"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "doc:.codewiki/kb/system/roadmap.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "doc:.codewiki/kb/system/compilers.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "doc:.codewiki/kb/system/api.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "doc:.codewiki/kb/system/adapters.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "code:extensions/codewiki/src/application/roadmap.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "code:extensions/codewiki/src/application/task.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "code:extensions/codewiki/src/adapters/pi/index.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "code:extensions/codewiki/src/adapters/pi/tools/task.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "code:.codewiki/kb/system/roadmap.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "code:.codewiki/kb/system/compilers.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "code:.codewiki/kb/system/api.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "code:.codewiki/kb/system/adapters.md"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "test:tests/smoke/builds.test.mjs"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "test:scripts/smoke-test.mjs"
+    },
+    {
+      "kind": "build_produces_validation",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "validation:npx tsc --noEmit"
+    },
+    {
+      "kind": "build_produces_validation",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "validation:npm test"
+    },
+    {
+      "kind": "build_produces_closure",
+      "from": "build:.codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
+      "to": "closure:TASK-065"
+    },
+    {
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-09-task-035-close-pass.json",
       "to": "task:TASK-035"
@@ -4490,6 +4773,11 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-064.json",
       "to": "task:TASK-064"
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-065.json",
+      "to": "task:TASK-065"
     }
   ],
   "views": {
@@ -5624,6 +5912,7 @@
             ".codewiki/builds/feedback/2026-05-11-control-room-refinement.json",
             ".codewiki/builds/feedback/2026-05-11-control-room-ui.json",
             ".codewiki/builds/feedback/2026-05-11-cytoscape-graph-visualization-selection.json",
+            ".codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
             ".codewiki/builds/feedback/2026-05-11-reconciliation-lifecycle.json",
             ".codewiki/builds/documentation/2026-05-09-kb-boundary-refactor-docs.json",
             ".codewiki/builds/documentation/2026-05-09-roadmap-transition-baseline.json",
@@ -5636,6 +5925,7 @@
             ".codewiki/builds/documentation/2026-05-11-control-room-refinement-docs.json",
             ".codewiki/builds/documentation/2026-05-11-control-room-ui-docs.json",
             ".codewiki/builds/documentation/2026-05-11-cytoscape-control-room-graph-docs.json",
+            ".codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
             ".codewiki/builds/documentation/2026-05-11-reconciliation-lifecycle-docs.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
@@ -5723,12 +6013,14 @@
             ".codewiki/builds/feedback/2026-05-10-skill-loop-no-aliases.json",
             ".codewiki/builds/feedback/2026-05-11-control-room-ui.json",
             ".codewiki/builds/feedback/2026-05-11-cytoscape-graph-visualization-selection.json",
+            ".codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
             ".codewiki/builds/documentation/2026-05-09-roadmap-transition-baseline.json",
             ".codewiki/builds/documentation/2026-05-10-graph-source-boundary-docs.json",
             ".codewiki/builds/documentation/2026-05-11-build-contract-v2-and-efficiency-sprints-docs.json",
             ".codewiki/builds/documentation/2026-05-11-control-room-refinement-docs.json",
             ".codewiki/builds/documentation/2026-05-11-control-room-ui-docs.json",
             ".codewiki/builds/documentation/2026-05-11-cytoscape-control-room-graph-docs.json",
+            ".codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
             ".codewiki/builds/implementation/2026-05-10-architecture-refactoring-production.json",
@@ -5750,7 +6042,8 @@
             ".codewiki/builds/implementation/2026-05-11-task-061-control-room-refinement.json",
             ".codewiki/builds/implementation/2026-05-11-task-062-wiki-ui-browser-open.json",
             ".codewiki/builds/implementation/2026-05-11-task-063-cytoscape-control-room-graph.json",
-            ".codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json"
+            ".codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+            ".codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json"
           ]
         },
         "purgeable": {
@@ -5786,7 +6079,7 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-11T20:25:30.089Z",
+      "generated_at": "2026-05-11T20:35:28.997Z",
       "counts": {
         "large-doc": 4
       },
@@ -5819,7 +6112,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-11T20:25:30Z",
+      "generated_at": "2026-05-11T20:35:28Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -8066,7 +8359,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-11T20:25:30Z",
+      "generated_at": "2026-05-11T20:35:29Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -8177,6 +8470,7 @@
               ".codewiki/builds/feedback/2026-05-11-control-room-refinement.json",
               ".codewiki/builds/feedback/2026-05-11-control-room-ui.json",
               ".codewiki/builds/feedback/2026-05-11-cytoscape-graph-visualization-selection.json",
+              ".codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
               ".codewiki/builds/feedback/2026-05-11-reconciliation-lifecycle.json",
               ".codewiki/builds/documentation/2026-05-09-kb-boundary-refactor-docs.json",
               ".codewiki/builds/documentation/2026-05-09-roadmap-transition-baseline.json",
@@ -8189,6 +8483,7 @@
               ".codewiki/builds/documentation/2026-05-11-control-room-refinement-docs.json",
               ".codewiki/builds/documentation/2026-05-11-control-room-ui-docs.json",
               ".codewiki/builds/documentation/2026-05-11-cytoscape-control-room-graph-docs.json",
+              ".codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
               ".codewiki/builds/documentation/2026-05-11-reconciliation-lifecycle-docs.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
@@ -8276,12 +8571,14 @@
               ".codewiki/builds/feedback/2026-05-10-skill-loop-no-aliases.json",
               ".codewiki/builds/feedback/2026-05-11-control-room-ui.json",
               ".codewiki/builds/feedback/2026-05-11-cytoscape-graph-visualization-selection.json",
+              ".codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
               ".codewiki/builds/documentation/2026-05-09-roadmap-transition-baseline.json",
               ".codewiki/builds/documentation/2026-05-10-graph-source-boundary-docs.json",
               ".codewiki/builds/documentation/2026-05-11-build-contract-v2-and-efficiency-sprints-docs.json",
               ".codewiki/builds/documentation/2026-05-11-control-room-refinement-docs.json",
               ".codewiki/builds/documentation/2026-05-11-control-room-ui-docs.json",
               ".codewiki/builds/documentation/2026-05-11-cytoscape-control-room-graph-docs.json",
+              ".codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
               ".codewiki/builds/implementation/2026-05-10-architecture-refactoring-production.json",
@@ -8303,7 +8600,8 @@
               ".codewiki/builds/implementation/2026-05-11-task-061-control-room-refinement.json",
               ".codewiki/builds/implementation/2026-05-11-task-062-wiki-ui-browser-open.json",
               ".codewiki/builds/implementation/2026-05-11-task-063-cytoscape-control-room-graph.json",
-              ".codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json"
+              ".codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
+              ".codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json"
             ]
           },
           "purgeable": {
@@ -8996,7 +9294,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-11T20:25:30Z",
+        "generated_at": "2026-05-11T20:35:29Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -9024,15 +9322,15 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-11T20:25:30Z",
+            "checked_at": "2026-05-11T20:35:28Z",
             "revision": {
               "git": {
-                "head": "08efb5931dc9f43865c3e83c81340d8188b2ae33",
+                "head": "2e86c310a4991a9cd0bc8fa5e3d81851650c9001",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "75df66d3935159f69d95d3c3041e2cebda1f03e3",
+                  ".codewiki/index_graph.json": "dd4bbeec87ad1e6cfa510e45d47a8df5b1062e39",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
                   ".codewiki/kb/product/overview.md": "51a6923ec5ddaa491bf131b549e6acecb8e85909",
@@ -9049,21 +9347,21 @@
                   ".codewiki/kb/product/users/external-users.md": "6fa169f4e72984edc74cc3dbeca8d7657fccd633",
                   ".codewiki/kb/product/users/maintainers.md": "6b48e26d5f0cf5fa9a35c703af37c87ba91d6047",
                   ".codewiki/kb/product/users/package-authors.md": "81d5d10b01cb961753ff46364e1fd471f0c9b1bf",
-                  ".codewiki/kb/system/adapters.md": "3d49aa440303f88027231494d9c45c1d71974653",
+                  ".codewiki/kb/system/adapters.md": "bb2945a49385ac0c058ec7446ef962104ee92872",
                   ".codewiki/kb/system/agency.md": "0c562d69bdd9113090944bc4862672b75c44230c",
-                  ".codewiki/kb/system/api.md": "d699da2bb3af11fd5388cd4fb2911ee4fce1e1fa",
+                  ".codewiki/kb/system/api.md": "36b9714a0301740e7e6d96252d2d7de9be4cb274",
                   ".codewiki/kb/system/builds.md": "ed28a87fdee173a1e83a1f4ef1bc671f3c31f1a9",
-                  ".codewiki/kb/system/compilers.md": "0fa593c7954a5bba9684601dd2cd2be56b695b90",
+                  ".codewiki/kb/system/compilers.md": "56ab5bb171d8414f0cc6845635e5e5836d1dd3eb",
                   ".codewiki/kb/system/control-room-ui.md": "bbdaf8b7aa6a553bb7c527d72e9dba456cca0c00",
                   ".codewiki/kb/system/extension.md": "1b857185640c6d62249a292af437b26f33bbc43d",
                   ".codewiki/kb/system/file-structure.md": "083959262d957bec0d3a129bf1cdcd748023bdb1",
                   ".codewiki/kb/system/graph.md": "d47fcca6a42b56e55a4b1d3c3c6df182714ba80c",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
                   ".codewiki/kb/system/overview.md": "23103eed811d789714ca1a7b11613160181cb591",
-                  ".codewiki/kb/system/roadmap.md": "ac562f428c4d109df43ae474eb900901aaeb2fba",
+                  ".codewiki/kb/system/roadmap.md": "2994f124cba8d5a9d63ddb2a3189cd29a01b7c10",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "85210b8e21a8669eb6ac9fc2159c0a2b1e55ea46",
+                  ".codewiki/roadmap.json": "ad5bd6e39b22d6c223f009836758e56fe1c20491",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -9095,13 +9393,13 @@
               },
               "spec_digest": "3ebb38f9a3f0b959324a7fa24c0edd3b42ecab3e2f9b9b06ee1f34c470c2c7f2",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "2cc9d49d3fa21295d931b4abee69a011eee02487ed2f69c09972d0b6f36bd06e",
-              "digest": "1cb1a610850d8990dd0d3e19aacc8f87511944ce5bbca410a8bba52be08972c7"
+              "code_digest": "42f269a051956adb71cc5b2dc1ed468901ae520c2717f377815db0a46b3251e0",
+              "digest": "06032106c7bfdf0e1de8de0184f06d713ea4fd1c213398e179e0e0f89a022a16"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T20:25:30Z",
+              "checked_at": "2026-05-11T20:35:28Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -9204,31 +9502,31 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-11T20:25:30Z",
+            "checked_at": "2026-05-11T20:35:29Z",
             "revision": {
               "git": {
-                "head": "08efb5931dc9f43865c3e83c81340d8188b2ae33",
+                "head": "2e86c310a4991a9cd0bc8fa5e3d81851650c9001",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "75df66d3935159f69d95d3c3041e2cebda1f03e3",
+                  ".codewiki/index_graph.json": "dd4bbeec87ad1e6cfa510e45d47a8df5b1062e39",
                   ".codewiki/kb": "",
-                  ".codewiki/kb/system/adapters.md": "3d49aa440303f88027231494d9c45c1d71974653",
+                  ".codewiki/kb/system/adapters.md": "bb2945a49385ac0c058ec7446ef962104ee92872",
                   ".codewiki/kb/system/agency.md": "0c562d69bdd9113090944bc4862672b75c44230c",
-                  ".codewiki/kb/system/api.md": "d699da2bb3af11fd5388cd4fb2911ee4fce1e1fa",
+                  ".codewiki/kb/system/api.md": "36b9714a0301740e7e6d96252d2d7de9be4cb274",
                   ".codewiki/kb/system/builds.md": "ed28a87fdee173a1e83a1f4ef1bc671f3c31f1a9",
-                  ".codewiki/kb/system/compilers.md": "0fa593c7954a5bba9684601dd2cd2be56b695b90",
+                  ".codewiki/kb/system/compilers.md": "56ab5bb171d8414f0cc6845635e5e5836d1dd3eb",
                   ".codewiki/kb/system/control-room-ui.md": "bbdaf8b7aa6a553bb7c527d72e9dba456cca0c00",
                   ".codewiki/kb/system/extension.md": "1b857185640c6d62249a292af437b26f33bbc43d",
                   ".codewiki/kb/system/file-structure.md": "083959262d957bec0d3a129bf1cdcd748023bdb1",
                   ".codewiki/kb/system/graph.md": "d47fcca6a42b56e55a4b1d3c3c6df182714ba80c",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
                   ".codewiki/kb/system/overview.md": "23103eed811d789714ca1a7b11613160181cb591",
-                  ".codewiki/kb/system/roadmap.md": "ac562f428c4d109df43ae474eb900901aaeb2fba",
+                  ".codewiki/kb/system/roadmap.md": "2994f124cba8d5a9d63ddb2a3189cd29a01b7c10",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "85210b8e21a8669eb6ac9fc2159c0a2b1e55ea46",
+                  ".codewiki/roadmap.json": "ad5bd6e39b22d6c223f009836758e56fe1c20491",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -9254,13 +9552,13 @@
               },
               "spec_digest": "fe3ffafbb8e8f430c1ce398a5702fb7e355acfac6f38c3987e3802a57766e4fb",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "e519fc037575dc9451fab2e3fd7d420fcb421fef1a3e4ccd6ce6b63f8af07e7a",
-              "digest": "af57c79de20f815b2ec31944413436c3b0f3fba88a2b3c1f0cfaf684b48f8518"
+              "code_digest": "f109b8a56a0b20cf9f1816fc05820b84ddcd3ac183f3bae15600a1228c0427f0",
+              "digest": "ecafd2797a241e1eb7c8b4dbc509bbe7d357f876e1f6647af6172871071f7401"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T20:25:30Z",
+              "checked_at": "2026-05-11T20:35:29Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -9341,15 +9639,15 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-11T20:25:30Z",
+            "checked_at": "2026-05-11T20:35:29Z",
             "revision": {
               "git": {
-                "head": "08efb5931dc9f43865c3e83c81340d8188b2ae33",
+                "head": "2e86c310a4991a9cd0bc8fa5e3d81851650c9001",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "75df66d3935159f69d95d3c3041e2cebda1f03e3",
+                  ".codewiki/index_graph.json": "dd4bbeec87ad1e6cfa510e45d47a8df5b1062e39",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
                   ".codewiki/kb/product/overview.md": "51a6923ec5ddaa491bf131b549e6acecb8e85909",
@@ -9366,21 +9664,21 @@
                   ".codewiki/kb/product/users/external-users.md": "6fa169f4e72984edc74cc3dbeca8d7657fccd633",
                   ".codewiki/kb/product/users/maintainers.md": "6b48e26d5f0cf5fa9a35c703af37c87ba91d6047",
                   ".codewiki/kb/product/users/package-authors.md": "81d5d10b01cb961753ff46364e1fd471f0c9b1bf",
-                  ".codewiki/kb/system/adapters.md": "3d49aa440303f88027231494d9c45c1d71974653",
+                  ".codewiki/kb/system/adapters.md": "bb2945a49385ac0c058ec7446ef962104ee92872",
                   ".codewiki/kb/system/agency.md": "0c562d69bdd9113090944bc4862672b75c44230c",
-                  ".codewiki/kb/system/api.md": "d699da2bb3af11fd5388cd4fb2911ee4fce1e1fa",
+                  ".codewiki/kb/system/api.md": "36b9714a0301740e7e6d96252d2d7de9be4cb274",
                   ".codewiki/kb/system/builds.md": "ed28a87fdee173a1e83a1f4ef1bc671f3c31f1a9",
-                  ".codewiki/kb/system/compilers.md": "0fa593c7954a5bba9684601dd2cd2be56b695b90",
+                  ".codewiki/kb/system/compilers.md": "56ab5bb171d8414f0cc6845635e5e5836d1dd3eb",
                   ".codewiki/kb/system/control-room-ui.md": "bbdaf8b7aa6a553bb7c527d72e9dba456cca0c00",
                   ".codewiki/kb/system/extension.md": "1b857185640c6d62249a292af437b26f33bbc43d",
                   ".codewiki/kb/system/file-structure.md": "083959262d957bec0d3a129bf1cdcd748023bdb1",
                   ".codewiki/kb/system/graph.md": "d47fcca6a42b56e55a4b1d3c3c6df182714ba80c",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
                   ".codewiki/kb/system/overview.md": "23103eed811d789714ca1a7b11613160181cb591",
-                  ".codewiki/kb/system/roadmap.md": "ac562f428c4d109df43ae474eb900901aaeb2fba",
+                  ".codewiki/kb/system/roadmap.md": "2994f124cba8d5a9d63ddb2a3189cd29a01b7c10",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "85210b8e21a8669eb6ac9fc2159c0a2b1e55ea46",
+                  ".codewiki/roadmap.json": "ad5bd6e39b22d6c223f009836758e56fe1c20491",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -9412,13 +9710,13 @@
               },
               "spec_digest": "3ebb38f9a3f0b959324a7fa24c0edd3b42ecab3e2f9b9b06ee1f34c470c2c7f2",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "2cc9d49d3fa21295d931b4abee69a011eee02487ed2f69c09972d0b6f36bd06e",
-              "digest": "1cb1a610850d8990dd0d3e19aacc8f87511944ce5bbca410a8bba52be08972c7"
+              "code_digest": "42f269a051956adb71cc5b2dc1ed468901ae520c2717f377815db0a46b3251e0",
+              "digest": "06032106c7bfdf0e1de8de0184f06d713ea4fd1c213398e179e0e0f89a022a16"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T20:25:30Z",
+              "checked_at": "2026-05-11T20:35:29Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -9522,7 +9820,7 @@
         "agency": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
       },
       "parallel": {
-        "generated_at": "2026-05-11T20:25:30Z",
+        "generated_at": "2026-05-11T20:35:29Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
