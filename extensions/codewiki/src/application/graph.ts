@@ -28,10 +28,12 @@ function isOpenTaskStatus(status: string): boolean {
 	return ["todo", "in_progress", "blocked", "research", "implement", "verify"].includes(status);
 }
 
-type ReconciliationLoop = "feedback" | "documentation" | "implementation" | "observe";
+type ReconciliationLoop = "feedback" | "documentation" | "implementation" | "validation" | "observe";
+type BuildArtifact = GraphBuildInputs["builds"][number];
+type ValidationArtifact = GraphBuildInputs["validations"][number];
 
 function reconciliationPriority(loop: ReconciliationLoop): number {
-	return { feedback: 0, documentation: 1, implementation: 2, observe: 3 }[loop];
+	return { feedback: 0, documentation: 1, implementation: 2, validation: 3, observe: 4 }[loop];
 }
 
 function buildReconciliationAction(items: any[]) {
@@ -54,6 +56,7 @@ function buildReconciliationAction(items: any[]) {
 		feedback: "Run feedback compiler",
 		documentation: "Run documentation compiler",
 		implementation: first.task_id ? `/wiki-resume ${first.task_id}` : "/wiki-resume",
+		validation: "Run validation gateway",
 		observe: "Observe — graph aligned",
 	};
 	return {
@@ -62,6 +65,61 @@ function buildReconciliationAction(items: any[]) {
 		reason: first.reason,
 		item_id: first.id,
 	};
+}
+
+function stringList(value: any): string[] {
+	if (Array.isArray(value)) return value.map((item) => String(item || "").trim()).filter(Boolean);
+	const single = String(value || "").trim();
+	return single ? [single] : [];
+}
+
+function normalizeCodewikiRef(value: any): string {
+	const ref = String(value || "").trim().replace(/\\/g, "/");
+	if (!ref) return "";
+	if (ref.startsWith(".codewiki/")) return ref;
+	if (ref.startsWith("codewiki/")) return `.${ref}`;
+	if (ref.startsWith("builds/") || ref.startsWith("validation/")) return `.codewiki/${ref}`;
+	return ref;
+}
+
+function buildRefs(data: any, key: "feedback" | "documentation" | "implementation"): string[] {
+	return stringList(data?.linked_builds?.[key]).map(normalizeCodewikiRef).filter(Boolean);
+}
+
+function buildTaskIds(build: BuildArtifact): string[] {
+	const data = build.data || {};
+	return Array.from(new Set([
+		...stringList(build.taskId),
+		...stringList(data.task_id),
+		...stringList(data.taskId),
+		...stringList(data.task?.id),
+		...stringList(data.roadmap_work_items),
+	].map((id) => id.trim()).filter(Boolean)));
+}
+
+function firstTaskId(build: BuildArtifact): string | undefined {
+	return buildTaskIds(build)[0];
+}
+
+function hasActionableLowerLayerDelta(build: BuildArtifact | undefined): boolean {
+	if (!build) return false;
+	const delta = build.data?.lower_layer_delta || {};
+	return stringList(delta.roadmap).length > 0 || stringList(delta.code).length > 0;
+}
+
+function hasRoadmapChanges(build: BuildArtifact): boolean {
+	return stringList(build.data?.roadmap_changes).length > 0;
+}
+
+function isLifecycleComplete(state: string): boolean {
+	return ["validated", "archived", "purged"].includes(state);
+}
+
+function indexPush(map: Map<string, BuildArtifact[]>, key: string, build: BuildArtifact) {
+	const normalized = normalizeCodewikiRef(key);
+	if (!normalized) return;
+	if (!map.has(normalized)) map.set(normalized, []);
+	map.get(normalized)!.push(build);
 }
 
 export function buildGraph(inputs: GraphBuildInputs): GraphFile {
@@ -192,85 +250,147 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	// Process Builds
 	const buildTaskMap = new Map<string, string[]>();
 	const reconciliationItems: any[] = [];
-	const hasPassingValidationForBuild = (build: { path: string; taskId?: string }) => validations.some((validation) => {
-		if (String(validation.verdict || "") !== "pass") return false;
-		const source = String(validation.data?.source || "").trim();
-		if (source && source === build.path) return true;
-		return Boolean(build.taskId && validation.taskId === build.taskId);
-	});
+	const buildsByPath = new Map<string, BuildArtifact>();
+	const documentationByFeedback = new Map<string, BuildArtifact[]>();
+	const implementationByDocumentation = new Map<string, BuildArtifact[]>();
+	const implementationByFeedback = new Map<string, BuildArtifact[]>();
+
 	for (const build of builds) {
+		const buildPath = normalizeCodewikiRef(build.path);
+		if (buildPath) buildsByPath.set(buildPath, build);
+	}
+	for (const build of builds) {
+		if (build.kind === "documentation_build") {
+			indexPush(documentationByFeedback, build.data?.source_feedback_build, build);
+		} else if (build.kind === "implementation_build") {
+			for (const ref of [normalizeCodewikiRef(build.data?.source_documentation_build), ...buildRefs(build.data, "documentation")]) {
+				indexPush(implementationByDocumentation, ref, build);
+			}
+			for (const ref of buildRefs(build.data, "feedback")) {
+				indexPush(implementationByFeedback, ref, build);
+			}
+		}
+	}
+
+	const hasPassingValidationForBuild = (build: BuildArtifact) => {
+		const buildPath = normalizeCodewikiRef(build.path);
+		const taskIds = new Set(buildTaskIds(build));
+		const validationRefs = new Set(stringList(build.data?.validation_refs).map(normalizeCodewikiRef).filter(Boolean));
+		if (String(build.data?.validation_verdict?.verdict || "").trim() === "pass") return true;
+		return validations.some((validation: ValidationArtifact) => {
+			if (String(validation.verdict || "") !== "pass") return false;
+			const sources = [normalizeCodewikiRef(validation.data?.source), ...stringList(validation.data?.sources).map(normalizeCodewikiRef)].filter(Boolean);
+			if (sources.includes(buildPath)) return true;
+			if (validationRefs.has(normalizeCodewikiRef(validation.path))) return true;
+			return Boolean(validation.taskId && taskIds.has(validation.taskId));
+		});
+	};
+	const feedbackConsumed = (build: BuildArtifact) => {
+		const buildPath = normalizeCodewikiRef(build.path);
+		return Boolean(
+			documentationByFeedback.get(buildPath)?.length ||
+			implementationByFeedback.get(buildPath)?.length ||
+			hasPassingValidationForBuild(build)
+		);
+	};
+	const documentationConsumed = (build: BuildArtifact) => {
+		const buildPath = normalizeCodewikiRef(build.path);
+		const sourceFeedback = buildsByPath.get(normalizeCodewikiRef(build.data?.source_feedback_build));
+		const expectsDownstream = hasActionableLowerLayerDelta(sourceFeedback);
+		return Boolean(
+			hasRoadmapChanges(build) ||
+			implementationByDocumentation.get(buildPath)?.length ||
+			hasPassingValidationForBuild(build) ||
+			!expectsDownstream
+		);
+	};
+	for (const build of builds) {
+		const buildPath = normalizeCodewikiRef(build.path);
 		const lifecycleState = String(build.data?.lifecycle?.state || build.data?.status || build.status || "").trim() || "unknown";
 		const buildValidated = hasPassingValidationForBuild(build);
-		const buildAlignmentState = ["validated", "archived", "purged"].includes(lifecycleState) || buildValidated ? "aligned" : "drift";
-		const buildId = `build:${build.path}`;
+		const consumed = build.kind === "feedback_build" ? feedbackConsumed(build) : build.kind === "documentation_build" ? documentationConsumed(build) : false;
+		const buildAlignmentState = isLifecycleComplete(lifecycleState) || buildValidated || consumed ? "aligned" : "drift";
+		const buildId = `build:${buildPath}`;
 		addNode(buildId, {
 			kind: build.kind as any,
-			path: build.path,
-			title: build.data?.source_feedback_build || build.data?.source || build.path,
+			path: buildPath,
+			title: build.data?.source_feedback_build || build.data?.source || buildPath,
 			status: build.data?.status ?? build.status,
 			layer: "build",
 			lifecycle_state: lifecycleState,
 			alignment_state: buildAlignmentState,
 		});
-		if (build.kind === "feedback_build" && ["proposed", "accepted"].includes(lifecycleState)) {
+		if (build.kind === "feedback_build" && lifecycleState === "proposed") {
 			reconciliationItems.push({
-				id: `reconcile:${build.path}`,
+				id: `reconcile:${buildPath}`,
 				source_id: buildId,
 				state: "drift",
 				direction: "downward",
 				from_layer: "intent",
 				to_layer: "knowledge",
-				next_loop: lifecycleState === "proposed" ? "feedback" : "documentation",
-				reason: lifecycleState === "proposed"
-					? "Feedback build is proposed; confirm or reject intent before documentation changes."
-					: "Accepted feedback build must be applied to canonical knowledge before lower layers are reliable.",
+				next_loop: "feedback",
+				reason: "Feedback build is proposed; confirm or reject intent before documentation changes.",
 			});
-		} else if (build.kind === "documentation_build" && lifecycleState === "accepted") {
+		} else if (build.kind === "feedback_build" && lifecycleState === "accepted" && !feedbackConsumed(build)) {
 			reconciliationItems.push({
-				id: `reconcile:${build.path}`,
+				id: `reconcile:${buildPath}`,
+				source_id: buildId,
+				state: "drift",
+				direction: "downward",
+				from_layer: "intent",
+				to_layer: "knowledge",
+				next_loop: "documentation",
+				reason: "Accepted feedback build has no downstream documentation, implementation, or validation evidence yet.",
+			});
+		} else if (build.kind === "documentation_build" && lifecycleState === "accepted" && !documentationConsumed(build)) {
+			reconciliationItems.push({
+				id: `reconcile:${buildPath}`,
 				source_id: buildId,
 				state: "drift",
 				direction: "downward",
 				from_layer: "knowledge",
 				to_layer: "roadmap",
 				next_loop: "documentation",
-				reason: "Accepted documentation build should produce or update roadmap work items before implementation.",
+				reason: "Accepted documentation build has actionable downstream delta but no roadmap change, implementation link, or validation evidence yet.",
 			});
 		} else if (build.kind === "implementation_build" && lifecycleState === "accepted" && !buildValidated) {
 			reconciliationItems.push({
-				id: `reconcile:${build.path}`,
+				id: `reconcile:${buildPath}`,
 				source_id: buildId,
 				state: "drift",
 				direction: "gateway",
 				from_layer: "build",
 				to_layer: "validation",
-				next_loop: "implementation",
-				task_id: build.taskId,
+				next_loop: "validation",
+				task_id: firstTaskId(build),
 				reason: "Accepted implementation build still needs passing validation gateway evidence.",
 			});
-		} else if (["documentation_build", "implementation_build"].includes(build.kind) && lifecycleState === "applied") {
+		} else if (["documentation_build", "implementation_build"].includes(build.kind) && lifecycleState === "applied" && !buildValidated) {
 			reconciliationItems.push({
-				id: `reconcile:${build.path}`,
+				id: `reconcile:${buildPath}`,
 				source_id: buildId,
 				state: "drift",
 				direction: "gateway",
 				from_layer: "build",
 				to_layer: "validation",
-				next_loop: "implementation",
-				task_id: build.taskId,
+				next_loop: "validation",
+				task_id: firstTaskId(build),
 				reason: "Applied compiler build still needs validation gateway evidence.",
 			});
 		}
-		if (build.taskId) {
-			addEdge("build_task", buildId, `task:${build.taskId}`);
-			if (!buildTaskMap.has(build.taskId)) buildTaskMap.set(build.taskId, []);
-			buildTaskMap.get(build.taskId)!.push(build.path);
+		for (const taskId of buildTaskIds(build)) {
+			addEdge("build_task", buildId, `task:${taskId}`);
+			if (!buildTaskMap.has(taskId)) buildTaskMap.set(taskId, []);
+			buildTaskMap.get(taskId)!.push(buildPath);
 		}
-		for (const [key, value] of Object.entries(build.data || {})) {
-			if (key === "source_feedback_build" || key === "source_documentation_build") {
-				const srcBuildPath = String(value).replace(/^\\.codewiki\//, "");
-				addEdge("build_derives_from", buildId, `build:${srcBuildPath}`);
-			}
+		for (const ref of [
+			normalizeCodewikiRef(build.data?.source_feedback_build),
+			normalizeCodewikiRef(build.data?.source_documentation_build),
+			...buildRefs(build.data, "feedback"),
+			...buildRefs(build.data, "documentation"),
+			...buildRefs(build.data, "implementation"),
+		]) {
+			if (ref) addEdge("build_derives_from", buildId, `build:${ref}`);
 		}
 		for (const v of validations) {
 			if (v.path.includes(build.path.replace(/\\.[^.]+$/, "")) || build.path.includes(v.path.replace(/\\.[^.]+$/, ""))) {

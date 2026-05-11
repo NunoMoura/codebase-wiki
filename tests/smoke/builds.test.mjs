@@ -71,7 +71,7 @@ async function run() {
 		assert.ok(buildTool, "Build tool missing");
 
 		const fbResult = await buildTool.definition.execute(
-			"build-fb", { repoPath: projectDir, kind: "feedback", summary: "Smoke intent.", decisions: ["Do X."], lifecycle: { ttl_days: 7 } },
+			"build-fb", { repoPath: projectDir, kind: "feedback", summary: "Smoke intent.", decisions: ["Do X."], lower_layer_delta: { knowledge: ["Document X"], roadmap: ["Create TASK-001"], code: ["src/index.ts"] }, lifecycle: { ttl_days: 7 } },
 			undefined, undefined, ctx,
 		);
 		assert.match(fbResult.details.path, /\.codewiki\/builds\/feedback\/.*\.json$/);
@@ -80,7 +80,7 @@ async function run() {
 
 		// codewiki_build: documentation
 		const docResult = await buildTool.definition.execute(
-			"build-doc", { repoPath: projectDir, kind: "documentation", summary: "Doc changes.", source_feedback_build: fbResult.details.path, knowledge_changes: [".codewiki/kb/system/overview.md"], lifecycle: { ttl_days: 14 } },
+			"build-doc", { repoPath: projectDir, kind: "documentation", summary: "Doc changes.", source_feedback_build: fbResult.details.path, knowledge_changes: [".codewiki/kb/system/overview.md"], roadmap_changes: ["TASK-001 created/updated"], lifecycle: { ttl_days: 14 } },
 			undefined, undefined, ctx,
 		);
 		assert.match(docResult.details.path, /\.codewiki\/builds\/documentation\/.*\.json$/);
@@ -89,7 +89,7 @@ async function run() {
 
 		// codewiki_build: implementation
 		const implResult = await buildTool.definition.execute(
-			"build-impl", { repoPath: projectDir, kind: "implementation", summary: "Impl done.", task_id: "TASK-001", test_files: ["test.js"], code_files: ["src/index.ts"], checks_run: ["npm test"], acceptance_mapping: [{ criterion: "Works", evidence: "Pass" }], lifecycle: { ttl_days: 7 } },
+			"build-impl", { repoPath: projectDir, kind: "implementation", summary: "Impl done.", source_documentation_build: docResult.details.path, task_id: "TASK-001", test_files: ["test.js"], code_files: ["src/index.ts"], checks_run: ["npm test"], acceptance_mapping: [{ criterion: "Works", evidence: "Pass" }], lifecycle: { ttl_days: 7 } },
 			undefined, undefined, ctx,
 		);
 		assert.match(implResult.details.path, /\.codewiki\/builds\/implementation\/.*\.json$/);
@@ -119,6 +119,19 @@ async function run() {
 		);
 		assert.match(blockResult.details.path, /\.codewiki\/validation\/.*implementation-block.*\.json$/);
 
+		const unconsumedFbResult = await buildTool.definition.execute(
+			"build-unconsumed-fb", { repoPath: projectDir, kind: "feedback", summary: "Needs documentation.", decisions: ["Document Y."], lower_layer_delta: { knowledge: ["Document Y"] }, lifecycle: { ttl_days: 7 } },
+			undefined, undefined, ctx,
+		);
+		const downstreamFbResult = await buildTool.definition.execute(
+			"build-downstream-fb", { repoPath: projectDir, kind: "feedback", summary: "Needs downstream work.", decisions: ["Build Z."], lower_layer_delta: { code: ["src/z.ts"] }, lifecycle: { ttl_days: 7 } },
+			undefined, undefined, ctx,
+		);
+		const unconsumedDocResult = await buildTool.definition.execute(
+			"build-unconsumed-doc", { repoPath: projectDir, kind: "documentation", summary: "Doc without roadmap work.", source_feedback_build: downstreamFbResult.details.path, knowledge_changes: [".codewiki/kb/system/api.md"], lifecycle: { ttl_days: 14 } },
+			undefined, undefined, ctx,
+		);
+
 		// Graph reconciliation coverage
 		const stateTool = extension.tools.get("codewiki_state");
 		assert.ok(stateTool, "State tool missing");
@@ -134,9 +147,11 @@ async function run() {
 		// Validation reconciliation items
 		const graph = JSON.parse(readFileSync(resolve(projectDir, ".codewiki", "index_graph.json"), "utf8"));
 		const items = graph.views?.reconciliation?.items || [];
-		assert.ok(items.some(i => i.source_id === `build:${fbResult.details.path}` && i.next_loop === "documentation"), "Feedback build not in reconciliation");
-		assert.ok(items.some(i => i.source_id === `build:${docResult.details.path}` && i.next_loop === "documentation"), "Doc build not in reconciliation");
-		assert.ok(!items.some(i => i.source_id === `build:${implResult.details.path}` && i.next_loop === "implementation"), "Validated implementation build should not stay in reconciliation");
+		assert.ok(!items.some(i => i.source_id === `build:${fbResult.details.path}` && i.next_loop === "documentation"), "Feedback build with downstream documentation should be consumed");
+		assert.ok(!items.some(i => i.source_id === `build:${docResult.details.path}` && i.next_loop === "documentation"), "Documentation build with roadmap change should be consumed");
+		assert.ok(items.some(i => i.source_id === `build:${unconsumedFbResult.details.path}` && i.next_loop === "documentation"), "Unconsumed feedback build should route to documentation");
+		assert.ok(items.some(i => i.source_id === `build:${unconsumedDocResult.details.path}` && i.next_loop === "documentation"), "Documentation build with downstream delta and no roadmap/implementation evidence should route to documentation");
+		assert.ok(!items.some(i => i.source_id === `build:${implResult.details.path}` && i.next_loop === "validation"), "Validated implementation build should not stay in reconciliation");
 		assert.ok(items.some(i => i.source_id === `validation:${failResult.details.path}` && i.next_loop === "documentation"), "Fail validation not routing to documentation");
 
 		console.log("✓ build and validation smoke tests passed");

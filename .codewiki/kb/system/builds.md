@@ -5,9 +5,11 @@ state: active
 summary: Temporary compiler handoff briefs for intent, implementation specs, and implementation evidence.
 owners:
   - architecture
-updated: "2026-05-09"
+updated: "2026-05-11"
 code_paths:
   - .codewiki/builds
+  - extensions/codewiki/src/application/builds.ts
+  - extensions/codewiki/src/application/graph.ts
 ---
 
 # Builds
@@ -76,6 +78,16 @@ proposed -> accepted -> applied -> validated -> archived -> purged
 ```
 
 Passing validation can be recorded in accepted build metadata. Failed, blocked, policy-required, release, or audit-mode validation reports should persist under `.codewiki/validation/**`.
+
+## Consumption signals
+
+Reconciliation should treat a build as consumed when lower-layer truth or validation evidence references it. Direct state mutation is not required before the graph can stop routing it as active drift.
+
+A `feedback_build` is consumed when a downstream `documentation_build`, implementation evidence, or passing validation references that feedback build.
+
+A `documentation_build` is consumed when it records roadmap changes, is referenced by implementation evidence, has passing validation evidence, or is explicitly knowledge-only because its source feedback has no roadmap/code delta.
+
+An `implementation_build` is consumed when passing validation evidence references it or the build records a passing validation verdict. Accepted implementation evidence without validation still routes to the validation gateway.
 
 ## Related docs
 

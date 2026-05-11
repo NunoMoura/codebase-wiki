@@ -5,9 +5,10 @@ state: active
 summary: Generated graph state machine for reconciliation, drift detection, routing, status, and freshness.
 owners:
   - architecture
-updated: "2026-05-09"
+updated: "2026-05-11"
 code_paths:
   - .codewiki/index_graph.json
+  - extensions/codewiki/src/application/graph.ts
   - extensions/codewiki/src/infrastructure
 ---
 
@@ -60,6 +61,8 @@ The graph should model cross-layer items with:
 - source fingerprints for freshness.
 
 The graph-backed reconciliation gateway is a controller, not a fourth compiler. It reads graph state and routes work into existing loops. Gated agency consumes graph state during agency cycles, but the graph does not execute work itself.
+
+Reconciliation items should represent actionable, unconsumed handoffs. Accepted feedback or documentation builds are not drift once downstream builds, roadmap changes, implementation evidence, or passing validation link back to them. This keeps the graph as a generated map over evidence instead of making lifecycle metadata the only source of completion truth.
 
 ## Edges
 

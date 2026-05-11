@@ -1522,23 +1522,23 @@ async function main() {
 		);
 		assert.ok(
 			Array.isArray(graph.views.reconciliation.items) &&
-				graph.views.reconciliation.items.some(
+				!graph.views.reconciliation.items.some(
 					(item) =>
 						item.source_id === `build:${docBuildResult.details.path}` &&
 						item.next_loop === "documentation" &&
 						item.direction === "downward",
 				),
-			"Accepted documentation build should route downward to documentation loop",
+			"Accepted documentation build with roadmap/implementation evidence should be consumed",
 		);
 		assert.ok(
 			Array.isArray(graph.views.reconciliation.items) &&
-				graph.views.reconciliation.items.some(
+				!graph.views.reconciliation.items.some(
 					(item) =>
 						item.source_id === `build:${buildResult.details.path}` &&
 						item.next_loop === "documentation" &&
 						item.direction === "downward",
 				),
-			"Accepted feedback build should route downward to documentation loop",
+			"Accepted feedback build with downstream documentation should be consumed",
 		);
 		assert.ok(
 			Array.isArray(graph.nodes) &&
