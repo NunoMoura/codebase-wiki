@@ -66,6 +66,42 @@ async function run() {
 		);
 		assert.ok(bootstrapResult?.content, "Bootstrap failed");
 
+		// codewiki_task: progressive refinement/reuse
+		const taskTool = extension.tools.get("codewiki_task");
+		assert.ok(taskTool, "Task tool missing");
+		const firstTask = await taskTool.definition.execute(
+			"task-create-initial",
+			{ repoPath: projectDir, action: "create", tasks: [{ title: "Improve graph UI", priority: "medium", kind: "feature", summary: "Make graph navigation readable.", spec_paths: [".codewiki/kb/product/uis/control-room.md"], code_paths: ["extensions/codewiki/src/adapters/web/control-room.ts"], labels: ["graph", "ui"], goal: { outcome: "Graph navigation is readable.", acceptance: ["Graph renders nodes."], verification: ["Run UI smoke test."] } }], refresh: true },
+			undefined, undefined, ctx,
+		);
+		assert.equal(firstTask.details.created.length, 1);
+		assert.equal(firstTask.details.reused.length, 0);
+		const refinedTask = await taskTool.definition.execute(
+			"task-create-refine",
+			{ repoPath: projectDir, action: "create", tasks: [{ title: "Spread graph nodes", priority: "high", kind: "feature", summary: "Add graph spacing refinements.", spec_paths: [".codewiki/kb/product/uis/control-room.md"], code_paths: ["tests/smoke/control-room.test.mjs"], labels: ["graph", "readability"], goal: { outcome: "Graph nodes have readable spacing.", acceptance: ["Nodes have minimum spacing."], non_goals: ["No graph editing."], verification: ["Run npm test."] }, delta: { desired: "Default graph spacing is readable." } }], refresh: true },
+			undefined, undefined, ctx,
+		);
+		assert.equal(refinedTask.details.created.length, 0);
+		assert.equal(refinedTask.details.reused.length, 1);
+		assert.equal(refinedTask.details.refined.length, 1);
+		assert.equal(refinedTask.details.reused[0].id, firstTask.details.created[0].id);
+		const roadmapAfterRefine = JSON.parse(readFileSync(resolve(projectDir, ".codewiki", "roadmap.json"), "utf8"));
+		const taskOne = roadmapAfterRefine.tasks[firstTask.details.created[0].id];
+		assert.equal(taskOne.priority, "high");
+		assert.ok(taskOne.code_paths.includes("extensions/codewiki/src/adapters/web/control-room.ts"));
+		assert.ok(taskOne.code_paths.includes("tests/smoke/control-room.test.mjs"));
+		assert.ok(taskOne.labels.includes("readability"));
+		assert.ok(taskOne.goal.acceptance.includes("Graph renders nodes."));
+		assert.ok(taskOne.goal.acceptance.includes("Nodes have minimum spacing."));
+		assert.match(taskOne.delta.desired, /Default graph spacing is readable/);
+		const unrelatedTask = await taskTool.definition.execute(
+			"task-create-unrelated",
+			{ repoPath: projectDir, action: "create", tasks: [{ title: "Document API contracts", priority: "medium", kind: "docs", summary: "Improve API docs.", spec_paths: [".codewiki/kb/system/api.md"], labels: ["api"], goal: { outcome: "API docs are clearer.", acceptance: ["API docs mention contract."], verification: ["Review docs."] } }], refresh: true },
+			undefined, undefined, ctx,
+		);
+		assert.equal(unrelatedTask.details.created.length, 1);
+		assert.equal(unrelatedTask.details.reused.length, 0);
+
 		// codewiki_build: feedback
 		const buildTool = extension.tools.get("codewiki_build");
 		assert.ok(buildTool, "Build tool missing");

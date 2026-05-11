@@ -202,13 +202,15 @@ export function summarizeCodewikiTaskAction(result: {
 	canonical_task_ids: string[];
 	created?: { id: string; title: string; status: string }[];
 	reused?: { id: string; title: string; status: string }[];
+	refined?: { id: string; title: string; status: string }[];
 	evidence_recorded?: boolean;
 }): string {
 	const ids = result.canonical_task_ids.join(", ");
 	if (result.action === "create") {
 		const created = result.created?.length ?? 0;
 		const reused = result.reused?.length ?? 0;
-		return `codewiki task: created ${created} and reused ${reused} tasks (${ids})`;
+		const refined = result.refined?.length ?? 0;
+		return `codewiki task: created ${created}, reused ${reused}, refined ${refined} tasks (${ids})`;
 	}
 	const changed = result.changed ? "updated" : "read";
 	const evidence = result.evidence_recorded ? " with evidence" : "";
@@ -496,6 +498,218 @@ export async function maybeRunAutomaticTaskVerifier(
 	}
 }
 
+type RoadmapTaskReuseMatch = {
+	task: RoadmapTaskRecord;
+	score: number;
+	reasons: string[];
+};
+
+const ACTIVE_REUSE_STATUSES = new Set<RoadmapStatus>([
+	"todo",
+	"research",
+	"implement",
+	"verify",
+	"in_progress",
+	"blocked",
+]);
+
+const PRIORITY_RANK: Record<RoadmapPriority, number> = {
+	low: 1,
+	medium: 2,
+	high: 3,
+	critical: 4,
+};
+
+const TASK_REUSE_STOPWORDS = new Set([
+	"a", "an", "and", "are", "as", "be", "by", "can", "for", "from", "has", "have", "in", "into", "is", "it", "its", "new", "of", "on", "or", "our", "should", "so", "that", "the", "their", "this", "to", "use", "user", "users", "we", "when", "with",
+]);
+
+function findRelatedRoadmapTask(roadmap: RoadmapFile, input: RoadmapTaskInput): RoadmapTaskReuseMatch | null {
+	const matches = Object.values(roadmap.tasks)
+		.filter((task) => ACTIVE_REUSE_STATUSES.has(task.status))
+		.map((task) => scoreRoadmapTaskReuse(task, input))
+		.filter(isReusableRoadmapTaskMatch)
+		.sort((a, b) => b.score - a.score || a.task.id.localeCompare(b.task.id));
+	return matches[0] ?? null;
+}
+
+function isReusableRoadmapTaskMatch(match: RoadmapTaskReuseMatch): boolean {
+	if (match.score < 10) return false;
+	const hasLabel = match.reasons.some((reason) => reason.startsWith("labels:"));
+	const hasIntent = match.reasons.includes("title") || match.reasons.some((reason) => reason.startsWith("intent:"));
+	const hasPath = match.reasons.some((reason) => reason.startsWith("spec_paths:") || reason.startsWith("code_paths:") || reason.startsWith("research_ids:"));
+	return hasLabel || hasIntent || (hasPath && match.score >= 18);
+}
+
+function scoreRoadmapTaskReuse(task: RoadmapTaskRecord, input: RoadmapTaskInput): RoadmapTaskReuseMatch {
+	let score = 0;
+	const reasons: string[] = [];
+	const specOverlap = overlapCount(task.spec_paths, input.spec_paths ?? []);
+	if (specOverlap > 0) {
+		score += 10 + specOverlap * 2;
+		reasons.push(`spec_paths:${specOverlap}`);
+	}
+	const codeOverlap = overlapCount(task.code_paths, input.code_paths ?? []);
+	if (codeOverlap > 0) {
+		score += 8 + codeOverlap * 2;
+		reasons.push(`code_paths:${codeOverlap}`);
+	}
+	const labelOverlap = overlapCount(task.labels, input.labels ?? []);
+	if (labelOverlap > 0) {
+		score += 6 + labelOverlap;
+		reasons.push(`labels:${labelOverlap}`);
+	}
+	const researchOverlap = overlapCount(task.research_ids, input.research_ids ?? []);
+	if (researchOverlap > 0) {
+		score += 4 + researchOverlap;
+		reasons.push(`research_ids:${researchOverlap}`);
+	}
+	if (input.kind && task.kind === input.kind) score += 1;
+	const titleRelated = relatedText(task.title, input.title);
+	if (titleRelated) {
+		score += 8;
+		reasons.push("title");
+	}
+	const textScore = tokenJaccard(taskIntentText(task), inputIntentText(input));
+	if (textScore >= 0.35) {
+		score += 8;
+		reasons.push(`intent:${textScore.toFixed(2)}`);
+	} else if (textScore >= 0.25) {
+		score += 5;
+		reasons.push(`intent:${textScore.toFixed(2)}`);
+	} else if (textScore >= 0.18) {
+		score += 3;
+		reasons.push(`intent:${textScore.toFixed(2)}`);
+	}
+	return { task, score, reasons };
+}
+
+function refineRoadmapTaskFromInput(task: RoadmapTaskRecord, input: RoadmapTaskInput, reasons: string[]): boolean {
+	let changed = false;
+	const mergeArray = (current: string[], incoming: string[] | undefined): string[] => {
+		const next = unique([...current, ...(incoming ?? [])]);
+		if (next.join("\0") !== current.join("\0")) changed = true;
+		return next;
+	};
+
+	if (!task.summary.trim() && input.summary?.trim()) {
+		task.summary = input.summary.trim();
+		changed = true;
+	}
+	if (task.kind === "task" && input.kind && input.kind !== task.kind) {
+		task.kind = input.kind;
+		changed = true;
+	}
+	if (input.priority && PRIORITY_RANK[input.priority] > PRIORITY_RANK[task.priority]) {
+		task.priority = input.priority;
+		changed = true;
+	}
+
+	task.spec_paths = mergeArray(task.spec_paths, input.spec_paths);
+	task.code_paths = mergeArray(task.code_paths, input.code_paths);
+	task.research_ids = mergeArray(task.research_ids, input.research_ids);
+	task.labels = mergeArray(task.labels, input.labels);
+
+	if (input.goal?.outcome?.trim()) {
+		const outcome = input.goal.outcome.trim();
+		if (!task.goal.outcome.trim()) {
+			task.goal.outcome = outcome;
+			changed = true;
+		} else if (!includesText(task.goal.outcome, outcome)) {
+			task.delta.desired = appendRefinementText(task.delta.desired, `Additional outcome: ${outcome}`);
+			changed = true;
+		}
+	}
+	if (input.goal?.acceptance) task.goal.acceptance = mergeArray(task.goal.acceptance, input.goal.acceptance);
+	if (input.goal?.non_goals) task.goal.non_goals = mergeArray(task.goal.non_goals, input.goal.non_goals);
+	if (input.goal?.verification) task.goal.verification = mergeArray(task.goal.verification, input.goal.verification);
+
+	if (input.delta?.desired?.trim()) {
+		const next = appendRefinementText(task.delta.desired, input.delta.desired.trim());
+		if (next !== task.delta.desired) { task.delta.desired = next; changed = true; }
+	}
+	if (input.delta?.current?.trim()) {
+		const next = appendRefinementText(task.delta.current, input.delta.current.trim());
+		if (next !== task.delta.current) { task.delta.current = next; changed = true; }
+	}
+	if (input.delta?.closure?.trim()) {
+		const next = appendRefinementText(task.delta.closure, input.delta.closure.trim());
+		if (next !== task.delta.closure) { task.delta.closure = next; changed = true; }
+	}
+
+	if (changed) task.updated = todayIso();
+	void reasons;
+	return changed;
+}
+
+function overlapCount(a: string[], b: string[]): number {
+	const left = new Set(a.map(normalizeMatchText).filter(Boolean));
+	return b.map(normalizeMatchText).filter((item) => left.has(item)).length;
+}
+
+function relatedText(a: string, b: string): boolean {
+	const left = normalizeMatchText(a);
+	const right = normalizeMatchText(b);
+	if (!left || !right) return false;
+	return left === right || (left.length > 10 && right.includes(left)) || (right.length > 10 && left.includes(right));
+}
+
+function tokenJaccard(a: string, b: string): number {
+	const left = new Set(tokenizeIntent(a));
+	const right = new Set(tokenizeIntent(b));
+	if (left.size === 0 || right.size === 0) return 0;
+	let intersection = 0;
+	for (const token of left) if (right.has(token)) intersection++;
+	return intersection / (left.size + right.size - intersection);
+}
+
+function tokenizeIntent(value: string): string[] {
+	return normalizeMatchText(value)
+		.split(" ")
+		.filter((token) => token.length >= 3 && !TASK_REUSE_STOPWORDS.has(token));
+}
+
+function taskIntentText(task: RoadmapTaskRecord): string {
+	return [
+		task.title,
+		task.summary,
+		task.kind,
+		...task.labels,
+		task.goal.outcome,
+		...task.goal.acceptance,
+		task.delta.desired,
+		task.delta.current,
+	].join(" ");
+}
+
+function inputIntentText(input: RoadmapTaskInput): string {
+	return [
+		input.title,
+		input.summary ?? "",
+		input.kind ?? "",
+		...(input.labels ?? []),
+		input.goal?.outcome ?? "",
+		...(input.goal?.acceptance ?? []),
+		input.delta?.desired ?? "",
+		input.delta?.current ?? "",
+	].join(" ");
+}
+
+function appendRefinementText(current: string, incoming: string): string {
+	if (!incoming.trim()) return current;
+	if (!current.trim()) return incoming.trim();
+	if (includesText(current, incoming)) return current;
+	return `${current.trim()}\nRefinement: ${incoming.trim()}`;
+}
+
+function includesText(current: string, incoming: string): boolean {
+	return normalizeMatchText(current).includes(normalizeMatchText(incoming));
+}
+
+function normalizeMatchText(value: string): string {
+	return value.toLowerCase().replace(/[^a-z0-9./_-]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
 /**
  * Append tasks to the roadmap.
  */
@@ -505,10 +719,10 @@ export async function appendRoadmapTasks(
 	_ctx: unknown,
 	inputs: RoadmapTaskInput[],
 	options: { refresh?: boolean } = {},
-): Promise<{ created: RoadmapTaskRecord[]; reused: RoadmapTaskRecord[] }> {
+): Promise<{ created: RoadmapTaskRecord[]; reused: RoadmapTaskRecord[]; refined: RoadmapTaskRecord[] }> {
 	const roadmapPath = resolve(project.root, project.roadmapPath);
-	const results: { created: RoadmapTaskRecord[]; reused: RoadmapTaskRecord[] } =
-		{ created: [], reused: [] };
+	const results: { created: RoadmapTaskRecord[]; reused: RoadmapTaskRecord[]; refined: RoadmapTaskRecord[] } =
+		{ created: [], reused: [], refined: [] };
 
 	await withLockedPaths(
 		roadmapMutationTargetPaths(project, options),
@@ -519,7 +733,48 @@ export async function appendRoadmapTasks(
 			for (const input of inputs) {
 				const existing = resolveRoadmapTask(roadmap, input.id ?? "");
 				if (existing) {
+					const refined = refineRoadmapTaskFromInput(existing, input, ["explicit_id"]);
 					results.reused.push(existing);
+					if (refined) results.refined.push(existing);
+					if (refined) {
+						await appendProjectEvent(project, {
+							ts: nowIso(),
+							kind: "roadmap_task_refined",
+							taskId: existing.id,
+							title: existing.title,
+							reasons: ["explicit_id"],
+						});
+						await appendRoadmapEvent(project, {
+							ts: nowIso(),
+							action: "refine",
+							taskId: existing.id,
+							title: existing.title,
+						});
+					}
+					continue;
+				}
+
+				const related = findRelatedRoadmapTask(roadmap, input);
+				if (related) {
+					const refined = refineRoadmapTaskFromInput(related.task, input, related.reasons);
+					results.reused.push(related.task);
+					if (refined) results.refined.push(related.task);
+					if (refined) {
+						await appendProjectEvent(project, {
+							ts: nowIso(),
+							kind: "roadmap_task_refined",
+							taskId: related.task.id,
+							title: related.task.title,
+							reasons: related.reasons,
+						});
+						await appendRoadmapEvent(project, {
+							ts: nowIso(),
+							action: "refine",
+							taskId: related.task.id,
+							title: related.task.title,
+							reasons: related.reasons,
+						});
+					}
 					continue;
 				}
 

@@ -221,7 +221,7 @@ export async function executeCodewikiTask(
 		const result = await createCodewikiTasks(project, input.tasks, piTaskPorts(ctx));
 		const details = {
 			action: "create" as const,
-			changed: result.created.length > 0,
+			changed: result.created.length > 0 || result.refined.length > 0,
 			canonical_task_ids: [...result.created, ...result.reused].map(
 				(task) => task.id,
 			),
@@ -231,6 +231,11 @@ export async function executeCodewikiTask(
 				status: task.status,
 			})),
 			reused: result.reused.map((task) => ({
+				id: task.id,
+				title: task.title,
+				status: task.status,
+			})),
+			refined: result.refined.map((task) => ({
 				id: task.id,
 				title: task.title,
 				status: task.status,

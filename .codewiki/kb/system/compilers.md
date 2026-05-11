@@ -55,6 +55,7 @@ The documentation loop should:
 - update the owning knowledge files,
 - preserve product/system boundaries,
 - create or update roadmap work items when implementation work is needed,
+- prefer refining related active roadmap tasks and sprint scope over creating duplicate tasks,
 - avoid duplicating full requirements in the roadmap,
 - validate horizontal and vertical alignment before handoff.
 
@@ -79,6 +80,7 @@ Compilers should remain deterministic handoff producers. They should not own aut
 
 A change can originate in any layer:
 
+- product intent can progressively refine existing knowledge, active sprint scope, and active roadmap tasks,
 - product intent can propagate to system docs and code,
 - system architecture changes can propagate to file structure and code,
 - code changes can create documentation drift,

@@ -23,6 +23,8 @@ The roadmap is not the long-term archive. Git preserves full historical task sta
 
 The roadmap is not the requirements brief. Requirements live in accepted builds and durable knowledge. Roadmap items reference those sources and track execution state.
 
+Roadmap work is progressively refined. When new user intent arrives, agents and API callers should first inspect active tasks and active sprint scope for related intent before creating new work. If an active task already covers the same spec paths, code paths, labels, or intent, the request should refine that task and its owning knowledge/sprint context instead of spawning a duplicate. A new task is appropriate when the intent is unrelated, when the existing work is closed or cancelled and no explicit task id was provided, or when the user intentionally asks for separate tracking.
+
 Gated agency uses roadmap state as work truth. The graph derives scoped views, queue order, and next-action routing, while the agency controller owns budgets, stop conditions, and autonomous step orchestration.
 
 ## Sprint contents
@@ -58,7 +60,7 @@ A roadmap work item should record:
 - progress/evidence refs,
 - closure reason.
 
-It should not duplicate full feedback, documentation, or implementation briefs.
+It should not duplicate full feedback, documentation, or implementation briefs. Refinement should be additive and concise: merge new source paths, labels, acceptance, non-goals, verification, and delta details while preserving the task id and existing closure criteria.
 
 Roadmap ownership is durable work ownership. Parallel execution ownership belongs to scoped change claims: a session can temporarily claim affected knowledge paths, roadmap task state, build refs, validation refs, or code paths while the roadmap item continues to describe why the work exists and how it closes.
 

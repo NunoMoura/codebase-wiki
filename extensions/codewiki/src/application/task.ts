@@ -27,7 +27,7 @@ export async function createCodewikiTasks(
 	project: WikiProject,
 	inputs: RoadmapTaskInput[],
 	ports: TaskMutationPorts,
-): Promise<{ created: RoadmapTaskRecord[]; reused: RoadmapTaskRecord[] }> {
+): Promise<{ created: RoadmapTaskRecord[]; reused: RoadmapTaskRecord[]; refined: RoadmapTaskRecord[] }> {
 	const result = await appendRoadmapTasks(null as any, project, null as any, inputs, { refresh: false });
 	await ports.rebuildRunner.run(project);
 	return result;

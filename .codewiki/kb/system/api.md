@@ -57,6 +57,7 @@ All access surfaces must preserve the same `.codewiki/` semantics.
 - Product/system changes flow through feedback and documentation loops.
 - Code/test changes flow through implementation loops.
 - Roadmap changes record work truth, not full requirements briefs.
+- Roadmap task creation must check active work for related intent and refine matching tasks before creating duplicates.
 - Parallel sessions should use scoped change claims before non-trivial overlapping documentation, roadmap, build, validation, or code edits.
 - Claims are temporary coordination leases; they do not replace roadmap tasks, builds, validation, git, or code review.
 - Gated agency runs must respect token, time, cost, write, session, risk, validation, policy, and approval gates.

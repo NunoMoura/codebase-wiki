@@ -57,6 +57,8 @@ Do not create empty adapter implementations before they are needed. Keep the str
 
 Packaged CodeWiki skills are adapter-facing workflow guidance for agents. They should remain progressive-disclosure prompts that route work into the same API and loop model.
 
+Adapter guidance should reinforce progressive refinement: before creating a roadmap task, agents should inspect active tasks and sprints for related intent, update the owning knowledge or task when one exists, and create new work only for genuinely distinct outcomes.
+
 Global third-party skills should not mutate CodeWiki state unless adapted to the CodeWiki contract. General engineering skills are acceptable when they do not override CodeWiki knowledge, roadmap, build, validation, claim, or graph semantics.
 
 ## Rules
