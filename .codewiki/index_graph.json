@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-11T07:52:49.580Z",
+  "generated_at": "2026-05-11T07:56:50.637Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -15,7 +15,7 @@
       "kind": "code_path",
       "path": ".codewiki/kb",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/product/overview.md",
@@ -30,7 +30,7 @@
       "kind": "code_path",
       "path": ".codewiki/kb/product",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/product/stories/automation.md",
@@ -104,7 +104,7 @@
       "kind": "code_path",
       "path": "skills/codewiki/SKILL.md",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "code:extensions/codewiki/src/adapters/pi/ui",
@@ -126,7 +126,7 @@
       "kind": "code_path",
       "path": "scripts/smoke-test.mjs",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "code:scripts/check-architecture.mjs",
@@ -154,6 +154,21 @@
       "id": "code:extensions/codewiki/src/adapters/pi/ui/manager.ts",
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters/pi/ui/manager.ts",
+      "layer": "code",
+      "alignment_state": "aligned"
+    },
+    {
+      "id": "doc:.codewiki/kb/product/uis/control-room.md",
+      "kind": "doc",
+      "path": ".codewiki/kb/product/uis/control-room.md",
+      "title": "Control Room UI",
+      "doc_type": "spec",
+      "group": ".codewiki"
+    },
+    {
+      "id": "code:extensions/codewiki/src/adapters/pi/commands",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/adapters/pi/commands",
       "layer": "code",
       "alignment_state": "aligned"
     },
@@ -186,14 +201,14 @@
       "kind": "code_path",
       "path": "skills",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "code:extensions/codewiki",
       "kind": "code_path",
       "path": "extensions/codewiki",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/product/users/external-users.md",
@@ -246,7 +261,7 @@
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/system/agency.md",
@@ -268,7 +283,7 @@
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters/pi",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/system/api.md",
@@ -323,6 +338,21 @@
       "group": ".codewiki"
     },
     {
+      "id": "doc:.codewiki/kb/system/control-room-ui.md",
+      "kind": "doc",
+      "path": ".codewiki/kb/system/control-room-ui.md",
+      "title": "Control Room UI",
+      "doc_type": "spec",
+      "group": ".codewiki"
+    },
+    {
+      "id": "code:extensions/codewiki/src/infrastructure",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/infrastructure",
+      "layer": "code",
+      "alignment_state": "aligned"
+    },
+    {
       "id": "doc:.codewiki/kb/system/extension.md",
       "kind": "doc",
       "path": ".codewiki/kb/system/extension.md",
@@ -368,13 +398,6 @@
       "alignment_state": "aligned"
     },
     {
-      "id": "code:extensions/codewiki/src/infrastructure",
-      "kind": "code_path",
-      "path": "extensions/codewiki/src/infrastructure",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
       "id": "doc:.codewiki/kb/system/knowledge.md",
       "kind": "doc",
       "path": ".codewiki/kb/system/knowledge.md",
@@ -403,14 +426,14 @@
       "kind": "code_path",
       "path": ".codewiki/roadmap.json",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "code:.codewiki/roadmap",
       "kind": "code_path",
       "path": ".codewiki/roadmap",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/system/validation-gateway.md",
@@ -826,7 +849,7 @@
       "kind": "code_path",
       "path": "extensions/codewiki/src/adapters/pi/index.ts",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "code:extensions/codewiki/src/adapters/pi/schemas.ts",
@@ -1532,122 +1555,6 @@
       "path": "TASK-060"
     },
     {
-      "id": "claim:CLAIM-006",
-      "kind": "change_claim",
-      "claim_id": "CLAIM-006",
-      "session_id": "019e09f7-8fbf-7118-b60f-e67bffd0b94a",
-      "agent_name": "Marten",
-      "mode": "write",
-      "status": "active",
-      "summary": "Implement TASK-058 standalone local Control Room shell",
-      "expires_at": "2026-05-11T09:11:35.216Z",
-      "scopes": [
-        {
-          "layer": "code",
-          "path": "extensions/codewiki/src/adapters/web/**"
-        },
-        {
-          "layer": "code",
-          "path": "extensions/codewiki/src/adapters/pi/commands/**"
-        },
-        {
-          "layer": "code",
-          "path": "extensions/codewiki/src/adapters/pi/index.ts"
-        },
-        {
-          "layer": "code",
-          "path": "tests/smoke/**"
-        },
-        {
-          "layer": "roadmap",
-          "task_id": "TASK-058"
-        },
-        {
-          "layer": "build",
-          "path": ".codewiki/builds/implementation/**"
-        }
-      ]
-    },
-    {
-      "id": "claim_scope:extensions/codewiki/src/adapters/web/**",
-      "kind": "change_claim_scope",
-      "path": "extensions/codewiki/src/adapters/web/**"
-    },
-    {
-      "id": "claim_scope:extensions/codewiki/src/adapters/pi/commands/**",
-      "kind": "change_claim_scope",
-      "path": "extensions/codewiki/src/adapters/pi/commands/**"
-    },
-    {
-      "id": "claim_scope:extensions/codewiki/src/adapters/pi/index.ts",
-      "kind": "change_claim_scope",
-      "path": "extensions/codewiki/src/adapters/pi/index.ts"
-    },
-    {
-      "id": "claim_scope:tests/smoke/**",
-      "kind": "change_claim_scope",
-      "path": "tests/smoke/**"
-    },
-    {
-      "id": "claim_scope:TASK-058",
-      "kind": "change_claim_scope",
-      "path": "TASK-058"
-    },
-    {
-      "id": "claim_scope:.codewiki/builds/implementation/**",
-      "kind": "change_claim_scope",
-      "path": ".codewiki/builds/implementation/**"
-    },
-    {
-      "id": "claim:CLAIM-005",
-      "kind": "change_claim",
-      "claim_id": "CLAIM-005",
-      "session_id": "019e09f7-8fbf-7118-b60f-e67bffd0b94a",
-      "agent_name": "Marten",
-      "mode": "write",
-      "status": "active",
-      "summary": "Document and roadmap standalone CodeWiki Control Room UI plan",
-      "expires_at": "2026-05-11T09:03:15.989Z",
-      "scopes": [
-        {
-          "layer": "knowledge",
-          "path": ".codewiki/kb/product/uis/**"
-        },
-        {
-          "layer": "knowledge",
-          "path": ".codewiki/kb/system/**"
-        },
-        {
-          "layer": "roadmap",
-          "path": ".codewiki/roadmap.json"
-        },
-        {
-          "layer": "build",
-          "path": ".codewiki/builds/**"
-        }
-      ]
-    },
-    {
-      "id": "claim_scope:.codewiki/kb/product/uis/**",
-      "kind": "change_claim_scope",
-      "path": ".codewiki/kb/product/uis/**"
-    },
-    {
-      "id": "claim_scope:.codewiki/kb/system/**",
-      "kind": "change_claim_scope",
-      "path": ".codewiki/kb/system/**"
-    },
-    {
-      "id": "claim_scope:.codewiki/roadmap.json",
-      "kind": "change_claim_scope",
-      "path": ".codewiki/roadmap.json"
-    },
-    {
-      "id": "claim_scope:.codewiki/builds/**",
-      "kind": "change_claim_scope",
-      "path": ".codewiki/builds/**"
-    },
-    {
       "id": "validation:.codewiki/validation/2026-05-09-documentation-pass.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-09-documentation-pass.json",
@@ -2063,6 +1970,51 @@
     },
     {
       "kind": "doc_link",
+      "from": "doc:.codewiki/kb/product/uis/control-room.md",
+      "to": "doc:.codewiki/kb/product/uis/board.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/product/uis/control-room.md",
+      "to": "doc:.codewiki/kb/product/uis/graph-navigation.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/product/uis/control-room.md",
+      "to": "doc:.codewiki/kb/product/uis/status-panel.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/product/uis/control-room.md",
+      "to": "doc:.codewiki/kb/system/adapters.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/product/uis/control-room.md",
+      "to": "doc:.codewiki/kb/system/api.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/product/uis/control-room.md",
+      "to": "doc:.codewiki/kb/system/control-room-ui.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/product/uis/control-room.md",
+      "to": "doc:.codewiki/kb/system/graph.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.codewiki/kb/product/uis/control-room.md",
+      "to": "code:extensions/codewiki/src/adapters/web"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.codewiki/kb/product/uis/control-room.md",
+      "to": "code:extensions/codewiki/src/adapters/pi/commands"
+    },
+    {
+      "kind": "doc_link",
       "from": "doc:.codewiki/kb/product/uis/graph-navigation.md",
       "to": "doc:.codewiki/kb/product/stories/navigation.md"
     },
@@ -2395,6 +2347,61 @@
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/system/compilers.md",
       "to": "code:skills/codewiki-implementation/SKILL.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "doc:.codewiki/kb/product/uis/control-room.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "doc:.codewiki/kb/product/uis/graph-navigation.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "doc:.codewiki/kb/product/uis/status-panel.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "doc:.codewiki/kb/system/adapters.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "doc:.codewiki/kb/system/api.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "doc:.codewiki/kb/system/extension.md"
+    },
+    {
+      "kind": "doc_link",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "doc:.codewiki/kb/system/graph.md"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "code:extensions/codewiki/src/adapters/web"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "code:extensions/codewiki/src/adapters/pi/commands"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "code:extensions/codewiki/src/application"
+    },
+    {
+      "kind": "doc_code_path",
+      "from": "doc:.codewiki/kb/system/control-room-ui.md",
+      "to": "code:extensions/codewiki/src/infrastructure"
     },
     {
       "kind": "doc_link",
@@ -3852,61 +3859,6 @@
       "to": "closure:TASK-060"
     },
     {
-      "kind": "claim_task",
-      "from": "claim:CLAIM-006",
-      "to": "task:TASK-058"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-006",
-      "to": "claim_scope:extensions/codewiki/src/adapters/web/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-006",
-      "to": "claim_scope:extensions/codewiki/src/adapters/pi/commands/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-006",
-      "to": "claim_scope:extensions/codewiki/src/adapters/pi/index.ts"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-006",
-      "to": "claim_scope:tests/smoke/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-006",
-      "to": "claim_scope:TASK-058"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-006",
-      "to": "claim_scope:.codewiki/builds/implementation/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-005",
-      "to": "claim_scope:.codewiki/kb/product/uis/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-005",
-      "to": "claim_scope:.codewiki/kb/system/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-005",
-      "to": "claim_scope:.codewiki/roadmap.json"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-005",
-      "to": "claim_scope:.codewiki/builds/**"
-    },
-    {
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-09-task-035-close-pass.json",
       "to": "task:TASK-035"
@@ -3988,6 +3940,7 @@
         ".codewiki/kb/product/stories/navigation.md",
         ".codewiki/kb/product/stories/sanitation.md",
         ".codewiki/kb/product/uis/board.md",
+        ".codewiki/kb/product/uis/control-room.md",
         ".codewiki/kb/product/uis/graph-navigation.md",
         ".codewiki/kb/product/uis/status-panel.md",
         ".codewiki/kb/product/users/agents.md",
@@ -3999,6 +3952,7 @@
         ".codewiki/kb/system/api.md",
         ".codewiki/kb/system/builds.md",
         ".codewiki/kb/system/compilers.md",
+        ".codewiki/kb/system/control-room-ui.md",
         ".codewiki/kb/system/extension.md",
         ".codewiki/kb/system/file-structure.md",
         ".codewiki/kb/system/graph.md",
@@ -4016,6 +3970,7 @@
         ".codewiki/kb/product/stories/navigation.md",
         ".codewiki/kb/product/stories/sanitation.md",
         ".codewiki/kb/product/uis/board.md",
+        ".codewiki/kb/product/uis/control-room.md",
         ".codewiki/kb/product/uis/graph-navigation.md",
         ".codewiki/kb/product/uis/status-panel.md",
         ".codewiki/kb/product/users/agents.md",
@@ -4027,6 +3982,7 @@
         ".codewiki/kb/system/api.md",
         ".codewiki/kb/system/builds.md",
         ".codewiki/kb/system/compilers.md",
+        ".codewiki/kb/system/control-room-ui.md",
         ".codewiki/kb/system/extension.md",
         ".codewiki/kb/system/file-structure.md",
         ".codewiki/kb/system/graph.md",
@@ -4047,6 +4003,7 @@
           ".codewiki/kb/product/stories/navigation.md",
           ".codewiki/kb/product/stories/sanitation.md",
           ".codewiki/kb/product/uis/board.md",
+          ".codewiki/kb/product/uis/control-room.md",
           ".codewiki/kb/product/uis/graph-navigation.md",
           ".codewiki/kb/product/uis/status-panel.md",
           ".codewiki/kb/product/users/agents.md",
@@ -4060,6 +4017,7 @@
           ".codewiki/kb/system/api.md",
           ".codewiki/kb/system/builds.md",
           ".codewiki/kb/system/compilers.md",
+          ".codewiki/kb/system/control-room-ui.md",
           ".codewiki/kb/system/extension.md",
           ".codewiki/kb/system/file-structure.md",
           ".codewiki/kb/system/graph.md",
@@ -4276,6 +4234,7 @@
         "extensions/codewiki/index.ts",
         "extensions/codewiki/src/adapters",
         "extensions/codewiki/src/adapters/pi",
+        "extensions/codewiki/src/adapters/pi/commands",
         "extensions/codewiki/src/adapters/pi/index.ts",
         "extensions/codewiki/src/adapters/pi/schemas.ts",
         "extensions/codewiki/src/adapters/pi/tools/**",
@@ -4309,100 +4268,14 @@
         "skills/codewiki/SKILL.md"
       ],
       "dirty_paths": [
-        ".codewiki/kb/lexicon.md",
-        ".codewiki/kb/product/overview.md",
-        ".codewiki/kb/product/uis/board.md",
-        ".codewiki/kb/product/uis/graph-navigation.md",
-        ".codewiki/kb/product/uis/status-panel.md",
-        ".codewiki/kb/system/adapters.md",
-        ".codewiki/kb/system/api.md",
-        ".codewiki/kb/system/architecture.mmd",
-        ".codewiki/kb/system/extension.md",
-        ".codewiki/kb/system/file-structure.md",
-        ".codewiki/kb/system/graph.md",
-        ".codewiki/kb/system/overview.md",
-        ".codewiki/roadmap.json",
-        ".codewiki/roadmap/archive.jsonl",
-        "README.md",
-        "codewiki/index_graph.json",
-        "extensions/codewiki/src/adapters/pi/index.ts",
-        "scripts/smoke-test.mjs",
-        "skills/codewiki/SKILL.md"
+        "codewiki/index_graph.json"
       ]
     },
     "claims": {
-      "active_claim_count": 2,
+      "active_claim_count": 0,
       "warning_count": 0,
       "conflict_count": 0,
-      "claims": [
-        {
-          "id": "CLAIM-006",
-          "session_id": "019e09f7-8fbf-7118-b60f-e67bffd0b94a",
-          "agent_name": "Marten",
-          "status": "active",
-          "mode": "write",
-          "summary": "Implement TASK-058 standalone local Control Room shell",
-          "task_id": "TASK-058",
-          "scopes": [
-            {
-              "layer": "code",
-              "path": "extensions/codewiki/src/adapters/web/**"
-            },
-            {
-              "layer": "code",
-              "path": "extensions/codewiki/src/adapters/pi/commands/**"
-            },
-            {
-              "layer": "code",
-              "path": "extensions/codewiki/src/adapters/pi/index.ts"
-            },
-            {
-              "layer": "code",
-              "path": "tests/smoke/**"
-            },
-            {
-              "layer": "roadmap",
-              "task_id": "TASK-058"
-            },
-            {
-              "layer": "build",
-              "path": ".codewiki/builds/implementation/**"
-            }
-          ],
-          "created_at": "2026-05-11T07:11:35Z",
-          "updated_at": "2026-05-11T07:11:35Z",
-          "expires_at": "2026-05-11T09:11:35.216Z"
-        },
-        {
-          "id": "CLAIM-005",
-          "session_id": "019e09f7-8fbf-7118-b60f-e67bffd0b94a",
-          "agent_name": "Marten",
-          "status": "active",
-          "mode": "write",
-          "summary": "Document and roadmap standalone CodeWiki Control Room UI plan",
-          "scopes": [
-            {
-              "layer": "knowledge",
-              "path": ".codewiki/kb/product/uis/**"
-            },
-            {
-              "layer": "knowledge",
-              "path": ".codewiki/kb/system/**"
-            },
-            {
-              "layer": "roadmap",
-              "path": ".codewiki/roadmap.json"
-            },
-            {
-              "layer": "build",
-              "path": ".codewiki/builds/**"
-            }
-          ],
-          "created_at": "2026-05-11T07:03:15Z",
-          "updated_at": "2026-05-11T07:03:15Z",
-          "expires_at": "2026-05-11T09:03:15.989Z"
-        }
-      ],
+      "claims": [],
       "conflicts": []
     },
     "scope_views": {
@@ -5147,10 +5020,10 @@
       }
     },
     "workflow_cursor": {
-      "active_loop": "documentation",
-      "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-      "expected_output": "documentation_build",
-      "exit_gate": "validation pass or explicit user decision",
+      "active_loop": "observe",
+      "reason": "No reconciliation item currently requires a compiler loop.",
+      "expected_output": "observation",
+      "exit_gate": "no drift",
       "scope": {
         "kind": "roadmap"
       }
@@ -5169,10 +5042,7 @@
           "sprint_ids": [],
           "build_paths": [],
           "validation_paths": [],
-          "claim_ids": [
-            "CLAIM-006",
-            "CLAIM-005"
-          ]
+          "claim_ids": []
         },
         "warm": {
           "build_paths": [
@@ -5321,171 +5191,25 @@
       "version": 1,
       "controller": "reconciliation_gateway",
       "model": "graph-backed-state-machine",
-      "items": [
-        {
-          "id": "reconcile:code:.codewiki/kb",
-          "source_id": "code:.codewiki/kb",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/lexicon.md",
-            ".codewiki/kb/system/file-structure.md",
-            ".codewiki/kb/system/knowledge.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:.codewiki/kb/product",
-          "source_id": "code:.codewiki/kb/product",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/product/overview.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:skills/codewiki/SKILL.md",
-          "source_id": "code:skills/codewiki/SKILL.md",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/product/stories/navigation.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:scripts/smoke-test.mjs",
-          "source_id": "code:scripts/smoke-test.mjs",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/product/stories/sanitation.md",
-            ".codewiki/kb/product/users/maintainers.md",
-            ".codewiki/kb/system/extension.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:skills",
-          "source_id": "code:skills",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/product/users/agents.md",
-            ".codewiki/kb/product/users/external-users.md",
-            ".codewiki/kb/system/adapters.md",
-            ".codewiki/kb/system/extension.md",
-            ".codewiki/kb/system/overview.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:extensions/codewiki",
-          "source_id": "code:extensions/codewiki",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/product/users/agents.md",
-            ".codewiki/kb/system/file-structure.md",
-            ".codewiki/kb/system/overview.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:extensions/codewiki/src/adapters",
-          "source_id": "code:extensions/codewiki/src/adapters",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/system/adapters.md",
-            ".codewiki/kb/system/api.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:extensions/codewiki/src/adapters/pi",
-          "source_id": "code:extensions/codewiki/src/adapters/pi",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/system/agency.md",
-            ".codewiki/kb/system/extension.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:.codewiki/roadmap.json",
-          "source_id": "code:.codewiki/roadmap.json",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/system/roadmap.md"
-          ]
-        },
-        {
-          "id": "reconcile:code:.codewiki/roadmap",
-          "source_id": "code:.codewiki/roadmap",
-          "state": "drift",
-          "direction": "upward",
-          "from_layer": "code",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-          "doc_paths": [
-            ".codewiki/kb/system/roadmap.md"
-          ]
-        }
-      ],
-      "counts_by_loop": {
-        "documentation": 10
-      },
+      "items": [],
+      "counts_by_loop": {},
       "next_action": {
-        "loop": "documentation",
-        "command": "Run documentation compiler",
-        "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-        "item_id": "reconcile:code:.codewiki/kb"
+        "loop": "observe",
+        "command": "Observe — graph aligned",
+        "reason": "No reconciliation item currently requires a compiler loop."
       },
       "layer_states": {
         "intent": "aligned",
-        "knowledge": "drift",
+        "knowledge": "aligned",
         "roadmap": "aligned",
-        "code": "drift",
+        "code": "aligned",
         "validation": "aligned"
       }
     }
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-11T07:52:49.586Z",
+      "generated_at": "2026-05-11T07:56:50.642Z",
       "counts": {
         "large-doc": 2
       },
@@ -5506,7 +5230,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-11T07:52:49Z",
+      "generated_at": "2026-05-11T07:56:50Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -7753,7 +7477,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-11T07:52:49Z",
+      "generated_at": "2026-05-11T07:56:50Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -7766,9 +7490,9 @@
         "total_issues": 2
       },
       "summary": {
-        "total_specs": 11,
-        "mapped_specs": 11,
-        "aligned_specs": 24,
+        "total_specs": 12,
+        "mapped_specs": 12,
+        "aligned_specs": 26,
         "tracked_specs": 0,
         "untracked_specs": 2,
         "blocked_specs": 0,
@@ -7792,8 +7516,8 @@
         },
         "spec_mapping": {
           "label": "Spec Mapping",
-          "value": 11,
-          "total": 11,
+          "value": 12,
+          "total": 12,
           "percent": 100
         }
       },
@@ -7814,16 +7538,15 @@
         "active_sprint_ids": []
       },
       "next_step": {
-        "kind": "reconciliation:documentation",
-        "command": "Run documentation compiler",
-        "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-        "item_id": "reconcile:code:.codewiki/kb"
+        "kind": "status",
+        "command": "/wiki-status",
+        "reason": "2 untracked spec drift needs inspection through the canonical status surface."
       },
       "workflow_cursor": {
-        "active_loop": "documentation",
-        "reason": "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-        "expected_output": "documentation_build",
-        "exit_gate": "validation pass or explicit user decision",
+        "active_loop": "observe",
+        "reason": "No reconciliation item currently requires a compiler loop.",
+        "expected_output": "observation",
+        "exit_gate": "no drift",
         "scope": {
           "kind": "roadmap"
         }
@@ -7842,10 +7565,7 @@
             "sprint_ids": [],
             "build_paths": [],
             "validation_paths": [],
-            "claim_ids": [
-              "CLAIM-006",
-              "CLAIM-005"
-            ]
+            "claim_ids": []
           },
           "warm": {
             "build_paths": [
@@ -7991,10 +7711,10 @@
         ]
       },
       "direction": [
-        "Mapped code changed without open roadmap coverage; reconcile upward into knowledge or feedback if intent is unclear.",
-        "Parallel sessions: 0 active, 0 collision task(s), 2 active claim(s), 0 claim conflict(s).",
+        "2 untracked spec drift needs inspection through the canonical status surface.",
+        "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s).",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
-        "Mapped specs: 11/11.",
+        "Mapped specs: 12/12.",
         "Tracked drift coverage: 0/2."
       ],
       "specs": [
@@ -8159,6 +7879,26 @@
             "status": "done",
             "title": "Keep roadmap as freshest delta log"
           },
+          "revision": {},
+          "note": "no deterministic drift signals"
+        },
+        {
+          "path": ".codewiki/kb/product/uis/control-room.md",
+          "title": "Control Room UI",
+          "summary": "Product expectations for the standalone local CodeWiki control room experience.",
+          "drift_status": "aligned",
+          "code_paths": [
+            "extensions/codewiki/src/adapters/web",
+            "extensions/codewiki/src/adapters/pi/commands"
+          ],
+          "code_area": "extensions +1 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [],
+          "primary_task": null,
           "revision": {},
           "note": "no deterministic drift signals"
         },
@@ -8424,6 +8164,28 @@
           "note": "no deterministic drift signals"
         },
         {
+          "path": ".codewiki/kb/system/control-room-ui.md",
+          "title": "Control Room UI",
+          "summary": "Standalone local web UI and hosting surface for the CodeWiki control room.",
+          "drift_status": "aligned",
+          "code_paths": [
+            "extensions/codewiki/src/adapters/web",
+            "extensions/codewiki/src/adapters/pi/commands",
+            "extensions/codewiki/src/application",
+            "extensions/codewiki/src/infrastructure"
+          ],
+          "code_area": "extensions +3 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [],
+          "primary_task": null,
+          "revision": {},
+          "note": "no deterministic drift signals"
+        },
+        {
           "path": ".codewiki/kb/system/extension.md",
           "title": "Extension",
           "summary": "Packaged CodeWiki distribution, current Pi extension surface, and Control Room launch integration.",
@@ -8627,7 +8389,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-11T07:52:49Z",
+        "generated_at": "2026-05-11T07:56:50Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -8655,68 +8417,53 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-11T07:52:49Z",
+            "checked_at": "2026-05-11T07:56:50Z",
             "revision": {
               "git": {
-                "head": "7444eeb68f26fd6a494851f5b29097572299f56b",
-                "dirty": true,
-                "dirty_paths": [
-                  ".codewiki/kb/lexicon.md",
-                  ".codewiki/kb/product/overview.md",
-                  ".codewiki/kb/product/uis/board.md",
-                  ".codewiki/kb/product/uis/graph-navigation.md",
-                  ".codewiki/kb/product/uis/status-panel.md",
-                  ".codewiki/kb/system/adapters.md",
-                  ".codewiki/kb/system/api.md",
-                  ".codewiki/kb/system/architecture.mmd",
-                  ".codewiki/kb/system/extension.md",
-                  ".codewiki/kb/system/file-structure.md",
-                  ".codewiki/kb/system/graph.md",
-                  ".codewiki/kb/system/overview.md",
-                  ".codewiki/roadmap.json",
-                  ".codewiki/roadmap/archive.jsonl",
-                  "extensions/codewiki/src/adapters/pi/index.ts",
-                  "scripts/smoke-test.mjs",
-                  "skills/codewiki/SKILL.md"
-                ],
+                "head": "e225e24085b26ce08c6aa10d8bce289d18a7cf38",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "71baaf095caabe8670e7d2cb1fd94ee9702208de",
+                  ".codewiki/index_graph.json": "72da9e194955d0359152c455d68eb07a98522b0a",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
-                  ".codewiki/kb/product/overview.md": "ca1c24bb224268572d0e97afa45db739b7af62d7",
+                  ".codewiki/kb/product/overview.md": "51a6923ec5ddaa491bf131b549e6acecb8e85909",
                   ".codewiki/kb/product/stories/automation.md": "71c91b399888fe326da546c260567bef30073c55",
                   ".codewiki/kb/product/stories/drift.md": "4f923efb7817b00de4e3a661bd56481d40f91d4d",
                   ".codewiki/kb/product/stories/intent.md": "68344cd92f8452d9fa1323f7f7cadbd68ca19e8f",
                   ".codewiki/kb/product/stories/navigation.md": "9ad9b9c0f29c355f476617679368da4f105f4f8b",
                   ".codewiki/kb/product/stories/sanitation.md": "763c72c21222e585fadfed7cf09ccd649e3e1512",
-                  ".codewiki/kb/product/uis/board.md": "0efce9cb9a01aab4980f19c79ce000bac09c5e51",
-                  ".codewiki/kb/product/uis/graph-navigation.md": "5aeb787894701adbf7c27ba0670b3a26bc73fc21",
-                  ".codewiki/kb/product/uis/status-panel.md": "fe5506dadbcfe23fd687abb927eee7a29e3e6936",
+                  ".codewiki/kb/product/uis/board.md": "084eced67db301cc5f11e6d831ab7a12ea2c49a9",
+                  ".codewiki/kb/product/uis/control-room.md": "7a696510a851df881d4ac8c5f6ef8f8de46554ec",
+                  ".codewiki/kb/product/uis/graph-navigation.md": "d010f0be2b4a6dde734c9e0b112602e3235355b1",
+                  ".codewiki/kb/product/uis/status-panel.md": "0ce74ad961250fd23537e4e71cd56d32e9ca4600",
                   ".codewiki/kb/product/users/agents.md": "bbe8e5c8d5e525182b29a961537bf75e41a4ff0b",
                   ".codewiki/kb/product/users/external-users.md": "6fa169f4e72984edc74cc3dbeca8d7657fccd633",
                   ".codewiki/kb/product/users/maintainers.md": "6b48e26d5f0cf5fa9a35c703af37c87ba91d6047",
                   ".codewiki/kb/product/users/package-authors.md": "81d5d10b01cb961753ff46364e1fd471f0c9b1bf",
-                  ".codewiki/kb/system/adapters.md": "8303572014c5286c00b2604cd76ee4f2470099c5",
+                  ".codewiki/kb/system/adapters.md": "3d49aa440303f88027231494d9c45c1d71974653",
                   ".codewiki/kb/system/agency.md": "0c562d69bdd9113090944bc4862672b75c44230c",
-                  ".codewiki/kb/system/api.md": "1f4e977ec056217353d80e4a1bac819cd88fb72a",
+                  ".codewiki/kb/system/api.md": "d699da2bb3af11fd5388cd4fb2911ee4fce1e1fa",
                   ".codewiki/kb/system/builds.md": "ed28a87fdee173a1e83a1f4ef1bc671f3c31f1a9",
                   ".codewiki/kb/system/compilers.md": "0fa593c7954a5bba9684601dd2cd2be56b695b90",
-                  ".codewiki/kb/system/extension.md": "095c0f865cdb99021c89fb00a2a657469a507276",
-                  ".codewiki/kb/system/file-structure.md": "2f7af07f00e11b304f019d5ee5cc40ed6509af5a",
-                  ".codewiki/kb/system/graph.md": "0ba19ba6ec063a50a908a40f67d7025a5577dfdf",
+                  ".codewiki/kb/system/control-room-ui.md": "5b456f72270d5f0855d880d0e2f8c3b7ab7fec4e",
+                  ".codewiki/kb/system/extension.md": "a3df58be836abb83edb566e0e4273ceac912a2af",
+                  ".codewiki/kb/system/file-structure.md": "083959262d957bec0d3a129bf1cdcd748023bdb1",
+                  ".codewiki/kb/system/graph.md": "d47fcca6a42b56e55a4b1d3c3c6df182714ba80c",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
-                  ".codewiki/kb/system/overview.md": "c1fd8f406b892dfadd79f1e1b7ff54221d3c63f2",
+                  ".codewiki/kb/system/overview.md": "23103eed811d789714ca1a7b11613160181cb591",
                   ".codewiki/kb/system/roadmap.md": "ac562f428c4d109df43ae474eb900901aaeb2fba",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "5f9a0876c3c2f2f63de344129f0bb8402ccc19b7",
+                  ".codewiki/roadmap.json": "258f247212b0bd14081d3065427a5608b87ce434",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
                   "extensions/codewiki/index.ts": "49ffd9aa9612241027a1afb667dc191bec766cbc",
                   "extensions/codewiki/src/adapters": "",
                   "extensions/codewiki/src/adapters/pi": "",
+                  "extensions/codewiki/src/adapters/pi/commands": "",
                   "extensions/codewiki/src/adapters/pi/ui": "",
                   "extensions/codewiki/src/adapters/pi/ui/manager.ts": "5e4d155949f9da9054e8a9d15b7e2e9f37d74fc6",
                   "extensions/codewiki/src/adapters/web": "",
@@ -8728,7 +8475,7 @@
                   "extensions/codewiki/templates.ts": "e1b8dda36316751e8deea34ef3cf109da5d42ed0",
                   "package.json": "539ec5a3a92e2df15270cb5b23b0fd99642ee8d2",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "17192670652abf6fe99434c27defcce47575eacd",
+                  "scripts/smoke-test.mjs": "88f0a10606e9ae2dc8c2882e1a00b82cd0d8ac0f",
                   "skills": "",
                   "skills/codewiki-architecture/SKILL.md": "16c135ad735298d90850d09f6831a78c9da55f7e",
                   "skills/codewiki-documentation/SKILL.md": "8c7824585ecfef05be172d013b90454a9f83e1e5",
@@ -8736,18 +8483,18 @@
                   "skills/codewiki-implementation/SKILL.md": "0ff9f8a09506289e95812198506f740cbabb9948",
                   "skills/codewiki-verify/SKILL.md": "1ccc620991dee95eaa6326fd4f01fa5f3fdf88ab",
                   "skills/codewiki-view-audit/SKILL.md": "118c979408d3f3ed26e8df351d1fb46343878731",
-                  "skills/codewiki/SKILL.md": "1e19971222195afba12a42ae44bdda7245fb0634"
+                  "skills/codewiki/SKILL.md": "6c4365dfc7df5c8603ac8426228d309f97673c59"
                 }
               },
-              "spec_digest": "20ab82d527fc003e5fd6592bd11bff1b4e7cecd6a514c70bb99dabac56edd605",
+              "spec_digest": "3ebb38f9a3f0b959324a7fa24c0edd3b42ecab3e2f9b9b06ee1f34c470c2c7f2",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "e906fde5901adf64ab7ff6f48f6be4fda9bf0229b268ed5b104285f1a0bd5f0c",
-              "digest": "6203c0dcab9c17c707c5bd0f6f07ab3787728f899862b582579f179acd647881"
+              "code_digest": "17eb617446df4e8156c809778bcbe4fdf796cb7b82bb08183df714e25b371929",
+              "digest": "119604e540bba6a4ce982491ffd540b52665d8f07d4fd895367410c0172e70d2"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T07:52:49Z",
+              "checked_at": "2026-05-11T07:56:50Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -8759,6 +8506,7 @@
               ".codewiki/kb/product/stories/navigation.md",
               ".codewiki/kb/product/stories/sanitation.md",
               ".codewiki/kb/product/uis/board.md",
+              ".codewiki/kb/product/uis/control-room.md",
               ".codewiki/kb/product/uis/graph-navigation.md",
               ".codewiki/kb/product/uis/status-panel.md",
               ".codewiki/kb/product/users/agents.md",
@@ -8770,6 +8518,7 @@
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
+              ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
@@ -8791,6 +8540,7 @@
               "scripts/check-architecture.mjs",
               "extensions/codewiki/src/adapters/web",
               "extensions/codewiki/src/adapters/pi/ui/manager.ts",
+              "extensions/codewiki/src/adapters/pi/commands",
               "skills",
               "extensions/codewiki",
               "extensions/codewiki/index.ts",
@@ -8802,11 +8552,11 @@
               ".codewiki/builds",
               "extensions/codewiki/src/application/builds.ts",
               "extensions/codewiki/src/application/graph.ts",
+              "extensions/codewiki/src/infrastructure",
               "extensions/codewiki/bootstrap.ts",
               "extensions/codewiki/templates.ts",
               ".codewiki/kb",
               ".codewiki/index_graph.json",
-              "extensions/codewiki/src/infrastructure",
               ".codewiki/roadmap.json",
               ".codewiki/roadmap",
               "skills/codewiki-verify/SKILL.md",
@@ -8818,8 +8568,8 @@
               ".codewiki/kb/system/overview.md"
             ],
             "stats": {
-              "total_specs": 25,
-              "aligned_specs": 24,
+              "total_specs": 27,
+              "aligned_specs": 26,
               "tracked_specs": 0,
               "untracked_specs": 1,
               "blocked_specs": 0,
@@ -8845,54 +8595,39 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-11T07:52:49Z",
+            "checked_at": "2026-05-11T07:56:50Z",
             "revision": {
               "git": {
-                "head": "7444eeb68f26fd6a494851f5b29097572299f56b",
-                "dirty": true,
-                "dirty_paths": [
-                  ".codewiki/kb/lexicon.md",
-                  ".codewiki/kb/product/overview.md",
-                  ".codewiki/kb/product/uis/board.md",
-                  ".codewiki/kb/product/uis/graph-navigation.md",
-                  ".codewiki/kb/product/uis/status-panel.md",
-                  ".codewiki/kb/system/adapters.md",
-                  ".codewiki/kb/system/api.md",
-                  ".codewiki/kb/system/architecture.mmd",
-                  ".codewiki/kb/system/extension.md",
-                  ".codewiki/kb/system/file-structure.md",
-                  ".codewiki/kb/system/graph.md",
-                  ".codewiki/kb/system/overview.md",
-                  ".codewiki/roadmap.json",
-                  ".codewiki/roadmap/archive.jsonl",
-                  "extensions/codewiki/src/adapters/pi/index.ts",
-                  "scripts/smoke-test.mjs",
-                  "skills/codewiki/SKILL.md"
-                ],
+                "head": "e225e24085b26ce08c6aa10d8bce289d18a7cf38",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "71baaf095caabe8670e7d2cb1fd94ee9702208de",
+                  ".codewiki/index_graph.json": "72da9e194955d0359152c455d68eb07a98522b0a",
                   ".codewiki/kb": "",
-                  ".codewiki/kb/system/adapters.md": "8303572014c5286c00b2604cd76ee4f2470099c5",
+                  ".codewiki/kb/system/adapters.md": "3d49aa440303f88027231494d9c45c1d71974653",
                   ".codewiki/kb/system/agency.md": "0c562d69bdd9113090944bc4862672b75c44230c",
-                  ".codewiki/kb/system/api.md": "1f4e977ec056217353d80e4a1bac819cd88fb72a",
+                  ".codewiki/kb/system/api.md": "d699da2bb3af11fd5388cd4fb2911ee4fce1e1fa",
                   ".codewiki/kb/system/builds.md": "ed28a87fdee173a1e83a1f4ef1bc671f3c31f1a9",
                   ".codewiki/kb/system/compilers.md": "0fa593c7954a5bba9684601dd2cd2be56b695b90",
-                  ".codewiki/kb/system/extension.md": "095c0f865cdb99021c89fb00a2a657469a507276",
-                  ".codewiki/kb/system/file-structure.md": "2f7af07f00e11b304f019d5ee5cc40ed6509af5a",
-                  ".codewiki/kb/system/graph.md": "0ba19ba6ec063a50a908a40f67d7025a5577dfdf",
+                  ".codewiki/kb/system/control-room-ui.md": "5b456f72270d5f0855d880d0e2f8c3b7ab7fec4e",
+                  ".codewiki/kb/system/extension.md": "a3df58be836abb83edb566e0e4273ceac912a2af",
+                  ".codewiki/kb/system/file-structure.md": "083959262d957bec0d3a129bf1cdcd748023bdb1",
+                  ".codewiki/kb/system/graph.md": "d47fcca6a42b56e55a4b1d3c3c6df182714ba80c",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
-                  ".codewiki/kb/system/overview.md": "c1fd8f406b892dfadd79f1e1b7ff54221d3c63f2",
+                  ".codewiki/kb/system/overview.md": "23103eed811d789714ca1a7b11613160181cb591",
                   ".codewiki/kb/system/roadmap.md": "ac562f428c4d109df43ae474eb900901aaeb2fba",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "5f9a0876c3c2f2f63de344129f0bb8402ccc19b7",
+                  ".codewiki/roadmap.json": "258f247212b0bd14081d3065427a5608b87ce434",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
                   "extensions/codewiki/index.ts": "49ffd9aa9612241027a1afb667dc191bec766cbc",
                   "extensions/codewiki/src/adapters": "",
                   "extensions/codewiki/src/adapters/pi": "",
+                  "extensions/codewiki/src/adapters/pi/commands": "",
+                  "extensions/codewiki/src/adapters/web": "",
                   "extensions/codewiki/src/application": "",
                   "extensions/codewiki/src/application/builds.ts": "1899df1792b5761b405b849e395ef7cdd13c7299",
                   "extensions/codewiki/src/application/graph.ts": "469ac9fc90d3100192c0be2dfaf255cd38ed12ca",
@@ -8900,7 +8635,7 @@
                   "extensions/codewiki/src/infrastructure": "",
                   "extensions/codewiki/templates.ts": "e1b8dda36316751e8deea34ef3cf109da5d42ed0",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "17192670652abf6fe99434c27defcce47575eacd",
+                  "scripts/smoke-test.mjs": "88f0a10606e9ae2dc8c2882e1a00b82cd0d8ac0f",
                   "skills": "",
                   "skills/codewiki-documentation/SKILL.md": "8c7824585ecfef05be172d013b90454a9f83e1e5",
                   "skills/codewiki-feedback/SKILL.md": "3ff6d457ef9f1a6c39f485f0acf34276171854a3",
@@ -8908,15 +8643,15 @@
                   "skills/codewiki-verify/SKILL.md": "1ccc620991dee95eaa6326fd4f01fa5f3fdf88ab"
                 }
               },
-              "spec_digest": "d07d6c26409f47eb510335e9d20575744fd3bb42f5d137c958f12599df2524fa",
+              "spec_digest": "fe3ffafbb8e8f430c1ce398a5702fb7e355acfac6f38c3987e3802a57766e4fb",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "8e80c96d38d396aa25f319f0a43518322c509580582f59e8db6ad229c7f93f94",
-              "digest": "0281dba8dac0be6b844fd84134f3b15fed39e0b2173761bb270ec843a7a2b0b2"
+              "code_digest": "e594a4cff565aae1f58646cda11ccdef2e77f72ae5a3994b8afc1a68e1d5ee97",
+              "digest": "0748b51d42d9353d46b1d50c2bccb23cdebb5a91d115c752537f36a4b18755d5"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T07:52:49Z",
+              "checked_at": "2026-05-11T07:56:50Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -8926,6 +8661,7 @@
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
+              ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
@@ -8946,6 +8682,9 @@
               "skills/codewiki-feedback/SKILL.md",
               "skills/codewiki-documentation/SKILL.md",
               "skills/codewiki-implementation/SKILL.md",
+              "extensions/codewiki/src/adapters/web",
+              "extensions/codewiki/src/adapters/pi/commands",
+              "extensions/codewiki/src/infrastructure",
               "extensions/codewiki/index.ts",
               "extensions/codewiki/bootstrap.ts",
               "extensions/codewiki/templates.ts",
@@ -8954,7 +8693,6 @@
               ".codewiki/kb",
               "extensions/codewiki",
               ".codewiki/index_graph.json",
-              "extensions/codewiki/src/infrastructure",
               ".codewiki/roadmap.json",
               ".codewiki/roadmap",
               "skills/codewiki-verify/SKILL.md",
@@ -8966,8 +8704,8 @@
               ".codewiki/kb/system/overview.md"
             ],
             "stats": {
-              "total_specs": 12,
-              "aligned_specs": 11,
+              "total_specs": 13,
+              "aligned_specs": 12,
               "tracked_specs": 0,
               "untracked_specs": 1,
               "blocked_specs": 0,
@@ -8993,68 +8731,53 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-11T07:52:49Z",
+            "checked_at": "2026-05-11T07:56:50Z",
             "revision": {
               "git": {
-                "head": "7444eeb68f26fd6a494851f5b29097572299f56b",
-                "dirty": true,
-                "dirty_paths": [
-                  ".codewiki/kb/lexicon.md",
-                  ".codewiki/kb/product/overview.md",
-                  ".codewiki/kb/product/uis/board.md",
-                  ".codewiki/kb/product/uis/graph-navigation.md",
-                  ".codewiki/kb/product/uis/status-panel.md",
-                  ".codewiki/kb/system/adapters.md",
-                  ".codewiki/kb/system/api.md",
-                  ".codewiki/kb/system/architecture.mmd",
-                  ".codewiki/kb/system/extension.md",
-                  ".codewiki/kb/system/file-structure.md",
-                  ".codewiki/kb/system/graph.md",
-                  ".codewiki/kb/system/overview.md",
-                  ".codewiki/roadmap.json",
-                  ".codewiki/roadmap/archive.jsonl",
-                  "extensions/codewiki/src/adapters/pi/index.ts",
-                  "scripts/smoke-test.mjs",
-                  "skills/codewiki/SKILL.md"
-                ],
+                "head": "e225e24085b26ce08c6aa10d8bce289d18a7cf38",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
-                  ".codewiki/index_graph.json": "71baaf095caabe8670e7d2cb1fd94ee9702208de",
+                  ".codewiki/index_graph.json": "72da9e194955d0359152c455d68eb07a98522b0a",
                   ".codewiki/kb": "",
                   ".codewiki/kb/product": "",
-                  ".codewiki/kb/product/overview.md": "ca1c24bb224268572d0e97afa45db739b7af62d7",
+                  ".codewiki/kb/product/overview.md": "51a6923ec5ddaa491bf131b549e6acecb8e85909",
                   ".codewiki/kb/product/stories/automation.md": "71c91b399888fe326da546c260567bef30073c55",
                   ".codewiki/kb/product/stories/drift.md": "4f923efb7817b00de4e3a661bd56481d40f91d4d",
                   ".codewiki/kb/product/stories/intent.md": "68344cd92f8452d9fa1323f7f7cadbd68ca19e8f",
                   ".codewiki/kb/product/stories/navigation.md": "9ad9b9c0f29c355f476617679368da4f105f4f8b",
                   ".codewiki/kb/product/stories/sanitation.md": "763c72c21222e585fadfed7cf09ccd649e3e1512",
-                  ".codewiki/kb/product/uis/board.md": "0efce9cb9a01aab4980f19c79ce000bac09c5e51",
-                  ".codewiki/kb/product/uis/graph-navigation.md": "5aeb787894701adbf7c27ba0670b3a26bc73fc21",
-                  ".codewiki/kb/product/uis/status-panel.md": "fe5506dadbcfe23fd687abb927eee7a29e3e6936",
+                  ".codewiki/kb/product/uis/board.md": "084eced67db301cc5f11e6d831ab7a12ea2c49a9",
+                  ".codewiki/kb/product/uis/control-room.md": "7a696510a851df881d4ac8c5f6ef8f8de46554ec",
+                  ".codewiki/kb/product/uis/graph-navigation.md": "d010f0be2b4a6dde734c9e0b112602e3235355b1",
+                  ".codewiki/kb/product/uis/status-panel.md": "0ce74ad961250fd23537e4e71cd56d32e9ca4600",
                   ".codewiki/kb/product/users/agents.md": "bbe8e5c8d5e525182b29a961537bf75e41a4ff0b",
                   ".codewiki/kb/product/users/external-users.md": "6fa169f4e72984edc74cc3dbeca8d7657fccd633",
                   ".codewiki/kb/product/users/maintainers.md": "6b48e26d5f0cf5fa9a35c703af37c87ba91d6047",
                   ".codewiki/kb/product/users/package-authors.md": "81d5d10b01cb961753ff46364e1fd471f0c9b1bf",
-                  ".codewiki/kb/system/adapters.md": "8303572014c5286c00b2604cd76ee4f2470099c5",
+                  ".codewiki/kb/system/adapters.md": "3d49aa440303f88027231494d9c45c1d71974653",
                   ".codewiki/kb/system/agency.md": "0c562d69bdd9113090944bc4862672b75c44230c",
-                  ".codewiki/kb/system/api.md": "1f4e977ec056217353d80e4a1bac819cd88fb72a",
+                  ".codewiki/kb/system/api.md": "d699da2bb3af11fd5388cd4fb2911ee4fce1e1fa",
                   ".codewiki/kb/system/builds.md": "ed28a87fdee173a1e83a1f4ef1bc671f3c31f1a9",
                   ".codewiki/kb/system/compilers.md": "0fa593c7954a5bba9684601dd2cd2be56b695b90",
-                  ".codewiki/kb/system/extension.md": "095c0f865cdb99021c89fb00a2a657469a507276",
-                  ".codewiki/kb/system/file-structure.md": "2f7af07f00e11b304f019d5ee5cc40ed6509af5a",
-                  ".codewiki/kb/system/graph.md": "0ba19ba6ec063a50a908a40f67d7025a5577dfdf",
+                  ".codewiki/kb/system/control-room-ui.md": "5b456f72270d5f0855d880d0e2f8c3b7ab7fec4e",
+                  ".codewiki/kb/system/extension.md": "a3df58be836abb83edb566e0e4273ceac912a2af",
+                  ".codewiki/kb/system/file-structure.md": "083959262d957bec0d3a129bf1cdcd748023bdb1",
+                  ".codewiki/kb/system/graph.md": "d47fcca6a42b56e55a4b1d3c3c6df182714ba80c",
                   ".codewiki/kb/system/knowledge.md": "03cc2b2d836fb4ed3dd19ba250eb9534385625e5",
-                  ".codewiki/kb/system/overview.md": "c1fd8f406b892dfadd79f1e1b7ff54221d3c63f2",
+                  ".codewiki/kb/system/overview.md": "23103eed811d789714ca1a7b11613160181cb591",
                   ".codewiki/kb/system/roadmap.md": "ac562f428c4d109df43ae474eb900901aaeb2fba",
                   ".codewiki/kb/system/validation-gateway.md": "a784a27a0d5f8ae838f4e7868d4d2bba0c3f7f47",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "5f9a0876c3c2f2f63de344129f0bb8402ccc19b7",
+                  ".codewiki/roadmap.json": "258f247212b0bd14081d3065427a5608b87ce434",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
                   "extensions/codewiki/index.ts": "49ffd9aa9612241027a1afb667dc191bec766cbc",
                   "extensions/codewiki/src/adapters": "",
                   "extensions/codewiki/src/adapters/pi": "",
+                  "extensions/codewiki/src/adapters/pi/commands": "",
                   "extensions/codewiki/src/adapters/pi/ui": "",
                   "extensions/codewiki/src/adapters/pi/ui/manager.ts": "5e4d155949f9da9054e8a9d15b7e2e9f37d74fc6",
                   "extensions/codewiki/src/adapters/web": "",
@@ -9066,7 +8789,7 @@
                   "extensions/codewiki/templates.ts": "e1b8dda36316751e8deea34ef3cf109da5d42ed0",
                   "package.json": "539ec5a3a92e2df15270cb5b23b0fd99642ee8d2",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "17192670652abf6fe99434c27defcce47575eacd",
+                  "scripts/smoke-test.mjs": "88f0a10606e9ae2dc8c2882e1a00b82cd0d8ac0f",
                   "skills": "",
                   "skills/codewiki-architecture/SKILL.md": "16c135ad735298d90850d09f6831a78c9da55f7e",
                   "skills/codewiki-documentation/SKILL.md": "8c7824585ecfef05be172d013b90454a9f83e1e5",
@@ -9074,18 +8797,18 @@
                   "skills/codewiki-implementation/SKILL.md": "0ff9f8a09506289e95812198506f740cbabb9948",
                   "skills/codewiki-verify/SKILL.md": "1ccc620991dee95eaa6326fd4f01fa5f3fdf88ab",
                   "skills/codewiki-view-audit/SKILL.md": "118c979408d3f3ed26e8df351d1fb46343878731",
-                  "skills/codewiki/SKILL.md": "1e19971222195afba12a42ae44bdda7245fb0634"
+                  "skills/codewiki/SKILL.md": "6c4365dfc7df5c8603ac8426228d309f97673c59"
                 }
               },
-              "spec_digest": "20ab82d527fc003e5fd6592bd11bff1b4e7cecd6a514c70bb99dabac56edd605",
+              "spec_digest": "3ebb38f9a3f0b959324a7fa24c0edd3b42ecab3e2f9b9b06ee1f34c470c2c7f2",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "e906fde5901adf64ab7ff6f48f6be4fda9bf0229b268ed5b104285f1a0bd5f0c",
-              "digest": "6203c0dcab9c17c707c5bd0f6f07ab3787728f899862b582579f179acd647881"
+              "code_digest": "17eb617446df4e8156c809778bcbe4fdf796cb7b82bb08183df714e25b371929",
+              "digest": "119604e540bba6a4ce982491ffd540b52665d8f07d4fd895367410c0172e70d2"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-11T07:52:49Z",
+              "checked_at": "2026-05-11T07:56:50Z",
               "reason": "no previous agency anchor; current revision captured",
               "stale_state_guidance": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
             },
@@ -9097,6 +8820,7 @@
               ".codewiki/kb/product/stories/navigation.md",
               ".codewiki/kb/product/stories/sanitation.md",
               ".codewiki/kb/product/uis/board.md",
+              ".codewiki/kb/product/uis/control-room.md",
               ".codewiki/kb/product/uis/graph-navigation.md",
               ".codewiki/kb/product/uis/status-panel.md",
               ".codewiki/kb/product/users/agents.md",
@@ -9108,6 +8832,7 @@
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
+              ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
@@ -9129,6 +8854,7 @@
               "scripts/check-architecture.mjs",
               "extensions/codewiki/src/adapters/web",
               "extensions/codewiki/src/adapters/pi/ui/manager.ts",
+              "extensions/codewiki/src/adapters/pi/commands",
               "skills",
               "extensions/codewiki",
               "extensions/codewiki/index.ts",
@@ -9140,11 +8866,11 @@
               ".codewiki/builds",
               "extensions/codewiki/src/application/builds.ts",
               "extensions/codewiki/src/application/graph.ts",
+              "extensions/codewiki/src/infrastructure",
               "extensions/codewiki/bootstrap.ts",
               "extensions/codewiki/templates.ts",
               ".codewiki/kb",
               ".codewiki/index_graph.json",
-              "extensions/codewiki/src/infrastructure",
               ".codewiki/roadmap.json",
               ".codewiki/roadmap",
               "skills/codewiki-verify/SKILL.md",
@@ -9156,8 +8882,8 @@
               ".codewiki/kb/system/overview.md"
             ],
             "stats": {
-              "total_specs": 25,
-              "aligned_specs": 24,
+              "total_specs": 27,
+              "aligned_specs": 26,
               "tracked_specs": 0,
               "untracked_specs": 1,
               "blocked_specs": 0,
@@ -9184,82 +8910,14 @@
         "agency": "Resume normally; future spec, task, or mapped code revision changes will mark this lane stale."
       },
       "parallel": {
-        "generated_at": "2026-05-11T07:52:49Z",
+        "generated_at": "2026-05-11T07:56:50Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
-        "active_claim_count": 2,
+        "active_claim_count": 0,
         "claim_warning_count": 0,
         "claim_conflict_count": 0,
-        "claims": [
-          {
-            "id": "CLAIM-006",
-            "session_id": "019e09f7-8fbf-7118-b60f-e67bffd0b94a",
-            "agent_name": "Marten",
-            "status": "active",
-            "mode": "write",
-            "summary": "Implement TASK-058 standalone local Control Room shell",
-            "task_id": "TASK-058",
-            "scopes": [
-              {
-                "layer": "code",
-                "path": "extensions/codewiki/src/adapters/web/**"
-              },
-              {
-                "layer": "code",
-                "path": "extensions/codewiki/src/adapters/pi/commands/**"
-              },
-              {
-                "layer": "code",
-                "path": "extensions/codewiki/src/adapters/pi/index.ts"
-              },
-              {
-                "layer": "code",
-                "path": "tests/smoke/**"
-              },
-              {
-                "layer": "roadmap",
-                "task_id": "TASK-058"
-              },
-              {
-                "layer": "build",
-                "path": ".codewiki/builds/implementation/**"
-              }
-            ],
-            "created_at": "2026-05-11T07:11:35Z",
-            "updated_at": "2026-05-11T07:11:35Z",
-            "expires_at": "2026-05-11T09:11:35.216Z"
-          },
-          {
-            "id": "CLAIM-005",
-            "session_id": "019e09f7-8fbf-7118-b60f-e67bffd0b94a",
-            "agent_name": "Marten",
-            "status": "active",
-            "mode": "write",
-            "summary": "Document and roadmap standalone CodeWiki Control Room UI plan",
-            "scopes": [
-              {
-                "layer": "knowledge",
-                "path": ".codewiki/kb/product/uis/**"
-              },
-              {
-                "layer": "knowledge",
-                "path": ".codewiki/kb/system/**"
-              },
-              {
-                "layer": "roadmap",
-                "path": ".codewiki/roadmap.json"
-              },
-              {
-                "layer": "build",
-                "path": ".codewiki/builds/**"
-              }
-            ],
-            "created_at": "2026-05-11T07:03:15Z",
-            "updated_at": "2026-05-11T07:03:15Z",
-            "expires_at": "2026-05-11T09:03:15.989Z"
-          }
-        ],
+        "claims": [],
         "claim_conflicts": []
       },
       "wiki": {
@@ -9425,6 +9083,26 @@
               "status": "done",
               "title": "Keep roadmap as freshest delta log"
             },
+            "revision": {},
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".codewiki/kb/product/uis/control-room.md",
+            "title": "Control Room UI",
+            "summary": "Product expectations for the standalone local CodeWiki control room experience.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "extensions/codewiki/src/adapters/web",
+              "extensions/codewiki/src/adapters/pi/commands"
+            ],
+            "code_area": "extensions +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
             "revision": {},
             "note": "no deterministic drift signals"
           },
@@ -9686,6 +9364,28 @@
               "status": "done",
               "title": "Align CodeWiki skill package with compiler and API contracts"
             },
+            "revision": {},
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".codewiki/kb/system/control-room-ui.md",
+            "title": "Control Room UI",
+            "summary": "Standalone local web UI and hosting surface for the CodeWiki control room.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "extensions/codewiki/src/adapters/web",
+              "extensions/codewiki/src/adapters/pi/commands",
+              "extensions/codewiki/src/application",
+              "extensions/codewiki/src/infrastructure"
+            ],
+            "code_area": "extensions +3 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
             "revision": {},
             "note": "no deterministic drift signals"
           },
@@ -10062,6 +9762,26 @@
                 "note": "no deterministic drift signals"
               },
               {
+                "path": ".codewiki/kb/product/uis/control-room.md",
+                "title": "Control Room UI",
+                "summary": "Product expectations for the standalone local CodeWiki control room experience.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  "extensions/codewiki/src/adapters/web",
+                  "extensions/codewiki/src/adapters/pi/commands"
+                ],
+                "code_area": "extensions +1 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [],
+                "primary_task": null,
+                "revision": {},
+                "note": "no deterministic drift signals"
+              },
+              {
                 "path": ".codewiki/kb/product/uis/graph-navigation.md",
                 "title": "Graph Navigation UI",
                 "summary": "Product expectations for visual graph-backed navigation in the Control Room.",
@@ -10325,6 +10045,28 @@
                   "status": "done",
                   "title": "Align CodeWiki skill package with compiler and API contracts"
                 },
+                "revision": {},
+                "note": "no deterministic drift signals"
+              },
+              {
+                "path": ".codewiki/kb/system/control-room-ui.md",
+                "title": "Control Room UI",
+                "summary": "Standalone local web UI and hosting surface for the CodeWiki control room.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  "extensions/codewiki/src/adapters/web",
+                  "extensions/codewiki/src/adapters/pi/commands",
+                  "extensions/codewiki/src/application",
+                  "extensions/codewiki/src/infrastructure"
+                ],
+                "code_area": "extensions +3 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [],
+                "primary_task": null,
                 "revision": {},
                 "note": "no deterministic drift signals"
               },
