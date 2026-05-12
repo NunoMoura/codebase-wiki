@@ -108,13 +108,13 @@ updated: "2026-05-12"
 Open a focused view and inspect source paths.
 `);
 	await writeFile(join(root, ".codewiki/kb/product/uis/control-room.md"), `---
-title: Control Room UI
+title: CodeWiki UI
 summary: Second-screen visual surface.
 state: active
 updated: "2026-05-12"
 ---
 
-# Control Room UI
+# CodeWiki UI
 
 ## Purpose
 
@@ -165,7 +165,7 @@ edges:
 
 	const product = await buildControlRoomProductModel(project);
 	assert.equal(product.categories.find((category) => category.id === "users")?.items[0]?.title, "Maintainers");
-	assert.equal(product.categories.find((category) => category.id === "uis")?.items[0]?.title, "Control Room UI");
+	assert.equal(product.categories.find((category) => category.id === "uis")?.items[0]?.title, "CodeWiki UI");
 
 	const system = await buildControlRoomSystemModel(project);
 	assert.equal(system.components.find((component) => component.id === "API")?.doc_path, ".codewiki/kb/system/api.md");
@@ -195,7 +195,7 @@ edges:
 	assert.equal(buildBrowserOpenCommand("http://127.0.0.1:3000/", "aix"), null);
 	assert.equal(
 		formatControlRoomLaunchMessage("repo", "http://127.0.0.1:3000/", { opened: true }, false),
-		"repo Control Room started; opened browser. URL: http://127.0.0.1:3000/",
+		"repo CodeWiki UI started; opened browser. URL: http://127.0.0.1:3000/",
 	);
 	assert.match(
 		formatControlRoomLaunchMessage("repo", "http://127.0.0.1:3000/", { opened: false, error: "missing" }, true),
@@ -205,7 +205,9 @@ edges:
 	server = await startControlRoomServer(project, { port: 0 });
 	assert.equal(server.host, "127.0.0.1");
 	const html = await fetch(server.url).then((res) => res.text());
-	assert.match(html, /CodeWiki Control Room/);
+	assert.match(html, /<title>CodeWiki<\/title>/);
+	assert.match(html, /<span class="title">CodeWiki<\/span>/);
+	assert.doesNotMatch(html, /CodeWiki Control Room|Control Room sections|booting control room/);
 	assert.match(html, /data-view="status"/);
 	assert.match(html, /data-view="product"/);
 	assert.match(html, /data-view="board"/);

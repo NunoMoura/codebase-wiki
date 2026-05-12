@@ -242,17 +242,27 @@ export async function readCodewikiState(
 	if (include.includes("graph")) {
 		const graph = artifacts.graph;
 		const reconciliation = (graph?.views as any)?.reconciliation || null;
+		const gc = (graph?.views as any)?.gc || null;
+		const hotNodeIds = new Set<string>((gc?.classes?.hot?.task_ids ?? []).map((id: string) => `task:${id}`));
+		for (const path of gc?.classes?.hot?.build_paths ?? []) hotNodeIds.add(`build:${path}`);
+		for (const path of gc?.classes?.hot?.validation_paths ?? []) hotNodeIds.add(`validation:${path}`);
+		for (const id of gc?.classes?.hot?.claim_ids ?? []) hotNodeIds.add(`claim:${id}`);
 		result.graph = {
 			generated_at: graph?.generated_at ?? null,
-			node_count: graph?.nodes.length ?? 0,
-			edge_count: graph?.edges.length ?? 0,
-			doc_count: graph?.nodes.filter((n) => n.kind === "doc").length ?? 0,
-			code_path_count: graph?.nodes.filter((n) => n.kind === "code_path").length ?? 0,
-			source: "graph",
+			node_count: hotNodeIds.size,
+			edge_count: graph?.edges.filter((edge) => hotNodeIds.has(edge.from) || hotNodeIds.has(edge.to)).length ?? 0,
+			doc_count: graph?.nodes.filter((n) => n.kind === "doc" && n.default_hidden !== true).length ?? 0,
+			code_path_count: graph?.nodes.filter((n) => n.kind === "code_path" && n.default_hidden !== true).length ?? 0,
+			source: "graph:hot-default",
 			claims: (graph?.views as any)?.claims ?? null,
 			scope_views: (graph?.views as any)?.scope_views ?? null,
 			workflow_cursor: (graph?.views as any)?.workflow_cursor ?? null,
-			gc: (graph?.views as any)?.gc ?? null,
+			gc: gc ? {
+				policy: gc.policy,
+				classes: {
+					hot: gc.classes?.hot ?? {},
+				},
+			} : null,
 			reconciliation: reconciliation
 				? {
 						controller: reconciliation.controller,
@@ -262,6 +272,18 @@ export async function readCodewikiState(
 						layer_states: reconciliation.layer_states || {},
 					}
 				: null,
+		};
+	}
+
+	if (include.includes("archive")) {
+		const graph = artifacts.graph;
+		result.archive = {
+			source: "graph:explicit-archive",
+			...(graph?.views as any)?.archive,
+			gc: {
+				cold: (graph?.views as any)?.gc?.classes?.cold ?? {},
+				purgeable: (graph?.views as any)?.gc?.classes?.purgeable ?? {},
+			},
 		};
 	}
 

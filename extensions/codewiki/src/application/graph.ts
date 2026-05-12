@@ -260,12 +260,12 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		nodes.push({ id: nodeId, kind: payload.kind || "unknown", ...payload });
 	};
 
-	const addEdge = (kind: string, source: string, target: string) => {
+	const addEdge = (kind: string, source: string, target: string, payload: Partial<GraphEdge> = {}) => {
 		if (!source || !target) return;
 		const key = `${kind}:${source}->${target}`;
 		if (seenEdges.has(key)) return;
 		seenEdges.add(key);
-		edges.push({ kind, from: source, to: target });
+		edges.push({ kind, from: source, to: target, ...payload });
 	};
 
 	const codePaths = new Set<string>();
@@ -491,6 +491,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			lifecycle_state: lifecycleState,
 			alignment_state: buildAlignmentState,
 			compacted: compactCold,
+			default_hidden: compactCold,
 			archive_ref: archiveLedger?.archive_ref,
 		});
 		if (build.kind === "feedback_build" && lifecycleState === "proposed") {
@@ -558,8 +559,8 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		}
 		if (archiveLedger) {
 			const archiveNodeId = `archive_ref:${archiveLedger.archive_ref}`;
-			addNode(archiveNodeId, { kind: "git_archive_ref", path: archiveLedger.archive_ref, task_id: archiveLedger.id, digest: archiveLedger.digest, restore_command: archiveLedger.restore_command, safety_status: archiveLedger.safety_status });
-			addEdge("build_archive_ref", buildId, archiveNodeId);
+			addNode(archiveNodeId, { kind: "git_archive_ref", path: archiveLedger.archive_ref, task_id: archiveLedger.id, digest: archiveLedger.digest, restore_command: archiveLedger.restore_command, safety_status: archiveLedger.safety_status, default_hidden: true, layer: "archive" });
+			addEdge("build_archive_ref", buildId, archiveNodeId, { default_hidden: true });
 		}
 		if (compactCold) continue;
 		for (const ref of consumedBuildRefs(build.data)) {
@@ -832,19 +833,11 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			cold: {
 				task_ids: [...doneTaskIds, ...cancelledTaskIds],
 				build_paths: builds.filter((build) => isLifecycleComplete(String(build.data?.lifecycle?.state || build.status || "")) || hasPassingValidationForBuild(build)).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean),
-				archive_refs: archiveLedgers.map((ledger) => ledger.archive_ref),
 			},
 			purgeable: {
 				task_ids: purgeableTaskIds,
 				build_paths: purgeableBuildPaths,
 			},
-		},
-		restore_index: archiveLedgers,
-		git_archive: {
-			ledger_count: archiveLedgers.length,
-			build_paths: gitArchivedBuildPaths,
-			blocked_purge_build_paths: blockedArchiveBuildPaths,
-			gate: "validated + artifact digests + archive ledger + publication safety pass",
 		},
 		sprint_close_hooks: [
 			"mark consumed builds cold after downstream evidence exists",
@@ -928,6 +921,16 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		},
 		workflow_cursor: workflowCursor,
 		gc,
+		archive: {
+			restore_index: archiveLedgers,
+			git_archive: {
+				ledger_count: archiveLedgers.length,
+				archive_refs: archiveLedgers.map((ledger) => ledger.archive_ref),
+				build_paths: gitArchivedBuildPaths,
+				blocked_purge_build_paths: blockedArchiveBuildPaths,
+				gate: "validated + artifact digests + archive ledger + publication safety pass",
+			},
+		},
 		reconciliation: {
 			version: 1,
 			controller: "reconciliation_gateway",

@@ -222,12 +222,14 @@ async function run() {
 		assert.ok(items.some(i => i.source_id === `build:${unconsumedDocResult.details.path}` && i.next_loop === "documentation"), "Documentation build with downstream delta and no roadmap/implementation evidence should route to documentation");
 		assert.ok(!items.some(i => i.source_id === `build:${implResult.details.path}` && i.next_loop === "validation"), "Validated implementation build should not stay in reconciliation");
 		assert.ok(items.some(i => i.source_id === `validation:${failResult.details.path}` && i.next_loop === "documentation"), "Fail validation not routing to documentation");
-		const restoreEntry = graph.views?.gc?.restore_index?.find((entry) => entry.id === "TASK-001");
-		assert.ok(restoreEntry, "Validated implementation build should expose compact restore index entry");
+		const restoreEntry = graph.views?.archive?.restore_index?.find((entry) => entry.id === "TASK-001");
+		assert.ok(restoreEntry, "Explicit archive view should expose compact restore index entry");
 		assert.equal(restoreEntry.archive_ref, "refs/codewiki/archive/task/TASK-001");
 		assert.equal(restoreEntry.restore_command, "/wiki-restore TASK-001");
-		assert.ok(graph.views?.gc?.classes?.cold?.archive_refs?.includes("refs/codewiki/archive/task/TASK-001"), "Cold GC view should expose archive refs");
-		assert.ok(graph.views?.gc?.git_archive?.blocked_purge_build_paths?.includes(implResult.details.path), "Unsafe publication should block purge despite archive metadata");
+		assert.equal(graph.views?.gc?.restore_index, undefined, "Default GC view must not expose restore index");
+		assert.equal(graph.views?.gc?.classes?.cold?.archive_refs, undefined, "Default GC view must not expose archive refs");
+		assert.ok(graph.views?.archive?.git_archive?.archive_refs?.includes("refs/codewiki/archive/task/TASK-001"), "Explicit archive view should expose archive refs");
+		assert.ok(graph.views?.archive?.git_archive?.blocked_purge_build_paths?.includes(implResult.details.path), "Unsafe publication should block purge despite archive metadata");
 
 		console.log("✓ build and validation smoke tests passed");
 	} finally {

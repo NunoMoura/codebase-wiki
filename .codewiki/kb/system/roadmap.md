@@ -111,6 +111,8 @@ Git-backed retention should treat Git as the cold immutable ledger and CodeWiki 
 
 Restoring old work should be explicit and lazy. A restore command can use Git refs, `git show`, worktrees, sparse checkout, or partial clone to hydrate a temporary context packet for refinement. Restored history is reference material, not current truth, until the user or documentation compiler turns it into new knowledge or active roadmap work.
 
+Default CodeWiki operating context should hide cold roadmap and archive history. Agents, agency runs, status summaries, and user-facing graph views should not load closed-task detail, old pass validations, or archive restore indexes unless the user explicitly requests restore, archive inspection, audit, or refinement of historical work.
+
 This keeps the roadmap useful as active work truth instead of an archive.
 
 ## Closure

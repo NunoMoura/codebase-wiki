@@ -1,8 +1,8 @@
 ---
 id: spec.system.control-room-ui
-title: Control Room UI
+title: CodeWiki UI
 state: active
-summary: Standalone local web UI and hosting surface for the simplified CodeWiki control room.
+summary: Standalone local web UI and hosting surface for CodeWiki.
 owners:
   - architecture
   - engineering
@@ -14,15 +14,15 @@ code_paths:
   - extensions/codewiki/src/infrastructure
 ---
 
-# Control Room UI
+# CodeWiki UI
 
 ## Responsibility
 
-The Control Room UI is the standalone local web surface for CodeWiki. It serves a browser-based second-screen command center for the current repository, renders curated product and system views, visualizes generated graph relationships, and delegates semantic reads and writes to the CodeWiki API.
+The CodeWiki UI is the standalone local web surface for CodeWiki. The implementation may still use Control Room as an internal module name, but user-facing titles, labels, and navigation should say CodeWiki. It serves a browser-based second-screen command center for the current repository, renders curated product and system views, visualizes generated graph relationships, and delegates semantic reads and writes to the CodeWiki API.
 
-The Control Room is a product UI and an access surface. It must not own CodeWiki truth. Product intent remains in `.codewiki/kb/**`, work truth remains in roadmap state, compiler handoffs remain in builds, validation truth remains in validation reports, coordination state remains in runtime claims, and generated relationships remain in `.codewiki/index_graph.json`.
+The UI is a product surface and an access surface. It must not own CodeWiki truth. Product intent remains in `.codewiki/kb/**`, work truth remains in roadmap state, compiler handoffs remain in builds, validation truth remains in validation reports, coordination state remains in runtime claims, and generated relationships remain in `.codewiki/index_graph.json`.
 
-The Control Room should prioritize high-signal navigation over exhaustive artifact browsing. The first-level left-rail UI sections are `Status`, `Product`, `System`, `Board`, and `Graph`. Knowledge documents, builds, validation reports, feedback diff rows, and settings remain accessible through contextual inspectors, command-palette actions, API/chat workflows, source paths, and the header settings cog rather than permanent left-rail views.
+The UI should prioritize high-signal hot working-set navigation over exhaustive artifact browsing. Default views show active work, active claims, drift, unconsumed handoffs, fail/block validation, current validation isolation, and publication blockers. Cold archive data, closed-task detail, old pass validation, archive refs, and restore indexes are hidden unless the user explicitly asks to restore, inspect archives, or audit historical work. The first-level left-rail UI sections are `Status`, `Product`, `System`, `Board`, and `Graph`. Knowledge documents, builds, validation reports, feedback diff rows, archive data, and settings remain accessible through contextual inspectors, command-palette actions, API/chat workflows, source paths, and the header settings cog rather than permanent left-rail views.
 
 ## Local hosting model
 
@@ -31,7 +31,7 @@ The default hosting model is local-first:
 ```text
 codewiki ui or harness launcher
   -> local HTTP server on 127.0.0.1:<port>
-    -> browser Control Room
+    -> browser CodeWiki UI
       -> CodeWiki API/application capabilities
         -> repo-local .codewiki files, graph state, code paths, and git metadata
 ```
@@ -42,11 +42,11 @@ Optional shared LAN/server mode may be added later with an explicit flag, token 
 
 ## Harness integration
 
-Harnesses launch or connect to the Control Room; they do not fork UI semantics. Pi owns the current launcher and compact TUI fallback. Future CLI, MCP, Claude Code, Codex, or editor surfaces should start the same local server or call the same API capabilities.
+Harnesses launch or connect to the CodeWiki UI; they do not fork UI semantics. Pi owns the current launcher and compact TUI fallback. Future CLI, MCP, Claude Code, Codex, or editor surfaces should start the same local server or call the same API capabilities.
 
 ## API contract
 
-The Control Room should use typed CodeWiki API capabilities or thin HTTP endpoints over those capabilities. Minimum read endpoints for the simplified UI are:
+The CodeWiki UI should use typed CodeWiki API capabilities or thin HTTP endpoints over those capabilities. Minimum read endpoints for the simplified UI are:
 
 - repository status, health, graph/task metrics, and next action,
 - current session/focus summary,
@@ -107,13 +107,13 @@ The Graph view reads `.codewiki/index_graph.json` and renders nodes and edges vi
 
 It should support filtering by node kind, edge kind, active task or sprint scope, drift, stale state, and build DAG relationships. Large graphs should default to useful scoped or filtered slices instead of rendering all relationships at once. Selecting a node or edge should show source paths, relationship reason, freshness state, and the smallest useful next reads.
 
-The first graph renderer is Cytoscape.js, served from the installed `cytoscape` npm package through the local Control Room server. The browser UI must not depend on a CDN. If the local vendor asset cannot be loaded, the Graph view should show a clear renderer-unavailable error instead of silently rendering an empty canvas.
+The first graph renderer is Cytoscape.js, served from the installed `cytoscape` npm package through the local CodeWiki UI server. The browser UI must not depend on a CDN. If the local vendor asset cannot be loaded, the Graph view should show a clear renderer-unavailable error instead of silently rendering an empty canvas.
 
 The graph is generated state, not canonical truth. Every node or edge detail should link back to canonical files when available.
 
 ## Settings contract
 
-The web Control Room should expose Settings through a header-right cog. The cog opens an in-app settings page or panel; it does not add `Settings` back to the left rail.
+The web CodeWiki UI should expose Settings through a header-right cog. The cog opens an in-app settings page or panel; it does not add `Settings` back to the left rail.
 
 The Settings read model should derive from `.codewiki/config.json` and group options into useful categories:
 
@@ -138,7 +138,7 @@ The UI may expose detailed artifacts contextually:
 - Diff rows appear only when a pending feedback decision needs explicit action.
 - Settings appear through the header cog, command palette, or maintenance actions.
 
-These details should not create hidden UI-only truth or permanent first-level destinations in the simplified Control Room.
+These details should not create hidden UI-only truth or permanent first-level destinations in the simplified CodeWiki UI.
 
 ## Session and multi-computer model
 
@@ -152,7 +152,7 @@ Browser UI and local web-server code must not import Pi SDK/TUI packages, depend
 
 ## Success signals
 
-- The local browser Control Room launches from the repo and keeps rich UI semantics harness-agnostic.
+- The local browser CodeWiki UI launches from the repo and keeps rich UI semantics harness-agnostic.
 - Left-rail navigation remains Status, Product, System, Board, and Graph.
 - Product/System/Board/Graph are curated, source-backed, and work-centered.
 - Settings is available through the header cog and maps `.codewiki/config.json` without hidden UI truth.
@@ -160,7 +160,7 @@ Browser UI and local web-server code must not import Pi SDK/TUI packages, depend
 
 ## Related docs
 
-- [Control Room UI Product Spec](../product/uis/control-room.md)
+- [CodeWiki UI Product Spec](../product/uis/control-room.md)
 - [Status Panel UI](../product/uis/status-panel.md)
 - [Graph Navigation UI](../product/uis/graph-navigation.md)
 - [System diagram raw data](diagrams/README.md)

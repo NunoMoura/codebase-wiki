@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-12T06:29:01Z",
+  "profile": "task-close",
+  "task_id": "TASK-071",
+  "verdict": "pass",
+  "rationale": "TASK-071 closure is valid. The closed task has documentation, implementation build, implementation validation, passing checks, hot-only graph/state/UI behavior, explicit archive access, and CodeWiki user-facing naming. A fresh validator worktree checked the close candidate SHA with typecheck, hot-context UI/state test, Control Room UI naming test, and architecture check.",
+  "checks": [
+    "builder: npm test",
+    "builder: npm run typecheck",
+    "builder: npm run test:features",
+    "builder: npm run test:smoke",
+    "builder: npm run check:architecture",
+    "builder: npm run test:pack",
+    "validator worktree: npm run typecheck",
+    "validator worktree: node tests/smoke/hot-context.test.mjs",
+    "validator worktree: node tests/smoke/control-room.test.mjs",
+    "validator worktree: node scripts/check-architecture.mjs",
+    "validator worktree clean after checks"
+  ],
+  "issues": [],
+  "source": ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+  "isolation": {
+    "worktree_path": "/tmp/codewiki-task071-validator",
+    "branch": "detached:close-candidate-stash",
+    "base_sha": "0fcaf45034c868e6cb36ba7c30a01181fe83296b",
+    "head_sha": "87c59b5d9d889c6999feb6d29ecd1aba13c0f387",
+    "validated_sha": "87c59b5d9d889c6999feb6d29ecd1aba13c0f387",
+    "clean": true,
+    "fresh_context": true,
+    "builder_claim_id": "CLAIM-019",
+    "related_claim_ids": [
+      "CLAIM-019"
+    ],
+    "notes": "Fresh validator checked close candidate stash SHA. Publication step will rebuild graph in a clean publisher worktree and record published SHA via Git.",
+    "role": "validator"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-12T06:26:30Z",
+  "profile": "implementation",
+  "task_id": "TASK-071",
+  "verdict": "pass",
+  "rationale": "TASK-071 passed implementation validation. Default CodeWiki graph/state/UI context now hides cold archive refs and restore indexes; explicit archive context remains available. User-facing UI labels now say CodeWiki/CodeWiki UI while internal Control Room identifiers can remain. Builder full suite passed; fresh validator worktree checked the candidate SHA with typecheck, hot-context test, Control Room test, and architecture check.",
+  "checks": [
+    "builder: npm run typecheck",
+    "builder: npm run test:features",
+    "builder: npm run test:smoke",
+    "builder: npm run check:architecture",
+    "builder: npm run test:pack",
+    "builder: npm test",
+    "validator worktree: npm run typecheck",
+    "validator worktree: node tests/smoke/hot-context.test.mjs",
+    "validator worktree: node tests/smoke/control-room.test.mjs",
+    "validator worktree: node scripts/check-architecture.mjs",
+    "validator worktree clean after checks"
+  ],
+  "issues": [],
+  "source": ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+  "isolation": {
+    "worktree_path": "/tmp/codewiki-task071-validator",
+    "branch": "detached:candidate-stash",
+    "base_sha": "0fcaf45034c868e6cb36ba7c30a01181fe83296b",
+    "head_sha": "cb0ad0340a752c8550538863d6296e265c2d7902",
+    "validated_sha": "cb0ad0340a752c8550538863d6296e265c2d7902",
+    "clean": true,
+    "fresh_context": true,
+    "builder_claim_id": "CLAIM-019",
+    "related_claim_ids": [
+      "CLAIM-019"
+    ],
+    "notes": "Fresh validator checked candidate stash SHA; loader-based extension discovery tests were already green in builder context.",
+    "role": "validator"
+  }
+}

@@ -1,0 +1,505 @@
+{
+  "version": 1,
+  "schema_version": 2,
+  "kind": "implementation_build",
+  "created": "2026-05-12T06:24:41Z",
+  "source": "codewiki_build tool",
+  "source_documentation_build": ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
+  "task_id": "TASK-071",
+  "task": {
+    "id": "TASK-071",
+    "title": "Hide cold archive data from default CodeWiki operating context",
+    "status": "todo",
+    "priority": "critical",
+    "kind": "architecture",
+    "summary": "Make CodeWiki default state, graph, agency, and UI context hot-only, with cold archive data available only through explicit restore/archive/audit requests and user-facing UI naming as CodeWiki.",
+    "spec_paths": [
+      ".codewiki/kb/system/graph.md",
+      ".codewiki/kb/system/roadmap.md",
+      ".codewiki/kb/system/control-room-ui.md",
+      ".codewiki/kb/product/uis/control-room.md",
+      ".codewiki/builds/feedback/2026-05-12-hot-only-default-context.json"
+    ],
+    "code_paths": [
+      "extensions/codewiki/src/application/graph.ts",
+      "extensions/codewiki/src/application/state.ts",
+      "extensions/codewiki/src/application/state-builders.ts",
+      "extensions/codewiki/src/adapters/pi/tools/state.ts",
+      "extensions/codewiki/src/adapters/web/control-room.ts",
+      "tests/smoke/hot-context.test.mjs"
+    ],
+    "goal": {
+      "outcome": "Default CodeWiki operating context exposes only hot working-set data, while cold archive refs and restore indexes require an explicit archive/restore/audit request; user-facing UI labels say CodeWiki rather than Control Room.",
+      "acceptance": [
+        "Generated graph default views expose hot working-set data but do not include cold archive restore indexes or cold refs unless an explicit archive view is requested.",
+        "codewiki_state default/summary output and normal graph context omit cold archive data while preserving hot blockers, active claims, unconsumed handoffs, dirty drift, fail/block validation, validation isolation, and publication blockers.",
+        "Control Room/internal web UI user-facing strings are CodeWiki where shown to users; internal source/module names may remain Control Room.",
+        "Tests cover that default graph/state views hide restore_index/archive refs and that explicit archive view data remains available in generated graph internals or archive-specific view.",
+        "Docs and implementation build evidence show that cold data is not deleted, only hidden from default operating context."
+      ],
+      "non_goals": [
+        "Do not delete Git archive refs, builds, validation reports, or roadmap archive records.",
+        "Do not remove explicit restore/archive/audit workflows.",
+        "Do not rename internal file paths/classes solely to remove Control Room.",
+        "Do not hide fail/block validation or active publication blockers."
+      ],
+      "verification": [
+        "npm test",
+        "npm run typecheck",
+        "npm run test:features",
+        "npm run test:smoke",
+        "npm run check:architecture"
+      ]
+    }
+  },
+  "status": "accepted",
+  "lifecycle": {
+    "state": "accepted",
+    "ttl_days": 7,
+    "archive_after": "2026-05-19T06:24:41.000Z",
+    "purge_after": "2026-05-26T06:24:41.000Z"
+  },
+  "summary": "Implemented hot-only default CodeWiki operating context and user-facing CodeWiki UI naming.",
+  "consumes": {
+    "feedback": [],
+    "documentation": [
+      ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json"
+    ],
+    "implementation": [],
+    "roadmap": [
+      "TASK-071"
+    ],
+    "validation": [],
+    "source": []
+  },
+  "produces": {
+    "knowledge": [],
+    "roadmap": [],
+    "code": [
+      "extensions/codewiki/src/application/graph.ts",
+      "extensions/codewiki/src/application/state.ts",
+      "extensions/codewiki/src/domain/shared/types.ts",
+      "extensions/codewiki/src/adapters/web/control-room.ts",
+      "extensions/codewiki/src/adapters/pi/commands/ui.ts"
+    ],
+    "tests": [
+      "tests/smoke/hot-context.test.mjs",
+      "tests/smoke/builds.test.mjs",
+      "tests/smoke/control-room.test.mjs"
+    ],
+    "validation": [],
+    "publication": [],
+    "closure": [
+      "TASK-071"
+    ]
+  },
+  "linked_refs": {
+    "documentation_build": ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
+    "spec_paths": [
+      ".codewiki/kb/system/graph.md",
+      ".codewiki/kb/system/roadmap.md",
+      ".codewiki/kb/system/control-room-ui.md",
+      ".codewiki/kb/product/uis/control-room.md",
+      ".codewiki/builds/feedback/2026-05-12-hot-only-default-context.json"
+    ],
+    "code_paths": [
+      "extensions/codewiki/src/application/graph.ts",
+      "extensions/codewiki/src/application/state.ts",
+      "extensions/codewiki/src/application/state-builders.ts",
+      "extensions/codewiki/src/adapters/pi/tools/state.ts",
+      "extensions/codewiki/src/adapters/web/control-room.ts",
+      "tests/smoke/hot-context.test.mjs"
+    ]
+  },
+  "test_files": [
+    "tests/smoke/hot-context.test.mjs",
+    "tests/smoke/builds.test.mjs",
+    "tests/smoke/control-room.test.mjs"
+  ],
+  "code_files": [
+    "extensions/codewiki/src/application/graph.ts",
+    "extensions/codewiki/src/application/state.ts",
+    "extensions/codewiki/src/domain/shared/types.ts",
+    "extensions/codewiki/src/adapters/web/control-room.ts",
+    "extensions/codewiki/src/adapters/pi/commands/ui.ts"
+  ],
+  "files_changed": [
+    "tests/smoke/hot-context.test.mjs",
+    "tests/smoke/builds.test.mjs",
+    "tests/smoke/control-room.test.mjs",
+    "extensions/codewiki/src/application/graph.ts",
+    "extensions/codewiki/src/application/state.ts",
+    "extensions/codewiki/src/domain/shared/types.ts",
+    "extensions/codewiki/src/adapters/web/control-room.ts",
+    "extensions/codewiki/src/adapters/pi/commands/ui.ts"
+  ],
+  "checks_run": [
+    "npm run typecheck",
+    "npm run test:features",
+    "npm run test:smoke",
+    "npm run check:architecture",
+    "npm run test:pack",
+    "npm test"
+  ],
+  "role_evidence": {
+    "tester": {
+      "role": "tester",
+      "source_documentation_build": ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
+      "roadmap_task_id": "TASK-071",
+      "test_files": [
+        "tests/smoke/hot-context.test.mjs",
+        "tests/smoke/builds.test.mjs",
+        "tests/smoke/control-room.test.mjs"
+      ],
+      "evidence": [
+        "Added focused hot-context smoke test for graph, codewiki_state, and web graph/state models.",
+        "Updated existing build and Control Room smoke tests to align archive view and CodeWiki naming expectations."
+      ],
+      "notes": [],
+      "boundary": "derive tests or test-design evidence before code changes where practical"
+    },
+    "builder": {
+      "role": "builder",
+      "source_documentation_build": ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
+      "roadmap_task_id": "TASK-071",
+      "code_files": [
+        "extensions/codewiki/src/application/graph.ts",
+        "extensions/codewiki/src/application/state.ts",
+        "extensions/codewiki/src/domain/shared/types.ts",
+        "extensions/codewiki/src/adapters/web/control-room.ts",
+        "extensions/codewiki/src/adapters/pi/commands/ui.ts"
+      ],
+      "evidence": [
+        "Graph archive ledgers moved from default gc view to explicit archive view and cold nodes marked default_hidden.",
+        "State graph context now filters to hot default and adds explicit archive include section.",
+        "Web graph/state model filters default-hidden/cold nodes and user-facing labels say CodeWiki."
+      ],
+      "notes": [
+        "Cold data remains in builds/Git/graph archive view; default operating context no longer exposes it.",
+        "Control Room remains internal code/module name only."
+      ],
+      "boundary": "change code until tests, roadmap acceptance, and required checks pass"
+    }
+  },
+  "test_design_evidence": [
+    "Added focused hot-context smoke test for graph, codewiki_state, and web graph/state models.",
+    "Updated existing build and Control Room smoke tests to align archive view and CodeWiki naming expectations."
+  ],
+  "code_change_evidence": [
+    "Graph archive ledgers moved from default gc view to explicit archive view and cold nodes marked default_hidden.",
+    "State graph context now filters to hot default and adds explicit archive include section.",
+    "Web graph/state model filters default-hidden/cold nodes and user-facing labels say CodeWiki."
+  ],
+  "acceptance_mapping": [
+    {
+      "criterion": "Generated graph default views expose hot working-set data but do not include cold archive restore indexes or cold refs unless an explicit archive view is requested.",
+      "evidence": "graph.ts now keeps restore_index/git archive data under views.archive and removes archive refs from views.gc default classes; archive_ref and compacted build nodes are marked default_hidden."
+    },
+    {
+      "criterion": "codewiki_state default/summary output and normal graph context omit cold archive data while preserving hot blockers, active claims, unconsumed handoffs, dirty drift, fail/block validation, validation isolation, and publication blockers.",
+      "evidence": "state.ts reports graph source graph:hot-default, exposes only gc.classes.hot in normal graph context, and exposes archive data only when include contains archive."
+    },
+    {
+      "criterion": "Control Room/internal web UI user-facing strings are CodeWiki where shown to users; internal source/module names may remain Control Room.",
+      "evidence": "control-room.ts HTML title/header/nav/status and ui command launch messages now use CodeWiki/CodeWiki UI while internal function names remain unchanged."
+    },
+    {
+      "criterion": "Tests cover that default graph/state views hide restore_index/archive refs and that explicit archive view data remains available in generated graph internals or archive-specific view.",
+      "evidence": "tests/smoke/hot-context.test.mjs asserts default graph/state/UI omission and explicit archive availability; builds smoke updated to expect archive-specific restore_index."
+    },
+    {
+      "criterion": "Docs and implementation build evidence show that cold data is not deleted, only hidden from default operating context.",
+      "evidence": "Graph/Roadmap/UI docs updated; this implementation build records archive data as explicit context, not deleted data."
+    }
+  ],
+  "validation_refs": [],
+  "closure_brief": {
+    "user_intent": "Make CodeWiki use hot-only default operating context, with cold/archive data hidden unless explicitly requested, and show CodeWiki rather than Control Room to users.",
+    "implemented_changes": [
+      "Moved archive restore index and Git archive metadata to explicit graph archive view.",
+      "Filtered codewiki_state graph context to hot data and added explicit archive include.",
+      "Filtered CodeWiki UI graph/state models to hide cold/default-hidden nodes and pass validation history by default.",
+      "Changed user-facing browser and launch labels to CodeWiki/CodeWiki UI.",
+      "Added hot-context smoke coverage and updated existing build/UI tests."
+    ],
+    "layers_updated": {
+      "knowledge": [
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/roadmap.md",
+        ".codewiki/kb/system/control-room-ui.md",
+        ".codewiki/kb/product/uis/control-room.md"
+      ],
+      "roadmap": [
+        "TASK-071"
+      ],
+      "code": [
+        "extensions/codewiki/src/application/graph.ts",
+        "extensions/codewiki/src/application/state.ts",
+        "extensions/codewiki/src/domain/shared/types.ts",
+        "extensions/codewiki/src/adapters/web/control-room.ts",
+        "extensions/codewiki/src/adapters/pi/commands/ui.ts"
+      ],
+      "tests": [
+        "tests/smoke/hot-context.test.mjs",
+        "tests/smoke/builds.test.mjs",
+        "tests/smoke/control-room.test.mjs"
+      ],
+      "validation": []
+    },
+    "acceptance_evidence": [
+      "All TASK-071 acceptance criteria mapped in implementation build acceptance_mapping."
+    ],
+    "checks": [
+      "npm run typecheck",
+      "npm run test:features",
+      "npm run test:smoke",
+      "npm run check:architecture",
+      "npm run test:pack",
+      "npm test"
+    ],
+    "non_goals_preserved": [
+      "Did not delete Git archive refs/builds/validation reports/roadmap archive records.",
+      "Did not remove explicit restore/archive/audit data.",
+      "Did not rename internal Control Room files/classes solely for aesthetics.",
+      "Did not hide fail/block validation or active blockers."
+    ],
+    "remaining_risks": [
+      "Callers that directly read generated graph internals must opt into views.archive for cold refs."
+    ]
+  },
+  "risks": [
+    "Existing callers expecting graph.views.gc.restore_index must switch to graph.views.archive.restore_index or codewiki_state include:['archive']."
+  ],
+  "unresolved_issues": [],
+  "open_questions": [],
+  "handoff": {
+    "resume": {
+      "source": "implementation_build",
+      "command": "/wiki-resume TASK-071",
+      "task_id": "TASK-071",
+      "next_focus_task_id": "",
+      "context": {
+        "source": "implementation_build",
+        "task_id": "TASK-071",
+        "title": "Hide cold archive data from default CodeWiki operating context",
+        "summary": "Implemented hot-only default CodeWiki operating context and user-facing CodeWiki UI naming.",
+        "spec_paths": [
+          ".codewiki/kb/system/graph.md",
+          ".codewiki/kb/system/roadmap.md",
+          ".codewiki/kb/system/control-room-ui.md",
+          ".codewiki/kb/product/uis/control-room.md",
+          ".codewiki/builds/feedback/2026-05-12-hot-only-default-context.json"
+        ],
+        "code_paths": [
+          "extensions/codewiki/src/application/graph.ts",
+          "extensions/codewiki/src/application/state.ts",
+          "extensions/codewiki/src/application/state-builders.ts",
+          "extensions/codewiki/src/adapters/pi/tools/state.ts",
+          "extensions/codewiki/src/adapters/web/control-room.ts",
+          "tests/smoke/hot-context.test.mjs",
+          "extensions/codewiki/src/domain/shared/types.ts",
+          "extensions/codewiki/src/adapters/pi/commands/ui.ts"
+        ],
+        "acceptance": [
+          "Generated graph default views expose hot working-set data but do not include cold archive restore indexes or cold refs unless an explicit archive view is requested.",
+          "codewiki_state default/summary output and normal graph context omit cold archive data while preserving hot blockers, active claims, unconsumed handoffs, dirty drift, fail/block validation, validation isolation, and publication blockers.",
+          "Control Room/internal web UI user-facing strings are CodeWiki where shown to users; internal source/module names may remain Control Room.",
+          "Tests cover that default graph/state views hide restore_index/archive refs and that explicit archive view data remains available in generated graph internals or archive-specific view.",
+          "Docs and implementation build evidence show that cold data is not deleted, only hidden from default operating context."
+        ],
+        "verification": [
+          "npm test",
+          "npm run typecheck",
+          "npm run test:features",
+          "npm run test:smoke",
+          "npm run check:architecture"
+        ],
+        "checks_run": [
+          "npm run typecheck",
+          "npm run test:features",
+          "npm run test:smoke",
+          "npm run check:architecture",
+          "npm run test:pack",
+          "npm test"
+        ],
+        "test_design_evidence": [
+          "Added focused hot-context smoke test for graph, codewiki_state, and web graph/state models.",
+          "Updated existing build and Control Room smoke tests to align archive view and CodeWiki naming expectations."
+        ],
+        "code_change_evidence": [
+          "Graph archive ledgers moved from default gc view to explicit archive view and cold nodes marked default_hidden.",
+          "State graph context now filters to hot default and adds explicit archive include section.",
+          "Web graph/state model filters default-hidden/cold nodes and user-facing labels say CodeWiki."
+        ],
+        "validation_refs": []
+      }
+    },
+    "restore": {
+      "command": "/wiki-restore TASK-071",
+      "worktree": "git worktree add --detach <tmp> refs/codewiki/archive/task/TASK-071",
+      "show_build": "git show refs/codewiki/archive/task/TASK-071:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+      "sparse_paths": [
+        ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/roadmap.md",
+        ".codewiki/kb/system/control-room-ui.md",
+        ".codewiki/kb/product/uis/control-room.md",
+        ".codewiki/builds/feedback/2026-05-12-hot-only-default-context.json",
+        "extensions/codewiki/src/application/graph.ts",
+        "extensions/codewiki/src/application/state.ts",
+        "extensions/codewiki/src/application/state-builders.ts",
+        "extensions/codewiki/src/adapters/pi/tools/state.ts",
+        "extensions/codewiki/src/adapters/web/control-room.ts",
+        "tests/smoke/hot-context.test.mjs"
+      ],
+      "note": "Restored history is reference material until promoted into active knowledge or roadmap truth."
+    },
+    "fallback": "Use codewiki_state refresh=true and this implementation_build; do not rely on chat transcript memory."
+  },
+  "publication": {
+    "policy": {
+      "execution": "recommendation_only",
+      "approval_required": true,
+      "remote_updates": "blocked_until_explicit_approval",
+      "security_review_required": true
+    },
+    "commit": {
+      "title": "chore(codewiki): record TASK-071 Hide cold archive data from default CodeWiki operating context implementation evidence",
+      "body": "Implemented hot-only default CodeWiki operating context and user-facing CodeWiki UI naming.\n\nChecks: npm run typecheck, npm run test:features, npm run test:smoke, npm run check:architecture, npm run test:pack, npm test\nValidation: no durable validation refs recorded.\nRemote publication requires explicit approval; this build is recommendation-only.\n\nCodeWiki-Task: TASK-071\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-071\nCodeWiki-Digest: sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324\nCodeWiki-Restore: /wiki-restore TASK-071",
+      "trailers": [
+        "CodeWiki-Task: TASK-071",
+        "CodeWiki-Build: .codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+        "CodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-071",
+        "CodeWiki-Digest: sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
+        "CodeWiki-Restore: /wiki-restore TASK-071"
+      ]
+    },
+    "pr": {
+      "title": "chore(codewiki): record TASK-071 Hide cold archive data from default CodeWiki operating context implementation evidence",
+      "body": "Implemented hot-only default CodeWiki operating context and user-facing CodeWiki UI naming.\n\nChecks: npm run typecheck, npm run test:features, npm run test:smoke, npm run check:architecture, npm run test:pack, npm test\nValidation: no durable validation refs recorded.\nRemote publication requires explicit approval; this build is recommendation-only.\n\nCodeWiki-Task: TASK-071\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-071\nCodeWiki-Digest: sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324\nCodeWiki-Restore: /wiki-restore TASK-071"
+    },
+    "issue_update": "",
+    "release_notes": "",
+    "git": {
+      "strategy": "implementation_build_publication_payload",
+      "archive_ref": "refs/codewiki/archive/task/TASK-071",
+      "commit_sha": "",
+      "remote": "origin",
+      "branch": "main",
+      "atomic_push_refspecs": [
+        "HEAD",
+        "refs/codewiki/archive/task/TASK-071"
+      ],
+      "restore": {
+        "command": "/wiki-restore TASK-071",
+        "worktree": "git worktree add --detach <tmp> refs/codewiki/archive/task/TASK-071",
+        "show_build": "git show refs/codewiki/archive/task/TASK-071:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+        "sparse_paths": [
+          ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+          ".codewiki/kb/system/graph.md",
+          ".codewiki/kb/system/roadmap.md",
+          ".codewiki/kb/system/control-room-ui.md",
+          ".codewiki/kb/product/uis/control-room.md",
+          ".codewiki/builds/feedback/2026-05-12-hot-only-default-context.json",
+          "extensions/codewiki/src/application/graph.ts",
+          "extensions/codewiki/src/application/state.ts",
+          "extensions/codewiki/src/application/state-builders.ts",
+          "extensions/codewiki/src/adapters/pi/tools/state.ts",
+          "extensions/codewiki/src/adapters/web/control-room.ts",
+          "tests/smoke/hot-context.test.mjs"
+        ],
+        "note": "Restored history is reference material until promoted into active knowledge or roadmap truth."
+      }
+    },
+    "archive_ledger": {
+      "kind": "task",
+      "id": "TASK-071",
+      "build_path": ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+      "archive_ref": "refs/codewiki/archive/task/TASK-071",
+      "commit_sha": "",
+      "digest": "sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
+      "restore_command": "/wiki-restore TASK-071"
+    },
+    "artifact_digests": {
+      "algorithm": "sha256",
+      "files": [
+        {
+          "path": ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
+          "role": "source_documentation_build",
+          "sha256": "sha256:cf129c194706f4386e47f6b2518437ccc2ca03c1b576844baa879f1675bee179",
+          "bytes": 2678
+        },
+        {
+          "path": "tests/smoke/hot-context.test.mjs",
+          "role": "test_file",
+          "sha256": "sha256:ce7e50b7fba68c1e470086589b79a50daba6d69ce4b1a1507981276c27eafe22",
+          "bytes": 5206
+        },
+        {
+          "path": "tests/smoke/builds.test.mjs",
+          "role": "test_file",
+          "sha256": "sha256:00f5df96bf50da7827735045a112faabf504700c8115bd6b44af20427f93b6fd",
+          "bytes": 16875
+        },
+        {
+          "path": "tests/smoke/control-room.test.mjs",
+          "role": "test_file",
+          "sha256": "sha256:5513dc8435e7c82a52abf0ba7ad7c170a52d990d5323c5e435d09d2988718a6c",
+          "bytes": 10307
+        },
+        {
+          "path": "extensions/codewiki/src/application/graph.ts",
+          "role": "code_file",
+          "sha256": "sha256:e4870501cebc993973b56661a9244958d1a5395dcbdddce6fb0378fcd11e8e30",
+          "bytes": 39742
+        },
+        {
+          "path": "extensions/codewiki/src/application/state.ts",
+          "role": "code_file",
+          "sha256": "sha256:3b62ed21310d8600b949a354ac5dd7f0c50723ceb77f94351be39f167c971d28",
+          "bytes": 12120
+        },
+        {
+          "path": "extensions/codewiki/src/domain/shared/types.ts",
+          "role": "code_file",
+          "sha256": "sha256:7689b6084446098fa09a828b7cd9c73cf0c5ba4f2464ab477d242c90c5617f91",
+          "bytes": 24551
+        },
+        {
+          "path": "extensions/codewiki/src/adapters/web/control-room.ts",
+          "role": "code_file",
+          "sha256": "sha256:859fbb9677bbc5afc725d5cd59c2ec628dd3a204b5f0a48ac515527667d64e68",
+          "bytes": 70989
+        },
+        {
+          "path": "extensions/codewiki/src/adapters/pi/commands/ui.ts",
+          "role": "code_file",
+          "sha256": "sha256:0c9fa18f4e09f008c27f734fb135bfeab947fc9350ab4a9b483a3c72676fe7cb",
+          "bytes": 4015
+        }
+      ],
+      "skipped": []
+    },
+    "push_readiness": {
+      "checks_recorded": [
+        "npm run typecheck",
+        "npm run test:features",
+        "npm run test:smoke",
+        "npm run check:architecture",
+        "npm run test:pack",
+        "npm test"
+      ],
+      "validation_refs": [],
+      "approval_required": true,
+      "allowed_by_default": false,
+      "safe_to_push": true,
+      "blocked_reasons": [],
+      "security": {
+        "secret_scan": "pass",
+        "remote_visibility": "pass",
+        "private_evidence": "pass",
+        "git_namespaces": "not_access_control"
+      }
+    }
+  }
+}

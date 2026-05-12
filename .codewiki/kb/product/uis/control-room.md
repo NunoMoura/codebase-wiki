@@ -1,8 +1,8 @@
 ---
 id: spec.product.uis.control-room
-title: Control Room UI
+title: CodeWiki UI
 state: active
-summary: Product expectations for the simplified second-screen CodeWiki Control Room.
+summary: Product expectations for the simplified second-screen CodeWiki UI.
 owners:
   - product
   - design
@@ -12,19 +12,21 @@ code_paths:
   - extensions/codewiki/src/adapters/pi/commands
 ---
 
-# Control Room UI
+# CodeWiki UI
 
-The Control Room is the primary visual product surface for CodeWiki, but it is not meant to show every CodeWiki artifact all the time. Users normally operate CodeWiki through an agent chat on the main screen and keep the Control Room on a second screen for orientation, navigation, and high-signal state.
+The CodeWiki UI is the primary visual product surface for CodeWiki, but it is not meant to show every CodeWiki artifact all the time. The implementation may keep Control Room as an internal module name; users should see CodeWiki as the product name. Users normally operate CodeWiki through an agent chat on the main screen and keep the UI on a second screen for orientation, navigation, and high-signal state.
 
-The Control Room should therefore optimize for signal-to-noise ratio. It should help users see current status, product intent, system shape, roadmap work, and graph relationships without turning the UI into a raw file browser, build log viewer, diff console, or replacement for the compiler chat loop.
+The UI should therefore optimize for signal-to-noise ratio and default to the hot working set. It should help users see current status, product intent, system shape, roadmap work, and active graph relationships without turning the UI into a raw file browser, build log viewer, diff console, archive browser, or replacement for the compiler chat loop.
 
-The Control Room is local-first. By default it runs against the current repository on `127.0.0.1` and reads or mutates CodeWiki through the same API semantics used by harness adapters. It must not require hosted infrastructure, accounts, or internet access.
+Cold archive data should not appear by default. Closed task history, old pass validations, archive refs, restore indexes, and expanded historical graph edges should appear only when the user explicitly asks to restore, inspect archives, audit historical work, or refine a past task/sprint.
 
-The Pi TUI remains a compact launcher and fallback surface. Future Claude Code, Codex, CLI, MCP, or editor integrations should be able to launch or connect to the same Control Room without changing CodeWiki truth semantics.
+The CodeWiki UI is local-first. By default it runs against the current repository on `127.0.0.1` and reads or mutates CodeWiki through the same API semantics used by harness adapters. It must not require hosted infrastructure, accounts, or internet access.
+
+The Pi TUI remains a compact launcher and fallback surface. Future Claude Code, Codex, CLI, MCP, or editor integrations should be able to launch or connect to the same CodeWiki UI without changing CodeWiki truth semantics.
 
 ## Layout model
 
-The Control Room should use a simple command-center layout:
+The CodeWiki UI should use a simple command-center layout:
 
 ```text
 header: repo, health, active task, active claims, command palette, settings cog
@@ -105,7 +107,7 @@ Graph should focus on relationships around active roadmap work, current sprint s
 
 Users should be able to filter by node kind, edge kind, active task, active sprint, stale items, drift items, and build DAG edges. Selecting a node or edge should show source paths, relationship reason, freshness state, and the smallest useful next reads.
 
-The first graph renderer is Cytoscape.js, served from the installed package rather than a CDN so the Control Room remains local-first.
+The first graph renderer is Cytoscape.js, served from the installed package rather than a CDN so the CodeWiki UI remains local-first.
 
 The graph view is an inspection and navigation surface. Canonical edits still flow through CodeWiki API operations and compiler loops.
 
@@ -121,7 +123,7 @@ Detailed knowledge docs, builds, validation reports, feedback diff rows, and set
 
 ## Settings page
 
-The local web Control Room should include a conventional settings cog in the top-right header. Activating the cog opens a Settings page or panel that maps the current `.codewiki/config.json` options into grouped, source-backed rows.
+The local web CodeWiki UI should include a conventional settings cog in the top-right header. Activating the cog opens a Settings page or panel that maps the current `.codewiki/config.json` options into grouped, source-backed rows.
 
 The first settings slice should be high-signal and read-oriented. It should show:
 
@@ -136,11 +138,11 @@ Settings should preserve `.codewiki/config.json` as source truth. The UI must no
 
 ## Style
 
-The Control Room should feel like a retro terminal command center while staying browser-native, readable, keyboard-first, and accessible. Use dark surfaces, monospace typography, muted green base tones, off-white highlights, amber/gold accents, terminal borders, and red only for errors or destructive states. Do not depend on cyan/blue highlights. Visual nostalgia must not reduce legibility or canvas usability.
+The CodeWiki UI should feel like a retro terminal command center while staying browser-native, readable, keyboard-first, and accessible. Use dark surfaces, monospace typography, muted green base tones, off-white highlights, amber/gold accents, terminal borders, and red only for errors or destructive states. Do not depend on cyan/blue highlights. Visual nostalgia must not reduce legibility or canvas usability.
 
 ## Multi-computer behavior
 
-The default multi-computer model is git-synchronized local state. Each computer runs a local Control Room against its repo clone; durable truth syncs through git, while runtime session state stays local unless summarized into claims, task evidence, builds, validation reports, or commits. Optional shared server mode must be explicit, token-protected, and disabled by default.
+The default multi-computer model is git-synchronized local state. Each computer runs a local CodeWiki UI against its repo clone; durable truth syncs through git, while runtime session state stays local unless summarized into claims, task evidence, builds, validation reports, or commits. Optional shared server mode must be explicit, token-protected, and disabled by default.
 
 ## Success signals
 
@@ -159,7 +161,7 @@ The default multi-computer model is git-synchronized local state. Each computer 
 - [Status Panel UI](status-panel.md)
 - [Graph Navigation UI](graph-navigation.md)
 - [Board UI](board.md)
-- [Control Room UI System Component](../../system/control-room-ui.md)
+- [CodeWiki UI System Component](../../system/control-room-ui.md)
 - [CodeWiki API](../../system/api.md)
 - [Adapters](../../system/adapters.md)
 - [Graph](../../system/graph.md)

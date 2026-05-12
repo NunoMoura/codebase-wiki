@@ -165,6 +165,8 @@ export interface ControlRoomGraphModel {
 		total_edges: number;
 		shown_nodes: number;
 		shown_edges: number;
+		hidden_cold_nodes: number;
+		hidden_cold_edges: number;
 		truncated: boolean;
 	};
 	node_kinds: string[];
@@ -241,7 +243,9 @@ export async function buildControlRoomStateModel(project: WikiProject): Promise<
 	const claims = status?.claims ?? graph?.views?.coordination?.claims ?? graph?.views?.coordination ?? {};
 	const reconciliationItems = graph?.views?.reconciliation?.items ?? [];
 	const graphNodes = Array.isArray(graph?.nodes) ? graph.nodes : [];
-	const validationNodes = graphNodes.filter((node: any) => String(node.kind ?? "").includes("validation"));
+	const visibleGraphNodes = graphNodes.filter(isDefaultGraphNodeVisible);
+	const visibleGraphNodeIds = new Set<string>(visibleGraphNodes.map((node: any) => String(node.id ?? "")));
+	const validationNodes = visibleGraphNodes.filter((node: any) => String(node.kind ?? "").includes("validation"));
 	const latestValidation = validationNodes.at(-1);
 	const openTasks = Object.values(roadmap?.tasks ?? {}).filter((task: any) => isOpenTaskStatus(task?.status));
 	const blockedTasks = openTasks.filter((task: any) => String(task?.status ?? "") === "blocked" || task?.blocked === true);
@@ -271,8 +275,8 @@ export async function buildControlRoomStateModel(project: WikiProject): Promise<
 		},
 		graph: {
 			generated_at: stringOrNull(graph?.generated_at),
-			nodes: graphNodes.length,
-			edges: Array.isArray(graph?.edges) ? graph.edges.length : 0,
+			nodes: visibleGraphNodes.length,
+			edges: Array.isArray(graph?.edges) ? graph.edges.filter((edge: any) => isDefaultGraphEdgeVisible(edge, visibleGraphNodeIds)).length : 0,
 			stale: Array.isArray(graph?.lenses?.freshness?.issues) ? graph.lenses.freshness.issues.length : numberFrom(status?.summary?.stale_count),
 			drift: Array.isArray(reconciliationItems) ? reconciliationItems.length : numberFrom(status?.summary?.drift_count),
 		},
@@ -417,8 +421,11 @@ export async function buildControlRoomGraphModel(
 	const graph = await maybeReadJson<any>(project.graphPath);
 	const allNodes = Array.isArray(graph?.nodes) ? graph.nodes : [];
 	const allEdges = Array.isArray(graph?.edges) ? graph.edges : [];
-	const nodes = allNodes.map(normalizeGraphNode);
-	const edges = allEdges.map(normalizeGraphEdge);
+	const visibleNodes = allNodes.filter(isDefaultGraphNodeVisible);
+	const visibleNodeIds = new Set<string>(visibleNodes.map((node: any) => String(node.id ?? "")));
+	const visibleEdges = allEdges.filter((edge: any) => isDefaultGraphEdgeVisible(edge, visibleNodeIds));
+	const nodes = visibleNodes.map(normalizeGraphNode);
+	const edges = visibleEdges.map(normalizeGraphEdge);
 	return {
 		generated_at: stringOrNull(graph?.generated_at),
 		stats: {
@@ -426,10 +433,12 @@ export async function buildControlRoomGraphModel(
 			total_edges: allEdges.length,
 			shown_nodes: nodes.length,
 			shown_edges: edges.length,
+			hidden_cold_nodes: allNodes.length - nodes.length,
+			hidden_cold_edges: allEdges.length - edges.length,
 			truncated: false,
 		},
-		node_kinds: uniqueSorted(allNodes.map((node: any) => String(node.kind ?? "unknown"))),
-		edge_kinds: uniqueSorted(allEdges.map((edge: any) => String(edge.kind ?? "edge"))),
+		node_kinds: uniqueSorted(visibleNodes.map((node: any) => String(node.kind ?? "unknown"))),
+		edge_kinds: uniqueSorted(visibleEdges.map((edge: any) => String(edge.kind ?? "edge"))),
 		nodes,
 		edges,
 	};
@@ -800,6 +809,22 @@ function normalizeGraphEdge(edge: any): Record<string, unknown> {
 	};
 }
 
+function isDefaultGraphNodeVisible(node: any): boolean {
+	if (!node) return false;
+	if (node.default_hidden === true) return false;
+	const kind = String(node.kind ?? "");
+	if (kind === "git_archive_ref") return false;
+	if (node.compacted === true) return false;
+	if (kind === "roadmap_task" && ["done", "cancelled", "closed"].includes(String(node.status ?? ""))) return false;
+	if (kind === "validation_report" && String(node.verdict ?? "") === "pass") return false;
+	return true;
+}
+
+function isDefaultGraphEdgeVisible(edge: any, visibleNodeIds: Set<string>): boolean {
+	if (!edge || edge.default_hidden === true) return false;
+	return visibleNodeIds.has(String(edge.from ?? "")) && visibleNodeIds.has(String(edge.to ?? ""));
+}
+
 async function readTextIfExists(path: string): Promise<string> {
 	return (await pathExists(path)) ? readText(path) : "";
 }
@@ -827,7 +852,7 @@ const CONTROL_ROOM_HTML = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CodeWiki Control Room</title>
+<title>CodeWiki</title>
 <link rel="stylesheet" href="/assets/control-room.css">
 </head>
 <body>
@@ -835,7 +860,7 @@ const CONTROL_ROOM_HTML = `<!doctype html>
   <header class="topbar">
     <div>
       <span class="sigil">▣</span>
-      <span class="title">CodeWiki Control Room</span>
+      <span class="title">CodeWiki</span>
       <span id="repo" class="muted"></span>
     </div>
     <div class="header-actions">
@@ -843,7 +868,7 @@ const CONTROL_ROOM_HTML = `<!doctype html>
       <button id="settingsButton" class="icon-button" type="button" aria-label="Open settings" title="Settings">⚙</button>
     </div>
   </header>
-  <nav class="rail" aria-label="Control Room sections">
+  <nav class="rail" aria-label="CodeWiki sections">
     <button data-view="status" class="active">Status</button>
     <button data-view="product">Product</button>
     <button data-view="system">System</button>
@@ -859,7 +884,7 @@ const CONTROL_ROOM_HTML = `<!doctype html>
   </main>
   <aside id="inspector" class="inspector"></aside>
   <section id="settingsPanel" class="settings-panel" hidden aria-label="Settings"></section>
-  <footer id="statusLine" class="status">booting control room…</footer>
+  <footer id="statusLine" class="status">booting CodeWiki…</footer>
 </div>
 <script src="/assets/vendor/cytoscape.min.js"></script>
 <script src="/assets/control-room.js"></script>

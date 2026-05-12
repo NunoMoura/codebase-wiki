@@ -19,7 +19,7 @@ export interface BrowserOpenResult {
 
 export function registerUiCommand(pi: ExtensionAPI): void {
 	pi.registerCommand("wiki-ui", {
-		description: "Start the standalone local CodeWiki Control Room. Usage: /wiki-ui [repo-path] [port]",
+		description: "Start the standalone local CodeWiki UI. Usage: /wiki-ui [repo-path] [port]",
 		handler: async (args, ctx) => {
 			await withUiErrorHandling(ctx, async () => {
 				const parsed = parseUiArgs(args);
@@ -104,7 +104,7 @@ export function formatControlRoomLaunchMessage(
 	result: BrowserOpenResult,
 	alreadyRunning: boolean,
 ): string {
-	const prefix = alreadyRunning ? `${projectLabel} Control Room already running` : `${projectLabel} Control Room started`;
+	const prefix = alreadyRunning ? `${projectLabel} CodeWiki UI already running` : `${projectLabel} CodeWiki UI started`;
 	if (result.opened) {
 		return `${prefix}; opened browser. URL: ${url}`;
 	}
