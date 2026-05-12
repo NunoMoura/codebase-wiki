@@ -7,6 +7,9 @@ owners:
   - architecture
   - design
 updated: "2026-05-12"
+code_paths:
+  - extensions/codewiki/src/adapters/web/control-room.ts
+  - extensions/codewiki/src/adapters/pi/ui/manager.ts
 ---
 
 # System Diagram Raw Data
