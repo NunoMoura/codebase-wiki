@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-12T06:32:14.539Z",
+  "generated_at": "2026-05-12T12:43:50.597Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -471,16 +471,6 @@
       "path": ".codewiki/validation",
       "layer": "code",
       "alignment_state": "aligned"
-    },
-    {
-      "id": "research_collection:.codewiki/evidence/inspiration.jsonl",
-      "kind": "research_collection",
-      "path": ".codewiki/evidence/inspiration.jsonl"
-    },
-    {
-      "id": "research_entry:RES-001",
-      "kind": "research_entry",
-      "title": "Initial documentation pattern note for codewiki"
     },
     {
       "id": "sprint:SPRINT-001",
@@ -1234,6 +1224,41 @@
       "default_hidden": false
     },
     {
+      "id": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "kind": "feedback_build",
+      "path": ".codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "title": "User agreement on 2026-05-12 after identifying stale `.codewiki/index`, ambiguous `.codewiki/evidence`, and retained pass validation reports as contract drift.",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false
+    },
+    {
+      "id": "code:extensions/codewiki/src/application/lint.ts",
+      "kind": "code_path",
+      "path": "extensions/codewiki/src/application/lint.ts",
+      "layer": "code"
+    },
+    {
+      "id": "code:scripts/**",
+      "kind": "code_path",
+      "path": "scripts/**",
+      "layer": "code"
+    },
+    {
+      "id": "code:tests/smoke/**",
+      "kind": "code_path",
+      "path": "tests/smoke/**",
+      "layer": "code"
+    },
+    {
+      "id": "closure:hot retention policy",
+      "kind": "closure_brief",
+      "path": "hot retention policy"
+    },
+    {
       "id": "build:.codewiki/builds/feedback/2026-05-12-drift-propagation-assurance.json",
       "kind": "feedback_build",
       "path": ".codewiki/builds/feedback/2026-05-12-drift-propagation-assurance.json",
@@ -1527,6 +1552,18 @@
       "default_hidden": false
     },
     {
+      "id": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "kind": "documentation_build",
+      "path": ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "title": ".codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false
+    },
+    {
       "id": "build:.codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-docs.json",
       "kind": "documentation_build",
       "path": ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-docs.json",
@@ -1741,12 +1778,6 @@
       "alignment_state": "aligned",
       "compacted": false,
       "default_hidden": false
-    },
-    {
-      "id": "code:extensions/codewiki/src/application/lint.ts",
-      "kind": "code_path",
-      "path": "extensions/codewiki/src/application/lint.ts",
-      "layer": "code"
     },
     {
       "id": "code:.codewiki/builds/feedback/2026-05-11-build-contract-v2-and-efficiency-sprints.json",
@@ -2200,337 +2231,28 @@
       "layer": "archive"
     },
     {
-      "id": "validation:.codewiki/validation/2026-05-09-documentation-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-09-documentation-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
+      "id": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
+      "archive_ref": "refs/codewiki/archive/task/TASK-072"
     },
     {
-      "id": "validation:.codewiki/validation/2026-05-09-task-035-close-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-09-task-035-close-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-09-task-30-close-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-09-task-30-close-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-10-implementation-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-10-implementation-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-10-task-046-implementation-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-10-task-046-implementation-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-10-task-051-implementation-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-10-task-051-implementation-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-10-task-052-implementation-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-10-task-052-implementation-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-10-task-053-implementation-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-10-task-053-implementation-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-documentation-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-documentation-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-implementation-pass-TASK-056.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-implementation-pass-TASK-056.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-implementation-pass-task-057.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-implementation-pass-task-057.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-implementation-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-implementation-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-reconciliation-lifecycle-drift-audit-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-reconciliation-lifecycle-drift-audit-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-task-054-implementation-pass.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-task-054-implementation-pass.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-058.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-task-close-pass-task-058.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-059.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-task-close-pass-task-059.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-060.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-task-close-pass-task-060.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-061.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-task-close-pass-task-061.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-062.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-task-close-pass-task-062.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-063.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-task-close-pass-task-063.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-064.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-task-close-pass-task-064.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-065.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-11-task-close-pass-task-065.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-documentation-pass-task-067.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-documentation-pass-task-067.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-documentation-pass-task-068.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-documentation-pass-task-068.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-documentation-pass-task-069.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-documentation-pass-task-069.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-documentation-pass-task-070.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-documentation-pass-task-070.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-documentation-pass-task-071.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-documentation-pass-task-071.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-066.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-implementation-pass-task-066.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-067.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-implementation-pass-task-067.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-068.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-implementation-pass-task-068.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-069.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-implementation-pass-task-069.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-070.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-implementation-pass-task-070.json",
-      "verdict": "pass",
-      "isolation_status": "isolated",
-      "isolation": {
-        "worktree_path": "/tmp/codewiki-task070-validator",
-        "branch": "detached:candidate-stash",
-        "base_sha": "18844bb12f837a071821d762c9080d16373553ad",
-        "head_sha": "4f2cd0a36780232907644d6a5b77a77b55609063",
-        "validated_sha": "4f2cd0a36780232907644d6a5b77a77b55609063",
-        "clean": true,
-        "fresh_context": true,
-        "builder_claim_id": "CLAIM-018",
-        "related_claim_ids": [
-          "CLAIM-018"
-        ],
-        "notes": "Fresh validator worktree checked candidate stash commit; loader-based package tests were already green in builder context because Pi extension discovery is anchored to the primary repo path.",
-        "role": "validator"
-      }
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-071.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-implementation-pass-task-071.json",
-      "verdict": "pass",
-      "isolation_status": "isolated",
-      "isolation": {
-        "worktree_path": "/tmp/codewiki-task071-validator",
-        "branch": "detached:candidate-stash",
-        "base_sha": "0fcaf45034c868e6cb36ba7c30a01181fe83296b",
-        "head_sha": "cb0ad0340a752c8550538863d6296e265c2d7902",
-        "validated_sha": "cb0ad0340a752c8550538863d6296e265c2d7902",
-        "clean": true,
-        "fresh_context": true,
-        "builder_claim_id": "CLAIM-019",
-        "related_claim_ids": [
-          "CLAIM-019"
-        ],
-        "notes": "Fresh validator checked candidate stash SHA; loader-based extension discovery tests were already green in builder context.",
-        "role": "validator"
-      }
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-066.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-task-close-pass-task-066.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-067.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-task-close-pass-task-067.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-068.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-task-close-pass-task-068.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-069.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-task-close-pass-task-069.json",
-      "verdict": "pass",
-      "isolation_status": "legacy"
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-070.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-task-close-pass-task-070.json",
-      "verdict": "pass",
-      "isolation_status": "isolated",
-      "isolation": {
-        "worktree_path": "/tmp/codewiki-task070-validator",
-        "branch": "detached:close-candidate-stash",
-        "base_sha": "18844bb12f837a071821d762c9080d16373553ad",
-        "head_sha": "e3a63691f962fb70e28d47a56719b4262856b699",
-        "validated_sha": "e3a63691f962fb70e28d47a56719b4262856b699",
-        "clean": true,
-        "fresh_context": true,
-        "builder_claim_id": "CLAIM-018",
-        "related_claim_ids": [
-          "CLAIM-018"
-        ],
-        "notes": "Fresh validator worktree checked close candidate stash commit and graph rebuild behavior. Generated graph refresh itself will be committed in the publication/publisher step.",
-        "role": "validator"
-      }
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-071.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-12-task-close-pass-task-071.json",
-      "verdict": "pass",
-      "isolation_status": "isolated",
-      "isolation": {
-        "worktree_path": "/tmp/codewiki-task071-validator",
-        "branch": "detached:close-candidate-stash",
-        "base_sha": "0fcaf45034c868e6cb36ba7c30a01181fe83296b",
-        "head_sha": "87c59b5d9d889c6999feb6d29ecd1aba13c0f387",
-        "validated_sha": "87c59b5d9d889c6999feb6d29ecd1aba13c0f387",
-        "clean": true,
-        "fresh_context": true,
-        "builder_claim_id": "CLAIM-019",
-        "related_claim_ids": [
-          "CLAIM-019"
-        ],
-        "notes": "Fresh validator checked close candidate stash SHA. Publication step will rebuild graph in a clean publisher worktree and record published SHA via Git.",
-        "role": "validator"
-      }
+      "id": "archive_ref:refs/codewiki/archive/task/TASK-072",
+      "kind": "git_archive_ref",
+      "path": "refs/codewiki/archive/task/TASK-072",
+      "task_id": "TASK-072",
+      "digest": "sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
+      "restore_command": "/wiki-restore TASK-072",
+      "safety_status": "safe_to_push",
+      "default_hidden": true,
+      "layer": "archive"
     }
   ],
   "edges": [
@@ -3600,11 +3322,6 @@
       "to": "code:.codewiki/validation"
     },
     {
-      "kind": "collection_contains_entry",
-      "from": "research_collection:.codewiki/evidence/inspiration.jsonl",
-      "to": "research_entry:RES-001"
-    },
-    {
       "kind": "sprint_task",
       "from": "sprint:SPRINT-001",
       "to": "task:TASK-055"
@@ -4183,6 +3900,76 @@
       "kind": "build_produces_knowledge",
       "from": "build:.codewiki/builds/feedback/2026-05-12-control-room-simplification.json",
       "to": "doc:.codewiki/kb/system/diagrams/**"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "doc:.codewiki/kb/system/file-structure.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "doc:.codewiki/kb/system/overview.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "doc:.codewiki/kb/system/validation-gateway.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "doc:.codewiki/kb/system/builds.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "doc:.codewiki/kb/system/graph.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "doc:.codewiki/kb/system/api.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "doc:.codewiki/kb/lexicon.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "code:extensions/codewiki/templates.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "code:extensions/codewiki/src/application/lint.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "code:extensions/codewiki/src/application/graph.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "code:scripts/**"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "code:tests/smoke/**"
+    },
+    {
+      "kind": "build_produces_validation",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "validation:documentation validation"
+    },
+    {
+      "kind": "build_produces_closure",
+      "from": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+      "to": "closure:hot retention policy"
     },
     {
       "kind": "build_produces_knowledge",
@@ -4813,6 +4600,101 @@
       "kind": "build_produces_task",
       "from": "build:.codewiki/builds/documentation/2026-05-12-control-room-simplification-docs.json",
       "to": "task:TASK-067"
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "task:TASK-072 created for deprecated path removal, config/template updates, lint/graph enforcement, hot retention classes, and tests."
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "task:TASK-072"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "build:.codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/file-structure.md defines active root surfaces and deprecates `.codewiki/index/**` and default `.codewiki/evidence/**`."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/overview.md clarifies implementation evidence, validation truth, and pass validation eviction after archival."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/validation-gateway.md narrows persistent validation report policy."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/builds.md says consumed pass validation/build artifacts are purgeable after safe publication/archive."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/graph.md requires deterministic file-contract drift checks and hot/cold purge classes."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/api.md removes default evidence writes and adds deprecated-path rule."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/lexicon.md distinguishes research/source, implementation, and validation evidence."
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/file-structure.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/overview.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/validation-gateway.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/builds.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/graph.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/system/api.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "doc:.codewiki/kb/lexicon.md"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "task:TASK-072 created for deprecated path removal, config/template updates, lint/graph enforcement, hot retention classes, and tests."
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "to": "task:TASK-072"
     },
     {
       "kind": "build_task",
@@ -6163,184 +6045,15 @@
       "default_hidden": true
     },
     {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-09-task-035-close-pass.json",
-      "to": "task:TASK-035"
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+      "to": "task:TASK-072"
     },
     {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-09-task-30-close-pass.json",
-      "to": "task:TASK-30"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-10-implementation-pass.json",
-      "to": "task:TASK-043"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-10-task-046-implementation-pass.json",
-      "to": "task:TASK-046"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-10-task-051-implementation-pass.json",
-      "to": "task:TASK-051"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-10-task-052-implementation-pass.json",
-      "to": "task:TASK-052"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-10-task-053-implementation-pass.json",
-      "to": "task:TASK-053"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-implementation-pass-TASK-056.json",
-      "to": "task:TASK-056"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-implementation-pass-task-057.json",
-      "to": "task:TASK-057"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-implementation-pass.json",
-      "to": "task:TASK-055"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-task-054-implementation-pass.json",
-      "to": "task:TASK-054"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-058.json",
-      "to": "task:TASK-058"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-059.json",
-      "to": "task:TASK-059"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-060.json",
-      "to": "task:TASK-060"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-061.json",
-      "to": "task:TASK-061"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-062.json",
-      "to": "task:TASK-062"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-063.json",
-      "to": "task:TASK-063"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-064.json",
-      "to": "task:TASK-064"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-11-task-close-pass-task-065.json",
-      "to": "task:TASK-065"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-documentation-pass-task-067.json",
-      "to": "task:TASK-067"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-documentation-pass-task-068.json",
-      "to": "task:TASK-068"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-documentation-pass-task-069.json",
-      "to": "task:TASK-069"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-documentation-pass-task-070.json",
-      "to": "task:TASK-070"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-documentation-pass-task-071.json",
-      "to": "task:TASK-071"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-066.json",
-      "to": "task:TASK-066"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-067.json",
-      "to": "task:TASK-067"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-068.json",
-      "to": "task:TASK-068"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-069.json",
-      "to": "task:TASK-069"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-070.json",
-      "to": "task:TASK-070"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-implementation-pass-task-071.json",
-      "to": "task:TASK-071"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-066.json",
-      "to": "task:TASK-066"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-067.json",
-      "to": "task:TASK-067"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-068.json",
-      "to": "task:TASK-068"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-069.json",
-      "to": "task:TASK-069"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-070.json",
-      "to": "task:TASK-070"
-    },
-    {
-      "kind": "validation_task",
-      "from": "validation:.codewiki/validation/2026-05-12-task-close-pass-task-071.json",
-      "to": "task:TASK-071"
+      "kind": "build_archive_ref",
+      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+      "to": "archive_ref:refs/codewiki/archive/task/TASK-072",
+      "default_hidden": true
     }
   ],
   "views": {
@@ -6630,12 +6343,8 @@
       ]
     },
     "research": {
-      "collection_paths": [
-        ".codewiki/evidence/inspiration.jsonl"
-      ],
-      "entry_ids": [
-        "RES-001"
-      ]
+      "collection_paths": [],
+      "entry_ids": []
     },
     "code": {
       "paths": [
@@ -6697,322 +6406,7 @@
       "conflicts": []
     },
     "validation": {
-      "isolation": [
-        {
-          "path": ".codewiki/validation/2026-05-09-documentation-pass.json",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-09-task-035-close-pass.json",
-          "task_id": "TASK-035",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-09-task-30-close-pass.json",
-          "task_id": "TASK-30",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-10-implementation-pass.json",
-          "task_id": "TASK-043",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-10-task-046-implementation-pass.json",
-          "task_id": "TASK-046",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-10-task-051-implementation-pass.json",
-          "task_id": "TASK-051",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-10-task-052-implementation-pass.json",
-          "task_id": "TASK-052",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-10-task-053-implementation-pass.json",
-          "task_id": "TASK-053",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-documentation-pass.json",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-implementation-pass-TASK-056.json",
-          "task_id": "TASK-056",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-implementation-pass-task-057.json",
-          "task_id": "TASK-057",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-implementation-pass.json",
-          "task_id": "TASK-055",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-reconciliation-lifecycle-drift-audit-pass.json",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-task-054-implementation-pass.json",
-          "task_id": "TASK-054",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-task-close-pass-task-058.json",
-          "task_id": "TASK-058",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-task-close-pass-task-059.json",
-          "task_id": "TASK-059",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-task-close-pass-task-060.json",
-          "task_id": "TASK-060",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-task-close-pass-task-061.json",
-          "task_id": "TASK-061",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-task-close-pass-task-062.json",
-          "task_id": "TASK-062",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-task-close-pass-task-063.json",
-          "task_id": "TASK-063",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-task-close-pass-task-064.json",
-          "task_id": "TASK-064",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-11-task-close-pass-task-065.json",
-          "task_id": "TASK-065",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-documentation-pass-task-067.json",
-          "task_id": "TASK-067",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-documentation-pass-task-068.json",
-          "task_id": "TASK-068",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-documentation-pass-task-069.json",
-          "task_id": "TASK-069",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-documentation-pass-task-070.json",
-          "task_id": "TASK-070",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-documentation-pass-task-071.json",
-          "task_id": "TASK-071",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-implementation-pass-task-066.json",
-          "task_id": "TASK-066",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-implementation-pass-task-067.json",
-          "task_id": "TASK-067",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-implementation-pass-task-068.json",
-          "task_id": "TASK-068",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-implementation-pass-task-069.json",
-          "task_id": "TASK-069",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-implementation-pass-task-070.json",
-          "task_id": "TASK-070",
-          "verdict": "pass",
-          "status": "isolated",
-          "role": "validator",
-          "worktree_path": "/tmp/codewiki-task070-validator",
-          "branch": "detached:candidate-stash",
-          "base_sha": "18844bb12f837a071821d762c9080d16373553ad",
-          "head_sha": "4f2cd0a36780232907644d6a5b77a77b55609063",
-          "validated_sha": "4f2cd0a36780232907644d6a5b77a77b55609063",
-          "clean": true,
-          "fresh_context": true,
-          "builder_claim_id": "CLAIM-018",
-          "related_claim_ids": [
-            "CLAIM-018"
-          ]
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-implementation-pass-task-071.json",
-          "task_id": "TASK-071",
-          "verdict": "pass",
-          "status": "isolated",
-          "role": "validator",
-          "worktree_path": "/tmp/codewiki-task071-validator",
-          "branch": "detached:candidate-stash",
-          "base_sha": "0fcaf45034c868e6cb36ba7c30a01181fe83296b",
-          "head_sha": "cb0ad0340a752c8550538863d6296e265c2d7902",
-          "validated_sha": "cb0ad0340a752c8550538863d6296e265c2d7902",
-          "clean": true,
-          "fresh_context": true,
-          "builder_claim_id": "CLAIM-019",
-          "related_claim_ids": [
-            "CLAIM-019"
-          ]
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-task-close-pass-task-066.json",
-          "task_id": "TASK-066",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-task-close-pass-task-067.json",
-          "task_id": "TASK-067",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-task-close-pass-task-068.json",
-          "task_id": "TASK-068",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-task-close-pass-task-069.json",
-          "task_id": "TASK-069",
-          "verdict": "pass",
-          "status": "legacy",
-          "related_claim_ids": []
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-task-close-pass-task-070.json",
-          "task_id": "TASK-070",
-          "verdict": "pass",
-          "status": "isolated",
-          "role": "validator",
-          "worktree_path": "/tmp/codewiki-task070-validator",
-          "branch": "detached:close-candidate-stash",
-          "base_sha": "18844bb12f837a071821d762c9080d16373553ad",
-          "head_sha": "e3a63691f962fb70e28d47a56719b4262856b699",
-          "validated_sha": "e3a63691f962fb70e28d47a56719b4262856b699",
-          "clean": true,
-          "fresh_context": true,
-          "builder_claim_id": "CLAIM-018",
-          "related_claim_ids": [
-            "CLAIM-018"
-          ]
-        },
-        {
-          "path": ".codewiki/validation/2026-05-12-task-close-pass-task-071.json",
-          "task_id": "TASK-071",
-          "verdict": "pass",
-          "status": "isolated",
-          "role": "validator",
-          "worktree_path": "/tmp/codewiki-task071-validator",
-          "branch": "detached:close-candidate-stash",
-          "base_sha": "0fcaf45034c868e6cb36ba7c30a01181fe83296b",
-          "head_sha": "87c59b5d9d889c6999feb6d29ecd1aba13c0f387",
-          "validated_sha": "87c59b5d9d889c6999feb6d29ecd1aba13c0f387",
-          "clean": true,
-          "fresh_context": true,
-          "builder_claim_id": "CLAIM-019",
-          "related_claim_ids": [
-            "CLAIM-019"
-          ]
-        }
-      ]
+      "isolation": []
     },
     "scope_views": {
       "roadmap": {
@@ -7801,6 +7195,7 @@
             ".codewiki/builds/feedback/2026-05-11-reconciliation-lifecycle.json",
             ".codewiki/builds/feedback/2026-05-12-control-room-config-settings.json",
             ".codewiki/builds/feedback/2026-05-12-control-room-simplification.json",
+            ".codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
             ".codewiki/builds/feedback/2026-05-12-drift-propagation-assurance.json",
             ".codewiki/builds/feedback/2026-05-12-git-backed-archival-gc.json",
             ".codewiki/builds/feedback/2026-05-12-hot-only-default-context.json",
@@ -7820,6 +7215,7 @@
             ".codewiki/builds/documentation/2026-05-11-reconciliation-lifecycle-docs.json",
             ".codewiki/builds/documentation/2026-05-12-control-room-config-settings-docs.json",
             ".codewiki/builds/documentation/2026-05-12-control-room-simplification-docs.json",
+            ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
             ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-docs.json",
             ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-final-docs.json",
             ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json",
@@ -7835,33 +7231,9 @@
             ".codewiki/builds/implementation/2026-05-11-task-057-status-graph-diff-ui.json",
             ".codewiki/builds/implementation/2026-05-12-task-066-drift-propagation-assurance.json",
             ".codewiki/builds/implementation/2026-05-12-task-067-control-room-simplification.json",
-            ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-            ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
-            ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-            ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json"
+            ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json"
           ],
-          "validation_paths": [
-            ".codewiki/validation/2026-05-09-documentation-pass.json",
-            ".codewiki/validation/2026-05-09-task-035-close-pass.json",
-            ".codewiki/validation/2026-05-09-task-30-close-pass.json",
-            ".codewiki/validation/2026-05-10-implementation-pass.json",
-            ".codewiki/validation/2026-05-10-task-046-implementation-pass.json",
-            ".codewiki/validation/2026-05-10-task-051-implementation-pass.json",
-            ".codewiki/validation/2026-05-10-task-052-implementation-pass.json",
-            ".codewiki/validation/2026-05-10-task-053-implementation-pass.json",
-            ".codewiki/validation/2026-05-11-documentation-pass.json",
-            ".codewiki/validation/2026-05-11-implementation-pass-TASK-056.json",
-            ".codewiki/validation/2026-05-11-implementation-pass-task-057.json",
-            ".codewiki/validation/2026-05-11-implementation-pass.json",
-            ".codewiki/validation/2026-05-11-reconciliation-lifecycle-drift-audit-pass.json",
-            ".codewiki/validation/2026-05-11-task-054-implementation-pass.json",
-            ".codewiki/validation/2026-05-11-task-close-pass-task-058.json",
-            ".codewiki/validation/2026-05-11-task-close-pass-task-059.json",
-            ".codewiki/validation/2026-05-11-task-close-pass-task-060.json",
-            ".codewiki/validation/2026-05-11-task-close-pass-task-061.json",
-            ".codewiki/validation/2026-05-11-task-close-pass-task-062.json",
-            ".codewiki/validation/2026-05-11-task-close-pass-task-063.json"
-          ]
+          "validation_paths": []
         },
         "cold": {
           "task_ids": [
@@ -7913,25 +7285,6 @@
             "TASK-039"
           ],
           "build_paths": [
-            ".codewiki/builds/feedback/2026-05-08-brainstorm-refactor.json",
-            ".codewiki/builds/feedback/2026-05-10-skill-loop-no-aliases.json",
-            ".codewiki/builds/feedback/2026-05-11-control-room-ui.json",
-            ".codewiki/builds/feedback/2026-05-11-cytoscape-graph-visualization-selection.json",
-            ".codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
-            ".codewiki/builds/documentation/2026-05-09-roadmap-transition-baseline.json",
-            ".codewiki/builds/documentation/2026-05-10-graph-source-boundary-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-build-contract-v2-and-efficiency-sprints-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-control-room-refinement-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-control-room-ui-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-cytoscape-control-room-graph-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-control-room-config-settings-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-control-room-simplification-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-final-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
             ".codewiki/builds/implementation/2026-05-10-architecture-refactoring-production.json",
@@ -7960,20 +7313,24 @@
             ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
             ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
             ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-            ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json"
+            ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+            ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json"
           ]
         },
         "purgeable": {
           "task_ids": [
             "TASK-068",
             "TASK-070",
-            "TASK-071"
+            "TASK-071",
+            "TASK-072"
           ],
           "build_paths": [
             ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
             ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-            ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json"
-          ]
+            ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+            ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json"
+          ],
+          "validation_paths": []
         }
       },
       "sprint_close_hooks": [
@@ -8014,19 +7371,31 @@
           "digest": "sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
           "restore_command": "/wiki-restore TASK-071",
           "safety_status": "safe_to_push"
+        },
+        {
+          "kind": "task",
+          "id": "TASK-072",
+          "build_path": ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+          "archive_ref": "refs/codewiki/archive/task/TASK-072",
+          "commit_sha": "",
+          "digest": "sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
+          "restore_command": "/wiki-restore TASK-072",
+          "safety_status": "safe_to_push"
         }
       ],
       "git_archive": {
-        "ledger_count": 3,
+        "ledger_count": 4,
         "archive_refs": [
           "refs/codewiki/archive/task/TASK-068",
           "refs/codewiki/archive/task/TASK-070",
-          "refs/codewiki/archive/task/TASK-071"
+          "refs/codewiki/archive/task/TASK-071",
+          "refs/codewiki/archive/task/TASK-072"
         ],
         "build_paths": [
           ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
           ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-          ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json"
+          ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+          ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json"
         ],
         "blocked_purge_build_paths": [],
         "gate": "validated + artifact digests + archive ledger + publication safety pass"
@@ -8054,13 +7423,13 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-12T06:32:14.439Z",
+      "generated_at": "2026-05-12T12:43:50.559Z",
       "counts": {},
       "issues": []
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-12T06:32:14Z",
+      "generated_at": "2026-05-12T12:43:50Z",
       "health": {
         "color": "green",
         "errors": 0,
@@ -10307,7 +9676,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-12T06:32:14Z",
+      "generated_at": "2026-05-12T12:43:50Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -10412,6 +9781,7 @@
               ".codewiki/builds/feedback/2026-05-11-reconciliation-lifecycle.json",
               ".codewiki/builds/feedback/2026-05-12-control-room-config-settings.json",
               ".codewiki/builds/feedback/2026-05-12-control-room-simplification.json",
+              ".codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
               ".codewiki/builds/feedback/2026-05-12-drift-propagation-assurance.json",
               ".codewiki/builds/feedback/2026-05-12-git-backed-archival-gc.json",
               ".codewiki/builds/feedback/2026-05-12-hot-only-default-context.json",
@@ -10431,6 +9801,7 @@
               ".codewiki/builds/documentation/2026-05-11-reconciliation-lifecycle-docs.json",
               ".codewiki/builds/documentation/2026-05-12-control-room-config-settings-docs.json",
               ".codewiki/builds/documentation/2026-05-12-control-room-simplification-docs.json",
+              ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
               ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-docs.json",
               ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-final-docs.json",
               ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json",
@@ -10446,33 +9817,9 @@
               ".codewiki/builds/implementation/2026-05-11-task-057-status-graph-diff-ui.json",
               ".codewiki/builds/implementation/2026-05-12-task-066-drift-propagation-assurance.json",
               ".codewiki/builds/implementation/2026-05-12-task-067-control-room-simplification.json",
-              ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-              ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
-              ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-              ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json"
+              ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json"
             ],
-            "validation_paths": [
-              ".codewiki/validation/2026-05-09-documentation-pass.json",
-              ".codewiki/validation/2026-05-09-task-035-close-pass.json",
-              ".codewiki/validation/2026-05-09-task-30-close-pass.json",
-              ".codewiki/validation/2026-05-10-implementation-pass.json",
-              ".codewiki/validation/2026-05-10-task-046-implementation-pass.json",
-              ".codewiki/validation/2026-05-10-task-051-implementation-pass.json",
-              ".codewiki/validation/2026-05-10-task-052-implementation-pass.json",
-              ".codewiki/validation/2026-05-10-task-053-implementation-pass.json",
-              ".codewiki/validation/2026-05-11-documentation-pass.json",
-              ".codewiki/validation/2026-05-11-implementation-pass-TASK-056.json",
-              ".codewiki/validation/2026-05-11-implementation-pass-task-057.json",
-              ".codewiki/validation/2026-05-11-implementation-pass.json",
-              ".codewiki/validation/2026-05-11-reconciliation-lifecycle-drift-audit-pass.json",
-              ".codewiki/validation/2026-05-11-task-054-implementation-pass.json",
-              ".codewiki/validation/2026-05-11-task-close-pass-task-058.json",
-              ".codewiki/validation/2026-05-11-task-close-pass-task-059.json",
-              ".codewiki/validation/2026-05-11-task-close-pass-task-060.json",
-              ".codewiki/validation/2026-05-11-task-close-pass-task-061.json",
-              ".codewiki/validation/2026-05-11-task-close-pass-task-062.json",
-              ".codewiki/validation/2026-05-11-task-close-pass-task-063.json"
-            ]
+            "validation_paths": []
           },
           "cold": {
             "task_ids": [
@@ -10524,25 +9871,6 @@
               "TASK-039"
             ],
             "build_paths": [
-              ".codewiki/builds/feedback/2026-05-08-brainstorm-refactor.json",
-              ".codewiki/builds/feedback/2026-05-10-skill-loop-no-aliases.json",
-              ".codewiki/builds/feedback/2026-05-11-control-room-ui.json",
-              ".codewiki/builds/feedback/2026-05-11-cytoscape-graph-visualization-selection.json",
-              ".codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
-              ".codewiki/builds/documentation/2026-05-09-roadmap-transition-baseline.json",
-              ".codewiki/builds/documentation/2026-05-10-graph-source-boundary-docs.json",
-              ".codewiki/builds/documentation/2026-05-11-build-contract-v2-and-efficiency-sprints-docs.json",
-              ".codewiki/builds/documentation/2026-05-11-control-room-refinement-docs.json",
-              ".codewiki/builds/documentation/2026-05-11-control-room-ui-docs.json",
-              ".codewiki/builds/documentation/2026-05-11-cytoscape-control-room-graph-docs.json",
-              ".codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
-              ".codewiki/builds/documentation/2026-05-12-control-room-config-settings-docs.json",
-              ".codewiki/builds/documentation/2026-05-12-control-room-simplification-docs.json",
-              ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-docs.json",
-              ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-final-docs.json",
-              ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json",
-              ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
-              ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
               ".codewiki/builds/implementation/2026-05-10-architecture-refactoring-production.json",
@@ -10571,20 +9899,24 @@
               ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
               ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
               ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-              ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json"
+              ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+              ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json"
             ]
           },
           "purgeable": {
             "task_ids": [
               "TASK-068",
               "TASK-070",
-              "TASK-071"
+              "TASK-071",
+              "TASK-072"
             ],
             "build_paths": [
               ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
               ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-              ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json"
-            ]
+              ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+              ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json"
+            ],
+            "validation_paths": []
           }
         },
         "sprint_close_hooks": [
@@ -11301,7 +10633,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-12T06:32:14Z",
+        "generated_at": "2026-05-12T12:43:50Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -11329,10 +10661,10 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-12T06:32:14Z",
+            "checked_at": "2026-05-12T12:43:50Z",
             "revision": {
               "git": {
-                "head": "34a75f974acdd6b6940fb68518c483ed9612bbc9",
+                "head": "98a62909edde4ea37ec27fbf1b3245bf343a6ff6",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -11355,20 +10687,20 @@
                   ".codewiki/kb/product/users/package-authors.md": "81d5d10b01cb961753ff46364e1fd471f0c9b1bf",
                   ".codewiki/kb/system/adapters.md": "bb2945a49385ac0c058ec7446ef962104ee92872",
                   ".codewiki/kb/system/agency.md": "0c562d69bdd9113090944bc4862672b75c44230c",
-                  ".codewiki/kb/system/api.md": "a076a1f9fd1f11ebc9e7ccb3779f01dd7b665dbb",
-                  ".codewiki/kb/system/builds.md": "db85eff113e8437d874e839cf8f97f733e3b9ad1",
+                  ".codewiki/kb/system/api.md": "2bfa56cd86b973971629c7df6e69d6fdcdbba535",
+                  ".codewiki/kb/system/builds.md": "1f3ce0a7b170810a93ab817f8a6f0f0af0dad9e9",
                   ".codewiki/kb/system/compilers.md": "56ab5bb171d8414f0cc6845635e5e5836d1dd3eb",
                   ".codewiki/kb/system/control-room-ui.md": "410058a2be80e861d79c476dedd9f650e7220934",
                   ".codewiki/kb/system/diagrams/README.md": "37fefa16658db90b63d78289e6c95c5b4248f107",
                   ".codewiki/kb/system/extension.md": "1b857185640c6d62249a292af437b26f33bbc43d",
-                  ".codewiki/kb/system/file-structure.md": "fcbabbf72465b3d44344afa450a399f61d93034a",
-                  ".codewiki/kb/system/graph.md": "4b706a1d9598c5198338ba1f49bf03d29d11748b",
+                  ".codewiki/kb/system/file-structure.md": "48a3c44f6e88da42eacfe74f575dd20195ef8070",
+                  ".codewiki/kb/system/graph.md": "7f019aef157bca39845e630b7c6b9851557b4015",
                   ".codewiki/kb/system/knowledge.md": "295ec27878d03e1338bbb3e1f2399e924fc62708",
-                  ".codewiki/kb/system/overview.md": "70ffd890e2fd8d285e152680461ad946bf37acaa",
+                  ".codewiki/kb/system/overview.md": "b98c78204794cde5b0180f4f29be3e492c6beb5e",
                   ".codewiki/kb/system/roadmap.md": "28282ae04da5246ef8114cabaf7b337ec3c41a71",
-                  ".codewiki/kb/system/validation-gateway.md": "48227517bae1ae062fbe7632135df82b5033d37f",
+                  ".codewiki/kb/system/validation-gateway.md": "9e91b4ed24d47f31c07a7c19224023193bba056d",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "9d177e23849983ac9f5a1adc6a310f9d8582a68b",
+                  ".codewiki/roadmap.json": "f8b68c0c7540338a2cf8933e7e98919e8de569fb",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -11379,35 +10711,35 @@
                   "extensions/codewiki/src/adapters/pi/ui": "",
                   "extensions/codewiki/src/adapters/pi/ui/manager.ts": "38eee5262266038f339041da79861cd8e0982ff6",
                   "extensions/codewiki/src/adapters/web": "",
-                  "extensions/codewiki/src/adapters/web/control-room.ts": "60365d48dd88ed7ab078c52fa0ebc3ccc8337344",
+                  "extensions/codewiki/src/adapters/web/control-room.ts": "319321a49d55d968671cd181963c1eed73f23f49",
                   "extensions/codewiki/src/application": "",
                   "extensions/codewiki/src/application/builds.ts": "48d5cd84f01bb3a73d965e4119f38e7015bf9ecc",
-                  "extensions/codewiki/src/application/graph.ts": "adcdda707ea9dfdcf08098dbf4332c3fd444a60a",
+                  "extensions/codewiki/src/application/graph.ts": "943a4cc6841cd016f91bf995f0864f815aff81f8",
                   "extensions/codewiki/src/domain": "",
                   "extensions/codewiki/src/infrastructure": "",
-                  "extensions/codewiki/templates.ts": "e1b8dda36316751e8deea34ef3cf109da5d42ed0",
+                  "extensions/codewiki/templates.ts": "fa96c7f09633acdf16ffd261c0c8d4a486c8c351",
                   "package.json": "9d4a03883ca656d5631f88c3ee74e77f7f002f22",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "4e747501650d248e7780aed063eb515437dc8fae",
+                  "scripts/smoke-test.mjs": "5fa03d03384e8cd052a53b1aa933601bfa7fa9ab",
                   "skills": "",
                   "skills/codewiki-architecture/SKILL.md": "16c135ad735298d90850d09f6831a78c9da55f7e",
                   "skills/codewiki-documentation/SKILL.md": "8c7824585ecfef05be172d013b90454a9f83e1e5",
                   "skills/codewiki-feedback/SKILL.md": "3ff6d457ef9f1a6c39f485f0acf34276171854a3",
                   "skills/codewiki-implementation/SKILL.md": "0ff9f8a09506289e95812198506f740cbabb9948",
                   "skills/codewiki-verify/SKILL.md": "1ccc620991dee95eaa6326fd4f01fa5f3fdf88ab",
-                  "skills/codewiki-view-audit/SKILL.md": "118c979408d3f3ed26e8df351d1fb46343878731",
+                  "skills/codewiki-view-audit/SKILL.md": "4f87314c79899033496c1775a8db0955abd14914",
                   "skills/codewiki/SKILL.md": "6c4365dfc7df5c8603ac8426228d309f97673c59"
                 }
               },
               "spec_digest": "a0c9d190be083fc5f00caef692e57c183f72c43d9653af0dbf1266cd5b9b72a6",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "0a89c9ca538dbb87c9c190b26436984c93d2a0800c937a78e94be7bb6fe96b7f",
-              "digest": "e21a2bf44955ce6d1408876faa30c4a43c42116053be64d17710f7616209305c"
+              "code_digest": "269184abef95b2cec0b7b930a00f3bfcf827d779c91ebf8af1c2548802fec61b",
+              "digest": "dcc59d770fa5ce262864e41254d32e859ae04957d9741adeb11b5b086baf7feb"
             },
             "freshness": {
               "status": "stale",
               "basis": "revision",
-              "checked_at": "2026-05-12T06:32:14Z",
+              "checked_at": "2026-05-12T12:43:50Z",
               "reason": "revision changed: code",
               "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
             },
@@ -11508,10 +10840,10 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-12T06:32:14Z",
+            "checked_at": "2026-05-12T12:43:50Z",
             "revision": {
               "git": {
-                "head": "34a75f974acdd6b6940fb68518c483ed9612bbc9",
+                "head": "98a62909edde4ea37ec27fbf1b3245bf343a6ff6",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -11519,20 +10851,20 @@
                   ".codewiki/kb": "",
                   ".codewiki/kb/system/adapters.md": "bb2945a49385ac0c058ec7446ef962104ee92872",
                   ".codewiki/kb/system/agency.md": "0c562d69bdd9113090944bc4862672b75c44230c",
-                  ".codewiki/kb/system/api.md": "a076a1f9fd1f11ebc9e7ccb3779f01dd7b665dbb",
-                  ".codewiki/kb/system/builds.md": "db85eff113e8437d874e839cf8f97f733e3b9ad1",
+                  ".codewiki/kb/system/api.md": "2bfa56cd86b973971629c7df6e69d6fdcdbba535",
+                  ".codewiki/kb/system/builds.md": "1f3ce0a7b170810a93ab817f8a6f0f0af0dad9e9",
                   ".codewiki/kb/system/compilers.md": "56ab5bb171d8414f0cc6845635e5e5836d1dd3eb",
                   ".codewiki/kb/system/control-room-ui.md": "410058a2be80e861d79c476dedd9f650e7220934",
                   ".codewiki/kb/system/diagrams/README.md": "37fefa16658db90b63d78289e6c95c5b4248f107",
                   ".codewiki/kb/system/extension.md": "1b857185640c6d62249a292af437b26f33bbc43d",
-                  ".codewiki/kb/system/file-structure.md": "fcbabbf72465b3d44344afa450a399f61d93034a",
-                  ".codewiki/kb/system/graph.md": "4b706a1d9598c5198338ba1f49bf03d29d11748b",
+                  ".codewiki/kb/system/file-structure.md": "48a3c44f6e88da42eacfe74f575dd20195ef8070",
+                  ".codewiki/kb/system/graph.md": "7f019aef157bca39845e630b7c6b9851557b4015",
                   ".codewiki/kb/system/knowledge.md": "295ec27878d03e1338bbb3e1f2399e924fc62708",
-                  ".codewiki/kb/system/overview.md": "70ffd890e2fd8d285e152680461ad946bf37acaa",
+                  ".codewiki/kb/system/overview.md": "b98c78204794cde5b0180f4f29be3e492c6beb5e",
                   ".codewiki/kb/system/roadmap.md": "28282ae04da5246ef8114cabaf7b337ec3c41a71",
-                  ".codewiki/kb/system/validation-gateway.md": "48227517bae1ae062fbe7632135df82b5033d37f",
+                  ".codewiki/kb/system/validation-gateway.md": "9e91b4ed24d47f31c07a7c19224023193bba056d",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "9d177e23849983ac9f5a1adc6a310f9d8582a68b",
+                  ".codewiki/roadmap.json": "f8b68c0c7540338a2cf8933e7e98919e8de569fb",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -11542,15 +10874,15 @@
                   "extensions/codewiki/src/adapters/pi/commands": "",
                   "extensions/codewiki/src/adapters/pi/ui/manager.ts": "38eee5262266038f339041da79861cd8e0982ff6",
                   "extensions/codewiki/src/adapters/web": "",
-                  "extensions/codewiki/src/adapters/web/control-room.ts": "60365d48dd88ed7ab078c52fa0ebc3ccc8337344",
+                  "extensions/codewiki/src/adapters/web/control-room.ts": "319321a49d55d968671cd181963c1eed73f23f49",
                   "extensions/codewiki/src/application": "",
                   "extensions/codewiki/src/application/builds.ts": "48d5cd84f01bb3a73d965e4119f38e7015bf9ecc",
-                  "extensions/codewiki/src/application/graph.ts": "adcdda707ea9dfdcf08098dbf4332c3fd444a60a",
+                  "extensions/codewiki/src/application/graph.ts": "943a4cc6841cd016f91bf995f0864f815aff81f8",
                   "extensions/codewiki/src/domain": "",
                   "extensions/codewiki/src/infrastructure": "",
-                  "extensions/codewiki/templates.ts": "e1b8dda36316751e8deea34ef3cf109da5d42ed0",
+                  "extensions/codewiki/templates.ts": "fa96c7f09633acdf16ffd261c0c8d4a486c8c351",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "4e747501650d248e7780aed063eb515437dc8fae",
+                  "scripts/smoke-test.mjs": "5fa03d03384e8cd052a53b1aa933601bfa7fa9ab",
                   "skills": "",
                   "skills/codewiki-documentation/SKILL.md": "8c7824585ecfef05be172d013b90454a9f83e1e5",
                   "skills/codewiki-feedback/SKILL.md": "3ff6d457ef9f1a6c39f485f0acf34276171854a3",
@@ -11560,13 +10892,13 @@
               },
               "spec_digest": "182a36065091c0a873abb2a04abfcee2f6c3c6d4ba6eece7e69522fe39fc61b3",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "6959ffd904e3f1ea30a53486786a9c2e060fe1463bbe965cc64e3bbfe776db2b",
-              "digest": "7f7b97ad4b80c53fa5cd50daba3017f2f3dfd001dab57060e0d97278d31e6eae"
+              "code_digest": "f91337b7152294004c0cfbf702fdb97a01555bf0e0c000f4621d080be18b86c0",
+              "digest": "a597deaa7ab799b9ebbab7f32258c4a9d695f5ddadec1dee3715e330c2d60747"
             },
             "freshness": {
               "status": "stale",
               "basis": "revision",
-              "checked_at": "2026-05-12T06:32:14Z",
+              "checked_at": "2026-05-12T12:43:50Z",
               "reason": "revision changed: code",
               "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
             },
@@ -11647,10 +10979,10 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-12T06:32:14Z",
+            "checked_at": "2026-05-12T12:43:50Z",
             "revision": {
               "git": {
-                "head": "34a75f974acdd6b6940fb68518c483ed9612bbc9",
+                "head": "98a62909edde4ea37ec27fbf1b3245bf343a6ff6",
                 "dirty": false,
                 "dirty_paths": [],
                 "paths": {
@@ -11673,20 +11005,20 @@
                   ".codewiki/kb/product/users/package-authors.md": "81d5d10b01cb961753ff46364e1fd471f0c9b1bf",
                   ".codewiki/kb/system/adapters.md": "bb2945a49385ac0c058ec7446ef962104ee92872",
                   ".codewiki/kb/system/agency.md": "0c562d69bdd9113090944bc4862672b75c44230c",
-                  ".codewiki/kb/system/api.md": "a076a1f9fd1f11ebc9e7ccb3779f01dd7b665dbb",
-                  ".codewiki/kb/system/builds.md": "db85eff113e8437d874e839cf8f97f733e3b9ad1",
+                  ".codewiki/kb/system/api.md": "2bfa56cd86b973971629c7df6e69d6fdcdbba535",
+                  ".codewiki/kb/system/builds.md": "1f3ce0a7b170810a93ab817f8a6f0f0af0dad9e9",
                   ".codewiki/kb/system/compilers.md": "56ab5bb171d8414f0cc6845635e5e5836d1dd3eb",
                   ".codewiki/kb/system/control-room-ui.md": "410058a2be80e861d79c476dedd9f650e7220934",
                   ".codewiki/kb/system/diagrams/README.md": "37fefa16658db90b63d78289e6c95c5b4248f107",
                   ".codewiki/kb/system/extension.md": "1b857185640c6d62249a292af437b26f33bbc43d",
-                  ".codewiki/kb/system/file-structure.md": "fcbabbf72465b3d44344afa450a399f61d93034a",
-                  ".codewiki/kb/system/graph.md": "4b706a1d9598c5198338ba1f49bf03d29d11748b",
+                  ".codewiki/kb/system/file-structure.md": "48a3c44f6e88da42eacfe74f575dd20195ef8070",
+                  ".codewiki/kb/system/graph.md": "7f019aef157bca39845e630b7c6b9851557b4015",
                   ".codewiki/kb/system/knowledge.md": "295ec27878d03e1338bbb3e1f2399e924fc62708",
-                  ".codewiki/kb/system/overview.md": "70ffd890e2fd8d285e152680461ad946bf37acaa",
+                  ".codewiki/kb/system/overview.md": "b98c78204794cde5b0180f4f29be3e492c6beb5e",
                   ".codewiki/kb/system/roadmap.md": "28282ae04da5246ef8114cabaf7b337ec3c41a71",
-                  ".codewiki/kb/system/validation-gateway.md": "48227517bae1ae062fbe7632135df82b5033d37f",
+                  ".codewiki/kb/system/validation-gateway.md": "9e91b4ed24d47f31c07a7c19224023193bba056d",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap.json": "9d177e23849983ac9f5a1adc6a310f9d8582a68b",
+                  ".codewiki/roadmap.json": "f8b68c0c7540338a2cf8933e7e98919e8de569fb",
                   ".codewiki/validation": "",
                   "extensions/codewiki": "",
                   "extensions/codewiki/bootstrap.ts": "7ca6dc2affbfc839e861f1701a5231dad27acdb0",
@@ -11697,35 +11029,35 @@
                   "extensions/codewiki/src/adapters/pi/ui": "",
                   "extensions/codewiki/src/adapters/pi/ui/manager.ts": "38eee5262266038f339041da79861cd8e0982ff6",
                   "extensions/codewiki/src/adapters/web": "",
-                  "extensions/codewiki/src/adapters/web/control-room.ts": "60365d48dd88ed7ab078c52fa0ebc3ccc8337344",
+                  "extensions/codewiki/src/adapters/web/control-room.ts": "319321a49d55d968671cd181963c1eed73f23f49",
                   "extensions/codewiki/src/application": "",
                   "extensions/codewiki/src/application/builds.ts": "48d5cd84f01bb3a73d965e4119f38e7015bf9ecc",
-                  "extensions/codewiki/src/application/graph.ts": "adcdda707ea9dfdcf08098dbf4332c3fd444a60a",
+                  "extensions/codewiki/src/application/graph.ts": "943a4cc6841cd016f91bf995f0864f815aff81f8",
                   "extensions/codewiki/src/domain": "",
                   "extensions/codewiki/src/infrastructure": "",
-                  "extensions/codewiki/templates.ts": "e1b8dda36316751e8deea34ef3cf109da5d42ed0",
+                  "extensions/codewiki/templates.ts": "fa96c7f09633acdf16ffd261c0c8d4a486c8c351",
                   "package.json": "9d4a03883ca656d5631f88c3ee74e77f7f002f22",
                   "scripts/check-architecture.mjs": "e06f27ed284025fcc4a362422ca38ef4941a9f5d",
-                  "scripts/smoke-test.mjs": "4e747501650d248e7780aed063eb515437dc8fae",
+                  "scripts/smoke-test.mjs": "5fa03d03384e8cd052a53b1aa933601bfa7fa9ab",
                   "skills": "",
                   "skills/codewiki-architecture/SKILL.md": "16c135ad735298d90850d09f6831a78c9da55f7e",
                   "skills/codewiki-documentation/SKILL.md": "8c7824585ecfef05be172d013b90454a9f83e1e5",
                   "skills/codewiki-feedback/SKILL.md": "3ff6d457ef9f1a6c39f485f0acf34276171854a3",
                   "skills/codewiki-implementation/SKILL.md": "0ff9f8a09506289e95812198506f740cbabb9948",
                   "skills/codewiki-verify/SKILL.md": "1ccc620991dee95eaa6326fd4f01fa5f3fdf88ab",
-                  "skills/codewiki-view-audit/SKILL.md": "118c979408d3f3ed26e8df351d1fb46343878731",
+                  "skills/codewiki-view-audit/SKILL.md": "4f87314c79899033496c1775a8db0955abd14914",
                   "skills/codewiki/SKILL.md": "6c4365dfc7df5c8603ac8426228d309f97673c59"
                 }
               },
               "spec_digest": "a0c9d190be083fc5f00caef692e57c183f72c43d9653af0dbf1266cd5b9b72a6",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "0a89c9ca538dbb87c9c190b26436984c93d2a0800c937a78e94be7bb6fe96b7f",
-              "digest": "e21a2bf44955ce6d1408876faa30c4a43c42116053be64d17710f7616209305c"
+              "code_digest": "269184abef95b2cec0b7b930a00f3bfcf827d779c91ebf8af1c2548802fec61b",
+              "digest": "dcc59d770fa5ce262864e41254d32e859ae04957d9741adeb11b5b086baf7feb"
             },
             "freshness": {
               "status": "stale",
               "basis": "revision",
-              "checked_at": "2026-05-12T06:32:14Z",
+              "checked_at": "2026-05-12T12:43:50Z",
               "reason": "revision changed: code",
               "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
             },
@@ -11827,7 +11159,7 @@
         "agency": "Re-run status or resume implementation before trusting prior drift analysis."
       },
       "parallel": {
-        "generated_at": "2026-05-12T06:32:14Z",
+        "generated_at": "2026-05-12T12:43:50Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
