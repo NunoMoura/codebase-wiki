@@ -5,7 +5,7 @@ state: active
 summary: Work truth for active items, priority, status, blockers, progress, and closure.
 owners:
   - architecture
-updated: "2026-05-11"
+updated: "2026-05-12"
 code_paths:
   - .codewiki/roadmap.json
   - .codewiki/roadmap
@@ -100,10 +100,14 @@ The roadmap should not decide whether an agent may continue or what queue order 
 
 Hot roadmap state should contain active sprints, active work, active claims, unconsumed builds, fail/block validation, and any recently closed/cancelled work still needed for immediate handoff. Warm state contains recent pass evidence and accepted handoffs. Cold state contains consumed/validated history. Purgeable state contains expired runtime artifacts. After sprint checkpoint or retention expiry, closed/cancelled task detail should move out of the active roadmap and rely on:
 
-- git for full history,
-- implementation builds for implementation evidence,
+- Git history for full historical recovery,
+- implementation builds for implementation evidence and publication payloads,
 - validation reports for fail/block/policy-kept decisions,
-- release checkpoints for compact closed-work summaries.
+- compact release or archive ledger rows for closed-work lookup.
+
+Git-backed retention should treat Git as the cold immutable ledger and CodeWiki as the hot working set. The active roadmap should not keep full closed-task bodies once a closing implementation build is validated, a compact ledger row records the task or sprint id, archive ref, commit sha, digest, and restore command, and publication safety gates have passed. Custom refs such as `refs/codewiki/archive/task/TASK-###` or sprint-scoped refs can keep cold artifacts reachable without adding all old evidence to the active graph. Commit trailers should carry the small discoverable summary needed to find the implementation build and archive ref.
+
+Restoring old work should be explicit and lazy. A restore command can use Git refs, `git show`, worktrees, sparse checkout, or partial clone to hydrate a temporary context packet for refinement. Restored history is reference material, not current truth, until the user or documentation compiler turns it into new knowledge or active roadmap work.
 
 This keeps the roadmap useful as active work truth instead of an archive.
 

@@ -5,7 +5,7 @@ state: active
 summary: Generated graph state machine for reconciliation, drift detection, routing, status, and freshness.
 owners:
   - architecture
-updated: "2026-05-11"
+updated: "2026-05-12"
 code_paths:
   - .codewiki/index_graph.json
   - extensions/codewiki/src/application/graph.ts
@@ -69,6 +69,8 @@ Reconciliation items should represent actionable, unconsumed handoffs. Accepted 
 
 The graph also exposes hot/warm/cold/purgeable artifact classes for garbage-collection planning. Hot contains active tasks, active sprints, active claims, unconsumed handoffs, and fail/block validation. Warm and cold evidence stays queryable without becoming default context.
 
+For Git-backed archival, the graph should prefer compact cold references over expanded cold artifact nodes. A cold task or sprint can be represented by a ledger row containing ids, archive ref, commit sha, digest, restore command, and safety status instead of retaining all closed-task, build, validation, and evidence edges in the default graph. The graph may expand cold artifacts only for explicit restore, audit, or refinement workflows.
+
 ## Edges
 
 Graph edges should explain why context is relevant. Useful edge kinds include:
@@ -96,6 +98,10 @@ Graph edges should explain why context is relevant. Useful edge kinds include:
 ## Freshness
 
 Graph state is valid only when it matches source fingerprints. If graph state and canonical inputs disagree, canonical inputs win and the graph is stale or broken.
+
+Freshness anchors must ignore generated graph/view artifacts such as `.codewiki/index_graph.json`; otherwise a no-op rebuild would make the graph stale against itself. Source files, knowledge files, roadmap truth, builds, validation reports, and mapped non-generated code remain valid freshness inputs.
+
+Status, `codewiki_state`, and Control Room views must consume the graph reconciliation next action when it is non-observe. They may summarize lint or spec drift, but they must not report a separate unresolved drift action while graph reconciliation claims the system is aligned. Actionable deterministic lint drift should enter graph reconciliation unless an open roadmap task already covers that spec path. Advisory lint signals, such as large-document token-budget warnings, may keep health yellow without forcing a compiler route.
 
 ## Invariants
 

@@ -11,8 +11,8 @@ const FORBIDDEN_HEADINGS = [
 	"## Table of contents",
 	"## Background",
 ];
-const WORD_COUNT_WARN = 1000;
-const WORD_COUNT_EXEMPT = new Set([".codewiki/roadmap.md", "index.md"]);
+const DEFAULT_WORD_COUNT_WARN = 1000;
+const DEFAULT_WORD_COUNT_EXEMPT = [".codewiki/roadmap.md", "index.md"];
 const OPEN_ROADMAP_STATUSES = new Set(["todo", "research", "implement", "verify", "in_progress", "blocked"]);
 
 function isOpenRoadmapStatus(status: string): boolean {
@@ -23,9 +23,30 @@ export function createIssue(severity: string, kind: string, path: string, messag
 	return { severity, kind, path, message };
 }
 
-export function lintMarkdownDocs(repoRoot: string, docs: ParsedDoc[]): LintIssue[] {
+function configuredWordCountWarn(project: WikiProject): number {
+	const value = Number(project.config?.lint?.word_count_warn ?? DEFAULT_WORD_COUNT_WARN);
+	return Number.isFinite(value) && value > 0 ? value : DEFAULT_WORD_COUNT_WARN;
+}
+
+function configuredWordCountExempt(project: WikiProject): Set<string> {
+	return new Set([
+		...DEFAULT_WORD_COUNT_EXEMPT,
+		...(Array.isArray(project.config?.lint?.word_count_exempt) ? project.config.lint.word_count_exempt : []),
+	]);
+}
+
+function configuredForbiddenHeadings(project: WikiProject): string[] {
+	return Array.isArray(project.config?.lint?.forbidden_headings) && project.config.lint.forbidden_headings.length > 0
+		? project.config.lint.forbidden_headings
+		: FORBIDDEN_HEADINGS;
+}
+
+export function lintMarkdownDocs(repoRoot: string, project: WikiProject, docs: ParsedDoc[]): LintIssue[] {
 	const issues: LintIssue[] = [];
 	const ids = new Map<string, number>();
+	const wordCountWarn = configuredWordCountWarn(project);
+	const wordCountExempt = configuredWordCountExempt(project);
+	const forbiddenHeadings = configuredForbiddenHeadings(project);
 
 	for (const doc of docs) {
 		const docId = `doc:${doc.path}`;
@@ -57,12 +78,13 @@ export function lintMarkdownDocs(repoRoot: string, docs: ParsedDoc[]): LintIssue
 			}
 		}
 
-		const wordCount = doc.body.split(/\s+/).length;
-		if (!WORD_COUNT_EXEMPT.has(doc.path) && wordCount > WORD_COUNT_WARN) {
+		const trimmedBody = doc.body.trim();
+		const wordCount = trimmedBody ? trimmedBody.split(/\s+/).length : 0;
+		if (!wordCountExempt.has(doc.path) && wordCount > wordCountWarn) {
 			issues.push(createIssue("warning", "large-doc", doc.path, `Live doc has ${wordCount} words; consider split or cut.`));
 		}
 
-		for (const heading of FORBIDDEN_HEADINGS) {
+		for (const heading of forbiddenHeadings) {
 			if (doc.body.includes(heading)) {
 				issues.push(createIssue("warning", "forbidden-heading", doc.path, `Forbidden heading in live doc: ${heading}`));
 			}
@@ -280,7 +302,7 @@ export function lintEvidenceLinks(
 
 export function buildLintReport(repoRoot: string, project: WikiProject, docs: ParsedDoc[], roadmapEntries: RoadmapTaskRecord[], research: any[], evidence: EvidenceLinkInput = {}): LintReport {
 	const issues: LintIssue[] = [
-		...lintMarkdownDocs(repoRoot, docs),
+		...lintMarkdownDocs(repoRoot, project, docs),
 		...lintRoadmapEntries(repoRoot, project, roadmapEntries, research),
 		...lintEvidenceLinks(project, roadmapEntries, evidence),
 	];

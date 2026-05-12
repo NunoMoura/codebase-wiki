@@ -156,6 +156,14 @@ async function run() {
 		assert.equal(impl.closure_brief.user_intent, "Document and implement X.");
 		assert.deepEqual(impl.consumes.documentation, [docResult.details.path]);
 		assert.deepEqual(impl.produces.closure, ["TASK-001"]);
+		assert.equal(impl.publication.git.strategy, "implementation_build_publication_payload");
+		assert.equal(impl.publication.git.archive_ref, "refs/codewiki/archive/task/TASK-001");
+		assert.equal(impl.publication.archive_ledger.restore_command, "/wiki-restore TASK-001");
+		assert.ok(impl.publication.commit.trailers.includes(`CodeWiki-Build: ${implResult.details.path}`));
+		assert.match(impl.publication.archive_ledger.digest, /^sha256:/);
+		assert.ok(impl.publication.artifact_digests.files.some((file) => file.path === docResult.details.path));
+		assert.equal(impl.publication.push_readiness.safe_to_push, false);
+		assert.ok(impl.publication.push_readiness.blocked_reasons.includes("secret scan required"));
 
 		// codewiki_validation: pass
 		const valTool = extension.tools.get("codewiki_validation");
@@ -214,6 +222,12 @@ async function run() {
 		assert.ok(items.some(i => i.source_id === `build:${unconsumedDocResult.details.path}` && i.next_loop === "documentation"), "Documentation build with downstream delta and no roadmap/implementation evidence should route to documentation");
 		assert.ok(!items.some(i => i.source_id === `build:${implResult.details.path}` && i.next_loop === "validation"), "Validated implementation build should not stay in reconciliation");
 		assert.ok(items.some(i => i.source_id === `validation:${failResult.details.path}` && i.next_loop === "documentation"), "Fail validation not routing to documentation");
+		const restoreEntry = graph.views?.gc?.restore_index?.find((entry) => entry.id === "TASK-001");
+		assert.ok(restoreEntry, "Validated implementation build should expose compact restore index entry");
+		assert.equal(restoreEntry.archive_ref, "refs/codewiki/archive/task/TASK-001");
+		assert.equal(restoreEntry.restore_command, "/wiki-restore TASK-001");
+		assert.ok(graph.views?.gc?.classes?.cold?.archive_refs?.includes("refs/codewiki/archive/task/TASK-001"), "Cold GC view should expose archive refs");
+		assert.ok(graph.views?.gc?.git_archive?.blocked_purge_build_paths?.includes(implResult.details.path), "Unsafe publication should block purge despite archive metadata");
 
 		console.log("✓ build and validation smoke tests passed");
 	} finally {

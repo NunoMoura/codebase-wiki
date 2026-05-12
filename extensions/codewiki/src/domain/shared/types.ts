@@ -201,6 +201,7 @@ export interface WikiProject {
 	roadmapEventsPath: string;
 	metaRoot: string;
 	viewsRoot: string;
+	generatedFiles?: string[];
 	graphPath: string;
 	lintPath: string;
 	roadmapStatePath: string;
@@ -223,10 +224,17 @@ export interface DocsConfig {
 	roadmap_events_path?: string;
 	meta_root?: string;
 	views_root?: string;
+	generated_files?: string[];
 	roadmap_retention?: {
 		compress_archive?: boolean;
 		archive_path?: string;
 		closed_task_limit?: number;
+	};
+	lint?: {
+		repo_markdown?: string[];
+		forbidden_headings?: string[];
+		word_count_warn?: number;
+		word_count_exempt?: string[];
 	};
 	codewiki?: {
 		self_drift_scope?: ScopeConfig;
@@ -251,6 +259,10 @@ export interface DocsConfig {
 			cold_days?: number;
 			purge_days?: number;
 			sprint_close_hook?: boolean;
+		};
+		gateway?: {
+			generated_readonly_paths?: string[];
+			write_paths?: string[];
 		};
 	};
 }
@@ -560,6 +572,15 @@ export interface CodewikiBuildToolInput {
 		pr_body?: string;
 		issue_update?: string;
 		release_notes?: string;
+		archive_ref?: string;
+		commit_sha?: string;
+		remote?: string;
+		branch?: string;
+		restore_command?: string;
+		secret_scan?: string;
+		remote_visibility?: string;
+		private_evidence?: string;
+		safe_to_push?: boolean;
 	};
 }
 

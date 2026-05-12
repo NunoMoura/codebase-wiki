@@ -1,4 +1,4 @@
-import type { ChangeClaimsFile, GraphEdge, GraphFile, GraphNode, GraphViews, RoadmapTaskRecord, WikiProject } from "../domain/shared/types.ts";
+import type { ChangeClaimsFile, GraphEdge, GraphFile, GraphNode, GraphViews, LintReport, RoadmapTaskRecord, WikiProject } from "../domain/shared/types.ts";
 import { GitCache } from "../infrastructure/git-cache.ts";
 import type { GitAnchor } from "../infrastructure/git-cache.ts";
 import type { ParsedDoc } from "../infrastructure/doc-parser.ts";
@@ -15,6 +15,7 @@ export interface GraphBuildInputs {
 	validations: { path: string; taskId?: string; verdict?: string; data?: any }[];
 	testFiles: string[];
 	claims: ChangeClaimsFile;
+	lintReport?: LintReport;
 }
 
 function nowIso(): string {
@@ -35,6 +36,50 @@ type ValidationArtifact = GraphBuildInputs["validations"][number];
 
 function reconciliationPriority(loop: ReconciliationLoop): number {
 	return { feedback: 0, documentation: 1, implementation: 2, validation: 3, observe: 4 }[loop];
+}
+
+function configuredGeneratedPaths(project: WikiProject): string[] {
+	return [
+		...stringList(project.config?.generated_files),
+		...stringList(project.config?.codewiki?.gateway?.generated_readonly_paths),
+	];
+}
+
+function normalizeScopePath(value: string): string {
+	return value.replace(/\\/g, "/").replace(/^\.\//, "").replace(/^\.codewiki\//, "codewiki/");
+}
+
+function pathMatchesScope(path: string, scope: string): boolean {
+	const normalizedPath = normalizeScopePath(path);
+	const normalizedScope = normalizeScopePath(scope);
+	if (!normalizedPath || !normalizedScope) return false;
+	if (normalizedScope.endsWith("/**")) {
+		const prefix = normalizedScope.slice(0, -3);
+		return normalizedPath === prefix || normalizedPath.startsWith(`${prefix}/`);
+	}
+	return normalizedPath === normalizedScope;
+}
+
+function isGeneratedPath(project: WikiProject, path: string): boolean {
+	return configuredGeneratedPaths(project).some((scope) => pathMatchesScope(path, scope));
+}
+
+function isCodewikiDataPath(path: string): boolean {
+	return normalizeScopePath(path).startsWith("codewiki/");
+}
+
+function isPathDirty(dirtyPaths: string[], codePath: string): boolean {
+	return dirtyPaths.some((dirtyPath) => dirtyPath === codePath || dirtyPath.startsWith(`${codePath}/`) || codePath.startsWith(`${dirtyPath}/`));
+}
+
+function pathsOverlap(left: string, right: string): boolean {
+	const a = normalizeScopePath(left);
+	const b = normalizeScopePath(right);
+	return a === b || a.startsWith(`${b}/`) || b.startsWith(`${a}/`) || pathMatchesScope(a, b) || pathMatchesScope(b, a);
+}
+
+function isActionableLintIssue(issue: any): boolean {
+	return String(issue?.kind || "") !== "large-doc";
 }
 
 function buildReconciliationAction(items: any[]) {
@@ -135,6 +180,41 @@ function isLifecycleComplete(state: string): boolean {
 	return ["consumed", "validated", "archived", "purged"].includes(state);
 }
 
+function buildArchiveLedger(build: BuildArtifact) {
+	const publication = build.data?.publication || {};
+	const ledger = publication.archive_ledger || {};
+	const git = publication.git || {};
+	const taskId = firstTaskId(build) || String(build.data?.task_id || ledger.id || "").trim();
+	const archiveRef = String(ledger.archive_ref || git.archive_ref || "").trim();
+	if (!taskId || !archiveRef) return null;
+	return {
+		kind: String(ledger.kind || "task"),
+		id: String(ledger.id || taskId),
+		build_path: normalizeCodewikiRef(ledger.build_path || build.path),
+		archive_ref: archiveRef,
+		commit_sha: String(ledger.commit_sha || git.commit_sha || "").trim(),
+		digest: String(ledger.digest || "").trim(),
+		restore_command: String(ledger.restore_command || git.restore?.command || `/wiki-restore ${taskId}`).trim(),
+		safety_status: publication.push_readiness?.safe_to_push === true ? "safe_to_push" : "blocked",
+	};
+}
+
+function hasArtifactDigestCapture(build: BuildArtifact): boolean {
+	return Array.isArray(build.data?.publication?.artifact_digests?.files) && build.data.publication.artifact_digests.files.length > 0;
+}
+
+function publicationSafetyPassed(build: BuildArtifact): boolean {
+	return build.data?.publication?.push_readiness?.safe_to_push === true;
+}
+
+function canCompactColdBuild(build: BuildArtifact, lifecycleState: string, validated: boolean): boolean {
+	return build.kind === "implementation_build" && Boolean(buildArchiveLedger(build)) && (validated || isLifecycleComplete(lifecycleState));
+}
+
+function isPurgeableByGitArchive(build: BuildArtifact, lifecycleState: string, validated: boolean): boolean {
+	return canCompactColdBuild(build, lifecycleState, validated) && hasArtifactDigestCapture(build) && publicationSafetyPassed(build);
+}
+
 function indexPush(map: Map<string, BuildArtifact[]>, key: string, build: BuildArtifact) {
 	const normalized = normalizeCodewikiRef(key);
 	if (!normalized) return;
@@ -143,7 +223,7 @@ function indexPush(map: Map<string, BuildArtifact[]>, key: string, build: BuildA
 }
 
 export function buildGraph(inputs: GraphBuildInputs): GraphFile {
-	const { project, docs, research, roadmapEntries, roadmapSprints = [], gitCache, builds, validations, testFiles, claims } = inputs;
+	const { project, docs, research, roadmapEntries, roadmapSprints = [], gitCache, builds, validations, testFiles, claims, lintReport } = inputs;
 	const nodes: GraphNode[] = [];
 	const edges: GraphEdge[] = [];
 	const seenNodes = new Set<string>();
@@ -167,6 +247,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	const researchEntryIds: string[] = [];
 	const docsByCodePath = new Map<string, string[]>();
 	const openTasksBySpec = new Map<string, string[]>();
+	const openTaskCodeScopes: { path: string; taskId: string }[] = [];
 	const normalizedSprints = roadmapSprints.map((sprint: any) => ({
 		id: String(sprint?.id || "").trim(),
 		title: String(sprint?.title || sprint?.id || "").trim(),
@@ -186,7 +267,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	}
 	let dirtyPaths: string[] = [];
 	try {
-		dirtyPaths = gitCache.getDirtyPaths();
+		dirtyPaths = gitCache.getDirtyPaths().filter((path) => !isGeneratedPath(project, path) && !isCodewikiDataPath(path));
 	} catch {
 		dirtyPaths = [];
 	}
@@ -211,7 +292,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			codePaths.add(codePath);
 			if (!docsByCodePath.has(codePath)) docsByCodePath.set(codePath, []);
 			docsByCodePath.get(codePath)!.push(doc.path);
-			const isDirty = dirtyPaths.some((dirtyPath) => dirtyPath === codePath || dirtyPath.startsWith(`${codePath}/`) || codePath.startsWith(`${dirtyPath}/`));
+			const isDirty = !isGeneratedPath(project, codePath) && isPathDirty(dirtyPaths, codePath);
 			addNode(`code:${codePath}`, { kind: "code_path", path: codePath, layer: "code", alignment_state: isDirty ? "drift" : "aligned" });
 			addEdge("doc_code_path", docId, `code:${codePath}`);
 		}
@@ -286,7 +367,8 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		}
 		for (const codePath of task.code_paths || []) {
 			codePaths.add(codePath);
-			const isDirty = dirtyPaths.some((dirtyPath) => dirtyPath === codePath || dirtyPath.startsWith(`${codePath}/`) || codePath.startsWith(`${dirtyPath}/`));
+			if (isOpenTaskStatus(status)) openTaskCodeScopes.push({ path: codePath, taskId });
+			const isDirty = !isGeneratedPath(project, codePath) && isPathDirty(dirtyPaths, codePath);
 			addNode(`code:${codePath}`, { kind: "code_path", path: codePath, layer: "code", alignment_state: isDirty ? "drift" : "aligned" });
 			addEdge("task_code_path", taskNodeId, `code:${codePath}`);
 		}
@@ -372,6 +454,8 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		const buildValidated = hasPassingValidationForBuild(build);
 		const consumed = build.kind === "feedback_build" ? feedbackConsumed(build) : build.kind === "documentation_build" ? documentationConsumed(build) : false;
 		const buildAlignmentState = isLifecycleComplete(lifecycleState) || buildValidated || consumed ? "aligned" : "drift";
+		const archiveLedger = buildArchiveLedger(build);
+		const compactCold = canCompactColdBuild(build, lifecycleState, buildValidated);
 		const buildId = `build:${buildPath}`;
 		addNode(buildId, {
 			kind: build.kind as any,
@@ -381,6 +465,8 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			layer: "build",
 			lifecycle_state: lifecycleState,
 			alignment_state: buildAlignmentState,
+			compacted: compactCold,
+			archive_ref: archiveLedger?.archive_ref,
 		});
 		if (build.kind === "feedback_build" && lifecycleState === "proposed") {
 			reconciliationItems.push({
@@ -445,6 +531,12 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			if (!buildTaskMap.has(taskId)) buildTaskMap.set(taskId, []);
 			buildTaskMap.get(taskId)!.push(buildPath);
 		}
+		if (archiveLedger) {
+			const archiveNodeId = `archive_ref:${archiveLedger.archive_ref}`;
+			addNode(archiveNodeId, { kind: "git_archive_ref", path: archiveLedger.archive_ref, task_id: archiveLedger.id, digest: archiveLedger.digest, restore_command: archiveLedger.restore_command, safety_status: archiveLedger.safety_status });
+			addEdge("build_archive_ref", buildId, archiveNodeId);
+		}
+		if (compactCold) continue;
 		for (const ref of consumedBuildRefs(build.data)) {
 			if (ref) addEdge("build_derives_from", buildId, `build:${ref}`);
 		}
@@ -537,6 +629,35 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		}
 	}
 
+	for (const issue of lintReport?.issues || []) {
+		if (!isActionableLintIssue(issue)) continue;
+		const issuePath = String(issue.path || "").trim();
+		if (!issuePath) continue;
+		const relatedOpenTaskIds = openTasksBySpec.get(issuePath) || [];
+		if (relatedOpenTaskIds.length > 0) continue;
+		const lintNodeId = `lint:${issue.kind}:${issuePath}`;
+		addNode(lintNodeId, {
+			kind: "lint_issue",
+			path: issuePath,
+			layer: "validation",
+			severity: issue.severity,
+			issue_kind: issue.kind,
+			message: issue.message,
+		});
+		addEdge("lint_issue_path", lintNodeId, `doc:${issuePath}`);
+		reconciliationItems.push({
+			id: `reconcile:lint:${issue.kind}:${issuePath}`,
+			source_id: lintNodeId,
+			state: "drift",
+			direction: "gateway",
+			from_layer: "knowledge",
+			to_layer: "roadmap",
+			next_loop: "documentation",
+			reason: `Lint ${issue.severity} (${issue.kind}) has no open roadmap coverage; reconcile knowledge or create scoped work.`,
+			doc_paths: [issuePath],
+		});
+	}
+
 	// Reconciliation from roadmap and code reality.
 	for (const task of roadmapEntries) {
 		const status = String(task.status || "todo").trim();
@@ -558,9 +679,12 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	}
 	for (const codePath of codePaths) {
 		const relatedDocs = docsByCodePath.get(codePath) || [];
-		const isDirty = dirtyPaths.some((dirtyPath) => dirtyPath === codePath || dirtyPath.startsWith(`${codePath}/`) || codePath.startsWith(`${dirtyPath}/`));
+		const isDirty = !isGeneratedPath(project, codePath) && isPathDirty(dirtyPaths, codePath);
 		if (!isDirty || relatedDocs.length === 0) continue;
-		const relatedOpenTaskIds = Array.from(new Set(relatedDocs.flatMap((docPath) => openTasksBySpec.get(docPath) || [])));
+		const relatedOpenTaskIds = Array.from(new Set([
+			...relatedDocs.flatMap((docPath) => openTasksBySpec.get(docPath) || []),
+			...openTaskCodeScopes.filter((scope) => pathsOverlap(scope.path, codePath)).map((scope) => scope.taskId),
+		]));
 		if (relatedOpenTaskIds.length > 0) continue;
 		reconciliationItems.push({
 			id: `reconcile:code:${codePath}`,
@@ -580,6 +704,9 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		acc[loop] = (acc[loop] || 0) + 1;
 		return acc;
 	}, {});
+	const layerHasDrift = (layer: string) => reconciliationItems.some(
+		(item) => item.state !== "aligned" && (item.from_layer === layer || item.to_layer === layer),
+	);
 	const openTaskIds = roadmapEntries.filter((task) => isOpenTaskStatus(String(task.status || "todo"))).map((task) => task.id);
 	const inProgressTaskIds = roadmapEntries.filter((task) => isActiveTaskStatus(String(task.status || "todo"))).map((task) => task.id);
 	const todoTaskIds = roadmapEntries.filter((task) => String(task.status || "todo") === "todo").map((task) => task.id);
@@ -618,6 +745,20 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	}).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean);
 	const passValidationPaths = validations.filter((v) => String(v.verdict || "") === "pass").map((v) => v.path);
 	const failValidationPaths = validations.filter((v) => ["fail", "block"].includes(String(v.verdict || ""))).map((v) => v.path);
+	const archiveLedgers = builds.map((build) => buildArchiveLedger(build)).filter(Boolean) as NonNullable<ReturnType<typeof buildArchiveLedger>>[];
+	const gitArchivedBuildPaths = builds.filter((build) => Boolean(buildArchiveLedger(build))).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean);
+	const purgeableBuilds = builds.filter((build) => {
+		const lifecycleState = String(build.data?.lifecycle?.state || build.status || "").trim();
+		const validated = hasPassingValidationForBuild(build);
+		return lifecycleState === "purged" || isPurgeableByGitArchive(build, lifecycleState, validated);
+	});
+	const purgeableBuildPaths = purgeableBuilds.map((build) => normalizeCodewikiRef(build.path)).filter(Boolean);
+	const purgeableTaskIds = Array.from(new Set(purgeableBuilds.flatMap((build) => buildTaskIds(build))));
+	const blockedArchiveBuildPaths = builds.filter((build) => {
+		const lifecycleState = String(build.data?.lifecycle?.state || build.status || "").trim();
+		const validated = hasPassingValidationForBuild(build);
+		return canCompactColdBuild(build, lifecycleState, validated) && !isPurgeableByGitArchive(build, lifecycleState, validated);
+	}).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean);
 	const gc = {
 		policy: {
 			hot_days: project.config.codewiki?.gc?.hot_days ?? 7,
@@ -641,10 +782,19 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			cold: {
 				task_ids: [...doneTaskIds, ...cancelledTaskIds],
 				build_paths: builds.filter((build) => isLifecycleComplete(String(build.data?.lifecycle?.state || build.status || "")) || hasPassingValidationForBuild(build)).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean),
+				archive_refs: archiveLedgers.map((ledger) => ledger.archive_ref),
 			},
 			purgeable: {
-				build_paths: builds.filter((build) => String(build.data?.lifecycle?.state || build.status || "") === "purged").map((build) => normalizeCodewikiRef(build.path)).filter(Boolean),
+				task_ids: purgeableTaskIds,
+				build_paths: purgeableBuildPaths,
 			},
+		},
+		restore_index: archiveLedgers,
+		git_archive: {
+			ledger_count: archiveLedgers.length,
+			build_paths: gitArchivedBuildPaths,
+			blocked_purge_build_paths: blockedArchiveBuildPaths,
+			gate: "validated + artifact digests + archive ledger + publication safety pass",
 		},
 		sprint_close_hooks: [
 			"mark consumed builds cold after downstream evidence exists",
@@ -731,11 +881,11 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			counts_by_loop: reconciliationCounts,
 			next_action: reconciliationAction,
 			layer_states: {
-				intent: reconciliationItems.some((item) => item.from_layer === "intent" && item.state !== "aligned") ? "drift" : "aligned",
-				knowledge: reconciliationItems.some((item) => item.to_layer === "knowledge" && item.state !== "aligned") ? "drift" : "aligned",
-				roadmap: reconciliationItems.some((item) => item.from_layer === "roadmap" && item.state !== "aligned") ? "drift" : "aligned",
-				code: reconciliationItems.some((item) => item.from_layer === "code" && item.state !== "aligned") ? "drift" : "aligned",
-				validation: reconciliationItems.some((item) => item.to_layer === "validation" && item.state !== "aligned") ? "drift" : "aligned",
+				intent: layerHasDrift("intent") ? "drift" : "aligned",
+				knowledge: layerHasDrift("knowledge") ? "drift" : "aligned",
+				roadmap: layerHasDrift("roadmap") ? "drift" : "aligned",
+				code: layerHasDrift("code") ? "drift" : "aligned",
+				validation: layerHasDrift("validation") ? "drift" : "aligned",
 			},
 		}
 	};

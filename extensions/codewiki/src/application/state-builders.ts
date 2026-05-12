@@ -25,6 +25,37 @@ export function canonicalDigest(value: any): string {
 	return sha256Text(JSON.stringify(stableStringify(value)));
 }
 
+function normalizeScopePath(value: string): string {
+	return value.replace(/\\/g, "/").replace(/^\.\//, "").replace(/^\.codewiki\//, "codewiki/");
+}
+
+function pathMatchesScope(path: string, scope: string): boolean {
+	const normalizedPath = normalizeScopePath(path);
+	const normalizedScope = normalizeScopePath(scope);
+	if (!normalizedPath || !normalizedScope) return false;
+	if (normalizedScope.endsWith("/**")) {
+		const prefix = normalizedScope.slice(0, -3);
+		return normalizedPath === prefix || normalizedPath.startsWith(`${prefix}/`);
+	}
+	return normalizedPath === normalizedScope;
+}
+
+function filterGeneratedPaths(paths: string[], generatedPaths: string[]): string[] {
+	return paths.filter((path) => !generatedPaths.some((scope) => pathMatchesScope(path, scope)));
+}
+
+function isActionableLintIssue(issue: any): boolean {
+	return String(issue?.kind || "") !== "large-doc";
+}
+
+export function generatedStatePaths(project: WikiProject): string[] {
+	const config = project.config || {};
+	return [
+		...(Array.isArray(config.generated_files) ? config.generated_files : []),
+		...(Array.isArray(config.codewiki?.gateway?.generated_readonly_paths) ? config.codewiki.gateway.generated_readonly_paths : []),
+	];
+}
+
 export function normalizeTaskPhase(value: any): string {
 	const phase = String(value || "").trim();
 	if (phase === "research") return "implement";
@@ -330,8 +361,10 @@ export function laneRevisionAnchor(
 	openTaskIds: string[],
 	specRowsByPath: Record<string, any>,
 	roadmapEntries: any[],
-    roadmapRelPath: string
+    roadmapRelPath: string,
+	generatedPaths: string[] = [],
 ) {
+	const sourceCodePaths = filterGeneratedPaths(codePaths, generatedPaths);
 	const tasksById: Record<string, any> = {};
 	for (const task of roadmapEntries) {
 		const id = String(task.id || "").trim();
@@ -351,14 +384,14 @@ export function laneRevisionAnchor(
 	}
 
 	const codeDigests: Record<string, string> = {};
-	for (const path of codePaths) {
+	for (const path of sourceCodePaths) {
 		const absPath = join(repoRoot, path);
 		if (existsSync(absPath) && statSync(absPath).isFile()) {
 			codeDigests[path] = sha256Text(readFileSync(absPath, "utf-8"));
 		}
 	}
 
-    const gitPaths = [...rowPaths, ...codePaths, roadmapRelPath];
+    const gitPaths = [...rowPaths, ...sourceCodePaths, roadmapRelPath];
     const gitAnchor = gitCache.buildAnchor(gitPaths);
 
 	const anchor: any = {
@@ -419,7 +452,8 @@ export function buildAgencyLane(
 	specRowsByPath: Record<string, any>,
 	roadmapEntries: any[],
 	recommendation: any,
-	previousStatus: any
+	previousStatus: any,
+	generatedPaths: string[] = [],
 ) {
 	const rows = specPaths.map((p) => specRowsByPath[p]).filter(Boolean);
 	const rowPaths = rows.map((r) => String(r.path || "").trim()).filter(Boolean);
@@ -452,7 +486,7 @@ export function buildAgencyLane(
 
 	const checkedAt = nowIso();
 	const normalizedOpenTaskIds = unique(openTaskIds);
-	const revision = laneRevisionAnchor(repoRoot, gitCache, rowPaths, codePaths, normalizedOpenTaskIds, specRowsByPath, roadmapEntries, roadmapRelPath);
+	const revision = laneRevisionAnchor(repoRoot, gitCache, rowPaths, codePaths, normalizedOpenTaskIds, specRowsByPath, roadmapEntries, roadmapRelPath, generatedPaths);
 	const prevLane = previousAgencyLane(previousStatus, laneId);
 
 	return {
@@ -759,6 +793,7 @@ export function buildStatusState(
 		const path = String(doc.path || "").trim();
 		const codePaths = Array.isArray(doc.code_paths) ? doc.code_paths.map((v) => String(v).trim()).filter(Boolean) : [];
 		const relatedIssues = issues.filter((issue: any) => {
+			if (!isActionableLintIssue(issue)) return false;
 			const issuePath = String(issue.path || "").trim();
 			return issuePath === path || issuePath === path.replace("wiki/", "docs/");
 		});
@@ -844,6 +879,7 @@ export function buildStatusState(
 	const productSpecPaths = specRows.filter((r) => r.path.startsWith(PRODUCT_SPEC_PREFIX)).map((r) => r.path);
 	const systemSpecPaths = specRows.filter((r) => r.path.startsWith(SYSTEM_SPEC_PREFIX)).map((r) => r.path);
 	const uxSpecPaths = specRows.filter((r) => pathStartsWithAny(r.path, CLIENTS_SPEC_PREFIXES)).map((r) => r.path);
+	const generatedPaths = generatedStatePaths(project);
 
 	const agencyLanes = [
 		buildAgencyLane(
@@ -853,7 +889,8 @@ export function buildStatusState(
 			unique([...productSpecPaths, ...systemSpecPaths]),
 			specRowsByPath, roadmapEntries,
 			{ kind: "status", command: "/wiki-status", reason: "Strategic intent drift should first be inspected through the canonical status surface." },
-			previousStatus
+			previousStatus,
+			generatedPaths,
 		),
 		buildAgencyLane(
 			repoRoot, gitCache, project.roadmapPath,
@@ -862,7 +899,8 @@ export function buildStatusState(
 			unique(systemSpecPaths),
 			specRowsByPath, roadmapEntries,
 			{ kind: "implement", command: "/wiki-resume", reason: "Implementation drift should be checked most frequently against owning system specs." },
-			previousStatus
+			previousStatus,
+			generatedPaths,
 		),
 		buildAgencyLane(
 			repoRoot, gitCache, project.roadmapPath,
@@ -871,7 +909,8 @@ export function buildStatusState(
 			unique([...productSpecPaths, ...systemSpecPaths, ...uxSpecPaths]),
 			specRowsByPath, roadmapEntries,
 			{ kind: "status", command: "/wiki-status", reason: "User-visible drift should first be inspected through the canonical status surface." },
-			previousStatus
+			previousStatus,
+			generatedPaths,
 		),
 	];
 

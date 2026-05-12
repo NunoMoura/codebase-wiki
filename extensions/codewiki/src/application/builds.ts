@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import type { CodewikiBuildProducesInput, CodewikiBuildRefsInput, CodewikiBuildToolInput, CodewikiClosureBriefInput, CodewikiDiffTableRowInput, CodewikiValidationReportInput, WikiProject, RoadmapTaskRecord } from "../domain/shared/types.ts";
@@ -40,6 +42,47 @@ function buildBuildPath(project: WikiProject, kind: string, slug: string, day: s
 
 function trimList(values?: string[]): string[] {
 	return (values ?? []).map((value) => value.trim()).filter(Boolean);
+}
+
+function sha256Text(value: string): string {
+	return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function sha256Buffer(value: Buffer): string {
+	return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function normalizeRepoPath(value: string): string {
+	return value.trim().replace(/\\/g, "/").replace(/^\.\//, "");
+}
+
+function buildArtifactDigests(project: WikiProject, refs: Array<{ path: string; role: string }>) {
+	const files: Array<{ path: string; role: string; sha256: string; bytes: number }> = [];
+	const skipped: Array<{ path: string; role: string; reason: string }> = [];
+	for (const ref of refs) {
+		const path = normalizeRepoPath(ref.path);
+		if (!path) continue;
+		const absPath = resolve(project.root, path);
+		try {
+			if (!existsSync(absPath)) {
+				skipped.push({ path, role: ref.role, reason: "missing" });
+				continue;
+			}
+			const stats = statSync(absPath);
+			if (!stats.isFile()) {
+				skipped.push({ path, role: ref.role, reason: "not-file" });
+				continue;
+			}
+			if (stats.size > 1_000_000) {
+				skipped.push({ path, role: ref.role, reason: "too-large" });
+				continue;
+			}
+			files.push({ path, role: ref.role, sha256: sha256Buffer(readFileSync(absPath)), bytes: stats.size });
+		} catch {
+			skipped.push({ path, role: ref.role, reason: "unreadable" });
+		}
+	}
+	return { algorithm: "sha256", files, skipped };
 }
 
 function trimRefGroups(input?: CodewikiBuildRefsInput): CodewikiBuildRefsInput {
@@ -138,25 +181,51 @@ async function nextFocusTaskId(project: WikiProject, currentTaskId: string): Pro
 	return openTaskIds.find((id: string) => id !== currentTaskId) || "";
 }
 
-function publicationDefaults(input: CodewikiBuildToolInput, task: RoadmapTaskRecord | null, checksRun: string[], validationRefs: string[]) {
-	const taskLabel = task ? `${task.id} ${task.title}` : input.task_id?.trim() || "implementation work";
+function publicationDefaults(
+	input: CodewikiBuildToolInput,
+	task: RoadmapTaskRecord | null,
+	checksRun: string[],
+	validationRefs: string[],
+	buildPath: string,
+	artifactDigests: ReturnType<typeof buildArtifactDigests>,
+	payloadDigest: string,
+) {
+	const taskId = input.task_id?.trim() || task?.id || "implementation-work";
+	const taskLabel = task ? `${task.id} ${task.title}` : taskId;
+	const archiveRef = input.publication?.archive_ref?.trim() || `refs/codewiki/archive/task/${taskId}`;
+	const restoreCommand = input.publication?.restore_command?.trim() || `/wiki-restore ${taskId}`;
 	const commitTitle = input.publication?.commit_title?.trim() || `chore(codewiki): record ${taskLabel} implementation evidence`;
+	const trailers = [
+		`CodeWiki-Task: ${taskId}`,
+		`CodeWiki-Build: ${buildPath}`,
+		`CodeWiki-Archive-Ref: ${archiveRef}`,
+		`CodeWiki-Digest: ${payloadDigest}`,
+		`CodeWiki-Restore: ${restoreCommand}`,
+	];
 	const commitBody = input.publication?.commit_body?.trim() || [
 		input.summary.trim(),
 		"",
 		checksRun.length ? `Checks: ${checksRun.join(", ")}` : "Checks: not recorded in build input.",
 		validationRefs.length ? `Validation: ${validationRefs.join(", ")}` : "Validation: no durable validation refs recorded.",
 		"Remote publication requires explicit approval; this build is recommendation-only.",
+		"",
+		...trailers,
 	].join("\n");
+	const secretScan = input.publication?.secret_scan?.trim() || "required";
+	const remoteVisibility = input.publication?.remote_visibility?.trim() || "required";
+	const privateEvidence = input.publication?.private_evidence?.trim() || "required";
+	const safeToPush = input.publication?.safe_to_push === true && secretScan === "pass" && remoteVisibility === "pass" && privateEvidence === "pass";
 	return {
 		policy: {
 			execution: "recommendation_only",
 			approval_required: true,
 			remote_updates: "blocked_until_explicit_approval",
+			security_review_required: true,
 		},
 		commit: {
 			title: commitTitle,
 			body: commitBody,
+			trailers,
 		},
 		pr: {
 			title: input.publication?.pr_title?.trim() || commitTitle,
@@ -164,11 +233,49 @@ function publicationDefaults(input: CodewikiBuildToolInput, task: RoadmapTaskRec
 		},
 		issue_update: input.publication?.issue_update?.trim() || "",
 		release_notes: input.publication?.release_notes?.trim() || "",
+		git: {
+			strategy: "implementation_build_publication_payload",
+			archive_ref: archiveRef,
+			commit_sha: input.publication?.commit_sha?.trim() || "",
+			remote: input.publication?.remote?.trim() || "origin",
+			branch: input.publication?.branch?.trim() || "",
+			atomic_push_refspecs: ["HEAD", archiveRef],
+			restore: {
+				command: restoreCommand,
+				worktree: `git worktree add --detach <tmp> ${archiveRef}`,
+				show_build: `git show ${archiveRef}:${buildPath}`,
+				sparse_paths: unique([buildPath, ...(task?.spec_paths ?? []), ...(task?.code_paths ?? [])]),
+				note: "Restored history is reference material until promoted into active knowledge or roadmap truth.",
+			},
+		},
+		archive_ledger: {
+			kind: "task",
+			id: taskId,
+			build_path: buildPath,
+			archive_ref: archiveRef,
+			commit_sha: input.publication?.commit_sha?.trim() || "",
+			digest: payloadDigest,
+			restore_command: restoreCommand,
+		},
+		artifact_digests: artifactDigests,
 		push_readiness: {
 			checks_recorded: checksRun,
 			validation_refs: validationRefs,
 			approval_required: true,
 			allowed_by_default: false,
+			safe_to_push: safeToPush,
+			blocked_reasons: safeToPush ? [] : [
+				input.publication?.safe_to_push === true ? "publication safety prerequisites incomplete" : "explicit approval required",
+				secretScan === "pass" ? "" : "secret scan required",
+				remoteVisibility === "pass" ? "" : "remote visibility review required",
+				privateEvidence === "pass" ? "" : "fail/block/private evidence policy required",
+			].filter(Boolean),
+			security: {
+				secret_scan: secretScan,
+				remote_visibility: remoteVisibility,
+				private_evidence: privateEvidence,
+				git_namespaces: "not_access_control",
+			},
 		},
 	};
 }
@@ -290,6 +397,7 @@ export async function writeImplementationBuild(
 	const slug = buildSlug(input.slug || input.summary, "implementation-build");
 	const day = created.slice(0, 10);
 	const absPath = buildBuildPath(project, "implementation", slug, day);
+	const relPath = `.codewiki/builds/implementation/${day}-${slug}.json`;
 	const lifecycle = buildLifecycle(input, created, 7);
 	const testFiles = trimList(input.test_files);
 	const codeFiles = trimList(input.code_files);
@@ -357,6 +465,22 @@ export async function writeImplementationBuild(
 		validation: validationRefs,
 		closure: [taskId],
 	}, input.produces);
+	const artifactDigests = buildArtifactDigests(project, [
+		...(sourceDocumentationBuild ? [{ path: sourceDocumentationBuild, role: "source_documentation_build" }] : []),
+		...validationRefs.map((path) => ({ path, role: "validation_ref" })),
+		...testFiles.map((path) => ({ path, role: "test_file" })),
+		...codeFiles.map((path) => ({ path, role: "code_file" })),
+	]);
+	const payloadDigest = sha256Text(JSON.stringify({
+		task_id: taskId,
+		summary: input.summary.trim(),
+		checks_run: checksRun,
+		validation_refs: validationRefs,
+		files_changed: unique([...testFiles, ...codeFiles]),
+		closure_brief: closureBrief,
+		artifact_digests: artifactDigests,
+	}));
+	const publication = publicationDefaults(input, task, checksRun, validationRefs, relPath, artifactDigests, payloadDigest);
 	const data = {
 		version: 1,
 		schema_version: input.schema_version ?? 2,
@@ -397,13 +521,13 @@ export async function writeImplementationBuild(
 				next_focus_task_id: nextFocus,
 				context: compactContext,
 			},
+			restore: publication.git.restore,
 			fallback: "Use codewiki_state refresh=true and this implementation_build; do not rely on chat transcript memory.",
 		},
-		publication: publicationDefaults(input, task, checksRun, validationRefs),
+		publication,
 	};
 	await mkdir(dirname(absPath), { recursive: true });
 	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");
-	const relPath = `.codewiki/builds/implementation/${day}-${slug}.json`;
 	return { path: relPath, data };
 }
 

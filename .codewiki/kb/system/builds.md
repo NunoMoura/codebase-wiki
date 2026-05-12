@@ -5,7 +5,7 @@ state: active
 summary: High-signal compiler handoff contracts for intent, implementation specs, closure evidence, and graph reconciliation.
 owners:
   - architecture
-updated: "2026-05-11"
+updated: "2026-05-12"
 code_paths:
   - .codewiki/builds
   - extensions/codewiki/src/application/builds.ts
@@ -77,6 +77,10 @@ An implementation build should include:
 The closure brief is the user-facing proof that implementation satisfied the accepted intent. It should summarize original user intent, implemented changes, layers updated, acceptance evidence, checks, preserved non-goals, and remaining risks.
 
 The implementation build can recommend publication actions, but validation and policy decide whether commit, push, release, or remote updates are allowed. It may also carry compact handoff context for resume after closure or checkpoint: task id, linked specs/code, checks, validation refs, tester/builder evidence, next-focus suggestion, and a `/wiki-resume TASK-###` command. This handoff context supplements graph/roadmap state; it does not replace builds, roadmap, validation, or code/tests with chat transcript summaries.
+
+The implementation build is also the publication payload for Git-backed archival. CodeWiki should not introduce a separate archive capsule artifact. When work is safe to publish, the implementation build should contain or point to the commit/PR/release text, closure brief, checks, validation refs, artifact digests, recommended commit trailers, restore pointers, and any archive refs needed to recover the task or sprint from Git. A disciplined push can then publish the source branch plus a cold archive ref, while hot CodeWiki keeps only active work and compact ledger rows.
+
+Publication metadata must remain recommendation-only until validation and user or policy approval allow it. Any Git or remote publication path must require secret scanning, remote visibility checks, and explicit handling for fail, block, policy-kept, or private evidence before pushing durable history to GitHub or another remote.
 
 ## Contract fields
 

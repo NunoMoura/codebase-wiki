@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-12T01:05:20Z",
+  "profile": "documentation",
+  "task_id": "TASK-068",
+  "verdict": "pass",
+  "rationale": "Accepted user direction is captured in feedback build; system Build/Roadmap/Graph docs now specify Git as cold ledger, CodeWiki as hot working set, implementation build as publication payload, compact cold graph refs, lazy restore, and publication security gates. TASK-068 carries executable implementation acceptance and non-goals. Code changes intentionally deferred due active overlapping TASK-067 code claim.",
+  "checks": [
+    "codewiki_build feedback accepted: .codewiki/builds/feedback/2026-05-12-git-backed-archival-gc.json",
+    "codewiki_build documentation accepted: .codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json",
+    "TASK-068 created with acceptance covering implementation-build publication fields, GC gates, compact graph refs, restore lookup, and security policy"
+  ],
+  "issues": [],
+  "source": ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json"
+}

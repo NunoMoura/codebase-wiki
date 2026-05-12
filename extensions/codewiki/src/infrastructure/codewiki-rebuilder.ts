@@ -217,14 +217,15 @@ export class CodewikiRebuilder {
 
 		this.log(`[Rebuild] Graph and Lint dependencies resolving...`, quiet);
 
-		const graph = buildGraph({ project, docs, research, roadmapEntries, roadmapSprints, gitCache: this.gitCache, builds, validations, testFiles, claims });
 		const lintReport = buildLintReport(this.repoRoot, project, docs, roadmapEntries, research, { builds, validations, archivedTaskIds });
+		const graph = buildGraph({ project, docs, research, roadmapEntries, roadmapSprints, gitCache: this.gitCache, builds, validations, testFiles, claims, lintReport });
 		
 		this.log(`[Rebuild] Building UI state...`, quiet);
 		const roadmapState = buildRoadmapState(project, roadmapEntries, graph, lintReport, events, roadmapSprints);
 		
 		const previousStatusPath = join(this.repoRoot, project.statusStatePath);
-		const previousStatus = existsSync(previousStatusPath) ? JSON.parse(readFileSync(previousStatusPath, "utf8")) : {};
+		const previousState = existsSync(previousStatusPath) ? JSON.parse(readFileSync(previousStatusPath, "utf8")) : {};
+		const previousStatus = previousState?.lenses?.status || previousState;
 		const statusState = buildStatusState(project, this.repoRoot, this.gitCache, docs, graph, roadmapEntries, lintReport, roadmapState, events, previousStatus, claims);
 		
 		const metaRootDir = join(this.repoRoot, metaRoot);

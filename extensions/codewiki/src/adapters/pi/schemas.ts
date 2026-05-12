@@ -388,6 +388,15 @@ export const codewikiBuildToolInputSchema = Type.Object({
 		pr_body: Type.Optional(Type.String()),
 		issue_update: Type.Optional(Type.String()),
 		release_notes: Type.Optional(Type.String()),
+		archive_ref: Type.Optional(Type.String()),
+		commit_sha: Type.Optional(Type.String()),
+		remote: Type.Optional(Type.String()),
+		branch: Type.Optional(Type.String()),
+		restore_command: Type.Optional(Type.String()),
+		secret_scan: Type.Optional(Type.String()),
+		remote_visibility: Type.Optional(Type.String()),
+		private_evidence: Type.Optional(Type.String()),
+		safe_to_push: Type.Optional(Type.Boolean()),
 	})),
 });
 export const codewikiValidationReportSchema = Type.Object({

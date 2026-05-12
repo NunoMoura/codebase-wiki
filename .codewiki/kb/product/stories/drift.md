@@ -6,7 +6,7 @@ summary: CodeWiki should expose contradictions between intent, knowledge, work, 
   state, builds, validation, tests, and code.
 owners:
 - product
-updated: '2026-05-09'
+updated: '2026-05-12'
 code_paths:
 - skills/codewiki-view-audit/SKILL.md
 - skills/codewiki-architecture/SKILL.md
@@ -23,6 +23,8 @@ As a maintainer, I want CodeWiki to detect contradictions between intent, docs, 
 - Confirmed drift can become roadmap work; unclear drift routes back through feedback before downstream changes.
 - Validation gateways judge handoffs from fresh context before loop exits.
 - Failed, blocked, or policy-kept validation reports remain available for follow-up work.
+- Status, graph, and `codewiki_state` agree on the current next action; users should not see one surface claim alignment while another reports unresolved drift.
+- Freshness stays stable across no-op rebuilds and changes only when canonical knowledge, roadmap truth, source code, builds, validation, or explicit user intent changes.
 
 ## Related docs
 
