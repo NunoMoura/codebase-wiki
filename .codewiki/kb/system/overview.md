@@ -19,9 +19,9 @@ CodeWiki maintains the repository-local `.codewiki/` contract and exposes it thr
 
 - **Knowledge base semantics** own product specs, visual UI specs, system access-surface specs, system specs, architecture rules, and workflow vocabulary under `.codewiki/kb/**`.
 - **Agency controller** owns bounded roadmap automation through agency cycles and explicit token, time, risk, validation, policy, and approval gates.
-- **Compiler builds** own validated intent, implementation-spec, and evidence briefs under `.codewiki/builds/**`.
+- **Compiler builds** own validated intent, implementation-spec, and implementation evidence briefs under `.codewiki/builds/**`.
 - **Roadmap semantics** own work truth: priorities, active work items, status, progress, blockers, and closure state under `.codewiki/roadmap/**`.
-- **Validation gateways** decide whether a loop can end and whether a build can be accepted for handoff. Failed, blocked, or policy-kept validation reports live under `.codewiki/validation/**`.
+- **Validation gateways** decide whether a loop can end and whether a build can be accepted for handoff. Hot failed, blocked, policy-kept, current-publication, or audit-required validation reports live under `.codewiki/validation/**`; cold pass reports rely on Git history/archive refs after publication.
 - **Graph state machine** owns generated reconciliation state in `.codewiki/index_graph.json`: drift detection, routing, derived queue order, loop selection, status, and freshness checks.
 - **Control Room UI** owns the standalone local browser command center for humans while delegating all semantics to the CodeWiki API.
 - **Application layer** owns harness-agnostic use cases for setup, state, compiler loops, validation, roadmap mutation, session focus, and rebuild orchestration.
@@ -44,13 +44,13 @@ CodeWiki separates truth by role so that agents can reason about the current sta
 | Coordination state | `.codewiki/runtime/claims.json` | Temporary scoped change claims for parallel sessions; expires/releases and never replaces durable truth. |
 | State truth | `.codewiki/index_graph.json` | Generated graph state machine for reconciliation, drift detection, derived queue order, routing, status, and freshness. |
 | Executable truth | code and tests | Final behavior and automated proof. |
-| Evidence truth | accepted `implementation_build` files under `.codewiki/builds/implementation/**` | Temporary compiled evidence that changes were successfully implemented. |
-| Validation truth | validation gateway output, plus persisted reports when required | Decides loop exit and records fail, block, or policy-kept validation outcomes. |
+| Implementation evidence truth | accepted `implementation_build` files under `.codewiki/builds/implementation/**` | Temporary compiled evidence that changes were successfully implemented and publication payloads for Git-backed archival. |
+| Validation truth | validation gateway output, plus persisted reports when required | Decides loop exit and records hot fail, block, policy-kept, audit, or current-publication validation outcomes. Cold pass outcomes are recoverable from Git after publication. |
 | Publication truth | implementation builds, validation outcomes, and Git/remote results | Supports commit messages, PR bodies, issue updates, release notes, and push readiness. |
 
 Agents should not hand-edit generated graph/index files. Durable changes flow into knowledge, roadmap, code/tests, builds, or validation reports first; generated graph state is rebuilt afterward. Parallel coordination flows through scoped claims, not graph edits. If graph state and canonical inputs disagree, canonical inputs win and the graph is stale or broken.
 
-Passing validation does not need a separate durable report by default when the accepted build records the validation result. Failed, blocked, policy-required, release, or audit-mode validation reports should be stored under `.codewiki/validation/**`.
+Passing validation does not need a separate durable report by default when the accepted build records the validation result. Failed, blocked, policy-required, current publication, release, or audit-mode validation reports should be stored under `.codewiki/validation/**`. After safe Git archival/publication, pass validation reports are cold and should leave the hot working tree.
 
 
 ## Compiler model

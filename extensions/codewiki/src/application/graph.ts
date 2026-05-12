@@ -10,6 +10,7 @@ export interface GraphBuildInputs {
 	research: any[];
 	roadmapEntries: RoadmapTaskRecord[];
 	roadmapSprints?: any[];
+	archivedTaskIds?: string[];
 	gitCache: GitCache;
 	builds: { path: string; kind: string; taskId?: string; status?: string; data: any }[];
 	validations: { path: string; taskId?: string; verdict?: string; data?: any }[];
@@ -248,7 +249,7 @@ function indexPush(map: Map<string, BuildArtifact[]>, key: string, build: BuildA
 }
 
 export function buildGraph(inputs: GraphBuildInputs): GraphFile {
-	const { project, docs, research, roadmapEntries, roadmapSprints = [], gitCache, builds, validations, testFiles, claims, lintReport } = inputs;
+	const { project, docs, research, roadmapEntries, roadmapSprints = [], archivedTaskIds = [], gitCache, builds, validations, testFiles, claims, lintReport } = inputs;
 	const nodes: GraphNode[] = [];
 	const edges: GraphEdge[] = [];
 	const seenNodes = new Set<string>();
@@ -290,10 +291,15 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			sprintByTaskId.get(taskId)!.push(sprint.id);
 		}
 	}
+	const archivedTaskIdSet = new Set(archivedTaskIds.map((id) => String(id || "").trim()).filter(Boolean));
+	const activeRoadmapTaskIds = new Set(roadmapEntries.filter((task) => isOpenTaskStatus(String(task.status || ""))).map((task) => task.id));
 	let dirtyPaths: string[] = [];
+	let rawDirtyPaths: string[] = [];
 	try {
-		dirtyPaths = gitCache.getDirtyPaths().filter((path) => !isGeneratedPath(project, path) && !isCodewikiDataPath(path));
+		rawDirtyPaths = gitCache.getDirtyPaths();
+		dirtyPaths = rawDirtyPaths.filter((path) => !isGeneratedPath(project, path) && !isCodewikiDataPath(path));
 	} catch {
+		rawDirtyPaths = [];
 		dirtyPaths = [];
 	}
 
@@ -444,8 +450,11 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	const hasPassingValidationForBuild = (build: BuildArtifact) => {
 		const buildPath = normalizeCodewikiRef(build.path);
 		const taskIds = new Set(buildTaskIds(build));
+		const archiveLedger = buildArchiveLedger(build);
 		const validationRefs = new Set([...stringList(build.data?.validation_refs), ...producedRefs(build.data, "validation")].map(normalizeCodewikiRef).filter(Boolean));
 		if (String(build.data?.validation_verdict?.verdict || "").trim() === "pass") return true;
+		if (archiveLedger && publicationSafetyPassed(build)) return true;
+		if (build.kind === "implementation_build" && taskIds.size > 0 && [...taskIds].every((taskId) => archivedTaskIdSet.has(taskId) || !activeRoadmapTaskIds.has(taskId))) return true;
 		return validations.some((validation: ValidationArtifact) => {
 			if (String(validation.verdict || "") !== "pass") return false;
 			const sources = [normalizeCodewikiRef(validation.data?.source), ...stringList(validation.data?.sources).map(normalizeCodewikiRef)].filter(Boolean);
@@ -473,12 +482,25 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			!expectsDownstream
 		);
 	};
+	const buildLinkedToOpenTask = (build: BuildArtifact) => {
+		const buildPath = normalizeCodewikiRef(build.path);
+		const taskIds = buildTaskIds(build);
+		if (taskIds.some((taskId) => activeRoadmapTaskIds.has(taskId))) return true;
+		return roadmapEntries.some((task) => isOpenTaskStatus(String(task.status || "")) && [...stringList(task.spec_paths), ...stringList(task.code_paths)].some((path) => normalizeCodewikiRef(path) === buildPath));
+	};
+	const buildDirty = (build: BuildArtifact) => rawDirtyPaths.some((path) => normalizeCodewikiRef(path) === normalizeCodewikiRef(build.path));
+	const historicalColdBuild = (build: BuildArtifact, lifecycleState: string) => {
+		if (archivedTaskIdSet.size === 0) return false;
+		if (buildDirty(build) || buildLinkedToOpenTask(build)) return false;
+		return ["accepted", "applied", "validated", "archived"].includes(lifecycleState);
+	};
 	for (const build of builds) {
 		const buildPath = normalizeCodewikiRef(build.path);
 		const lifecycleState = String(build.data?.lifecycle?.state || build.data?.status || build.status || "").trim() || "unknown";
 		const buildValidated = hasPassingValidationForBuild(build);
 		const consumed = build.kind === "feedback_build" ? feedbackConsumed(build) : build.kind === "documentation_build" ? documentationConsumed(build) : false;
-		const buildAlignmentState = isLifecycleComplete(lifecycleState) || buildValidated || consumed ? "aligned" : "drift";
+		const historicalCold = historicalColdBuild(build, lifecycleState);
+		const buildAlignmentState = isLifecycleComplete(lifecycleState) || buildValidated || consumed || historicalCold ? "aligned" : "drift";
 		const archiveLedger = buildArchiveLedger(build);
 		const compactCold = canCompactColdBuild(build, lifecycleState, buildValidated);
 		const buildId = `build:${buildPath}`;
@@ -494,7 +516,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			default_hidden: compactCold,
 			archive_ref: archiveLedger?.archive_ref,
 		});
-		if (build.kind === "feedback_build" && lifecycleState === "proposed") {
+		if (!historicalCold && build.kind === "feedback_build" && lifecycleState === "proposed") {
 			reconciliationItems.push({
 				id: `reconcile:${buildPath}`,
 				source_id: buildId,
@@ -505,7 +527,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 				next_loop: "feedback",
 				reason: "Feedback build is proposed; confirm or reject intent before documentation changes.",
 			});
-		} else if (build.kind === "feedback_build" && lifecycleState === "accepted" && !feedbackConsumed(build)) {
+		} else if (!historicalCold && build.kind === "feedback_build" && lifecycleState === "accepted" && !feedbackConsumed(build)) {
 			reconciliationItems.push({
 				id: `reconcile:${buildPath}`,
 				source_id: buildId,
@@ -516,7 +538,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 				next_loop: "documentation",
 				reason: "Accepted feedback build has no downstream documentation, implementation, or validation evidence yet.",
 			});
-		} else if (build.kind === "documentation_build" && lifecycleState === "accepted" && !documentationConsumed(build)) {
+		} else if (!historicalCold && build.kind === "documentation_build" && lifecycleState === "accepted" && !documentationConsumed(build)) {
 			reconciliationItems.push({
 				id: `reconcile:${buildPath}`,
 				source_id: buildId,
@@ -527,7 +549,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 				next_loop: "documentation",
 				reason: "Accepted documentation build has actionable downstream delta but no roadmap change, implementation link, or validation evidence yet.",
 			});
-		} else if (build.kind === "implementation_build" && lifecycleState === "accepted" && !buildValidated) {
+		} else if (!historicalCold && build.kind === "implementation_build" && lifecycleState === "accepted" && !buildValidated) {
 			reconciliationItems.push({
 				id: `reconcile:${buildPath}`,
 				source_id: buildId,
@@ -539,7 +561,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 				task_id: firstTaskId(build),
 				reason: "Accepted implementation build still needs passing validation gateway evidence.",
 			});
-		} else if (["documentation_build", "implementation_build"].includes(build.kind) && lifecycleState === "applied" && !buildValidated) {
+		} else if (!historicalCold && ["documentation_build", "implementation_build"].includes(build.kind) && lifecycleState === "applied" && !buildValidated) {
 			reconciliationItems.push({
 				id: `reconcile:${buildPath}`,
 				source_id: buildId,
@@ -792,11 +814,12 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		const lifecycleState = String(build.data?.lifecycle?.state || build.data?.status || build.status || "").trim();
 		const validated = hasPassingValidationForBuild(build);
 		const consumed = build.kind === "feedback_build" ? feedbackConsumed(build) : build.kind === "documentation_build" ? documentationConsumed(build) : false;
-		return !isLifecycleComplete(lifecycleState) && !validated && !consumed;
+		return !historicalColdBuild(build, lifecycleState) && !isLifecycleComplete(lifecycleState) && !validated && !consumed;
 	}).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean);
 	const passValidationPaths = validations.filter((v) => String(v.verdict || "") === "pass").map((v) => v.path);
 	const failValidationPaths = validations.filter((v) => ["fail", "block"].includes(String(v.verdict || ""))).map((v) => v.path);
 	const archiveLedgers = builds.map((build) => buildArchiveLedger(build)).filter(Boolean) as NonNullable<ReturnType<typeof buildArchiveLedger>>[];
+	const safelyArchivedTaskIds = new Set(builds.filter((build) => Boolean(buildArchiveLedger(build)) && publicationSafetyPassed(build)).flatMap((build) => buildTaskIds(build)));
 	const gitArchivedBuildPaths = builds.filter((build) => Boolean(buildArchiveLedger(build))).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean);
 	const purgeableBuilds = builds.filter((build) => {
 		const lifecycleState = String(build.data?.lifecycle?.state || build.status || "").trim();
@@ -804,7 +827,16 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		return lifecycleState === "purged" || isPurgeableByGitArchive(build, lifecycleState, validated);
 	});
 	const purgeableBuildPaths = purgeableBuilds.map((build) => normalizeCodewikiRef(build.path)).filter(Boolean);
+	const purgeableBuildPathSet = new Set(purgeableBuildPaths);
 	const purgeableTaskIds = Array.from(new Set(purgeableBuilds.flatMap((build) => buildTaskIds(build))));
+	const purgeableValidationPaths = validations.filter((validation) => {
+		if (String(validation.verdict || "") !== "pass") return false;
+		const taskId = String(validation.taskId || validation.data?.task_id || validation.data?.taskId || "").trim();
+		const source = normalizeCodewikiRef(validation.data?.source);
+		return (taskId && safelyArchivedTaskIds.has(taskId)) || (source && purgeableBuildPathSet.has(source));
+	}).map((validation) => normalizeCodewikiRef(validation.path)).filter(Boolean);
+	const purgeableValidationPathSet = new Set(purgeableValidationPaths);
+	const warmPassValidationPaths = passValidationPaths.map(normalizeCodewikiRef).filter((path) => !purgeableValidationPathSet.has(path));
 	const blockedArchiveBuildPaths = builds.filter((build) => {
 		const lifecycleState = String(build.data?.lifecycle?.state || build.status || "").trim();
 		const validated = hasPassingValidationForBuild(build);
@@ -827,8 +859,8 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 				claim_ids: claimState.claims.map((claim) => claim.id),
 			},
 			warm: {
-				build_paths: builds.filter((build) => String(build.data?.lifecycle?.state || build.status || "") === "accepted" && !hotBuildPaths.includes(normalizeCodewikiRef(build.path))).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean),
-				validation_paths: passValidationPaths.slice(0, 20),
+				build_paths: builds.filter((build) => String(build.data?.lifecycle?.state || build.status || "") === "accepted" && !hotBuildPaths.includes(normalizeCodewikiRef(build.path)) && !purgeableBuildPathSet.has(normalizeCodewikiRef(build.path))).map((build) => normalizeCodewikiRef(build.path)).filter(Boolean),
+				validation_paths: warmPassValidationPaths.slice(0, 20),
 			},
 			cold: {
 				task_ids: [...doneTaskIds, ...cancelledTaskIds],
@@ -837,6 +869,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			purgeable: {
 				task_ids: purgeableTaskIds,
 				build_paths: purgeableBuildPaths,
+				validation_paths: purgeableValidationPaths,
 			},
 		},
 		sprint_close_hooks: [

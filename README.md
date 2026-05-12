@@ -70,7 +70,9 @@ Codewiki now centers on a hidden `.codewiki` knowledge system plus derived views
 
 - **knowledge** — canonical markdown knowledge nodes under `.codewiki/kb/product/`, `.codewiki/kb/clients/`, and `.codewiki/kb/system/`
 - **sources** — raw provenance under `.codewiki/sources/`
-- **evidence** — compact machine-managed validation findings in `.codewiki/evidence/*.jsonl`
+- **research** — optional compact source-support findings under `.codewiki/research/`
+- **builds** — compiler handoff and implementation evidence under `.codewiki/builds/**`
+- **validation** — hot fail/block/policy-required/current validation reports under `.codewiki/validation/**`
 - **roadmap** — machine-managed tracked delta in `.codewiki/roadmap.json`
 - **task** — atomic work unit inside roadmap, canonically named `TASK-###`
 
@@ -99,7 +101,9 @@ Working rule:
 
 - `.codewiki/kb/` = canonical desired state
 - `.codewiki/sources/` = raw provenance
-- `.codewiki/evidence/` = machine-managed validation evidence
+- `.codewiki/research/` = optional compact source-support findings
+- `.codewiki/builds/implementation/**` = implementation evidence
+- `.codewiki/validation/**` = hot fail/block/policy-required/current validation reports
 - `.codewiki/roadmap.json` = machine-managed tracked delta from desired state to current reality
 - task = atomic work unit inside roadmap
 - Pi session = native execution history linked to tasks
@@ -196,7 +200,7 @@ Minimum expected contract:
 {
   "docs_root": ".codewiki/kb",
   "specs_root": ".codewiki/kb",
-  "evidence_root": ".codewiki/evidence",
+  "research_root": ".codewiki/research",
   "roadmap_path": ".codewiki/roadmap.json",
     "roadmap_retention": {
     "closed_task_limit": 50,
@@ -301,7 +305,7 @@ Starter bootstrap includes:
 - `.codewiki/kb/clients/surfaces/status-panel.md`
 - `.codewiki/kb/system/overview.md`
 - inferred first-pass boundary `overview.md` files under `.codewiki/kb/system/` when brownfield structure is detected
-- `.codewiki/evidence/inspiration.jsonl`
+- `.codewiki/research/.gitkeep`
 - `.codewiki/roadmap.json`
 - generated outputs like `.codewiki/index_graph.json`
 
@@ -347,7 +351,7 @@ Runtime rule:
 
 It then uses that repo config to:
 
-- find authored docs, evidence, roadmap, and optional generated markdown export paths
+- find authored docs, source/research support, roadmap, and optional generated markdown export paths
 - run the packaged TypeScript rebuild engine
 - read `.codewiki/index_graph.json`
 - build semantic audit scopes from `.codewiki/config.json`
@@ -359,20 +363,20 @@ It then uses that repo config to:
 
 That means one global package install can operate across many repos, while each repo keeps its own hidden `.codewiki/` contract.
 
-### Runtime policy and transactions
+### Runtime policy and patches
 
 codewiki's local gateway is a transitional adapter, not the long-term generic sandbox. The intended split is:
 
 - `.codewiki/config.json` declares codewiki policy: readable paths, direct writable paths, generated read-only paths, caps, and runtime adapter metadata.
-- `scripts/codewiki-gateway.mjs` validates and applies codewiki transactions today and can print the semantic capability manifest with `node scripts/codewiki-gateway.mjs manifest [repo]`.
-- a future `think-code` executor can provide generic sandbox isolation while reusing the same repo-local policy, capability manifest, and transaction schema.
+- `scripts/codewiki-gateway.mjs` validates and applies codewiki patches today and can print the semantic capability manifest with `node scripts/codewiki-gateway.mjs manifest [repo]`.
+- a future `think-code` executor can provide generic sandbox isolation while reusing the same repo-local policy, capability manifest, and patch schema.
 
-Current transaction shape:
+Current patch shape:
 
 ```json
 {
   "version": 1,
-  "summary": "Update wiki evidence.",
+  "summary": "Update CodeWiki source support.",
   "ops": [
     {
       "kind": "patch",
@@ -382,21 +386,21 @@ Current transaction shape:
     },
     {
       "kind": "append_jsonl",
-      "path": ".codewiki/evidence/runtime.jsonl",
-      "value": { "summary": "Evidence entry" }
+      "path": ".codewiki/sources/runtime.jsonl",
+      "value": { "summary": "Source support entry" }
     }
   ]
 }
 ```
 
-The gateway applies only validated writes under configured `.codewiki` paths and rebuilds views after successful writes. Generated files such as `.codewiki/index_graph.json` are read-only transaction targets.
+The gateway applies only validated writes under configured `.codewiki` paths and rebuilds views after successful writes. Generated files such as `.codewiki/index_graph.json` are read-only patch targets.
 
 ## Philosophy
 
 This package assumes:
 
 - `.codewiki/kb/` is canonical truth for intended product, clients, and system design
-- `.codewiki/evidence/` is compact machine-managed validation output, not longform archive by default
+- `.codewiki/evidence/**` is deprecated as a default active surface; use implementation builds, hot validation reports, sources, or research roots instead
 - `.codewiki/roadmap.json` is freshest tracked delta between authored docs and code, kept as a hot working set rather than unbounded history
 - closed tasks older than the configured retention window move losslessly to `.codewiki/roadmap/archive.jsonl` by default
 - Pi sessions are execution history, not canonical roadmap truth

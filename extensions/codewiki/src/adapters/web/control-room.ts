@@ -548,7 +548,7 @@ function settingsPurpose(path: string[]): string {
 	if (path[0] === "roadmap_retention") return "Closed-work retention and archive policy.";
 	if (path[0] === "lint") return "Knowledge/documentation lint policy.";
 	if (joined.startsWith("codewiki.gateway")) return "Gateway read/write, deny, and generated-readonly policy.";
-	if (joined.startsWith("codewiki.runtime")) return "Runtime adapter and transaction behavior.";
+	if (joined.startsWith("codewiki.runtime")) return "Runtime adapter and patch behavior.";
 	if (joined.startsWith("codewiki.rebuild")) return "Rebuild freshness, debounce, and verbosity controls.";
 	if (joined.startsWith("codewiki.agency.budgets")) return "Bounded agency budget limit.";
 	if (joined.startsWith("codewiki.agency.parallelism")) return "Parallel session and sprint execution limit.";
@@ -569,7 +569,7 @@ function settingsGroupLabel(id: string): string {
 }
 
 function settingsGroupSummary(id: string): string {
-	return ({ project: "Identity and template metadata.", paths: "Canonical and generated repository locations.", roadmap: "Closed-task retention and archive behavior.", generated: "Generated files rebuilt by CodeWiki.", lint: "Warnings and documentation quality policy.", gateway: "Sandbox/read/write/deny/generated path policy.", runtime: "Adapter and transaction runtime settings.", rebuild: "Rebuild freshness and noise controls.", agency: "Default agency scope, budget, and parallelism.", gc: "Artifact lifecycle and archive thresholds.", other: "Additional config values." } as Record<string, string>)[id] || "Config values.";
+	return ({ project: "Identity and template metadata.", paths: "Canonical and generated repository locations.", roadmap: "Closed-task retention and archive behavior.", generated: "Generated files rebuilt by CodeWiki.", lint: "Warnings and documentation quality policy.", gateway: "Sandbox/read/write/deny/generated path policy.", runtime: "Adapter and patch runtime settings.", rebuild: "Rebuild freshness and noise controls.", agency: "Default agency scope, budget, and parallelism.", gc: "Artifact lifecycle and archive thresholds.", other: "Additional config values." } as Record<string, string>)[id] || "Config values.";
 }
 
 async function readProductItems(project: WikiProject, category: "users" | "stories" | "uis"): Promise<ControlRoomProductItem[]> {

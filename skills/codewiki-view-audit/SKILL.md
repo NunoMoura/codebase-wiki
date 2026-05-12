@@ -18,7 +18,7 @@ Graph auditor is a read-only subagent role. It verifies generated graph/index st
 - `role: "graph_auditor"`
 - graph path, usually `.codewiki/index_graph.json`
 - optional cached lenses such as status files; queue order should normally be read from the graph
-- canonical sources to sample: `.codewiki/kb/**`, `.codewiki/roadmap/**`, `.codewiki/builds/**`, `.codewiki/validation/**`, `.codewiki/evidence/**`
+- canonical sources to sample: `.codewiki/kb/**`, `.codewiki/roadmap/**`, `.codewiki/builds/**`, hot `.codewiki/validation/**`, `.codewiki/sources/**`, `.codewiki/research/**`
 - constraints: read-only, no generated-state edits
 
 ## Output

@@ -39,6 +39,8 @@ Every CodeWiki project should use the same top-level knowledge-base shape:
 
 Product docs define users, user stories, and visual user interfaces. System docs define the technical architecture, API, adapters, distribution mechanisms, component ownership, and diagram raw data that implement product intent.
 
+At the `.codewiki/` root, active contract surfaces are limited to config, knowledge, roadmap, builds, validation, runtime coordination, sources/research support, and generated graph state. Legacy `.codewiki/index/` and default `.codewiki/evidence/**` surfaces are deprecated: `.codewiki/index_graph.json` is the generated index, implementation builds hold execution evidence, validation reports hold hot gateway decisions, and source/research support belongs under `.codewiki/sources/**` or an explicit `research_root`.
+
 System component docs should stay flat. Each major system component should have one matching `.md` file under `system/`. Diagram raw data is the one intended nested system folder and lives under `system/diagrams/**`.
 
 Avoid nested component folders and avoid `overview.md` files except `product/overview.md`, `system/overview.md`, and the diagram contract `system/diagrams/README.md`.
@@ -71,9 +73,9 @@ Renderer-specific Mermaid, Cytoscape, or SVG output should be treated as generat
 | CodeWiki API | `api.md` | `extensions/codewiki/src/application/**`, domain contracts |
 | Agency controller | `agency.md` | application use cases and adapter-exposed agency entrypoints |
 | Compilers | `compilers.md` | compiler skills and application use cases |
-| Validation gateway | `validation-gateway.md` | verifier skills, validation reports |
+| Validation gateway | `validation-gateway.md` | verifier skills, hot fail/block/policy-required/current validation reports |
 | Knowledge | `knowledge.md` | `.codewiki/kb/**` |
-| Builds | `builds.md` | `.codewiki/builds/**` |
+| Builds | `builds.md` | `.codewiki/builds/**`, implementation evidence and publication payloads |
 | Roadmap | `roadmap.md` | `.codewiki/roadmap.json`, active task state, release checkpoints, archive files |
 | Parallel coordination | `api.md`, `adapters.md`, `graph.md` | `.codewiki/runtime/claims.json`, `codewiki_claim`, generated claim views |
 | Graph state machine | `graph.md` | `.codewiki/index_graph.json`, graph rebuild implementation |
@@ -107,6 +109,13 @@ The CodeWiki project should use this system set:
     key-flow.yaml
     data-model.yaml
     state-lifecycle.yaml
+```
+
+Deprecated `.codewiki/` data paths that must not be recreated by new templates or normal agent writes:
+
+```text
+.codewiki/index/**
+.codewiki/evidence/**
 ```
 
 Legacy system KB paths removed by the flattening migration:

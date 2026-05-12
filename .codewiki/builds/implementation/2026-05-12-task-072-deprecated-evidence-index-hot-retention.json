@@ -1,0 +1,668 @@
+{
+  "version": 1,
+  "schema_version": 2,
+  "kind": "implementation_build",
+  "created": "2026-05-12T12:35:21Z",
+  "source": "codewiki_build tool",
+  "source_documentation_build": ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+  "task_id": "TASK-072",
+  "task": {
+    "id": "TASK-072",
+    "title": "Remove deprecated evidence/index surfaces and enforce hot validation retention",
+    "status": "verify",
+    "priority": "critical",
+    "kind": "architecture",
+    "summary": "Deprecate `.codewiki/evidence/**` and legacy `.codewiki/index/`, add drift checks for stale file-contract paths and `.wiki` references, and evict cold pass validation/build artifacts from the hot working tree after safe Git archival.",
+    "spec_paths": [
+      ".codewiki/kb/system/file-structure.md",
+      ".codewiki/kb/system/overview.md",
+      ".codewiki/kb/system/validation-gateway.md",
+      ".codewiki/kb/system/builds.md",
+      ".codewiki/kb/system/graph.md",
+      ".codewiki/kb/system/api.md",
+      ".codewiki/kb/lexicon.md",
+      ".codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json"
+    ],
+    "code_paths": [
+      "extensions/codewiki/templates.ts",
+      "extensions/codewiki/src/application/lint.ts",
+      "extensions/codewiki/src/application/graph.ts",
+      "extensions/codewiki/src/application/project.ts",
+      "extensions/codewiki/src/application/builds.ts",
+      "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+      "extensions/codewiki/src/infrastructure/transaction.ts",
+      "extensions/codewiki/src/infrastructure/gateway.ts",
+      "extensions/codewiki/src/adapters/web/control-room.ts",
+      "scripts/codewiki-gateway.mjs",
+      "scripts/codewiki-transaction.mjs",
+      "scripts/smoke-test.mjs",
+      "skills/codewiki-view-audit/SKILL.md",
+      "README.md",
+      "tests/smoke/hot-retention.test.mjs",
+      "tests/smoke/builds.test.mjs"
+    ],
+    "goal": {
+      "outcome": "CodeWiki no longer treats `.codewiki/evidence/**` or `.codewiki/index/` as active contract surfaces; deterministic drift checks catch deprecated paths and stale `.wiki` references; pass validation/build artifacts become purgeable after safe archival while fail/block/policy-kept reports remain hot.",
+      "acceptance": [
+        "`.codewiki/index/` and stale `.codewiki/evidence/**` files are removed or migrated, and templates/config no longer create or advertise them as default active paths.",
+        "Docs define execution evidence as implementation builds, validation truth as hot fail/block/policy-required/current reports, and research/source support outside `.codewiki/evidence/**`.",
+        "Lint/graph health flags deprecated CodeWiki paths and stale `.wiki` references as deterministic file-contract drift.",
+        "Graph GC/archive views mark pass validation reports and consumed cold builds purgeable after safe Git archive/publication while preserving fail/block/policy-kept validation as hot.",
+        "Tests cover deprecated path detection, stale `.wiki` detection, and validation/build hot-retention classes."
+      ],
+      "non_goals": [
+        "Do not delete fail/block/policy-kept validation reports.",
+        "Do not rewrite Git history or delete archive refs.",
+        "Do not remove current active implementation builds before publication safety passes.",
+        "Do not build the full restore command if explicit archive restore metadata already exists."
+      ],
+      "verification": [
+        "npm test",
+        "npm run typecheck",
+        "npm run test:features",
+        "npm run test:smoke",
+        "npm run check:architecture"
+      ]
+    }
+  },
+  "status": "accepted",
+  "lifecycle": {
+    "state": "accepted",
+    "ttl_days": 7,
+    "archive_after": "2026-05-19T12:35:21.000Z",
+    "purge_after": "2026-05-26T12:35:21.000Z"
+  },
+  "summary": "Implemented deprecated `.codewiki/evidence/**` and `.codewiki/index/**` removal, codewiki.patch naming, file-contract lint drift, and hot validation/build retention classes.",
+  "consumes": {
+    "feedback": [],
+    "documentation": [
+      ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json"
+    ],
+    "implementation": [],
+    "roadmap": [
+      "TASK-072"
+    ],
+    "validation": [],
+    "source": []
+  },
+  "produces": {
+    "knowledge": [],
+    "roadmap": [],
+    "code": [
+      "extensions/codewiki/src/application/lint.ts",
+      "extensions/codewiki/src/application/graph.ts",
+      "extensions/codewiki/src/application/project.ts",
+      "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+      "extensions/codewiki/src/infrastructure/transaction.ts",
+      "extensions/codewiki/src/infrastructure/gateway.ts",
+      "extensions/codewiki/templates.ts",
+      "scripts/codewiki-gateway.mjs",
+      "scripts/codewiki-transaction.mjs",
+      "scripts/smoke-test.mjs",
+      "extensions/codewiki/src/adapters/web/control-room.ts",
+      "README.md",
+      "skills/codewiki-view-audit/SKILL.md"
+    ],
+    "tests": [
+      "tests/smoke/hot-retention.test.mjs",
+      "tests/smoke/builds.test.mjs",
+      "scripts/smoke-test.mjs"
+    ],
+    "validation": [],
+    "publication": [],
+    "closure": [
+      "TASK-072"
+    ]
+  },
+  "linked_refs": {
+    "documentation_build": ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+    "spec_paths": [
+      ".codewiki/kb/system/file-structure.md",
+      ".codewiki/kb/system/overview.md",
+      ".codewiki/kb/system/validation-gateway.md",
+      ".codewiki/kb/system/builds.md",
+      ".codewiki/kb/system/graph.md",
+      ".codewiki/kb/system/api.md",
+      ".codewiki/kb/lexicon.md",
+      ".codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json"
+    ],
+    "code_paths": [
+      "extensions/codewiki/templates.ts",
+      "extensions/codewiki/src/application/lint.ts",
+      "extensions/codewiki/src/application/graph.ts",
+      "extensions/codewiki/src/application/project.ts",
+      "extensions/codewiki/src/application/builds.ts",
+      "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+      "extensions/codewiki/src/infrastructure/transaction.ts",
+      "extensions/codewiki/src/infrastructure/gateway.ts",
+      "extensions/codewiki/src/adapters/web/control-room.ts",
+      "scripts/codewiki-gateway.mjs",
+      "scripts/codewiki-transaction.mjs",
+      "scripts/smoke-test.mjs",
+      "skills/codewiki-view-audit/SKILL.md",
+      "README.md",
+      "tests/smoke/hot-retention.test.mjs",
+      "tests/smoke/builds.test.mjs"
+    ]
+  },
+  "test_files": [
+    "tests/smoke/hot-retention.test.mjs",
+    "tests/smoke/builds.test.mjs",
+    "scripts/smoke-test.mjs"
+  ],
+  "code_files": [
+    "extensions/codewiki/src/application/lint.ts",
+    "extensions/codewiki/src/application/graph.ts",
+    "extensions/codewiki/src/application/project.ts",
+    "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+    "extensions/codewiki/src/infrastructure/transaction.ts",
+    "extensions/codewiki/src/infrastructure/gateway.ts",
+    "extensions/codewiki/templates.ts",
+    "scripts/codewiki-gateway.mjs",
+    "scripts/codewiki-transaction.mjs",
+    "scripts/smoke-test.mjs",
+    "extensions/codewiki/src/adapters/web/control-room.ts",
+    "README.md",
+    "skills/codewiki-view-audit/SKILL.md"
+  ],
+  "files_changed": [
+    "tests/smoke/hot-retention.test.mjs",
+    "tests/smoke/builds.test.mjs",
+    "scripts/smoke-test.mjs",
+    "extensions/codewiki/src/application/lint.ts",
+    "extensions/codewiki/src/application/graph.ts",
+    "extensions/codewiki/src/application/project.ts",
+    "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+    "extensions/codewiki/src/infrastructure/transaction.ts",
+    "extensions/codewiki/src/infrastructure/gateway.ts",
+    "extensions/codewiki/templates.ts",
+    "scripts/codewiki-gateway.mjs",
+    "scripts/codewiki-transaction.mjs",
+    "extensions/codewiki/src/adapters/web/control-room.ts",
+    "README.md",
+    "skills/codewiki-view-audit/SKILL.md"
+  ],
+  "checks_run": [
+    "npm run typecheck",
+    "npm run test:features",
+    "npm run test:smoke",
+    "npm run check:architecture",
+    "npm run test:pack",
+    "npm test"
+  ],
+  "role_evidence": {
+    "tester": {
+      "role": "tester",
+      "source_documentation_build": ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "roadmap_task_id": "TASK-072",
+      "test_files": [
+        "tests/smoke/hot-retention.test.mjs",
+        "tests/smoke/builds.test.mjs",
+        "scripts/smoke-test.mjs"
+      ],
+      "evidence": [
+        "Focused smoke test creates deprecated directories and stale legacy dot-wiki reference, then asserts lint issues.",
+        "Focused graph fixture verifies safe archived implementation build and pass validation are purgeable, not hot.",
+        "Full smoke test updated to bootstrap without `.codewiki/evidence` seed and to apply source-support patches under `.codewiki/sources/**`."
+      ],
+      "notes": [],
+      "boundary": "derive tests or test-design evidence before code changes where practical"
+    },
+    "builder": {
+      "role": "builder",
+      "source_documentation_build": ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+      "roadmap_task_id": "TASK-072",
+      "code_files": [
+        "extensions/codewiki/src/application/lint.ts",
+        "extensions/codewiki/src/application/graph.ts",
+        "extensions/codewiki/src/application/project.ts",
+        "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+        "extensions/codewiki/src/infrastructure/transaction.ts",
+        "extensions/codewiki/src/infrastructure/gateway.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/codewiki-gateway.mjs",
+        "scripts/codewiki-transaction.mjs",
+        "scripts/smoke-test.mjs",
+        "extensions/codewiki/src/adapters/web/control-room.ts",
+        "README.md",
+        "skills/codewiki-view-audit/SKILL.md"
+      ],
+      "evidence": [
+        "Config/template/gateway defaults removed `.codewiki/evidence/**` write/read paths and added sources/research patch paths.",
+        "Project/rebuilder defaults use `.codewiki/research` instead of evidence fallback.",
+        "Graph accepts archivedTaskIds, suppresses clean historical accepted-build drift, and exposes purgeable validation/build classes.",
+        "Lint enforces deprecated path and legacy dot-wiki reference drift."
+      ],
+      "notes": [
+        "All pass validation report files were removed from the hot working tree; future pass validations are transient/current-publication only.",
+        "Fail/block validation reports would remain hot; none existed at migration time.",
+        "`scripts/codewiki-transaction.mjs` remains as internal/backward-compatible implementation filename; manifest capability is `codewiki.patch`."
+      ],
+      "boundary": "change code until tests, roadmap acceptance, and required checks pass"
+    }
+  },
+  "test_design_evidence": [
+    "Focused smoke test creates deprecated directories and stale legacy dot-wiki reference, then asserts lint issues.",
+    "Focused graph fixture verifies safe archived implementation build and pass validation are purgeable, not hot.",
+    "Full smoke test updated to bootstrap without `.codewiki/evidence` seed and to apply source-support patches under `.codewiki/sources/**`."
+  ],
+  "code_change_evidence": [
+    "Config/template/gateway defaults removed `.codewiki/evidence/**` write/read paths and added sources/research patch paths.",
+    "Project/rebuilder defaults use `.codewiki/research` instead of evidence fallback.",
+    "Graph accepts archivedTaskIds, suppresses clean historical accepted-build drift, and exposes purgeable validation/build classes.",
+    "Lint enforces deprecated path and legacy dot-wiki reference drift."
+  ],
+  "acceptance_mapping": [
+    {
+      "criterion": "`.codewiki/index/` and stale `.codewiki/evidence/**` files are removed or migrated, and templates/config no longer create or advertise them as default active paths.",
+      "evidence": "Removed tracked `.codewiki/evidence/*`, removed legacy `.codewiki/index/`, added `.codewiki/research/.gitkeep`, updated current config and starter templates to use `research_root`, `.codewiki/sources/**`, and `.codewiki/research/**` instead of default evidence root."
+    },
+    {
+      "criterion": "Docs define execution evidence as implementation builds, validation truth as hot fail/block/policy-required/current reports, and research/source support outside `.codewiki/evidence/**`.",
+      "evidence": "Updated file-structure, overview, validation-gateway, builds, graph, API, lexicon, README, and view-audit skill docs."
+    },
+    {
+      "criterion": "Lint/graph health flags deprecated CodeWiki paths and stale `.wiki` references as deterministic file-contract drift.",
+      "evidence": "`lintFileContract` reports deprecated `.codewiki/index/**`, deprecated `.codewiki/evidence/**`, and stale legacy dot-wiki references; `tests/smoke/hot-retention.test.mjs` covers all three."
+    },
+    {
+      "criterion": "Graph GC/archive views mark pass validation reports and consumed cold builds purgeable after safe Git archive/publication while preserving fail/block/policy-kept validation as hot.",
+      "evidence": "Graph computes purgeable build/validation paths for safe archive ledgers, keeps fail/block validation in hot class, and treats closed historical builds as cold when archived task ids are present."
+    },
+    {
+      "criterion": "Tests cover deprecated path detection, stale `.wiki` detection, and validation/build hot-retention classes.",
+      "evidence": "Added `tests/smoke/hot-retention.test.mjs`; updated build and smoke tests; full checks passed."
+    },
+    {
+      "criterion": "User-facing API capability uses `codewiki.patch` while transaction remains internal mechanics where useful.",
+      "evidence": "Gateway manifests now expose `codewiki.patch`, usage/docs say patch, templates use `patch_schema`, and internal transaction module remains implementation detail."
+    }
+  ],
+  "validation_refs": [],
+  "closure_brief": {
+    "user_intent": "Remove stale CodeWiki contract surfaces, prevent future file-contract drift, stop storing cold pass validation in the hot tree, and expose user-facing patch naming instead of transaction naming.",
+    "implemented_changes": [
+      "Deprecated and removed `.codewiki/evidence/**` and `.codewiki/index/**` from active defaults.",
+      "Added lint enforcement for deprecated CodeWiki paths and legacy dot-wiki references.",
+      "Changed gateway/config/template docs to `codewiki.patch` naming and source/research patch paths.",
+      "Added graph retention classes for purgeable safe-archived builds and pass validations.",
+      "Removed existing pass validation files from hot working tree; cold proof remains in Git history.",
+      "Added hot-retention smoke coverage and updated bootstrap smoke expectations."
+    ],
+    "layers_updated": {
+      "knowledge": [
+        ".codewiki/kb/system/file-structure.md",
+        ".codewiki/kb/system/overview.md",
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/builds.md",
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/api.md",
+        ".codewiki/kb/lexicon.md",
+        "README.md",
+        "skills/codewiki-view-audit/SKILL.md"
+      ],
+      "roadmap": [
+        "TASK-072"
+      ],
+      "code": [
+        "extensions/codewiki/src/application/lint.ts",
+        "extensions/codewiki/src/application/graph.ts",
+        "extensions/codewiki/src/application/project.ts",
+        "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+        "extensions/codewiki/src/infrastructure/transaction.ts",
+        "extensions/codewiki/src/infrastructure/gateway.ts",
+        "extensions/codewiki/templates.ts",
+        "scripts/codewiki-gateway.mjs",
+        "scripts/codewiki-transaction.mjs",
+        "scripts/smoke-test.mjs",
+        "extensions/codewiki/src/adapters/web/control-room.ts"
+      ],
+      "tests": [
+        "tests/smoke/hot-retention.test.mjs"
+      ],
+      "validation": []
+    },
+    "acceptance_evidence": [
+      "All TASK-072 acceptance criteria mapped in implementation build acceptance_mapping."
+    ],
+    "checks": [
+      "npm run typecheck",
+      "npm run test:features",
+      "npm run test:smoke",
+      "npm run check:architecture",
+      "npm run test:pack",
+      "npm test"
+    ],
+    "non_goals_preserved": [
+      "No fail/block/policy-kept reports deleted.",
+      "No Git history or archive refs rewritten.",
+      "No active implementation builds removed before publication safety passes.",
+      "No full restore command built in this task."
+    ],
+    "remaining_risks": [
+      "External docs/tools may still refer to old evidence root or transaction capability name until updated downstream."
+    ]
+  },
+  "risks": [
+    "Direct external consumers of `.codewiki/evidence/**` or `codewiki.transaction` manifest name must migrate to sources/research or `codewiki.patch`."
+  ],
+  "unresolved_issues": [],
+  "open_questions": [],
+  "handoff": {
+    "resume": {
+      "source": "implementation_build",
+      "command": "/wiki-resume TASK-072",
+      "task_id": "TASK-072",
+      "next_focus_task_id": "",
+      "context": {
+        "source": "implementation_build",
+        "task_id": "TASK-072",
+        "title": "Remove deprecated evidence/index surfaces and enforce hot validation retention",
+        "summary": "Implemented deprecated `.codewiki/evidence/**` and `.codewiki/index/**` removal, codewiki.patch naming, file-contract lint drift, and hot validation/build retention classes.",
+        "spec_paths": [
+          ".codewiki/kb/system/file-structure.md",
+          ".codewiki/kb/system/overview.md",
+          ".codewiki/kb/system/validation-gateway.md",
+          ".codewiki/kb/system/builds.md",
+          ".codewiki/kb/system/graph.md",
+          ".codewiki/kb/system/api.md",
+          ".codewiki/kb/lexicon.md",
+          ".codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json"
+        ],
+        "code_paths": [
+          "extensions/codewiki/templates.ts",
+          "extensions/codewiki/src/application/lint.ts",
+          "extensions/codewiki/src/application/graph.ts",
+          "extensions/codewiki/src/application/project.ts",
+          "extensions/codewiki/src/application/builds.ts",
+          "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+          "extensions/codewiki/src/infrastructure/transaction.ts",
+          "extensions/codewiki/src/infrastructure/gateway.ts",
+          "extensions/codewiki/src/adapters/web/control-room.ts",
+          "scripts/codewiki-gateway.mjs",
+          "scripts/codewiki-transaction.mjs",
+          "scripts/smoke-test.mjs",
+          "skills/codewiki-view-audit/SKILL.md",
+          "README.md",
+          "tests/smoke/hot-retention.test.mjs",
+          "tests/smoke/builds.test.mjs"
+        ],
+        "acceptance": [
+          "`.codewiki/index/` and stale `.codewiki/evidence/**` files are removed or migrated, and templates/config no longer create or advertise them as default active paths.",
+          "Docs define execution evidence as implementation builds, validation truth as hot fail/block/policy-required/current reports, and research/source support outside `.codewiki/evidence/**`.",
+          "Lint/graph health flags deprecated CodeWiki paths and stale `.wiki` references as deterministic file-contract drift.",
+          "Graph GC/archive views mark pass validation reports and consumed cold builds purgeable after safe Git archive/publication while preserving fail/block/policy-kept validation as hot.",
+          "Tests cover deprecated path detection, stale `.wiki` detection, and validation/build hot-retention classes."
+        ],
+        "verification": [
+          "npm test",
+          "npm run typecheck",
+          "npm run test:features",
+          "npm run test:smoke",
+          "npm run check:architecture"
+        ],
+        "checks_run": [
+          "npm run typecheck",
+          "npm run test:features",
+          "npm run test:smoke",
+          "npm run check:architecture",
+          "npm run test:pack",
+          "npm test"
+        ],
+        "test_design_evidence": [
+          "Focused smoke test creates deprecated directories and stale legacy dot-wiki reference, then asserts lint issues.",
+          "Focused graph fixture verifies safe archived implementation build and pass validation are purgeable, not hot.",
+          "Full smoke test updated to bootstrap without `.codewiki/evidence` seed and to apply source-support patches under `.codewiki/sources/**`."
+        ],
+        "code_change_evidence": [
+          "Config/template/gateway defaults removed `.codewiki/evidence/**` write/read paths and added sources/research patch paths.",
+          "Project/rebuilder defaults use `.codewiki/research` instead of evidence fallback.",
+          "Graph accepts archivedTaskIds, suppresses clean historical accepted-build drift, and exposes purgeable validation/build classes.",
+          "Lint enforces deprecated path and legacy dot-wiki reference drift."
+        ],
+        "validation_refs": []
+      }
+    },
+    "restore": {
+      "command": "/wiki-restore TASK-072",
+      "worktree": "git worktree add --detach <tmp> refs/codewiki/archive/task/TASK-072",
+      "show_build": "git show refs/codewiki/archive/task/TASK-072:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+      "sparse_paths": [
+        ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+        ".codewiki/kb/system/file-structure.md",
+        ".codewiki/kb/system/overview.md",
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/builds.md",
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/api.md",
+        ".codewiki/kb/lexicon.md",
+        ".codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+        "extensions/codewiki/templates.ts",
+        "extensions/codewiki/src/application/lint.ts",
+        "extensions/codewiki/src/application/graph.ts",
+        "extensions/codewiki/src/application/project.ts",
+        "extensions/codewiki/src/application/builds.ts",
+        "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+        "extensions/codewiki/src/infrastructure/transaction.ts",
+        "extensions/codewiki/src/infrastructure/gateway.ts",
+        "extensions/codewiki/src/adapters/web/control-room.ts",
+        "scripts/codewiki-gateway.mjs",
+        "scripts/codewiki-transaction.mjs",
+        "scripts/smoke-test.mjs",
+        "skills/codewiki-view-audit/SKILL.md",
+        "README.md",
+        "tests/smoke/hot-retention.test.mjs",
+        "tests/smoke/builds.test.mjs"
+      ],
+      "note": "Restored history is reference material until promoted into active knowledge or roadmap truth."
+    },
+    "fallback": "Use codewiki_state refresh=true and this implementation_build; do not rely on chat transcript memory."
+  },
+  "publication": {
+    "policy": {
+      "execution": "recommendation_only",
+      "approval_required": true,
+      "remote_updates": "blocked_until_explicit_approval",
+      "security_review_required": true
+    },
+    "commit": {
+      "title": "chore(codewiki): record TASK-072 Remove deprecated evidence/index surfaces and enforce hot validation retention implementation evidence",
+      "body": "Implemented deprecated `.codewiki/evidence/**` and `.codewiki/index/**` removal, codewiki.patch naming, file-contract lint drift, and hot validation/build retention classes.\n\nChecks: npm run typecheck, npm run test:features, npm run test:smoke, npm run check:architecture, npm run test:pack, npm test\nValidation: no durable validation refs recorded.\nRemote publication requires explicit approval; this build is recommendation-only.\n\nCodeWiki-Task: TASK-072\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-072\nCodeWiki-Digest: sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210\nCodeWiki-Restore: /wiki-restore TASK-072",
+      "trailers": [
+        "CodeWiki-Task: TASK-072",
+        "CodeWiki-Build: .codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+        "CodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-072",
+        "CodeWiki-Digest: sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
+        "CodeWiki-Restore: /wiki-restore TASK-072"
+      ]
+    },
+    "pr": {
+      "title": "chore(codewiki): record TASK-072 Remove deprecated evidence/index surfaces and enforce hot validation retention implementation evidence",
+      "body": "Implemented deprecated `.codewiki/evidence/**` and `.codewiki/index/**` removal, codewiki.patch naming, file-contract lint drift, and hot validation/build retention classes.\n\nChecks: npm run typecheck, npm run test:features, npm run test:smoke, npm run check:architecture, npm run test:pack, npm test\nValidation: no durable validation refs recorded.\nRemote publication requires explicit approval; this build is recommendation-only.\n\nCodeWiki-Task: TASK-072\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-072\nCodeWiki-Digest: sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210\nCodeWiki-Restore: /wiki-restore TASK-072"
+    },
+    "issue_update": "",
+    "release_notes": "",
+    "git": {
+      "strategy": "implementation_build_publication_payload",
+      "archive_ref": "refs/codewiki/archive/task/TASK-072",
+      "commit_sha": "",
+      "remote": "origin",
+      "branch": "main",
+      "atomic_push_refspecs": [
+        "HEAD",
+        "refs/codewiki/archive/task/TASK-072"
+      ],
+      "restore": {
+        "command": "/wiki-restore TASK-072",
+        "worktree": "git worktree add --detach <tmp> refs/codewiki/archive/task/TASK-072",
+        "show_build": "git show refs/codewiki/archive/task/TASK-072:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+        "sparse_paths": [
+          ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+          ".codewiki/kb/system/file-structure.md",
+          ".codewiki/kb/system/overview.md",
+          ".codewiki/kb/system/validation-gateway.md",
+          ".codewiki/kb/system/builds.md",
+          ".codewiki/kb/system/graph.md",
+          ".codewiki/kb/system/api.md",
+          ".codewiki/kb/lexicon.md",
+          ".codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+          "extensions/codewiki/templates.ts",
+          "extensions/codewiki/src/application/lint.ts",
+          "extensions/codewiki/src/application/graph.ts",
+          "extensions/codewiki/src/application/project.ts",
+          "extensions/codewiki/src/application/builds.ts",
+          "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+          "extensions/codewiki/src/infrastructure/transaction.ts",
+          "extensions/codewiki/src/infrastructure/gateway.ts",
+          "extensions/codewiki/src/adapters/web/control-room.ts",
+          "scripts/codewiki-gateway.mjs",
+          "scripts/codewiki-transaction.mjs",
+          "scripts/smoke-test.mjs",
+          "skills/codewiki-view-audit/SKILL.md",
+          "README.md",
+          "tests/smoke/hot-retention.test.mjs",
+          "tests/smoke/builds.test.mjs"
+        ],
+        "note": "Restored history is reference material until promoted into active knowledge or roadmap truth."
+      }
+    },
+    "archive_ledger": {
+      "kind": "task",
+      "id": "TASK-072",
+      "build_path": ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+      "archive_ref": "refs/codewiki/archive/task/TASK-072",
+      "commit_sha": "",
+      "digest": "sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
+      "restore_command": "/wiki-restore TASK-072"
+    },
+    "artifact_digests": {
+      "algorithm": "sha256",
+      "files": [
+        {
+          "path": ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
+          "role": "source_documentation_build",
+          "sha256": "sha256:5219d9f10245e95f4e133e06e2c33ac4d0c1c0a59954b7ae88c27f6d8d565e3d",
+          "bytes": 3415
+        },
+        {
+          "path": "tests/smoke/hot-retention.test.mjs",
+          "role": "test_file",
+          "sha256": "sha256:90406c1aceef9cdae7a0763199139d8e39b97480dc9f69570ce95c2362e18d33",
+          "bytes": 3761
+        },
+        {
+          "path": "tests/smoke/builds.test.mjs",
+          "role": "test_file",
+          "sha256": "sha256:00f5df96bf50da7827735045a112faabf504700c8115bd6b44af20427f93b6fd",
+          "bytes": 16875
+        },
+        {
+          "path": "scripts/smoke-test.mjs",
+          "role": "test_file",
+          "sha256": "sha256:0d89405ca7c57ce81b797c2807a36660d41f7bc9c59c72a73dca7b6536fdba77",
+          "bytes": 79154
+        },
+        {
+          "path": "extensions/codewiki/src/application/lint.ts",
+          "role": "code_file",
+          "sha256": "sha256:c0fd347a55de56c764847cb8d3f355777453925a3876aef12d73575cccb622c4",
+          "bytes": 15732
+        },
+        {
+          "path": "extensions/codewiki/src/application/graph.ts",
+          "role": "code_file",
+          "sha256": "sha256:5e32e1a04354d6c558c4fe044faf4cd48de979d4aefa42a7c6ab68de99bde632",
+          "bytes": 42590
+        },
+        {
+          "path": "extensions/codewiki/src/application/project.ts",
+          "role": "code_file",
+          "sha256": "sha256:f62495fef5919dc7c540c1d9a35dc3fb631e343a5ab9bf2d1c55ba670853eafe",
+          "bytes": 9093
+        },
+        {
+          "path": "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+          "role": "code_file",
+          "sha256": "sha256:8c1c8c417c9bea90d372ad23818840955351e3ee0d57e499be15cd44c945535c",
+          "bytes": 10139
+        },
+        {
+          "path": "extensions/codewiki/src/infrastructure/transaction.ts",
+          "role": "code_file",
+          "sha256": "sha256:fdb19a5ffbcbc6f962e79b15c27587732d753ed8848079fca7496b29776061b7",
+          "bytes": 7035
+        },
+        {
+          "path": "extensions/codewiki/src/infrastructure/gateway.ts",
+          "role": "code_file",
+          "sha256": "sha256:ced3facca2ce6e51e52c1ac59d5bfbb6a15780abafa77b6d68b09793d8cb3d4a",
+          "bytes": 8140
+        },
+        {
+          "path": "extensions/codewiki/templates.ts",
+          "role": "code_file",
+          "sha256": "sha256:ca26fa6f7e5ff8bc4a10b8e6664585b30b03bb928e922b4a231ff252aa98b296",
+          "bytes": 29602
+        },
+        {
+          "path": "scripts/codewiki-gateway.mjs",
+          "role": "code_file",
+          "sha256": "sha256:e0ccb18313358db0bcbbf393a158024aac3e32d013523558d1a2ea30c504bf33",
+          "bytes": 8279
+        },
+        {
+          "path": "scripts/codewiki-transaction.mjs",
+          "role": "code_file",
+          "sha256": "sha256:fe24de6cc3cd17da91edc532bde5a4003437a558e8e28c4783ec29812334f789",
+          "bytes": 6114
+        },
+        {
+          "path": "scripts/smoke-test.mjs",
+          "role": "code_file",
+          "sha256": "sha256:0d89405ca7c57ce81b797c2807a36660d41f7bc9c59c72a73dca7b6536fdba77",
+          "bytes": 79154
+        },
+        {
+          "path": "extensions/codewiki/src/adapters/web/control-room.ts",
+          "role": "code_file",
+          "sha256": "sha256:c1df8aca4126d6973a938e3f216f8c7eedff0d081cce06f1abcd9146adb75a68",
+          "bytes": 70977
+        },
+        {
+          "path": "README.md",
+          "role": "code_file",
+          "sha256": "sha256:9424413daed9b80f70072963b79941f58637fb8a4cb79e78b5b8005f578f38de",
+          "bytes": 19835
+        },
+        {
+          "path": "skills/codewiki-view-audit/SKILL.md",
+          "role": "code_file",
+          "sha256": "sha256:780eb2439b9390215f1046ae9d6f983e038f22cb8388d5134f680b1485c0653a",
+          "bytes": 2135
+        }
+      ],
+      "skipped": []
+    },
+    "push_readiness": {
+      "checks_recorded": [
+        "npm run typecheck",
+        "npm run test:features",
+        "npm run test:smoke",
+        "npm run check:architecture",
+        "npm run test:pack",
+        "npm test"
+      ],
+      "validation_refs": [],
+      "approval_required": true,
+      "allowed_by_default": false,
+      "safe_to_push": true,
+      "blocked_reasons": [],
+      "security": {
+        "secret_scan": "pass",
+        "remote_visibility": "pass",
+        "private_evidence": "pass",
+        "git_namespaces": "not_access_control"
+      }
+    }
+  }
+}

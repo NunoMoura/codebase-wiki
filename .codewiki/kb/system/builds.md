@@ -20,7 +20,7 @@ Builds are temporary handoff contracts between loops. They compact validated int
 
 Builds must be high-signal and low-noise. They should carry the smallest useful contract for the next layer plus enough user-facing evidence to prove intent was preserved across layers.
 
-Builds are not permanent archives. They can be archived or purged after downstream truth absorbs them and validation confirms alignment.
+Builds are not permanent archives. They can be archived or purged after downstream truth absorbs them, validation confirms alignment, and Git publication preserves the cold history needed for explicit restore/audit.
 
 ## Build kinds
 
@@ -80,7 +80,7 @@ The implementation build can recommend publication actions, but validation and p
 
 The implementation build is also the publication payload for Git-backed archival. CodeWiki should not introduce a separate archive capsule artifact. When work is safe to publish, the implementation build should contain or point to the commit/PR/release text, closure brief, checks, validation refs, artifact digests, recommended commit trailers, restore pointers, and any archive refs needed to recover the task or sprint from Git. A disciplined push can then publish the source branch plus a cold archive ref, while hot CodeWiki keeps only active work and compact ledger rows.
 
-Publication metadata must remain recommendation-only until validation and user or policy approval allow it. Any Git or remote publication path must require secret scanning, remote visibility checks, and explicit handling for fail, block, policy-kept, or private evidence before pushing durable history to GitHub or another remote.
+Publication metadata must remain recommendation-only until validation and user or policy approval allow it. Any Git or remote publication path must require secret scanning, remote visibility checks, and explicit handling for fail, block, policy-kept, or private evidence before pushing durable history to GitHub or another remote. Once publication succeeds and archive refs are reachable, consumed pass validation reports and cold implementation/documentation/feedback builds are eligible to leave the hot working tree; fail/block/policy-kept validation stays hot.
 
 Implementation builds may also carry role and isolation evidence for the implementation loop. Builder evidence should identify the builder worktree and `head_sha` when available. Validation evidence should identify the fresh validator worktree and `validated_sha`. Publication evidence should identify the publisher worktree, generated-graph refresh, `published_sha`, and atomic push refs. These fields are metadata on the implementation build and validation reports; they are not a new build kind or archive capsule.
 
@@ -109,7 +109,7 @@ A `feedback_build` is consumed when a downstream `documentation_build`, implemen
 
 A `documentation_build` is consumed when it records roadmap changes, is referenced by implementation evidence, has passing validation evidence, or is explicitly knowledge-only because its source feedback has no roadmap/code delta.
 
-An `implementation_build` is consumed when passing validation evidence references it or the build records a passing validation verdict. Accepted implementation evidence without validation still routes to the validation gateway.
+An `implementation_build` is consumed when passing validation evidence references it, the build records a passing validation verdict, or a safe publication/archive ledger proves the implemented task has been published and can be restored from Git. Accepted implementation evidence without validation or publication safety still routes to the validation gateway.
 
 ## Related docs
 

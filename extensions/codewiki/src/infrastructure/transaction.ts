@@ -35,13 +35,14 @@ export const DEFAULT_GATEWAY: GatewayConfig = {
 	allow_paths: [
 		".codewiki/kb/**",
 		".codewiki/roadmap/tasks/**",
-		".codewiki/evidence/**",
+		".codewiki/sources/**",
+		".codewiki/research/**",
 		".codewiki/index_graph.json",
 								".codewiki/roadmap/index.json",
 		".codewiki/roadmap/state.json",
 		".codewiki/roadmap.json",
 	],
-	write_paths: [".codewiki/kb/**", ".codewiki/evidence/**"],
+	write_paths: [".codewiki/kb/**", ".codewiki/sources/**", ".codewiki/research/**"],
 	generated_readonly_paths: GENERATED_READONLY_PATHS,
 	deny_paths: ["**/.env*", "**/*secret*", ".codewiki/sources/private/**"],
 	network: false,
@@ -180,24 +181,24 @@ export async function runRebuild(repo: string) {
 		const builder = new CodewikiRebuilder(repo);
 		await builder.rebuildAll();
 	} catch (e) {
-		throw new Error("Rebuild failed after transaction: " + String(e));
+		throw new Error("Rebuild failed after patch: " + String(e));
 	}
 }
 
 export async function applyTransaction(repo: string, gateway: GatewayConfig, tx: Transaction) {
 	if (!tx || tx.version !== 1 || !Array.isArray(tx.ops))
-		throw new Error("Transaction must be { version: 1, ops: [...] }");
+		throw new Error("Patch must be { version: 1, ops: [...] }");
 	const applied = [];
 	for (const op of tx.ops) {
 		if (op.kind === "patch") applied.push(applyPatch(repo, gateway, op as PatchOp));
 		else if (op.kind === "append_jsonl")
 			applied.push(applyAppendJsonl(repo, gateway, op as AppendJsonlOp));
-		else throw new Error(`Unsupported transaction op: ${(op as any).kind}`);
+		else throw new Error(`Unsupported patch op: ${(op as any).kind}`);
 	}
 	if (applied.length > 0) await runRebuild(repo);
 	return {
 		version: 1,
-		summary: tx.summary ?? "Applied codewiki transaction.",
+		summary: tx.summary ?? "Applied codewiki patch.",
 		applied,
 	};
 }

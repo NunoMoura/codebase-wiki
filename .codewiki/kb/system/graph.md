@@ -69,7 +69,7 @@ Reconciliation items should represent actionable, unconsumed handoffs. Accepted 
 
 The graph also classifies hot/warm/cold/purgeable artifact classes for garbage-collection planning. Hot contains active tasks, active sprints, active claims, unconsumed handoffs, fail/block validation, current publication blockers, and freshness/drift routes. Warm and cold evidence must stay available only through explicit archive, restore, audit, or refinement workflows. It must not enter the default CodeWiki operating context, agency context, status summary, or user-facing graph view.
 
-For Git-backed archival, the graph should prefer compact cold references over expanded cold artifact nodes. A cold task or sprint can be represented by a ledger row containing ids, archive ref, commit sha, digest, restore command, and safety status. Default graph views should hide these cold refs and restore indexes unless the caller explicitly asks for archive context. The graph may expand cold artifacts only for explicit restore, audit, or refinement workflows.
+For Git-backed archival, the graph should prefer compact cold references over expanded cold artifact nodes. A cold task or sprint can be represented by a ledger row containing ids, archive ref, commit sha, digest, restore command, and safety status. Default graph views should hide these cold refs and restore indexes unless the caller explicitly asks for archive context. The graph may expand cold artifacts only for explicit restore, audit, or refinement workflows. Pass validation reports and consumed builds become purgeable after safe publication/archive proof; fail, block, policy-kept, and current-publication validation remains hot.
 
 ## Edges
 
@@ -109,6 +109,7 @@ Status, `codewiki_state`, and CodeWiki UI views must consume the graph reconcili
 - The graph must be reproducible from canonical inputs and source fingerprints.
 - The graph should route to exact files instead of inlining large docs, code, logs, or old task history.
 - Default graph/status/state consumers should receive hot working-set context only; archive refs, closed task bodies, old pass validation, and restore indexes require an explicit archive/restore/audit request.
+- The graph should flag deterministic file-contract drift, including deprecated `.codewiki/index/**`, deprecated default `.codewiki/evidence/**`, and legacy dot-wiki path references in active contract/source files.
 - The graph does not replace builds, knowledge, roadmap work items, validation reports, or code/tests; those remain the sources of truth.
 - The graph should make gated agency and CodeWiki UI stop reasons explicit when state is stale, blocked, unsafe, missing approval, or blocked by overlapping write claims.
 - The graph should expose active claim counts, read/write warnings, and write/write conflicts, while claims remain temporary coordination state rather than source-of-truth behavior.

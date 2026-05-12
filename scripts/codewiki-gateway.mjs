@@ -39,14 +39,14 @@ function usage() {
   node scripts/codewiki-gateway.mjs manifest [repo]
   node scripts/codewiki-gateway.mjs tree [repo]
   node scripts/codewiki-gateway.mjs pack [TASK-###] [repo]
-  node scripts/codewiki-gateway.mjs apply <transaction.json> [repo]
+  node scripts/codewiki-gateway.mjs apply <patch.json> [repo]
   node scripts/codewiki-gateway.mjs run <script.js> [repo]
 
-Runs policy-bound .codewiki exploration and validated transactions. Only stdout enters agent context.
+Runs policy-bound .codewiki exploration and validated patches. Only stdout enters agent context.
 
-Transaction v1 ops:
+Patch v1 ops:
   {"kind":"patch","path":".codewiki/kb/...","oldText":"...","newText":"..."}
-  {"kind":"append_jsonl","path":".codewiki/evidence/...jsonl","value":{...}}
+  {"kind":"append_jsonl","path":".codewiki/sources/...jsonl","value":{...}}
 
 Note: run is read-only fallback and not a security sandbox.`;
 }
@@ -133,7 +133,6 @@ function capabilityManifest() {
 				result_schema: "CodeWiki task mutation result",
 				writes: [
 					".codewiki/roadmap.json",
-								".codewiki/evidence/*.jsonl",
 				],
 				audit: [
 					"repo",
@@ -155,13 +154,13 @@ function capabilityManifest() {
 				audit: ["repo", "action", "taskId", "session"],
 			},
 			{
-				name: "codewiki.transaction",
+				name: "codewiki.patch",
 				class: "validated-write",
 				summary:
-					"Apply exact-text knowledge patches or append-only evidence transactions.",
-				args_schema: "transaction v1 JSON",
-				result_schema: "transaction apply result",
-				writes: [".codewiki/kb/**/*.md", ".codewiki/evidence/*.jsonl"],
+					"Apply exact-text knowledge patches or append-only source/research patches.",
+				args_schema: "patch v1 JSON",
+				result_schema: "patch apply result",
+				writes: [".codewiki/kb/**/*.md", ".codewiki/sources/**/*.jsonl", ".codewiki/research/**/*.jsonl"],
 				audit: ["repo", "summary", "ops", "paths"],
 			},
 			{

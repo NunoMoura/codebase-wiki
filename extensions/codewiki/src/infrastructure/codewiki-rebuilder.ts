@@ -108,7 +108,7 @@ export class CodewikiRebuilder {
 			config,
 			docsRoot: config.docs_root || ".codewiki/kb",
 			specsRoot: config.specs_root || config.docs_root || ".codewiki/kb",
-			researchRoot: config.evidence_root || config.research_root || ".codewiki/evidence",
+			researchRoot: config.research_root || ".codewiki/research",
 			indexPath: config.index_path || null,
 			roadmapPath: config.roadmap_path || ".codewiki/roadmap.json",
 			roadmapDocPath: config.roadmap_doc_path || null,
@@ -117,7 +117,7 @@ export class CodewikiRebuilder {
 			configPath: ".codewiki/config.json",
 			lintPath: join(metaRoot, "lint.json"),
 			graphPath: join(metaRoot, "index_graph.json"),
-			evidenceRoot: config.evidence_root || ".codewiki/evidence",
+			evidenceRoot: config.evidence_root || "",
 			roadmapEventsPath: "",
 			eventsPath: "",
 			roadmapStatePath: join(metaRoot, "index_graph.json"),
@@ -218,7 +218,7 @@ export class CodewikiRebuilder {
 		this.log(`[Rebuild] Graph and Lint dependencies resolving...`, quiet);
 
 		const lintReport = buildLintReport(this.repoRoot, project, docs, roadmapEntries, research, { builds, validations, archivedTaskIds });
-		const graph = buildGraph({ project, docs, research, roadmapEntries, roadmapSprints, gitCache: this.gitCache, builds, validations, testFiles, claims, lintReport });
+		const graph = buildGraph({ project, docs, research, roadmapEntries, roadmapSprints, archivedTaskIds, gitCache: this.gitCache, builds, validations, testFiles, claims, lintReport });
 		
 		this.log(`[Rebuild] Building UI state...`, quiet);
 		const roadmapState = buildRoadmapState(project, roadmapEntries, graph, lintReport, events, roadmapSprints);

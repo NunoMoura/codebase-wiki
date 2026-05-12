@@ -112,7 +112,7 @@ An optional implementation worker that changes code until documentation-build re
 
 ## Evidence
 
-Compact proof or support for a claim. Research evidence supports knowledge and planning. Execution evidence supports implementation and closure.
+Compact proof or support for a claim. Research/source evidence supports knowledge and planning and should live under source or research roots, not the deprecated default `.codewiki/evidence/**` root. Execution evidence supports implementation and closure and should live in `implementation_build` artifacts. Validation evidence is a gateway result; hot fail/block/policy-required/current reports live under `.codewiki/validation/**`, while cold pass reports rely on Git archival after publication.
 
 ## Context window
 

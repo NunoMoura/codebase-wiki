@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { resolve, dirname, relative } from "node:path";
 import type { LintIssue, LintReport, RoadmapTaskRecord, WikiProject } from "../domain/shared/types.ts";
 import { extractLinks } from "../infrastructure/doc-parser.ts";
@@ -39,6 +39,46 @@ function configuredForbiddenHeadings(project: WikiProject): string[] {
 	return Array.isArray(project.config?.lint?.forbidden_headings) && project.config.lint.forbidden_headings.length > 0
 		? project.config.lint.forbidden_headings
 		: FORBIDDEN_HEADINGS;
+}
+
+function listFiles(root: string, relDir: string): string[] {
+	const start = resolve(root, relDir);
+	if (!existsSync(start)) return [];
+	const out: string[] = [];
+	const walk = (dir: string) => {
+		for (const name of readdirSync(dir)) {
+			const abs = resolve(dir, name);
+			const stats = statSync(abs);
+			if (stats.isDirectory()) walk(abs);
+			else out.push(relative(root, abs).replace(/\\/g, "/"));
+		}
+	};
+	walk(start);
+	return out.sort();
+}
+
+function containsStaleDotWikiReference(text: string): boolean {
+	return /(^|[^A-Za-z0-9_-])\.wiki\//.test(text);
+}
+
+export function lintFileContract(repoRoot: string, project: WikiProject, docs: ParsedDoc[]): LintIssue[] {
+	const issues: LintIssue[] = [];
+	for (const path of listFiles(repoRoot, ".codewiki/index")) {
+		issues.push(createIssue("error", "deprecated-codewiki-index", path, ".codewiki/index/** is deprecated; use .codewiki/index_graph.json."));
+	}
+	for (const path of listFiles(repoRoot, ".codewiki/evidence")) {
+		issues.push(createIssue("error", "deprecated-codewiki-evidence", path, ".codewiki/evidence/** is deprecated; use implementation builds, validation reports, sources, or research roots."));
+	}
+	const configPath = resolve(repoRoot, project.configPath || ".codewiki/config.json");
+	if (existsSync(configPath) && containsStaleDotWikiReference(readFileSync(configPath, "utf8"))) {
+		issues.push(createIssue("error", "stale-dotwiki-reference", project.configPath || ".codewiki/config.json", "Active CodeWiki config references legacy dot-wiki paths."));
+	}
+	for (const doc of docs) {
+		if (containsStaleDotWikiReference(doc.body) || containsStaleDotWikiReference(JSON.stringify(doc.frontmatter))) {
+			issues.push(createIssue("error", "stale-dotwiki-reference", doc.path, "Active knowledge doc references legacy dot-wiki paths."));
+		}
+	}
+	return issues;
 }
 
 export function lintMarkdownDocs(repoRoot: string, project: WikiProject, docs: ParsedDoc[]): LintIssue[] {
@@ -302,6 +342,7 @@ export function lintEvidenceLinks(
 
 export function buildLintReport(repoRoot: string, project: WikiProject, docs: ParsedDoc[], roadmapEntries: RoadmapTaskRecord[], research: any[], evidence: EvidenceLinkInput = {}): LintReport {
 	const issues: LintIssue[] = [
+		...lintFileContract(repoRoot, project, docs),
 		...lintMarkdownDocs(repoRoot, project, docs),
 		...lintRoadmapEntries(repoRoot, project, roadmapEntries, research),
 		...lintEvidenceLinks(project, roadmapEntries, evidence),

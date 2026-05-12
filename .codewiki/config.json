@@ -9,7 +9,6 @@
   "index_title": "codewiki Index",
   "docs_root": ".codewiki/kb",
   "specs_root": ".codewiki/kb",
-  "evidence_root": ".codewiki/evidence",
   "roadmap_path": ".codewiki/roadmap.json",
   "roadmap_retention": {
     "closed_task_limit": 0,
@@ -43,7 +42,8 @@
       "include": [
         ".codewiki/kb/**/*.md",
         ".codewiki/roadmap/tasks/**",
-        ".codewiki/evidence/**"
+        ".codewiki/sources/**",
+        ".codewiki/research/**"
       ],
       "exclude": []
     },
@@ -66,13 +66,15 @@
       "allow_paths": [
         ".codewiki/kb/**",
         ".codewiki/roadmap/tasks/**",
-        ".codewiki/evidence/**",
+        ".codewiki/sources/**",
+        ".codewiki/research/**",
         ".codewiki/runtime/claims.json",
         ".codewiki/index_graph.json"
       ],
       "write_paths": [
         ".codewiki/kb/**",
-        ".codewiki/evidence/**"
+        ".codewiki/sources/**",
+        ".codewiki/research/**"
       ],
       "generated_readonly_paths": [
         ".codewiki/index_graph.json",
@@ -90,9 +92,9 @@
     },
     "runtime": {
       "adapter": "codewiki-gateway-v2",
-      "transaction_schema": "codewiki.transaction.v2",
       "future_executor": "think-code",
-      "notes": ".codewiki/ owns all project knowledge and artifacts. .wiki/ is deprecated."
+      "notes": ".codewiki owns hot project knowledge and artifacts; cold history is Git-backed and legacy dot-wiki paths are deprecated.",
+      "patch_schema": "codewiki.patch.v1"
     },
     "rebuild": {
       "quiet": true,
@@ -155,5 +157,6 @@
       "sprint_close_hook": true
     }
   },
-  "schema_version": 4
+  "schema_version": 4,
+  "research_root": ".codewiki/research"
 }

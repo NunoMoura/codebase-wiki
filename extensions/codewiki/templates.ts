@@ -22,7 +22,7 @@ export interface StarterTemplateInput {
 
 export function starterDirectories(): string[] {
 	return [
-		".codewiki/evidence",
+		".codewiki/research",
 		".codewiki/kb/product/users",
 		".codewiki/kb/product/stories",
 		".codewiki/kb/product/uis",
@@ -46,6 +46,7 @@ export function starterFiles(
 	const files: Record<string, string> = {
 		".codewiki/config.json": configJson(projectName, date, brownfieldHints),
 		".codewiki/sources/.gitkeep": "",
+		".codewiki/research/.gitkeep": "",
 
 		".codewiki/kb/lexicon.md": lexiconDoc(projectName, date),
 		".codewiki/kb/product/overview.md": productSpecDoc(projectName, date),
@@ -161,7 +162,6 @@ export function starterFiles(
 			projectName,
 			date,
 		),
-		".codewiki/evidence/inspiration.jsonl": researchJsonl(projectName, date),
 		".codewiki/roadmap.json": roadmapJson(projectName, date),
 	};
 
@@ -206,7 +206,7 @@ function configJson(
 				index_title: indexTitle,
 				docs_root: ".codewiki/kb",
 				specs_root: ".codewiki/kb",
-				evidence_root: ".codewiki/evidence",
+				research_root: ".codewiki/research",
 				roadmap_path: ".codewiki/roadmap.json",
 								roadmap_retention: {
 					closed_task_limit: 50,
@@ -266,13 +266,14 @@ function configJson(
 						allow_paths: [
 							".codewiki/kb/**",
 							".codewiki/roadmap/tasks/**",
-							".codewiki/evidence/**",
+							".codewiki/sources/**",
+							".codewiki/research/**",
 							".codewiki/runtime/claims.json",
 																																			".codewiki/roadmap/index.json",
 							".codewiki/roadmap/state.json",
 							".codewiki/roadmap.json",
 													],
-						write_paths: [".codewiki/kb/**", ".codewiki/evidence/**"],
+						write_paths: [".codewiki/kb/**", ".codewiki/sources/**", ".codewiki/research/**"],
 						generated_readonly_paths: [
 																																			".codewiki/roadmap/**",
 						],
@@ -284,7 +285,7 @@ function configJson(
 					},
 					runtime: {
 						adapter: "codewiki-gateway-v1",
-						transaction_schema: "codewiki.transaction.v1",
+						patch_schema: "codewiki.patch.v1",
 						future_executor: "think-code",
 						notes:
 							"codewiki owns .codewiki semantics; generic sandbox execution may be delegated to think-code when available.",
@@ -293,7 +294,8 @@ function configJson(
 						include: [
 							".codewiki/kb/**/*.md",
 							".codewiki/roadmap.json",
-							".codewiki/evidence/**",
+							".codewiki/sources/**",
+							".codewiki/research/**",
 						],
 						exclude: [],
 					},
@@ -787,21 +789,21 @@ function runtimePolicyDoc(projectName: string, date: string): string {
 		"## Split of responsibility",
 		"",
 		"- `.codewiki/config.json` declares readable paths, direct writable paths, generated read-only paths, byte caps, and runtime adapter metadata.",
-		"- `scripts/codewiki-gateway.mjs` is the current adapter for compact reads and validated transaction application.",
-		"- A future `think-code` executor may provide generic sandbox isolation while reusing the same policy and transaction schema.",
-		"- codewiki owns domain semantics: generated files stay read-only, evidence is append-only, roadmap/task state goes through canonical mutation APIs, and views are rebuilt after accepted writes.",
+		"- `scripts/codewiki-gateway.mjs` is the current adapter for compact reads and validated patch application.",
+		"- A future `think-code` executor may provide generic sandbox isolation while reusing the same policy and patch schema.",
+		"- codewiki owns domain semantics: generated files stay read-only, implementation evidence lives in implementation builds, roadmap/task state goes through canonical mutation APIs, and views are rebuilt after accepted writes.",
 		"",
-		"## Transaction v1",
+		"## Patch v1",
 		"",
-		"Transactions are JSON objects with `version: 1`, a short `summary`, and an `ops` array. Supported direct ops are exact-text `patch` and `append_jsonl`.",
+		"Patches are JSON objects with `version: 1`, a short `summary`, and an `ops` array. Supported direct ops are exact-text `patch` and `append_jsonl`.",
 		"",
 		"```json",
 		"{",
 		'  "version": 1,',
-		'  "summary": "Update wiki evidence.",',
+		'  "summary": "Update CodeWiki source support.",',
 		'  "ops": [',
 		'    { "kind": "patch", "path": ".codewiki/kb/system/overview.md", "oldText": "old exact text", "newText": "new exact text" },',
-		'    { "kind": "append_jsonl", "path": ".codewiki/evidence/runtime.jsonl", "value": { "summary": "Evidence entry" } }',
+		'    { "kind": "append_jsonl", "path": ".codewiki/sources/runtime.jsonl", "value": { "summary": "Source support entry" } }',
 		"  ]",
 		"}",
 		"```",

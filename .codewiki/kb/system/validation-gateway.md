@@ -75,9 +75,9 @@ Persist validation reports when:
 - verdict is `block`,
 - policy requires storage,
 - release/audit mode requires storage,
-- publication or remote update policy requires an explicit record.
+- publication or remote update policy requires an explicit current record.
 
-Persistent reports live under `.codewiki/validation/**`.
+Persistent hot reports live under `.codewiki/validation/**`. Pass reports are hot only while active work, active publication, or audit policy needs them. After safe Git archival/publication, pass reports should be evicted from the working tree and recovered from Git only through explicit archive/restore/audit requests. Fail, block, and policy-kept reports remain hot until resolved or explicitly archived by policy.
 
 ## Rules
 

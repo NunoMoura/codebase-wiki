@@ -36,7 +36,7 @@ The API should expose CodeWiki operations as typed capabilities instead of askin
 | `codewiki.validation` | Run validation gateways and persist failed, blocked, or policy-kept reports. |
 | `codewiki.graph` | Rebuild and read the generated graph state machine. |
 | `codewiki.control_room` | Serve local-first UI read models and route UI actions through existing CodeWiki capabilities. |
-| `codewiki.transaction` | Apply validated knowledge patches or append-only evidence writes under policy. |
+| `codewiki.patch` | Apply validated CodeWiki patches or append-only source/research writes under policy. |
 | `codewiki.publication` | Prepare commit, PR, issue, changelog, release, and push-readiness outputs from implementation evidence. |
 
 ## Access paths
@@ -67,12 +67,13 @@ All access surfaces must preserve the same `.codewiki/` semantics.
 - Builds are accepted loop handoff briefs and should expose explicit consumes/produces edges.
 - Config schema v4 defines quiet rebuild defaults, scoped agency budgets, parallelism/session-per-sprint policy, and hot/warm/cold/purge garbage-collection windows.
 - Generated graph/index state is never hand-edited.
-- Failed, blocked, policy-required, release, or audit-mode validation reports persist under `.codewiki/validation/**`.
+- Failed, blocked, policy-required, current-publication, release, or audit-mode validation reports persist under `.codewiki/validation/**`; pass reports should be evicted after safe Git archival/publication.
+- Deprecated `.codewiki/index/**` and default `.codewiki/evidence/**` paths must not be created by normal API flows.
 - Commit, push, release, and remote updates require implementation evidence plus validation/policy approval.
 
 ## API boundary
 
-The API belongs in application use cases and domain contracts. Adapters and the Control Room transport translate external inputs and outputs. Infrastructure implements filesystem, Git, process, persistence, and graph rebuild ports.
+The API belongs in application use cases and domain contracts. Adapters and the CodeWiki UI transport translate external inputs and outputs. Infrastructure implements filesystem, Git, process, persistence, patch application, and graph rebuild ports.
 
 The API should stay stable while adapter protocols change.
 

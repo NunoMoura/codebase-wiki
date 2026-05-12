@@ -55,8 +55,8 @@ export async function loadProject(
 		config,
 		docsRoot: config.docs_root || ".codewiki/kb",
 		specsRoot: config.specs_root || config.docs_root || ".codewiki/kb",
-		evidenceRoot: config.evidence_root || ".codewiki/evidence",
-		researchRoot: config.research_root || config.evidence_root || ".codewiki/evidence",
+		evidenceRoot: config.evidence_root || "",
+		researchRoot: config.research_root || ".codewiki/research",
 		indexPath: config.index_path || null,
 		roadmapPath: config.roadmap_path || ".codewiki/roadmap.json",
 		roadmapDocPath: config.roadmap_doc_path || null,
@@ -153,7 +153,7 @@ export async function reloadProjectConfig(project: WikiProject): Promise<WikiPro
 
 export const DEFAULT_DOCS_ROOT = ".codewiki/kb";
 export const DEFAULT_SPECS_ROOT = ".codewiki/kb";
-export const DEFAULT_EVIDENCE_ROOT = ".codewiki/evidence";
+export const DEFAULT_EVIDENCE_ROOT = "";
 export const DEFAULT_INDEX_PATH = "";
 export const DEFAULT_ROADMAP_PATH = ".codewiki/roadmap.json";
 export const DEFAULT_ROADMAP_DOC_PATH = "";

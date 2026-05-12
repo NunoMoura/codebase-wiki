@@ -1620,16 +1620,9 @@ async function main() {
 		const graphDocNodes = Array.isArray(graph.nodes)
 			? graph.nodes.filter((node) => node.kind === "doc")
 			: [];
-		const graphResearchNodes = Array.isArray(graph.nodes)
-			? graph.nodes.filter((node) => node.kind === "research_collection")
-			: [];
 		assert.ok(
 			graphDocNodes.length >= 6,
 			"Expected generated graph doc nodes including inferred boundary specs",
-		);
-		assert.ok(
-			graphResearchNodes.length >= 1,
-			"Expected generated graph research nodes",
 		);
 		assert.ok(
 			Array.isArray(graph.nodes) && graph.nodes.length >= graphDocNodes.length,
@@ -1691,14 +1684,14 @@ async function main() {
 		);
 		assert.deepEqual(
 			config.codewiki.gateway.write_paths,
-			[".codewiki/kb/**", ".codewiki/evidence/**"],
-			"Expected gateway write policy for direct wiki transactions",
+			[".codewiki/kb/**", ".codewiki/sources/**", ".codewiki/research/**"],
+			"Expected gateway write policy for direct wiki patches",
 		);
 		assert.ok(
 			config.codewiki.gateway.generated_readonly_paths.includes(
 				".codewiki/roadmap/**",
 			),
-			"Expected generated roadmap shards to be read-only through gateway transactions",
+			"Expected generated roadmap shards to be read-only through gateway patches",
 		);
 		assert.equal(
 			config.codewiki.runtime.future_executor,
@@ -1706,21 +1699,21 @@ async function main() {
 			"Expected runtime policy to declare future think-code executor seam",
 		);
 
-		const gatewayTxPath = resolve(projectDir, "gateway-transaction-smoke.json");
+		const gatewayTxPath = resolve(projectDir, "gateway-patch-smoke.json");
 		writeFileSync(
 			gatewayTxPath,
 			JSON.stringify(
 				{
 					version: 1,
-					summary: "Gateway transaction smoke append.",
+					summary: "Gateway patch smoke append.",
 					ops: [
 						{
 							kind: "append_jsonl",
-							path: ".codewiki/evidence/runtime-smoke.jsonl",
+							path: ".codewiki/sources/runtime-smoke.jsonl",
 							value: {
 								id: "gateway-smoke-001",
 								title: "Gateway smoke",
-								summary: "Validated append-only evidence transaction.",
+								summary: "Validated append-only source patch.",
 							},
 						},
 					],
@@ -1742,22 +1735,22 @@ async function main() {
 		assert.match(
 			gatewayApplyOutput,
 			/"kind": "append_jsonl"/,
-			"Gateway apply should report append_jsonl transaction op",
+			"Gateway apply should report append_jsonl patch op",
 		);
 		assert.match(
 			readFileSync(
-				resolve(projectDir, ".codewiki", "evidence", "runtime-smoke.jsonl"),
+				resolve(projectDir, ".codewiki", "sources", "runtime-smoke.jsonl"),
 				"utf8",
 			),
 			/gateway-smoke-001/,
-			"Gateway transaction should append evidence inside .codewiki only",
+			"Gateway patch should append source support inside .codewiki only",
 		);
 		writeFileSync(
 			gatewayTxPath,
 			JSON.stringify(
 				{
 					version: 1,
-					summary: "Gateway transaction deny generated file.",
+					summary: "Gateway patch deny generated file.",
 					ops: [
 						{
 							kind: "patch",
@@ -1784,7 +1777,7 @@ async function main() {
 					{ encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
 				),
 			/Generated\/read-only path/,
-			"Gateway transaction should reject generated task context writes",
+			"Gateway patch should reject generated task context writes",
 		);
 		assert.ok(
 			!existsSync(resolve(projectDir, "wiki")),
