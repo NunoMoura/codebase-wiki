@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-12T03:27:37Z",
+  "profile": "task-close",
+  "task_id": "TASK-070",
+  "verdict": "pass",
+  "rationale": "TASK-070 can close. The implementation build, docs, roadmap closure evidence, tests, and graph projection align. A fresh validator worktree checked the close candidate SHA and verified typecheck, targeted metadata tests, architecture boundary, and clean generated-state behavior after rebuild.",
+  "checks": [
+    "builder: npm test",
+    "builder: npm run typecheck",
+    "builder: npm run test:features",
+    "builder: npm run test:smoke",
+    "builder: npm run check:architecture",
+    "builder: npm run test:pack",
+    "validator worktree: npm run typecheck",
+    "validator worktree: node tests/smoke/role-worktree-isolation.test.mjs",
+    "validator worktree: node tests/smoke/drift-propagation.test.mjs",
+    "validator worktree: node scripts/check-architecture.mjs",
+    "validator worktree: source graph rebuild reaches observe with active_claims=0",
+    "validator worktree clean after reset of generated graph sanity check"
+  ],
+  "issues": [],
+  "source": ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
+  "isolation": {
+    "worktree_path": "/tmp/codewiki-task070-validator",
+    "branch": "detached:close-candidate-stash",
+    "base_sha": "18844bb12f837a071821d762c9080d16373553ad",
+    "head_sha": "e3a63691f962fb70e28d47a56719b4262856b699",
+    "validated_sha": "e3a63691f962fb70e28d47a56719b4262856b699",
+    "clean": true,
+    "fresh_context": true,
+    "builder_claim_id": "CLAIM-018",
+    "related_claim_ids": [
+      "CLAIM-018"
+    ],
+    "notes": "Fresh validator worktree checked close candidate stash commit and graph rebuild behavior. Generated graph refresh itself will be committed in the publication/publisher step.",
+    "role": "validator"
+  }
+}

@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "schema_version": 2,
+  "kind": "implementation_build",
+  "created": "2026-05-12T03:05:21Z",
+  "source": "codewiki_build tool",
+  "source_documentation_build": ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
+  "task_id": "TASK-070",
+  "task": {
+    "id": "TASK-070",
+    "title": "Add role/worktree isolation metadata for claims and validation",
+    "status": "todo",
+    "priority": "critical",
+    "kind": "architecture",
+    "summary": "Expose builder/validator/publisher roles, worktree/SHA metadata, and validation isolation evidence through CodeWiki claims, validation reports, graph views, and tests.",
+    "spec_paths": [
+      ".codewiki/kb/system/validation-gateway.md",
+      ".codewiki/kb/system/roadmap.md",
+      ".codewiki/kb/system/builds.md",
+      ".codewiki/kb/system/graph.md",
+      ".codewiki/kb/system/api.md",
+      ".codewiki/builds/feedback/2026-05-12-role-worktree-isolation.json"
+    ],
+    "code_paths": [
+      "extensions/codewiki/src/domain/shared/types.ts",
+      "extensions/codewiki/src/adapters/pi/schemas.ts",
+      "extensions/codewiki/src/application/claims.ts",
+      "extensions/codewiki/src/application/builds.ts",
+      "extensions/codewiki/src/application/graph.ts",
+      "tests/smoke/role-worktree-isolation.test.mjs"
+    ],
+    "goal": {
+      "outcome": "Claims remain logical leases, while active builder/validator/publisher sessions and validation reports can record worktree and exact Git SHA evidence; graph/status consumers can inspect this metadata without treating it as canonical filesystem truth.",
+      "acceptance": [
+        "codewiki_claim accepts and persists role/worktree metadata for builder, validator, publisher, and observer claims.",
+        "codewiki_validation accepts and writes isolation evidence including fresh_context, worktree_path, branch, base/head/validated/published SHA fields, clean status, and related claim/session refs.",
+        "Generated graph exposes claim role/worktree metadata and validation isolation metadata in compact nodes/views.",
+        "Implementation/task-close validation reports with missing isolation metadata remain backward-compatible but can be distinguished from isolated validation evidence.",
+        "Tests cover claim normalization, validation report writing, and graph visibility for role/worktree/SHA isolation fields."
+      ],
+      "non_goals": [
+        "Do not require one worktree per claim.",
+        "Do not auto-spawn worktrees or sessions.",
+        "Do not make claim metadata a security boundary or filesystem source of truth.",
+        "Do not retroactively invalidate legacy validation reports."
+      ],
+      "verification": [
+        "npm test",
+        "npm run typecheck",
+        "npm run test:features",
+        "npm run test:smoke",
+        "npm run check:architecture"
+      ]
+    }
+  },
+  "status": "accepted",
+  "lifecycle": {
+    "state": "accepted",
+    "ttl_days": 7,
+    "archive_after": "2026-05-19T03:05:21.000Z",
+    "purge_after": "2026-05-26T03:05:21.000Z"
+  },
+  "summary": "Implemented role/worktree/SHA isolation metadata for claims, validation reports, graph views, and tests.",
+  "consumes": {
+    "feedback": [],
+    "documentation": [
+      ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json"
+    ],
+    "implementation": [],
+    "roadmap": [
+      "TASK-070"
+    ],
+    "validation": [],
+    "source": []
+  },
+  "produces": {
+    "knowledge": [],
+    "roadmap": [],
+    "code": [
+      "extensions/codewiki/src/domain/shared/types.ts",
+      "extensions/codewiki/src/adapters/pi/schemas.ts",
+      "extensions/codewiki/src/application/claims.ts",
+      "extensions/codewiki/src/application/builds.ts",
+      "extensions/codewiki/src/application/graph.ts"
+    ],
+    "tests": [
+      "tests/smoke/role-worktree-isolation.test.mjs"
+    ],
+    "validation": [],
+    "publication": [],
+    "closure": [
+      "TASK-070"
+    ]
+  },
+  "linked_refs": {
+    "documentation_build": ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
+    "spec_paths": [
+      ".codewiki/kb/system/validation-gateway.md",
+      ".codewiki/kb/system/roadmap.md",
+      ".codewiki/kb/system/builds.md",
+      ".codewiki/kb/system/graph.md",
+      ".codewiki/kb/system/api.md",
+      ".codewiki/builds/feedback/2026-05-12-role-worktree-isolation.json"
+    ],
+    "code_paths": [
+      "extensions/codewiki/src/domain/shared/types.ts",
+      "extensions/codewiki/src/adapters/pi/schemas.ts",
+      "extensions/codewiki/src/application/claims.ts",
+      "extensions/codewiki/src/application/builds.ts",
+      "extensions/codewiki/src/application/graph.ts",
+      "tests/smoke/role-worktree-isolation.test.mjs"
+    ]
+  },
+  "test_files": [
+    "tests/smoke/role-worktree-isolation.test.mjs"
+  ],
+  "code_files": [
+    "extensions/codewiki/src/domain/shared/types.ts",
+    "extensions/codewiki/src/adapters/pi/schemas.ts",
+    "extensions/codewiki/src/application/claims.ts",
+    "extensions/codewiki/src/application/builds.ts",
+    "extensions/codewiki/src/application/graph.ts"
+  ],
+  "files_changed": [
+    "tests/smoke/role-worktree-isolation.test.mjs",
+    "extensions/codewiki/src/domain/shared/types.ts",
+    "extensions/codewiki/src/adapters/pi/schemas.ts",
+    "extensions/codewiki/src/application/claims.ts",
+    "extensions/codewiki/src/application/builds.ts",
+    "extensions/codewiki/src/application/graph.ts"
+  ],
+  "checks_run": [
+    "npm run typecheck",
+    "npm run test:features",
+    "npm run test:smoke",
+    "npm run check:architecture",
+    "npm run test:pack",
+    "npm test"
+  ],
+  "role_evidence": {
+    "tester": {
+      "role": "tester",
+      "source_documentation_build": ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
+      "roadmap_task_id": "TASK-070",
+      "test_files": [
+        "tests/smoke/role-worktree-isolation.test.mjs"
+      ],
+      "evidence": [
+        "Added focused smoke coverage for metadata persistence and graph projection instead of broad UI or filesystem spawning tests.",
+        "Kept legacy validation compatibility by testing positive isolated path and leaving old reports accepted."
+      ],
+      "notes": [],
+      "boundary": "derive tests or test-design evidence before code changes where practical"
+    },
+    "builder": {
+      "role": "builder",
+      "source_documentation_build": ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
+      "roadmap_task_id": "TASK-070",
+      "code_files": [
+        "extensions/codewiki/src/domain/shared/types.ts",
+        "extensions/codewiki/src/adapters/pi/schemas.ts",
+        "extensions/codewiki/src/application/claims.ts",
+        "extensions/codewiki/src/application/builds.ts",
+        "extensions/codewiki/src/application/graph.ts"
+      ],
+      "evidence": [
+        "Shared types and Pi schemas now expose claim roles, worktree metadata, and validation isolation input.",
+        "Claims normalize/persist role and worktree metadata; validation reports normalize/persist isolation metadata.",
+        "Graph emits compact role/isolation nodes and views."
+      ],
+      "notes": [
+        "No automatic worktree/session spawning added.",
+        "Claim metadata remains coordination metadata, not filesystem truth or a security boundary.",
+        "Builder context for this implementation is current session; future validator reports can record fresh worktree and validated_sha via new isolation fields."
+      ],
+      "boundary": "change code until tests, roadmap acceptance, and required checks pass"
+    }
+  },
+  "test_design_evidence": [
+    "Added focused smoke coverage for metadata persistence and graph projection instead of broad UI or filesystem spawning tests.",
+    "Kept legacy validation compatibility by testing positive isolated path and leaving old reports accepted."
+  ],
+  "code_change_evidence": [
+    "Shared types and Pi schemas now expose claim roles, worktree metadata, and validation isolation input.",
+    "Claims normalize/persist role and worktree metadata; validation reports normalize/persist isolation metadata.",
+    "Graph emits compact role/isolation nodes and views."
+  ],
+  "acceptance_mapping": [
+    {
+      "criterion": "codewiki_claim accepts and persists role/worktree metadata for builder, validator, publisher, and observer claims.",
+      "evidence": "CodewikiClaimToolInput, TypeBox schema, claims normalizer, and smoke test cover role + worktree metadata persistence."
+    },
+    {
+      "criterion": "codewiki_validation accepts and writes isolation evidence including fresh_context, worktree_path, branch, base/head/validated/published SHA fields, clean status, and related claim/session refs.",
+      "evidence": "CodewikiValidationReportInput/schema and writeValidationReport persist normalized isolation evidence; smoke test asserts validator metadata in report JSON."
+    },
+    {
+      "criterion": "Generated graph exposes claim role/worktree metadata and validation isolation metadata in compact nodes/views.",
+      "evidence": "graph.ts adds role/worktree to claim nodes, isolation_status/isolation to validation nodes, and views.claims/views.validation isolation rows; smoke test asserts graph output."
+    },
+    {
+      "criterion": "Implementation/task-close validation reports with missing isolation metadata remain backward-compatible but can be distinguished from isolated validation evidence.",
+      "evidence": "graph.ts classifies validation isolation as legacy, partial, or isolated without routing legacy pass reports as failures."
+    },
+    {
+      "criterion": "Tests cover claim normalization, validation report writing, and graph visibility for role/worktree/SHA isolation fields.",
+      "evidence": "tests/smoke/role-worktree-isolation.test.mjs exercises mutateChangeClaims, writeValidationReport, and buildGraph."
+    }
+  ],
+  "validation_refs": [],
+  "closure_brief": {
+    "user_intent": "Make CodeWiki explicit about using worktrees for state isolation, fresh validation sessions for judgment isolation, and SHAs for exact Git identities.",
+    "implemented_changes": [
+      "Added role/worktree/SHA metadata to claims and schemas.",
+      "Added validation isolation metadata to validation reports and schemas.",
+      "Added graph nodes/views for claim and validation isolation status.",
+      "Added smoke tests for persistence and graph visibility.",
+      "Updated system docs and roadmap task evidence."
+    ],
+    "layers_updated": {
+      "knowledge": [
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/roadmap.md",
+        ".codewiki/kb/system/builds.md",
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/api.md"
+      ],
+      "roadmap": [
+        "TASK-070"
+      ],
+      "code": [
+        "extensions/codewiki/src/domain/shared/types.ts",
+        "extensions/codewiki/src/adapters/pi/schemas.ts",
+        "extensions/codewiki/src/application/claims.ts",
+        "extensions/codewiki/src/application/builds.ts",
+        "extensions/codewiki/src/application/graph.ts"
+      ],
+      "tests": [
+        "tests/smoke/role-worktree-isolation.test.mjs"
+      ],
+      "validation": []
+    },
+    "acceptance_evidence": [
+      "All TASK-070 acceptance criteria mapped in implementation build acceptance_mapping."
+    ],
+    "checks": [
+      "npm run typecheck",
+      "npm run test:features",
+      "npm run test:smoke",
+      "npm run check:architecture",
+      "npm run test:pack",
+      "npm test"
+    ],
+    "non_goals_preserved": [
+      "No one-worktree-per-claim requirement.",
+      "No automatic worktree/session spawning.",
+      "Claim metadata is not a security boundary.",
+      "Legacy validation reports remain valid."
+    ],
+    "remaining_risks": [
+      "Automated enforcement/spawn orchestration can be added later if policy demands it."
+    ]
+  },
+  "risks": [
+    "Fresh validator and publisher worktrees are now representable but not automatically enforced or spawned."
+  ],
+  "unresolved_issues": [],
+  "open_questions": [],
+  "handoff": {
+    "resume": {
+      "source": "implementation_build",
+      "command": "/wiki-resume TASK-070",
+      "task_id": "TASK-070",
+      "next_focus_task_id": "",
+      "context": {
+        "source": "implementation_build",
+        "task_id": "TASK-070",
+        "title": "Add role/worktree isolation metadata for claims and validation",
+        "summary": "Implemented role/worktree/SHA isolation metadata for claims, validation reports, graph views, and tests.",
+        "spec_paths": [
+          ".codewiki/kb/system/validation-gateway.md",
+          ".codewiki/kb/system/roadmap.md",
+          ".codewiki/kb/system/builds.md",
+          ".codewiki/kb/system/graph.md",
+          ".codewiki/kb/system/api.md",
+          ".codewiki/builds/feedback/2026-05-12-role-worktree-isolation.json"
+        ],
+        "code_paths": [
+          "extensions/codewiki/src/domain/shared/types.ts",
+          "extensions/codewiki/src/adapters/pi/schemas.ts",
+          "extensions/codewiki/src/application/claims.ts",
+          "extensions/codewiki/src/application/builds.ts",
+          "extensions/codewiki/src/application/graph.ts",
+          "tests/smoke/role-worktree-isolation.test.mjs"
+        ],
+        "acceptance": [
+          "codewiki_claim accepts and persists role/worktree metadata for builder, validator, publisher, and observer claims.",
+          "codewiki_validation accepts and writes isolation evidence including fresh_context, worktree_path, branch, base/head/validated/published SHA fields, clean status, and related claim/session refs.",
+          "Generated graph exposes claim role/worktree metadata and validation isolation metadata in compact nodes/views.",
+          "Implementation/task-close validation reports with missing isolation metadata remain backward-compatible but can be distinguished from isolated validation evidence.",
+          "Tests cover claim normalization, validation report writing, and graph visibility for role/worktree/SHA isolation fields."
+        ],
+        "verification": [
+          "npm test",
+          "npm run typecheck",
+          "npm run test:features",
+          "npm run test:smoke",
+          "npm run check:architecture"
+        ],
+        "checks_run": [
+          "npm run typecheck",
+          "npm run test:features",
+          "npm run test:smoke",
+          "npm run check:architecture",
+          "npm run test:pack",
+          "npm test"
+        ],
+        "test_design_evidence": [
+          "Added focused smoke coverage for metadata persistence and graph projection instead of broad UI or filesystem spawning tests.",
+          "Kept legacy validation compatibility by testing positive isolated path and leaving old reports accepted."
+        ],
+        "code_change_evidence": [
+          "Shared types and Pi schemas now expose claim roles, worktree metadata, and validation isolation input.",
+          "Claims normalize/persist role and worktree metadata; validation reports normalize/persist isolation metadata.",
+          "Graph emits compact role/isolation nodes and views."
+        ],
+        "validation_refs": []
+      }
+    },
+    "restore": {
+      "command": "/wiki-restore TASK-070",
+      "worktree": "git worktree add --detach <tmp> refs/codewiki/archive/task/TASK-070",
+      "show_build": "git show refs/codewiki/archive/task/TASK-070:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
+      "sparse_paths": [
+        ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/roadmap.md",
+        ".codewiki/kb/system/builds.md",
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/api.md",
+        ".codewiki/builds/feedback/2026-05-12-role-worktree-isolation.json",
+        "extensions/codewiki/src/domain/shared/types.ts",
+        "extensions/codewiki/src/adapters/pi/schemas.ts",
+        "extensions/codewiki/src/application/claims.ts",
+        "extensions/codewiki/src/application/builds.ts",
+        "extensions/codewiki/src/application/graph.ts",
+        "tests/smoke/role-worktree-isolation.test.mjs"
+      ],
+      "note": "Restored history is reference material until promoted into active knowledge or roadmap truth."
+    },
+    "fallback": "Use codewiki_state refresh=true and this implementation_build; do not rely on chat transcript memory."
+  },
+  "publication": {
+    "policy": {
+      "execution": "recommendation_only",
+      "approval_required": true,
+      "remote_updates": "blocked_until_explicit_approval",
+      "security_review_required": true
+    },
+    "commit": {
+      "title": "chore(codewiki): record TASK-070 Add role/worktree isolation metadata for claims and validation implementation evidence",
+      "body": "Implemented role/worktree/SHA isolation metadata for claims, validation reports, graph views, and tests.\n\nChecks: npm run typecheck, npm run test:features, npm run test:smoke, npm run check:architecture, npm run test:pack, npm test\nValidation: no durable validation refs recorded.\nRemote publication requires explicit approval; this build is recommendation-only.\n\nCodeWiki-Task: TASK-070\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-070\nCodeWiki-Digest: sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa\nCodeWiki-Restore: /wiki-restore TASK-070",
+      "trailers": [
+        "CodeWiki-Task: TASK-070",
+        "CodeWiki-Build: .codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
+        "CodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-070",
+        "CodeWiki-Digest: sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa",
+        "CodeWiki-Restore: /wiki-restore TASK-070"
+      ]
+    },
+    "pr": {
+      "title": "chore(codewiki): record TASK-070 Add role/worktree isolation metadata for claims and validation implementation evidence",
+      "body": "Implemented role/worktree/SHA isolation metadata for claims, validation reports, graph views, and tests.\n\nChecks: npm run typecheck, npm run test:features, npm run test:smoke, npm run check:architecture, npm run test:pack, npm test\nValidation: no durable validation refs recorded.\nRemote publication requires explicit approval; this build is recommendation-only.\n\nCodeWiki-Task: TASK-070\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-070\nCodeWiki-Digest: sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa\nCodeWiki-Restore: /wiki-restore TASK-070"
+    },
+    "issue_update": "",
+    "release_notes": "",
+    "git": {
+      "strategy": "implementation_build_publication_payload",
+      "archive_ref": "refs/codewiki/archive/task/TASK-070",
+      "commit_sha": "",
+      "remote": "origin",
+      "branch": "main",
+      "atomic_push_refspecs": [
+        "HEAD",
+        "refs/codewiki/archive/task/TASK-070"
+      ],
+      "restore": {
+        "command": "/wiki-restore TASK-070",
+        "worktree": "git worktree add --detach <tmp> refs/codewiki/archive/task/TASK-070",
+        "show_build": "git show refs/codewiki/archive/task/TASK-070:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
+        "sparse_paths": [
+          ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
+          ".codewiki/kb/system/validation-gateway.md",
+          ".codewiki/kb/system/roadmap.md",
+          ".codewiki/kb/system/builds.md",
+          ".codewiki/kb/system/graph.md",
+          ".codewiki/kb/system/api.md",
+          ".codewiki/builds/feedback/2026-05-12-role-worktree-isolation.json",
+          "extensions/codewiki/src/domain/shared/types.ts",
+          "extensions/codewiki/src/adapters/pi/schemas.ts",
+          "extensions/codewiki/src/application/claims.ts",
+          "extensions/codewiki/src/application/builds.ts",
+          "extensions/codewiki/src/application/graph.ts",
+          "tests/smoke/role-worktree-isolation.test.mjs"
+        ],
+        "note": "Restored history is reference material until promoted into active knowledge or roadmap truth."
+      }
+    },
+    "archive_ledger": {
+      "kind": "task",
+      "id": "TASK-070",
+      "build_path": ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
+      "archive_ref": "refs/codewiki/archive/task/TASK-070",
+      "commit_sha": "",
+      "digest": "sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa",
+      "restore_command": "/wiki-restore TASK-070"
+    },
+    "artifact_digests": {
+      "algorithm": "sha256",
+      "files": [
+        {
+          "path": ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
+          "role": "source_documentation_build",
+          "sha256": "sha256:67e7182e80d523f5d8f05f838d831ce518fc6b618b252a50bbb47a3e122031fe",
+          "bytes": 2589
+        },
+        {
+          "path": "tests/smoke/role-worktree-isolation.test.mjs",
+          "role": "test_file",
+          "sha256": "sha256:7fffd93ecfe87b2a2ece47848143e1ee53f9664a0293ca58b0c2d116c793b55a",
+          "bytes": 4213
+        },
+        {
+          "path": "extensions/codewiki/src/domain/shared/types.ts",
+          "role": "code_file",
+          "sha256": "sha256:1bf96e35232f704c484cffed9612a97eb1ce5a26511aa80006a0235a1155a103",
+          "bytes": 24540
+        },
+        {
+          "path": "extensions/codewiki/src/adapters/pi/schemas.ts",
+          "role": "code_file",
+          "sha256": "sha256:93c389d686a7c9608e932c461ebc7ed7175534fa993b9c85eabfc754f76dc2dd",
+          "bytes": 21282
+        },
+        {
+          "path": "extensions/codewiki/src/application/claims.ts",
+          "role": "code_file",
+          "sha256": "sha256:de3273101578d9d65d512f955c8ecc1de7b1a4629f1ed60cc1133c7d9ad63e08",
+          "bytes": 17671
+        },
+        {
+          "path": "extensions/codewiki/src/application/builds.ts",
+          "role": "code_file",
+          "sha256": "sha256:65b493c862f44deef96d6f76b3a02a1f28b1bab743d7dacfb076969a4b4b2f13",
+          "bytes": 23965
+        },
+        {
+          "path": "extensions/codewiki/src/application/graph.ts",
+          "role": "code_file",
+          "sha256": "sha256:29057157d3e0023fce81469a90a67bcaf491078324049649326fbe7c4a0f7231",
+          "bytes": 39573
+        }
+      ],
+      "skipped": []
+    },
+    "push_readiness": {
+      "checks_recorded": [
+        "npm run typecheck",
+        "npm run test:features",
+        "npm run test:smoke",
+        "npm run check:architecture",
+        "npm run test:pack",
+        "npm test"
+      ],
+      "validation_refs": [],
+      "approval_required": true,
+      "allowed_by_default": false,
+      "safe_to_push": true,
+      "blocked_reasons": [],
+      "security": {
+        "secret_scan": "pass",
+        "remote_visibility": "pass",
+        "private_evidence": "pass",
+        "git_namespaces": "not_access_control"
+      }
+    }
+  }
+}

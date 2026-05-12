@@ -135,6 +135,31 @@ export const changeClaimActionSchema = Type.Union(
 export const changeClaimModeSchema = Type.Union(
 	T.CHANGE_CLAIM_MODE_VALUES.map((value) => Type.Literal(value)),
 );
+export const changeClaimRoleSchema = Type.Union(
+	T.CHANGE_CLAIM_ROLE_VALUES.map((value) => Type.Literal(value)),
+);
+export const worktreeIsolationSchema = Type.Object({
+	worktree_path: Type.Optional(Type.String({ description: "Filesystem path for the session worktree." })),
+	branch: Type.Optional(Type.String({ description: "Git branch or detached worktree label." })),
+	base_sha: Type.Optional(Type.String({ description: "Git commit SHA where the session started." })),
+	head_sha: Type.Optional(Type.String({ description: "Git commit SHA produced by the builder/publisher." })),
+	validated_sha: Type.Optional(Type.String({ description: "Exact Git commit SHA checked by validation." })),
+	published_sha: Type.Optional(Type.String({ description: "Exact Git commit SHA pushed or released." })),
+	clean: Type.Optional(Type.Boolean({ description: "Whether the worktree was clean for the role action." })),
+	fresh_context: Type.Optional(Type.Boolean({ description: "Whether validation used fresh context rather than builder chat context." })),
+	session_id: Type.Optional(Type.String({ description: "Session id for this role, when known." })),
+	claim_id: Type.Optional(Type.String({ description: "Claim id for this role, when known." })),
+	builder_session_id: Type.Optional(Type.String({ description: "Builder session id intentionally separated from validation." })),
+	builder_claim_id: Type.Optional(Type.String({ description: "Builder claim id intentionally separated from validation." })),
+	related_claim_ids: Type.Optional(Type.Array(Type.String(), { description: "Related claim ids used to audit isolation." })),
+	notes: Type.Optional(Type.String({ description: "Short isolation note." })),
+});
+export const validationIsolationSchema = Type.Intersect([
+	worktreeIsolationSchema,
+	Type.Object({
+		role: Type.Optional(changeClaimRoleSchema),
+	}),
+]);
 export const changeClaimLayerSchema = Type.Union(
 	T.CHANGE_CLAIM_LAYER_VALUES.map((value) => Type.Literal(value)),
 );
@@ -418,6 +443,7 @@ export const codewikiValidationReportSchema = Type.Object({
 		summary: Type.String(),
 	}))),
 	source: Type.Optional(Type.String()),
+	isolation: Type.Optional(validationIsolationSchema),
 	refresh: Type.Optional(Type.Boolean({ default: true })),
 });
 export const codewikiDiffTableToolInputSchema = Type.Object({
@@ -469,6 +495,8 @@ export const codewikiClaimToolInputSchema = Type.Object({
 	buildRef: Type.Optional(Type.String({ minLength: 1, description: "Optional compiler build path anchoring this claim." })),
 	summary: Type.Optional(Type.String({ minLength: 1, description: "Short reason for the claim." })),
 	mode: Type.Optional(changeClaimModeSchema),
+	role: Type.Optional(changeClaimRoleSchema),
+	worktree: Type.Optional(worktreeIsolationSchema),
 	scopes: Type.Optional(Type.Array(changeClaimScopeSchema, { minItems: 1 })),
 	ttl_minutes: Type.Optional(Type.Number({ minimum: 1, description: "Lease TTL in minutes; default 120, max 1440." })),
 	force: Type.Optional(Type.Boolean({ default: false, description: "Allow creation despite write/write claim conflicts." })),

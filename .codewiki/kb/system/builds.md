@@ -82,6 +82,8 @@ The implementation build is also the publication payload for Git-backed archival
 
 Publication metadata must remain recommendation-only until validation and user or policy approval allow it. Any Git or remote publication path must require secret scanning, remote visibility checks, and explicit handling for fail, block, policy-kept, or private evidence before pushing durable history to GitHub or another remote.
 
+Implementation builds may also carry role and isolation evidence for the implementation loop. Builder evidence should identify the builder worktree and `head_sha` when available. Validation evidence should identify the fresh validator worktree and `validated_sha`. Publication evidence should identify the publisher worktree, generated-graph refresh, `published_sha`, and atomic push refs. These fields are metadata on the implementation build and validation reports; they are not a new build kind or archive capsule.
+
 ## Contract fields
 
 New builds should expose explicit DAG fields:

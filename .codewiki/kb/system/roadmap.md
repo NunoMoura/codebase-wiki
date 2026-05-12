@@ -64,6 +64,8 @@ It should not duplicate full feedback, documentation, or implementation briefs. 
 
 Roadmap ownership is durable work ownership. Parallel execution ownership belongs to scoped change claims: a session can temporarily claim affected knowledge paths, roadmap task state, build refs, validation refs, or code paths while the roadmap item continues to describe why the work exists and how it closes.
 
+Claims coordinate intent; worktrees isolate filesystem state; validation isolates judgment. A non-trivial writer, validator, or publisher session should use a dedicated worktree when concurrent work or dirty local state could affect the result. Claims may record role metadata (`builder`, `validator`, `publisher`, or `observer`) and optional worktree metadata such as path, branch, base SHA, head SHA, and clean status. This metadata helps reviewers understand who is doing what, but Git and the filesystem remain the source for actual worktree contents.
+
 ## Status semantics
 
 Roadmap status should answer the work-state question, not the truth-state question.

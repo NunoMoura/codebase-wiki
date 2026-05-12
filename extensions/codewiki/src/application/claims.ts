@@ -4,7 +4,9 @@ import type {
 	ChangeClaimConflict,
 	ChangeClaimMode,
 	ChangeClaimRecord,
+	ChangeClaimRole,
 	ChangeClaimScope,
+	WorktreeIsolationMetadata,
 	ChangeClaimState,
 	ChangeClaimsFile,
 	CodewikiClaimToolInput,
@@ -72,9 +74,11 @@ function normalizeClaimRecord(value: any): ChangeClaimRecord | null {
 		agent_name: String(value?.agent_name || "Agent").trim() || "Agent",
 		status,
 		mode,
+		role: normalizeClaimRole(value?.role),
 		summary: String(value?.summary || "").trim(),
 		task_id: optionalTrim(value?.task_id),
 		build_ref: optionalTrim(value?.build_ref),
+		worktree: normalizeWorktreeIsolation(value?.worktree),
 		scopes: normalizeScopes(value?.scopes),
 		created_at: String(value?.created_at || value?.updated_at || nowIso()).trim(),
 		updated_at: String(value?.updated_at || value?.created_at || nowIso()).trim(),
@@ -86,6 +90,54 @@ function normalizeClaimRecord(value: any): ChangeClaimRecord | null {
 function optionalTrim(value: unknown): string | undefined {
 	const text = String(value ?? "").trim();
 	return text || undefined;
+}
+
+function optionalBoolean(value: unknown): boolean | undefined {
+	return typeof value === "boolean" ? value : undefined;
+}
+
+function normalizeClaimRole(value: unknown): ChangeClaimRole | undefined {
+	const role = String(value ?? "").trim() as ChangeClaimRole;
+	return ["builder", "validator", "publisher", "observer"].includes(role) ? role : undefined;
+}
+
+function normalizeSha(value: unknown): string | undefined {
+	const text = optionalTrim(value);
+	if (!text) return undefined;
+	return /^[0-9a-f]{7,64}$/i.test(text) ? text : undefined;
+}
+
+export function normalizeWorktreeIsolation(value: any): WorktreeIsolationMetadata | undefined {
+	if (!value || typeof value !== "object") return undefined;
+	const out: WorktreeIsolationMetadata = {};
+	const worktreePath = optionalTrim(value.worktree_path || value.worktreePath);
+	const branch = optionalTrim(value.branch);
+	const notes = optionalTrim(value.notes);
+	const sessionId = optionalTrim(value.session_id || value.sessionId);
+	const claimId = optionalTrim(value.claim_id || value.claimId);
+	const builderSessionId = optionalTrim(value.builder_session_id || value.builderSessionId);
+	const builderClaimId = optionalTrim(value.builder_claim_id || value.builderClaimId);
+	const relatedClaimIds = Array.isArray(value.related_claim_ids || value.relatedClaimIds)
+		? (value.related_claim_ids || value.relatedClaimIds).map(optionalTrim).filter(Boolean) as string[]
+		: [];
+	if (worktreePath) out.worktree_path = worktreePath;
+	if (branch) out.branch = branch;
+	for (const key of ["base_sha", "head_sha", "validated_sha", "published_sha"] as const) {
+		const camelKey = key.replace(/_([a-z])/g, (_match: string, c: string) => c.toUpperCase());
+		const sha = normalizeSha(value[key] || value[camelKey]);
+		if (sha) out[key] = sha;
+	}
+	const clean = optionalBoolean(value.clean);
+	const freshContext = optionalBoolean(value.fresh_context ?? value.freshContext);
+	if (clean !== undefined) out.clean = clean;
+	if (freshContext !== undefined) out.fresh_context = freshContext;
+	if (sessionId) out.session_id = sessionId;
+	if (claimId) out.claim_id = claimId;
+	if (builderSessionId) out.builder_session_id = builderSessionId;
+	if (builderClaimId) out.builder_claim_id = builderClaimId;
+	if (relatedClaimIds.length) out.related_claim_ids = Array.from(new Set(relatedClaimIds));
+	if (notes) out.notes = notes;
+	return Object.keys(out).length ? out : undefined;
 }
 
 export function normalizeScopes(scopes: unknown): ChangeClaimScope[] {
@@ -282,9 +334,11 @@ export async function mutateChangeClaims(
 			agent_name: session.agentName,
 			status: "active",
 			mode: normalizeClaimMode(input.mode),
+			role: normalizeClaimRole(input.role),
 			summary,
 			task_id: optionalTrim(input.taskId),
 			build_ref: optionalTrim(input.buildRef),
+			worktree: normalizeWorktreeIsolation(input.worktree),
 			scopes,
 			created_at: nowIso(),
 			updated_at: nowIso(),
@@ -361,7 +415,9 @@ async function writeClaimsFile(filePath: string, file: ChangeClaimsFile): Promis
 
 function summarizeClaimAction(action: string, claims: ChangeClaimRecord[], conflicts: ChangeClaimConflict[], claim?: ChangeClaimRecord): string {
 	if (action === "claim" && claim) {
-		return `codewiki claim: ${claim.id} active (${claim.mode}, scopes=${claim.scopes.length}, warnings=${conflicts.filter((c) => c.kind === "warning").length}, conflicts=${conflicts.filter((c) => c.kind === "conflict").length})`;
+		const role = claim.role ? `, role=${claim.role}` : "";
+		const worktree = claim.worktree?.worktree_path ? ", worktree=recorded" : "";
+		return `codewiki claim: ${claim.id} active (${claim.mode}${role}${worktree}, scopes=${claim.scopes.length}, warnings=${conflicts.filter((c) => c.kind === "warning").length}, conflicts=${conflicts.filter((c) => c.kind === "conflict").length})`;
 	}
 	return `codewiki claim: ${claims.length} active, ${conflicts.length} overlap(s)`;
 }

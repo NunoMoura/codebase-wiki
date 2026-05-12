@@ -215,6 +215,31 @@ function isPurgeableByGitArchive(build: BuildArtifact, lifecycleState: string, v
 	return canCompactColdBuild(build, lifecycleState, validated) && hasArtifactDigestCapture(build) && publicationSafetyPassed(build);
 }
 
+function validationIsolationSummary(validation: { path: string; taskId?: string; verdict?: string; data?: any }) {
+	const isolation = validation.data?.isolation || null;
+	const hasSha = Boolean(isolation?.validated_sha || isolation?.published_sha || isolation?.head_sha);
+	const isolated = isolation?.fresh_context === true && isolation?.clean === true && hasSha;
+	const status = isolation ? (isolated ? "isolated" : "partial") : "legacy";
+	return {
+		path: validation.path,
+		task_id: validation.taskId,
+		verdict: validation.verdict,
+		status,
+		role: isolation?.role,
+		worktree_path: isolation?.worktree_path,
+		branch: isolation?.branch,
+		base_sha: isolation?.base_sha,
+		head_sha: isolation?.head_sha,
+		validated_sha: isolation?.validated_sha,
+		published_sha: isolation?.published_sha,
+		clean: isolation?.clean,
+		fresh_context: isolation?.fresh_context,
+		builder_session_id: isolation?.builder_session_id,
+		builder_claim_id: isolation?.builder_claim_id,
+		related_claim_ids: isolation?.related_claim_ids || [],
+	};
+}
+
 function indexPush(map: Map<string, BuildArtifact[]>, key: string, build: BuildArtifact) {
 	const normalized = normalizeCodewikiRef(key);
 	if (!normalized) return;
@@ -587,9 +612,11 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			session_id: claim.session_id,
 			agent_name: claim.agent_name,
 			mode: claim.mode,
+			role: claim.role,
 			status: claim.status,
 			summary: claim.summary,
 			expires_at: claim.expires_at,
+			worktree: claim.worktree,
 			scopes: claim.scopes,
 		});
 		if (claim.task_id) addEdge("claim_task", claimId, `task:${claim.task_id}`);
@@ -602,12 +629,16 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 	}
 
 	// Process Validations
+	const validationIsolationRows = validations.map(validationIsolationSummary);
 	for (const v of validations) {
 		const valNodeId = `validation:${v.path}`;
+		const isolation = validationIsolationSummary(v);
 		addNode(valNodeId, {
 			kind: "validation_report",
 			path: v.path,
 			verdict: v.verdict,
+			isolation_status: isolation.status,
+			isolation: v.data?.isolation,
 		});
 		if (v.taskId) {
 			addEdge("validation_task", valNodeId, `task:${v.taskId}`);
@@ -728,6 +759,25 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		};
 	});
 	const activeSprintIds = sprintViews.filter((sprint) => !["closed", "cancelled"].includes(sprint.status) && (sprint.open_task_ids.length > 0 || sprint.status === "active")).map((sprint) => sprint.id);
+	const claimRoleCounts = claimState.claims.reduce((acc: Record<string, number>, claim) => {
+		const role = claim.role || "unspecified";
+		acc[role] = (acc[role] || 0) + 1;
+		return acc;
+	}, {});
+	const claimIsolationRows = claimState.claims.map((claim) => ({
+		id: claim.id,
+		role: claim.role || "unspecified",
+		mode: claim.mode,
+		task_id: claim.task_id,
+		worktree_path: claim.worktree?.worktree_path,
+		branch: claim.worktree?.branch,
+		base_sha: claim.worktree?.base_sha,
+		head_sha: claim.worktree?.head_sha,
+		validated_sha: claim.worktree?.validated_sha,
+		published_sha: claim.worktree?.published_sha,
+		clean: claim.worktree?.clean,
+		fresh_context: claim.worktree?.fresh_context,
+	}));
 	const taskScopeViews = Object.fromEntries(roadmapEntries.map((task) => [task.id, {
 		kind: "task",
 		id: task.id,
@@ -858,8 +908,13 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			active_claim_count: claimState.active_claim_count,
 			warning_count: claimState.warning_count,
 			conflict_count: claimState.conflict_count,
+			by_role: claimRoleCounts,
+			isolation: claimIsolationRows,
 			claims: claimState.claims,
 			conflicts: claimState.conflicts,
+		},
+		validation: {
+			isolation: validationIsolationRows,
 		},
 		scope_views: {
 			roadmap: {

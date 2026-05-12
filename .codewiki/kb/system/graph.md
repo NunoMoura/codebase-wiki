@@ -111,6 +111,7 @@ Status, `codewiki_state`, and Control Room views must consume the graph reconcil
 - The graph does not replace builds, knowledge, roadmap work items, validation reports, or code/tests; those remain the sources of truth.
 - The graph should make gated agency and Control Room stop reasons explicit when state is stale, blocked, unsafe, missing approval, or blocked by overlapping write claims.
 - The graph should expose active claim counts, read/write warnings, and write/write conflicts, while claims remain temporary coordination state rather than source-of-truth behavior.
+- The graph should surface claim role/worktree metadata and validation isolation evidence so Control Room, status, and audits can distinguish builder, validator, and publisher contexts.
 - The graph should own machine backlinks and exhaustive relationship discovery; knowledge docs should keep only intentional human-facing links.
 
 ## Related docs

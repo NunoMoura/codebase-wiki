@@ -4,6 +4,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import type { CodewikiBuildProducesInput, CodewikiBuildRefsInput, CodewikiBuildToolInput, CodewikiClosureBriefInput, CodewikiDiffTableRowInput, CodewikiValidationReportInput, WikiProject, RoadmapTaskRecord } from "../domain/shared/types.ts";
 import { nowIso, unique } from "../domain/shared/utils.ts";
+import { normalizeWorktreeIsolation } from "./claims.ts";
 import { readRoadmapTask } from "./roadmap.ts";
 import { maybeReadGraph } from "./state-artifacts.ts";
 
@@ -83,6 +84,14 @@ function buildArtifactDigests(project: WikiProject, refs: Array<{ path: string; 
 		}
 	}
 	return { algorithm: "sha256", files, skipped };
+}
+
+function normalizeValidationIsolation(input: CodewikiValidationReportInput["isolation"]) {
+	const base = normalizeWorktreeIsolation(input);
+	const role = String(input?.role || "").trim();
+	const out: Record<string, unknown> = { ...(base ?? {}) };
+	if (["builder", "validator", "publisher", "observer"].includes(role)) out.role = role;
+	return Object.keys(out).length ? out : undefined;
 }
 
 function trimRefGroups(input?: CodewikiBuildRefsInput): CodewikiBuildRefsInput {
@@ -564,6 +573,7 @@ export async function writeValidationReport(
 	const slug = buildSlug(`${input.profile}-${input.verdict}${taskPart}`, "validation-report");
 	const day = created.slice(0, 10);
 	const absPath = resolve(project.root, `.codewiki/validation/${day}-${slug}.json`);
+	const isolation = normalizeValidationIsolation(input.isolation);
 	const data = {
 		version: 1,
 		kind: "validation_report",
@@ -575,6 +585,7 @@ export async function writeValidationReport(
 		checks: (input.checks ?? []).map((v) => v.trim()).filter(Boolean),
 		issues: (input.issues ?? []).map((i) => ({ severity: i.severity.trim(), summary: i.summary.trim() })).filter((i) => i.summary),
 		source: (input.source ?? "").trim() || undefined,
+		isolation,
 	};
 	await mkdir(dirname(absPath), { recursive: true });
 	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");

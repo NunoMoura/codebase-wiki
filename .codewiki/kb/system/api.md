@@ -60,6 +60,8 @@ All access surfaces must preserve the same `.codewiki/` semantics.
 - Roadmap task creation must check active work for related intent and refine matching tasks before creating duplicates.
 - Parallel sessions should use scoped change claims before non-trivial overlapping documentation, roadmap, build, validation, or code edits.
 - Claims are temporary coordination leases; they do not replace roadmap tasks, builds, validation, git, or code review.
+- Claim callers may provide role/worktree metadata for builder, validator, publisher, or observer sessions so status and graph views can explain isolation without making claims the filesystem source of truth.
+- Validation callers may provide isolation metadata such as fresh-context status, worktree path, branch, base/head/validated SHA, and clean worktree result when independence matters.
 - Gated agency runs must respect token, time, cost, write, session, risk, validation, policy, and approval gates.
 - Pending diff tables are runtime/session decision surfaces; accepted rows become feedback build truth. The Control Room Diff view and compact status-panel Diff tab can approve, reject, defer, or attach alternatives to pending rows.
 - Builds are accepted loop handoff briefs and should expose explicit consumes/produces edges.

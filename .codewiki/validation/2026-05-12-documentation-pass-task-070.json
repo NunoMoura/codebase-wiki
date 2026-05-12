@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-12T02:56:25Z",
+  "profile": "documentation",
+  "task_id": "TASK-070",
+  "verdict": "pass",
+  "rationale": "Accepted feedback is reflected in system docs and TASK-070. Docs preserve the key distinctions: claims coordinate intent, worktrees isolate filesystem state, validation isolates judgment, and SHAs identify exact Git commits. Roadmap acceptance covers metadata fields, graph visibility, backward compatibility, and tests; non-goals prevent one-worktree-per-claim, auto-spawn, and treating claim metadata as security truth.",
+  "checks": [
+    "feedback build accepted: .codewiki/builds/feedback/2026-05-12-role-worktree-isolation.json",
+    "documentation build accepted: .codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
+    "TASK-070 created with implementation acceptance and non-goals"
+  ],
+  "issues": [],
+  "source": ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json"
+}

@@ -52,6 +52,7 @@ export const SUBAGENT_PROPOSAL_VALUES = ["task", "refactor", "spec"] as const;
 export const CODEWIKI_STATE_SECTION_VALUES = ["repo", "health", "summary", "roadmap", "graph", "drift", "session", "task", "claims"] as const;
 export const CHANGE_CLAIM_ACTION_VALUES = ["claim", "release", "heartbeat", "list"] as const;
 export const CHANGE_CLAIM_MODE_VALUES = ["read", "write"] as const;
+export const CHANGE_CLAIM_ROLE_VALUES = ["builder", "validator", "publisher", "observer"] as const;
 export const CHANGE_CLAIM_LAYER_VALUES = ["knowledge", "roadmap", "code", "build", "validation", "graph", "source"] as const;
 export const CHANGE_CLAIM_STATUS_VALUES = ["active", "released", "expired"] as const;
 export const AGENCY_MODE_VALUES = ["auto", "dry-run", "manual", "observe", "maintain", "work"] as const;
@@ -71,6 +72,7 @@ export type RoadmapPriority = (typeof ROADMAP_PRIORITY_VALUES)[number];
 export type TaskSessionAction = (typeof TASK_SESSION_ACTION_VALUES)[number];
 export type ChangeClaimAction = (typeof CHANGE_CLAIM_ACTION_VALUES)[number];
 export type ChangeClaimMode = (typeof CHANGE_CLAIM_MODE_VALUES)[number];
+export type ChangeClaimRole = (typeof CHANGE_CLAIM_ROLE_VALUES)[number];
 export type ChangeClaimLayer = (typeof CHANGE_CLAIM_LAYER_VALUES)[number];
 export type ChangeClaimStatus = (typeof CHANGE_CLAIM_STATUS_VALUES)[number];
 export type ToolTaskStatus = (typeof TOOL_TASK_STATUS_VALUES)[number];
@@ -366,15 +368,34 @@ export interface ChangeClaimScope {
 	description?: string;
 }
 
+export interface WorktreeIsolationMetadata {
+	worktree_path?: string;
+	branch?: string;
+	base_sha?: string;
+	head_sha?: string;
+	validated_sha?: string;
+	published_sha?: string;
+	clean?: boolean;
+	fresh_context?: boolean;
+	session_id?: string;
+	claim_id?: string;
+	builder_session_id?: string;
+	builder_claim_id?: string;
+	related_claim_ids?: string[];
+	notes?: string;
+}
+
 export interface ChangeClaimRecord {
 	id: string;
 	session_id: string;
 	agent_name: string;
 	status: ChangeClaimStatus;
 	mode: ChangeClaimMode;
+	role?: ChangeClaimRole;
 	summary: string;
 	task_id?: string;
 	build_ref?: string;
+	worktree?: WorktreeIsolationMetadata;
 	scopes: ChangeClaimScope[];
 	created_at: string;
 	updated_at: string;
@@ -584,6 +605,10 @@ export interface CodewikiBuildToolInput {
 	};
 }
 
+export interface CodewikiValidationIsolationInput extends WorktreeIsolationMetadata {
+	role?: ChangeClaimRole;
+}
+
 export interface CodewikiValidationReportInput {
 	repoPath?: string;
 	profile: string;
@@ -593,6 +618,7 @@ export interface CodewikiValidationReportInput {
 	checks?: string[];
 	issues?: Array<{ severity: string; summary: string }>;
 	source?: string;
+	isolation?: CodewikiValidationIsolationInput;
 	refresh?: boolean;
 }
 
@@ -615,6 +641,8 @@ export interface CodewikiClaimToolInput {
 	buildRef?: string;
 	summary?: string;
 	mode?: ChangeClaimMode;
+	role?: ChangeClaimRole;
+	worktree?: WorktreeIsolationMetadata;
 	scopes?: ChangeClaimScope[];
 	ttl_minutes?: number;
 	force?: boolean;

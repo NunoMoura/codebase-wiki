@@ -88,6 +88,25 @@ Persistent reports live under `.codewiki/validation/**`.
 - Gated agency must stop on fail/block verdicts or missing required approval.
 - Commit, push, release, or remote updates require gateway/policy approval when configured.
 
+## Isolation evidence
+
+Implementation and task-close validation should be independently reproducible when the work changes code, tests, publication metadata, or release state. The preferred validation posture is:
+
+- validator runs in a separate clean worktree from the builder,
+- validator starts from artifacts rather than builder chat context,
+- validation report records the exact Git commit SHA it checked,
+- validation report records whether the worktree was clean,
+- validation report records the validator role and any builder session or claim it intentionally did not reuse.
+
+`sha` means a Git object id/hash. CodeWiki uses SHAs to make statements exact:
+
+- `base_sha` is the commit where a work session started,
+- `head_sha` is the builder or publisher result,
+- `validated_sha` is the exact commit the validator checked,
+- `published_sha` is the exact commit pushed or released.
+
+Legacy reports can remain valid without these fields. New reports should include them when a fresh validator, publication gate, or audit needs independence evidence.
+
 ## Related docs
 
 - [Builds](builds.md)
