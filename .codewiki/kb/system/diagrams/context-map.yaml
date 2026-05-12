@@ -1,0 +1,88 @@
+schema_version: 1
+id: spec.system.diagrams.context-map
+title: CodeWiki Context Map
+kind: context_map
+purpose: Show who uses CodeWiki, which access surfaces they use, and where the repository-local boundary sits.
+source_docs:
+  - .codewiki/kb/product/users/maintainers.md
+  - .codewiki/kb/product/users/agents.md
+  - .codewiki/kb/product/users/package-authors.md
+  - .codewiki/kb/product/users/external-users.md
+  - .codewiki/kb/system/adapters.md
+  - .codewiki/kb/system/api.md
+renderer:
+  preferred: graph
+  fallback: mermaid_flowchart
+actors:
+  - id: maintainer
+    label: Maintainer
+    source: .codewiki/kb/product/users/maintainers.md
+  - id: agent
+    label: Agent / subagent
+    source: .codewiki/kb/product/users/agents.md
+  - id: package_author
+    label: Extension/workflow author
+    source: .codewiki/kb/product/users/package-authors.md
+  - id: future_external_user
+    label: Future external user
+    source: .codewiki/kb/product/users/external-users.md
+systems:
+  - id: chat_interface
+    label: Agent chat interface
+    boundary: external
+  - id: control_room
+    label: Local Control Room
+    boundary: codewiki
+    source: .codewiki/kb/system/control-room-ui.md
+  - id: pi_adapter
+    label: Pi adapter
+    boundary: codewiki
+    source: .codewiki/kb/system/adapters.md
+  - id: codewiki_api
+    label: CodeWiki API
+    boundary: codewiki
+    source: .codewiki/kb/system/api.md
+  - id: repo_contract
+    label: Repo-local .codewiki contract
+    boundary: repository
+    source: .codewiki/kb/system/knowledge.md
+  - id: git_remote
+    label: Git remotes
+    boundary: external
+relationships:
+  - from: maintainer
+    to: chat_interface
+    label: directs agent work
+  - from: maintainer
+    to: control_room
+    label: monitors second-screen status and navigation
+  - from: agent
+    to: codewiki_api
+    label: reads and mutates through tools
+  - from: package_author
+    to: codewiki_api
+    label: extends typed capabilities
+  - from: future_external_user
+    to: control_room
+    label: inspects repo-local state
+  - from: chat_interface
+    to: pi_adapter
+    label: invokes packaged tools and commands
+  - from: pi_adapter
+    to: codewiki_api
+    label: delegates semantics
+  - from: control_room
+    to: codewiki_api
+    label: reads curated state and routes actions
+  - from: codewiki_api
+    to: repo_contract
+    label: owns durable and generated state access
+  - from: repo_contract
+    to: git_remote
+    label: synchronizes durable truth through git
+ui_hints:
+  default_scope: codewiki_boundary
+  inspector_fields:
+    - source
+    - boundary
+    - label

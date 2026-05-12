@@ -1,0 +1,167 @@
+schema_version: 1
+id: spec.system.diagrams.data-model
+title: CodeWiki Product and Runtime Data Model
+kind: data_model
+purpose: Show durable truth, transient handoffs, generated state, coordination state, and executable proof.
+source_docs:
+  - .codewiki/kb/system/overview.md
+  - .codewiki/kb/system/knowledge.md
+  - .codewiki/kb/system/builds.md
+  - .codewiki/kb/system/roadmap.md
+  - .codewiki/kb/system/graph.md
+renderer:
+  preferred: er
+  fallback: mermaid_er
+entities:
+  - id: knowledge_doc
+    label: Knowledge document
+    storage: .codewiki/kb/**/*.md
+    role: durable product/system intent
+    key_fields:
+      - id
+      - title
+      - state
+      - summary
+      - owners
+      - code_paths
+  - id: diagram_spec
+    label: Diagram spec
+    storage: .codewiki/kb/system/diagrams/**/*.yaml
+    role: durable agent-editable diagram raw data
+    key_fields:
+      - schema_version
+      - id
+      - kind
+      - source_docs
+  - id: roadmap_task
+    label: Roadmap task
+    storage: .codewiki/roadmap/**
+    role: active work truth and closure state
+    key_fields:
+      - id
+      - title
+      - status
+      - priority
+      - goal
+      - spec_paths
+      - code_paths
+  - id: feedback_build
+    label: Feedback build
+    storage: .codewiki/builds/feedback/**
+    role: accepted user intent handoff
+    key_fields:
+      - diff_table
+      - approved_diff_rows
+      - decisions
+      - lifecycle
+  - id: documentation_build
+    label: Documentation build
+    storage: .codewiki/builds/documentation/**
+    role: knowledge-to-roadmap handoff
+    key_fields:
+      - knowledge_changes
+      - roadmap_changes
+      - assumptions
+      - lifecycle
+  - id: implementation_build
+    label: Implementation build
+    storage: .codewiki/builds/implementation/**
+    role: implementation evidence and closure brief
+    key_fields:
+      - task_id
+      - code_files
+      - test_files
+      - checks_run
+      - acceptance_mapping
+      - closure_brief
+  - id: validation_report
+    label: Validation report
+    storage: .codewiki/validation/**
+    role: pass/fail/block gateway evidence when persisted
+    key_fields:
+      - profile
+      - verdict
+      - rationale
+      - checks
+      - issues
+  - id: graph_index
+    label: Graph index
+    storage: .codewiki/index_graph.json
+    role: generated relationship and reconciliation state
+    key_fields:
+      - nodes
+      - edges
+      - lenses
+      - reconciliation
+  - id: change_claim
+    label: Change claim
+    storage: .codewiki/runtime/claims.json
+    role: temporary parallel-work lease
+    key_fields:
+      - id
+      - mode
+      - scopes
+      - expires_at
+  - id: executable_truth
+    label: Code and tests
+    storage: repository code/test paths
+    role: implemented behavior and automated proof
+relationships:
+  - from: feedback_build
+    to: knowledge_doc
+    type: informs
+  - from: documentation_build
+    to: knowledge_doc
+    type: records_changes
+  - from: documentation_build
+    to: roadmap_task
+    type: creates_or_updates
+  - from: roadmap_task
+    to: knowledge_doc
+    type: references
+  - from: roadmap_task
+    to: executable_truth
+    type: maps_to
+  - from: implementation_build
+    to: roadmap_task
+    type: closes_or_updates
+  - from: implementation_build
+    to: executable_truth
+    type: evidences
+  - from: validation_report
+    to: roadmap_task
+    type: validates
+  - from: validation_report
+    to: implementation_build
+    type: supports
+  - from: graph_index
+    to: knowledge_doc
+    type: derives_from
+  - from: graph_index
+    to: roadmap_task
+    type: derives_from
+  - from: graph_index
+    to: feedback_build
+    type: derives_from
+  - from: graph_index
+    to: documentation_build
+    type: derives_from
+  - from: graph_index
+    to: implementation_build
+    type: derives_from
+  - from: graph_index
+    to: validation_report
+    type: derives_from
+  - from: graph_index
+    to: change_claim
+    type: derives_from
+  - from: diagram_spec
+    to: knowledge_doc
+    type: cites_source
+ui_hints:
+  default_entities:
+    - knowledge_doc
+    - roadmap_task
+    - implementation_build
+    - graph_index
+  show_storage_paths: true

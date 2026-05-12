@@ -4,7 +4,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { loadProject } from "../../extensions/codewiki/src/application/project.ts";
 import {
+	buildControlRoomBoardModel,
 	buildControlRoomGraphModel,
+	buildControlRoomProductModel,
 	buildControlRoomStateModel,
 	buildControlRoomSystemModel,
 	startControlRoomServer,
@@ -18,9 +20,19 @@ import {
 const root = await mkdtemp(join(tmpdir(), "codewiki-control-room-"));
 let server;
 try {
-	await mkdir(join(root, ".codewiki/kb/system"), { recursive: true });
+	await mkdir(join(root, ".codewiki/kb/system/diagrams"), { recursive: true });
+	await mkdir(join(root, ".codewiki/kb/product/users"), { recursive: true });
+	await mkdir(join(root, ".codewiki/kb/product/stories"), { recursive: true });
+	await mkdir(join(root, ".codewiki/kb/product/uis"), { recursive: true });
 	await writeFile(join(root, ".codewiki/config.json"), JSON.stringify({ project_name: "control-room-smoke", schema_version: 4 }, null, 2));
-	await writeFile(join(root, ".codewiki/roadmap.json"), JSON.stringify({ version: 2, updated: "2026-05-11", order: [], tasks: {} }, null, 2));
+	await writeFile(join(root, ".codewiki/roadmap.json"), JSON.stringify({
+		version: 2,
+		updated: "2026-05-11",
+		order: ["TASK-001"],
+		tasks: {
+			"TASK-001": { id: "TASK-001", title: "Ship map", status: "todo", priority: "high", summary: "Map work", goal: { acceptance: ["Shows work"], verification: ["smoke"] }, spec_paths: [".codewiki/kb/system/api.md"], code_paths: ["extensions/codewiki/src/adapters/web/control-room.ts"] },
+		},
+	}, null, 2));
 	await writeFile(join(root, ".codewiki/kb/system/architecture.mmd"), `flowchart TD
   User["User / agent intent"]
   API["CodeWiki API\\napi.md"]
@@ -56,6 +68,66 @@ updated: "2026-05-11"
 
 Owns generated graph state.
 `);
+	await writeFile(join(root, ".codewiki/kb/product/users/maintainers.md"), `---
+title: Maintainers
+summary: Users who need high-signal project state.
+state: active
+updated: "2026-05-12"
+---
+
+# Maintainers
+
+## Jobs
+
+See status, work, and blockers.
+`);
+	await writeFile(join(root, ".codewiki/kb/product/stories/navigation.md"), `---
+title: Navigation
+summary: Move from status to source-backed detail.
+state: active
+updated: "2026-05-12"
+---
+
+# Navigation
+
+## Story
+
+Open a focused view and inspect source paths.
+`);
+	await writeFile(join(root, ".codewiki/kb/product/uis/control-room.md"), `---
+title: Control Room UI
+summary: Second-screen visual surface.
+state: active
+updated: "2026-05-12"
+---
+
+# Control Room UI
+
+## Purpose
+
+High-signal second screen.
+`);
+	await writeFile(join(root, ".codewiki/kb/system/diagrams/component-map.yaml"), `schema_version: 1
+id: test.component-map
+title: Test Component Map
+kind: component_map
+purpose: Render a component diagram from YAML.
+source_docs:
+  - .codewiki/kb/system/api.md
+nodes:
+  - id: api
+    label: API
+    kind: component
+    source: .codewiki/kb/system/api.md
+  - id: graph
+    label: Graph
+    kind: component
+    source: .codewiki/kb/system/graph.md
+edges:
+  - from: api
+    to: graph
+    label: updates
+`);
 	await writeFile(join(root, ".codewiki/index_graph.json"), JSON.stringify({
 		version: 1,
 		generated_at: "2026-05-11T00:00:00Z",
@@ -78,10 +150,20 @@ Owns generated graph state.
 	assert.equal(state.roadmap.next, "TASK-001");
 	assert.equal(state.graph.nodes, 2);
 
+	const product = await buildControlRoomProductModel(project);
+	assert.equal(product.categories.find((category) => category.id === "users")?.items[0]?.title, "Maintainers");
+	assert.equal(product.categories.find((category) => category.id === "uis")?.items[0]?.title, "Control Room UI");
+
 	const system = await buildControlRoomSystemModel(project);
 	assert.equal(system.components.find((component) => component.id === "API")?.doc_path, ".codewiki/kb/system/api.md");
 	assert.equal(system.components.find((component) => component.id === "API")?.summary, "Stable semantic contract.");
 	assert.equal(system.edges.length, 2);
+	assert.equal(system.diagram_catalog[0]?.kind, "component_map");
+	assert.equal(system.diagrams[0]?.nodes.length, 2);
+
+	const board = await buildControlRoomBoardModel(project);
+	assert.equal(board.stats.open, 1);
+	assert.equal(board.tasks[0]?.id, "TASK-001");
 
 	const graph = await buildControlRoomGraphModel(project);
 	assert.deepEqual(graph.node_kinds, ["doc", "roadmap_task"]);
@@ -106,8 +188,10 @@ Owns generated graph state.
 	assert.equal(server.host, "127.0.0.1");
 	const html = await fetch(server.url).then((res) => res.text());
 	assert.match(html, /CodeWiki Control Room/);
+	assert.match(html, /data-view="status"/);
 	assert.match(html, /data-view="product"/);
-	assert.match(html, /data-view="roadmap"/);
+	assert.match(html, /data-view="board"/);
+	assert.doesNotMatch(html, /data-view="diff"|data-view="builds"|data-view="validation"|data-view="settings"|data-view="knowledge"/);
 	assert.match(html, /\/assets\/vendor\/cytoscape\.min\.js/);
 	const vendor = await fetch(new URL("/assets/vendor/cytoscape.min.js", server.url)).then((res) => res.text());
 	assert.match(vendor, /cytoscape/i);
@@ -130,6 +214,10 @@ Owns generated graph state.
 	assert.match(js, /fitGraph\(state\.cy\)/);
 	const apiState = await fetch(new URL("/api/state", server.url)).then((res) => res.json());
 	assert.equal(apiState.project.label, "control-room-smoke");
+	const apiProduct = await fetch(new URL("/api/product", server.url)).then((res) => res.json());
+	assert.equal(apiProduct.categories.length, 3);
+	const apiBoard = await fetch(new URL("/api/board", server.url)).then((res) => res.json());
+	assert.equal(apiBoard.tasks[0].id, "TASK-001");
 } finally {
 	if (server) await server.close();
 	await rm(root, { recursive: true, force: true });

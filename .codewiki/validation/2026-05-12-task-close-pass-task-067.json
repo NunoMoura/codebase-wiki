@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-12T01:36:43Z",
+  "profile": "task-close",
+  "task_id": "TASK-067",
+  "verdict": "pass",
+  "rationale": "TASK-067 was closed after implementation validation passed, implementation build captured closure evidence, and required checks passed. Closure preserves non-goals and leaves underlying diff/build/validation/settings capabilities available contextually.",
+  "checks": [
+    "Reviewed .codewiki/builds/implementation/2026-05-12-task-067-control-room-simplification.json closure_brief.",
+    "Reviewed .codewiki/validation/2026-05-12-implementation-pass-task-067.json pass verdict.",
+    "Confirmed npm test passed and codewiki_state refresh=true remains green."
+  ],
+  "issues": [
+    {
+      "severity": "info",
+      "summary": "codewiki_state no longer finds TASK-067 by taskId after closure/archive, but roadmap health remains green."
+    }
+  ],
+  "source": "TASK-067 close evidence"
+}

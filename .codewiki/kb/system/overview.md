@@ -5,7 +5,7 @@ state: active
 summary: Main runtime areas and ownership boundaries for CodeWiki.
 owners:
   - architecture
-updated: "2026-05-09"
+updated: "2026-05-12"
 code_paths:
   - extensions/codewiki
   - skills
@@ -38,7 +38,7 @@ CodeWiki separates truth by role so that agents can reason about the current sta
 | --- | --- | --- |
 | Repo-local contract truth | `.codewiki/config.json` | Defines project roots, policy, generated files, and runtime settings. |
 | Intent truth | accepted `feedback_build` files under `.codewiki/builds/feedback/**` | Temporary validated brief of user intent for the documentation loop. |
-| Product and system truth | `.codewiki/kb/**/*.md` and `.codewiki/kb/**/*.json` | Durable intended behavior, product decisions, architecture, workflows, and non-goals. |
+| Product and system truth | `.codewiki/kb/**/*.md`, `.codewiki/kb/**/*.yaml`, and `.codewiki/kb/**/*.json` | Durable intended behavior, product decisions, architecture, diagram raw data, workflows, and non-goals. |
 | Implementation spec truth | accepted `documentation_build` files under `.codewiki/builds/documentation/**` | Temporary implementation-spec brief for the implementation loop. |
 | Work truth | `.codewiki/roadmap/**` | Active work items, priority, ownership, progress, status, blockers, and closure state. |
 | Coordination state | `.codewiki/runtime/claims.json` | Temporary scoped change claims for parallel sessions; expires/releases and never replaces durable truth. |
@@ -76,7 +76,8 @@ Each compiler handoff is guarded by a validation gateway. Gateways check both ve
 
 ## Ownership seams
 
-- [Architecture Map](architecture.mmd) is the component source map for the system architecture.
+- [Diagram Raw Data](diagrams/README.md) owns the canonical diagram families and agent-editable YAML sources for system visualizations.
+- [Architecture Map](architecture.mmd) is a compatibility component diagram until System UI rendering migrates to `diagrams/component-map.yaml`.
 - [File Structure](file-structure.md) owns the target repository and knowledge-base structure rules.
 - [API](api.md) owns the harness-independent CodeWiki access contract.
 - [Control Room UI](control-room-ui.md) owns standalone local web UI hosting and launch semantics.
@@ -94,43 +95,7 @@ CodeWiki should not implement a general sandbox, hosted SaaS, or duplicate Pi ob
 
 ## Target package architecture
 
-The package should use a hybrid domain-driven design with three onion layers, minimal shared support, and harness adapters:
-
-```text
-extensions/codewiki/
-  index.ts                 # thin package entrypoint
-  bootstrap.ts             # adoption/bootstrap adapter surface until folded into Pi adapter
-  templates.ts             # starter wiki template source
-  src/
-    domain/                # pure CodeWiki model, invariants, schemas, graph state-machine rules
-    application/           # harness-agnostic use cases and ports
-    infrastructure/        # filesystem, Git, process, persistence, graph rebuild implementations
-    shared/                # minimal cross-cutting helpers/types only
-    adapters/
-      pi/                  # current Pi commands, tools, compact visual UI, lifecycle hooks, skills integration
-      web/                 # standalone local Control Room UI and local HTTP transport when implemented
-      cli/                 # future directory only when implementation need exists
-      mcp/                 # future directory only when implementation need exists
-```
-
-Dependency direction:
-
-```text
-adapters -> application -> domain
-infrastructure -> application ports / domain contracts
-shared -> no product behavior
-```
-
-Rules:
-
-- `domain/**` has no Node I/O, no Pi imports, no adapter imports, and no infrastructure imports.
-- `application/**` owns use-case orchestration and depends on domain contracts plus ports, not concrete infrastructure or adapters.
-- `infrastructure/**` implements application ports and owns concrete side effects.
-- `adapters/**` translate harness APIs into application use cases and translate results back into harness-specific commands, tools, visual UI, protocols, or messages.
-- `shared/**` stays small and cannot own business semantics.
-- `core/**` and `engine/**` must not exist in target source; former responsibilities now live under `domain/**`, `application/**`, `infrastructure/**`, and `adapters/**`.
-
-`scripts/check-architecture.mjs` enforces target boundaries during `npm test`.
+The package follows the ports/adapters structure owned by [File Structure](file-structure.md): `adapters -> application -> domain`, with infrastructure behind application ports and minimal shared helpers. `scripts/check-architecture.mjs` enforces target boundaries during `npm test`.
 
 ## Knowledge-base organization rule
 
@@ -145,14 +110,20 @@ Every CodeWiki knowledge base should use the same high-level structure:
     uis/
   system/
     overview.md
-    architecture.mmd
     file-structure.md
     <component>.md
+    diagrams/
+      README.md
+      context-map.yaml
+      component-map.yaml
+      key-flow.yaml
+      data-model.yaml
+      state-lifecycle.yaml
 ```
 
-Product docs define users, user stories, and visual user interfaces. System docs define the technical architecture, API, adapters, and distribution mechanisms that implement product intent.
+Product docs define users, user stories, and visual user interfaces. System docs define the technical architecture, API, adapters, distribution mechanisms, component ownership, and diagram raw data that implement product intent.
 
-System docs should stay flat. Each component in `architecture.mmd` should have one matching `.md` file under `system/`, and each component should map to the project file structure. Avoid nested component folders and avoid `overview.md` files except `product/overview.md` and `system/overview.md`.
+System component docs should stay flat. Each major component should have one matching `.md` file under `system/`, and each component should map to the project file structure. Diagram raw data is the intended nested system exception and lives under `system/diagrams/**`. Avoid nested component folders and avoid `overview.md` files except `product/overview.md`, `system/overview.md`, and `system/diagrams/README.md`.
 
 ## Change-intent review loop
 

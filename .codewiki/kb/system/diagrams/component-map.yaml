@@ -1,0 +1,174 @@
+schema_version: 1
+id: spec.system.diagrams.component-map
+title: CodeWiki Component and Container Map
+kind: component_map
+purpose: Show major CodeWiki runtime components, adapters, stores, and dependency direction.
+source_docs:
+  - .codewiki/kb/system/overview.md
+  - .codewiki/kb/system/file-structure.md
+  - .codewiki/kb/system/control-room-ui.md
+  - .codewiki/kb/system/api.md
+  - .codewiki/kb/system/graph.md
+renderer:
+  preferred: cytoscape
+  fallback: mermaid_flowchart
+groups:
+  - id: surfaces
+    label: User surfaces
+  - id: adapter_layer
+    label: Adapters
+  - id: app_layer
+    label: Application layer
+  - id: truth_layer
+    label: Truth and state
+  - id: proof_layer
+    label: Proof and publication
+nodes:
+  - id: user_intent
+    label: User / agent intent
+    group: surfaces
+    kind: actor
+  - id: control_room_ui
+    label: Control Room UI
+    group: surfaces
+    kind: ui
+    source: .codewiki/kb/system/control-room-ui.md
+  - id: extension
+    label: Extension
+    group: adapter_layer
+    kind: adapter
+    source: .codewiki/kb/system/extension.md
+  - id: adapters
+    label: Adapters
+    group: adapter_layer
+    kind: adapter
+    source: .codewiki/kb/system/adapters.md
+  - id: api
+    label: CodeWiki API
+    group: app_layer
+    kind: application
+    source: .codewiki/kb/system/api.md
+  - id: agency
+    label: Agency controller
+    group: app_layer
+    kind: application
+    source: .codewiki/kb/system/agency.md
+  - id: compilers
+    label: Compilers
+    group: app_layer
+    kind: workflow
+    source: .codewiki/kb/system/compilers.md
+  - id: validation_gateway
+    label: Validation gateway
+    group: app_layer
+    kind: workflow
+    source: .codewiki/kb/system/validation-gateway.md
+  - id: knowledge
+    label: Knowledge
+    group: truth_layer
+    kind: durable_truth
+    source: .codewiki/kb/system/knowledge.md
+  - id: roadmap
+    label: Roadmap
+    group: truth_layer
+    kind: durable_truth
+    source: .codewiki/kb/system/roadmap.md
+  - id: builds
+    label: Builds
+    group: truth_layer
+    kind: handoff_truth
+    source: .codewiki/kb/system/builds.md
+  - id: graph
+    label: Graph state machine
+    group: truth_layer
+    kind: generated_state
+    source: .codewiki/kb/system/graph.md
+  - id: code_tests
+    label: Code + tests
+    group: proof_layer
+    kind: executable_truth
+  - id: publication
+    label: Publication support
+    group: proof_layer
+    kind: publication
+edges:
+  - from: user_intent
+    to: control_room_ui
+    label: observes and navigates
+  - from: user_intent
+    to: extension
+    label: invokes host commands/tools
+  - from: extension
+    to: adapters
+    label: registers host surfaces
+  - from: control_room_ui
+    to: api
+    label: delegates semantic reads/writes
+  - from: adapters
+    to: api
+    label: delegates semantic reads/writes
+  - from: api
+    to: agency
+    label: controls bounded automation
+  - from: api
+    to: compilers
+    label: starts compiler loops
+  - from: api
+    to: validation_gateway
+    label: records/reads validation
+  - from: api
+    to: knowledge
+    label: reads/writes intended truth
+  - from: api
+    to: roadmap
+    label: mutates work truth
+  - from: api
+    to: builds
+    label: writes handoff briefs
+  - from: api
+    to: graph
+    label: rebuilds/reads generated relationships
+  - from: compilers
+    to: builds
+    label: produce handoffs
+  - from: compilers
+    to: knowledge
+    label: update intended truth
+  - from: compilers
+    to: roadmap
+    label: create/update work
+  - from: compilers
+    to: code_tests
+    label: implement executable truth
+  - from: validation_gateway
+    to: builds
+    label: validates handoffs
+  - from: validation_gateway
+    to: graph
+    label: audits alignment
+  - from: knowledge
+    to: graph
+    label: source input
+  - from: roadmap
+    to: graph
+    label: source input
+  - from: builds
+    to: graph
+    label: source input
+  - from: code_tests
+    to: graph
+    label: source input
+  - from: builds
+    to: publication
+    label: publication evidence
+  - from: code_tests
+    to: publication
+    label: executable proof
+ui_hints:
+  default_layout: layered
+  edge_style: behind_nodes
+  inspector_fields:
+    - kind
+    - source
+    - group
+    - label

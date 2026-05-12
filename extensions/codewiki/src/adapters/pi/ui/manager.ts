@@ -901,7 +901,6 @@ export function nextStatusPanelSection(
 	if (section === "product") return "system";
 	if (section === "system") return "roadmap";
 	if (section === "roadmap") return "graph";
-	if (section === "graph") return "diff";
 	return "home";
 }
 
@@ -1125,6 +1124,36 @@ export function readArchitecturePanelData(project: WikiProject): {
 	return { mermaid, components };
 }
 
+export function readSystemDiagramCatalog(project: WikiProject): Array<{ id: string; title: string; kind: string; path: string; purpose: string }> {
+	const dir = resolve(project.root, ".codewiki/kb/system/diagrams");
+	if (!existsSync(dir)) return [];
+	return readdirSync(dir)
+		.filter((name) => /\.ya?ml$/i.test(name))
+		.sort((a, b) => diagramCatalogRank(a) - diagramCatalogRank(b) || a.localeCompare(b))
+		.map((name) => {
+			const path = `.codewiki/kb/system/diagrams/${name}`;
+			const raw = readFileSync(resolve(dir, name), "utf8");
+			return {
+				id: frontmatterLikeYaml(raw, "id") || path,
+				title: frontmatterLikeYaml(raw, "title") || basename(name, ".yaml"),
+				kind: frontmatterLikeYaml(raw, "kind") || "diagram",
+				path,
+				purpose: frontmatterLikeYaml(raw, "purpose") || "System diagram raw data.",
+			};
+		});
+}
+
+function diagramCatalogRank(name: string): number {
+	const order = ["context-map", "component-map", "key-flow", "data-model", "state-lifecycle"];
+	const index = order.findIndex((item) => name.startsWith(item));
+	return index >= 0 ? index : order.length;
+}
+
+function frontmatterLikeYaml(raw: string, key: string): string | null {
+	const match = new RegExp(`^${key}:\\s*(.+)$`, "m").exec(raw);
+	return match ? match[1].trim().replace(/^['\"]|['\"]$/g, "") : null;
+}
+
 export function readGraphPanelData(project: WikiProject): {
 	stats: Record<string, number>;
 	nextAction: any;
@@ -1275,33 +1304,24 @@ export function renderHomeTab(
 	);
 	const readiness =
 		state.health.color === "green"
-			? "Production path looks clear"
+			? "clear"
 			: state.health.color === "yellow"
-				? "Not production-ready yet"
-				: "Blocked before production";
-	const currentState = activeTask
-		? `${activeTask.title} is in ${phaseUserLabel(taskLoopPhase(activeTask)).toLowerCase()}. ${issues[0]?.title ?? "No blocking issue detected."}`
-		: `${resume.heading}. ${issues[0]?.title ?? "No blocking issue detected."}`;
-	const cursor: any = (state as any).workflow_cursor || {};
-	const gc: any = (state as any).gc || {};
+				? "needs attention"
+				: "blocked";
+	const blockedCount = roadmapState?.views?.blocked_task_ids?.length ?? 0;
 	const statusFactors = [
-		`Lint/issues: errors=${countIssuesBySeverity(report, "error")} warnings=${countIssuesBySeverity(report, "warning")}`,
-		`Specs: ${state.summary.aligned_specs}/${state.summary.total_specs} aligned · ${state.summary.untracked_specs} untracked · ${state.summary.unmapped_specs} unmapped`,
-		`Tasks: ${state.summary.open_task_count} open · ${state.summary.done_task_count} done`,
-		`Scope: ${cursor.scope?.kind || "roadmap"}${cursor.scope?.id ? `:${cursor.scope.id}` : ""} · loop=${cursor.active_loop || "observe"} → ${cursor.expected_output || "observation"}`,
-		`Budget: ${(project.config.codewiki?.agency?.budgets as any)?.default?.maxTokens || 0} tok · $${(project.config.codewiki?.agency?.budgets as any)?.default?.maxCostUsd || 0} · sessions=${project.config.codewiki?.agency?.parallelism?.max_sessions || 1}`,
-		`Claims/GC: claims=${state.parallel?.active_claim_count ?? 0} conflicts=${state.parallel?.claim_conflict_count ?? 0} hot=${gc?.classes?.hot?.task_ids?.length ?? 0} task(s)`,
-		`Agency: ${state.agency?.lanes?.filter((lane) => lane.freshness?.status === "stale").length ?? 0} stale lane(s)`,
+		`Checks: errors=${countIssuesBySeverity(report, "error")} warnings=${countIssuesBySeverity(report, "warning")}`,
+		`Tasks: ${state.summary.open_task_count} open · ${state.summary.done_task_count} done · ${blockedCount} blocked`,
+		`Knowledge: ${state.summary.aligned_specs}/${state.summary.total_specs} aligned · ${state.summary.unmapped_specs} unmapped`,
+		`Claims: ${state.parallel?.active_claim_count ?? 0} active · ${state.parallel?.claim_conflict_count ?? 0} conflict(s)`,
+		`Graph: drift=${(state as any).reconciliation?.item_count ?? 0} · stale=${state.agency?.lanes?.filter((lane) => lane.freshness?.status === "stale").length ?? 0}`,
 	];
 	const lines = [
-		theme.bold(theme.fg("accent", "Project status")),
+		theme.bold(theme.fg("accent", "Status")),
 		`${healthCircle(state.health.color)} ${state.health.color.toUpperCase()} · ${readiness}`,
 		...statusFactors.map((factor) => theme.fg("muted", `- ${factor}`)),
 		"",
-		theme.bold(theme.fg("accent", "Current state")),
-		truncatePlain(currentState, Math.max(20, width - 4)),
-		"",
-		theme.bold(theme.fg("accent", "Being done now")),
+		theme.bold(theme.fg("accent", "Focus")),
 		activeTask ? activeTask.title : resume.heading,
 		theme.fg(
 			"muted",
@@ -1309,6 +1329,9 @@ export function renderHomeTab(
 				? `${phaseUserLabel(taskLoopPhase(activeTask))} · ${activeTask.id}`
 				: `Next: ${resume.reason}`,
 		),
+		"",
+		theme.bold(theme.fg("accent", "Next action")),
+		truncatePlain(state.next_step?.reason || resume.reason || resume.command, Math.max(20, width - 4)),
 		"",
 		theme.bold(theme.fg("accent", "Issues")),
 	];
@@ -1331,9 +1354,6 @@ export function renderHomeTab(
 			),
 		);
 	}
-	lines.push("");
-	lines.push(theme.bold(theme.fg("accent", "Production path")));
-	lines.push(...buildHomeProductionPath(state, roadmapState, activeLink));
 	return lines;
 }
 
@@ -1553,11 +1573,16 @@ export function renderStatusPanelLines(
 		const productPathOrder = [
 			".codewiki/kb/product/users/maintainers.md",
 			".codewiki/kb/product/users/agents.md",
+			".codewiki/kb/product/users/package-authors.md",
+			".codewiki/kb/product/users/external-users.md",
 			".codewiki/kb/product/stories/intent.md",
 			".codewiki/kb/product/stories/navigation.md",
+			".codewiki/kb/product/stories/automation.md",
+			".codewiki/kb/product/stories/drift.md",
+			".codewiki/kb/product/uis/control-room.md",
 			".codewiki/kb/product/uis/status-panel.md",
 			".codewiki/kb/product/uis/board.md",
-			".codewiki/kb/product/uis/agent-tools.md",
+			".codewiki/kb/product/uis/graph-navigation.md",
 		];
 		const productRows = productPathOrder
 			.map((path) => state.specs.find((row) => row.path === path))
@@ -1584,21 +1609,23 @@ export function renderStatusPanelLines(
 
 	if (section === "system") {
 		const architecture = readArchitecturePanelData(project);
+		const diagrams = readSystemDiagramCatalog(project);
 		panelState.wikiRowIndex = Math.min(
 			Math.max(0, panelState.wikiRowIndex),
-			Math.max(0, architecture.components.length - 1),
+			Math.max(0, Math.max(diagrams.length, architecture.components.length) - 1),
 		);
-		body.push(theme.bold(theme.fg("accent", "Architecture")));
-		if (architecture.mermaid.length > 0) {
-			body.push(...architecture.mermaid.slice(0, 14).map((line) => theme.fg("text", truncatePlain(line, Math.max(20, width - 4)))));
-		} else {
-			body.push(theme.fg("muted", "Architecture Mermaid view not generated yet."));
+		body.push(theme.bold(theme.fg("accent", "Diagrams")));
+		if (diagrams.length === 0) body.push(theme.fg("muted", "No diagram YAML found under .codewiki/kb/system/diagrams."));
+		for (const [index, diagram] of diagrams.slice(0, 5).entries()) {
+			const selected = index === panelState.wikiRowIndex;
+			body.push(highlightSelectable(theme, `${selected ? "▸" : " "} ${diagram.title}`, selected));
+			body.push(theme.fg("muted", truncatePlain(`${diagram.kind} · ${diagram.path}`, Math.max(12, width - 4))));
 		}
 		body.push("");
 		body.push(theme.bold(theme.fg("accent", "Components")));
 		if (architecture.components.length === 0) body.push(theme.fg("muted", "No architecture components found."));
-		for (const [index, component] of architecture.components.slice(0, 10).entries()) {
-			const selected = index === panelState.wikiRowIndex;
+		for (const [index, component] of architecture.components.slice(0, 8).entries()) {
+			const selected = diagrams.length === 0 && index === panelState.wikiRowIndex;
 			body.push(
 				highlightSelectable(
 					theme,
@@ -2115,11 +2142,16 @@ export async function openStatusPanel(
 					const productPathOrder = [
 						".codewiki/kb/product/users/maintainers.md",
 						".codewiki/kb/product/users/agents.md",
+						".codewiki/kb/product/users/package-authors.md",
+						".codewiki/kb/product/users/external-users.md",
 						".codewiki/kb/product/stories/intent.md",
 						".codewiki/kb/product/stories/navigation.md",
+						".codewiki/kb/product/stories/automation.md",
+						".codewiki/kb/product/stories/drift.md",
+						".codewiki/kb/product/uis/control-room.md",
 						".codewiki/kb/product/uis/status-panel.md",
 						".codewiki/kb/product/uis/board.md",
-						".codewiki/kb/product/uis/agent-tools.md",
+						".codewiki/kb/product/uis/graph-navigation.md",
 					];
                     const productRows = productPathOrder
                         .map((path) => snapshot.state.specs.find((row) => row.path === path))
@@ -2134,15 +2166,25 @@ export async function openStatusPanel(
 						});
 					}
 				} else if (panelState.section === "system") {
-					const architecture = readArchitecturePanelData(panelState.project);
-                    const component = architecture.components[panelState.wikiRowIndex];
-					if (component?.path) {
-						const preview = wikiMarkdownPreview(panelState.project, component.path);
+					const diagrams = readSystemDiagramCatalog(panelState.project);
+					const diagram = diagrams[panelState.wikiRowIndex];
+					if (diagram) {
 						openStatusPanelDetail(panelState, {
-							kind: "wiki",
-							title: component.label || component.id,
-							lines: [`Component: ${component.id}`, `Spec: ${component.path}`, "", component.summary || "No summary.", ...(preview.length ? ["", "Markdown preview:", ...preview] : [])],
+							kind: "diagram",
+							title: diagram.title,
+							lines: [`Diagram: ${diagram.kind}`, `Spec: ${diagram.path}`, "", diagram.purpose],
 						});
+					} else {
+						const architecture = readArchitecturePanelData(panelState.project);
+						const component = architecture.components[panelState.wikiRowIndex];
+						if (component?.path) {
+							const preview = wikiMarkdownPreview(panelState.project, component.path);
+							openStatusPanelDetail(panelState, {
+								kind: "wiki",
+								title: component.label || component.id,
+								lines: [`Component: ${component.id}`, `Spec: ${component.path}`, "", component.summary || "No summary.", ...(preview.length ? ["", "Markdown preview:", ...preview] : [])],
+							});
+						}
 					}
 				} else if (panelState.section === "roadmap") {
 					const taskId =

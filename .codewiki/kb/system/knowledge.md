@@ -6,7 +6,7 @@ summary: Durable product and system knowledge structure for CodeWiki projects.
 owners:
   - architecture
   - product
-updated: "2026-05-09"
+updated: "2026-05-12"
 code_paths:
   - .codewiki/kb
 ---
@@ -38,12 +38,18 @@ System knowledge should define the technical architecture that implements produc
 ```text
 .codewiki/kb/system/
   overview.md
-  architecture.mmd
   file-structure.md
   <component>.md
+  diagrams/
+    README.md
+    context-map.yaml
+    component-map.yaml
+    key-flow.yaml
+    data-model.yaml
+    state-lifecycle.yaml
 ```
 
-Each system component in `architecture.mmd` should have one matching `.md` file. Each component doc should map to code, data, adapters, or generated artifacts in `file-structure.md`. The diagram may include external artifacts such as users, code/tests, or publication outputs when needed for context; those are not system component docs unless ownership moves into CodeWiki.
+Each major system component should have one matching `.md` file under `system/`. Each component doc should map to code, data, adapters, or generated artifacts in `file-structure.md`. Diagram raw data lives under `system/diagrams/**` as YAML so agents can edit it safely and renderers can transform it into Mermaid, Cytoscape, or custom SVG views. Diagrams may include external artifacts such as users, code/tests, or publication outputs when needed for context; those are not system component docs unless ownership moves into CodeWiki.
 
 ## Links and graph relationships
 
@@ -53,8 +59,8 @@ The generated graph derives machine relationships from frontmatter, explicit ref
 
 ## Rules
 
-- Avoid nested `overview.md` files except `product/overview.md` and `system/overview.md`.
-- Avoid a folder per system component.
+- Avoid nested `overview.md` files except `product/overview.md`, `system/overview.md`, and the diagram contract `system/diagrams/README.md`.
+- Avoid a folder per system component; `system/diagrams/**` is the intended nested system exception for diagram raw data.
 - Keep current intended truth in knowledge; do not accumulate old decisions as raw history.
 - Use Git for historical recovery.
 - Use builds for temporary loop handoff briefs.
@@ -62,6 +68,7 @@ The generated graph derives machine relationships from frontmatter, explicit ref
 - Use graph state for generated reconciliation, routing, freshness, backlinks, and drift detection.
 - Use code/tests for executable truth.
 - Prefer sparse intentional links over exhaustive wiki-link meshes.
+- Store canonical diagram source as readable YAML specs under `system/diagrams/**`; treat Mermaid, Cytoscape element JSON, or SVG as renderer targets unless explicitly promoted.
 
 ## Change propagation
 

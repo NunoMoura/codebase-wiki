@@ -1,0 +1,102 @@
+schema_version: 1
+id: spec.system.diagrams.key-flow
+title: CodeWiki Intent-to-Implementation Flow
+kind: sequence_flow
+purpose: Show the core workflow from user intent through feedback, documentation, roadmap work, implementation, validation, and evidence.
+source_docs:
+  - .codewiki/kb/system/compilers.md
+  - .codewiki/kb/system/builds.md
+  - .codewiki/kb/system/roadmap.md
+  - .codewiki/kb/system/validation-gateway.md
+renderer:
+  preferred: mermaid_sequence
+  fallback: custom_sequence
+participants:
+  - id: user
+    label: User
+    kind: actor
+  - id: feedback_compiler
+    label: Feedback compiler
+    kind: workflow
+    source: .codewiki/kb/system/compilers.md
+  - id: feedback_build
+    label: Feedback build
+    kind: build
+    source: .codewiki/kb/system/builds.md
+  - id: documentation_compiler
+    label: Documentation compiler
+    kind: workflow
+    source: .codewiki/kb/system/compilers.md
+  - id: knowledge
+    label: Knowledge
+    kind: durable_truth
+    source: .codewiki/kb/system/knowledge.md
+  - id: roadmap
+    label: Roadmap
+    kind: work_truth
+    source: .codewiki/kb/system/roadmap.md
+  - id: implementation_compiler
+    label: Implementation compiler
+    kind: workflow
+    source: .codewiki/kb/system/compilers.md
+  - id: code_tests
+    label: Code + tests
+    kind: executable_truth
+  - id: validation_gateway
+    label: Validation gateway
+    kind: gate
+    source: .codewiki/kb/system/validation-gateway.md
+  - id: implementation_build
+    label: Implementation build
+    kind: build
+    source: .codewiki/kb/system/builds.md
+steps:
+  - id: capture_intent
+    from: user
+    to: feedback_compiler
+    message: provides intent, constraints, and decisions
+  - id: propose_diff
+    from: feedback_compiler
+    to: user
+    message: proposes diff table for approval
+  - id: accept_feedback
+    from: user
+    to: feedback_build
+    message: accepts approved rows
+  - id: compile_docs
+    from: feedback_build
+    to: documentation_compiler
+    message: handoff accepted intent
+  - id: update_knowledge
+    from: documentation_compiler
+    to: knowledge
+    message: updates product/system truth
+  - id: open_work
+    from: documentation_compiler
+    to: roadmap
+    message: creates or refines executable work
+  - id: resume_task
+    from: roadmap
+    to: implementation_compiler
+    message: provides task outcome, acceptance, non-goals, checks
+  - id: build_code
+    from: implementation_compiler
+    to: code_tests
+    message: changes code/tests inside task scope
+  - id: validate
+    from: implementation_compiler
+    to: validation_gateway
+    message: submits checks and acceptance evidence
+  - id: record_evidence
+    from: validation_gateway
+    to: implementation_build
+    message: accepted evidence and closure brief
+  - id: close_task
+    from: implementation_build
+    to: roadmap
+    message: supports task closure or follow-up
+ui_hints:
+  default_focus: capture_intent
+  show_gate_steps:
+    - propose_diff
+    - validate

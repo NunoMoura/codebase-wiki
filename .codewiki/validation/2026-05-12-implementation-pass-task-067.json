@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-12T01:34:38Z",
+  "profile": "implementation",
+  "task_id": "TASK-067",
+  "verdict": "pass",
+  "rationale": "TASK-067 acceptance is met: Control Room top-level nav is limited to Status/Product/System/Board/Graph; Status replaces Home with compact metrics; Product reads product Markdown through curated cards; System reads `.codewiki/kb/system/diagrams/**` YAML catalog and renders selectable diagram specs; Board/Graph focus on roadmap work and generated relationships; Pi status panel mirrors the simplified model and hides Diff from the tab cycle; UI state remains API/read-model backed; checks pass.",
+  "checks": [
+    "npx tsc --noEmit",
+    "node scripts/check-architecture.mjs",
+    "node tests/smoke/control-room.test.mjs",
+    "node tests/smoke/efficiency-ui.test.mjs",
+    "npm test"
+  ],
+  "issues": [
+    {
+      "severity": "info",
+      "summary": "Unrelated TASK-068 is open in verification state; TASK-067 changes did not close or modify it intentionally."
+    }
+  ],
+  "source": "TASK-067 implementation compiler"
+}

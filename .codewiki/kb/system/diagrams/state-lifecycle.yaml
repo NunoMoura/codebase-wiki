@@ -1,0 +1,99 @@
+schema_version: 1
+id: spec.system.diagrams.state-lifecycle
+title: CodeWiki Task and Compiler Lifecycle
+kind: state_lifecycle
+purpose: Show how intent, builds, roadmap tasks, validation, implementation evidence, and publication readiness move through CodeWiki.
+source_docs:
+  - .codewiki/kb/system/compilers.md
+  - .codewiki/kb/system/builds.md
+  - .codewiki/kb/system/roadmap.md
+  - .codewiki/kb/system/validation-gateway.md
+renderer:
+  preferred: mermaid_state
+  fallback: custom_state
+states:
+  - id: user_intent
+    label: User intent captured
+    kind: input
+  - id: feedback_diff_proposed
+    label: Feedback diff proposed
+    kind: decision_gate
+  - id: feedback_build_accepted
+    label: Feedback build accepted
+    kind: build
+  - id: knowledge_updated
+    label: Knowledge updated
+    kind: durable_truth
+  - id: documentation_build_accepted
+    label: Documentation build accepted
+    kind: build
+  - id: task_todo
+    label: Roadmap task todo
+    kind: work
+  - id: task_in_progress
+    label: Task in progress
+    kind: work
+  - id: task_verify
+    label: Task verify
+    kind: gate
+  - id: implementation_build_accepted
+    label: Implementation build accepted
+    kind: evidence
+  - id: task_done
+    label: Task done
+    kind: closed
+  - id: task_blocked
+    label: Task blocked
+    kind: blocked
+  - id: follow_up_opened
+    label: Follow-up opened
+    kind: work
+transitions:
+  - from: user_intent
+    to: feedback_diff_proposed
+    trigger: feedback compiler proposes decision rows
+  - from: feedback_diff_proposed
+    to: feedback_build_accepted
+    trigger: user approves rows
+    gate: user decision
+  - from: feedback_build_accepted
+    to: knowledge_updated
+    trigger: documentation compiler applies accepted intent
+  - from: knowledge_updated
+    to: documentation_build_accepted
+    trigger: documentation validation passes
+    gate: documentation validation
+  - from: documentation_build_accepted
+    to: task_todo
+    trigger: roadmap task created or refined
+  - from: task_todo
+    to: task_in_progress
+    trigger: implementation resumes task
+  - from: task_in_progress
+    to: task_verify
+    trigger: checks and acceptance evidence ready
+  - from: task_verify
+    to: implementation_build_accepted
+    trigger: implementation validation passes
+    gate: implementation validation
+  - from: implementation_build_accepted
+    to: task_done
+    trigger: task closure evidence recorded
+  - from: task_verify
+    to: task_blocked
+    trigger: validation fails, blocks, or policy requires stop
+    gate: verifier or policy
+  - from: task_done
+    to: follow_up_opened
+    trigger: new accepted delta appears after closure
+  - from: task_blocked
+    to: task_in_progress
+    trigger: blocker resolved and implementation resumes
+ui_hints:
+  default_start: user_intent
+  terminal_states:
+    - task_done
+    - task_blocked
+  gate_states:
+    - feedback_diff_proposed
+    - task_verify

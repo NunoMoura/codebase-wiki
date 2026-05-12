@@ -155,12 +155,11 @@ export function statusSectionTabs(
 	active: StatusPanelSection,
 ): string {
 	const tabs: Array<{ key: StatusPanelSection; label: string }> = [
-		{ key: "home", label: "Home" },
+		{ key: "home", label: "Status" },
 		{ key: "product", label: "Product" },
 		{ key: "system", label: "System" },
 		{ key: "roadmap", label: "Board" },
 		{ key: "graph", label: "Graph" },
-		{ key: "diff", label: "Diff" },
 	];
 	return tabs
 		.map((tab) =>

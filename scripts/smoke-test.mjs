@@ -2161,8 +2161,8 @@ async function main() {
 		);
 		assert.match(
 			panelLines.join("\n"),
-			/\[Home\].*Product.*System.*Board/i,
-			"Status panel should show Home, Product, System, and Board tabs",
+			/\[Status\].*Product.*System.*Board.*Graph/i,
+			"Status panel should show simplified Status, Product, System, Board, and Graph tabs",
 		);
 		assert.doesNotMatch(
 			panelLines.join("\n"),
@@ -2171,8 +2171,8 @@ async function main() {
 		);
 		assert.match(
 			panelLines.join("\n"),
-			/Project status[\s\S]*(🟢|🟡|🔴)[\s\S]*(GREEN|YELLOW|RED)[\s\S]*Lint\/issues[\s\S]*Specs:[\s\S]*Tasks:/i,
-			"Home tab should show traffic-light status and meaningful factors",
+			/Status[\s\S]*(🟢|🟡|🔴)[\s\S]*(GREEN|YELLOW|RED)[\s\S]*Checks:[\s\S]*Tasks:[\s\S]*Claims:[\s\S]*Next action/i,
+			"Status tab should show compact metrics and next action",
 		);
 		panelState.terminalInput?.("\t");
 		const widgetInstanceAfterProductTab = widgetState.content?.(
@@ -2211,8 +2211,8 @@ async function main() {
 		const systemPanelLines = widgetInstanceAfterSystemTab?.render(100) ?? [];
 		assert.match(
 			systemPanelLines.join("\n"),
-			/\[System\][\s\S]*Architecture[\s\S]*Components/i,
-			"System tab should render graph-backed system sections without separate generated view files",
+			/\[System\][\s\S]*Diagrams[\s\S]*Components/i,
+			"System tab should render diagram catalog and source-backed components",
 		);
 		panelState.terminalInput?.("\t");
 		const widgetInstanceAfterBoardTab = widgetState.content?.(

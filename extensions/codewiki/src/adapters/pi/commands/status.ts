@@ -25,15 +25,14 @@ import type { LintReport, StatusPanelSection } from "../../../domain/shared/type
 export function registerStatusCommand(pi: ExtensionAPI): void {
 	pi.registerCommand(`wiki-status`, {
 		description:
-			"Open Codewiki project status panel. Usage: /wiki-status [repo-path] [home|product|system|roadmap|graph|diff]",
+			"Open Codewiki project status panel. Usage: /wiki-status [repo-path] [status|product|system|board|graph]",
 		handler: async (args, ctx) => {
 			await withUiErrorHandling(ctx, async () => {
 				const parts = args.trim().split(/\s+/).filter(Boolean);
 				const sectionCandidate = parts[parts.length - 1];
-				const section = ["home", "product", "system", "roadmap", "graph", "diff"].includes(sectionCandidate || "")
-					? (sectionCandidate as StatusPanelSection)
-					: "home";
-				if (sectionCandidate === section) parts.pop();
+				const sectionAlias: Record<string, StatusPanelSection> = { status: "home", home: "home", product: "product", system: "system", board: "roadmap", roadmap: "roadmap", graph: "graph" };
+				const section = sectionAlias[sectionCandidate || ""] ?? "home";
+				if (sectionCandidate && sectionCandidate in sectionAlias) parts.pop();
 				const pathArg = parts.join(" ") || null;
 				const project = pathArg
 					? await resolveCommandProject(

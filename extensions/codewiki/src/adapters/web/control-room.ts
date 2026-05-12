@@ -1,8 +1,9 @@
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { createRequire } from "node:module";
 import type { AddressInfo } from "node:net";
-import { relative, resolve } from "node:path";
+import { basename, relative, resolve } from "node:path";
+import { load as loadYaml } from "js-yaml";
 import type { WikiProject } from "../../domain/shared/types.ts";
 import { maybeReadGraph, maybeReadRoadmapState, maybeReadStatusState } from "../../application/state-artifacts.ts";
 import { maybeReadJson, pathExists, readText } from "../../infrastructure/filesystem.ts";
@@ -35,6 +36,8 @@ export interface ControlRoomStateModel {
 	};
 	roadmap: {
 		open: number;
+		done: number;
+		blocked: number;
 		next: string | null;
 		focused: string | null;
 	};
@@ -47,7 +50,14 @@ export interface ControlRoomStateModel {
 		generated_at: string | null;
 		nodes: number;
 		edges: number;
+		stale: number;
+		drift: number;
 	};
+	gates: {
+		blocked: number;
+		validation: number;
+	};
+	latest_signal: string | null;
 	next_action: {
 		kind: string;
 		summary: string;
@@ -55,11 +65,85 @@ export interface ControlRoomStateModel {
 	};
 }
 
+export interface ControlRoomProductModel {
+	categories: Array<{
+		id: "users" | "stories" | "uis";
+		label: string;
+		summary: string;
+		items: ControlRoomProductItem[];
+	}>;
+}
+
+export interface ControlRoomProductItem {
+	id: string;
+	path: string;
+	title: string;
+	summary: string;
+	state: string | null;
+	updated: string | null;
+	sections: Array<{ title: string; body: string }>;
+}
+
+export interface ControlRoomBoardModel {
+	stats: {
+		open: number;
+		done: number;
+		blocked: number;
+	};
+	active_sprints: Array<{ id: string; title: string; status: string; task_ids: string[]; open_task_ids: string[] }>;
+	tasks: Array<{
+		id: string;
+		title: string;
+		status: string;
+		priority: string;
+		phase: string | null;
+		summary: string;
+		acceptance: string[];
+		verification: string[];
+		spec_paths: string[];
+		code_paths: string[];
+	}>;
+}
+
 export interface ControlRoomSystemModel {
 	architecture_path: string;
 	source: string;
+	diagram_catalog: ControlRoomSystemDiagramSummary[];
+	diagrams: ControlRoomSystemDiagram[];
 	components: ControlRoomSystemComponent[];
-	edges: Array<{ from: string; to: string; kind: string }>;
+	edges: Array<{ from: string; to: string; kind: string; label?: string }>;
+}
+
+export interface ControlRoomSystemDiagramSummary {
+	id: string;
+	title: string;
+	kind: string;
+	path: string;
+	purpose: string;
+}
+
+export interface ControlRoomSystemDiagram extends ControlRoomSystemDiagramSummary {
+	source_docs: string[];
+	nodes: ControlRoomSystemDiagramNode[];
+	edges: ControlRoomSystemDiagramEdge[];
+	raw: unknown;
+}
+
+export interface ControlRoomSystemDiagramNode {
+	id: string;
+	label: string;
+	kind: string;
+	doc_path: string | null;
+	summary: string;
+	raw?: unknown;
+}
+
+export interface ControlRoomSystemDiagramEdge {
+	from: string;
+	to: string;
+	kind: string;
+	label: string;
+	raw?: unknown;
 }
 
 export interface ControlRoomSystemComponent {
@@ -127,13 +211,21 @@ export async function startControlRoomServer(
 export async function buildControlRoomStateModel(project: WikiProject): Promise<ControlRoomStateModel> {
 	const graph = await maybeReadGraph(project.graphPath) as any;
 	const status = await maybeReadStatusState(project.statusStatePath) as any;
-	const roadmap = await maybeReadRoadmapState(project.roadmapStatePath) as any;
+	const roadmapState = await maybeReadRoadmapState(project.roadmapStatePath) as any;
+	const rawRoadmap = await maybeReadJson<any>(resolve(project.root, project.roadmapPath));
+	const roadmap = roadmapState?.tasks ? roadmapState : rawRoadmap?.tasks ? rawRoadmap : graph?.lenses?.roadmap ?? graph?.views?.roadmap ?? null;
 	const lint = graph?.lenses?.lint ?? graph?.lint ?? null;
 	const health = status?.health ?? lint?.summary ?? graph?.views?.health ?? {};
 	const issueCounts = status?.issue_counts ?? health ?? {};
 	const roadmapSummary = status?.roadmap ?? roadmap?.summary ?? roadmap ?? {};
 	const nextAction = status?.next_action ?? graph?.views?.reconciliation?.next_action ?? {};
 	const claims = status?.claims ?? graph?.views?.coordination?.claims ?? graph?.views?.coordination ?? {};
+	const reconciliationItems = graph?.views?.reconciliation?.items ?? [];
+	const graphNodes = Array.isArray(graph?.nodes) ? graph.nodes : [];
+	const validationNodes = graphNodes.filter((node: any) => String(node.kind ?? "").includes("validation"));
+	const latestValidation = validationNodes.at(-1);
+	const openTasks = Object.values(roadmap?.tasks ?? {}).filter((task: any) => isOpenTaskStatus(task?.status));
+	const blockedTasks = openTasks.filter((task: any) => String(task?.status ?? "") === "blocked" || task?.blocked === true);
 
 	return {
 		project: {
@@ -147,7 +239,9 @@ export async function buildControlRoomStateModel(project: WikiProject): Promise<
 			total: numberFrom(issueCounts.total ?? health.total_issues ?? health.total),
 		},
 		roadmap: {
-			open: numberFrom(roadmapSummary.open_task_count ?? roadmapSummary.open ?? roadmap?.open_task_count),
+			open: numberFrom(roadmapSummary.open_task_count ?? roadmapSummary.open ?? roadmap?.summary?.open_count ?? roadmap?.open_task_count ?? openTasks.length),
+			done: numberFrom(roadmapSummary.done_task_count ?? roadmapSummary.done ?? roadmap?.summary?.status_counts?.done ?? status?.summary?.done_task_count),
+			blocked: numberFrom(roadmapSummary.blocked_task_count ?? roadmapSummary.blocked ?? roadmap?.summary?.status_counts?.blocked ?? blockedTasks.length),
 			next: stringOrNull(roadmapSummary.next_task_id ?? roadmapSummary.next ?? roadmap?.next_task_id),
 			focused: stringOrNull(roadmapSummary.focused_task_id ?? status?.resume?.task_id),
 		},
@@ -158,14 +252,77 @@ export async function buildControlRoomStateModel(project: WikiProject): Promise<
 		},
 		graph: {
 			generated_at: stringOrNull(graph?.generated_at),
-			nodes: Array.isArray(graph?.nodes) ? graph.nodes.length : 0,
+			nodes: graphNodes.length,
 			edges: Array.isArray(graph?.edges) ? graph.edges.length : 0,
+			stale: Array.isArray(graph?.lenses?.freshness?.issues) ? graph.lenses.freshness.issues.length : numberFrom(status?.summary?.stale_count),
+			drift: Array.isArray(reconciliationItems) ? reconciliationItems.length : numberFrom(status?.summary?.drift_count),
 		},
+		gates: {
+			blocked: blockedTasks.length,
+			validation: validationNodes.length,
+		},
+		latest_signal: stringOrNull(latestValidation?.title ?? latestValidation?.path ?? status?.latest_validation?.summary ?? status?.checks?.latest),
 		next_action: {
 			kind: String(nextAction.kind ?? nextAction.type ?? "observe"),
 			summary: String(nextAction.summary ?? nextAction.reason ?? nextAction.label ?? "Inspect CodeWiki state."),
 			command: stringOrNull(nextAction.command),
 		},
+	};
+}
+
+export async function buildControlRoomProductModel(project: WikiProject): Promise<ControlRoomProductModel> {
+	const categories = [
+		{ id: "users" as const, label: "Users", summary: "Who the project serves and what they need." },
+		{ id: "stories" as const, label: "Stories", summary: "User outcomes and success signals." },
+		{ id: "uis" as const, label: "UI surfaces", summary: "Visual surfaces that support those outcomes." },
+	];
+	return {
+		categories: await Promise.all(categories.map(async (category) => ({
+			...category,
+			items: await readProductItems(project, category.id),
+		}))),
+	};
+}
+
+export async function buildControlRoomBoardModel(project: WikiProject): Promise<ControlRoomBoardModel> {
+	const graph = await maybeReadGraph(project.graphPath) as any;
+	const roadmapState = await maybeReadRoadmapState(project.roadmapStatePath) as any;
+	const rawRoadmap = await maybeReadJson<any>(resolve(project.root, project.roadmapPath));
+	const roadmap = roadmapState?.tasks ? roadmapState : rawRoadmap?.tasks ? rawRoadmap : graph?.lenses?.roadmap ?? graph?.views?.roadmap ?? null;
+	const tasks = Object.values(roadmap?.tasks ?? {}) as any[];
+	const openTasks = tasks.filter((task) => isOpenTaskStatus(task.status));
+	const focused = stringOrNull(roadmap?.summary?.focused_task_id ?? roadmap?.focused_task_id);
+	const orderedOpenTasks = [...openTasks].sort((a, b) => {
+		if (focused && a.id === focused) return -1;
+		if (focused && b.id === focused) return 1;
+		return String(a.id).localeCompare(String(b.id));
+	});
+	const sprints = Object.values(roadmap?.sprints ?? roadmap?.views?.sprints ?? {}) as any[];
+	return {
+		stats: {
+			open: numberFrom(roadmap?.summary?.open_count ?? roadmap?.summary?.open_task_count ?? roadmap?.open_task_count ?? roadmap?.open ?? openTasks.length),
+			done: numberFrom(roadmap?.summary?.status_counts?.done ?? roadmap?.summary?.done_task_count ?? roadmap?.done_task_count),
+			blocked: numberFrom(roadmap?.summary?.status_counts?.blocked ?? roadmap?.summary?.blocked_task_count ?? roadmap?.blocked_task_count ?? openTasks.filter((task) => String(task.status) === "blocked").length),
+		},
+		active_sprints: sprints.filter((sprint) => ["active", "planned", "in_progress"].includes(String(sprint.status ?? ""))).slice(0, 5).map((sprint) => ({
+			id: String(sprint.id ?? "sprint"),
+			title: String(sprint.title ?? sprint.id ?? "Sprint"),
+			status: String(sprint.status ?? "unknown"),
+			task_ids: Array.isArray(sprint.task_ids) ? sprint.task_ids.map(String) : [],
+			open_task_ids: Array.isArray(sprint.open_task_ids) ? sprint.open_task_ids.map(String) : [],
+		})),
+		tasks: orderedOpenTasks.slice(0, 12).map((task) => ({
+			id: String(task.id ?? ""),
+			title: String(task.title ?? task.id ?? "Task"),
+			status: String(task.status ?? "unknown"),
+			priority: String(task.priority ?? "medium"),
+			phase: stringOrNull(task.loop?.phase ?? task.phase),
+			summary: String(task.summary ?? ""),
+			acceptance: Array.isArray(task.goal?.acceptance) ? task.goal.acceptance.slice(0, 4).map(String) : [],
+			verification: Array.isArray(task.goal?.verification) ? task.goal.verification.slice(0, 4).map(String) : [],
+			spec_paths: Array.isArray(task.spec_paths) ? task.spec_paths.slice(0, 6).map(String) : [],
+			code_paths: Array.isArray(task.code_paths) ? task.code_paths.slice(0, 6).map(String) : [],
+		})),
 	};
 }
 
@@ -175,6 +332,7 @@ export async function buildControlRoomSystemModel(project: WikiProject): Promise
 	const parsed = parseArchitectureMermaid(source);
 	const componentClasses = parseClassMembership(source, "component");
 	const artifactClasses = parseClassMembership(source, "artifact");
+	const diagrams = await readSystemDiagrams(project);
 	const components: ControlRoomSystemComponent[] = [];
 	for (const node of parsed.nodes) {
 		const docPath = node.doc ? `.codewiki/kb/system/${node.doc}` : null;
@@ -202,6 +360,8 @@ export async function buildControlRoomSystemModel(project: WikiProject): Promise
 	return {
 		architecture_path: relative(project.root, architecturePath),
 		source,
+		diagram_catalog: diagrams.map(({ id, title, kind, path, purpose }) => ({ id, title, kind, path, purpose })),
+		diagrams,
 		components,
 		edges: parsed.edges.map((edge) => ({ ...edge, kind: "architecture" })),
 	};
@@ -211,17 +371,11 @@ export async function buildControlRoomGraphModel(
 	project: WikiProject,
 	options: { maxNodes?: number; maxEdges?: number } = {},
 ): Promise<ControlRoomGraphModel> {
-	const maxNodes = options.maxNodes ?? 180;
-	const maxEdges = options.maxEdges ?? 360;
 	const graph = await maybeReadJson<any>(project.graphPath);
 	const allNodes = Array.isArray(graph?.nodes) ? graph.nodes : [];
 	const allEdges = Array.isArray(graph?.edges) ? graph.edges : [];
-	const nodes = allNodes.slice(0, maxNodes).map(normalizeGraphNode);
-	const visibleIds = new Set(nodes.map((node) => String(node.id)));
-	const edges = allEdges
-		.filter((edge: any) => visibleIds.has(String(edge.from)) && visibleIds.has(String(edge.to)))
-		.slice(0, maxEdges)
-		.map(normalizeGraphEdge);
+	const nodes = allNodes.map(normalizeGraphNode);
+	const edges = allEdges.map(normalizeGraphEdge);
 	return {
 		generated_at: stringOrNull(graph?.generated_at),
 		stats: {
@@ -229,7 +383,7 @@ export async function buildControlRoomGraphModel(
 			total_edges: allEdges.length,
 			shown_nodes: nodes.length,
 			shown_edges: edges.length,
-			truncated: allNodes.length > nodes.length || allEdges.length > edges.length,
+			truncated: false,
 		},
 		node_kinds: uniqueSorted(allNodes.map((node: any) => String(node.kind ?? "unknown"))),
 		edge_kinds: uniqueSorted(allEdges.map((edge: any) => String(edge.kind ?? "edge"))),
@@ -266,8 +420,14 @@ async function handleControlRoomRequest(
 			case "/api/state":
 				writeJsonResponse(res, 200, await buildControlRoomStateModel(project));
 				return;
+			case "/api/product":
+				writeJsonResponse(res, 200, await buildControlRoomProductModel(project));
+				return;
 			case "/api/system":
 				writeJsonResponse(res, 200, await buildControlRoomSystemModel(project));
+				return;
+			case "/api/board":
+				writeJsonResponse(res, 200, await buildControlRoomBoardModel(project));
 				return;
 			case "/api/graph":
 				writeJsonResponse(res, 200, await buildControlRoomGraphModel(project));
@@ -286,6 +446,137 @@ async function handleControlRoomRequest(
 function readCytoscapeVendorAsset(): Promise<string> {
 	cytoscapeAssetCache ??= readFile(nodeRequire.resolve("cytoscape/dist/cytoscape.min.js"), "utf8");
 	return cytoscapeAssetCache;
+}
+
+async function readProductItems(project: WikiProject, category: "users" | "stories" | "uis"): Promise<ControlRoomProductItem[]> {
+	const dir = resolve(project.root, ".codewiki/kb/product", category);
+	if (!(await pathExists(dir))) return [];
+	const entries = (await readdir(dir, { withFileTypes: true }))
+		.filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
+		.map((entry) => entry.name)
+		.sort((a, b) => a.localeCompare(b));
+	const items: ControlRoomProductItem[] = [];
+	for (const name of entries) {
+		const absolute = resolve(dir, name);
+		const raw = await readText(absolute);
+		const { frontmatter, body } = parseMarkdownFrontmatter(raw);
+		const title = frontmatter.title || markdownTitle(body) || titleFromFilename(name);
+		items.push({
+			id: `${category}:${name.replace(/\.md$/, "")}`,
+			path: relative(project.root, absolute),
+			title,
+			summary: frontmatter.summary || firstParagraph(body) || "No summary found.",
+			state: frontmatter.state || null,
+			updated: frontmatter.updated || null,
+			sections: extractMarkdownSections(body).slice(0, 4),
+		});
+	}
+	return items;
+}
+
+async function readSystemDiagrams(project: WikiProject): Promise<ControlRoomSystemDiagram[]> {
+	const dir = resolve(project.root, ".codewiki/kb/system/diagrams");
+	if (!(await pathExists(dir))) return [];
+	const entries = (await readdir(dir, { withFileTypes: true }))
+		.filter((entry) => entry.isFile() && /\.ya?ml$/i.test(entry.name))
+		.map((entry) => entry.name)
+		.sort((a, b) => diagramSortRank(a) - diagramSortRank(b) || a.localeCompare(b));
+	const diagrams: ControlRoomSystemDiagram[] = [];
+	for (const name of entries) {
+		const absolute = resolve(dir, name);
+		try {
+			const raw = loadYaml(await readText(absolute)) as any;
+			diagrams.push(normalizeSystemDiagram(raw || {}, relative(project.root, absolute)));
+		} catch {
+			// Invalid diagram YAML should not block the whole Control Room.
+		}
+	}
+	return diagrams;
+}
+
+function diagramSortRank(name: string): number {
+	const order = ["context-map", "component-map", "key-flow", "data-model", "state-lifecycle"];
+	const index = order.findIndex((item) => name.startsWith(item));
+	return index >= 0 ? index : order.length;
+}
+
+function normalizeSystemDiagram(raw: any, path: string): ControlRoomSystemDiagram {
+	const kind = String(raw.kind || "diagram");
+	const nodes = normalizeDiagramNodes(raw, kind);
+	return {
+		id: String(raw.id || path),
+		title: String(raw.title || titleFromFilename(basename(path))),
+		kind,
+		path,
+		purpose: String(raw.purpose || "System diagram."),
+		source_docs: Array.isArray(raw.source_docs) ? raw.source_docs.map(String) : [],
+		nodes,
+		edges: normalizeDiagramEdges(raw, kind),
+		raw,
+	};
+}
+
+function normalizeDiagramNodes(raw: any, kind: string): ControlRoomSystemDiagramNode[] {
+	if (kind === "context_map") {
+		return [
+			...arrayOf(raw.actors).map((node: any) => diagramNode(node, "actor")),
+			...arrayOf(raw.systems).map((node: any) => diagramNode(node, String(node.boundary || "system"))),
+		];
+	}
+	if (kind === "sequence_flow") return arrayOf(raw.participants).map((node: any) => diagramNode(node, String(node.kind || "participant")));
+	if (kind === "data_model") return arrayOf(raw.entities).map((node: any) => diagramNode(node, "entity", node.role || node.storage));
+	if (kind === "state_lifecycle") return arrayOf(raw.states).map((node: any) => diagramNode(node, String(node.kind || "state")));
+	return arrayOf(raw.nodes).map((node: any) => diagramNode(node, String(node.kind || node.group || "node")));
+}
+
+function normalizeDiagramEdges(raw: any, kind: string): ControlRoomSystemDiagramEdge[] {
+	if (kind === "context_map") return arrayOf(raw.relationships).map((edge: any) => diagramEdge(edge, "relationship"));
+	if (kind === "sequence_flow") return arrayOf(raw.steps).map((edge: any) => diagramEdge(edge, "sequence", edge.message));
+	if (kind === "data_model") return arrayOf(raw.relationships).map((edge: any) => diagramEdge(edge, String(edge.type || "relationship")));
+	if (kind === "state_lifecycle") return arrayOf(raw.transitions).map((edge: any) => diagramEdge(edge, "transition", edge.trigger));
+	return arrayOf(raw.edges).map((edge: any) => diagramEdge(edge, String(edge.kind || "edge")));
+}
+
+function diagramNode(node: any, kind: string, summary?: unknown): ControlRoomSystemDiagramNode {
+	return {
+		id: String(node.id || node.label || "node"),
+		label: String(node.label || node.title || node.id || "node"),
+		kind,
+		doc_path: stringOrNull(node.source || node.doc_path || node.doc),
+		summary: String(summary || node.summary || node.purpose || node.role || node.storage || kind),
+		raw: node,
+	};
+}
+
+function diagramEdge(edge: any, kind: string, label?: unknown): ControlRoomSystemDiagramEdge {
+	return {
+		from: String(edge.from || edge.source || ""),
+		to: String(edge.to || edge.target || ""),
+		kind,
+		label: String(label || edge.label || edge.type || kind),
+		raw: edge,
+	};
+}
+
+function arrayOf(value: unknown): any[] {
+	return Array.isArray(value) ? value : [];
+}
+
+function markdownTitle(body: string): string | null {
+	return stringOrNull(/^#\s+(.+)$/m.exec(body)?.[1]?.trim());
+}
+
+function firstParagraph(body: string): string | null {
+	const paragraph = body
+		.replace(/^#\s+.+$/gm, "")
+		.split(/\n\s*\n/)
+		.map((part) => part.trim())
+		.find((part) => part && !part.startsWith("|") && !part.startsWith("```"));
+	return paragraph ? paragraph.replace(/\s+/g, " ").slice(0, 220) : null;
+}
+
+function titleFromFilename(name: string): string {
+	return name.replace(/\.(md|ya?ml)$/i, "").split(/[-_]/g).map((part) => part ? part[0]!.toUpperCase() + part.slice(1) : part).join(" ");
 }
 
 function writeTextResponse(res: ServerResponse, status: number, body: string, contentType: string): void {
@@ -408,6 +699,10 @@ function numberFrom(value: unknown): number {
 	return Number.isFinite(number) ? number : 0;
 }
 
+function isOpenTaskStatus(status: unknown): boolean {
+	return !["done", "cancelled", "closed"].includes(String(status ?? "").toLowerCase());
+}
+
 function uniqueSorted(values: string[]): string[] {
 	return Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b));
 }
@@ -431,31 +726,21 @@ const CONTROL_ROOM_HTML = `<!doctype html>
     <div class="command">⌘ local-first · 127.0.0.1</div>
   </header>
   <nav class="rail" aria-label="Control Room sections">
-    <button data-view="home" class="active">Home</button>
+    <button data-view="status" class="active">Status</button>
     <button data-view="product">Product</button>
     <button data-view="system">System</button>
+    <button data-view="board">Board</button>
     <button data-view="graph">Graph</button>
-    <button data-view="knowledge">Knowledge</button>
-    <button data-view="roadmap">Roadmap</button>
-    <button data-view="builds">Builds</button>
-    <button data-view="validation">Validation</button>
-    <button data-view="diff">Diff</button>
-    <button data-view="settings">Settings</button>
   </nav>
   <main class="workspace">
-    <section id="home" class="view active"></section>
+    <section id="status" class="view active"></section>
     <section id="product" class="view"></section>
     <section id="system" class="view"></section>
+    <section id="board" class="view"></section>
     <section id="graph" class="view"></section>
-    <section id="knowledge" class="view"></section>
-    <section id="roadmap" class="view"></section>
-    <section id="builds" class="view"></section>
-    <section id="validation" class="view placeholder"></section>
-    <section id="diff" class="view placeholder"></section>
-    <section id="settings" class="view placeholder"></section>
   </main>
   <aside id="inspector" class="inspector"></aside>
-  <footer id="status" class="status">booting control room…</footer>
+  <footer id="statusLine" class="status">booting control room…</footer>
 </div>
 <script src="/assets/vendor/cytoscape.min.js"></script>
 <script src="/assets/control-room.js"></script>
@@ -618,7 +903,7 @@ a { color: var(--highlight); }
 `;
 
 const CONTROL_ROOM_JS = String.raw`
-const state = { model: null, system: null, graph: null, selected: null, systemZoom: 0.92, graphZoom: 1, drawnEdges: [], cy: null };
+const state = { model: null, product: null, system: null, board: null, graph: null, selected: null, systemZoom: 0.92, graphZoom: 1, drawnEdges: [], cy: null, systemDiagramId: null };
 const GRAPH_FIT_PADDING = 72;
 const GRAPH_LAYOUT_SPACING = 180;
 const GRAPH_NODE_REPULSION = 26000;
@@ -626,15 +911,11 @@ const $ = (id) => document.getElementById(id);
 const esc = (value) => String(value ?? '').replace(/[&<>"]/g, (ch) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 
 const AREAS = [
-  { id: 'product', label: 'Product', glyph: '◇', summary: 'User intent, stories, visual UI expectations, and product non-goals.', sources: ['.codewiki/kb/product/overview.md', '.codewiki/kb/product/users/**', '.codewiki/kb/product/stories/**', '.codewiki/kb/product/uis/**'] },
-  { id: 'system', label: 'System', glyph: '▧', summary: 'Architecture, API, adapters, package boundaries, and implementation seams.', sources: ['.codewiki/kb/system/architecture.mmd', '.codewiki/kb/system/overview.md', '.codewiki/kb/system/*.md'] },
-  { id: 'graph', label: 'Graph', glyph: '✣', summary: 'Generated relationship map, drift signals, lenses, and next action routing.', sources: ['.codewiki/index_graph.json', '.codewiki/kb/system/graph.md'] },
-  { id: 'knowledge', label: 'Knowledge', glyph: '▤', summary: 'Canonical repo-local intended truth under product and system knowledge.', sources: ['.codewiki/kb/**', '.codewiki/kb/lexicon.md'] },
-  { id: 'roadmap', label: 'Roadmap', glyph: '▦', summary: 'Executable delta from intent to implementation, including tasks and closure evidence.', sources: ['.codewiki/roadmap.json', '.codewiki/kb/system/roadmap.md'] },
-  { id: 'builds', label: 'Builds', glyph: '▣', summary: 'Feedback, documentation, and implementation handoff artifacts.', sources: ['.codewiki/builds/**', '.codewiki/kb/system/builds.md'] },
-  { id: 'validation', label: 'Validation', glyph: '✓', summary: 'Gateway verdicts, failures, blockers, and policy-kept reports.', sources: ['.codewiki/validation/**', '.codewiki/kb/system/validation-gateway.md'] },
-  { id: 'diff', label: 'Diff', glyph: '↯', summary: 'Pending feedback decision tables and accepted user intent deltas.', sources: ['.codewiki/runtime/diff-tables.json'] },
-  { id: 'settings', label: 'Settings', glyph: '⚙', summary: 'Repo config, local UI host, harness surface, and local-first runtime preferences.', sources: ['.codewiki/config.json', '~/.pi/codewiki-status-prefs.json'] },
+  { id: 'status', label: 'Status', glyph: '▣', summary: 'Basic project metrics, health, focus, gates, claims, drift, and next action.', sources: ['.codewiki/index_graph.json', '.codewiki/roadmap.json'] },
+  { id: 'product', label: 'Product', glyph: '◇', summary: 'Curated users, stories, and UI surfaces extracted from product Markdown.', sources: ['.codewiki/kb/product/**'] },
+  { id: 'system', label: 'System', glyph: '▧', summary: 'Source-backed components and selectable diagrams from YAML raw data.', sources: ['.codewiki/kb/system/*.md', '.codewiki/kb/system/diagrams/**'] },
+  { id: 'board', label: 'Board', glyph: '▦', summary: 'Roadmap work, active scope, gates, blockers, acceptance, and evidence links.', sources: ['.codewiki/roadmap.json', '.codewiki/kb/system/roadmap.md'] },
+  { id: 'graph', label: 'Graph', glyph: '✣', summary: 'Generated relationships around active work, drift, validation, builds, and evidence.', sources: ['.codewiki/index_graph.json'] },
 ];
 
 async function getJson(url) {
@@ -646,19 +927,20 @@ async function getJson(url) {
 async function boot() {
   wireNav();
   try {
-    const [model, system, graph] = await Promise.all([getJson('/api/state'), getJson('/api/system'), getJson('/api/graph')]);
-    state.model = model; state.system = system; state.graph = graph;
+    const [model, product, system, board, graph] = await Promise.all([getJson('/api/state'), getJson('/api/product'), getJson('/api/system'), getJson('/api/board'), getJson('/api/graph')]);
+    state.model = model; state.product = product; state.system = system; state.board = board; state.graph = graph;
+    state.systemDiagramId = system.diagram_catalog?.[0]?.id || null;
     $('repo').textContent = ' :: ' + model.project.label;
-    renderHome();
-    renderAreaView('product');
+    renderStatus();
+    renderProduct();
     renderSystem();
+    renderBoard();
     renderGraph();
-    ['knowledge', 'roadmap', 'builds', 'validation', 'diff', 'settings'].forEach(renderAreaView);
-    inspectHome();
-    $('status').textContent = 'ready · graph ' + model.graph.nodes + ' nodes / ' + model.graph.edges + ' edges · local repo ' + model.project.root;
+    inspectStatus();
+    $('statusLine').textContent = 'ready · ' + model.health.color + ' · tasks ' + model.roadmap.open + ' open · graph ' + model.graph.nodes + '/' + model.graph.edges + ' · local repo ' + model.project.root;
   } catch (err) {
-    $('status').textContent = 'error · ' + err.message;
-    $('home').innerHTML = '<div class="empty-state"><h2>Boot failed</h2><pre>' + esc(err.stack || err.message) + '</pre></div>';
+    $('statusLine').textContent = 'error · ' + err.message;
+    $('status').innerHTML = '<div class="empty-state"><h2>Boot failed</h2><pre>' + esc(err.stack || err.message) + '</pre></div>';
   }
 }
 
@@ -671,162 +953,165 @@ function wireNav() {
 function activateView(view) {
   document.querySelectorAll('.rail button').forEach((button) => button.classList.toggle('active', button.dataset.view === view));
   document.querySelectorAll('.view').forEach((el) => el.classList.toggle('active', el.id === view));
-  if (view === 'home') inspectHome();
-  else if (view === 'system' && state.system?.components?.[0]) inspectComponent(state.system.components[0].id);
+  if (view === 'status') inspectStatus();
+  else if (view === 'product') inspectArea('product');
+  else if (view === 'system') inspectDiagram();
+  else if (view === 'board') inspectArea('board');
   else if (view === 'graph' && state.graph?.nodes?.[0]) inspectGraphNode(String(state.graph.nodes[0].id));
   else inspectArea(view);
 }
 
-function renderHome() {
+function renderStatus() {
   const m = state.model;
-  $('home').innerHTML = '<div class="section-head"><h2>Mission briefing</h2><p>CodeWiki as local-first control room. Pick an area to inspect canonical truth.</p></div><div class="grid">'
+  $('status').innerHTML = '<div class="section-head"><h2>Status</h2><p>Compact project metrics for second-screen use beside chat.</p></div><div class="grid">'
     + card('Health', '<span class="badge ' + healthClass(m.health.color) + '">' + esc(m.health.color) + '</span><div class="big">' + m.health.errors + '/' + m.health.warnings + '</div><div class="muted">errors / warnings</div>')
-    + card('Roadmap', '<div class="big">' + m.roadmap.open + '</div><div>open tasks</div><div class="muted">next: ' + esc(m.roadmap.next || 'none') + '</div>')
-    + card('Claims', '<div class="big">' + m.claims.active + '</div><div>active claims</div><div class="muted">conflicts: ' + m.claims.conflicts + '</div>')
-    + card('Graph', '<div class="big">' + m.graph.nodes + '</div><div>nodes</div><div class="muted">edges: ' + m.graph.edges + '</div>')
-    + '</div><div class="section-head" style="margin-top:1rem"><h2>CodeWiki map</h2><p>Major product/system surfaces. Each card points back to source files.</p></div>'
-    + renderAreaCards()
-    + '<div class="empty-state" style="margin-top:0.75rem"><h2>Next safe action</h2><p><span class="badge">' + esc(m.next_action.kind) + '</span>' + esc(m.next_action.summary) + '</p><pre>' + esc(m.next_action.command || 'Use the rail to inspect System or Graph.') + '</pre></div>';
-  wireAreaCards();
+    + card('Roadmap work', '<div class="big">' + m.roadmap.open + '</div><div>open tasks</div><div class="muted">done ' + m.roadmap.done + ' · blocked ' + m.roadmap.blocked + '</div>')
+    + card('Claims', '<div class="big">' + m.claims.active + '</div><div>active claims</div><div class="muted">conflicts ' + m.claims.conflicts + ' · warnings ' + m.claims.warnings + '</div>')
+    + card('Graph', '<div class="big">' + m.graph.nodes + '</div><div>nodes</div><div class="muted">edges ' + m.graph.edges + ' · drift ' + m.graph.drift + ' · stale ' + m.graph.stale + '</div>')
+    + card('Gates', '<div class="big">' + m.gates.blocked + '</div><div>blocked gate(s)</div><div class="muted">validation signals ' + m.gates.validation + '</div>')
+    + card('Focus', '<div class="big">' + esc(m.roadmap.focused || m.roadmap.next || '—') + '</div><div class="muted">next: ' + esc(m.next_action.kind) + '</div>')
+    + '</div><div class="empty-state" style="margin-top:0.75rem"><h2>Next safe action</h2><p><span class="badge">' + esc(m.next_action.kind) + '</span>' + esc(m.next_action.summary) + '</p><pre>' + esc(m.next_action.command || 'Use Product, System, Board, or Graph for context.') + '</pre></div>';
 }
 
 function card(title, body) { return '<article class="card"><h3>' + esc(title) + '</h3>' + body + '</article>'; }
 function healthClass(color) { return color === 'red' ? 'red' : color === 'yellow' ? 'yellow' : ''; }
 
-function renderAreaCards(activeId) {
-  return '<div class="area-map">' + AREAS.map((area) => '<button class="area-card' + (area.id === activeId ? ' active' : '') + '" data-area="' + esc(area.id) + '"><div class="glyph">' + esc(area.glyph) + '</div><h3>' + esc(area.label) + '</h3><p>' + esc(area.summary) + '</p><p class="muted">' + esc(area.sources[0]) + '</p></button>').join('') + '</div>';
+function renderProduct() {
+  const categories = state.product?.categories || [];
+  $('product').innerHTML = '<div class="section-head"><h2>Product</h2><p>Curated users, stories, and UI surfaces from product Markdown. Raw docs stay as source anchors.</p></div>'
+    + categories.map((category) => '<section class="product-category"><h3>' + esc(category.label) + '</h3><p class="muted">' + esc(category.summary) + '</p><div class="source-grid">'
+      + (category.items || []).map((item) => '<button class="source-card product-card" data-category="' + esc(category.id) + '" data-product="' + esc(item.id) + '"><h3>' + esc(item.title) + '</h3><p>' + esc(item.summary) + '</p><p class="muted">' + esc(item.path) + '</p></button>').join('')
+      + '</div></section>').join('');
+  document.querySelectorAll('.product-card').forEach((card) => card.addEventListener('click', () => inspectProductItem(card.dataset.category, card.dataset.product)));
 }
 
-function wireAreaCards() {
-  document.querySelectorAll('.area-card').forEach((button) => {
-    button.addEventListener('click', () => {
-      const id = button.dataset.area;
-      if (id === 'system' || id === 'graph' || id === 'product') activateView(id);
-      else activateView(id);
-      inspectArea(id);
-    });
-  });
-}
-
-function renderAreaView(id) {
-  const area = areaById(id);
-  if (!area || id === 'system' || id === 'graph') return;
-  const sourceCards = area.sources.map((source) => '<article class="source-card"><h3>source</h3><code>' + esc(source) + '</code></article>').join('');
-  $(id).innerHTML = '<div class="section-head"><h2>' + esc(area.glyph + ' ' + area.label) + '</h2><p>' + esc(area.summary) + '</p></div>' + renderAreaCards(id) + '<div class="section-head" style="margin-top:1rem"><h2>Source anchors</h2><p>UI representation stays tied to canonical or generated CodeWiki files.</p></div><div class="source-grid">' + sourceCards + '</div>';
-  wireAreaCards();
-}
-
-function areaById(id) { return AREAS.find((area) => area.id === id); }
-
-function inspectArea(id) {
-  const area = areaById(id);
-  if (!area) return;
-  document.querySelectorAll('.area-card').forEach((button) => button.classList.toggle('active', button.dataset.area === id));
-  $('inspector').innerHTML = '<h2>' + esc(area.glyph + ' ' + area.label) + '</h2><p>' + esc(area.summary) + '</p><h3>Source anchors</h3><pre>' + esc(area.sources.join('\n')) + '</pre><p class="muted">Representation only. Canonical truth remains in source files and graph state.</p>';
+function inspectProductItem(categoryId, itemId) {
+  const category = (state.product?.categories || []).find((entry) => entry.id === categoryId);
+  const item = category?.items?.find((entry) => entry.id === itemId);
+  if (!item) return;
+  $('inspector').innerHTML = '<h2>' + esc(item.title) + '</h2><p>' + esc(item.summary) + '</p>'
+    + '<p><span class="badge">' + esc(category.label) + '</span>' + (item.state ? '<span class="badge">' + esc(item.state) + '</span>' : '') + '</p>'
+    + '<pre>' + esc(item.path) + '</pre>'
+    + (item.sections || []).map((s) => '<h3>' + esc(s.title) + '</h3><pre>' + esc(s.body) + '</pre>').join('');
 }
 
 function renderSystem() {
-  const model = state.system;
-  const controls = '<div class="toolbar"><span class="badge">' + esc(model.architecture_path) + '</span><span class="muted">click component → source-backed inspector</span><button data-zoom="system:out">−</button><button data-zoom="system:in">+</button><button data-zoom="system:fit">fit</button><button data-zoom="system:reset">reset</button></div>';
+  const catalog = state.system?.diagram_catalog || [];
+  const options = catalog.map((diagram) => '<option value="' + esc(diagram.id) + '"' + (diagram.id === state.systemDiagramId ? ' selected' : '') + '>' + esc(diagram.title) + '</option>').join('');
+  const controls = '<div class="toolbar"><label>diagram <select id="systemDiagramSelect">' + options + '</select></label><span id="systemDiagramPurpose" class="muted"></span><button data-zoom="system:out">−</button><button data-zoom="system:in">+</button><button data-zoom="system:fit">fit</button><button data-zoom="system:reset">reset</button></div>';
   $('system').innerHTML = controls + '<div id="systemDiagram" class="diagram canvas"></div>';
+  $('systemDiagramSelect')?.addEventListener('change', () => { state.systemDiagramId = $('systemDiagramSelect').value; drawSystemDiagram(); inspectDiagram(); });
   wireZoomControls();
-  drawSystemDiagram(model);
+  drawSystemDiagram();
 }
 
-function drawSystemDiagram(model) {
-  const layout = layoutSystem(model.components);
+function activeDiagram() {
+  const diagrams = state.system?.diagrams || [];
+  return diagrams.find((diagram) => diagram.id === state.systemDiagramId) || diagrams[0] || null;
+}
+
+function drawSystemDiagram() {
+  const diagram = activeDiagram();
+  if (!diagram) {
+    $('systemDiagram').innerHTML = '<div class="empty-state"><h2>No system diagrams</h2><p>Create YAML diagram specs in .codewiki/kb/system/diagrams/.</p></div>';
+    return;
+  }
+  $('systemDiagramPurpose').textContent = diagram.kind + ' · ' + diagram.path;
+  const layout = layoutDiagram(diagram.nodes || []);
   const boxW = layout.boxW, boxH = layout.boxH;
-  let svg = '<svg width="' + Math.round(layout.width * state.systemZoom) + '" height="' + Math.round(layout.height * state.systemZoom) + '" viewBox="0 0 ' + layout.width + ' ' + layout.height + '" role="img" aria-label="CodeWiki architecture diagram"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c7a35a" /></marker></defs>';
-  for (const lane of layout.lanes) svg += '<text x="' + lane.x + '" y="22" fill="#899488" font-size="11">' + esc(lane.label) + '</text>';
-  model.edges.forEach((edge, index) => {
+  let svg = '<svg width="' + Math.round(layout.width * state.systemZoom) + '" height="' + Math.round(layout.height * state.systemZoom) + '" viewBox="0 0 ' + layout.width + ' ' + layout.height + '" role="img" aria-label="' + esc(diagram.title) + '"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c7a35a" /></marker></defs>';
+  (diagram.edges || []).forEach((edge, index) => {
     const a = layout.pos.get(edge.from), b = layout.pos.get(edge.to);
     if (!a || !b) return;
-    svg += '<path class="edge" data-edge="' + index + '" d="' + routeEdge(a, b, boxW, boxH) + '" />';
+    svg += '<path class="edge" data-edge="' + index + '" d="' + routeEdge(a, b, boxW, boxH) + '" /><text x="' + Math.round((a.x + b.x) / 2 + boxW / 2) + '" y="' + Math.round((a.y + b.y) / 2 + boxH / 2 - 6) + '" fill="#899488" font-size="9">' + esc(trim(edge.label, 28)) + '</text>';
   });
-  for (const c of model.components) {
-    const p = layout.pos.get(c.id); if (!p) continue;
-    const fill = c.kind === 'component' ? 'rgba(180,190,172,0.10)' : 'rgba(199,163,90,0.08)';
-    svg += '<g class="node" data-id="' + esc(c.id) + '"><rect x="' + p.x + '" y="' + p.y + '" width="' + boxW + '" height="' + boxH + '" rx="4" fill="' + fill + '" stroke="rgba(180,190,172,0.42)" />'
-      + '<text x="' + (p.x + 12) + '" y="' + (p.y + 25) + '" fill="#f4f1e8" font-size="13">' + esc(trim(c.title, 24)) + '</text>'
-      + '<text x="' + (p.x + 12) + '" y="' + (p.y + 44) + '" fill="#899488" font-size="10">' + esc(c.doc_path || c.kind) + '</text></g>';
+  for (const node of diagram.nodes || []) {
+    const p = layout.pos.get(node.id); if (!p) continue;
+    const fill = node.kind === 'actor' ? 'rgba(199,163,90,0.10)' : 'rgba(180,190,172,0.10)';
+    svg += '<g class="node" data-id="' + esc(node.id) + '"><rect x="' + p.x + '" y="' + p.y + '" width="' + boxW + '" height="' + boxH + '" rx="4" fill="' + fill + '" stroke="rgba(180,190,172,0.42)" />'
+      + '<text x="' + (p.x + 12) + '" y="' + (p.y + 25) + '" fill="#f4f1e8" font-size="13">' + esc(trim(node.label, 28)) + '</text>'
+      + '<text x="' + (p.x + 12) + '" y="' + (p.y + 44) + '" fill="#899488" font-size="10">' + esc(trim(node.doc_path || node.kind, 34)) + '</text></g>';
   }
   svg += '</svg>';
   $('systemDiagram').innerHTML = svg;
-  document.querySelectorAll('#systemDiagram .node').forEach((node) => node.addEventListener('click', () => inspectComponent(node.dataset.id)));
-  document.querySelectorAll('#systemDiagram .edge').forEach((edge) => edge.addEventListener('click', () => inspectSystemEdge(Number(edge.dataset.edge))));
+  document.querySelectorAll('#systemDiagram .node').forEach((node) => node.addEventListener('click', () => inspectDiagramNode(node.dataset.id)));
+  document.querySelectorAll('#systemDiagram .edge').forEach((edge) => edge.addEventListener('click', () => inspectDiagramEdge(Number(edge.dataset.edge))));
 }
 
-function layoutSystem(components) {
-  const boxW = 205, boxH = 62, colW = 260, rowH = 108, marginX = 34, marginY = 44;
-  const manual = {
-    User: [0, 2],
-    ControlRoom: [1, 1], Extension: [1, 3],
-    Adapters: [2, 3],
-    API: [3, 2],
-    Agency: [4, 0], Compilers: [4, 2], Gateway: [4, 4],
-    Knowledge: [5, 0], Builds: [5, 1.35], Roadmap: [5, 2.7], CodeTests: [5, 4.05],
-    Graph: [6, 1.35],
-    Publication: [7, 2.7]
-  };
+function layoutDiagram(nodes) {
+  const boxW = 220, boxH = 64, colW = 295, rowH = 118, marginX = 34, marginY = 44;
   const pos = new Map();
-  let fallback = 0;
-  for (const c of components) {
-    const pair = manual[c.id] || [2 + (fallback % 4), 5.2 + Math.floor(fallback / 4)];
-    if (!manual[c.id]) fallback++;
-    pos.set(c.id, { x: marginX + pair[0] * colW, y: marginY + pair[1] * rowH });
-  }
+  const columns = Math.max(2, Math.ceil(Math.sqrt(Math.max(1, nodes.length))));
+  nodes.forEach((node, index) => {
+    const col = index % columns;
+    const row = Math.floor(index / columns);
+    pos.set(String(node.id), { x: marginX + col * colW, y: marginY + row * rowH });
+  });
   const values = Array.from(pos.values());
-  const width = Math.max(980, Math.max(...values.map((p) => p.x)) + boxW + marginX);
-  const height = Math.max(650, Math.max(...values.map((p) => p.y)) + boxH + marginY);
-  const lanes = [
-    { x: marginX, label: 'intent' },
-    { x: marginX + colW, label: 'surface' },
-    { x: marginX + 2 * colW, label: 'adapter' },
-    { x: marginX + 3 * colW, label: 'api' },
-    { x: marginX + 4 * colW, label: 'loops' },
-    { x: marginX + 5 * colW, label: 'truth' },
-    { x: marginX + 6 * colW, label: 'state' },
-    { x: marginX + 7 * colW, label: 'output' }
-  ];
-  return { pos, lanes, boxW, boxH, width, height };
+  const width = Math.max(980, Math.max(...values.map((p) => p.x), marginX) + boxW + marginX);
+  const height = Math.max(620, Math.max(...values.map((p) => p.y), marginY) + boxH + marginY);
+  return { pos, boxW, boxH, width, height };
 }
 
 function routeEdge(a, b, boxW, boxH) {
-  const forward = b.x > a.x + 8;
-  const sameColumn = Math.abs(b.x - a.x) <= 8;
-  const sx = forward || sameColumn ? a.x + boxW : a.x;
+  const sx = a.x + boxW;
   const sy = a.y + boxH / 2;
-  const ex = forward ? b.x : sameColumn ? b.x + boxW : b.x + boxW;
+  const ex = b.x;
   const ey = b.y + boxH / 2;
-  const midX = sameColumn ? sx + 42 : (sx + ex) / 2;
+  const midX = Math.abs(ex - sx) < 30 ? sx + 44 : (sx + ex) / 2;
   return 'M ' + sx + ' ' + sy + ' H ' + midX + ' V ' + ey + ' H ' + ex;
 }
 
-function inspectComponent(id) {
-  state.selected = id;
-  document.querySelectorAll('#systemDiagram .node').forEach((node) => node.classList.toggle('selected', node.dataset.id === id));
-  document.querySelectorAll('#systemDiagram .edge').forEach((edge) => edge.classList.remove('selected'));
-  const c = state.system.components.find((item) => item.id === id);
-  if (!c) return;
-  $('inspector').innerHTML = '<h2>' + esc(c.title) + '</h2><p>' + esc(c.summary) + '</p>'
-    + '<p><span class="badge">' + esc(c.kind) + '</span>' + (c.state ? '<span class="badge">' + esc(c.state) + '</span>' : '') + '</p>'
-    + '<pre>' + esc(c.doc_path || 'No source doc') + '</pre>'
-    + c.sections.map((s) => '<h3>' + esc(s.title) + '</h3><pre>' + esc(s.body) + '</pre>').join('');
+function inspectDiagram() {
+  const diagram = activeDiagram();
+  if (!diagram) return;
+  $('inspector').innerHTML = '<h2>' + esc(diagram.title) + '</h2><p>' + esc(diagram.purpose) + '</p><p><span class="badge">' + esc(diagram.kind) + '</span></p><pre>' + esc(diagram.path) + '</pre><h3>Source docs</h3><pre>' + esc((diagram.source_docs || []).join('\n') || '—') + '</pre>';
 }
 
-function inspectSystemEdge(index) {
-  document.querySelectorAll('#systemDiagram .node').forEach((node) => node.classList.remove('selected'));
-  document.querySelectorAll('#systemDiagram .edge').forEach((edge) => edge.classList.toggle('selected', Number(edge.dataset.edge) === index));
-  const edge = state.system.edges[index];
+function inspectDiagramNode(id) {
+  const diagram = activeDiagram();
+  const node = diagram?.nodes?.find((item) => String(item.id) === id);
+  if (!node) return;
+  document.querySelectorAll('#systemDiagram .node').forEach((el) => el.classList.toggle('selected', el.dataset.id === id));
+  document.querySelectorAll('#systemDiagram .edge').forEach((el) => el.classList.remove('selected'));
+  $('inspector').innerHTML = '<h2>' + esc(node.label) + '</h2><p>' + esc(node.summary) + '</p><p><span class="badge">' + esc(node.kind) + '</span></p><pre>' + esc(node.doc_path || diagram.path) + '</pre>';
+}
+
+function inspectDiagramEdge(index) {
+  const diagram = activeDiagram();
+  const edge = diagram?.edges?.[index];
   if (!edge) return;
-  $('inspector').innerHTML = '<h2>Architecture edge</h2><p><span class="badge">' + esc(edge.kind) + '</span></p><pre>' + esc(edge.from + ' -> ' + edge.to) + '</pre><p class="muted">Source: ' + esc(state.system.architecture_path) + '</p>';
+  document.querySelectorAll('#systemDiagram .node').forEach((el) => el.classList.remove('selected'));
+  document.querySelectorAll('#systemDiagram .edge').forEach((el) => el.classList.toggle('selected', Number(el.dataset.edge) === index));
+  $('inspector').innerHTML = '<h2>Diagram edge</h2><p><span class="badge">' + esc(edge.kind) + '</span></p><pre>' + esc(edge.from + ' -> ' + edge.to + '\n' + edge.label) + '</pre><p class="muted">Source: ' + esc(diagram.path) + '</p>';
+}
+
+function renderBoard() {
+  const board = state.board;
+  $('board').innerHTML = '<div class="section-head"><h2>Board</h2><p>Roadmap work mapped to acceptance, gates, blockers, and source paths.</p></div><div class="grid">'
+    + card('Open', '<div class="big">' + board.stats.open + '</div><div class="muted">done ' + board.stats.done + ' · blocked ' + board.stats.blocked + '</div>')
+    + card('Active sprints', '<div class="big">' + board.active_sprints.length + '</div><div class="muted">planned/active scopes</div>')
+    + '</div><div class="source-grid" style="margin-top:0.75rem">'
+    + (board.tasks || []).map((task) => '<button class="source-card board-card" data-task="' + esc(task.id) + '"><h3>' + esc(task.id + ' · ' + task.title) + '</h3><p>' + esc(task.summary) + '</p><p><span class="badge">' + esc(task.status) + '</span><span class="badge">' + esc(task.priority) + '</span></p></button>').join('')
+    + '</div>';
+  document.querySelectorAll('.board-card').forEach((card) => card.addEventListener('click', () => inspectBoardTask(card.dataset.task)));
+}
+
+function inspectBoardTask(taskId) {
+  const task = (state.board?.tasks || []).find((item) => item.id === taskId);
+  if (!task) return;
+  $('inspector').innerHTML = '<h2>' + esc(task.id + ' · ' + task.title) + '</h2><p>' + esc(task.summary) + '</p>'
+    + '<p><span class="badge">' + esc(task.status) + '</span><span class="badge">' + esc(task.priority) + '</span>' + (task.phase ? '<span class="badge">' + esc(task.phase) + '</span>' : '') + '</p>'
+    + '<h3>Acceptance</h3><pre>' + esc((task.acceptance || []).map((item) => '- ' + item).join('\n') || '—') + '</pre>'
+    + '<h3>Verification</h3><pre>' + esc((task.verification || []).map((item) => '- ' + item).join('\n') || '—') + '</pre>'
+    + '<h3>Sources</h3><pre>' + esc([...(task.spec_paths || []), ...(task.code_paths || [])].join('\n') || '—') + '</pre>';
 }
 
 function renderGraph() {
   const model = state.graph;
   const nodeOptions = ['all'].concat(model.node_kinds).map((kind) => '<option value="' + esc(kind) + '">' + esc(kind) + '</option>').join('');
   const edgeOptions = ['all'].concat(model.edge_kinds).map((kind) => '<option value="' + esc(kind) + '">' + esc(kind) + '</option>').join('');
-  $('graph').innerHTML = '<div class="toolbar"><label>scope <select id="graphScope"><option value="core">core</option><option value="all">all</option></select></label><label>node kind <select id="nodeKind">' + nodeOptions + '</select></label><label>edge kind <select id="edgeKind">' + edgeOptions + '</select></label><label>search <input id="graphSearch" placeholder="node id/path"></label><button data-zoom="graph:out">−</button><button data-zoom="graph:in">+</button><button data-zoom="graph:fit">fit</button><button data-zoom="graph:reset">reset</button><span id="graphStats" class="badge">shown ' + model.stats.shown_nodes + '/' + model.stats.total_nodes + '</span></div><div id="graphMap" class="graphmap canvas"></div>';
+  $('graph').innerHTML = '<div class="section-head"><h2>CodeWiki map</h2><p>Work-centered graph slice over roadmap tasks, builds, validation, evidence, drift, and source paths.</p></div><div class="toolbar"><label>scope <select id="graphScope"><option value="work">work</option><option value="core">core</option><option value="all">all</option></select></label><label>node kind <select id="nodeKind">' + nodeOptions + '</select></label><label>edge kind <select id="edgeKind">' + edgeOptions + '</select></label><label>search <input id="graphSearch" placeholder="node id/path"></label><button data-zoom="graph:out">−</button><button data-zoom="graph:in">+</button><button data-zoom="graph:fit">fit</button><button data-zoom="graph:reset">reset</button><span id="graphStats" class="badge">shown ' + model.stats.shown_nodes + '/' + model.stats.total_nodes + '</span></div><div id="graphMap" class="graphmap canvas"></div>';
   $('graphScope').addEventListener('change', drawGraphMap);
   $('nodeKind').addEventListener('change', drawGraphMap);
   $('edgeKind').addEventListener('change', drawGraphMap);
@@ -838,12 +1123,12 @@ function renderGraph() {
 function drawGraphMap() {
   const container = $('graphMap');
   const model = state.graph;
-  const scope = $('graphScope')?.value || 'core';
+  const scope = $('graphScope')?.value || 'work';
   const nodeKind = $('nodeKind')?.value || 'all';
   const edgeKind = $('edgeKind')?.value || 'all';
   const query = ($('graphSearch')?.value || '').toLowerCase();
-  const maxNodes = scope === 'all' ? 150 : 75;
-  const nodes = model.nodes.filter((node) => (scope === 'all' || isCoreGraphNode(node)) && (nodeKind === 'all' || node.kind === nodeKind) && (!query || String(node.id + ' ' + (node.path || '') + ' ' + (node.label || '')).toLowerCase().includes(query))).slice(0, maxNodes);
+  const maxNodes = scope === 'all' ? 150 : scope === 'core' ? 90 : 70;
+  const nodes = model.nodes.filter((node) => scopeMatchesGraphNode(node, scope) && (nodeKind === 'all' || node.kind === nodeKind) && (!query || String(node.id + ' ' + (node.path || '') + ' ' + (node.label || '')).toLowerCase().includes(query))).slice(0, maxNodes);
   const ids = new Set(nodes.map((node) => String(node.id)));
   const edges = model.edges.filter((edge) => ids.has(String(edge.from)) && ids.has(String(edge.to)) && (edgeKind === 'all' || edge.kind === edgeKind)).slice(0, scope === 'all' ? 280 : 150);
   state.drawnEdges = edges;
@@ -868,160 +1153,63 @@ function drawGraphMap() {
   cy.on('tap', 'node', (event) => inspectGraphNode(String(event.target.data('id'))));
   cy.on('tap', 'edge', (event) => inspectGraphEdge(Number(event.target.data('index'))));
   cy.one('layoutstop', () => fitGraph(cy));
-  cy.ready(() => {
-    fitGraph(cy);
-    window.requestAnimationFrame(() => fitGraph(cy));
-  });
+  cy.ready(() => { fitGraph(cy); window.requestAnimationFrame(() => fitGraph(cy)); });
 }
 
-function destroyGraphRenderer() {
-  if (state.cy) {
-    state.cy.destroy();
-    state.cy = null;
-  }
+function scopeMatchesGraphNode(node, scope) {
+  if (scope === 'all') return true;
+  if (scope === 'work') return isWorkGraphNode(node);
+  return isCoreGraphNode(node);
 }
 
-function fitGraph(cy) {
-  cy.fit(cy.elements(), GRAPH_FIT_PADDING);
+function isWorkGraphNode(node) {
+  const id = String(node.id || '');
+  const kind = String(node.kind || '');
+  const path = String(node.path || '');
+  return kind.includes('task') || kind.includes('roadmap') || kind.includes('build') || kind.includes('validation') || kind.includes('evidence') || kind.includes('closure') || id.includes('TASK-') || path.includes('/roadmap') || path.includes('/builds/') || path.includes('/validation/');
 }
+
+function destroyGraphRenderer() { if (state.cy) { state.cy.destroy(); state.cy = null; } }
+function fitGraph(cy) { cy.fit(cy.elements(), GRAPH_FIT_PADDING); }
 
 function buildCytoscapeElements(nodes, edges) {
   const elements = [];
   for (const node of nodes) {
     const id = String(node.id);
-    elements.push({
-      group: 'nodes',
-      data: {
-        id,
-        kind: String(node.kind || 'unknown'),
-        label: String(node.label || node.path || node.id || 'node'),
-        displayLabel: trim(node.label || node.path || node.id, 28),
-        path: node.path || '',
-        color: colorForKind(node.kind),
-      },
-    });
+    elements.push({ group: 'nodes', data: { id, kind: String(node.kind || 'unknown'), label: String(node.label || node.path || node.id || 'node'), displayLabel: trim(node.label || node.path || node.id, 28), path: node.path || '', color: colorForKind(node.kind) } });
   }
   edges.forEach((edge, index) => {
-    elements.push({
-      group: 'edges',
-      data: {
-        id: 'edge:' + index + ':' + edge.from + '->' + edge.to,
-        source: String(edge.from),
-        target: String(edge.to),
-        kind: String(edge.kind || 'edge'),
-        displayKind: trim(edge.kind || 'edge', 18),
-        label: edge.label || '',
-        index,
-      },
-    });
+    elements.push({ group: 'edges', data: { id: 'edge:' + index + ':' + edge.from + '->' + edge.to, source: String(edge.from), target: String(edge.to), kind: String(edge.kind || 'edge'), displayKind: trim(edge.kind || 'edge', 18), label: edge.label || '', index } });
   });
   return elements;
 }
 
 function createGraphStyle() {
   return [
-    {
-      selector: 'core',
-      style: { 'active-bg-color': '#f4f1e8', 'active-bg-opacity': 0.08, 'selection-box-color': '#f4f1e8', 'selection-box-opacity': 0.08, 'selection-box-border-color': '#f4f1e8' },
-    },
-    {
-      selector: 'node',
-      style: {
-        'background-color': 'data(color)',
-        'border-color': '#b4beac',
-        'border-opacity': 0.5,
-        'border-width': 1.4,
-        'color': '#f4f1e8',
-        'font-family': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
-        'font-size': 10,
-        'height': 26,
-        'label': 'data(displayLabel)',
-        'min-zoomed-font-size': 6,
-        'overlay-color': '#f4f1e8',
-        'overlay-opacity': 0.04,
-        'shape': 'round-rectangle',
-        'text-background-color': '#050604',
-        'text-background-opacity': 0.72,
-        'text-background-padding': 2,
-        'text-halign': 'right',
-        'text-margin-x': 8,
-        'text-valign': 'center',
-        'width': 26,
-      },
-    },
-    {
-      selector: 'edge',
-      style: {
-        'color': '#899488',
-        'curve-style': 'bezier',
-        'font-family': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
-        'font-size': 8,
-        'label': 'data(displayKind)',
-        'line-color': '#899488',
-        'min-zoomed-font-size': 7,
-        'opacity': 0.64,
-        'target-arrow-color': '#c7a35a',
-        'target-arrow-shape': 'triangle',
-        'text-background-color': '#050604',
-        'text-background-opacity': 0.7,
-        'text-background-padding': 1,
-        'text-rotation': 'autorotate',
-        'width': 1.1,
-      },
-    },
-    {
-      selector: 'node:selected',
-      style: { 'border-color': '#f4f1e8', 'border-width': 4, 'color': '#f4f1e8' },
-    },
-    {
-      selector: 'edge:selected',
-      style: { 'line-color': '#f4f1e8', 'opacity': 1, 'target-arrow-color': '#f4f1e8', 'width': 2.6 },
-    },
+    { selector: 'core', style: { 'active-bg-color': '#f4f1e8', 'active-bg-opacity': 0.08, 'selection-box-color': '#f4f1e8', 'selection-box-opacity': 0.08, 'selection-box-border-color': '#f4f1e8' } },
+    { selector: 'node', style: { 'background-color': 'data(color)', 'border-color': '#b4beac', 'border-opacity': 0.5, 'border-width': 1.4, 'color': '#f4f1e8', 'font-family': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace', 'font-size': 10, 'height': 26, 'label': 'data(displayLabel)', 'min-zoomed-font-size': 6, 'overlay-color': '#f4f1e8', 'overlay-opacity': 0.04, 'shape': 'round-rectangle', 'text-background-color': '#050604', 'text-background-opacity': 0.72, 'text-background-padding': 2, 'text-halign': 'right', 'text-margin-x': 8, 'text-valign': 'center', 'width': 26 } },
+    { selector: 'edge', style: { 'color': '#899488', 'curve-style': 'bezier', 'font-family': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace', 'font-size': 8, 'label': 'data(displayKind)', 'line-color': '#899488', 'min-zoomed-font-size': 7, 'opacity': 0.64, 'target-arrow-color': '#c7a35a', 'target-arrow-shape': 'triangle', 'text-background-color': '#050604', 'text-background-opacity': 0.7, 'text-background-padding': 1, 'text-rotation': 'autorotate', 'width': 1.1 } },
+    { selector: 'node:selected', style: { 'border-color': '#f4f1e8', 'border-width': 4, 'color': '#f4f1e8' } },
+    { selector: 'edge:selected', style: { 'line-color': '#f4f1e8', 'opacity': 1, 'target-arrow-color': '#f4f1e8', 'width': 2.6 } },
   ];
 }
 
 function layoutForGraph(nodes, edges) {
-  if (nodes.length <= 8) {
-    return { name: 'circle', fit: true, padding: GRAPH_FIT_PADDING, avoidOverlap: true, nodeDimensionsIncludeLabels: true, spacingFactor: 1.8 };
-  }
-  if (edges.length === 0) {
-    return { name: 'grid', fit: true, padding: GRAPH_FIT_PADDING, avoidOverlap: true, nodeDimensionsIncludeLabels: true, spacingFactor: 2.1 };
-  }
-  return {
-    name: 'cose',
-    animate: false,
-    componentSpacing: GRAPH_LAYOUT_SPACING,
-    coolingFactor: 0.96,
-    edgeElasticity: 48,
-    fit: true,
-    gravity: 0.08,
-    idealEdgeLength: GRAPH_LAYOUT_SPACING,
-    initialTemp: 300,
-    minTemp: 1,
-    nestingFactor: 1.0,
-    nodeDimensionsIncludeLabels: true,
-    nodeOverlap: 72,
-    nodeRepulsion: GRAPH_NODE_REPULSION,
-    numIter: 1400,
-    padding: GRAPH_FIT_PADDING,
-    randomize: true,
-  };
+  if (nodes.length <= 8) return { name: 'circle', fit: true, padding: GRAPH_FIT_PADDING, avoidOverlap: true, nodeDimensionsIncludeLabels: true, spacingFactor: 1.8 };
+  if (edges.length === 0) return { name: 'grid', fit: true, padding: GRAPH_FIT_PADDING, avoidOverlap: true, nodeDimensionsIncludeLabels: true, spacingFactor: 2.1 };
+  return { name: 'cose', animate: false, componentSpacing: GRAPH_LAYOUT_SPACING, coolingFactor: 0.96, edgeElasticity: 48, fit: true, gravity: 0.08, idealEdgeLength: GRAPH_LAYOUT_SPACING, initialTemp: 300, minTemp: 1, nestingFactor: 1.0, nodeDimensionsIncludeLabels: true, nodeOverlap: 72, nodeRepulsion: GRAPH_NODE_REPULSION, numIter: 1400, padding: GRAPH_FIT_PADDING, randomize: true };
 }
 
 function isCoreGraphNode(node) {
   const id = String(node.id || '');
   const kind = String(node.kind || '');
   if (kind.includes('code_path') || id.startsWith('code:')) return false;
-  if (id.includes('/builds/') && !id.includes('2026-05-11')) return false;
+  if (id.includes('/builds/') && !id.includes('2026-05-')) return false;
   return true;
 }
 
 function inspectGraphNode(id) {
-  if (state.cy) {
-    state.cy.elements().unselect();
-    const selected = state.cy.getElementById(id);
-    if (selected?.length) selected.select();
-  }
+  if (state.cy) { state.cy.elements().unselect(); const selected = state.cy.getElementById(id); if (selected?.length) selected.select(); }
   const node = state.graph.nodes.find((item) => String(item.id) === id);
   if (!node) return;
   const links = state.graph.edges.filter((edge) => edge.from === id || edge.to === id).slice(0, 20);
@@ -1029,11 +1217,7 @@ function inspectGraphNode(id) {
 }
 
 function inspectGraphEdge(index) {
-  if (state.cy) {
-    state.cy.elements().unselect();
-    const selected = state.cy.edges().filter((edge) => Number(edge.data('index')) === index);
-    if (selected.length) selected.select();
-  }
+  if (state.cy) { state.cy.elements().unselect(); const selected = state.cy.edges().filter((edge) => Number(edge.data('index')) === index); if (selected.length) selected.select(); }
   const edge = state.drawnEdges?.[index];
   if (!edge) return;
   $('inspector').innerHTML = '<h2>Graph edge</h2><p><span class="badge">' + esc(edge.kind) + '</span></p><pre>' + esc(JSON.stringify(edge, null, 2)) + '</pre><p class="muted">Generated graph relationship. Use source paths and compiler loops for canonical changes.</p>';
@@ -1043,23 +1227,14 @@ function wireZoomControls() {
   document.querySelectorAll('[data-zoom]').forEach((button) => {
     button.onclick = () => {
       const [target, action] = button.dataset.zoom.split(':');
-      if (target === 'system') {
-        state.systemZoom = nextZoom(state.systemZoom, action, 0.78, 1);
-        drawSystemDiagram(state.system);
-      }
-      if (target === 'graph') {
-        controlGraphViewport(action);
-      }
+      if (target === 'system') { state.systemZoom = nextZoom(state.systemZoom, action, 0.78, 1); drawSystemDiagram(); }
+      if (target === 'graph') controlGraphViewport(action);
     };
   });
 }
 
 function controlGraphViewport(action) {
-  if (!state.cy) {
-    state.graphZoom = nextZoom(state.graphZoom, action, 0.68, 1);
-    drawGraphMap();
-    return;
-  }
+  if (!state.cy) { state.graphZoom = nextZoom(state.graphZoom, action, 0.68, 1); drawGraphMap(); return; }
   if (action === 'fit') { fitGraph(state.cy); return; }
   if (action === 'reset') { state.cy.reset(); fitGraph(state.cy); return; }
   const box = state.cy.container().getBoundingClientRect();
@@ -1076,10 +1251,16 @@ function nextZoom(current, action, fitValue, resetValue) {
   return resetValue;
 }
 
-function inspectHome() {
+function inspectStatus() {
   const m = state.model;
   if (!m) return;
-  $('inspector').innerHTML = '<h2>Current repo</h2><pre>' + esc(m.project.root) + '</pre><h3>Source contract</h3><p>Every view points back to .codewiki canonical truth or generated graph state.</p><p><span class="badge">local-first</span><span class="badge">retro terminal</span></p>';
+  $('inspector').innerHTML = '<h2>Status sources</h2><pre>' + esc(['.codewiki/index_graph.json', '.codewiki/roadmap.json', '.codewiki/runtime/claims.json'].join('\n')) + '</pre><h3>Latest signal</h3><p>' + esc(m.latest_signal || 'No validation/check signal found.') + '</p><p><span class="badge">local-first</span><span class="badge">second-screen</span></p>';
+}
+
+function inspectArea(id) {
+  const area = AREAS.find((entry) => entry.id === id);
+  if (!area) return;
+  $('inspector').innerHTML = '<h2>' + esc(area.glyph + ' ' + area.label) + '</h2><p>' + esc(area.summary) + '</p><h3>Source anchors</h3><pre>' + esc(area.sources.join('\n')) + '</pre><p class="muted">Canonical truth stays in source files, builds, validation, roadmap, runtime claims, or generated graph state.</p>';
 }
 
 function colorForKind(kind) {

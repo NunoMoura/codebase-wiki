@@ -2,11 +2,11 @@
 id: spec.product.uis.control-room
 title: Control Room UI
 state: active
-summary: Product expectations for the standalone local CodeWiki control room experience.
+summary: Product expectations for the simplified second-screen CodeWiki Control Room.
 owners:
   - product
   - design
-updated: "2026-05-11"
+updated: "2026-05-12"
 code_paths:
   - extensions/codewiki/src/adapters/web
   - extensions/codewiki/src/adapters/pi/commands
@@ -14,7 +14,9 @@ code_paths:
 
 # Control Room UI
 
-The Control Room is the primary visual product surface for CodeWiki. It represents the repository-local CodeWiki contract as a navigable workspace rather than as a compact status panel. It should help humans and agents understand intent, architecture, graph relationships, roadmap work, compiler handoffs, validation gates, and coordination state from one coherent interface.
+The Control Room is the primary visual product surface for CodeWiki, but it is not meant to show every CodeWiki artifact all the time. Users normally operate CodeWiki through an agent chat on the main screen and keep the Control Room on a second screen for orientation, navigation, and high-signal state.
+
+The Control Room should therefore optimize for signal-to-noise ratio. It should help users see current status, product intent, system shape, roadmap work, and graph relationships without turning the UI into a raw file browser, build log viewer, diff console, or replacement for the compiler chat loop.
 
 The Control Room is local-first. By default it runs against the current repository on `127.0.0.1` and reads or mutates CodeWiki through the same API semantics used by harness adapters. It must not require hosted infrastructure, accounts, or internet access.
 
@@ -22,52 +24,100 @@ The Pi TUI remains a compact launcher and fallback surface. Future Claude Code, 
 
 ## Layout model
 
-The Control Room should use a three-pane command-center layout:
+The Control Room should use a simple command-center layout:
 
 ```text
 header: repo, health, active task, active claims, command palette
-left rail: Home, System, Graph, Knowledge, Board, Builds, Validation, Diff, Settings
-workspace: visual map for the selected section
+left rail: Status, Product, System, Board, Graph
+workspace: focused visual map or curated summary for the selected section
 inspector: selected entity detail, source path, links, actions, and warnings
 bottom rail: recent events, stale-state warnings, and next safe action
 ```
 
-The center workspace should prioritize visual navigation. The inspector should ground every selection in canonical sources, such as `.codewiki/kb/**`, `.codewiki/roadmap/**`, `.codewiki/builds/**`, `.codewiki/validation/**`, `.codewiki/runtime/claims.json`, `.codewiki/runtime/diff-tables.json`, and `.codewiki/index_graph.json`.
+The top-level navigation should stay small. `Knowledge`, `Builds`, `Validation`, `Diff`, and `Settings` should not be primary sections in the second-screen UI. They remain accessible when they are relevant through the inspector, contextual links, command palette actions, API/chat workflows, and source paths.
 
-## Home view
+The center workspace should prioritize readable visual navigation and curated summaries. The inspector should ground every selection in canonical sources, such as `.codewiki/kb/**`, `.codewiki/roadmap/**`, `.codewiki/builds/**`, `.codewiki/validation/**`, `.codewiki/runtime/claims.json`, `.codewiki/runtime/diff-tables.json`, and `.codewiki/index_graph.json`.
 
-Home is a mission briefing, not a raw status dump. It should show:
+## Status view
+
+`Status` replaces the earlier `Home` concept. Status is a compact project metrics and statistics surface, not a mission briefing or raw state dump.
+
+Status should show only the basics needed to orient the user:
 
 - repository health,
-- current focus or active task,
+- current branch and commit when available,
+- active task or sprint focus,
 - next safe action,
+- open task count and closed/recent task count,
 - active claims and conflicts,
-- open gates or blockers,
-- latest feedback, documentation, implementation, and validation signals,
-- compact previews of the system diagram and generated graph,
-- a source-backed representation of major CodeWiki areas: Product, System, Graph, Roadmap, Builds, Validation, Diff, and Settings.
+- gate/blocker counts,
+- graph node and edge counts,
+- stale or drift count,
+- latest validation/check signal when available.
+
+Status should avoid long artifact tables, diff rows, build timelines, validation report bodies, and raw JSON. Those details belong in chat, contextual inspectors, or source-backed drill-downs.
+
+## Product view
+
+Product should be the user-facing interpretation layer over `.codewiki/kb/product/**`. Raw Markdown files are the source of truth, but raw Markdown is not enough to provide a good user experience.
+
+The Product view should curate product Markdown into navigable cards and relationships:
+
+- users and their jobs,
+- user stories and success signals,
+- visual UI surfaces and their purpose,
+- links between users, stories, UIs, roadmap work, and implementation evidence,
+- source paths for every displayed fact.
+
+The default Product experience should answer who the project serves, what those users need, and which UI surfaces support those outcomes. It should not show raw Markdown as the primary experience. Raw Markdown remains available in the inspector or through chat when the user needs exact source text.
 
 ## System view
 
-System should render `.codewiki/kb/system/architecture.mmd` as a visual architecture diagram. Components are selectable. Selecting a component shows an inspector populated from the matching `.codewiki/kb/system/<component>.md` file.
+System should show how the project works through source-backed components and diagrams.
 
-The system diagram should use readable lane or group placement, enough spacing, routed edges, and edge drawing behind nodes so arrows do not sit on top of components. The view should use the available workspace as a canvas rather than nesting the diagram inside unnecessary inner panels.
+Component knowledge stays in `.codewiki/kb/system/*.md`. Diagram raw data lives under `.codewiki/kb/system/diagrams/**`. The UI should offer a diagram picker, render the selected diagram, and populate the inspector from the selected node, edge, sequence step, entity, or state.
 
-The inspector should show the component title, summary, responsibility, rules or invariants, code paths, related docs, and any graph-backed drift warnings. Selecting an edge should explain the relationship between components when the source map exposes it.
+The five core project diagrams are:
+
+| Diagram | Purpose | Canonical raw format | Preferred rendering |
+| --- | --- | --- | --- |
+| Context map | Show users, access surfaces, external systems, and project boundary. | YAML graph spec with actors, systems, and relationships. | Graph/SVG or Mermaid flowchart. |
+| Component/container map | Show major runtime components, adapters, data stores, and dependency direction. | YAML graph spec with groups, nodes, edges, and source docs. | Cytoscape/custom SVG or Mermaid flowchart. |
+| Key flow sequence | Show the most important user/agent workflow end to end. | YAML sequence spec with participants and ordered messages. | Mermaid sequence diagram or custom sequence renderer. |
+| Data/domain model | Show durable entities, generated state, evidence, and ownership. | YAML entity-relationship spec with entities and relationships. | Mermaid ER/custom ER renderer. |
+| State/lifecycle map | Show task, compiler, validation, build, or release lifecycles. | YAML state-machine spec with states, transitions, and gates. | Mermaid state diagram or custom state renderer. |
+
+YAML is the canonical raw format because it is easier for agents to read, edit, diff, and validate than dense diagram DSL. Mermaid, Cytoscape data, or SVG should be treated as renderer targets unless a task explicitly promotes a renderer-specific file to canonical truth.
+
+The System view should preserve readable spacing, routed edges, and edge drawing behind nodes. It should use the available workspace as a canvas rather than nesting diagrams inside unnecessary inner panels.
+
+## Board view
+
+Board should show the work being done in the roadmap. It is the primary view for active tasks, sprint scope, gates, blockers, acceptance criteria, closure evidence, and next actions.
+
+Roadmap work is work truth, not a requirements brief. Full product and system intent should live in knowledge and accepted builds. The Board should link to those sources without duplicating them as long prose.
 
 ## Graph view
 
-Graph should provide a visual representation of `.codewiki/index_graph.json`. It should show nodes and edges for knowledge docs, roadmap work, builds, validation reports, code paths, tests, claims, diff tables, and reconciliation items.
+Graph should provide a visual representation of `.codewiki/index_graph.json`, but it should start from useful work-centered slices rather than the whole graph.
 
-Users should be able to filter by node kind, edge kind, active task, active sprint, stale items, drift items, and build DAG edges. The graph should provide zoom in, zoom out, fit, and reset controls. The default view should avoid showing every node and edge at once when that would be unreadable; it should start from a useful scoped or filtered slice and let users expand from there. The initial layout should spread nodes far enough apart for labels to be readable and then fit the visible slice into the viewport with consistent padding so all visible nodes are in view. Selecting a node or edge should show source paths, relationship reason, freshness state, and the smallest useful next reads.
+Graph should focus on relationships around active roadmap work, current sprint scope, knowledge/docs touched by the work, builds, validation, evidence, tests, code paths, stale links, drift, and reconciliation cues. Users should be able to expand from that scope when needed.
 
-The Graph view should use Cytoscape.js as its first open-source graph visualization engine. Cytoscape.js fits the local vanilla browser surface because it provides built-in pan, zoom, selection, event handling, styles, and layouts without requiring a React migration or a hosted service. The asset should be served from the installed package rather than a CDN so the Control Room remains local-first.
+Users should be able to filter by node kind, edge kind, active task, active sprint, stale items, drift items, and build DAG edges. Selecting a node or edge should show source paths, relationship reason, freshness state, and the smallest useful next reads.
+
+The first graph renderer is Cytoscape.js, served from the installed package rather than a CDN so the Control Room remains local-first.
 
 The graph view is an inspection and navigation surface. Canonical edits still flow through CodeWiki API operations and compiler loops.
 
-## Knowledge, Board, Builds, Validation, and Diff views
+## Contextual artifact access
 
-Knowledge should browse product and system specs without hiding source paths. Board should show roadmap work, active sprint or task scope, gated agency limits, and closure evidence. Builds should show compiler handoff timelines and consumes/produces edges. Validation should show gates, failures, blocks, and policy-kept reports. Diff should show pending feedback decisions and accepted rows when no pending decisions exist.
+Detailed knowledge docs, builds, validation reports, feedback diff rows, and settings remain important, but they should not compete for top-level navigation by default.
+
+- Knowledge appears through Product/System cards, inspectors, graph nodes, and source links.
+- Builds appear through Board/Graph evidence links, compiler handoff summaries, and chat.
+- Validation appears through Board gates, Graph relationships, inspector warnings, and chat.
+- Diff rows appear in the feedback loop and only surface in the UI when an explicit decision is pending.
+- Settings appear through command palette or maintenance actions, not as a primary destination.
 
 ## Style
 
@@ -96,11 +146,15 @@ Optional shared server mode may be added later. It must be explicit, token-prote
 
 ## Success signals
 
-- Users can understand CodeWiki as a product, not only as a status panel.
+- Users get a high-signal second screen that complements agent chat instead of duplicating it.
+- Top-level navigation is limited to Status, Product, System, Board, and Graph.
+- Status shows compact project metrics and statistics without raw artifact dumps.
+- Product turns user, story, and UI Markdown into curated source-backed cards and relationships.
+- System renders selectable diagrams from `.codewiki/kb/system/diagrams/**` and keeps component inspection source-backed.
+- Board maps roadmap work, gates, blockers, acceptance, and closure evidence.
+- Graph shows work-centered relationships, freshness, drift, and source paths.
+- Deprecated top-level details remain reachable contextually without becoming UI noise.
 - The UI works locally without hosted infrastructure.
-- Pi, Claude Code, Codex, and future harnesses can launch or connect to the same visual experience.
-- System architecture is navigable through a rendered diagram and source-backed component inspector.
-- Generated graph relationships are visible, filterable, and source-backed.
 - Every visible entity points back to canonical truth or generated graph state.
 - The retro terminal aesthetic remains readable, keyboard-accessible, and browser-native.
 
@@ -109,8 +163,9 @@ Optional shared server mode may be added later. It must be explicit, token-prote
 - No hosted SaaS dependency.
 - No real-time multiplayer collaboration in the first version.
 - No UI-only source of truth.
+- No raw JSON, Markdown, build, validation, or diff wall as the default experience.
 - No direct hand-editing of generated graph state.
-- No replacement for compiler loops, validation gates, or scoped change claims.
+- No replacement for compiler loops, validation gates, scoped change claims, or agent chat.
 
 ## Related docs
 
@@ -121,3 +176,4 @@ Optional shared server mode may be added later. It must be explicit, token-prote
 - [CodeWiki API](../../system/api.md)
 - [Adapters](../../system/adapters.md)
 - [Graph](../../system/graph.md)
+- [System diagram raw data](../../system/diagrams/README.md)

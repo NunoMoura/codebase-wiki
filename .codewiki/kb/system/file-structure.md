@@ -5,7 +5,7 @@ state: active
 summary: Target knowledge-base and package file structure for CodeWiki.
 owners:
   - architecture
-updated: "2026-05-09"
+updated: "2026-05-12"
 code_paths:
   - .codewiki/kb
   - extensions/codewiki
@@ -26,16 +26,40 @@ Every CodeWiki project should use the same top-level knowledge-base shape:
     uis/
   system/
     overview.md
-    architecture.mmd
     file-structure.md
     <component>.md
+    diagrams/
+      README.md
+      context-map.yaml
+      component-map.yaml
+      key-flow.yaml
+      data-model.yaml
+      state-lifecycle.yaml
 ```
 
-Product docs define users, user stories, and visual user interfaces. System docs define the technical architecture, API, adapters, and distribution mechanisms that implement product intent.
+Product docs define users, user stories, and visual user interfaces. System docs define the technical architecture, API, adapters, distribution mechanisms, component ownership, and diagram raw data that implement product intent.
 
-System docs should stay flat. Each component in `architecture.mmd` should have one matching `.md` file under `system/`. Each component doc should also map to concrete code, data, or adapter paths in this file.
+System component docs should stay flat. Each major system component should have one matching `.md` file under `system/`. Diagram raw data is the one intended nested system folder and lives under `system/diagrams/**`.
 
-Avoid nested component folders and avoid `overview.md` files except `product/overview.md` and `system/overview.md`.
+Avoid nested component folders and avoid `overview.md` files except `product/overview.md`, `system/overview.md`, and the diagram contract `system/diagrams/README.md`.
+
+## Diagram raw-data contract
+
+`system/diagrams/**` stores canonical, agent-editable raw diagram data. YAML is the default raw format because it is readable, diffable, and easier for agents to edit safely than dense diagram DSL.
+
+The five default diagram families are:
+
+| File | Diagram kind | Purpose | Renderer target |
+| --- | --- | --- | --- |
+| `diagrams/context-map.yaml` | Context map | Users, access surfaces, external systems, and project boundary. | Graph/SVG or Mermaid flowchart. |
+| `diagrams/component-map.yaml` | Component/container map | Major runtime components, adapters, data stores, and dependency direction. | Cytoscape/custom SVG or Mermaid flowchart. |
+| `diagrams/key-flow.yaml` | Key flow sequence | Most important user/agent workflow end to end. | Mermaid sequence diagram or custom sequence renderer. |
+| `diagrams/data-model.yaml` | Data/domain model | Durable entities, generated state, evidence, and ownership. | Mermaid ER/custom ER renderer. |
+| `diagrams/state-lifecycle.yaml` | State/lifecycle map | Task, compiler, validation, build, and release lifecycles. | Mermaid state diagram or custom state renderer. |
+
+Renderer-specific Mermaid, Cytoscape, or SVG output should be treated as generated or renderer input unless a later task explicitly promotes a renderer-specific source file to canonical truth.
+
+`system/architecture.mmd` is a compatibility source for the existing architecture renderer until the Control Room and status panel migrate to `system/diagrams/component-map.yaml`. New diagram work should target `system/diagrams/**`.
 
 ## Component-doc map
 
@@ -54,16 +78,15 @@ Avoid nested component folders and avoid `overview.md` files except `product/ove
 | Parallel coordination | `api.md`, `adapters.md`, `graph.md` | `.codewiki/runtime/claims.json`, `codewiki_claim`, generated claim views |
 | Graph state machine | `graph.md` | `.codewiki/index_graph.json`, graph rebuild implementation |
 
-`architecture.mmd` may also show external artifacts such as users, code/tests, and publication outputs. Those are not system component docs unless they become owned system components.
+`system/diagrams/*.yaml` may also show external artifacts such as users, code/tests, and publication outputs. Those are not system component docs unless they become owned system components.
 
 ## CodeWiki system docs
 
-The CodeWiki project should use this flattened system set:
+The CodeWiki project should use this system set:
 
 ```text
 .codewiki/kb/system/
   overview.md
-  architecture.mmd
   file-structure.md
   api.md
   extension.md
@@ -76,6 +99,14 @@ The CodeWiki project should use this flattened system set:
   knowledge.md
   roadmap.md
   control-room-ui.md
+  architecture.mmd        # compatibility during diagram migration
+  diagrams/
+    README.md
+    context-map.yaml
+    component-map.yaml
+    key-flow.yaml
+    data-model.yaml
+    state-lifecycle.yaml
 ```
 
 Legacy system KB paths removed by the flattening migration:
@@ -147,5 +178,6 @@ Runtime checks must cover direct Node execution and package loading, not only Ty
 ## Related docs
 
 - [Architecture Diagram](architecture.mmd)
+- [Diagram Raw Data](diagrams/README.md)
 - [API](api.md)
 - [Adapters](adapters.md)
