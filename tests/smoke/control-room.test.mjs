@@ -7,6 +7,7 @@ import {
 	buildControlRoomBoardModel,
 	buildControlRoomGraphModel,
 	buildControlRoomProductModel,
+	buildControlRoomSettingsModel,
 	buildControlRoomStateModel,
 	buildControlRoomSystemModel,
 	startControlRoomServer,
@@ -24,7 +25,19 @@ try {
 	await mkdir(join(root, ".codewiki/kb/product/users"), { recursive: true });
 	await mkdir(join(root, ".codewiki/kb/product/stories"), { recursive: true });
 	await mkdir(join(root, ".codewiki/kb/product/uis"), { recursive: true });
-	await writeFile(join(root, ".codewiki/config.json"), JSON.stringify({ project_name: "control-room-smoke", schema_version: 4 }, null, 2));
+	await writeFile(join(root, ".codewiki/config.json"), JSON.stringify({
+		project_name: "control-room-smoke",
+		schema_version: 4,
+		docs_root: ".codewiki/kb",
+		roadmap_retention: { closed_task_limit: 0, archive_path: ".codewiki/roadmap/archive.jsonl" },
+		lint: { word_count_warn: 1600 },
+		codewiki: {
+			gateway: { enabled: true, mode: "read-only", deny_paths: ["**/.env*"] },
+			rebuild: { quiet: true },
+			agency: { budgets: { default: { maxTokens: 1000 } }, parallelism: { max_sessions: 1 } },
+			gc: { hot_days: 7 },
+		},
+	}, null, 2));
 	await writeFile(join(root, ".codewiki/roadmap.json"), JSON.stringify({
 		version: 2,
 		updated: "2026-05-11",
@@ -169,6 +182,11 @@ edges:
 	assert.deepEqual(graph.node_kinds, ["doc", "roadmap_task"]);
 	assert.equal(graph.stats.shown_edges, 1);
 
+	const settings = await buildControlRoomSettingsModel(project);
+	assert.equal(settings.source_path, ".codewiki/config.json");
+	assert.ok(settings.groups.find((group) => group.id === "gateway")?.rows.some((row) => row.path === "codewiki.gateway.enabled"));
+	assert.ok(settings.groups.find((group) => group.id === "agency")?.rows.some((row) => row.path === "codewiki.agency.budgets.default.maxTokens"));
+
 	assert.deepEqual(parseUiArgs("3030 /tmp/repo"), { pathArg: "/tmp/repo", port: 3030 });
 	assert.deepEqual(parseUiArgs("/tmp/repo"), { pathArg: "/tmp/repo", port: undefined });
 	assert.deepEqual(buildBrowserOpenCommand("http://127.0.0.1:3000/", "darwin"), { command: "open", args: ["http://127.0.0.1:3000/"] });
@@ -191,6 +209,7 @@ edges:
 	assert.match(html, /data-view="status"/);
 	assert.match(html, /data-view="product"/);
 	assert.match(html, /data-view="board"/);
+	assert.match(html, /id="settingsButton"/);
 	assert.doesNotMatch(html, /data-view="diff"|data-view="builds"|data-view="validation"|data-view="settings"|data-view="knowledge"/);
 	assert.match(html, /\/assets\/vendor\/cytoscape\.min\.js/);
 	const vendor = await fetch(new URL("/assets/vendor/cytoscape.min.js", server.url)).then((res) => res.text());
@@ -212,12 +231,16 @@ edges:
 	assert.match(js, /minZoom: 0\.05/);
 	assert.match(js, /nodeRepulsion: GRAPH_NODE_REPULSION/);
 	assert.match(js, /fitGraph\(state\.cy\)/);
+	assert.match(js, /toggleSettings/);
+	assert.match(js, /\/api\/settings/);
 	const apiState = await fetch(new URL("/api/state", server.url)).then((res) => res.json());
 	assert.equal(apiState.project.label, "control-room-smoke");
 	const apiProduct = await fetch(new URL("/api/product", server.url)).then((res) => res.json());
 	assert.equal(apiProduct.categories.length, 3);
 	const apiBoard = await fetch(new URL("/api/board", server.url)).then((res) => res.json());
 	assert.equal(apiBoard.tasks[0].id, "TASK-001");
+	const apiSettings = await fetch(new URL("/api/settings", server.url)).then((res) => res.json());
+	assert.equal(apiSettings.groups.find((group) => group.id === "project").rows[0].source_path, ".codewiki/config.json");
 } finally {
 	if (server) await server.close();
 	await rm(root, { recursive: true, force: true });

@@ -22,7 +22,7 @@ The Control Room UI is the standalone local web surface for CodeWiki. It serves 
 
 The Control Room is a product UI and an access surface. It must not own CodeWiki truth. Product intent remains in `.codewiki/kb/**`, work truth remains in roadmap state, compiler handoffs remain in builds, validation truth remains in validation reports, coordination state remains in runtime claims, and generated relationships remain in `.codewiki/index_graph.json`.
 
-The Control Room should prioritize high-signal navigation over exhaustive artifact browsing. The first-level UI sections are `Status`, `Product`, `System`, `Board`, and `Graph`. Knowledge documents, builds, validation reports, feedback diff rows, and settings remain accessible through contextual inspectors, command-palette actions, API/chat workflows, and source paths rather than permanent top-level views.
+The Control Room should prioritize high-signal navigation over exhaustive artifact browsing. The first-level left-rail UI sections are `Status`, `Product`, `System`, `Board`, and `Graph`. Knowledge documents, builds, validation reports, feedback diff rows, and settings remain accessible through contextual inspectors, command-palette actions, API/chat workflows, source paths, and the header settings cog rather than permanent left-rail views.
 
 ## Local hosting model
 
@@ -42,16 +42,7 @@ Optional shared LAN/server mode may be added later with an explicit flag, token 
 
 ## Harness integration
 
-Harnesses launch or connect to the Control Room; they do not fork the UI semantics.
-
-| Harness or access surface | Expected role |
-| --- | --- |
-| Pi | Provide a command or shortcut that launches the local Control Room, attempts to open the local URL in the browser, prints a plain URL fallback, and keeps the compact TUI status panel as a fallback. |
-| CLI | Start the local server and print or open the URL. |
-| MCP | Expose the same API capabilities for non-visual agent access. |
-| Claude Code | Launch through CLI or MCP when implemented. |
-| Codex | Launch through CLI or MCP when implemented. |
-| Editors | Open the local URL or embed it when a real integration exists. |
+Harnesses launch or connect to the Control Room; they do not fork UI semantics. Pi owns the current launcher and compact TUI fallback. Future CLI, MCP, Claude Code, Codex, or editor surfaces should start the same local server or call the same API capabilities.
 
 ## API contract
 
@@ -65,7 +56,8 @@ The Control Room should use typed CodeWiki API capabilities or thin HTTP endpoin
 - system diagram catalog and selected diagram raw data from `.codewiki/kb/system/diagrams/**`,
 - system component document summaries from `.codewiki/kb/system/*.md`,
 - active change claims,
-- contextual build, validation, diff-table, or settings detail only when linked from the active view.
+- contextual build, validation, diff-table, or settings detail only when linked from the active view,
+- configuration summary and option mapping derived from `.codewiki/config.json` for the header Settings page.
 
 Write endpoints should be added only when the view needs a real action. They must route through existing application use cases such as feedback diff-table actions, roadmap task actions, claim actions, build writing, validation writing, and graph rebuilds.
 
@@ -119,6 +111,23 @@ The first graph renderer is Cytoscape.js, served from the installed `cytoscape` 
 
 The graph is generated state, not canonical truth. Every node or edge detail should link back to canonical files when available.
 
+## Settings contract
+
+The web Control Room should expose Settings through a header-right cog. The cog opens an in-app settings page or panel; it does not add `Settings` back to the left rail.
+
+The Settings read model should derive from `.codewiki/config.json` and group options into useful categories:
+
+- project identity and roots,
+- roadmap retention and archive policy,
+- generated files and view roots,
+- lint policy,
+- gateway allow/write/deny/generated path policy,
+- runtime and rebuild settings,
+- agency default scope, budgets, and parallelism,
+- garbage-collection or archival settings when configured.
+
+Each row should include option path, current value, category, short purpose, source path, and editability cue. The first implementation can be read-only, with future safe edits routed through explicit API use cases. The UI must not create hidden config state or mutate config directly without validation and policy checks.
+
 ## Contextual detail contract
 
 The UI may expose detailed artifacts contextually:
@@ -127,7 +136,7 @@ The UI may expose detailed artifacts contextually:
 - Builds appear through Board/Graph evidence links and compiler handoff summaries.
 - Validation appears through Board gates, Graph relationships, inspector warnings, and source links.
 - Diff rows appear only when a pending feedback decision needs explicit action.
-- Settings appear through command palette or maintenance actions.
+- Settings appear through the header cog, command palette, or maintenance actions.
 
 These details should not create hidden UI-only truth or permanent first-level destinations in the simplified Control Room.
 
@@ -139,28 +148,15 @@ Multiple computers using separate clones synchronize durable truth through git. 
 
 ## Boundaries
 
-- Browser UI code and local web-server code must not import Pi SDK or Pi TUI packages.
-- Browser UI vendor assets must be served locally from package dependencies or bundled package files, not from hosted CDNs.
-- Pi launch commands belong in the Pi adapter.
-- CLI and MCP launch surfaces should live in their own adapters when implemented.
-- Domain and application layers must remain browser/UI agnostic.
-- The UI must not hand-edit generated graph state.
-- The UI must not make builds, validation, diff rows, or settings hidden canonical state.
-- The package must not become a hosted service or general long-running orchestration platform.
+Browser UI and local web-server code must not import Pi SDK/TUI packages, depend on hosted CDNs, hand-edit generated graph state, create hidden truth for builds/validation/diff/settings, or turn the package into a hosted service. Pi launch commands stay in the Pi adapter; future CLI/MCP launch surfaces should live in their own adapters. Domain and application layers remain browser/UI agnostic.
 
 ## Success signals
 
-- A user can launch a local browser Control Room from the current repo, with automatic browser opening when available and a plain local URL fallback when not.
-- The Control Room renders a retro terminal-style shell without depending on Pi TUI rendering.
-- Top-level navigation is limited to Status, Product, System, Board, and Graph.
-- Status is compact and metrics-oriented.
-- Product is curated from product Markdown into source-backed cards and relationships.
-- System renders selectable diagrams from `.codewiki/kb/system/diagrams/**` and source-backed component docs.
-- Board maps roadmap work, gates, blockers, and closure evidence.
-- Graph shows work-centered generated relationships with filters, zoom, source links, and freshness cues.
-- Deprecated detail areas remain reachable contextually without creating UI noise.
-- Pi remains able to provide a compact status panel, but the rich visual experience is not Pi-specific.
-- Future harnesses can reuse the same UI and API surface without changing CodeWiki semantics.
+- The local browser Control Room launches from the repo and keeps rich UI semantics harness-agnostic.
+- Left-rail navigation remains Status, Product, System, Board, and Graph.
+- Product/System/Board/Graph are curated, source-backed, and work-centered.
+- Settings is available through the header cog and maps `.codewiki/config.json` without hidden UI truth.
+- Detail artifacts stay contextual and do not create left-rail noise.
 
 ## Related docs
 

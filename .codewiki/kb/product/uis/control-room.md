@@ -27,14 +27,14 @@ The Pi TUI remains a compact launcher and fallback surface. Future Claude Code, 
 The Control Room should use a simple command-center layout:
 
 ```text
-header: repo, health, active task, active claims, command palette
+header: repo, health, active task, active claims, command palette, settings cog
 left rail: Status, Product, System, Board, Graph
 workspace: focused visual map or curated summary for the selected section
 inspector: selected entity detail, source path, links, actions, and warnings
 bottom rail: recent events, stale-state warnings, and next safe action
 ```
 
-The top-level navigation should stay small. `Knowledge`, `Builds`, `Validation`, `Diff`, and `Settings` should not be primary sections in the second-screen UI. They remain accessible when they are relevant through the inspector, contextual links, command palette actions, API/chat workflows, and source paths.
+The top-level navigation should stay small. `Knowledge`, `Builds`, `Validation`, `Diff`, and `Settings` should not be primary left-rail sections in the second-screen UI. They remain accessible when they are relevant through the inspector, contextual links, command palette actions, API/chat workflows, source paths, and the header settings affordance.
 
 The center workspace should prioritize readable visual navigation and curated summaries. The inspector should ground every selection in canonical sources, such as `.codewiki/kb/**`, `.codewiki/roadmap/**`, `.codewiki/builds/**`, `.codewiki/validation/**`, `.codewiki/runtime/claims.json`, `.codewiki/runtime/diff-tables.json`, and `.codewiki/index_graph.json`.
 
@@ -117,55 +117,42 @@ Detailed knowledge docs, builds, validation reports, feedback diff rows, and set
 - Builds appear through Board/Graph evidence links, compiler handoff summaries, and chat.
 - Validation appears through Board gates, Graph relationships, inspector warnings, and chat.
 - Diff rows appear in the feedback loop and only surface in the UI when an explicit decision is pending.
-- Settings appear through command palette or maintenance actions, not as a primary destination.
+- Settings appear through the header-right cog, command palette, or maintenance actions, not as a primary left-rail destination.
+
+## Settings page
+
+The local web Control Room should include a conventional settings cog in the top-right header. Activating the cog opens a Settings page or panel that maps the current `.codewiki/config.json` options into grouped, source-backed rows.
+
+The first settings slice should be high-signal and read-oriented. It should show:
+
+- option path, such as `project_name`, `roadmap_retention.closed_task_limit`, or `codewiki.agency.budgets.default.maxTokens`,
+- current value,
+- group or category,
+- short purpose or cue,
+- source path `.codewiki/config.json`,
+- editability status such as read-only, safe edit, or policy-gated.
+
+Settings should preserve `.codewiki/config.json` as source truth. The UI must not create hidden config state. Config writes should be added only through explicit API-backed actions with validation and policy checks.
 
 ## Style
 
-The Control Room should keep the retro terminal feeling associated with Pi while using browser-native rendering:
-
-- dark background,
-- monospace typography,
-- muted monochrome green as the base terminal tone,
-- white or off-white as the primary highlight color,
-- amber or old-gold as the secondary accent for focus, warnings, and important affordances,
-- red only for errors or destructive states,
-- no cyan or blue highlight dependency,
-- visible terminal-style borders,
-- keyboard-first navigation,
-- command palette,
-- optional subtle glow or scanline effects,
-- accessible contrast and reduced-motion support.
-
-The style should feel like a terminal command center, not a modern SaaS dashboard. Visual nostalgia must not reduce legibility, keyboard accessibility, or the ability to use the center workspace as the primary canvas.
+The Control Room should feel like a retro terminal command center while staying browser-native, readable, keyboard-first, and accessible. Use dark surfaces, monospace typography, muted green base tones, off-white highlights, amber/gold accents, terminal borders, and red only for errors or destructive states. Do not depend on cyan/blue highlights. Visual nostalgia must not reduce legibility or canvas usability.
 
 ## Multi-computer behavior
 
-The default multi-computer model is git-synchronized local state. Each computer runs its own local Control Room against its own repo clone. Durable truth synchronizes through git commits and pulls. Runtime state such as active sessions remains local unless it is summarized into claims, task evidence, builds, validation reports, or commits.
-
-Optional shared server mode may be added later. It must be explicit, token-protected, and disabled by default.
+The default multi-computer model is git-synchronized local state. Each computer runs a local Control Room against its repo clone; durable truth syncs through git, while runtime session state stays local unless summarized into claims, task evidence, builds, validation reports, or commits. Optional shared server mode must be explicit, token-protected, and disabled by default.
 
 ## Success signals
 
-- Users get a high-signal second screen that complements agent chat instead of duplicating it.
-- Top-level navigation is limited to Status, Product, System, Board, and Graph.
-- Status shows compact project metrics and statistics without raw artifact dumps.
-- Product turns user, story, and UI Markdown into curated source-backed cards and relationships.
-- System renders selectable diagrams from `.codewiki/kb/system/diagrams/**` and keeps component inspection source-backed.
-- Board maps roadmap work, gates, blockers, acceptance, and closure evidence.
-- Graph shows work-centered relationships, freshness, drift, and source paths.
-- Deprecated top-level details remain reachable contextually without becoming UI noise.
-- The UI works locally without hosted infrastructure.
-- Every visible entity points back to canonical truth or generated graph state.
-- The retro terminal aesthetic remains readable, keyboard-accessible, and browser-native.
+- The second screen complements chat with Status, Product, System, Board, Graph, and a header Settings cog.
+- Status is compact; Product/System are source-backed curated views; Board/Graph map roadmap work and relationships.
+- Deprecated details stay contextual, not left-rail noise.
+- Settings maps `.codewiki/config.json` without UI-only truth.
+- The UI is local-first, accessible, and source-linked.
 
 ## Non-goals
 
-- No hosted SaaS dependency.
-- No real-time multiplayer collaboration in the first version.
-- No UI-only source of truth.
-- No raw JSON, Markdown, build, validation, or diff wall as the default experience.
-- No direct hand-editing of generated graph state.
-- No replacement for compiler loops, validation gates, scoped change claims, or agent chat.
+- No hosted SaaS, real-time multiplayer, UI-only truth, raw artifact walls, direct graph edits, or replacement for compiler loops, validation gates, scoped claims, and agent chat.
 
 ## Related docs
 

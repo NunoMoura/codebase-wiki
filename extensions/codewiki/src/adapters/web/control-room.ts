@@ -173,6 +173,25 @@ export interface ControlRoomGraphModel {
 	edges: Array<Record<string, unknown>>;
 }
 
+export interface ControlRoomSettingsModel {
+	source_path: string;
+	groups: Array<{
+		id: string;
+		label: string;
+		summary: string;
+		rows: ControlRoomSettingsRow[];
+	}>;
+}
+
+export interface ControlRoomSettingsRow {
+	path: string;
+	value: string;
+	category: string;
+	purpose: string;
+	source_path: string;
+	editability: "read-only" | "safe-edit" | "policy-gated";
+}
+
 export async function startControlRoomServer(
 	project: WikiProject,
 	options: ControlRoomServerOptions = {},
@@ -367,6 +386,30 @@ export async function buildControlRoomSystemModel(project: WikiProject): Promise
 	};
 }
 
+export async function buildControlRoomSettingsModel(project: WikiProject): Promise<ControlRoomSettingsModel> {
+	const sourcePath = ".codewiki/config.json";
+	const rows = flattenConfigRows(project.config || {}, sourcePath);
+	const groupOrder = ["project", "paths", "roadmap", "generated", "lint", "gateway", "runtime", "rebuild", "agency", "gc", "other"];
+	const grouped = new Map<string, ControlRoomSettingsRow[]>();
+	for (const row of rows) {
+		const id = row.category;
+		const list = grouped.get(id) || [];
+		list.push(row);
+		grouped.set(id, list);
+	}
+	return {
+		source_path: sourcePath,
+		groups: groupOrder
+			.filter((id) => grouped.has(id))
+			.map((id) => ({
+				id,
+				label: settingsGroupLabel(id),
+				summary: settingsGroupSummary(id),
+				rows: grouped.get(id) ?? [],
+			})),
+	};
+}
+
 export async function buildControlRoomGraphModel(
 	project: WikiProject,
 	options: { maxNodes?: number; maxEdges?: number } = {},
@@ -429,6 +472,9 @@ async function handleControlRoomRequest(
 			case "/api/board":
 				writeJsonResponse(res, 200, await buildControlRoomBoardModel(project));
 				return;
+			case "/api/settings":
+				writeJsonResponse(res, 200, await buildControlRoomSettingsModel(project));
+				return;
 			case "/api/graph":
 				writeJsonResponse(res, 200, await buildControlRoomGraphModel(project));
 				return;
@@ -446,6 +492,75 @@ async function handleControlRoomRequest(
 function readCytoscapeVendorAsset(): Promise<string> {
 	cytoscapeAssetCache ??= readFile(nodeRequire.resolve("cytoscape/dist/cytoscape.min.js"), "utf8");
 	return cytoscapeAssetCache;
+}
+
+function flattenConfigRows(value: unknown, sourcePath: string, prefix: string[] = []): ControlRoomSettingsRow[] {
+	if (value && typeof value === "object" && !Array.isArray(value)) {
+		return Object.entries(value as Record<string, unknown>).flatMap(([key, nested]) => flattenConfigRows(nested, sourcePath, [...prefix, key]));
+	}
+	const optionPath = prefix.join(".");
+	return [{
+		path: optionPath,
+		value: formatConfigValue(value),
+		category: settingsCategory(prefix),
+		purpose: settingsPurpose(prefix),
+		source_path: sourcePath,
+		editability: settingsEditability(prefix),
+	}];
+}
+
+function formatConfigValue(value: unknown): string {
+	if (Array.isArray(value)) return JSON.stringify(value);
+	if (value && typeof value === "object") return JSON.stringify(value);
+	if (value === undefined) return "undefined";
+	return String(value);
+}
+
+function settingsCategory(path: string[]): string {
+	const joined = path.join(".");
+	if (["project_name", "version", "template", "index_title"].includes(path[0] || "")) return "project";
+	if (["docs_root", "specs_root", "evidence_root", "research_root", "meta_root", "views_root", "sources_root", "roadmap_path", "roadmap_doc_path"].includes(path[0] || "")) return "paths";
+	if (path[0] === "roadmap_retention") return "roadmap";
+	if (path[0] === "generated_files") return "generated";
+	if (path[0] === "lint") return "lint";
+	if (joined.startsWith("codewiki.gateway")) return "gateway";
+	if (joined.startsWith("codewiki.runtime")) return "runtime";
+	if (joined.startsWith("codewiki.rebuild")) return "rebuild";
+	if (joined.startsWith("codewiki.agency")) return "agency";
+	if (joined.startsWith("codewiki.gc")) return "gc";
+	return "other";
+}
+
+function settingsPurpose(path: string[]): string {
+	const joined = path.join(".");
+	if (joined === "project_name") return "Display name for this CodeWiki project.";
+	if (joined.endsWith("_root") || joined.endsWith("_path")) return "Repository-relative source or generated artifact location.";
+	if (path[0] === "generated_files") return "Generated files rebuilt from canonical sources.";
+	if (path[0] === "roadmap_retention") return "Closed-work retention and archive policy.";
+	if (path[0] === "lint") return "Knowledge/documentation lint policy.";
+	if (joined.startsWith("codewiki.gateway")) return "Gateway read/write, deny, and generated-readonly policy.";
+	if (joined.startsWith("codewiki.runtime")) return "Runtime adapter and transaction behavior.";
+	if (joined.startsWith("codewiki.rebuild")) return "Rebuild freshness, debounce, and verbosity controls.";
+	if (joined.startsWith("codewiki.agency.budgets")) return "Bounded agency budget limit.";
+	if (joined.startsWith("codewiki.agency.parallelism")) return "Parallel session and sprint execution limit.";
+	if (joined.startsWith("codewiki.agency")) return "Default agency planning scope.";
+	if (joined.startsWith("codewiki.gc")) return "Hot/warm/cold/purge artifact lifecycle policy.";
+	return "CodeWiki configuration option.";
+}
+
+function settingsEditability(path: string[]): ControlRoomSettingsRow["editability"] {
+	const joined = path.join(".");
+	if (joined.startsWith("codewiki.gateway") || joined.startsWith("codewiki.runtime") || joined.includes("deny_paths") || joined.includes("write_paths")) return "policy-gated";
+	if (path[0] === "project_name" || path[0] === "lint" || joined.startsWith("codewiki.agency.budgets") || joined.startsWith("codewiki.rebuild")) return "safe-edit";
+	return "read-only";
+}
+
+function settingsGroupLabel(id: string): string {
+	return ({ project: "Project", paths: "Paths", roadmap: "Roadmap retention", generated: "Generated files", lint: "Lint", gateway: "Gateway policy", runtime: "Runtime", rebuild: "Rebuild", agency: "Agency", gc: "GC / archival", other: "Other" } as Record<string, string>)[id] || id;
+}
+
+function settingsGroupSummary(id: string): string {
+	return ({ project: "Identity and template metadata.", paths: "Canonical and generated repository locations.", roadmap: "Closed-task retention and archive behavior.", generated: "Generated files rebuilt by CodeWiki.", lint: "Warnings and documentation quality policy.", gateway: "Sandbox/read/write/deny/generated path policy.", runtime: "Adapter and transaction runtime settings.", rebuild: "Rebuild freshness and noise controls.", agency: "Default agency scope, budget, and parallelism.", gc: "Artifact lifecycle and archive thresholds.", other: "Additional config values." } as Record<string, string>)[id] || "Config values.";
 }
 
 async function readProductItems(project: WikiProject, category: "users" | "stories" | "uis"): Promise<ControlRoomProductItem[]> {
@@ -723,7 +838,10 @@ const CONTROL_ROOM_HTML = `<!doctype html>
       <span class="title">CodeWiki Control Room</span>
       <span id="repo" class="muted"></span>
     </div>
-    <div class="command">⌘ local-first · 127.0.0.1</div>
+    <div class="header-actions">
+      <div class="command">⌘ local-first · 127.0.0.1</div>
+      <button id="settingsButton" class="icon-button" type="button" aria-label="Open settings" title="Settings">⚙</button>
+    </div>
   </header>
   <nav class="rail" aria-label="Control Room sections">
     <button data-view="status" class="active">Status</button>
@@ -740,6 +858,7 @@ const CONTROL_ROOM_HTML = `<!doctype html>
     <section id="graph" class="view"></section>
   </main>
   <aside id="inspector" class="inspector"></aside>
+  <section id="settingsPanel" class="settings-panel" hidden aria-label="Settings"></section>
   <footer id="statusLine" class="status">booting control room…</footer>
 </div>
 <script src="/assets/vendor/cytoscape.min.js"></script>
@@ -800,6 +919,16 @@ button { color: inherit; }
 .title { font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
 .muted { color: var(--muted); }
 .command { color: var(--accent); }
+.header-actions { display: flex; align-items: center; gap: 0.75rem; }
+.icon-button {
+  color: var(--accent);
+  background: rgba(199, 163, 90, 0.08);
+  border: 1px solid rgba(199, 163, 90, 0.35);
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+.icon-button:hover, .icon-button.active { color: var(--highlight); border-color: var(--highlight); box-shadow: 0 0 14px rgba(244,241,232,0.16); }
 .rail {
   padding: 0.75rem;
   display: flex;
@@ -891,6 +1020,24 @@ pre {
 }
 a { color: var(--highlight); }
 .empty-state { color: var(--muted); }
+.settings-panel {
+  position: fixed;
+  inset: 4.5rem 2rem 2rem 2rem;
+  z-index: 20;
+  background: rgba(5, 6, 4, 0.98);
+  border: 1px solid var(--line);
+  box-shadow: 0 0 40px rgba(0,0,0,0.55), 0 0 20px var(--shadow);
+  padding: 1rem;
+  overflow: auto;
+}
+.settings-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.settings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr)); gap: 0.75rem; }
+.settings-group { border: 1px solid var(--line-dim); background: rgba(244,241,232,0.035); padding: 0.75rem; }
+.settings-row { border-top: 1px solid var(--line-dim); padding: 0.55rem 0; }
+.settings-row:first-of-type { border-top: 0; }
+.settings-path { color: var(--highlight); font-weight: 700; }
+.settings-value { color: var(--accent); word-break: break-word; }
+.settings-meta { color: var(--muted); font-size: 0.82rem; }
 @media (max-width: 980px) {
   .shell { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto auto; }
   .topbar, .status { grid-column: 1; }
@@ -903,7 +1050,7 @@ a { color: var(--highlight); }
 `;
 
 const CONTROL_ROOM_JS = String.raw`
-const state = { model: null, product: null, system: null, board: null, graph: null, selected: null, systemZoom: 0.92, graphZoom: 1, drawnEdges: [], cy: null, systemDiagramId: null };
+const state = { model: null, product: null, system: null, board: null, graph: null, settings: null, selected: null, systemZoom: 0.92, graphZoom: 1, drawnEdges: [], cy: null, systemDiagramId: null, settingsOpen: false };
 const GRAPH_FIT_PADDING = 72;
 const GRAPH_LAYOUT_SPACING = 180;
 const GRAPH_NODE_REPULSION = 26000;
@@ -927,8 +1074,8 @@ async function getJson(url) {
 async function boot() {
   wireNav();
   try {
-    const [model, product, system, board, graph] = await Promise.all([getJson('/api/state'), getJson('/api/product'), getJson('/api/system'), getJson('/api/board'), getJson('/api/graph')]);
-    state.model = model; state.product = product; state.system = system; state.board = board; state.graph = graph;
+    const [model, product, system, board, graph, settings] = await Promise.all([getJson('/api/state'), getJson('/api/product'), getJson('/api/system'), getJson('/api/board'), getJson('/api/graph'), getJson('/api/settings')]);
+    state.model = model; state.product = product; state.system = system; state.board = board; state.graph = graph; state.settings = settings;
     state.systemDiagramId = system.diagram_catalog?.[0]?.id || null;
     $('repo').textContent = ' :: ' + model.project.label;
     renderStatus();
@@ -936,6 +1083,7 @@ async function boot() {
     renderSystem();
     renderBoard();
     renderGraph();
+    renderSettingsPanel();
     inspectStatus();
     $('statusLine').textContent = 'ready · ' + model.health.color + ' · tasks ' + model.roadmap.open + ' open · graph ' + model.graph.nodes + '/' + model.graph.edges + ' · local repo ' + model.project.root;
   } catch (err) {
@@ -948,6 +1096,15 @@ function wireNav() {
   document.querySelectorAll('.rail button').forEach((button) => {
     button.addEventListener('click', () => activateView(button.dataset.view));
   });
+  $('settingsButton')?.addEventListener('click', () => toggleSettings());
+}
+
+function toggleSettings(force) {
+  state.settingsOpen = typeof force === 'boolean' ? force : !state.settingsOpen;
+  const panel = $('settingsPanel');
+  if (panel) panel.hidden = !state.settingsOpen;
+  $('settingsButton')?.classList.toggle('active', state.settingsOpen);
+  if (state.settingsOpen) renderSettingsPanel();
 }
 
 function activateView(view) {
@@ -1105,6 +1262,17 @@ function inspectBoardTask(taskId) {
     + '<h3>Acceptance</h3><pre>' + esc((task.acceptance || []).map((item) => '- ' + item).join('\n') || '—') + '</pre>'
     + '<h3>Verification</h3><pre>' + esc((task.verification || []).map((item) => '- ' + item).join('\n') || '—') + '</pre>'
     + '<h3>Sources</h3><pre>' + esc([...(task.spec_paths || []), ...(task.code_paths || [])].join('\n') || '—') + '</pre>';
+}
+
+function renderSettingsPanel() {
+  const settings = state.settings;
+  if (!settings) return;
+  const groups = settings.groups || [];
+  $('settingsPanel').innerHTML = '<div class="settings-head"><div><h2>Settings</h2><p class="muted">Source-backed map of ' + esc(settings.source_path) + '. Values are read-only unless a future API-backed safe edit is added.</p></div><button id="settingsClose" class="icon-button" type="button" aria-label="Close settings">×</button></div>'
+    + '<div class="settings-grid">' + groups.map((group) => '<section class="settings-group"><h3>' + esc(group.label) + '</h3><p class="muted">' + esc(group.summary) + '</p>'
+      + (group.rows || []).map((row) => '<article class="settings-row"><div class="settings-path">' + esc(row.path) + '</div><div class="settings-value">' + esc(row.value) + '</div><div class="settings-meta">' + esc(row.purpose) + '</div><div class="settings-meta">' + esc(row.source_path) + ' · ' + esc(row.editability) + '</div></article>').join('')
+      + '</section>').join('') + '</div>';
+  $('settingsClose')?.addEventListener('click', () => toggleSettings(false));
 }
 
 function renderGraph() {
