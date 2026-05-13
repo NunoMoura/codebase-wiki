@@ -507,6 +507,7 @@ export interface CodewikiDiffTableRowInput {
 export interface CodewikiBuildRefsInput {
 	feedback?: string[];
 	documentation?: string[];
+	planning?: string[];
 	implementation?: string[];
 	roadmap?: string[];
 	validation?: string[];
@@ -539,9 +540,35 @@ export interface CodewikiClosureBriefInput {
 	remaining_risks?: string[];
 }
 
+export interface CodewikiBuildCycleInput {
+	sequence?: number;
+	attempt?: string;
+	supersedes?: string[];
+	status?: string;
+}
+
+export interface CodewikiBuildPolicyInput {
+	profile?: string;
+	exit_criteria?: string[];
+}
+
+export interface CodewikiBuildRequirementInput {
+	id: string;
+	text: string;
+	source_refs?: string[];
+	state?: string;
+}
+
+export interface CodewikiEvidenceMappingInput {
+	criterion: string;
+	evidence: string;
+	requirement_ids?: string[];
+	source_refs?: string[];
+}
+
 export interface CodewikiBuildToolInput {
 	repoPath?: string;
-	kind: "feedback" | "documentation" | "implementation";
+	kind: "feedback" | "documentation" | "planning" | "implementation";
 	refresh?: boolean;
 	/** Common */
 	summary: string;
@@ -550,6 +577,11 @@ export interface CodewikiBuildToolInput {
 	schema_version?: number;
 	consumes?: CodewikiBuildRefsInput;
 	produces?: CodewikiBuildProducesInput;
+	cycle?: CodewikiBuildCycleInput;
+	policy?: CodewikiBuildPolicyInput;
+	requirements?: CodewikiBuildRequirementInput[];
+	evidence_mapping?: CodewikiEvidenceMappingInput[];
+	agent_assessment?: string;
 	lifecycle?: {
 		state?: "proposed" | "accepted" | "consumed" | "applied" | "validated" | "archived";
 		ttl_days?: number;
@@ -572,8 +604,15 @@ export interface CodewikiBuildToolInput {
 	source_feedback_build?: string;
 	knowledge_changes?: string[];
 	roadmap_changes?: string[];
-	/** Implementation-specific */
+	/** Planning-specific */
 	source_documentation_build?: string;
+	task_ids?: string[];
+	task_changes?: string[];
+	tdd_plan?: string[];
+	candidate_test_files?: string[];
+	candidate_code_paths?: string[];
+	/** Implementation-specific */
+	source_planning_build?: string;
 	task_id?: string;
 	test_files?: string[];
 	code_files?: string[];
@@ -618,6 +657,9 @@ export interface CodewikiValidationReportInput {
 	checks?: string[];
 	issues?: Array<{ severity: string; summary: string }>;
 	source?: string;
+	policy_profile?: string;
+	failed_criteria?: string[];
+	blocking_questions?: string[];
 	isolation?: CodewikiValidationIsolationInput;
 	refresh?: boolean;
 }

@@ -327,6 +327,7 @@ export const codewikiDiffTableRowSchema = Type.Object({
 const codewikiBuildRefsSchema = Type.Object({
 	feedback: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
 	documentation: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	planning: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
 	implementation: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
 	roadmap: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
 	validation: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
@@ -356,14 +357,37 @@ const codewikiClosureBriefSchema = Type.Object({
 	non_goals_preserved: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
 	remaining_risks: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
 });
+const codewikiBuildCycleSchema = Type.Object({
+	sequence: Type.Optional(Type.Number()),
+	attempt: Type.Optional(Type.String({ minLength: 1 })),
+	supersedes: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	status: Type.Optional(Type.String({ minLength: 1 })),
+});
+const codewikiBuildPolicySchema = Type.Object({
+	profile: Type.Optional(Type.String({ minLength: 1 })),
+	exit_criteria: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+});
+const codewikiBuildRequirementSchema = Type.Object({
+	id: Type.String({ minLength: 1 }),
+	text: Type.String({ minLength: 1 }),
+	source_refs: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	state: Type.Optional(Type.String({ minLength: 1 })),
+});
+const codewikiEvidenceMappingSchema = Type.Object({
+	criterion: Type.String({ minLength: 1 }),
+	evidence: Type.String({ minLength: 1 }),
+	requirement_ids: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	source_refs: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+});
 export const codewikiBuildToolInputSchema = Type.Object({
 	repoPath: repoPathToolField,
 	kind: Type.Union([
 		Type.Literal("feedback"),
 		Type.Literal("documentation"),
+		Type.Literal("planning"),
 		Type.Literal("implementation"),
 	], {
-		description: "Build kind to create. feedback: user intent → knowledge. documentation: knowledge → roadmap. implementation: roadmap → tests/code.",
+		description: "Build kind to create. feedback: user intent → knowledge. documentation: knowledge → planning. planning: roadmap alignment → implementation. implementation: roadmap → tests/code.",
 	}),
 	summary: Type.String({ minLength: 1 }),
 	slug: Type.Optional(Type.String({ minLength: 1 })),
@@ -371,6 +395,11 @@ export const codewikiBuildToolInputSchema = Type.Object({
 	schema_version: Type.Optional(Type.Number()),
 	consumes: Type.Optional(codewikiBuildRefsSchema),
 	produces: Type.Optional(codewikiBuildProducesSchema),
+	cycle: Type.Optional(codewikiBuildCycleSchema),
+	policy: Type.Optional(codewikiBuildPolicySchema),
+	requirements: Type.Optional(Type.Array(codewikiBuildRequirementSchema)),
+	evidence_mapping: Type.Optional(Type.Array(codewikiEvidenceMappingSchema)),
+	agent_assessment: Type.Optional(Type.String()),
 	lifecycle: Type.Optional(codewikiBuildLifecycleSchema),
 	refresh: Type.Optional(Type.Boolean({ default: true })),
 	// Feedback-specific
@@ -389,8 +418,15 @@ export const codewikiBuildToolInputSchema = Type.Object({
 	source_feedback_build: Type.Optional(Type.String()),
 	knowledge_changes: Type.Optional(Type.Array(Type.String())),
 	roadmap_changes: Type.Optional(Type.Array(Type.String())),
-	// Implementation-specific
+	// Planning-specific
 	source_documentation_build: Type.Optional(Type.String()),
+	task_ids: Type.Optional(Type.Array(Type.String())),
+	task_changes: Type.Optional(Type.Array(Type.String())),
+	tdd_plan: Type.Optional(Type.Array(Type.String())),
+	candidate_test_files: Type.Optional(Type.Array(Type.String())),
+	candidate_code_paths: Type.Optional(Type.Array(Type.String())),
+	// Implementation-specific
+	source_planning_build: Type.Optional(Type.String()),
 	task_id: Type.Optional(Type.String()),
 	test_files: Type.Optional(Type.Array(Type.String())),
 	code_files: Type.Optional(Type.Array(Type.String())),
@@ -443,6 +479,9 @@ export const codewikiValidationReportSchema = Type.Object({
 		summary: Type.String(),
 	}))),
 	source: Type.Optional(Type.String()),
+	policy_profile: Type.Optional(Type.String({ minLength: 1 })),
+	failed_criteria: Type.Optional(Type.Array(Type.String({ minLength: 1 }))),
+	blocking_questions: Type.Optional(Type.Array(Type.String({ minLength: 1 }))),
 	isolation: Type.Optional(validationIsolationSchema),
 	refresh: Type.Optional(Type.Boolean({ default: true })),
 });

@@ -2,30 +2,48 @@
 id: spec.system.validation-gateway
 title: Validation Gateway
 state: active
-summary: Loop-exit gateway that checks vertical and horizontal alignment before handoff, closure, release, or publication.
+summary: Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.
 owners:
   - architecture
-updated: "2026-05-09"
+updated: "2026-05-13"
 code_paths:
   - skills/codewiki-verify/SKILL.md
   - .codewiki/validation
+  - extensions/codewiki/src/application/builds.ts
 ---
 
 # Validation Gateway
 
 ## Responsibility
 
-The validation gateway decides whether a loop can end and whether the next loop can consume the produced build. It is read-only with respect to canonical truth.
+The validation gateway has one job: validate a submitted cycle build against its policy, source refs, exit criteria, and evidence. It returns `pass`, `fail`, or `block`.
+
+The gateway does not define requirements, write canonical truth, create plans, or compile handoffs. Compilers create builds. The gateway evaluates builds.
 
 A verifier can be an implementation role inside the gateway, but validation gateway is the product term.
+
+## Build validation contract
+
+A gateway run should receive:
+
+- the build path and build kind,
+- the policy profile embedded in or selected for the build,
+- requirement ids and exit criteria,
+- source refs used by the compiler,
+- evidence mapping supplied by the compiler,
+- relevant graph/state routing context,
+- any required mechanical checks or fresh-context isolation data.
+
+The gateway should inspect only enough source truth to decide whether the build is valid. It may recommend routing after a fail or block, but the next compiler cycle owns the revised build.
 
 ## Gate points
 
 Validation can run at:
 
-- feedback loop exit,
-- documentation loop exit,
-- implementation loop exit,
+- feedback build handoff,
+- documentation build handoff,
+- planning build handoff,
+- implementation build handoff,
 - roadmap work closure,
 - gated agency cycle boundaries,
 - graph/drift audits,
@@ -42,6 +60,7 @@ user intent
   -> feedback_build
   -> product/system knowledge
   -> documentation_build
+  -> planning_build
   -> roadmap work item
   -> tests/code
   -> implementation_build
@@ -51,19 +70,24 @@ Horizontal alignment checks coherence inside a layer:
 
 ```text
 knowledge docs agree with knowledge docs
+planning builds agree with roadmap tasks
 roadmap items agree with roadmap items
 code components agree with code components
 tests agree with intended behavior
-builds agree with their source layer
+builds agree with their source layer and policy
 ```
+
+Requirement ids and evidence mapping should make this trace explicit. The gateway should not rely on broad prose similarity when explicit refs are available.
 
 ## Verdicts
 
 | Verdict | Meaning |
 | --- | --- |
-| `pass` | Alignment holds and no blocker remains. |
-| `fail` | Requirement is not satisfied or drift is proven. |
-| `block` | The gateway cannot safely decide because context, checks, policy, or intent is insufficient. |
+| `pass` | The build satisfies its policy and can be consumed by the next loop or publication step. |
+| `fail` | A requirement, criterion, alignment claim, or evidence mapping is proven wrong or incomplete. |
+| `block` | The gateway cannot safely decide because context, checks, policy, source refs, or intent is insufficient. |
+
+A failed or blocked verdict should name the failed criteria or missing context. The producing loop then creates a superseding cycle build after revision.
 
 ## Persistence policy
 
@@ -81,10 +105,11 @@ Persistent hot reports live under `.codewiki/validation/**`. Pass reports are ho
 
 ## Rules
 
-- The gateway does not mutate canonical truth.
+- The gateway validates builds; it does not mutate canonical truth.
 - The gateway does not replace mechanical checks.
+- The gateway does not invent requirements or plan implementation work.
 - Semantic validation should run in a fresh, bounded context when independence matters.
-- The gateway may recommend next routing: feedback, documentation, implementation, validation, observe, or block.
+- The gateway may recommend next routing: feedback, documentation, planning, implementation, validation, observe, or block.
 - Gated agency must stop on fail/block verdicts or missing required approval.
 - Commit, push, release, or remote updates require gateway/policy approval when configured.
 
@@ -111,4 +136,5 @@ Legacy reports can remain valid without these fields. New reports should include
 
 - [Builds](builds.md)
 - [Compilers](compilers.md)
+- [Roadmap](roadmap.md)
 - [Agency Controller](agency.md)

@@ -1,7 +1,7 @@
 /**
  * tests/smoke/builds.mjs
  *
- * Standalone smoke tests for codewiki_build (feedback, documentation, implementation)
+ * Standalone smoke tests for codewiki_build (feedback, documentation, planning, implementation)
  * and codewiki_validation. Bootstraps a fresh temp project, runs the tools, asserts.
  */
 import { mkdtempSync, readFileSync, rmSync, statSync, readdirSync } from "node:fs";
@@ -137,6 +137,19 @@ async function run() {
 		assert.deepEqual(doc.consumes.feedback, [fbResult.details.path]);
 		assert.deepEqual(doc.produces.roadmap, ["TASK-001 created/updated"]);
 
+		// codewiki_build: planning
+		const planResult = await buildTool.definition.execute(
+			"build-plan", { repoPath: projectDir, kind: "planning", summary: "Plan implementation.", source_documentation_build: docResult.details.path, task_ids: ["TASK-001"], task_changes: ["TASK-001 refined for TDD"], tdd_plan: ["Write or update failing test before code change."], candidate_test_files: ["test.js"], candidate_code_paths: ["src/index.ts"], requirements: [{ id: "REQ-001", text: "Document and implement X.", source_refs: [fbResult.details.path] }], evidence_mapping: [{ criterion: "Task acceptance maps to requirement", evidence: "TASK-001 acceptance covers REQ-001.", requirement_ids: ["REQ-001"], source_refs: [docResult.details.path] }], lifecycle: { ttl_days: 14 } },
+			undefined, undefined, ctx,
+		);
+		assert.match(planResult.details.path, /\.codewiki\/builds\/planning\/.*\.json$/);
+		const plan = JSON.parse(readFileSync(resolve(projectDir, planResult.details.path), "utf8"));
+		assert.equal(plan.kind, "planning_build");
+		assert.deepEqual(plan.consumes.documentation, [docResult.details.path]);
+		assert.ok(plan.produces.roadmap.includes("TASK-001"));
+		assert.equal(plan.cycle.loop, "planning");
+		assert.equal(plan.policy.profile, "planning");
+
 		// codewiki_build: implementation
 		await assert.rejects(
 			() => buildTool.definition.execute(
@@ -147,7 +160,7 @@ async function run() {
 		);
 
 		const implResult = await buildTool.definition.execute(
-			"build-impl", { repoPath: projectDir, kind: "implementation", summary: "Impl done.", source_documentation_build: docResult.details.path, task_id: "TASK-001", test_files: ["test.js"], code_files: ["src/index.ts"], checks_run: ["npm test"], acceptance_mapping: [{ criterion: "Works", evidence: "Pass" }], validation_refs: [".codewiki/validation/smoke-pass.json"], closure_brief: { user_intent: "Document and implement X.", implemented_changes: ["Updated tests and code for X."], layers_updated: { roadmap: ["TASK-001"], code: ["src/index.ts"], tests: ["test.js"], validation: [".codewiki/validation/smoke-pass.json"] }, acceptance_evidence: ["Works: Pass"], checks: ["npm test"], non_goals_preserved: [], remaining_risks: [] }, lifecycle: { ttl_days: 7 } },
+			"build-impl", { repoPath: projectDir, kind: "implementation", summary: "Impl done.", source_documentation_build: docResult.details.path, source_planning_build: planResult.details.path, task_id: "TASK-001", test_files: ["test.js"], code_files: ["src/index.ts"], checks_run: ["npm test"], acceptance_mapping: [{ criterion: "Works", evidence: "Pass" }], validation_refs: [".codewiki/validation/smoke-pass.json"], closure_brief: { user_intent: "Document and implement X.", implemented_changes: ["Updated tests and code for X."], layers_updated: { roadmap: ["TASK-001"], code: ["src/index.ts"], tests: ["test.js"], validation: [".codewiki/validation/smoke-pass.json"] }, acceptance_evidence: ["Works: Pass"], checks: ["npm test"], non_goals_preserved: [], remaining_risks: [] }, lifecycle: { ttl_days: 7 } },
 			undefined, undefined, ctx,
 		);
 		assert.match(implResult.details.path, /\.codewiki\/builds\/implementation\/.*\.json$/);
@@ -155,6 +168,7 @@ async function run() {
 		assert.equal(impl.kind, "implementation_build");
 		assert.equal(impl.closure_brief.user_intent, "Document and implement X.");
 		assert.deepEqual(impl.consumes.documentation, [docResult.details.path]);
+		assert.deepEqual(impl.consumes.planning, [planResult.details.path]);
 		assert.deepEqual(impl.produces.closure, ["TASK-001"]);
 		assert.equal(impl.publication.git.strategy, "implementation_build_publication_payload");
 		assert.equal(impl.publication.git.archive_ref, "refs/codewiki/archive/task/TASK-001");
@@ -162,6 +176,7 @@ async function run() {
 		assert.ok(impl.publication.commit.trailers.includes(`CodeWiki-Build: ${implResult.details.path}`));
 		assert.match(impl.publication.archive_ledger.digest, /^sha256:/);
 		assert.ok(impl.publication.artifact_digests.files.some((file) => file.path === docResult.details.path));
+		assert.ok(impl.publication.artifact_digests.files.some((file) => file.path === planResult.details.path));
 		assert.equal(impl.publication.push_readiness.safe_to_push, false);
 		assert.ok(impl.publication.push_readiness.blocked_reasons.includes("secret scan required"));
 
@@ -200,6 +215,14 @@ async function run() {
 			"build-unconsumed-doc", { repoPath: projectDir, kind: "documentation", summary: "Doc without roadmap work.", source_feedback_build: downstreamFbResult.details.path, knowledge_changes: [".codewiki/kb/system/api.md"], lifecycle: { ttl_days: 14 } },
 			undefined, undefined, ctx,
 		);
+		const supersededFbResult = await buildTool.definition.execute(
+			"build-superseded-fb", { repoPath: projectDir, kind: "feedback", summary: "Superseded intent.", diff_table: [{ id: "DTR-004", current_state: "Old intent pending.", desired_state: "Old intent.", rationale: "Coverage for cycle supersedes.", affected_layers: ["knowledge"], risk: "low", user_action: "pending" }], decisions: ["Old intent."], lifecycle: { state: "proposed", ttl_days: 7 } },
+			undefined, undefined, ctx,
+		);
+		const replacementFbResult = await buildTool.definition.execute(
+			"build-replacement-fb", { repoPath: projectDir, kind: "feedback", summary: "Replacement intent.", diff_table: [{ id: "DTR-005", current_state: "Old intent pending.", desired_state: "Replacement intent.", rationale: "Coverage for superseding cycle.", affected_layers: ["knowledge"], risk: "low", user_action: "approved" }], cycle: { sequence: 2, supersedes: [supersededFbResult.details.path] }, lifecycle: { ttl_days: 7 } },
+			undefined, undefined, ctx,
+		);
 
 		// Graph reconciliation coverage
 		const stateTool = extension.tools.get("codewiki_state");
@@ -219,9 +242,12 @@ async function run() {
 		assert.ok(!items.some(i => i.source_id === `build:${fbResult.details.path}` && i.next_loop === "documentation"), "Feedback build with downstream documentation should be consumed");
 		assert.ok(!items.some(i => i.source_id === `build:${docResult.details.path}` && i.next_loop === "documentation"), "Documentation build with roadmap change should be consumed");
 		assert.ok(items.some(i => i.source_id === `build:${unconsumedFbResult.details.path}` && i.next_loop === "documentation"), "Unconsumed feedback build should route to documentation");
-		assert.ok(items.some(i => i.source_id === `build:${unconsumedDocResult.details.path}` && i.next_loop === "documentation"), "Documentation build with downstream delta and no roadmap/implementation evidence should route to documentation");
+		assert.ok(items.some(i => i.source_id === `build:${unconsumedDocResult.details.path}` && i.next_loop === "planning"), "Documentation build with downstream delta and no planning/roadmap/implementation evidence should route to planning");
 		assert.ok(!items.some(i => i.source_id === `build:${implResult.details.path}` && i.next_loop === "validation"), "Validated implementation build should not stay in reconciliation");
 		assert.ok(items.some(i => i.source_id === `validation:${failResult.details.path}` && i.next_loop === "documentation"), "Fail validation not routing to documentation");
+		assert.ok(!items.some(i => i.source_id === `build:${supersededFbResult.details.path}`), "Superseded feedback cycle should not route reconciliation");
+		assert.ok(graph.nodes.find((node) => node.id === `build:${supersededFbResult.details.path}`)?.superseded_by?.includes(replacementFbResult.details.path), "Superseded build node should point at replacement cycle");
+		assert.ok(graph.views?.traceability?.rows?.some((row) => row.requirement_id === "DTR-003" && row.gaps.includes("missing_planning_build")), "Traceability should expose missing planning for unconsumed downstream feedback");
 		const restoreEntry = graph.views?.archive?.restore_index?.find((entry) => entry.id === "TASK-001");
 		assert.ok(restoreEntry, "Explicit archive view should expose compact restore index entry");
 		assert.equal(restoreEntry.archive_ref, "refs/codewiki/archive/task/TASK-001");

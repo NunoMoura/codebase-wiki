@@ -129,7 +129,7 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 		name: "codewiki_build",
 		label: "Codewiki Build",
 		description:
-			"Create transient compiler build artifacts (feedback_build, documentation_build, implementation_build) with lifecycle metadata.",
+			"Create transient compiler build artifacts (feedback_build, documentation_build, planning_build, implementation_build) with cycle and lifecycle metadata.",
 		promptSnippet:
 			"Write accepted compiler handoff builds with lifecycle metadata",
 		promptGuidelines: [

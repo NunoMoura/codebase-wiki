@@ -5,7 +5,7 @@ state: active
 summary: Main runtime areas and ownership boundaries for CodeWiki.
 owners:
   - architecture
-updated: "2026-05-12"
+updated: "2026-05-13"
 code_paths:
   - extensions/codewiki
   - skills
@@ -19,9 +19,9 @@ CodeWiki maintains the repository-local `.codewiki/` contract and exposes it thr
 
 - **Knowledge base semantics** own product specs, visual UI specs, system access-surface specs, system specs, architecture rules, and workflow vocabulary under `.codewiki/kb/**`.
 - **Agency controller** owns bounded roadmap automation through agency cycles and explicit token, time, risk, validation, policy, and approval gates.
-- **Compiler builds** own validated intent, implementation-spec, and implementation evidence briefs under `.codewiki/builds/**`.
+- **Compiler builds** own cycle handoffs for validated intent, knowledge, planning, and implementation evidence under `.codewiki/builds/**`.
 - **Roadmap semantics** own work truth: priorities, active work items, status, progress, blockers, and closure state under `.codewiki/roadmap/**`.
-- **Validation gateways** decide whether a loop can end and whether a build can be accepted for handoff. Hot failed, blocked, policy-kept, current-publication, or audit-required validation reports live under `.codewiki/validation/**`; cold pass reports rely on Git history/archive refs after publication.
+- **Validation gateways** validate submitted cycle builds against policy, source refs, criteria, and evidence. Hot failed, blocked, policy-kept, current-publication, or audit-required validation reports live under `.codewiki/validation/**`; cold pass reports rely on Git history/archive refs after publication.
 - **Graph state machine** owns generated reconciliation state in `.codewiki/index_graph.json`: drift detection, routing, derived queue order, loop selection, status, and freshness checks.
 - **Control Room UI** owns the standalone local browser command center for humans while delegating all semantics to the CodeWiki API.
 - **Application layer** owns harness-agnostic use cases for setup, state, compiler loops, validation, roadmap mutation, session focus, and rebuild orchestration.
@@ -39,13 +39,14 @@ CodeWiki separates truth by role so that agents can reason about the current sta
 | Repo-local contract truth | `.codewiki/config.json` | Defines project roots, policy, generated files, and runtime settings. |
 | Intent truth | accepted `feedback_build` files under `.codewiki/builds/feedback/**` | Temporary validated brief of user intent for the documentation loop. |
 | Product and system truth | `.codewiki/kb/**/*.md`, `.codewiki/kb/**/*.yaml`, and `.codewiki/kb/**/*.json` | Durable intended behavior, product decisions, architecture, diagram raw data, workflows, and non-goals. |
-| Implementation spec truth | accepted `documentation_build` files under `.codewiki/builds/documentation/**` | Temporary implementation-spec brief for the implementation loop. |
+| Knowledge handoff truth | accepted `documentation_build` files under `.codewiki/builds/documentation/**` | Temporary knowledge-alignment brief for the planning loop. |
+| Planning handoff truth | accepted `planning_build` files under `.codewiki/builds/planning/**` | Temporary roadmap, acceptance, verification, and TDD-strategy brief for the implementation loop. |
 | Work truth | `.codewiki/roadmap/**` | Active work items, priority, ownership, progress, status, blockers, and closure state. |
 | Coordination state | `.codewiki/runtime/claims.json` | Temporary scoped change claims for parallel sessions; expires/releases and never replaces durable truth. |
 | State truth | `.codewiki/index_graph.json` | Generated graph state machine for reconciliation, drift detection, derived queue order, routing, status, and freshness. |
 | Executable truth | code and tests | Final behavior and automated proof. |
 | Implementation evidence truth | accepted `implementation_build` files under `.codewiki/builds/implementation/**` | Temporary compiled evidence that changes were successfully implemented and publication payloads for Git-backed archival. |
-| Validation truth | validation gateway output, plus persisted reports when required | Decides loop exit and records hot fail, block, policy-kept, audit, or current-publication validation outcomes. Cold pass outcomes are recoverable from Git after publication. |
+| Validation truth | validation gateway output, plus persisted reports when required | Validates submitted builds and records hot fail, block, policy-kept, audit, or current-publication validation outcomes. Cold pass outcomes are recoverable from Git after publication. |
 | Publication truth | implementation builds, validation outcomes, and Git/remote results | Supports commit messages, PR bodies, issue updates, release notes, and push readiness. |
 
 Agents should not hand-edit generated graph/index files. Durable changes flow into knowledge, roadmap, code/tests, builds, or validation reports first; generated graph state is rebuilt afterward. Parallel coordination flows through scoped claims, not graph edits. If graph state and canonical inputs disagree, canonical inputs win and the graph is stale or broken.
@@ -55,24 +56,27 @@ Passing validation does not need a separate durable report by default when the a
 
 ## Compiler model
 
-CodeWiki v2 uses three compilers and a validation gateway for the three loops:
+CodeWiki's target alignment model uses four compiler loops and a pure validation gateway:
 
-- [Compilers](compilers.md) — feedback, documentation, and implementation loops that produce validated build briefs.
-- [Validation Gateway](validation-gateway.md) — decides whether a loop can end and whether the next loop can consume the build.
+- [Compilers](compilers.md) — feedback, documentation, planning, and implementation loops that produce cycle builds.
+- [Validation Gateway](validation-gateway.md) — validates a submitted build against policy, source refs, criteria, and evidence.
 
 ```text
-feedback loop -> validation gateway -> feedback_build
-  -> documentation loop -> validation gateway -> documentation_build
-    -> implementation loop -> validation gateway -> implementation_build
+feedback loop -> feedback_build -> validation gateway
+  -> documentation loop -> documentation_build -> validation gateway
+    -> planning loop -> planning_build -> validation gateway
+      -> implementation loop -> implementation_build -> validation gateway/publication
 ```
 
-Builds are requirements or evidence briefs. They compact the result of one loop for the next loop; they are not permanent archives. Long-term product and system truth belongs in `.codewiki/kb/**`. Work truth belongs in roadmap state. Executable truth belongs in code and tests.
+A cycle build is one loop attempt. It contains criteria, requirement ids, source refs, evidence mapping, assumptions, risks, and non-goals for the gateway and the next fresh session.
 
-The roadmap does not duplicate full requirements briefs. Roadmap items reference the relevant accepted builds and knowledge paths, then track priority, state, progress, blockers, and closure.
+Builds compact one loop for the next; they are not permanent archives. Long-term product/system truth belongs in `.codewiki/kb/**`, work truth in roadmap state, and executable truth in code/tests.
 
-The implementation build also supports publication. It should be suitable input for commit messages, PR bodies, issue updates, changelog or release-note drafts, and push-readiness checks. It can recommend publication actions, but validation and policy decide whether commit, push, release, or remote updates are allowed.
+Roadmap items reference accepted builds and knowledge paths, then track priority, state, progress, blockers, and closure. In the target model, planning creates or refines roadmap work from validated documentation builds.
 
-Each compiler handoff is guarded by a validation gateway. Gateways check both vertical alignment across layers and horizontal alignment inside each layer.
+Implementation builds also support publication. They can recommend commit, PR, issue, release-note, and push-readiness text, but validation and policy decide whether commit, push, release, or remote updates are allowed.
+
+Gateways check vertical and horizontal alignment, but they do not invent requirements or compile the next handoff.
 
 ## Ownership seams
 
@@ -84,8 +88,8 @@ Each compiler handoff is guarded by a validation gateway. Gateways check both ve
 - [Extension](extension.md) owns packaged distribution and the current Pi extension surface.
 - [Adapters](adapters.md) owns harness translation boundaries for Pi today and CLI/MCP/future harnesses later.
 - [Agency Controller](agency.md) owns bounded roadmap automation through agency cycles and explicit gates.
-- [Compilers](compilers.md) owns the feedback, documentation, and implementation loops.
-- [Validation Gateway](validation-gateway.md) owns loop-exit validation semantics.
+- [Compilers](compilers.md) owns the feedback, documentation, planning, and implementation loops.
+- [Validation Gateway](validation-gateway.md) owns pure build-validation semantics.
 - [Builds](builds.md) owns temporary handoff brief semantics.
 - [Graph](graph.md) owns the generated state-machine contract.
 - [Knowledge](knowledge.md) owns product/system knowledge-base structure and persistence semantics.
@@ -133,7 +137,7 @@ The target of an intended change can be product behavior, system design, archite
 
 When feedback proposes a change, the user should see a diff table before canonical edits are applied. Each row should show the current state, proposed state, rationale, affected docs or code, risk, and a user action such as approve, edit, reject, or defer. The table should make clear which components are targeted and how the change impacts adjacent layers.
 
-Accepted rows compile into the feedback build. The graph state machine then routes the accepted change to the next needed loop: documentation, implementation, validation, or observe.
+Accepted rows compile into the feedback build. The graph state machine then routes the accepted change to the next needed loop: documentation, planning, implementation, validation, or observe.
 
 Architecture review is one input to this loop, not an automatic refactor pass. Reviews should look for real friction in module depth, seams, adapters, locality, leverage, testability, and code/spec ownership.
 

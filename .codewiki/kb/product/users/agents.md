@@ -6,7 +6,7 @@ summary: AI agents that use CodeWiki as persistent project memory and gated work
   state across harness adapters.
 owners:
 - product
-updated: '2026-05-09'
+updated: '2026-05-13'
 code_paths:
 - skills
 - extensions/codewiki
@@ -21,7 +21,7 @@ Subagents run focused work with fresh context windows. They support validation, 
 ## Success signals
 
 - Agents start from compact graph-backed status before broad reads.
-- Agents follow compiler artifacts: feedback build, documentation build, roadmap work item, and implementation build.
+- Agents follow compiler artifacts: feedback build, documentation build, planning build, roadmap work item, and implementation build.
 - Agents can advance roadmap work automatically only inside explicit token, time, risk, validation, policy, and approval gates.
 - Parallel agents can claim narrow documentation, roadmap, build, validation, or code scopes and see overlap warnings or conflicts before work proceeds.
 - Subagents return compact structured results rather than mutating canonical truth directly.

@@ -1,0 +1,489 @@
+{
+  "version": 1,
+  "schema_version": 2,
+  "kind": "implementation_build",
+  "created": "2026-05-13T01:06:54Z",
+  "source": "codewiki_build tool",
+  "source_documentation_build": ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json",
+  "source_planning_build": ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json",
+  "task_id": "TASK-073",
+  "status": "accepted",
+  "lifecycle": {
+    "state": "accepted",
+    "ttl_days": 7,
+    "archive_after": "2026-05-20T01:06:54.000Z",
+    "purge_after": "2026-05-27T01:06:54.000Z"
+  },
+  "cycle": {
+    "loop": "implementation",
+    "sequence": 1,
+    "supersedes": [],
+    "status": "accepted"
+  },
+  "policy": {
+    "profile": "implementation",
+    "exit_criteria": []
+  },
+  "requirements": [],
+  "evidence_mapping": [],
+  "agent_assessment": "",
+  "summary": "Implemented cycle-based alignment routing with planning_build support, pure gateway metadata, compact graph traceability, superseded cycle handling, and source-content freshness anchors.",
+  "consumes": {
+    "feedback": [],
+    "documentation": [
+      ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json"
+    ],
+    "planning": [
+      ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json"
+    ],
+    "implementation": [],
+    "roadmap": [
+      "TASK-073"
+    ],
+    "validation": [],
+    "source": []
+  },
+  "produces": {
+    "knowledge": [
+      ".codewiki/kb/system/compilers.md",
+      ".codewiki/kb/system/builds.md",
+      ".codewiki/kb/system/validation-gateway.md",
+      ".codewiki/kb/system/roadmap.md",
+      ".codewiki/kb/system/graph.md",
+      ".codewiki/kb/system/overview.md",
+      ".codewiki/kb/lexicon.md",
+      ".codewiki/kb/product/users/agents.md"
+    ],
+    "roadmap": [
+      "TASK-073"
+    ],
+    "code": [
+      "extensions/codewiki/src/application/builds.ts",
+      "extensions/codewiki/src/application/graph.ts",
+      "extensions/codewiki/src/application/state-builders.ts",
+      "extensions/codewiki/src/application/lint.ts",
+      "extensions/codewiki/src/domain/shared/types.ts",
+      "extensions/codewiki/src/adapters/pi/schemas.ts",
+      "extensions/codewiki/src/adapters/pi/index.ts",
+      "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts"
+    ],
+    "tests": [
+      "tests/smoke/builds.test.mjs",
+      "tests/smoke/drift-propagation.test.mjs",
+      "scripts/smoke-test.mjs"
+    ],
+    "validation": [],
+    "publication": [],
+    "closure": [
+      "TASK-073"
+    ]
+  },
+  "linked_refs": {
+    "documentation_build": ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json",
+    "planning_build": ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json",
+    "spec_paths": [],
+    "code_paths": []
+  },
+  "test_files": [
+    "tests/smoke/builds.test.mjs",
+    "tests/smoke/drift-propagation.test.mjs",
+    "scripts/smoke-test.mjs"
+  ],
+  "code_files": [
+    "extensions/codewiki/src/application/builds.ts",
+    "extensions/codewiki/src/application/graph.ts",
+    "extensions/codewiki/src/application/state-builders.ts",
+    "extensions/codewiki/src/application/lint.ts",
+    "extensions/codewiki/src/domain/shared/types.ts",
+    "extensions/codewiki/src/adapters/pi/schemas.ts",
+    "extensions/codewiki/src/adapters/pi/index.ts",
+    "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts"
+  ],
+  "files_changed": [
+    "tests/smoke/builds.test.mjs",
+    "tests/smoke/drift-propagation.test.mjs",
+    "scripts/smoke-test.mjs",
+    "extensions/codewiki/src/application/builds.ts",
+    "extensions/codewiki/src/application/graph.ts",
+    "extensions/codewiki/src/application/state-builders.ts",
+    "extensions/codewiki/src/application/lint.ts",
+    "extensions/codewiki/src/domain/shared/types.ts",
+    "extensions/codewiki/src/adapters/pi/schemas.ts",
+    "extensions/codewiki/src/adapters/pi/index.ts",
+    "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts"
+  ],
+  "checks_run": [
+    "npm run typecheck",
+    "npm run test:features",
+    "npm run test:smoke",
+    "npm run check:architecture",
+    "npm run test:pack",
+    "npm test"
+  ],
+  "role_evidence": {
+    "tester": {
+      "role": "tester",
+      "source_documentation_build": ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json",
+      "source_planning_build": ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json",
+      "roadmap_task_id": "TASK-073",
+      "test_files": [
+        "tests/smoke/builds.test.mjs",
+        "tests/smoke/drift-propagation.test.mjs",
+        "scripts/smoke-test.mjs"
+      ],
+      "evidence": [
+        "Added planning_build smoke creation before implementation build; added graph assertions for documentation->planning routing, traceability missing_planning gap, and superseded feedback cycles.",
+        "Existing drift propagation test now validates source-content spec edits stale freshness anchors."
+      ],
+      "notes": [
+        "Tests were updated before final validation pass and failed once on traceability gap expectation before graph filter was corrected."
+      ],
+      "boundary": "derive tests or test-design evidence before code changes where practical"
+    },
+    "builder": {
+      "role": "builder",
+      "source_documentation_build": ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json",
+      "source_planning_build": ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json",
+      "roadmap_task_id": "TASK-073",
+      "code_files": [
+        "extensions/codewiki/src/application/builds.ts",
+        "extensions/codewiki/src/application/graph.ts",
+        "extensions/codewiki/src/application/state-builders.ts",
+        "extensions/codewiki/src/application/lint.ts",
+        "extensions/codewiki/src/domain/shared/types.ts",
+        "extensions/codewiki/src/adapters/pi/schemas.ts",
+        "extensions/codewiki/src/adapters/pi/index.ts",
+        "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts"
+      ],
+      "evidence": [
+        "Implemented writePlanningBuild, cycle/policy/requirements/evidence mapping fields, source_planning_build consumption, planning build graph indexing, traceability rows, superseded build suppression, validation policy metadata, and doc source digest freshness."
+      ],
+      "notes": [
+        "Maintained compatibility with existing feedback/documentation/implementation builds; no .codewiki/cycles tree added; hot traceability filters historical cold builds."
+      ],
+      "boundary": "change code until tests, roadmap acceptance, and required checks pass"
+    }
+  },
+  "test_design_evidence": [
+    "Added planning_build smoke creation before implementation build; added graph assertions for documentation->planning routing, traceability missing_planning gap, and superseded feedback cycles.",
+    "Existing drift propagation test now validates source-content spec edits stale freshness anchors."
+  ],
+  "code_change_evidence": [
+    "Implemented writePlanningBuild, cycle/policy/requirements/evidence mapping fields, source_planning_build consumption, planning build graph indexing, traceability rows, superseded build suppression, validation policy metadata, and doc source digest freshness."
+  ],
+  "acceptance_mapping": [
+    {
+      "criterion": "codewiki_build and schemas support planning/planning_build with cycle metadata, policy criteria, requirement ids, source refs, and evidence mappings while preserving compatibility.",
+      "evidence": "Added planning kind to types/schemas/writeBuild, planning build writer, cycle/policy/requirements/evidence fields, and smoke coverage in tests/smoke/builds.test.mjs and scripts/smoke-test.mjs."
+    },
+    {
+      "criterion": "Gateway/validation reporting treats builds as submitted artifact and records pass/fail/block against build policy and evidence.",
+      "evidence": "Validation reports now carry policy_profile, failed_criteria, and blocking_questions; gateway docs/skills define pure build validation."
+    },
+    {
+      "criterion": "Graph reconciliation routes feedback->documentation, documentation->planning, planning->implementation, implementation->validation/publication from explicit refs and evidence.",
+      "evidence": "Graph indexes planning builds, consumes.documentation/planning refs, documentation->planning routing, planning build consumption, superseded cycle handling, and tests assert documentation builds route to planning."
+    },
+    {
+      "criterion": "Graph/state expose compact hot traceability gaps and keep cold history explicit-on-demand.",
+      "evidence": "Graph traceability view emits hot requirement rows only for active/unconsumed/open-task-linked feedback, with requirement-to-KB/planning/task/test/code/implementation/validation refs and compact gap list."
+    },
+    {
+      "criterion": "Freshness anchors include knowledge source content and exclude volatile generated fields.",
+      "evidence": "state-builders adds source-content doc revision digests and drift propagation test covers spec-only edits staling anchors while generated graph edits do not."
+    },
+    {
+      "criterion": "Implementation loop consumes planning builds where available and records TDD/test-design evidence or exception.",
+      "evidence": "Implementation build supports source_planning_build and consumes.planning; skills/docs route implementation through planning builds; smoke tests assert planning build artifact digests and role evidence."
+    },
+    {
+      "criterion": "Smoke tests cover planning_build creation/consumption, superseded cycle handling, traceability-gap routing, spec-only freshness changes, and hot-only graph behavior.",
+      "evidence": "Updated builds, drift-propagation, hot-context/hot-retention via full test:features/test:smoke/npm test passes."
+    }
+  ],
+  "validation_refs": [],
+  "closure_brief": {
+    "user_intent": "Refactor CodeWiki alignment so loop cycles are builds, gateway validates builds only, planning is explicit before implementation, and graph supports alignment without becoming the source of truth.",
+    "implemented_changes": [
+      "Documented four-loop CDD/TDD alignment model and pure gateway responsibilities.",
+      "Added planning_build/cycle metadata support to types, schemas, build writer, graph loader, and smoke tests.",
+      "Updated implementation builds to consume source_planning_build and publish planning artifact digests.",
+      "Added graph routing for documentation->planning, planning build consumption, superseded cycle suppression, and compact requirement traceability gaps.",
+      "Added source-content doc revision fingerprints so spec-only edits stale agency freshness anchors."
+    ],
+    "layers_updated": {
+      "knowledge": [
+        ".codewiki/kb/system/compilers.md",
+        ".codewiki/kb/system/builds.md",
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/roadmap.md",
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/overview.md",
+        ".codewiki/kb/lexicon.md",
+        ".codewiki/kb/product/users/agents.md"
+      ],
+      "roadmap": [
+        "TASK-073"
+      ],
+      "code": [
+        "extensions/codewiki/src/application/builds.ts",
+        "extensions/codewiki/src/application/graph.ts",
+        "extensions/codewiki/src/application/state-builders.ts",
+        "extensions/codewiki/src/application/lint.ts",
+        "extensions/codewiki/src/domain/shared/types.ts",
+        "extensions/codewiki/src/adapters/pi/schemas.ts",
+        "extensions/codewiki/src/adapters/pi/index.ts",
+        "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts"
+      ],
+      "tests": [
+        "tests/smoke/builds.test.mjs",
+        "tests/smoke/drift-propagation.test.mjs",
+        "scripts/smoke-test.mjs"
+      ],
+      "validation": []
+    },
+    "acceptance_evidence": [
+      "All TASK-073 acceptance criteria mapped in implementation build acceptance_mapping."
+    ],
+    "checks": [
+      "npm run typecheck",
+      "npm run test:features",
+      "npm run test:smoke",
+      "npm run check:architecture",
+      "npm run test:pack",
+      "npm test"
+    ],
+    "non_goals_preserved": [
+      "No separate .codewiki/cycles/** tree created.",
+      "Graph remains generated index/state and does not own requirements.",
+      "Backward compatibility with existing build kinds preserved."
+    ],
+    "remaining_risks": [
+      "Reload required for current Pi tool schema to expose planning kind in this running session."
+    ]
+  },
+  "risks": [
+    "Current runtime tool schema in this already-running Pi session may require /reload before codewiki_build kind=planning is accepted through the tool UI.",
+    "Traceability is compact and source-backed but initial matrix is intentionally minimal; richer clause-level KB mapping can be added later."
+  ],
+  "unresolved_issues": [],
+  "open_questions": [],
+  "handoff": {
+    "resume": {
+      "source": "implementation_build",
+      "command": "/wiki-resume TASK-073",
+      "task_id": "TASK-073",
+      "next_focus_task_id": "",
+      "context": {
+        "source": "implementation_build",
+        "task_id": "TASK-073",
+        "title": "TASK-073",
+        "summary": "Implemented cycle-based alignment routing with planning_build support, pure gateway metadata, compact graph traceability, superseded cycle handling, and source-content freshness anchors.",
+        "spec_paths": [],
+        "code_paths": [
+          "extensions/codewiki/src/application/builds.ts",
+          "extensions/codewiki/src/application/graph.ts",
+          "extensions/codewiki/src/application/state-builders.ts",
+          "extensions/codewiki/src/application/lint.ts",
+          "extensions/codewiki/src/domain/shared/types.ts",
+          "extensions/codewiki/src/adapters/pi/schemas.ts",
+          "extensions/codewiki/src/adapters/pi/index.ts",
+          "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts"
+        ],
+        "acceptance": [],
+        "verification": [],
+        "source_planning_build": ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json",
+        "checks_run": [
+          "npm run typecheck",
+          "npm run test:features",
+          "npm run test:smoke",
+          "npm run check:architecture",
+          "npm run test:pack",
+          "npm test"
+        ],
+        "test_design_evidence": [
+          "Added planning_build smoke creation before implementation build; added graph assertions for documentation->planning routing, traceability missing_planning gap, and superseded feedback cycles.",
+          "Existing drift propagation test now validates source-content spec edits stale freshness anchors."
+        ],
+        "code_change_evidence": [
+          "Implemented writePlanningBuild, cycle/policy/requirements/evidence mapping fields, source_planning_build consumption, planning build graph indexing, traceability rows, superseded build suppression, validation policy metadata, and doc source digest freshness."
+        ],
+        "validation_refs": []
+      }
+    },
+    "restore": {
+      "command": "/wiki-restore TASK-073",
+      "worktree": "git worktree add --detach <tmp> refs/codewiki/archive/task/TASK-073",
+      "show_build": "git show refs/codewiki/archive/task/TASK-073:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
+      "sparse_paths": [
+        ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json"
+      ],
+      "note": "Restored history is reference material until promoted into active knowledge or roadmap truth."
+    },
+    "fallback": "Use codewiki_state refresh=true and this implementation_build; do not rely on chat transcript memory."
+  },
+  "publication": {
+    "policy": {
+      "execution": "recommendation_only",
+      "approval_required": true,
+      "remote_updates": "blocked_until_explicit_approval",
+      "security_review_required": true
+    },
+    "commit": {
+      "title": "chore(codewiki): record TASK-073 implementation evidence",
+      "body": "Implemented cycle-based alignment routing with planning_build support, pure gateway metadata, compact graph traceability, superseded cycle handling, and source-content freshness anchors.\n\nChecks: npm run typecheck, npm run test:features, npm run test:smoke, npm run check:architecture, npm run test:pack, npm test\nValidation: embedded validation_verdict=pass; fresh validator candidate 9b92bc381f8d01cc4572fdf6449d293adcd6f90c.\nPublication safety: secret_scan=pass; remote_visibility=pass; private_evidence=pass.\n\nCodeWiki-Task: TASK-073\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-073\nCodeWiki-Digest: sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5\nCodeWiki-Restore: /wiki-restore TASK-073",
+      "trailers": [
+        "CodeWiki-Task: TASK-073",
+        "CodeWiki-Build: .codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
+        "CodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-073",
+        "CodeWiki-Digest: sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5",
+        "CodeWiki-Restore: /wiki-restore TASK-073"
+      ]
+    },
+    "pr": {
+      "title": "chore(codewiki): record TASK-073 implementation evidence",
+      "body": "Implemented cycle-based alignment routing with planning_build support, pure gateway metadata, compact graph traceability, superseded cycle handling, and source-content freshness anchors.\n\nChecks: npm run typecheck, npm run test:features, npm run test:smoke, npm run check:architecture, npm run test:pack, npm test\nValidation: embedded validation_verdict=pass; fresh validator candidate 9b92bc381f8d01cc4572fdf6449d293adcd6f90c.\nPublication safety: secret_scan=pass; remote_visibility=pass; private_evidence=pass.\n\nCodeWiki-Task: TASK-073\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-073\nCodeWiki-Digest: sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5\nCodeWiki-Restore: /wiki-restore TASK-073"
+    },
+    "issue_update": "",
+    "release_notes": "",
+    "git": {
+      "strategy": "implementation_build_publication_payload",
+      "archive_ref": "refs/codewiki/archive/task/TASK-073",
+      "commit_sha": "",
+      "remote": "origin",
+      "branch": "main",
+      "atomic_push_refspecs": [
+        "HEAD",
+        "refs/codewiki/archive/task/TASK-073"
+      ],
+      "restore": {
+        "command": "/wiki-restore TASK-073",
+        "worktree": "git worktree add --detach <tmp> refs/codewiki/archive/task/TASK-073",
+        "show_build": "git show refs/codewiki/archive/task/TASK-073:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
+        "sparse_paths": [
+          ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json"
+        ],
+        "note": "Restored history is reference material until promoted into active knowledge or roadmap truth."
+      }
+    },
+    "archive_ledger": {
+      "kind": "task",
+      "id": "TASK-073",
+      "build_path": ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
+      "archive_ref": "refs/codewiki/archive/task/TASK-073",
+      "commit_sha": "",
+      "digest": "sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5",
+      "restore_command": "/wiki-restore TASK-073"
+    },
+    "artifact_digests": {
+      "algorithm": "sha256",
+      "files": [
+        {
+          "path": ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json",
+          "role": "source_documentation_build",
+          "sha256": "sha256:1d1cf64075fb67ff1aca6381136968bace518e18291e15684bb8e5c030fdbd1e",
+          "bytes": 5594
+        },
+        {
+          "path": ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json",
+          "role": "source_planning_build",
+          "sha256": "sha256:eb76e2a398723df4204a4cab13fd13e8b1943350e170a92c00070806d121f8d3",
+          "bytes": 6556
+        },
+        {
+          "path": "tests/smoke/builds.test.mjs",
+          "role": "test_file",
+          "sha256": "sha256:114f13f095ee6aa1d6fe3bdc7a8c64e93dc5268bce3040930762f6e30875532d",
+          "bytes": 19976
+        },
+        {
+          "path": "tests/smoke/drift-propagation.test.mjs",
+          "role": "test_file",
+          "sha256": "sha256:f582f82281975b5d59bee435b946709f39070649d2dda76fd56ca5ed9c00df6b",
+          "bytes": 7840
+        },
+        {
+          "path": "scripts/smoke-test.mjs",
+          "role": "test_file",
+          "sha256": "sha256:f90f22343644fa14306136ea6e2419c761c92d5a20fcc8a6a2dc9bdb7e08781b",
+          "bytes": 80847
+        },
+        {
+          "path": "extensions/codewiki/src/application/builds.ts",
+          "role": "code_file",
+          "sha256": "sha256:bcb6f375b6bfd800b0f0dc1573e7fc576c4e78eb0e16296e1e0339e52d2aa65c",
+          "bytes": 29224
+        },
+        {
+          "path": "extensions/codewiki/src/application/graph.ts",
+          "role": "code_file",
+          "sha256": "sha256:b9272982b58dcb725d5768eb64098f0760fcf461149daa3df4d1f961a9d614ae",
+          "bytes": 52208
+        },
+        {
+          "path": "extensions/codewiki/src/application/state-builders.ts",
+          "role": "code_file",
+          "sha256": "sha256:9c10e0f40b9e3021f7e2b83c1d577d2077c2db08935fda64f3df5bc9301f094d",
+          "bytes": 43275
+        },
+        {
+          "path": "extensions/codewiki/src/application/lint.ts",
+          "role": "code_file",
+          "sha256": "sha256:5abf2a858ad21df009b93dab825a10e4834b1d1140768e9d3c82111f98178e8e",
+          "bytes": 16824
+        },
+        {
+          "path": "extensions/codewiki/src/domain/shared/types.ts",
+          "role": "code_file",
+          "sha256": "sha256:6bc8fc61a5e8063037c3b7f3d725812567353eded19a66da1bc8f255b6c89220",
+          "bytes": 25555
+        },
+        {
+          "path": "extensions/codewiki/src/adapters/pi/schemas.ts",
+          "role": "code_file",
+          "sha256": "sha256:85715505a465264fc65d551a4bf662d3af86464376a455ce2889833af789beee",
+          "bytes": 23419
+        },
+        {
+          "path": "extensions/codewiki/src/adapters/pi/index.ts",
+          "role": "code_file",
+          "sha256": "sha256:41f056530809bf5dcd625fb946a87b0980045b8e1a6ee4c62875a5adbab6437c",
+          "bytes": 12542
+        },
+        {
+          "path": "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
+          "role": "code_file",
+          "sha256": "sha256:c84e72f9b236fd69ffcc82087774cf6ed8fc708c6a0bb7f7d60ba6de4d68b97b",
+          "bytes": 10151
+        }
+      ],
+      "skipped": []
+    },
+    "push_readiness": {
+      "checks_recorded": [
+        "npm run typecheck",
+        "npm run test:features",
+        "npm run test:smoke",
+        "npm run check:architecture",
+        "npm run test:pack",
+        "npm test"
+      ],
+      "validation_refs": [],
+      "approval_required": true,
+      "allowed_by_default": false,
+      "safe_to_push": true,
+      "blocked_reasons": [],
+      "security": {
+        "secret_scan": "pass",
+        "remote_visibility": "pass",
+        "private_evidence": "pass",
+        "git_namespaces": "not_access_control"
+      }
+    }
+  },
+  "validation_verdict": {
+    "verdict": "pass",
+    "profile": "implementation",
+    "rationale": "Builder full checks and fresh validator targeted checks passed; exact validated candidate SHA is recorded in publication notes."
+  }
+}

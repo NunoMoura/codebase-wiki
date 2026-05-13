@@ -98,6 +98,7 @@ function trimRefGroups(input?: CodewikiBuildRefsInput): CodewikiBuildRefsInput {
 	return {
 		feedback: trimList(input?.feedback),
 		documentation: trimList(input?.documentation),
+		planning: trimList(input?.planning),
 		implementation: trimList(input?.implementation),
 		roadmap: trimList(input?.roadmap),
 		validation: trimList(input?.validation),
@@ -127,6 +128,55 @@ function mergeProduces(base: CodewikiBuildProducesInput, overrides?: CodewikiBui
 		validation: unique([...(base.validation ?? []), ...(extra.validation ?? [])]),
 		publication: unique([...(base.publication ?? []), ...(extra.publication ?? [])]),
 		closure: unique([...(base.closure ?? []), ...(extra.closure ?? [])]),
+	};
+}
+
+function normalizeCycle(input: CodewikiBuildToolInput, loop: string) {
+	return {
+		loop,
+		sequence: input.cycle?.sequence ?? 1,
+		attempt: String(input.cycle?.attempt || "").trim() || undefined,
+		supersedes: trimList(input.cycle?.supersedes),
+		status: String(input.cycle?.status || input.lifecycle?.state || "accepted").trim(),
+	};
+}
+
+function normalizePolicy(input: CodewikiBuildToolInput, defaultProfile: string) {
+	return {
+		profile: String(input.policy?.profile || defaultProfile).trim(),
+		exit_criteria: trimList(input.policy?.exit_criteria),
+	};
+}
+
+function normalizeRequirements(input: CodewikiBuildToolInput) {
+	return (input.requirements ?? [])
+		.map((requirement) => ({
+			id: String(requirement.id || "").trim(),
+			text: String(requirement.text || "").trim(),
+			source_refs: trimList(requirement.source_refs),
+			state: String(requirement.state || "accepted").trim(),
+		}))
+		.filter((requirement) => requirement.id && requirement.text);
+}
+
+function normalizeEvidenceMapping(input: CodewikiBuildToolInput) {
+	return (input.evidence_mapping ?? [])
+		.map((mapping) => ({
+			criterion: String(mapping.criterion || "").trim(),
+			evidence: String(mapping.evidence || "").trim(),
+			requirement_ids: trimList(mapping.requirement_ids),
+			source_refs: trimList(mapping.source_refs),
+		}))
+		.filter((mapping) => mapping.criterion && mapping.evidence);
+}
+
+function buildCycleFields(input: CodewikiBuildToolInput, loop: string, defaultPolicyProfile: string) {
+	return {
+		cycle: normalizeCycle(input, loop),
+		policy: normalizePolicy(input, defaultPolicyProfile),
+		requirements: normalizeRequirements(input),
+		evidence_mapping: normalizeEvidenceMapping(input),
+		agent_assessment: String(input.agent_assessment || "").trim(),
 	};
 }
 
@@ -331,6 +381,7 @@ export async function writeFeedbackBuild(
 		source: input.source?.trim() || "codewiki_build tool",
 		status: lifecycle.state,
 		lifecycle,
+		...buildCycleFields(input, "feedback", "feedback"),
 		summary: input.summary.trim(),
 		diff_table: diffTable,
 		approved_diff_rows: approvedRows.map((row) => row.id),
@@ -379,6 +430,7 @@ export async function writeDocumentationBuild(
 		source_feedback_build: input.source_feedback_build.trim(),
 		status: lifecycle.state,
 		lifecycle,
+		...buildCycleFields(input, "documentation", "documentation"),
 		summary: input.summary.trim(),
 		knowledge_changes: knowledgeChanges,
 		roadmap_changes: roadmapChanges,
@@ -390,6 +442,65 @@ export async function writeDocumentationBuild(
 	await mkdir(dirname(absPath), { recursive: true });
 	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");
 	const relPath = `.codewiki/builds/documentation/${day}-${slug}.json`;
+	return { path: relPath, data };
+}
+
+export async function writePlanningBuild(
+	project: WikiProject,
+	input: CodewikiBuildToolInput,
+) {
+	if (!input.summary?.trim()) throw new Error("Planning build requires summary.");
+	if (!input.source_documentation_build?.trim()) throw new Error("Planning build requires source_documentation_build.");
+
+	const created = nowIso();
+	const slug = buildSlug(input.slug || input.summary, "planning-build");
+	const day = created.slice(0, 10);
+	const absPath = buildBuildPath(project, "planning", slug, day);
+	const lifecycle = buildLifecycle(input, created, 14);
+	const sourceDocumentationBuild = input.source_documentation_build.trim();
+	const taskIds = trimList(input.task_ids);
+	const taskChanges = trimList(input.task_changes).length ? trimList(input.task_changes) : trimList(input.roadmap_changes);
+	const tddPlan = trimList(input.tdd_plan);
+	const candidateTestFiles = trimList(input.candidate_test_files);
+	const candidateCodePaths = trimList(input.candidate_code_paths);
+	const consumes = trimRefGroups({
+		...input.consumes,
+		documentation: unique([sourceDocumentationBuild, ...(input.consumes?.documentation ?? [])]),
+		roadmap: unique([...taskIds, ...(input.consumes?.roadmap ?? [])]),
+	});
+	const produces = mergeProduces({
+		roadmap: taskIds,
+		tests: candidateTestFiles,
+		code: candidateCodePaths,
+	}, input.produces);
+	const data = {
+		version: 1,
+		schema_version: input.schema_version ?? 2,
+		kind: "planning_build",
+		created,
+		source: input.source?.trim() || "codewiki_build tool",
+		source_documentation_build: sourceDocumentationBuild,
+		status: lifecycle.state,
+		lifecycle,
+		...buildCycleFields(input, "planning", "planning"),
+		summary: input.summary.trim(),
+		task_ids: taskIds,
+		task_changes: taskChanges,
+		roadmap_changes: taskChanges,
+		tdd_plan: tddPlan,
+		candidate_test_files: candidateTestFiles,
+		candidate_code_paths: candidateCodePaths,
+		acceptance_mapping: normalizeEvidenceMapping(input).length ? normalizeEvidenceMapping(input) : (input.acceptance_mapping ?? []).filter((m) => m.criterion.trim() && m.evidence.trim()),
+		assumptions: trimList(input.assumptions),
+		open_questions: trimList(input.open_questions),
+		non_goals: trimList(input.non_goals),
+		risks: trimList(input.risks),
+		consumes,
+		produces,
+	};
+	await mkdir(dirname(absPath), { recursive: true });
+	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");
+	const relPath = `.codewiki/builds/planning/${day}-${slug}.json`;
 	return { path: relPath, data };
 }
 
@@ -420,6 +531,7 @@ export async function writeImplementationBuild(
 	const openQuestions = trimList(input.open_questions);
 	const nextFocus = await nextFocusTaskId(project, taskId);
 	const sourceDocumentationBuild = (input.source_documentation_build ?? "").trim();
+	const sourcePlanningBuild = (input.source_planning_build ?? "").trim();
 	const acceptanceMapping = (input.acceptance_mapping ?? []).filter((m) => m.criterion.trim() && m.evidence.trim());
 	const acceptanceEvidence = acceptanceMapping.map((mapping) => `${mapping.criterion}: ${mapping.evidence}`);
 	const closureBrief = normalizeClosureBrief(input.closure_brief, task, checksRun, acceptanceEvidence, validationRefs, risks);
@@ -438,6 +550,7 @@ export async function writeImplementationBuild(
 		code_paths: unique([...(task?.code_paths ?? []), ...codeFiles]),
 		acceptance: task?.goal?.acceptance ?? [],
 		verification: task?.goal?.verification ?? [],
+		source_planning_build: sourcePlanningBuild || "",
 		checks_run: checksRun,
 		test_design_evidence: testDesignEvidence,
 		code_change_evidence: codeChangeEvidence,
@@ -447,6 +560,7 @@ export async function writeImplementationBuild(
 		tester: {
 			role: "tester",
 			source_documentation_build: sourceDocumentationBuild || "",
+			source_planning_build: sourcePlanningBuild || "",
 			roadmap_task_id: taskId,
 			test_files: testFiles,
 			evidence: testDesignEvidence,
@@ -456,6 +570,7 @@ export async function writeImplementationBuild(
 		builder: {
 			role: "builder",
 			source_documentation_build: sourceDocumentationBuild || "",
+			source_planning_build: sourcePlanningBuild || "",
 			roadmap_task_id: taskId,
 			code_files: codeFiles,
 			evidence: codeChangeEvidence,
@@ -466,6 +581,7 @@ export async function writeImplementationBuild(
 	const consumes = trimRefGroups({
 		...input.consumes,
 		documentation: unique([...(sourceDocumentationBuild ? [sourceDocumentationBuild] : []), ...(input.consumes?.documentation ?? [])]),
+		planning: unique([...(sourcePlanningBuild ? [sourcePlanningBuild] : []), ...(input.consumes?.planning ?? [])]),
 		roadmap: unique([taskId, ...(input.consumes?.roadmap ?? [])]),
 	});
 	const produces = mergeProduces({
@@ -476,6 +592,7 @@ export async function writeImplementationBuild(
 	}, input.produces);
 	const artifactDigests = buildArtifactDigests(project, [
 		...(sourceDocumentationBuild ? [{ path: sourceDocumentationBuild, role: "source_documentation_build" }] : []),
+		...(sourcePlanningBuild ? [{ path: sourcePlanningBuild, role: "source_planning_build" }] : []),
 		...validationRefs.map((path) => ({ path, role: "validation_ref" })),
 		...testFiles.map((path) => ({ path, role: "test_file" })),
 		...codeFiles.map((path) => ({ path, role: "code_file" })),
@@ -497,15 +614,18 @@ export async function writeImplementationBuild(
 		created,
 		source: input.source?.trim() || "codewiki_build tool",
 		source_documentation_build: sourceDocumentationBuild || undefined,
+		source_planning_build: sourcePlanningBuild || undefined,
 		task_id: taskId,
 		task: taskSnapshot(task),
 		status: lifecycle.state,
 		lifecycle,
+		...buildCycleFields(input, "implementation", "implementation"),
 		summary: input.summary.trim(),
 		consumes,
 		produces,
 		linked_refs: {
 			documentation_build: sourceDocumentationBuild || "",
+			planning_build: sourcePlanningBuild || "",
 			spec_paths: task?.spec_paths ?? [],
 			code_paths: task?.code_paths ?? [],
 		},
@@ -549,6 +669,8 @@ export async function writeBuild(
 			return writeFeedbackBuild(project, input);
 		case "documentation":
 			return writeDocumentationBuild(project, input);
+		case "planning":
+			return writePlanningBuild(project, input);
 		case "implementation":
 			return writeImplementationBuild(project, input);
 		default:
@@ -585,6 +707,9 @@ export async function writeValidationReport(
 		checks: (input.checks ?? []).map((v) => v.trim()).filter(Boolean),
 		issues: (input.issues ?? []).map((i) => ({ severity: i.severity.trim(), summary: i.summary.trim() })).filter((i) => i.summary),
 		source: (input.source ?? "").trim() || undefined,
+		policy_profile: (input.policy_profile ?? input.profile ?? "").trim() || undefined,
+		failed_criteria: trimList(input.failed_criteria),
+		blocking_questions: trimList(input.blocking_questions),
 		isolation,
 	};
 	await mkdir(dirname(absPath), { recursive: true });

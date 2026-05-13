@@ -353,6 +353,22 @@ export function getTaskRevision(task: any) {
     return task.revision || { digest: canonicalDigest(task) };
 }
 
+function docSourceRevision(repoRoot: string, doc: any): any {
+	const existing = doc?.revision || {};
+	if (String(existing.digest || "").trim()) return existing;
+	const path = String(doc?.path || "").trim();
+	const body = String(doc?.body || "");
+	let source = body;
+	if (!source && path) {
+		try {
+			source = readFileSync(join(repoRoot, path), "utf8");
+		} catch {
+			source = JSON.stringify({ path, title: doc?.title || "", summary: doc?.summary || "" });
+		}
+	}
+	return { digest: sha256Text(source), basis: "source_content" };
+}
+
 export function laneRevisionAnchor(
     repoRoot: string,
 	gitCache: GitCache,
@@ -750,11 +766,11 @@ export function buildStatusState(
 			summary: String(doc.summary || (node as any).summary || "").trim(),
 			doc_type: "spec",
 			code_paths: unique(mergedCodePaths),
-			revision: (node as any).revision || (doc as any).revision || {},
+			revision: docSourceRevision(repoRoot, { ...(doc as any), path, revision: (node as any).revision || (doc as any).revision || {} }),
 		});
 	}
 
-	let specDocs = graphSpecDocs.length > 0 ? graphSpecDocs : docs.filter((d) => d.doc_type === "spec");
+	let specDocs = graphSpecDocs.length > 0 ? graphSpecDocs : docs.filter((d) => d.doc_type === "spec").map((doc) => ({ ...doc, revision: docSourceRevision(repoRoot, doc) }));
 	specDocs = specDocs.sort((a, b) => String(a.path || "").localeCompare(String(b.path || "")));
 
 	const issues = Array.isArray(lintReport.issues) ? lintReport.issues : [];
@@ -846,7 +862,7 @@ export function buildStatusState(
 			issue_counts: { errors: issueErrors, warnings: issueWarnings, total: issueErrors + issueWarnings },
 			related_task_ids: [...openTasks, ...blockedTasks, ...doneTasks].map((t) => String(t.id || "").trim()).filter(Boolean),
 			primary_task: primaryTask ? { id: String(primaryTask.id || "").trim(), status: String(primaryTask.status || "").trim(), title: String(primaryTask.title || "").trim() } : null,
-			revision: doc.revision || {},
+			revision: docSourceRevision(repoRoot, doc),
 			note,
 		});
 	}

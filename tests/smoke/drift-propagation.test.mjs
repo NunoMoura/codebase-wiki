@@ -126,6 +126,22 @@ This doc points to missing mapped code.
 	assert.ok(!dirtyGraph.views.reconciliation.items.some((item) => item.id === "reconcile:code:src/a.ts"), "Open task code scope should cover dirty source drift");
 	assert.ok(dirtyGraph.views.reconciliation.items.some((item) => item.id === "reconcile:task:TASK-001"), "Open task remains implementation delta");
 
+	const implementationBuildPath = ".codewiki/builds/implementation/impl.json";
+	const validatedDirtyGraph = buildGraph({
+		project: highProject,
+		docs: [doc],
+		research: [],
+		roadmapEntries: [],
+		roadmapSprints: [],
+		gitCache: dirtyGitCache,
+		builds: [{ path: implementationBuildPath, kind: "implementation_build", taskId: "TASK-001", status: "accepted", data: { kind: "implementation_build", task_id: "TASK-001", lifecycle: { state: "accepted" }, produces: { code: ["src/a.ts"] }, code_files: ["src/a.ts"], closure_brief: { user_intent: "X", implemented_changes: ["Y"], acceptance_evidence: ["Z"], checks: ["npm test"] } } }],
+		validations: [{ path: ".codewiki/validation/impl-pass.json", taskId: "TASK-001", verdict: "pass", data: { profile: "implementation", verdict: "pass", source: implementationBuildPath } }],
+		testFiles: [],
+		claims,
+		lintReport: highLint,
+	});
+	assert.ok(!validatedDirtyGraph.views.reconciliation.items.some((item) => item.id === "reconcile:code:src/a.ts"), "Validated implementation build should cover its dirty source until publication/commit");
+
 	const actionableLint = buildLintReport(root, lowProject, [actionableDoc], [], []);
 	assert.equal(actionableLint.counts["missing-code-path"], 1, "Missing mapped code should remain actionable drift");
 	const graph = buildGraph({

@@ -269,6 +269,20 @@ function lintFeedbackBuildV2(buildPath: string, data: any): LintIssue[] {
 	return issues;
 }
 
+function lintPlanningBuildV2(buildPath: string, data: any): LintIssue[] {
+	const issues: LintIssue[] = [];
+	if (!String(data?.source_documentation_build || "").trim() && !list(data?.consumes?.documentation).length) {
+		issues.push(createIssue("error", "planning-build-missing-documentation-source", buildPath, "Planning build v2 requires source_documentation_build or consumes.documentation."));
+	}
+	if (!list(data?.task_ids).length && !list(data?.task_changes).length && !list(data?.produces?.roadmap).length) {
+		issues.push(createIssue("warning", "planning-build-missing-roadmap-output", buildPath, "Planning build v2 should name task_ids, task_changes, or produces.roadmap."));
+	}
+	if (!list(data?.tdd_plan).length && !list(data?.candidate_test_files).length && !list(data?.evidence_mapping).length) {
+		issues.push(createIssue("warning", "planning-build-missing-test-strategy", buildPath, "Planning build v2 should include TDD/test strategy or evidence mapping."));
+	}
+	return issues;
+}
+
 function lintImplementationBuildV2(buildPath: string, data: any): LintIssue[] {
 	const issues: LintIssue[] = [];
 	const closure = data?.closure_brief || null;
@@ -299,6 +313,7 @@ function lintBuildContractV2(build: { path: string; kind: string; data?: any }):
 		issues.push(createIssue("warning", "build-v2-missing-consumes", build.path, "Build v2 should expose consumes edges."));
 	}
 	if (build.kind === "feedback_build") issues.push(...lintFeedbackBuildV2(build.path, build.data));
+	if (build.kind === "planning_build") issues.push(...lintPlanningBuildV2(build.path, build.data));
 	if (build.kind === "implementation_build") issues.push(...lintImplementationBuildV2(build.path, build.data));
 	return issues;
 }

@@ -587,6 +587,35 @@ async function main() {
 		assert.deepEqual(docBuild.consumes.feedback, [buildResult.details.path]);
 		assert.deepEqual(docBuild.produces.roadmap, ["TASK-001"]);
 
+		// Planning build smoke
+		const planBuildResult = await buildTool.definition.execute(
+			"build-tool-plan-smoke",
+			{
+				repoPath: projectDir,
+				kind: "planning",
+				summary: "Planning build from documentation.",
+				slug: "plan-smoke",
+				source_documentation_build: docBuildResult.details.path,
+				task_ids: ["TASK-001"],
+				task_changes: ["TASK-001 planned for implementation"],
+				tdd_plan: ["Derive smoke assertions before code changes."],
+				candidate_test_files: ["tests/smoke-test.mjs"],
+				candidate_code_paths: ["extensions/codewiki/index.ts"],
+				requirements: [{ id: "REQ-SMOKE-001", text: "Feedback builds must be durable handoff payloads.", source_refs: [buildResult.details.path] }],
+				evidence_mapping: [{ criterion: "Roadmap task maps to requirement", evidence: "TASK-001 is the implementation target.", requirement_ids: ["REQ-SMOKE-001"], source_refs: [docBuildResult.details.path] }],
+				lifecycle: { ttl_days: 14 },
+			},
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		assert.match(planBuildResult.details.path, /\.codewiki\/builds\/planning\/.*plan-smoke\.json$/);
+		const planBuild = JSON.parse(readFileSync(resolve(projectDir, planBuildResult.details.path), "utf8"));
+		assert.equal(planBuild.kind, "planning_build");
+		assert.deepEqual(planBuild.consumes.documentation, [docBuildResult.details.path]);
+		assert.equal(planBuild.cycle.loop, "planning");
+		assert.equal(planBuild.policy.profile, "planning");
+
 		// Implementation build smoke
 		const implBuildResult = await buildTool.definition.execute(
 			"build-tool-impl-smoke",
@@ -597,6 +626,7 @@ async function main() {
 				slug: "impl-smoke",
 				task_id: "TASK-001",
 				source_documentation_build: docBuildResult.details.path,
+				source_planning_build: planBuildResult.details.path,
 				test_files: ["tests/smoke-test.mjs"],
 				code_files: ["extensions/codewiki/index.ts"],
 				checks_run: ["npm test"],
@@ -640,12 +670,14 @@ async function main() {
 		assert.equal(implBuild.validation_refs[0], ".codewiki/validation/smoke-pass.json");
 		assert.equal(implBuild.closure_brief.user_intent, "Feedback builds must be durable handoff payloads.");
 		assert.deepEqual(implBuild.consumes.documentation, [docBuildResult.details.path]);
+		assert.deepEqual(implBuild.consumes.planning, [planBuildResult.details.path]);
 		assert.deepEqual(implBuild.produces.closure, ["TASK-001"]);
 		assert.equal(implBuild.test_design_evidence[0], "Tester derived schema assertions from documentation build before code changes.");
 		assert.equal(implBuild.code_change_evidence[0], "Builder updated extension surface until smoke assertions passed.");
 		assert.equal(implBuild.role_evidence.tester.role, "tester");
 		assert.equal(implBuild.role_evidence.builder.role, "builder");
 		assert.equal(implBuild.role_evidence.tester.source_documentation_build, docBuildResult.details.path);
+		assert.equal(implBuild.role_evidence.tester.source_planning_build, planBuildResult.details.path);
 		assert.equal(implBuild.role_evidence.builder.code_files[0], "extensions/codewiki/index.ts");
 		assert.equal(implBuild.handoff.resume.source, "implementation_build");
 		assert.equal(implBuild.handoff.resume.command, "/wiki-resume TASK-001");

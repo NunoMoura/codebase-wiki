@@ -18,7 +18,7 @@ Product term: **validation gateway**. Verifier is the read-only role inside the 
 ## Vertical alignment
 
 ```text
-user intent -> feedback_build -> .codewiki/kb -> documentation_build -> roadmap item -> tests/code -> implementation_build
+user intent -> feedback_build -> .codewiki/kb -> documentation_build -> planning_build -> roadmap item -> tests/code -> implementation_build
 ```
 
 ## Horizontal alignment
@@ -35,7 +35,7 @@ Check coherence inside the relevant layer:
 Use the smallest useful context:
 
 - status/graph state,
-- feedback/documentation/implementation build paths,
+- feedback/documentation/planning/implementation build paths,
 - roadmap item,
 - linked `.codewiki/kb/**` specs,
 - touched code/test paths,
@@ -46,10 +46,11 @@ Use the smallest useful context:
 
 1. Read the compact brief first.
 2. Inspect only enough source to validate claims.
-3. Run or review relevant checks when allowed.
-4. Judge acceptance criteria one by one.
-5. Judge non-goals and scope.
-6. Return deterministic JSON only.
+3. Validate the submitted build against its policy, source refs, requirement ids, and evidence mapping.
+4. Run or review relevant checks when allowed.
+5. Judge acceptance criteria one by one.
+6. Judge non-goals and scope.
+7. Return deterministic JSON only.
 
 ## Output
 
@@ -72,7 +73,7 @@ Use the smallest useful context:
 }
 ```
 
-`fail` means requirements are not satisfied. `block` means validation cannot safely decide because context, checks, schema, or task meaning is insufficient.
+`fail` means requirements are not satisfied. `block` means validation cannot safely decide because context, checks, schema, source refs, policy, or task meaning is insufficient. The gateway evaluates builds; it does not invent requirements or mutate canonical truth.
 
 Passing validation does not require durable storage by default. Failed, blocked, or policy-required reports should be stored under `.codewiki/validation/**` by the parent process.
 

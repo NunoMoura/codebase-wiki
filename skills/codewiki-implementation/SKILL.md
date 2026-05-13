@@ -14,7 +14,7 @@ updated: "2026-05-10"
 Run the implementation compiler for one roadmap task.
 
 ```text
-graph locates -> documentation_build + roadmap item + linked specs/code
+graph locates -> planning_build + roadmap item + linked specs/code
   -> optional tester -> optional builder -> checks
   -> implementation validation -> implementation_build -> close/block/follow-up
 ```
@@ -22,12 +22,12 @@ graph locates -> documentation_build + roadmap item + linked specs/code
 ## Rules
 
 - Use `codewiki_session` when starting or continuing a task; keep task id, graph/build revisions, and current decision state in parent RAM.
-- Use `codewiki_state` as the map, then read the roadmap item, linked builds, linked specs, validation reports, and code/test paths as sources of truth before changing behavior.
+- Use `codewiki_state` as the map, then read the planning build, roadmap item, linked builds, linked specs, validation reports, and code/test paths as sources of truth before changing behavior.
 - Claim narrow write scopes for non-trivial implementation work when parallel sessions may touch overlapping code, tests, docs, roadmap, builds, or validation refs.
 - Read only linked sources unless graph drift/freshness signals or those sources prove broader context is needed.
 - Tests live in code/test directories, not in `.codewiki/kb/**` or roadmap task folders.
 - If task meaning is ambiguous, escalate to the feedback compiler.
-- If knowledge, documentation build, or roadmap item is wrong/incomplete, return to the documentation compiler.
+- If knowledge, documentation build, planning build, or roadmap item is wrong/incomplete, return to the appropriate compiler instead of guessing.
 - Use short local feedback loops during implementation: typecheck, tests, lint, runtime smoke, or targeted scripts.
 - Validation evidence, not confidence, controls closure.
 
@@ -35,8 +35,8 @@ graph locates -> documentation_build + roadmap item + linked specs/code
 
 For small tasks, one agent may do both roles. For agent-created tests or bias-sensitive tasks, split:
 
-- `tester`: consumes the documentation build and roadmap item, then derives tests or test-design evidence before implementation where practical.
-- `builder`: consumes the documentation build, roadmap item, tester output, and required checks, then changes code until tests and acceptance pass.
+- `tester`: consumes the planning build and roadmap item, then derives tests or test-design evidence before implementation where practical.
+- `builder`: consumes the planning build, roadmap item, tester output, and required checks, then changes code until tests and acceptance pass.
 
 The split is optional. Use it when independence matters more than coordination cost.
 
@@ -44,7 +44,7 @@ The split is optional. Use it when independence matters more than coordination c
 
 1. **Load implementation context**
    - Use graph/state only to locate relevant sources and freshness/drift signals.
-   - Read the roadmap item outcome, acceptance, non-goals, validation expectations, linked specs, linked builds, validation reports, and code paths directly.
+   - Read the planning build, roadmap item outcome, acceptance, non-goals, validation expectations, linked specs, linked builds, validation reports, and code paths directly.
    - Confirm those sources are still aligned with current `codewiki_state`.
 
 2. **Plan tests**
@@ -63,12 +63,12 @@ The split is optional. Use it when independence matters more than coordination c
 
 5. **Implementation validation**
    - Validate acceptance one by one.
-   - Check vertical alignment from documentation build and roadmap item to tested behavior.
+   - Check vertical alignment from planning build and roadmap item to tested behavior.
    - Check horizontal alignment inside code/tests touched by the task.
    - If tester/builder split was used, verify tester evidence, builder evidence, and checks line up.
 
 6. **Emit implementation build**
-   - Record task id, source documentation build when applicable, tests changed, code changed, tester evidence, builder evidence, checks, acceptance mapping, unresolved issues, validation refs, and publication/readiness recommendations under `.codewiki/builds/implementation/**` when useful.
+   - Record task id, source planning build when applicable, tests changed, code changed, tester evidence, builder evidence, checks, requirement/acceptance mapping, unresolved issues, validation refs, and publication/readiness recommendations under `.codewiki/builds/implementation/**` when useful.
 
 7. **Close/block/follow-up**
    - Use `codewiki_task` for lifecycle mutation.
@@ -76,7 +76,7 @@ The split is optional. Use it when independence matters more than coordination c
 
 ## Fresh validation contract
 
-A validator receives the roadmap item, linked knowledge paths, linked builds, touched code/test paths, tester evidence, builder evidence, checks run, implementation build, and unresolved issues. It returns compact JSON with `pass`, `fail`, or `block`. It does not mutate canonical truth.
+A validator receives the planning build, roadmap item, linked knowledge paths, linked builds, touched code/test paths, tester evidence, builder evidence, checks run, implementation build, and unresolved issues. It returns compact JSON with `pass`, `fail`, or `block`. It does not mutate canonical truth.
 
 ## Related docs
 

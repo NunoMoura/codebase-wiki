@@ -5,10 +5,11 @@ state: active
 summary: Work truth for active items, priority, status, blockers, progress, and closure.
 owners:
   - architecture
-updated: "2026-05-12"
+updated: "2026-05-13"
 code_paths:
   - .codewiki/roadmap.json
   - .codewiki/roadmap
+  - extensions/codewiki/src/application/roadmap.ts
 ---
 
 # Roadmap
@@ -22,6 +23,25 @@ The roadmap can group related tasks into sprints. A sprint is a bounded cohort o
 The roadmap is not the long-term archive. Git preserves full historical task state. Builds and validation reports preserve semantic handoff/evidence when needed. Closed or cancelled tasks should leave the hot roadmap after a short retention window or release checkpoint.
 
 The roadmap is not the requirements brief. Requirements live in accepted builds and durable knowledge. Roadmap items reference those sources and track execution state.
+
+## Planning-loop ownership
+
+The planning loop owns roadmap alignment in the target model. It consumes a validated `documentation_build` and produces a `planning_build` that creates or refines roadmap tasks.
+
+A planning build should decide:
+
+- which accepted requirements need executable work,
+- whether existing active tasks should be refined or a new task should be created,
+- task outcome, acceptance criteria, non-goals, blockers, and verification,
+- candidate code and test paths,
+- TDD or test-design strategy,
+- requirement-to-task and requirement-to-test traceability.
+
+Documentation builds update knowledge. Planning builds align roadmap work. Implementation builds prove tests/code changed correctly. Keeping those boundaries separate prevents roadmap tasks from becoming hidden requirements briefs and prevents documentation changes from silently implying implementation scope.
+
+During migration, the documentation compiler may create the roadmap task required to implement planning-loop support. Once planning builds are supported by tools and graph reconciliation, routine roadmap creation should come from the planning compiler.
+
+## Progressive refinement
 
 Roadmap work is progressively refined. When new user intent arrives, agents and API callers should first inspect active tasks and active sprint scope for related intent before creating new work. If an active task already covers the same spec paths, code paths, labels, or intent, the request should refine that task and its owning knowledge/sprint context instead of spawning a duplicate. A new task is appropriate when the intent is unrelated, when the existing work is closed or cancelled and no explicit task id was provided, or when the user intentionally asks for separate tracking.
 
@@ -60,7 +80,7 @@ A roadmap work item should record:
 - progress/evidence refs,
 - closure reason.
 
-It should not duplicate full feedback, documentation, or implementation briefs. Refinement should be additive and concise: merge new source paths, labels, acceptance, non-goals, verification, and delta details while preserving the task id and existing closure criteria.
+It should not duplicate full feedback, documentation, planning, or implementation briefs. Refinement should be additive and concise: merge new source paths, labels, acceptance, non-goals, verification, and delta details while preserving the task id and existing closure criteria.
 
 Roadmap ownership is durable work ownership. Parallel execution ownership belongs to scoped change claims: a session can temporarily claim affected knowledge paths, roadmap task state, build refs, validation refs, or code paths while the roadmap item continues to describe why the work exists and how it closes.
 
@@ -91,6 +111,7 @@ For automated roadmap progress, roadmap state should expose canonical sprint/tas
 - eligible work items by roadmap, sprint, or task scope,
 - blocked and approval-required items,
 - linked builds and knowledge paths,
+- linked planning builds and requirement ids,
 - required validation gates,
 - configured time, token, cost, write, session, and risk budgets,
 - known risk level,
@@ -100,7 +121,9 @@ The roadmap should not decide whether an agent may continue or what queue order 
 
 ## Retention and history
 
-Hot roadmap state should contain active sprints, active work, active claims, unconsumed builds, fail/block validation, and any recently closed/cancelled work still needed for immediate handoff. Warm state contains recent pass evidence and accepted handoffs. Cold state contains consumed/validated history. Purgeable state contains expired runtime artifacts. After sprint checkpoint or retention expiry, closed/cancelled task detail should move out of the active roadmap and rely on:
+Hot roadmap state should contain active sprints, active work, active claims, unconsumed builds, fail/block validation, and any recently closed/cancelled work still needed for immediate handoff. Warm state contains recent pass evidence and accepted handoffs. Cold state contains consumed/validated history. Purgeable state contains expired runtime artifacts.
+
+After sprint checkpoint or retention expiry, closed/cancelled task detail should move out of the active roadmap and rely on:
 
 - Git history for full historical recovery,
 - implementation builds for implementation evidence and publication payloads,
@@ -124,12 +147,17 @@ Work should close only when:
 - validation passed or closure policy explains why validation is not required,
 - an implementation build or equivalent evidence brief exists for implemented changes.
 
+In the target model, implementation closure should trace through a planning build unless the work is explicitly documentation-only, validation-only, or covered by a migration exception.
+
 ## Migration warning
 
 Current task folders under `.codewiki/roadmap/tasks/**` may contain stale generated shards. They are not target requirements briefs. The refactor should decide whether to regenerate or remove them after the new knowledge and graph model are stable.
+
+Current CodeWiki tooling predates the planning loop. Until the refactor is complete, agents must not treat a green graph or absent open tasks as proof that accepted feedback has propagated through documentation and planning.
 
 ## Related docs
 
 - [Builds](builds.md)
 - [Graph](graph.md)
+- [Compilers](compilers.md)
 - [Agency Controller](agency.md)

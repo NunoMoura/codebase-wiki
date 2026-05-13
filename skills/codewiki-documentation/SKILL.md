@@ -1,6 +1,6 @@
 ---
 name: codewiki-documentation
-description: Documentation compiler for CodeWiki. Use when accepted feedback, architecture changes, drift, or roadmap gaps need to become `.codewiki/kb/**` updates and executable roadmap work items before implementation.
+description: Documentation compiler for CodeWiki. Use when accepted feedback, architecture changes, drift, or roadmap gaps need to become `.codewiki/kb/**` updates and planning handoffs before roadmap/implementation work.
 id: skill.codewiki-documentation
 title: codewiki-documentation skill
 state: active
@@ -14,14 +14,14 @@ updated: "2026-05-10"
 Run the documentation compiler. The user should not need to trigger each stage manually once the feedback build is accepted.
 
 ```text
-accepted feedback_build -> use graph to locate sources -> read kb/roadmap/build truth -> update knowledge -> create/update roadmap items -> documentation validation
+accepted feedback_build -> use graph to locate sources -> read kb/build truth -> update knowledge -> documentation_build cycle -> validation gateway -> planning loop
 ```
 
 ## Rules
 
 - `.codewiki/kb/**` is canonical intended knowledge.
 - The feedback compiler owns unresolved user intent. If intent is ambiguous, escalate back to feedback instead of guessing.
-- Roadmap tasks are the executable delta from intended knowledge to current reality.
+- Roadmap tasks are the executable delta from intended knowledge to current reality, but routine roadmap alignment belongs to the planning loop in the target model.
 - Keep decisions close to owning specs; do not create a parallel ADR system by default.
 - Use `codewiki_state` first as a map and freshness/drift index; treat loaded graph/build revisions as parent-session RAM anchors.
 - Use the graph to locate relevant sources, then read KB, build, roadmap, validation, or code truth directly before making semantic changes.
@@ -48,17 +48,18 @@ accepted feedback_build -> use graph to locate sources -> read kb/roadmap/build 
    - Patch owning `.codewiki/kb/**` specs when intended behavior changes.
    - Preserve stable ownership seams; avoid doc sprawl.
 
-5. **Create/update roadmap work items**
-   - Each task needs outcome, acceptance, non-goals, validation expectations, spec links, and code paths when known.
-   - Prefer thin vertical slices that are independently verifiable.
-   - Mark human decision gates explicitly.
+5. **Prepare planning handoff**
+   - Map approved requirement ids to changed knowledge files and clauses.
+   - Record open planning questions, likely affected code/test areas, and whether executable roadmap work is needed.
+   - During migration, create/update the roadmap task needed to implement planning-loop support. Once `planning_build` exists, routine task creation moves to the planning compiler.
 
 6. **Emit documentation build**
    - Record changed knowledge paths, roadmap item changes, alignment checks, and deferred requirements under `.codewiki/builds/documentation/**` when useful.
 
 7. **Run documentation validation**
-   - Check feedback_build -> knowledge -> documentation_build -> roadmap item vertical alignment.
-   - Check horizontal coherence between knowledge docs and between roadmap tasks.
+   - Check feedback_build -> knowledge -> documentation_build vertical alignment.
+   - Check horizontal coherence between knowledge docs.
+   - If migration creates a roadmap task, verify that it references the documentation build and does not duplicate full requirements.
 
 ## Planner subagent contract
 
@@ -68,10 +69,11 @@ Output: `SubagentResult` with `verdict: "pass" | "fail" | "block"`, compact find
 
 ## Verification
 
-After planning:
+After documentation:
 
 - Run `codewiki_state` with refresh when generated state may be stale.
-- Confirm open tasks cover active delta.
+- Confirm changed knowledge is covered by a documentation build.
+- Confirm a planning handoff or migration roadmap task covers any executable delta.
 - Confirm no unmapped knowledge/code drift was introduced.
 
 ## Related docs

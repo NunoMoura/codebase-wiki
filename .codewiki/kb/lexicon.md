@@ -7,7 +7,7 @@ summary: Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, 
 owners:
 - product
 - architecture
-updated: '2026-05-11'
+updated: '2026-05-13'
 code_paths:
 - .codewiki/kb
 ---
@@ -28,7 +28,7 @@ A bounded work wave through the compiler pipeline. A sprint groups one or more r
 
 ## Compiler
 
-A CodeWiki workflow layer that validates one abstraction level and emits the smallest useful build artifact for the layer below.
+A CodeWiki workflow layer that compiles one abstraction level into the smallest useful cycle build for the next layer. Compilers create builds; the validation gateway evaluates builds.
 
 ## Feedback compiler
 
@@ -36,11 +36,15 @@ The compiler that turns user conversation and grounded reads into an accepted `f
 
 ## Documentation compiler
 
-The compiler that turns an accepted `feedback_build` into updated `.codewiki/kb/**` knowledge, roadmap updates, and a `documentation_build` implementation-spec brief. It validates horizontal and vertical alignment before implementation work begins.
+The compiler that turns an accepted `feedback_build` into updated `.codewiki/kb/**` knowledge and a `documentation_build` knowledge-alignment brief. It validates horizontal and vertical knowledge alignment before planning begins.
+
+## Planning compiler
+
+The compiler that turns a validated `documentation_build` into roadmap alignment. It creates or refines roadmap tasks, acceptance criteria, non-goals, verification, candidate code/test paths, and TDD strategy, then emits a `planning_build`.
 
 ## Implementation compiler
 
-The compiler that turns a `documentation_build` and roadmap work item into tests, code, checks, and an `implementation_build`. It follows TDD when practical and keeps tests in code/test directories instead of knowledge artifacts.
+The compiler that turns a `planning_build` and roadmap work item into tests, code, checks, and an `implementation_build`. It follows TDD when practical and keeps tests in code/test directories instead of knowledge artifacts.
 
 ## Diff table
 
@@ -52,7 +56,11 @@ Compact artifact under `.codewiki/builds/feedback/**` for approved diff rows, ac
 
 ## Documentation build
 
-Compact artifact under `.codewiki/builds/documentation/**` for knowledge patches, roadmap changes, implementation specs, alignment checks, and deferred requirements.
+Compact artifact under `.codewiki/builds/documentation/**` for knowledge patches, requirement-to-KB mapping, alignment checks, open planning questions, and deferred requirements.
+
+## Planning build
+
+Compact artifact under `.codewiki/builds/planning/**` for roadmap alignment: task creation/refinement, acceptance criteria, non-goals, verification expectations, TDD strategy, candidate code/test paths, and requirement traceability.
 
 ## Implementation build
 
@@ -60,11 +68,11 @@ Compact artifact under `.codewiki/builds/implementation/**` for test/code change
 
 ## Closure brief
 
-User-facing implementation summary that proves accepted intent moved through knowledge, roadmap, code/tests, checks, and validation. It belongs in the implementation build and should stay compact.
+User-facing implementation summary that proves accepted intent moved through knowledge, planning, roadmap, code/tests, checks, and validation. It belongs in the implementation build and should stay compact.
 
 ## Validation gateway
 
-Handoff gate for horizontal and vertical alignment at one compiler boundary. It can include deterministic preflight, checks, and a fresh read-only verifier. Failed, blocked, or policy-required reports live under `.codewiki/validation/**`.
+Pure evaluator for a submitted cycle build. It validates the build against policy, source refs, exit criteria, and evidence, then returns `pass`, `fail`, or `block`. It can include deterministic preflight, checks, and a fresh read-only verifier. Failed, blocked, or policy-required reports live under `.codewiki/validation/**`.
 
 ## Gated agency
 
@@ -78,12 +86,24 @@ System mechanism for gated agency. A cycle observes state, selects one bounded n
 
 A read-only fresh process, session, or subagent used inside a validation gateway. It returns a deterministic `pass`, `fail`, or `block` verdict and does not mutate canonical truth.
 
+## Alignment cycle
+
+One compiler build attempt inside a loop. A cycle has inputs, policy, exit criteria, requirement ids, evidence mapping, risks, questions, and a build submitted to the validation gateway. Failed or blocked cycles are superseded by later cycle builds.
+
+## Requirement ID
+
+Stable identifier for an accepted requirement as it moves from feedback to knowledge, planning, tests/code, implementation evidence, and validation. Requirement ids let CodeWiki prove alignment without relying on broad prose matching.
+
+## Traceability matrix
+
+Compact generated view that connects requirement ids to feedback rows, knowledge clauses, documentation builds, planning builds, roadmap tasks, tests/code, implementation builds, and validation verdicts. It reports gaps but does not own requirements.
+
 ## Vertical alignment
 
 Traceability across layers:
 
 ```text
-user intent -> feedback_build -> .codewiki/kb -> documentation_build -> roadmap work item -> tests/code -> implementation_build
+user intent -> feedback_build -> .codewiki/kb -> documentation_build -> planning_build -> roadmap work item -> tests/code -> implementation_build
 ```
 
 ## Horizontal alignment
@@ -92,11 +112,11 @@ Coherence within one layer: knowledge, roadmap, code, and tests agree with peer 
 
 ## Index graph
 
-Primary generated read model at `.codewiki/index_graph.json`. It maps knowledge, tasks, builds, tests, code, and validation reports with typed nodes and edges. It is generated and must not be hand-edited. Curated Markdown links are inputs; the graph owns machine backlinks, stale-reference detection, freshness, and routing.
+Primary generated hot state index at `.codewiki/index_graph.json`. It maps knowledge, tasks, builds, tests, code, validation reports, and compact requirement traceability with typed nodes and edges. It is generated and must not be hand-edited. Curated Markdown links are inputs; the graph owns machine backlinks, stale-reference detection, freshness, routing, and traceability-gap reporting. It is not the source of requirements.
 
 ## Graph propagation
 
-The graph's ability to hold the current state of all layers and, when any layer changes, expose what drifted downstream or upstream. Changing feedback triggers documentation drift. Changing knowledge triggers roadmap drift. Changing code triggers validation drift. The graph surfaces these as reconciliation items with explicit direction, layer, and next-loop routing so agents know exactly which loop needs to rerun — without manually tracing every consequence.
+The graph's ability to index current hot state and, when any source layer changes, expose what drifted downstream or upstream. Changing feedback triggers documentation drift. Changing knowledge triggers planning drift. Changing planning triggers implementation drift. Changing code can trigger validation, planning, or documentation drift. The graph surfaces these as reconciliation items with explicit direction, layer, and next-loop routing so agents know which loop needs to rerun, while source-backed builds and knowledge remain truth.
 
 ## View
 
@@ -104,11 +124,11 @@ A generated read model. In the target model, broad view trees are replaced by th
 
 ## Tester
 
-An optional implementation worker that derives tests from a documentation build and roadmap work item before code changes. The tester helps reduce shared-context bias between test design and implementation.
+An optional implementation worker that derives tests from a planning build and roadmap work item before code changes. The tester helps reduce shared-context bias between test design and implementation.
 
 ## Builder
 
-An optional implementation worker that changes code until documentation-build requirements, roadmap acceptance, tests, and required checks pass.
+An optional implementation worker that changes code until planning-build requirements, roadmap acceptance, tests, and required checks pass.
 
 ## Evidence
 
