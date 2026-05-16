@@ -8,6 +8,7 @@
     "status": "done",
     "priority": "high",
     "kind": "agent-workflow",
+    "change_type": "system",
     "summary": "Design and implement an automatic verifier stage that spawns a read-only agent when task execution reaches verification, while retaining a manual command only as an override/debug entrypoint.",
     "labels": [
       "verification",

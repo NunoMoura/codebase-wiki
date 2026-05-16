@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-16",
+  "context_path": ".codewiki/roadmap/tasks/TASK-090/context.json",
+  "task": {
+    "id": "TASK-090",
+    "title": "Codify alignment drift fixture matrix",
+    "status": "todo",
+    "priority": "critical",
+    "kind": "testing",
+    "change_type": "code",
+    "summary": "Add deterministic fixture cases for alignment drift detection in fixture-only test assets.",
+    "labels": [
+      "alignment",
+      "drift",
+      "fixtures"
+    ],
+    "goal": {
+      "outcome": "Known alignment drift classes have deterministic fixture coverage independent of task-boundary enforcement.",
+      "acceptance": [
+        "Fixture cases cover vertical drift, horizontal drift, dogfood/source confusion, stale generated output, missing accepted build, missing audit evidence, and invalid publication proof.",
+        "Each failing fixture asserts a specific issue kind or reconciliation item.",
+        "Clean fixture passes the same audit/graph check path.",
+        "Fixture runner is included in smoke or feature tests."
+      ],
+      "non_goals": [
+        "Do not change task-boundary enforcement.",
+        "Do not depend on network or remote Git state."
+      ],
+      "verification": [
+        "node tests/smoke/alignment-drift-fixtures.test.mjs",
+        "npm run typecheck",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "Fixture matrix covers known alignment drift classes.",
+      "current": "Task-boundary enforcement slice is complete; fixture matrix remains separate testing work.",
+      "closure": ""
+    }
+  }
+}

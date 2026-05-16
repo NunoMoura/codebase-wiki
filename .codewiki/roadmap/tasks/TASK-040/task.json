@@ -17,6 +17,7 @@
     "dogfood-gate",
     "depends-on:TASK-041"
   ],
+  "change_type": "code",
   "goal": {
     "outcome": "Task closure and future sprint/release/drift checks use a robust verification gateway instead of ad hoc verifier prompts or parent-session confidence, using hardened context packs from the view/context-compiler work where needed.",
     "acceptance": [
