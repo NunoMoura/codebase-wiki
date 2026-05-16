@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-05-16T20:31:51Z",
+  "updated": "2026-05-16T20:36:31Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -52,7 +52,6 @@
     "TASK-077",
     "TASK-078",
     "TASK-084",
-    "TASK-085",
     "TASK-087",
     "TASK-088",
     "TASK-090"
@@ -2337,62 +2336,6 @@
       },
       "created": "2026-05-15",
       "updated": "2026-05-15T07:09:00Z"
-    },
-    "TASK-085": {
-      "id": "TASK-085",
-      "title": "Validate bounded roadmap task scope",
-      "status": "in_progress",
-      "priority": "critical",
-      "kind": "architecture",
-      "summary": "Add executable checks so each TASK record stays a self-contained work item and related-work grouping stays in sprint metadata.",
-      "spec_paths": [
-        ".codewiki/kb/system/roadmap.md",
-        ".codewiki/kb/system/validation-gateway.md",
-        ".codewiki/kb/system/audits.md"
-      ],
-      "code_paths": [
-        "src/application/roadmap.ts",
-        "src/application/tools/audit.ts",
-        "src/application/graph.ts",
-        "src/application/state-builders.ts",
-        "tests/smoke/roadmap-task-boundary.test.mjs"
-      ],
-      "research_ids": [],
-      "labels": [
-        "roadmap",
-        "validation",
-        "task-boundary"
-      ],
-      "change_type": "system",
-      "goal": {
-        "outcome": "Roadmap APIs, audits, and routing reject task records whose closure depends on managing other task records, while allowing sprint metadata to group related bounded tasks.",
-        "acceptance": [
-          "Roadmap task create/update rejects records whose title, summary, goal, acceptance, non-goals, or verification describe managing other task records rather than delivering its own outcome.",
-          "Task-close and task audit block active task records whose acceptance primarily depends on other TASK-### records closing or validating.",
-          "Next-action routing skips or blocks non-executable task records instead of treating them as implementation work.",
-          "Sprint metadata remains allowed to group related bounded task ids without substituting for each task's acceptance evidence.",
-          "Existing TASK-077 container-style wording is removed from active task truth or converted into explicit migration/block evidence, while preserving validated slice builds and validations as historical evidence.",
-          "Tests cover rejected container-style task patterns and allowed bounded task patterns."
-        ],
-        "non_goals": [
-          "Do not delete historical build or validation evidence.",
-          "Do not make sprint metadata acceptance evidence for tasks.",
-          "Do not infer invalid scope solely from shared code paths."
-        ],
-        "verification": [
-          "node tests/smoke/roadmap-task-boundary.test.mjs",
-          "npm run typecheck",
-          "node tests/smoke/alignment-graph.test.mjs",
-          "npm test"
-        ]
-      },
-      "delta": {
-        "desired": "Executable invariant keeps TASK records self-contained and routes grouping through sprints only.",
-        "current": "Implementation and validation pass for bounded task-scope enforcement.",
-        "closure": "Close after recording implementation validation evidence."
-      },
-      "created": "2026-05-15",
-      "updated": "2026-05-16T20:31:51Z"
     },
     "TASK-078": {
       "id": "TASK-078",
