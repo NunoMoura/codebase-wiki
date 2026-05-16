@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T03:17:05.033Z",
+  "generated_at": "2026-05-16T03:17:27.794Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -12362,92 +12362,6 @@
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
-    },
-    {
-      "id": "claim:CLAIM-053",
-      "kind": "change_claim",
-      "claim_id": "CLAIM-053",
-      "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
-      "agent_name": "Ibis",
-      "mode": "write",
-      "role": "builder",
-      "status": "active",
-      "summary": "Implement source-owned audit engine, /audit command, and smoke coverage.",
-      "expires_at": "2026-05-16T06:47:11.708Z",
-      "scopes": [
-        {
-          "layer": "code",
-          "path": "src/application/**"
-        },
-        {
-          "layer": "code",
-          "path": "src/adapters/pi/**"
-        },
-        {
-          "layer": "code",
-          "path": "src/domain/shared/types.ts"
-        },
-        {
-          "layer": "code",
-          "path": "scripts/check-architecture.mjs"
-        },
-        {
-          "layer": "code",
-          "path": "tests/smoke/**"
-        },
-        {
-          "layer": "roadmap",
-          "task_id": "TASK-079"
-        },
-        {
-          "layer": "build",
-          "path": ".codewiki/builds/implementation/**"
-        },
-        {
-          "layer": "validation",
-          "path": ".codewiki/validation/**"
-        }
-      ]
-    },
-    {
-      "id": "claim_scope:src/application/**",
-      "kind": "change_claim_scope",
-      "path": "src/application/**"
-    },
-    {
-      "id": "claim_scope:src/adapters/pi/**",
-      "kind": "change_claim_scope",
-      "path": "src/adapters/pi/**"
-    },
-    {
-      "id": "claim_scope:src/domain/shared/types.ts",
-      "kind": "change_claim_scope",
-      "path": "src/domain/shared/types.ts"
-    },
-    {
-      "id": "claim_scope:scripts/check-architecture.mjs",
-      "kind": "change_claim_scope",
-      "path": "scripts/check-architecture.mjs"
-    },
-    {
-      "id": "claim_scope:tests/smoke/**",
-      "kind": "change_claim_scope",
-      "path": "tests/smoke/**"
-    },
-    {
-      "id": "claim_scope:TASK-079",
-      "kind": "change_claim_scope",
-      "path": "TASK-079"
-    },
-    {
-      "id": "claim_scope:.codewiki/builds/implementation/**",
-      "kind": "change_claim_scope",
-      "path": ".codewiki/builds/implementation/**"
-    },
-    {
-      "id": "claim_scope:.codewiki/validation/**",
-      "kind": "change_claim_scope",
-      "path": ".codewiki/validation/**"
     },
     {
       "id": "validation:.codewiki/validation/2026-05-13-task-close-block-task-074.json",
@@ -30755,51 +30669,6 @@
       "default_hidden": true
     },
     {
-      "kind": "claim_task",
-      "from": "claim:CLAIM-053",
-      "to": "task:TASK-079"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-053",
-      "to": "claim_scope:src/application/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-053",
-      "to": "claim_scope:src/adapters/pi/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-053",
-      "to": "claim_scope:src/domain/shared/types.ts"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-053",
-      "to": "claim_scope:scripts/check-architecture.mjs"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-053",
-      "to": "claim_scope:tests/smoke/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-053",
-      "to": "claim_scope:TASK-079"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-053",
-      "to": "claim_scope:.codewiki/builds/implementation/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-053",
-      "to": "claim_scope:.codewiki/validation/**"
-    },
-    {
       "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-13-task-close-block-task-074.json",
       "to": "source:.codewiki/builds/implementation/2026-05-13-task-074-session-handoff-fresh-process-fix.json; .codewiki/builds/implementation/2026-05-13-task-074-loop-isolation-session-handoff.json",
@@ -31670,71 +31539,14 @@
       "dirty_paths": []
     },
     "claims": {
-      "active_claim_count": 1,
+      "active_claim_count": 0,
       "warning_count": 0,
       "conflict_count": 0,
       "pending_waiter_count": 0,
       "ready_waiter_count": 0,
-      "by_role": {
-        "builder": 1
-      },
-      "isolation": [
-        {
-          "id": "CLAIM-053",
-          "role": "builder",
-          "mode": "write",
-          "task_id": "TASK-079"
-        }
-      ],
-      "claims": [
-        {
-          "id": "CLAIM-053",
-          "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
-          "agent_name": "Ibis",
-          "status": "active",
-          "mode": "write",
-          "role": "builder",
-          "summary": "Implement source-owned audit engine, /audit command, and smoke coverage.",
-          "task_id": "TASK-079",
-          "scopes": [
-            {
-              "layer": "code",
-              "path": "src/application/**"
-            },
-            {
-              "layer": "code",
-              "path": "src/adapters/pi/**"
-            },
-            {
-              "layer": "code",
-              "path": "src/domain/shared/types.ts"
-            },
-            {
-              "layer": "code",
-              "path": "scripts/check-architecture.mjs"
-            },
-            {
-              "layer": "code",
-              "path": "tests/smoke/**"
-            },
-            {
-              "layer": "roadmap",
-              "task_id": "TASK-079"
-            },
-            {
-              "layer": "build",
-              "path": ".codewiki/builds/implementation/**"
-            },
-            {
-              "layer": "validation",
-              "path": ".codewiki/validation/**"
-            }
-          ],
-          "created_at": "2026-05-16T02:47:11Z",
-          "updated_at": "2026-05-16T02:47:11Z",
-          "expires_at": "2026-05-16T06:47:11.708Z"
-        }
-      ],
+      "by_role": {},
+      "isolation": [],
+      "claims": [],
       "conflicts": [],
       "waiters": []
     },
@@ -34252,9 +34064,7 @@
             ".codewiki/validation/2026-05-15-implementation-block-task-081.json",
             ".codewiki/validation/2026-05-16-documentation-fail-task-077.json"
           ],
-          "claim_ids": [
-            "CLAIM-053"
-          ],
+          "claim_ids": [],
           "claim_wait_ids": []
         },
         "warm": {
@@ -34965,13 +34775,13 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T03:17:04.954Z",
+      "generated_at": "2026-05-16T03:17:27.703Z",
       "counts": {},
       "issues": []
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T03:17:05Z",
+      "generated_at": "2026-05-16T03:17:27Z",
       "health": {
         "color": "green",
         "errors": 0,
@@ -37882,7 +37692,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T03:17:05Z",
+      "generated_at": "2026-05-16T03:17:27Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -38044,9 +37854,7 @@
               ".codewiki/validation/2026-05-15-implementation-block-task-081.json",
               ".codewiki/validation/2026-05-16-documentation-fail-task-077.json"
             ],
-            "claim_ids": [
-              "CLAIM-053"
-            ],
+            "claim_ids": [],
             "claim_wait_ids": []
           },
           "warm": {
@@ -38288,7 +38096,7 @@
       },
       "direction": [
         "Validation blocked; escalate ambiguous intent to feedback compiler.",
-        "Parallel sessions: 0 active, 0 collision task(s), 1 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
+        "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
         "Tracked drift coverage: 17/17."
@@ -39303,7 +39111,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T03:17:05Z",
+        "generated_at": "2026-05-16T03:17:27Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -39331,17 +39139,12 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T03:17:05Z",
+            "checked_at": "2026-05-16T03:17:27Z",
             "revision": {
               "git": {
-                "head": "e2c184a96a3fd7c10bf169b78409ec6ab5ab95bf",
-                "dirty": true,
-                "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-079/context.json",
-                  ".codewiki/roadmap/tasks/TASK-079/task.json"
-                ],
+                "head": "5993d8220a0b1ff4d4cebe3c75b4162ac7733414",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -39380,7 +39183,7 @@
                   ".codewiki/kb/system/roadmap.md": "47ca7c9b7856d6c9d1dff2a0be630d070acae51c",
                   ".codewiki/kb/system/validation-gateway.md": "38c6c3d0ea9c8368e6651c1b38df1a52bf9fab02",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "e73baa5fa9949b5bb4a29878c6eb8fce5b8085f9",
+                  ".codewiki/roadmap/queue.json": "520b8675f897fbe810e7619c4bc7d6894093416a",
                   ".codewiki/validation": "",
                   "package.json": "810b42966ec69c048a68543a00d8c66eb6082a28",
                   "skills": "",
@@ -39424,12 +39227,12 @@
               "spec_digest": "7dd2528fc40345a33ee7c2b5855cebd66468226c2e16e2a74f5eaaf317b9a6ab",
               "task_digest": "d369e953907c3c6bb243accee33881a08bb24cae0e229b0c9f5982c65a729ed0",
               "code_digest": "239184b37433cf12f0171561cfa0ba4f6bdfd7093ce1473cf3a140e01bbf2d38",
-              "digest": "96da368679c712085b1d6da0bb31186dc4192bf46f5cd66601547ac975e1b2f0"
+              "digest": "19ae7eaff64eefcdbe44218d4d2a73a7927678a23d5dc0d1e5ab01afc3e55e41"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T03:17:05Z",
+              "checked_at": "2026-05-16T03:17:27Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -39571,17 +39374,12 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T03:17:05Z",
+            "checked_at": "2026-05-16T03:17:27Z",
             "revision": {
               "git": {
-                "head": "e2c184a96a3fd7c10bf169b78409ec6ab5ab95bf",
-                "dirty": true,
-                "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-079/context.json",
-                  ".codewiki/roadmap/tasks/TASK-079/task.json"
-                ],
+                "head": "5993d8220a0b1ff4d4cebe3c75b4162ac7733414",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -39604,7 +39402,7 @@
                   ".codewiki/kb/system/roadmap.md": "47ca7c9b7856d6c9d1dff2a0be630d070acae51c",
                   ".codewiki/kb/system/validation-gateway.md": "38c6c3d0ea9c8368e6651c1b38df1a52bf9fab02",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "e73baa5fa9949b5bb4a29878c6eb8fce5b8085f9",
+                  ".codewiki/roadmap/queue.json": "520b8675f897fbe810e7619c4bc7d6894093416a",
                   ".codewiki/validation": "",
                   "skills": "",
                   "skills/codewiki": "",
@@ -39643,12 +39441,12 @@
               "spec_digest": "03d72cb217ce699ecec7e27d5224f94ea696d9a63c8a8fdd68103c83244bb2be",
               "task_digest": "d369e953907c3c6bb243accee33881a08bb24cae0e229b0c9f5982c65a729ed0",
               "code_digest": "1437bd8c7687ffba4fc75563c048b98631d8abfc3bfc80ade9beafbfdef022f2",
-              "digest": "b0e518898e5a5997ffbc9cd217ad41dafd61999fd046600b26686b505aa83e50"
+              "digest": "1a1a2a3fa1037487cbcb1892cffdc5406e2c641b3c7ccfb0b726fa50df7c087a"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T03:17:05Z",
+              "checked_at": "2026-05-16T03:17:27Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -39766,17 +39564,12 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T03:17:05Z",
+            "checked_at": "2026-05-16T03:17:27Z",
             "revision": {
               "git": {
-                "head": "e2c184a96a3fd7c10bf169b78409ec6ab5ab95bf",
-                "dirty": true,
-                "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-079/context.json",
-                  ".codewiki/roadmap/tasks/TASK-079/task.json"
-                ],
+                "head": "5993d8220a0b1ff4d4cebe3c75b4162ac7733414",
+                "dirty": false,
+                "dirty_paths": [],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -39815,7 +39608,7 @@
                   ".codewiki/kb/system/roadmap.md": "47ca7c9b7856d6c9d1dff2a0be630d070acae51c",
                   ".codewiki/kb/system/validation-gateway.md": "38c6c3d0ea9c8368e6651c1b38df1a52bf9fab02",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "e73baa5fa9949b5bb4a29878c6eb8fce5b8085f9",
+                  ".codewiki/roadmap/queue.json": "520b8675f897fbe810e7619c4bc7d6894093416a",
                   ".codewiki/validation": "",
                   "package.json": "810b42966ec69c048a68543a00d8c66eb6082a28",
                   "skills": "",
@@ -39859,12 +39652,12 @@
               "spec_digest": "7dd2528fc40345a33ee7c2b5855cebd66468226c2e16e2a74f5eaaf317b9a6ab",
               "task_digest": "d369e953907c3c6bb243accee33881a08bb24cae0e229b0c9f5982c65a729ed0",
               "code_digest": "239184b37433cf12f0171561cfa0ba4f6bdfd7093ce1473cf3a140e01bbf2d38",
-              "digest": "96da368679c712085b1d6da0bb31186dc4192bf46f5cd66601547ac975e1b2f0"
+              "digest": "19ae7eaff64eefcdbe44218d4d2a73a7927678a23d5dc0d1e5ab01afc3e55e41"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T03:17:05Z",
+              "checked_at": "2026-05-16T03:17:27Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -40007,64 +39800,16 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T03:17:05Z",
+        "generated_at": "2026-05-16T03:17:27Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
-        "active_claim_count": 1,
+        "active_claim_count": 0,
         "claim_warning_count": 0,
         "claim_conflict_count": 0,
         "claim_pending_wait_count": 0,
         "claim_ready_wait_count": 0,
-        "claims": [
-          {
-            "id": "CLAIM-053",
-            "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
-            "agent_name": "Ibis",
-            "status": "active",
-            "mode": "write",
-            "role": "builder",
-            "summary": "Implement source-owned audit engine, /audit command, and smoke coverage.",
-            "task_id": "TASK-079",
-            "scopes": [
-              {
-                "layer": "code",
-                "path": "src/application/**"
-              },
-              {
-                "layer": "code",
-                "path": "src/adapters/pi/**"
-              },
-              {
-                "layer": "code",
-                "path": "src/domain/shared/types.ts"
-              },
-              {
-                "layer": "code",
-                "path": "scripts/check-architecture.mjs"
-              },
-              {
-                "layer": "code",
-                "path": "tests/smoke/**"
-              },
-              {
-                "layer": "roadmap",
-                "task_id": "TASK-079"
-              },
-              {
-                "layer": "build",
-                "path": ".codewiki/builds/implementation/**"
-              },
-              {
-                "layer": "validation",
-                "path": ".codewiki/validation/**"
-              }
-            ],
-            "created_at": "2026-05-16T02:47:11Z",
-            "updated_at": "2026-05-16T02:47:11Z",
-            "expires_at": "2026-05-16T06:47:11.708Z"
-          }
-        ],
+        "claims": [],
         "claim_waiters": [],
         "claim_conflicts": []
       },
