@@ -8,7 +8,7 @@ owners:
   - design
 updated: "2026-05-12"
 code_paths:
-  - src/adapters/web/control-room.ts
+  - src/ui/web/control-room.ts
   - src/adapters/pi/ui/manager.ts
 ---
 

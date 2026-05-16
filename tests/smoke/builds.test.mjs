@@ -71,7 +71,7 @@ async function run() {
 		assert.ok(taskTool, "Task tool missing");
 		const firstTask = await taskTool.definition.execute(
 			"task-create-initial",
-			{ repoPath: projectDir, action: "create", tasks: [{ title: "Improve graph UI", priority: "medium", kind: "feature", summary: "Make graph navigation readable.", spec_paths: [".codewiki/kb/product/uis/control-room.md"], code_paths: ["src/adapters/web/control-room.ts"], labels: ["graph", "ui"], goal: { outcome: "Graph navigation is readable.", acceptance: ["Graph renders nodes."], verification: ["Run UI smoke test."] } }], refresh: true },
+			{ repoPath: projectDir, action: "create", tasks: [{ title: "Improve graph UI", priority: "medium", kind: "feature", summary: "Make graph navigation readable.", spec_paths: [".codewiki/kb/product/uis/control-room.md"], code_paths: ["src/ui/web/control-room.ts"], labels: ["graph", "ui"], goal: { outcome: "Graph navigation is readable.", acceptance: ["Graph renders nodes."], verification: ["Run UI smoke test."] } }], refresh: true },
 			undefined, undefined, ctx,
 		);
 		assert.equal(firstTask.details.created.length, 1);
@@ -88,7 +88,7 @@ async function run() {
 		const roadmapAfterRefine = JSON.parse(readFileSync(resolve(projectDir, ".codewiki", "roadmap", "queue.json"), "utf8"));
 		const taskOne = roadmapAfterRefine.tasks[firstTask.details.created[0].id];
 		assert.equal(taskOne.priority, "high");
-		assert.ok(taskOne.code_paths.includes("src/adapters/web/control-room.ts"));
+		assert.ok(taskOne.code_paths.includes("src/ui/web/control-room.ts"));
 		assert.ok(taskOne.code_paths.includes("tests/smoke/control-room.test.mjs"));
 		assert.ok(taskOne.labels.includes("readability"));
 		assert.ok(taskOne.goal.acceptance.includes("Graph renders nodes."));

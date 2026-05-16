@@ -8,7 +8,7 @@ owners:
   - engineering
 updated: "2026-05-16"
 code_paths:
-  - src/adapters/web
+  - src/ui/web
   - src/adapters/pi/commands
 ---
 

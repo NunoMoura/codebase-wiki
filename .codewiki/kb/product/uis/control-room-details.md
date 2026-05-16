@@ -8,7 +8,7 @@ owners:
   - design
 updated: "2026-05-14"
 code_paths:
-  - src/adapters/web
+  - src/ui/web
   - src/adapters/pi/commands
 ---
 

@@ -11,7 +11,7 @@ import {
 	buildControlRoomStateModel,
 	buildControlRoomSystemModel,
 	startControlRoomServer,
-} from "../../src/adapters/web/control-room.ts";
+} from "../../src/ui/web/control-room.ts";
 import {
 	buildBrowserOpenCommand,
 	formatControlRoomLaunchMessage,
@@ -44,7 +44,7 @@ try {
 		updated: "2026-05-11",
 		order: ["TASK-001"],
 		tasks: {
-			"TASK-001": { id: "TASK-001", title: "Ship map", status: "todo", priority: "high", summary: "Map work", goal: { acceptance: ["Shows work"], verification: ["smoke"] }, spec_paths: [".codewiki/kb/system/api.md"], code_paths: ["src/adapters/web/control-room.ts"] },
+			"TASK-001": { id: "TASK-001", title: "Ship map", status: "todo", priority: "high", summary: "Map work", goal: { acceptance: ["Shows work"], verification: ["smoke"] }, spec_paths: [".codewiki/kb/system/api.md"], code_paths: ["src/ui/web/control-room.ts"] },
 		},
 	}, null, 2));
 	await writeFile(join(root, ".codewiki/kb/system/architecture.mmd"), `flowchart TD

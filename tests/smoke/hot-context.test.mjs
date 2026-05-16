@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { buildGraph } from "../../src/application/graph.ts";
 import { readCodewikiState } from "../../src/application/state.ts";
 import { loadProject } from "../../src/application/project.ts";
-import { buildControlRoomGraphModel, buildControlRoomStateModel } from "../../src/adapters/web/control-room.ts";
+import { buildControlRoomGraphModel, buildControlRoomStateModel } from "../../src/ui/web/control-room.ts";
 
 const root = await mkdtemp(join(tmpdir(), "codewiki-hot-context-"));
 const buildPath = ".codewiki/builds/implementation/2026-05-12-task-999.json";

@@ -1,7 +1,7 @@
 import { spawn } from "node:child_process";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { resolveCommandProject } from "../../../application/project.ts";
-import { startControlRoomServer, type ControlRoomServerHandle } from "../../web/control-room.ts";
+import { startControlRoomServer, type ControlRoomServerHandle } from "../../../ui/web/control-room.ts";
 import { withUiErrorHandling } from "../ui/manager.ts";
 
 const activeControlRooms = new Map<string, ControlRoomServerHandle>();
