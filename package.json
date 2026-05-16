@@ -13,7 +13,7 @@
 	"type": "module",
 	"scripts": {
 		"benchmark:tokens": "node ./scripts/token-benchmark.mjs",
-		"test:smoke": "node ./scripts/smoke-test.mjs",
+		"test:smoke": "node ./tests/smoke/package-smoke.test.mjs",
 		"test:features": "node ./tests/run.mjs",
 		"test:pack": "npm pack --dry-run",
 		"check:architecture": "node ./scripts/check-architecture.mjs",
@@ -31,7 +31,7 @@
 	},
 	"homepage": "https://github.com/NunoMoura/codewiki#readme",
 	"files": [
-		"extensions",
+		"src",
 		"skills",
 		"scripts",
 		"README.md",
@@ -56,7 +56,7 @@
 	},
 	"pi": {
 		"extensions": [
-			"./extensions/codewiki/index.ts"
+			"./src/index.ts"
 		],
 		"skills": [
 			"./skills"

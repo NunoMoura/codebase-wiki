@@ -6,14 +6,9 @@
   "kind": "ui",
   "summary": "Update CodeWiki status panel UI to show repo-only header, Home/Product/System/Board tabs, deprecate Agents/Channels tabs, and render system Mermaid architecture with selectable components.",
   "spec_paths": [
-    ".codewiki/kb/product/uis/status-panel.md",
-    ".codewiki/kb/system/extensions/codewiki/overview.md"
+    ".codewiki/kb/product/uis/status-panel.md"
   ],
-  "code_paths": [
-    "extensions/codewiki/index.ts",
-    "extensions/codewiki/src/engine/rebuild.ts",
-    "scripts/smoke-test.mjs"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "status-panel",
@@ -46,5 +41,5 @@
     "closure": ""
   },
   "created": "2026-05-02",
-  "updated": "2026-05-02"
+  "updated": "2026-05-09T09:10:56Z"
 }

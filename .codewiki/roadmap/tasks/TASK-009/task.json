@@ -5,15 +5,8 @@
   "priority": "high",
   "kind": "agent-workflow",
   "summary": "Design and implement an automatic verifier stage that spawns a read-only agent when task execution reaches verification, while retaining a manual command only as an override/debug entrypoint.",
-  "spec_paths": [
-    ".codewiki/kb/system/clients/pi-extension.md",
-    ".codewiki/kb/system/runtime/overview.md"
-  ],
-  "code_paths": [
-    "extensions/codewiki/index.ts",
-    "skills/codewiki-verify/SKILL.md",
-    "scripts/smoke-test.mjs"
-  ],
+  "spec_paths": [],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "verification",
@@ -48,5 +41,5 @@
     "closure": "Add automatic verifier stage, verifier prompt/protocol, evidence append path, and optional manual override."
   },
   "created": "2026-05-01",
-  "updated": "2026-05-01"
+  "updated": "2026-05-09T09:09:28Z"
 }

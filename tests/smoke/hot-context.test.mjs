@@ -2,10 +2,10 @@ import assert from "node:assert/strict";
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { buildGraph } from "../../extensions/codewiki/src/application/graph.ts";
-import { readCodewikiState } from "../../extensions/codewiki/src/application/state.ts";
-import { loadProject } from "../../extensions/codewiki/src/application/project.ts";
-import { buildControlRoomGraphModel, buildControlRoomStateModel } from "../../extensions/codewiki/src/adapters/web/control-room.ts";
+import { buildGraph } from "../../src/application/graph.ts";
+import { readCodewikiState } from "../../src/application/state.ts";
+import { loadProject } from "../../src/application/project.ts";
+import { buildControlRoomGraphModel, buildControlRoomStateModel } from "../../src/adapters/web/control-room.ts";
 
 const root = await mkdtemp(join(tmpdir(), "codewiki-hot-context-"));
 const buildPath = ".codewiki/builds/implementation/2026-05-12-task-999.json";

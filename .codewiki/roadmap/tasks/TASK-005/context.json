@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.712Z",
+  "generated_at": "2026-05-09T09:08:58Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-005/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-005",
     "title": "Split CodeWiki skills into focused outer and inner workflows",
     "status": "done",
-    "phase": "done",
     "priority": "high",
     "kind": "agent-workflow",
     "summary": "Replace the single monolithic CodeWiki skill with a package-level router plus focused CodeWiki skills for planning, task execution, research, and verification.",
@@ -23,7 +18,7 @@
       "outcome": "Agents load only the CodeWiki workflow instructions needed for the current job while preserving shared CodeWiki invariants.",
       "acceptance": [
         "A small `codewiki` router skill states package invariants and when to load each focused skill.",
-        "Focused skills exist for `codewiki-plan`, `codewiki-task`, `codewiki-research`, and `codewiki-verify`.",
+        "Focused skills exist for `codewiki-documentation`, `codewiki-implementation`, `codewiki-research`, and `codewiki-verify`.",
         "Skill descriptions are precise enough for Pi progressive disclosure and do not duplicate large workflow text.",
         "All focused skills preserve `.codewiki/kb` as canonical intent and roadmap/evidence as machine-managed operational truth."
       ],
@@ -42,51 +37,5 @@
       "current": "One CodeWiki skill contains all guidance and is growing into a monolith.",
       "closure": "Split skill files and keep a compact router/invariants skill."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/product/overview.md",
-      "title": ".codewiki/kb/product/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/system/clients/pi-extension.md",
-      "title": ".codewiki/kb/system/clients/pi-extension.md"
-    },
-    {
-      "path": ".codewiki/kb/system/extensions/codewiki/overview.md",
-      "title": ".codewiki/kb/system/extensions/codewiki/overview.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "skills/codewiki/SKILL.md",
-      "package.json"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-005/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-005/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-005/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-005/graph.json"
   }
 }

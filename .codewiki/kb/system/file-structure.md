@@ -5,10 +5,11 @@ state: active
 summary: Target knowledge-base and package file structure for CodeWiki.
 owners:
   - architecture
-updated: "2026-05-12"
+updated: "2026-05-16"
 code_paths:
   - .codewiki/kb
-  - extensions/codewiki
+  - src
+  - skills/codewiki
 ---
 
 # File Structure
@@ -39,7 +40,7 @@ Every CodeWiki project should use the same top-level knowledge-base shape:
 
 Product docs define users, user stories, and visual user interfaces. System docs define the technical architecture, API, adapters, distribution mechanisms, component ownership, and diagram raw data that implement product intent.
 
-At the `.codewiki/` root, active contract surfaces are limited to config, knowledge, roadmap, builds, validation, runtime coordination, sources/research support, and generated graph state. Legacy `.codewiki/index/` and default `.codewiki/evidence/**` surfaces are deprecated: `.codewiki/index_graph.json` is the generated index, implementation builds hold execution evidence, validation reports hold hot gateway decisions, and source/research support belongs under `.codewiki/sources/**` or an explicit `research_root`.
+At the `.codewiki/` root, active contract surfaces are limited to config, knowledge, roadmap queue/tasks, session queue coordination, builds, validation, runtime diff tables, sources/research support, and generated graph state. In this repository, `.codewiki/` is dogfood state for maintaining CodeWiki; it is not package source code. Legacy `.codewiki/index/` and default `.codewiki/evidence/**` surfaces are deprecated: `.codewiki/index_graph.json` is the generated index, implementation builds hold execution evidence, validation reports hold hot gateway decisions, and source/research support belongs under `.codewiki/sources/**` or an explicit `research_root`.
 
 System component docs should stay flat. Each major system component should have one matching `.md` file under `system/`. Diagram raw data is the one intended nested system folder and lives under `system/diagrams/**`.
 
@@ -61,24 +62,29 @@ The five default diagram families are:
 
 Renderer-specific Mermaid, Cytoscape, or SVG output should be treated as generated or renderer input unless a later task explicitly promotes a renderer-specific source file to canonical truth.
 
-`system/architecture.mmd` is a compatibility source for the existing architecture renderer until the Control Room and status panel migrate to `system/diagrams/component-map.yaml`. New diagram work should target `system/diagrams/**`.
+`system/architecture.mmd` is a compatibility source for the existing architecture renderer until CodeWiki UI and status panel rendering migrate to `system/diagrams/component-map.yaml`. New diagram work should target `system/diagrams/**`.
 
 ## Component-doc map
 
 | Architecture node | Owning doc | Primary paths |
 | --- | --- | --- |
-| Control Room UI | `control-room-ui.md` | `extensions/codewiki/src/adapters/web/**`, Control Room launch commands |
-| Extension | `extension.md` | `extensions/codewiki/index.ts`, package support files |
-| Adapters | `adapters.md` | `extensions/codewiki/src/adapters/**`, `skills/**` |
-| CodeWiki API | `api.md` | `extensions/codewiki/src/application/**`, domain contracts |
+| CodeWiki UI | `control-room-ui.md` | `src/ui/web/**`, local UI launch commands |
+| Extension | `extension.md` | `src/index.ts`, package support files |
+| Adapters | `adapters.md` | `src/adapters/**`, harness/protocol translation only |
+| CodeWiki API | `api.md` | `src/application/tools/**`, `src/application/compilers/**`, `src/application/gateways/**`, domain contracts |
 | Agency controller | `agency.md` | application use cases and adapter-exposed agency entrypoints |
-| Compilers | `compilers.md` | compiler skills and application use cases |
-| Validation gateway | `validation-gateway.md` | verifier skills, hot fail/block/policy-required/current validation reports |
+| Compilers | `compilers.md` | `src/application/compilers/**`, `src/application/gateways/**`, `skills/codewiki/loops/**` |
+| Validation gateway | `validation-gateway.md` | `src/application/gateways/**`, `skills/codewiki/loops/validation.md`, hot fail/block/policy-required/current validation reports |
 | Knowledge | `knowledge.md` | `.codewiki/kb/**` |
 | Builds | `builds.md` | `.codewiki/builds/**`, implementation evidence and publication payloads |
-| Roadmap | `roadmap.md` | `.codewiki/roadmap.json`, active task state, release checkpoints, archive files |
-| Parallel coordination | `api.md`, `adapters.md`, `graph.md` | `.codewiki/runtime/claims.json`, `codewiki_claim`, generated claim views |
-| Graph state machine | `graph.md` | `.codewiki/index_graph.json`, graph rebuild implementation |
+| Alignment model | `alignment-model.md` | graph/gateway/content-proof precedence and semantic-change rules |
+| Audits | `audits.md` | audit engine, `/audit [flags]`, gateway-required audit profiles |
+| Roadmap | `roadmap.md` | `.codewiki/roadmap/queue.json`, active task state, release checkpoints, archive files |
+| Session queue coordination | `api.md`, `adapters.md`, `graph.md` | `.codewiki/session/queue.json`, scoped leases, generated session views |
+| State engine / generated graph | `graph.md` | `.codewiki/index_graph.json`, `src/domain/state/**`, `src/application/state-engine/**` |
+| Task-linked tests | `file-structure.md` | `tests/tasks/TASK-###/**`, stable smoke/regression tests under `tests/smoke/**` |
+| Skill assets and bootstrap | `extension.md`, `adapters.md`, `compilers.md` | `skills/codewiki/**` prompt templates, bootstrap workflow assets, loops, and playbooks |
+| Pi project prompt boundary | `adapters.md`, `file-structure.md` | `.pi/APPEND_SYSTEM.md` clarifies `.codewiki/` dogfood state vs package source |
 
 `system/diagrams/*.yaml` may also show external artifacts such as users, code/tests, and publication outputs. Those are not system component docs unless they become owned system components.
 
@@ -98,6 +104,9 @@ The CodeWiki project should use this system set:
   validation-gateway.md
   builds.md
   graph.md
+  alignment-model.md
+  change-lifecycle.md
+  audits.md
   knowledge.md
   roadmap.md
   control-room-ui.md
@@ -131,52 +140,105 @@ Legacy system KB paths removed by the flattening migration:
 .codewiki/kb/system/v2-operating-model.md
 ```
 
+## Path taxonomy
+
+| Class | Paths | Rule |
+| --- | --- | --- |
+| Product/package source | `src/**`, `skills/**`, `tests/**`, `README.md`, `package.json`, lockfile, `tsconfig.json` | Implements and packages CodeWiki itself. |
+| Optional developer helpers | `scripts/**` | Disposable wrappers or one-off local helpers only; source, tests, gateways, and skills must not depend on scripts for authoritative semantics. |
+| Dogfood canonical state | `.codewiki/config.json`, `.codewiki/kb/**`, `.codewiki/roadmap/queue.json` | Maintains this repository with CodeWiki; not package source. |
+| Generated state/views | `.codewiki/index_graph.json`, `.codewiki/roadmap/tasks/**` | Rebuilt from canonical inputs; never hand-edit. |
+| Transient handoffs | `.codewiki/builds/**` | Compiler build artifacts that can be archived/purged after downstream truth and publication proof. |
+| Validation/audit evidence | `.codewiki/validation/**` and policy-required audit reports | Attestations and deterministic evidence, not content proof by themselves. |
+| Runtime/session state | `.codewiki/session/**`, `.codewiki/runtime/**` | Coordination and pending feedback UI state; not durable product truth unless compiled into builds. |
+| Publication proof | Git commits/tree SHAs, package digests, archive ledgers, remote refs | Immutable or external proof of content and publication assertions. |
+
+Architecture and audit checks must understand these classes so dogfood state, generated outputs, and package source cannot drift silently again.
+
 ## Package target layout
 
-The package should use a hybrid domain-driven design with three onion layers, minimal shared support, and harness adapters:
+The package should be domain-led. Domain concepts define CodeWiki's language and invariants; application code runs compiler/gateway/state/tool workflows over those concepts; adapters and UIs expose the workflows without owning semantics. There is no top-level `infrastructure/` layer because filesystem, Git, process, locking, and persistence are implementation details behind application ports or local runtime services.
 
 ```text
-extensions/codewiki/
-  index.ts
-  bootstrap.ts
-  templates.ts
-  project-root.ts
-  mutation-queue.ts
-  src/
-    domain/
-    application/
-    infrastructure/
-    shared/
-    adapters/
-      pi/
-      web/
+src/
+  index.ts                 # thin package entrypoint
+  domain/
+    task/
+    roadmap/
+    session/               # session queue, scoped leases, focus, handoff concepts
+    build/
+    validation/
+    state/                 # generated-state and reconciliation domain concepts
+    shared/                # tiny primitives only
+  application/
+    compilers/
+      feedback/
+      documentation/
+      planning/
+      implementation/
+    gateways/
+      feedback/
+      documentation/
+      planning/
+      implementation/
+      task-close/
+      drift-audit/
+      graph-audit/
+    state-engine/          # rebuilds/querying for generated state and graph outputs
+    tools/                 # agent-callable use-case API used by adapters, skills, CLI, MCP
+    local/                 # built-in local fs/git/process/persistence implementations
+    ports.ts
+  adapters/
+    pi/
+      commands/
+      tools/
+      ui/
+  ui/
+    web/
+    tui/
 ```
+
+Skill assets own agent workflow guidance, prompt templates, bootstrap guidance, and optional helper scripts/tools. Source code may execute those workflows through `src/application/tools/**`, but skills remain the asset owner.
+
+```text
+skills/codewiki/
+  SKILL.md
+  loops/
+  playbooks/
+  bootstrap/
+  prompts/
+  tools/                  # optional skill helper entrypoints over application tools
+```
+
+`scripts/**`, when present, is optional developer convenience. A script may wrap an application tool for local use, but it must be safe to delete without changing CodeWiki product behavior, gateway policy, tests, or package semantics.
 
 Future adapter directories may be introduced only when there is an implementation need:
 
 ```text
-extensions/codewiki/src/adapters/claude-code/
-extensions/codewiki/src/adapters/codex/
-extensions/codewiki/src/adapters/cli/
-extensions/codewiki/src/adapters/mcp/
+src/adapters/claude-code/
+src/adapters/codex/
+src/adapters/cli/
+src/adapters/mcp/
 ```
 
 ## Dependency direction
 
 ```text
-adapters -> application -> domain
-infrastructure -> application ports / domain contracts
-shared -> no product behavior
+adapters -> application/tools -> application compilers/gateways/state-engine -> domain
+ui -> application/tools -> application compilers/gateways/state-engine -> domain
+skill helper scripts/tools -> application/tools
+optional scripts -> application/tools
+application/local -> application ports / domain contracts
+domain/shared -> primitives only, no product behavior
 ```
 
 Rules:
 
-- `domain/**` has no Node I/O, no Pi imports, no adapter imports, and no infrastructure imports.
-- `application/**` owns use-case orchestration and depends on domain contracts plus ports, not concrete infrastructure or adapters.
-- `infrastructure/**` implements application ports and owns concrete side effects.
-- `adapters/**` translate harness APIs, local web UI transport, or protocol surfaces into application use cases and translate results back into commands, tools, visual UI, protocols, or messages.
-- `shared/**` stays small and cannot own business semantics.
-- `core/**` and `engine/**` must not exist in the target implementation; former responsibilities now live under `domain/**`, `application/**`, `infrastructure/**`, and `adapters/**`.
+- `domain/**` has no Node I/O, no Pi imports, no adapter imports, and no application imports.
+- `application/**` owns compiler orchestration, gateway policy, state-engine rebuild/query orchestration, agent-callable tool APIs, ports, and built-in local runtime implementations. It must remain agent-agnostic and must not import adapters, UI code, skills, scripts, or Pi SDK/TUI packages.
+- `adapters/**` translate harness APIs or protocol surfaces into application tools and translate results back into commands, tools, protocol messages, sessions, or host-native compact UI. Browser UI source belongs under `src/ui/**`, not `src/adapters/**`.
+- `domain/**` owns product semantics for tasks, roadmap, session queue, builds, validation, and state. `domain/shared/**` stays small and cannot become a dumping ground.
+- `core/**`, `engine/**`, and top-level `infrastructure/**` must not exist in the target implementation; former responsibilities now live under `domain/**`, `application/**`, and `adapters/**`.
 
 ## Current migration warning
 
@@ -190,3 +252,5 @@ Runtime checks must cover direct Node execution and package loading, not only Ty
 - [Diagram Raw Data](diagrams/README.md)
 - [API](api.md)
 - [Adapters](adapters.md)
+- [Alignment Model](alignment-model.md)
+- [Audits](audits.md)

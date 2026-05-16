@@ -6,18 +6,9 @@
   "kind": "testing",
   "summary": "Implement a first-class CodeWiki verification gateway/router before relying on existing verifier evidence to close the stable refactor baseline and start dogfooding.",
   "spec_paths": [
-    ".codewiki/kb/system/runtime/overview.md",
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/flows/task-loop.md",
     ".codewiki/kb/lexicon.md"
   ],
-  "code_paths": [
-    "extensions/codewiki/src/core/roadmap.ts",
-    "extensions/codewiki/src/adapters/pi/tools/task.ts",
-    "extensions/codewiki/src/core/schemas.ts",
-    "skills/codewiki-verify/SKILL.md",
-    "scripts/codewiki-gateway.mjs"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "p0",
@@ -57,5 +48,5 @@
     "closure": ""
   },
   "created": "2026-05-06",
-  "updated": "2026-05-06T22:01:08Z"
+  "updated": "2026-05-09T09:11:45Z"
 }

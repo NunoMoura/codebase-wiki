@@ -2,7 +2,7 @@ schema_version: 1
 id: spec.system.diagrams.component-map
 title: CodeWiki Component and Container Map
 kind: component_map
-purpose: Show major CodeWiki runtime components, adapters, stores, and dependency direction.
+purpose: Show major CodeWiki domain, application, UI, adapter, truth, and proof components with dependency direction.
 source_docs:
   - .codewiki/kb/system/overview.md
   - .codewiki/kb/system/file-structure.md
@@ -15,6 +15,8 @@ renderer:
 groups:
   - id: surfaces
     label: User surfaces
+  - id: ui_layer
+    label: UI layer
   - id: adapter_layer
     label: Adapters
   - id: app_layer
@@ -29,8 +31,8 @@ nodes:
     group: surfaces
     kind: actor
   - id: control_room_ui
-    label: Control Room UI
-    group: surfaces
+    label: CodeWiki UI
+    group: ui_layer
     kind: ui
     source: .codewiki/kb/system/control-room-ui.md
   - id: extension
@@ -44,10 +46,20 @@ nodes:
     kind: adapter
     source: .codewiki/kb/system/adapters.md
   - id: api
-    label: CodeWiki API
+    label: Application tools API
     group: app_layer
     kind: application
     source: .codewiki/kb/system/api.md
+  - id: domain
+    label: Domain concepts
+    group: app_layer
+    kind: domain
+    source: .codewiki/kb/system/file-structure.md
+  - id: state_engine
+    label: State engine
+    group: app_layer
+    kind: application
+    source: .codewiki/kb/system/graph.md
   - id: agency
     label: Agency controller
     group: app_layer
@@ -79,7 +91,7 @@ nodes:
     kind: handoff_truth
     source: .codewiki/kb/system/builds.md
   - id: graph
-    label: Graph state machine
+    label: Generated state graph
     group: truth_layer
     kind: generated_state
     source: .codewiki/kb/system/graph.md
@@ -108,6 +120,15 @@ edges:
     to: api
     label: delegates semantic reads/writes
   - from: api
+    to: domain
+    label: applies domain concepts
+  - from: api
+    to: state_engine
+    label: rebuilds/queries generated state
+  - from: state_engine
+    to: graph
+    label: emits representation
+  - from: api
     to: agency
     label: controls bounded automation
   - from: api
@@ -125,9 +146,6 @@ edges:
   - from: api
     to: builds
     label: writes handoff briefs
-  - from: api
-    to: graph
-    label: rebuilds/reads generated relationships
   - from: compilers
     to: builds
     label: produce handoffs
@@ -144,19 +162,19 @@ edges:
     to: builds
     label: validates handoffs
   - from: validation_gateway
-    to: graph
-    label: audits alignment
+    to: state_engine
+    label: uses generated-state context
   - from: knowledge
-    to: graph
+    to: state_engine
     label: source input
   - from: roadmap
-    to: graph
+    to: state_engine
     label: source input
   - from: builds
-    to: graph
+    to: state_engine
     label: source input
   - from: code_tests
-    to: graph
+    to: state_engine
     label: source input
   - from: builds
     to: publication

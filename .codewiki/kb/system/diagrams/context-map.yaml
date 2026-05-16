@@ -31,7 +31,7 @@ systems:
     label: Agent chat interface
     boundary: external
   - id: control_room
-    label: Local Control Room
+    label: Local CodeWiki UI
     boundary: codewiki
     source: .codewiki/kb/system/control-room-ui.md
   - id: pi_adapter

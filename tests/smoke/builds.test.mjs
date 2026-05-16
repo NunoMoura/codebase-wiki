@@ -71,7 +71,7 @@ async function run() {
 		assert.ok(taskTool, "Task tool missing");
 		const firstTask = await taskTool.definition.execute(
 			"task-create-initial",
-			{ repoPath: projectDir, action: "create", tasks: [{ title: "Improve graph UI", priority: "medium", kind: "feature", summary: "Make graph navigation readable.", spec_paths: [".codewiki/kb/product/uis/control-room.md"], code_paths: ["extensions/codewiki/src/adapters/web/control-room.ts"], labels: ["graph", "ui"], goal: { outcome: "Graph navigation is readable.", acceptance: ["Graph renders nodes."], verification: ["Run UI smoke test."] } }], refresh: true },
+			{ repoPath: projectDir, action: "create", tasks: [{ title: "Improve graph UI", priority: "medium", kind: "feature", summary: "Make graph navigation readable.", spec_paths: [".codewiki/kb/product/uis/control-room.md"], code_paths: ["src/adapters/web/control-room.ts"], labels: ["graph", "ui"], goal: { outcome: "Graph navigation is readable.", acceptance: ["Graph renders nodes."], verification: ["Run UI smoke test."] } }], refresh: true },
 			undefined, undefined, ctx,
 		);
 		assert.equal(firstTask.details.created.length, 1);
@@ -85,10 +85,10 @@ async function run() {
 		assert.equal(refinedTask.details.reused.length, 1);
 		assert.equal(refinedTask.details.refined.length, 1);
 		assert.equal(refinedTask.details.reused[0].id, firstTask.details.created[0].id);
-		const roadmapAfterRefine = JSON.parse(readFileSync(resolve(projectDir, ".codewiki", "roadmap.json"), "utf8"));
+		const roadmapAfterRefine = JSON.parse(readFileSync(resolve(projectDir, ".codewiki", "roadmap", "queue.json"), "utf8"));
 		const taskOne = roadmapAfterRefine.tasks[firstTask.details.created[0].id];
 		assert.equal(taskOne.priority, "high");
-		assert.ok(taskOne.code_paths.includes("extensions/codewiki/src/adapters/web/control-room.ts"));
+		assert.ok(taskOne.code_paths.includes("src/adapters/web/control-room.ts"));
 		assert.ok(taskOne.code_paths.includes("tests/smoke/control-room.test.mjs"));
 		assert.ok(taskOne.labels.includes("readability"));
 		assert.ok(taskOne.goal.acceptance.includes("Graph renders nodes."));
@@ -174,20 +174,60 @@ async function run() {
 		assert.equal(impl.publication.git.archive_ref, "refs/codewiki/archive/task/TASK-001");
 		assert.equal(impl.publication.archive_ledger.restore_command, "/wiki-restore TASK-001");
 		assert.ok(impl.publication.commit.trailers.includes(`CodeWiki-Build: ${implResult.details.path}`));
+		assert.ok(impl.publication.commit.trailers.some((trailer) => String(trailer).startsWith("CodeWiki-Checks:")));
+		assert.ok(impl.publication.commit.trailers.some((trailer) => String(trailer).startsWith("CodeWiki-Validation:")));
+		assert.ok(impl.publication.commit.trailers.some((trailer) => String(trailer).startsWith("CodeWiki-Recover:")));
 		assert.match(impl.publication.archive_ledger.digest, /^sha256:/);
 		assert.ok(impl.publication.artifact_digests.files.some((file) => file.path === docResult.details.path));
 		assert.ok(impl.publication.artifact_digests.files.some((file) => file.path === planResult.details.path));
 		assert.equal(impl.publication.push_readiness.safe_to_push, false);
 		assert.ok(impl.publication.push_readiness.blocked_reasons.includes("secret scan required"));
 
-		// codewiki_validation: pass
+		// codewiki_validation: task-close pass requires fresh isolation evidence
 		const valTool = extension.tools.get("codewiki_validation");
 		assert.ok(valTool, "Validation tool missing");
+		const implementationAuditRefs = ["audit:alignment", "audit:changed"];
+		const taskCloseAuditRefs = ["audit:alignment", "audit:changed", "audit:task", "audit:generated-parity"];
+		const publicationAuditRefs = ["audit:alignment", "audit:package", "audit:security"];
+		const closeWithoutValidation = await taskTool.definition.execute(
+			"task-close-without-validation", { repoPath: projectDir, action: "close", taskId: "TASK-001", summary: "Should block without task-close validation." },
+			undefined, undefined, ctx,
+		).then(
+			() => null,
+			(error) => error,
+		);
+		assert.match(String(closeWithoutValidation?.message || closeWithoutValidation), /Task close blocked/);
+
+		const missingIsolationResult = await valTool.definition.execute(
+			"val-pass-missing-isolation", { repoPath: projectDir, profile: "task-close", task_id: "TASK-001", verdict: "pass", rationale: "All good.", source: implResult.details.path },
+			undefined, undefined, ctx,
+		);
+		assert.match(missingIsolationResult.details.path, /\.codewiki\/validation\/.*task-close-block.*\.json$/);
+		assert.equal(missingIsolationResult.details.data.verdict, "block");
+		assert.ok(missingIsolationResult.details.data.failed_criteria.includes("validation_isolation"));
 		const passResult = await valTool.definition.execute(
-			"val-pass", { repoPath: projectDir, profile: "task-close", task_id: "TASK-001", verdict: "pass", rationale: "All good.", source: implResult.details.path },
+			"val-pass", { repoPath: projectDir, profile: "task-close", task_id: "TASK-001", verdict: "pass", rationale: "All good.", source: implResult.details.path, audit_refs: taskCloseAuditRefs, isolation: { role: "validator", fresh_context: true, clean: true, validated_sha: "abc1234", builder_session_id: "build-test-session" } },
 			undefined, undefined, ctx,
 		);
 		assert.match(passResult.details.path, /\.codewiki\/validation\/.*task-close-pass.*\.json$/);
+		const dirtyPreCommitPass = await valTool.definition.execute(
+			"val-dirty-precommit-pass", { repoPath: projectDir, profile: "implementation", task_id: "TASK-001", verdict: "pass", rationale: "Fresh validator checked dirty worktree digest.", source: implResult.details.path, audit_refs: implementationAuditRefs, isolation: { role: "validator", fresh_context: true, clean: false, working_tree_digest: "sha256:dirty-tree", base_sha: "abc1234", builder_session_id: "build-test-session" } },
+			undefined, undefined, ctx,
+		);
+		assert.match(dirtyPreCommitPass.details.path, /\.codewiki\/validation\/.*implementation-pass.*\.json$/);
+		assert.equal(dirtyPreCommitPass.details.data.isolation.working_tree_digest, "sha256:dirty-tree");
+		const dirtyTaskCloseBlock = await valTool.definition.execute(
+			"val-dirty-task-close-block", { repoPath: projectDir, profile: "task-close", task_id: "TASK-001", verdict: "pass", rationale: "Task close needs immutable recovery proof.", source: implResult.details.path, audit_refs: taskCloseAuditRefs, isolation: { role: "validator", fresh_context: true, clean: false, working_tree_digest: "sha256:dirty-tree" } },
+			undefined, undefined, ctx,
+		);
+		assert.match(dirtyTaskCloseBlock.details.path, /\.codewiki\/validation\/.*task-close-block.*\.json$/);
+		assert.equal(dirtyTaskCloseBlock.details.data.verdict, "block");
+		const dirtyPublicationBlock = await valTool.definition.execute(
+			"val-dirty-publication-block", { repoPath: projectDir, profile: "publication", task_id: "TASK-001", verdict: "pass", rationale: "Publication cannot use dirty digest alone.", source: implResult.details.path, audit_refs: publicationAuditRefs, isolation: { role: "validator", fresh_context: true, clean: false, working_tree_digest: "sha256:dirty-tree" } },
+			undefined, undefined, ctx,
+		);
+		assert.match(dirtyPublicationBlock.details.path, /\.codewiki\/validation\/.*publication-block.*\.json$/);
+		assert.equal(dirtyPublicationBlock.details.data.verdict, "block");
 
 		// codewiki_validation: fail
 		const failResult = await valTool.definition.execute(

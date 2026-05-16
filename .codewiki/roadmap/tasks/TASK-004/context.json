@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.711Z",
+  "generated_at": "2026-05-09T09:08:52Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-004/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-004",
     "title": "Expose CodeWiki capability manifest and think-code boundary",
     "status": "done",
-    "phase": "done",
     "priority": "high",
     "kind": "architecture",
     "summary": "Define the typed CodeWiki capabilities that Pi runtimes such as think-code can call without bypassing .codewiki semantics, including optional executor/fallback boundaries.",
@@ -44,52 +39,5 @@
       "current": "CodeWiki has a gateway script and transaction schema, but no formal capability manifest or optional think-code integration boundary.",
       "closure": "Specify the manifest, fallback behavior, and follow-up implementation tasks."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/product/overview.md",
-      "title": ".codewiki/kb/product/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/system/overview.md",
-      "title": ".codewiki/kb/system/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/system/runtime/overview.md",
-      "title": ".codewiki/kb/system/runtime/overview.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "scripts/codewiki-gateway.mjs",
-      "extensions/codewiki",
-      "README.md"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-004/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-004/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-004/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-004/graph.json"
   }
 }

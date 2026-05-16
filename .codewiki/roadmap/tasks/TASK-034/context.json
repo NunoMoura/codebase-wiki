@@ -1,93 +1,44 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.754Z",
+  "generated_at": "2026-05-10",
   "context_path": ".codewiki/roadmap/tasks/TASK-034/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-034",
-    "title": "Design CodeWiki skill package and workflow assets",
-    "status": "todo",
-    "phase": "implement",
+    "title": "Align CodeWiki skill package with compiler and API contracts",
+    "status": "done",
     "priority": "high",
     "kind": "agent-workflow",
-    "summary": "Define a CodeWiki skill package with router instructions, deterministic scripts, and grill/plan/build/verify workflow assets adapted from Matt Pocock's skills only where they fit CodeWiki semantics.",
+    "summary": "Update packaged CodeWiki skills and workflow assets so they route work through feedback, documentation, implementation, validation, graph, roadmap, build, and agency contracts without stale roadmap-work-item or nested-KB assumptions.",
     "labels": [
       "skills",
-      "workflow",
-      "matt-pocock-adaptation"
+      "agent-workflow",
+      "compilers",
+      "api-contract"
     ],
     "goal": {
-      "outcome": "CodeWiki has a clear packaged skill contract that teaches agents how to operate `.codewiki/` without creating parallel documentation systems.",
+      "outcome": "CodeWiki packaged skills reflect the flat KB, builds-as-briefs model, gated agency, validation gateway, and active-roadmap truth boundaries.",
       "acceptance": [
-        "A skill-package structure is specified for `SKILL.md`, `scripts/`, and workflow assets.",
-        "`grill`, `plan`, `build`, and `verify` loops are described with CodeWiki-specific inputs, outputs, stop conditions, and canonical write rules.",
-        "Matt Pocock skill ideas are classified as adopt, adapt, or discard, with documentation-related conventions explicitly filtered through CodeWiki's knowledge model.",
-        "Repo-specific process customization lives under `.codewiki/kb/**` or config, while package workflow assets remain versioned and not casually self-mutated."
+        "Skills route ambiguous intent to feedback and accepted changes to documentation builds before implementation work.",
+        "Planning/task skills use documentation_build plus roadmap work item language instead of legacy requirements-packet briefs.",
+        "Verify/view-audit skills align with validation gateway and graph state-machine contracts.",
+        "Skills avoid stale references to deleted nested system docs and legacy operating-model paths.",
+        "Workflow guidance stays progressive-disclosure and does not bypass API/roadmap/build/validation semantics."
       ],
       "non_goals": [
-        "Do not blindly copy `CONTEXT.md`, `docs/adr`, issue-tracker, or PRD conventions when they duplicate CodeWiki knowledge/roadmap semantics.",
-        "Do not make agents hand-edit generated views."
+        "Do not copy external skill conventions that duplicate CodeWiki knowledge, roadmap, build, validation, or graph truth.",
+        "Do not make skills hand-edit generated graph or roadmap shards.",
+        "Do not implement runtime code refactors beyond skill/docs alignment."
       ],
       "verification": [
-        "Review packaged skill docs against `.codewiki/` invariants.",
-        "Run package smoke/test checks after any skill packaging changes.",
-        "Verify no parallel source of truth was introduced."
+        "grep skills for stale nested KB paths and roadmap-work-item terminology",
+        "Review skill router against system/api.md, compilers.md, validation-gateway.md, agency.md",
+        "Run existing smoke/tests if skill package loading is affected."
       ]
     },
     "delta": {
-      "desired": "",
-      "current": "",
-      "closure": ""
+      "desired": "Skills are aligned with the new CodeWiki compiler/API/graph/agency model.",
+      "current": "Skills still contain some old requirements-packet and legacy operating-model language.",
+      "closure": "Skill docs aligned with current KB contracts; implementation build 2026-05-10-task-034-skill-alignment.json validates closure."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/clients/agent-skills.md",
-      "title": ".codewiki/kb/system/clients/agent-skills.md"
-    },
-    {
-      "path": ".codewiki/kb/system/v2-operating-model.md",
-      "title": ".codewiki/kb/system/v2-operating-model.md"
-    },
-    {
-      "path": ".codewiki/kb/lexicon.md",
-      "title": ".codewiki/kb/lexicon.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "skills",
-      "README.md",
-      "package.json"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-034/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-034/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-034/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-034/graph.json"
   }
 }

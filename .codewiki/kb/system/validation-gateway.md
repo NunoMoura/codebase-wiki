@@ -5,20 +5,21 @@ state: active
 summary: Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.
 owners:
   - architecture
-updated: "2026-05-13"
+updated: "2026-05-16"
 code_paths:
-  - skills/codewiki-verify/SKILL.md
+  - src/application/gateway
+  - skills/codewiki/loops/validation.md
   - .codewiki/validation
-  - extensions/codewiki/src/application/builds.ts
+  - src/application/builds.ts
 ---
 
 # Validation Gateway
 
 ## Responsibility
 
-The validation gateway has one job: validate a submitted cycle build against its policy, source refs, exit criteria, and evidence. It returns `pass`, `fail`, or `block`.
+The validation gateway has one job: validate a submitted cycle build against its policy, source refs, exit criteria, and evidence. It returns `pass`, `fail`, or `block`. Gateway source belongs under `src/application/gateways/**`, separate from compiler implementations, so independent validation does not collapse into build production.
 
-The gateway does not define requirements, write canonical truth, create plans, or compile handoffs. Compilers create builds. The gateway evaluates builds.
+The gateway does not define requirements, write canonical truth, create plans, compile handoffs, or prove that content exists. Compilers create builds. Commits, tree SHAs, package digests, and canonical files prove content. The gateway evaluates builds and emits an attestation over named evidence. For implementation builds, the gateway must also verify commit-readiness: the build must contain everything needed to create the task recovery commit after validation.
 
 A verifier can be an implementation role inside the gateway, but validation gateway is the product term.
 
@@ -32,6 +33,8 @@ A gateway run should receive:
 - source refs used by the compiler,
 - evidence mapping supplied by the compiler,
 - relevant graph/state routing context,
+- required audit profile outputs,
+- checked content proof such as working-tree digest, tree SHA, commit SHA, package digest, or archive ledger when policy requires it,
 - any required mechanical checks or fresh-context isolation data.
 
 The gateway should inspect only enough source truth to decide whether the build is valid. It may recommend routing after a fail or block, but the next compiler cycle owns the revised build.
@@ -77,21 +80,21 @@ tests agree with intended behavior
 builds agree with their source layer and policy
 ```
 
-Requirement ids and evidence mapping should make this trace explicit. The gateway should not rely on broad prose similarity when explicit refs are available.
+Requirement ids and evidence mapping should make this trace explicit. The gateway should not rely on broad prose similarity when explicit refs are available. The graph is required gateway context for routing, missing-edge detection, and freshness, but the gateway must verify against canonical sources and content proof instead of trusting graph summaries blindly.
 
 ## Verdicts
 
 | Verdict | Meaning |
 | --- | --- |
 | `pass` | The build satisfies its policy and can be consumed by the next loop or publication step. |
-| `fail` | A requirement, criterion, alignment claim, or evidence mapping is proven wrong or incomplete. |
+| `fail` | A requirement, criterion, alignment assertion, or evidence mapping is proven wrong or incomplete. |
 | `block` | The gateway cannot safely decide because context, checks, policy, source refs, or intent is insufficient. |
 
 A failed or blocked verdict should name the failed criteria or missing context. The producing loop then creates a superseding cycle build after revision.
 
 ## Persistence policy
 
-Passing validation does not need a separate durable report by default when the accepted build records the validation result.
+Passing validation does not need a separate durable report by default when the accepted build records the validation result and required content proof. A validation result is an attestation, not content proof by itself.
 
 Persist validation reports when:
 
@@ -106,22 +109,25 @@ Persistent hot reports live under `.codewiki/validation/**`. Pass reports are ho
 ## Rules
 
 - The gateway validates builds; it does not mutate canonical truth.
-- The gateway does not replace mechanical checks.
+- The gateway uses graph context but does not treat graph state as final authority.
+- The gateway report is an attestation; commits, tree SHAs, package digests, and canonical files prove content.
+- The gateway does not replace mechanical checks or required audit profiles.
 - The gateway does not invent requirements or plan implementation work.
 - Semantic validation should run in a fresh, bounded context when independence matters.
+- Implementation, task-close, publication, publish, and release validation profiles require fresh-context isolation evidence before they can pass.
 - The gateway may recommend next routing: feedback, documentation, planning, implementation, validation, observe, or block.
 - Gated agency must stop on fail/block verdicts or missing required approval.
-- Commit, push, release, or remote updates require gateway/policy approval when configured.
+- Commit, push, release, or remote updates require gateway/policy approval when configured and immutable content proof when publication policy requires it.
 
 ## Isolation evidence
 
-Implementation and task-close validation should be independently reproducible when the work changes code, tests, publication metadata, or release state. The preferred validation posture is:
+Implementation, task-close, publication, publish, and release validation must be independently reproducible when the work changes code, tests, publication metadata, or release state. The required validation posture is:
 
 - validator runs in a separate clean worktree from the builder,
 - validator starts from artifacts rather than builder chat context,
-- validation report records the exact Git commit SHA it checked,
+- validation report records the exact Git commit SHA, tree SHA, package digest, archive/remote ref, or working-tree digest it checked as required by policy,
 - validation report records whether the worktree was clean,
-- validation report records the validator role and any builder session or claim it intentionally did not reuse.
+- validation report records the validator role and any builder session or scoped lease it intentionally did not reuse.
 
 `sha` means a Git object id/hash. CodeWiki uses SHAs to make statements exact:
 
@@ -132,8 +138,18 @@ Implementation and task-close validation should be independently reproducible wh
 
 Legacy reports can remain valid without these fields. New reports should include them when a fresh validator, publication gate, or audit needs independence evidence.
 
+Implementation validation requires `fresh_context=true`, an explicit clean-state value, checked content proof, and a commit-ready implementation build. A clean worktree can use `validated_sha`, `head_sha`, `published_sha`, or `tree_sha`; a dirty pre-commit worktree must use `working_tree_digest` or `worktree_digest` that identifies the checked dirty content.
+
+A commit-ready implementation build must include task id, upstream planning/build refs, acceptance mapping, touched code/test evidence, checks, closure brief, commit title/body draft, and CodeWiki trailers for task, build, checks, validation placeholder or refs, and recovery command. The implementation gateway validates this before passing; it does not require the commit to already exist.
+
+Task-close, publication, publish, and release profiles are stricter. They require `fresh_context=true`, `clean=true`, and immutable proof such as `published_sha`, `head_sha`, `validated_sha`, `tree_sha`, `package_digest`, `archive_ref`, or `remote_ref`. Working-tree digest alone cannot pass a task-close or publication boundary because the close record must be recoverable from committed/published content. The `codewiki_task close` path must block unless a passing `task-close` validation report with this proof already exists for the task.
+
+When a required validation boundary needs a new context, the producing session should request an adapter session handoff with the submitted build, task id, checks, and expected validation output. The validator session or fresh worker process starts from that handoff artifact instead of from builder chat.
+
 ## Related docs
 
+- [Alignment Model](alignment-model.md)
+- [Audits](audits.md)
 - [Builds](builds.md)
 - [Compilers](compilers.md)
 - [Roadmap](roadmap.md)

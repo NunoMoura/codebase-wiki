@@ -1,0 +1,57 @@
+{
+  "id": "TASK-081",
+  "title": "Move architecture drift checks out of scripts into source-owned audits",
+  "status": "in_progress",
+  "priority": "high",
+  "kind": "testing",
+  "summary": "Replace script-owned architecture drift checks with source-owned audit/test modules for dogfood/source taxonomy, stale architecture references, package reachability, generated-vs-canonical parity, and lock/audit readiness.",
+  "spec_paths": [
+    ".codewiki/kb/system/file-structure.md",
+    ".codewiki/kb/system/audits.md"
+  ],
+  "code_paths": [
+    "src/application/lint.ts",
+    "src/application/graph/rebuilder.ts",
+    "src/application",
+    "src/adapters/pi",
+    "package.json",
+    "package-lock.json",
+    "tests/smoke",
+    "scripts/check-architecture.mjs"
+  ],
+  "research_ids": [],
+  "labels": [
+    "sprint:alignment-hardening",
+    "file-structure",
+    "package",
+    "stale-refs"
+  ],
+  "goal": {
+    "outcome": "The class of file-structure drift recently found manually is caught by source-owned audit/test checks, while scripts remain disposable wrappers or are removed.",
+    "acceptance": [
+      "Checks fail on forbidden source folders, stale CodeWiki path references, product logic under scripts, and generated/canonical task-view mismatch.",
+      "Package audit fails when shipped source is unreachable/stale, lockfile is missing, or package dry-run includes/omits unexpected artifacts.",
+      "Generated .codewiki/roadmap/tasks/** parity is checked against .codewiki/roadmap/queue.json.",
+      "No product, gateway, or test semantic check depends on scripts for authoritative logic; any remaining script is a thin optional wrapper over source-owned code or is deleted.",
+      "Tests or fixtures intentionally introduce drift and confirm checks fail."
+    ],
+    "non_goals": [
+      "Do not preserve scripts as authoritative product surfaces.",
+      "Do not conflate developer helper wrappers with application audit APIs."
+    ],
+    "verification": [
+      "npm run typecheck",
+      "npm run test:smoke",
+      "npm run test:pack",
+      "npm audit --audit-level=moderate --omit=dev",
+      "source-owned audit smoke covers file-structure drift"
+    ]
+  },
+  "delta": {
+    "desired": "Architecture/file-structure drift enforcement lives in source-owned audit/test modules and scripts are safe to discard.",
+    "current": "Architecture drift checks and package/file-structure guards still reference script-based checks.",
+    "closure": "Drift fixtures fail through source-owned audits/tests, optional script wrappers carry no unique semantics, and package checks pass."
+  },
+  "created": "2026-05-15",
+  "updated": "2026-05-16T00:59:42Z"
+}

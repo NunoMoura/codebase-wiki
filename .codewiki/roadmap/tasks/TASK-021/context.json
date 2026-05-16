@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.735Z",
+  "generated_at": "2026-05-09T09:10:23Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-021/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-021",
     "title": "Subagent JSON worker contracts",
     "status": "done",
-    "phase": "done",
     "priority": "medium",
     "kind": "agent-workflow",
     "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
@@ -41,47 +36,5 @@
       "current": "Fresh verifier exists, but broader subagent roles and contracts are underexplored.",
       "closure": "Contracts and at least one additional subagent workflow are implemented or stubbed with tests."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/v2-operating-model.md",
-      "title": ".codewiki/kb/system/v2-operating-model.md"
-    },
-    {
-      "path": ".codewiki/kb/system/flows/context-memory.md",
-      "title": ".codewiki/kb/system/flows/context-memory.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/contracts.ts",
-      "skills"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-021/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-021/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-021/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-021/graph.json"
   }
 }

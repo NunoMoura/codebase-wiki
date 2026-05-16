@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-16T01:02:04Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-087/context.json",
+  "task": {
+    "id": "TASK-087",
+    "title": "Migrate source to domain-led CodeWiki layers",
+    "status": "in_progress",
+    "priority": "critical",
+    "kind": "architecture",
+    "summary": "Restructure CodeWiki source so domain concepts power DDD and application code contains compilers, gateways, state engine, and agent-facing tools over those domain concepts.",
+    "labels": [
+      "domain-led-refactor",
+      "architecture",
+      "ddd",
+      "application-tools",
+      "compilers",
+      "gateways",
+      "state-engine"
+    ],
+    "goal": {
+      "outcome": "CodeWiki source follows the documented dependency direction: adapters/UI/skills call application tools, application compilers/gateways/state-engine use domain concepts, and domain owns task/roadmap/session/build/validation/state semantics.",
+      "acceptance": [
+        "Domain modules exist for task, roadmap, session queue, build, validation, and state concepts, with product semantics moved out of broad application modules where practical.",
+        "Application exposes agent-callable tool APIs that Pi tools, future adapters, skill helpers, and optional CLIs can call without owning semantics.",
+        "Application compiler modules exist for feedback, documentation, planning, and implementation flows, even if migration starts with wrappers around existing implementations.",
+        "Application gateway modules are separated by validation profile and do not collapse into compiler build production.",
+        "State-engine naming owns generated state/graph rebuild/query behavior while graph remains the generated representation.",
+        "Dependency checks or tests prevent domain importing application/adapters/UI/skills/scripts and prevent application importing adapters/UI/skills/scripts."
+      ],
+      "non_goals": [
+        "Do not change user-facing behavior except import/path compatibility required by the refactor.",
+        "Do not remove legacy compatibility exports until downstream adapters/tests are migrated."
+      ],
+      "verification": [
+        "npm run typecheck",
+        "npm run test:smoke",
+        "npm test",
+        "source-owned architecture/audit check covers dependency direction"
+      ]
+    },
+    "delta": {
+      "desired": "Domain concepts lead the architecture, application orchestrates compiler/gateway/state/tool workflows, and adapters/UI/skills are thin surfaces.",
+      "current": "Many domain concepts live in broad src/application modules and generated graph/state naming is mixed across layers.",
+      "closure": "Layer folders and imports match documented DDD target with tests/guards and compatibility wrappers where needed."
+    }
+  }
+}

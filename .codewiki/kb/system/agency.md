@@ -8,8 +8,8 @@ owners:
   - engineering
 updated: "2026-05-11"
 code_paths:
-  - extensions/codewiki/src/application
-  - extensions/codewiki/src/adapters/pi
+  - src/application
+  - src/adapters/pi
 ---
 
 # Agency Controller
@@ -39,10 +39,10 @@ Agency can run at three scopes:
 | Scope | Responsibility |
 | --- | --- |
 | `roadmap` | Audit or maintain the whole active roadmap inside conservative budgets. |
-| `sprint` | Advance a bounded cohort of related tasks with shared budget, claims, and closure checkpoint. |
+| `sprint` | Advance a bounded cohort of related tasks with shared budget, session leases, and closure checkpoint. |
 | `task` | Advance one atomic roadmap work item. |
 
-Sprint scope is the default target for parallel work when a sprint is active. If the harness can spawn sessions, CodeWiki may create one session per sprint or bounded sprint workstream; otherwise it emits a plan-only `session_spawn_plan` with task ids, required claims, and stop reasons for manual or external spawning.
+Sprint scope is the default target for parallel work when a sprint is active. If the harness can spawn sessions or fresh worker processes, CodeWiki may create one isolated execution per sprint or bounded sprint workstream through the adapter session handoff capability. Otherwise it emits a plan-only `session_spawn_plan` with task ids, required scoped leases, and stop reasons for manual or external orchestration.
 
 ## Modes
 
@@ -75,7 +75,7 @@ The controller does not replace the graph, compilers, roadmap, or validation gat
 graph state -> scoped roadmap/sprint/task focus -> compiler step -> validation gateway -> build/evidence -> next graph state
 ```
 
-When intent is unclear, it routes to feedback. When knowledge must change, it routes to documentation. When code/tests must change, it routes to implementation. When evidence is ready, it routes to validation or closure.
+When intent is unclear, it routes to feedback. When knowledge must change, it routes to documentation. When code/tests must change, it routes to implementation. When evidence is ready, it routes to validation or closure. When a route requires a fresh context boundary and the session budget allows it, agency should call the adapter session handoff capability instead of asking the user to run a host command manually.
 
 ## Invariants
 
@@ -84,8 +84,9 @@ When intent is unclear, it routes to feedback. When knowledge must change, it ro
 - The controller must not mutate generated graph state directly.
 - The controller must not bypass validation gateway or policy decisions.
 - Commit, push, release, and remote updates require explicit publication policy approval.
-- Parallel sprint execution must claim narrow scopes and stop on write/write conflicts unless policy explicitly permits override.
+- Parallel sprint execution must lease narrow scopes and stop on write/write conflicts unless policy explicitly permits override.
 - Agency plans must expose token, time, cost, write, session, and risk budgets in bounded context and policy output.
+- Agency may spend session budget by requesting adapter session handoffs; each handoff must carry a minimal kickoff prompt, source refs, task/build ids, and expected output. A fresh worker process satisfies context isolation even when the host cannot replace the current interactive session from a tool.
 
 ## Related docs
 

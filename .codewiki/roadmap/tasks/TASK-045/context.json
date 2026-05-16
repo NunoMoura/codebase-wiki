@@ -1,19 +1,14 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.770Z",
+  "generated_at": "2026-05-09T09:12:12Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-045/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-045",
     "title": "Add compiler build and validation report schemas",
-    "status": "todo",
-    "phase": "implement",
+    "status": "done",
     "priority": "high",
     "kind": "architecture",
-    "summary": "Add first-class schemas and writer paths for feedback_build, documentation_build, implementation_build, and validation reports under `.codewiki/builds/**` and `.codewiki/validation/**`.",
+    "summary": "TASK-045: compiler build and validation report schemas complete.",
     "labels": [
       "compiler-model",
       "validation-gateway",
@@ -42,51 +37,5 @@
       "current": "",
       "closure": ""
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/v2-operating-model.md",
-      "title": ".codewiki/kb/system/v2-operating-model.md"
-    },
-    {
-      "path": ".codewiki/kb/system/runtime/overview.md",
-      "title": ".codewiki/kb/system/runtime/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/lexicon.md",
-      "title": ".codewiki/kb/lexicon.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/src",
-      "extensions/codewiki/src/engine/rebuild.ts"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-045/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-045/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-045/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-045/graph.json"
   }
 }

@@ -5,15 +5,8 @@
   "priority": "medium",
   "kind": "integration",
   "summary": "Use ThinkCode for ad hoc programmatic context creation, view validation, graph checks, and staged edits without making it CodeWiki's memory layer.",
-  "spec_paths": [
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/runtime/overview.md"
-  ],
-  "code_paths": [
-    "extensions/codewiki/index.ts",
-    "scripts/codewiki-gateway.mjs",
-    "skills"
-  ],
+  "spec_paths": [],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "thinkcode-query",
@@ -43,5 +36,5 @@
     "closure": "Integration seam and first use case are implemented with fallback."
   },
   "created": "2026-05-02",
-  "updated": "2026-05-02"
+  "updated": "2026-05-09T09:10:44Z"
 }

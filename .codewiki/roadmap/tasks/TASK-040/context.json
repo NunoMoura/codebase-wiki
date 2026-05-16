@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.763Z",
+  "generated_at": "2026-05-09T09:11:45Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-040/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-040",
     "title": "Harden verification gateway before dogfood checkpoint",
     "status": "done",
-    "phase": "done",
     "priority": "critical",
     "kind": "testing",
     "summary": "Implement a first-class CodeWiki verification gateway/router before relying on existing verifier evidence to close the stable refactor baseline and start dogfooding.",
@@ -51,58 +46,5 @@
       "current": "",
       "closure": ""
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/runtime/overview.md",
-      "title": ".codewiki/kb/system/runtime/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/system/v2-operating-model.md",
-      "title": ".codewiki/kb/system/v2-operating-model.md"
-    },
-    {
-      "path": ".codewiki/kb/system/flows/task-loop.md",
-      "title": ".codewiki/kb/system/flows/task-loop.md"
-    },
-    {
-      "path": ".codewiki/kb/lexicon.md",
-      "title": ".codewiki/kb/lexicon.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/src/core/roadmap.ts",
-      "extensions/codewiki/src/adapters/pi/tools/task.ts",
-      "extensions/codewiki/src/core/schemas.ts",
-      "skills/codewiki-verify/SKILL.md",
-      "scripts/codewiki-gateway.mjs"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-040/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-040/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-040/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-040/graph.json"
   }
 }

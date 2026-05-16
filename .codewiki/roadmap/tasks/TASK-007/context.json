@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.715Z",
+  "generated_at": "2026-05-09T09:09:08Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-007/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-007",
     "title": "Define CodeWiki task execution inner loop",
     "status": "done",
-    "phase": "done",
     "priority": "high",
     "kind": "agent-workflow",
     "summary": "Specify the automatic per-task loop that uses think-code context packets, implementation, local checks, fresh verification, and evidence before closure without requiring user-triggered verification commands.",
@@ -43,47 +38,5 @@
       "current": "Implement→verify guidance exists but is not formalized as an automatic focused inner loop skill.",
       "closure": "Add inner-loop skill/spec guidance and link it to CodeWiki task/session tools and automatic verifier stage."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/runtime/overview.md",
-      "title": ".codewiki/kb/system/runtime/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/product/uis/board.md",
-      "title": ".codewiki/kb/product/uis/board.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "skills/codewiki-task/SKILL.md",
-      "skills/codewiki-verify/SKILL.md"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-007/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-007/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-007/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-007/graph.json"
   }
 }

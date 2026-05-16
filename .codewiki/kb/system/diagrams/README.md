@@ -8,8 +8,8 @@ owners:
   - design
 updated: "2026-05-12"
 code_paths:
-  - extensions/codewiki/src/adapters/web/control-room.ts
-  - extensions/codewiki/src/adapters/pi/ui/manager.ts
+  - src/adapters/web/control-room.ts
+  - src/adapters/pi/ui/manager.ts
 ---
 
 # System Diagram Raw Data
@@ -48,11 +48,11 @@ Agents should prefer small stable IDs, explicit source paths, and short labels. 
 - The UI may render a diagram picker from this folder.
 - Selecting a node, edge, entity, state, or sequence step should open source-backed inspector detail.
 - Diagram files should not duplicate full component docs.
-- Generated graph state remains `.codewiki/index_graph.json`; diagram files are intended system knowledge.
+- Generated state/graph output remains `.codewiki/index_graph.json`; diagram files are intended system knowledge.
 - `../architecture.mmd` remains a compatibility component diagram during migration, but new diagram work should target this folder.
 
 ## Related docs
 
-- [Control Room UI](../control-room-ui.md)
+- [CodeWiki UI](../control-room-ui.md)
 - [File Structure](../file-structure.md)
 - [System Overview](../overview.md)

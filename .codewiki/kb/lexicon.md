@@ -7,7 +7,7 @@ summary: Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, 
 owners:
 - product
 - architecture
-updated: '2026-05-13'
+updated: '2026-05-16'
 code_paths:
 - .codewiki/kb
 ---
@@ -110,13 +110,13 @@ user intent -> feedback_build -> .codewiki/kb -> documentation_build -> planning
 
 Coherence within one layer: knowledge, roadmap, code, and tests agree with peer artifacts.
 
-## Index graph
+## State index / graph
 
-Primary generated hot state index at `.codewiki/index_graph.json`. It maps knowledge, tasks, builds, tests, code, validation reports, and compact requirement traceability with typed nodes and edges. It is generated and must not be hand-edited. Curated Markdown links are inputs; the graph owns machine backlinks, stale-reference detection, freshness, routing, and traceability-gap reporting. It is not the source of requirements.
+Primary generated hot state index at `.codewiki/index_graph.json`. Domain language calls this state; the graph is the generated representation. It maps knowledge, tasks, builds, tests, code, validation reports, session queue leases, and compact requirement traceability with typed nodes and edges. It is generated and must not be hand-edited. Curated Markdown links are inputs; the state engine owns machine backlinks, stale-reference detection, freshness, routing, and traceability-gap reporting. It is not the source of requirements.
 
-## Graph propagation
+## State propagation
 
-The graph's ability to index current hot state and, when any source layer changes, expose what drifted downstream or upstream. Changing feedback triggers documentation drift. Changing knowledge triggers planning drift. Changing planning triggers implementation drift. Changing code can trigger validation, planning, or documentation drift. The graph surfaces these as reconciliation items with explicit direction, layer, and next-loop routing so agents know which loop needs to rerun, while source-backed builds and knowledge remain truth.
+The state engine's ability to index current hot state and, when any source layer changes, expose what drifted downstream or upstream. Changing feedback triggers documentation drift. Changing knowledge triggers planning drift. Changing planning triggers implementation drift. Changing code can trigger validation, planning, or documentation drift. Generated state surfaces these as reconciliation items with explicit direction, layer, and next-loop routing so agents know which loop needs to rerun, while source-backed builds and knowledge remain truth.
 
 ## View
 
@@ -132,15 +132,19 @@ An optional implementation worker that changes code until planning-build require
 
 ## Evidence
 
-Compact proof or support for a claim. Research/source evidence supports knowledge and planning and should live under source or research roots, not the deprecated default `.codewiki/evidence/**` root. Execution evidence supports implementation and closure and should live in `implementation_build` artifacts. Validation evidence is a gateway result; hot fail/block/policy-required/current reports live under `.codewiki/validation/**`, while cold pass reports rely on Git archival after publication.
+Compact proof or support for an assertion. Research/source evidence supports knowledge and planning and should live under source or research roots, not the deprecated default `.codewiki/evidence/**` root. Execution evidence supports implementation and closure and should live in `implementation_build` artifacts. Validation evidence is a gateway result; hot fail/block/policy-required/current reports live under `.codewiki/validation/**`, while cold pass reports rely on Git archival after publication.
 
 ## Context window
 
 The active Pi agent session memory. It is volatile RAM and expensive because it is reloaded with each prompt in the session.
 
-## Change claim
+## Session queue
 
-A temporary session-owned lease over narrow knowledge, roadmap, code, build, validation, or graph/source scopes. Claims coordinate parallel work and expire or release; they are not requirements, roadmap truth, or history.
+Runtime coordination state under `.codewiki/session/queue.json`. It records active focus, waiting work, ready wake signals, scoped leases, handoff metadata, and isolation context for current agent sessions. The session queue is temporary coordination state, not requirements, roadmap truth, or history.
+
+## Scoped lease
+
+A temporary session-owned lease over narrow knowledge, roadmap, code, build, validation, or state/source scopes. Scoped leases coordinate parallel work and expire or release; they do not replace tasks, builds, validation, git, or code review. Legacy `claim` naming may remain only as a transitional adapter/API alias during migration.
 
 ## Subagent
 
@@ -152,7 +156,7 @@ An optional project-scoped sandbox runtime for agent-written programs. CodeWiki 
 
 ## Product UI
 
-A visual user interface that a human can see and interact with, such as the Control Room, status panel, board UI, graph navigation view, TUI screens, browser screens, or editor panels. Product UI expectations live under `.codewiki/kb/product/uis/**`.
+A visual user interface that a human can see and interact with, such as the CodeWiki UI, status panel, board UI, graph navigation view, TUI screens, browser screens, or editor panels. Product UI expectations live under `.codewiki/kb/product/uis/**`.
 
 Tools, commands, skills, CLI access, MCP access, package APIs, and harness adapters are access surfaces, not product UIs.
 

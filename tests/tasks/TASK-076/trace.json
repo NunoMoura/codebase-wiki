@@ -1,0 +1,35 @@
+{
+  "task_id": "TASK-076",
+  "summary": "Acceptance trace for project filesystem restructure and dogfood boundary clarification.",
+  "acceptance": [
+    {
+      "criterion": "Pi extension entry resolves from src/index.ts and package manifest/files no longer require extensions/codewiki.",
+      "test": "tests/tasks/TASK-076/restructure.test.mjs",
+      "code_paths": ["package.json", "src/index.ts"]
+    },
+    {
+      "criterion": "Only skills/codewiki/SKILL.md is a public CodeWiki skill; loop/playbook instructions live under that skill as supporting markdown.",
+      "test": "tests/tasks/TASK-076/restructure.test.mjs",
+      "code_paths": ["skills/codewiki/SKILL.md", "skills/codewiki/loops/**", "skills/codewiki/playbooks/**"]
+    },
+    {
+      "criterion": "Project Pi system prompt appends a clear .codewiki dogfood-state-not-source-code boundary.",
+      "test": "tests/tasks/TASK-076/restructure.test.mjs",
+      "code_paths": [".pi/APPEND_SYSTEM.md"]
+    },
+    {
+      "criterion": "Roadmap queue lives under .codewiki/roadmap/queue.json instead of root .codewiki/roadmap.json.",
+      "test": "tests/tasks/TASK-076/restructure.test.mjs",
+      "code_paths": [".codewiki/roadmap/queue.json"]
+    },
+    {
+      "criterion": "Source tree uses domain/application/adapters as top-level layers and removes the confusing infrastructure layer.",
+      "test": "tests/tasks/TASK-076/restructure.test.mjs",
+      "code_paths": ["src/domain", "src/application", "src/adapters", "src/application/gateway", "src/application/graph/rebuilder.ts"]
+    }
+  ],
+  "verification": [
+    "npm run test:features",
+    "npm test"
+  ]
+}

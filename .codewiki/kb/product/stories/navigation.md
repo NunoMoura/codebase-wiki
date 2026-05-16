@@ -9,7 +9,7 @@ owners:
 updated: '2026-05-09'
 code_paths:
 - skills/codewiki/SKILL.md
-- extensions/codewiki/src/adapters/pi/ui
+- src/adapters/pi/ui
 ---
 
 # Navigate With Low Token Cost
@@ -20,7 +20,7 @@ As an agent or maintainer, I want compact graph-backed status first so I can cho
 
 - Compact status or graph-backed state is the default first read for agent workflows and status views.
 - Navigation surfaces expose freshness metadata, affected components, and recommended next reads.
-- Current work context routes users and agents to only the linked knowledge, code, builds, validation reports, and evidence needed for the current phase.
+- Current work context routes users and agents to only the linked knowledge, code, builds, validation reports, and evidence needed for the current task status and gate.
 - Visual graph navigation explains important nodes, edges, stale links, and missing links without duplicating canonical truth.
 - Bounded context tools are optional microscopes, not required runtime dependencies.
 

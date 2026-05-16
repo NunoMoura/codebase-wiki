@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path, { resolve } from "node:path";
-import { findWikiRoot } from "./codewiki-transaction.mjs";
 
 const TOKEN_BYTES = 4;
 
@@ -17,6 +16,19 @@ function parseArgs(argv) {
 		else args.repo = arg;
 	}
 	return args;
+}
+
+function findWikiRoot(start) {
+	let current = resolve(start || process.cwd());
+	if (existsSync(current) && statSync(current).isFile()) {
+		current = path.dirname(current);
+	}
+	while (true) {
+		if (existsSync(path.join(current, ".codewiki", "config.json"))) return current;
+		const parent = path.dirname(current);
+		if (parent === current) return null;
+		current = parent;
+	}
 }
 
 function walkFiles(root, predicate = () => true) {
@@ -110,7 +122,7 @@ function makeAgentDefaultText(repo, statusState, roadmapState, taskContext) {
 		resume: {
 			source: resume.source,
 			task_id: resume.task_id ?? task?.id,
-			phase: resume.phase ?? task?.loop?.phase,
+			status: resume.status ?? task?.status,
 			evidence: resume.evidence ?? task?.loop?.evidence?.summary,
 		},
 		task: task
@@ -174,7 +186,7 @@ function main() {
 		path.join(wiki, "index_graph.json"),
 	];
 	const lifecycleFiles = [
-		path.join(wiki, "roadmap.json"),
+		path.join(wiki, "roadmap", "queue.json"),
 		path.join(wiki, "roadmap", "events.jsonl"),
 	];
 	const rawTruthFiles = [

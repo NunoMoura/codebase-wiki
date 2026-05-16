@@ -1,0 +1,58 @@
+{
+  "id": "TASK-083",
+  "title": "Move bootstrap and prompt templates into CodeWiki skill assets",
+  "status": "in_progress",
+  "priority": "high",
+  "kind": "agent-workflow",
+  "summary": "Make the CodeWiki-product vs CodeWiki-dogfood boundary explicit while moving bootstrap workflow guidance, prompt templates, and starter template assets to the CodeWiki skill asset boundary.",
+  "spec_paths": [
+    ".pi/APPEND_SYSTEM.md",
+    "skills/codewiki/SKILL.md",
+    ".codewiki/kb/system/file-structure.md",
+    ".codewiki/kb/system/alignment-model.md",
+    ".codewiki/kb/system/extension.md"
+  ],
+  "code_paths": [
+    "src/bootstrap.ts",
+    "src/templates.ts",
+    "src/application/prompt.ts",
+    "skills/codewiki",
+    "tests/smoke"
+  ],
+  "research_ids": [],
+  "labels": [
+    "sprint:alignment-hardening",
+    "dogfood",
+    "prompt",
+    "templates",
+    "bootstrap",
+    "skill-assets"
+  ],
+  "goal": {
+    "outcome": "Agents cannot confuse .codewiki/ dogfood state with package source, and bootstrap/prompt/template assets are owned by the CodeWiki skill while source executes them through application APIs.",
+    "acceptance": [
+      "Repo prompt/skill/template language explicitly distinguishes dogfood state, generated state, runtime state, and package source.",
+      "Starter templates include canonical/generated/runtime path taxonomy guidance.",
+      "Bootstrap workflow guidance and prompt templates live under the CodeWiki skill asset boundary, with source code only exposing executable application tools or compatibility loaders.",
+      "Packaged skills include required bootstrap/prompt/template assets and smoke tests prove package reachability.",
+      "Architecture/audit check detects active docs/source that call .codewiki/ package source or generated task views canonical truth."
+    ],
+    "non_goals": [
+      "Do not make skills import adapters or own product semantics.",
+      "Do not remove compatibility loaders before packaging and migration tests pass."
+    ],
+    "verification": [
+      "npm run typecheck",
+      "npm run test:smoke",
+      "npm run test:pack",
+      "source-owned package/audit check verifies skill assets are reachable"
+    ]
+  },
+  "delta": {
+    "desired": "Skill assets own bootstrap guidance, prompts, and starter templates; source exposes tools/loaders without duplicating workflow policy.",
+    "current": "Bootstrap/templates/prompts are split across package source and skill docs without a clear asset owner.",
+    "closure": "Skill-owned assets are packaged, source callers use shared application tools/loaders, and dogfood/source boundary checks pass."
+  },
+  "created": "2026-05-15",
+  "updated": "2026-05-16T00:59:53Z"
+}

@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.708Z",
+  "generated_at": "2026-05-09T09:08:43Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-002/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-002",
     "title": "Map code ownership into spec hierarchy",
     "status": "done",
-    "phase": "done",
     "priority": "high",
     "kind": "architecture",
     "summary": "Refine the inferred boundary docs until wiki/system mirrors the repo's real ownership seams without creating doc sprawl.",
@@ -37,48 +32,5 @@
       "current": "Setup can infer first-pass boundaries, but humans still need to confirm or reshape them.",
       "closure": "Add, remove, or rewrite inferred spec folders until they match real stable ownership seams."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/overview.md",
-      "title": ".codewiki/kb/system/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/system/extensions/codewiki/overview.md",
-      "title": ".codewiki/kb/system/extensions/codewiki/overview.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki",
-      "skills",
-      "scripts/smoke-test.mjs"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-002/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-002/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-002/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-002/graph.json"
   }
 }

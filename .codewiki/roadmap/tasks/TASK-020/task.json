@@ -5,15 +5,8 @@
   "priority": "high",
   "kind": "architecture",
   "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
-  "spec_paths": [
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/flows/context-memory.md"
-  ],
-  "code_paths": [
-    "extensions/codewiki/src/engine/rebuild.ts",
-    "extensions/codewiki/templates.ts",
-    "scripts/smoke-test.mjs"
-  ],
+  "spec_paths": [],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "architecture-manifest",
@@ -46,5 +39,5 @@
     "closure": "Architecture graph and Mermaid generation work with validation."
   },
   "created": "2026-05-02",
-  "updated": "2026-05-02"
+  "updated": "2026-05-09T09:10:18Z"
 }

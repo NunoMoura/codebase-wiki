@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.766Z",
+  "generated_at": "2026-05-09T09:11:59Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-042/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-042",
     "title": "Make wiki-resume honor persisted task focus across sessions",
     "status": "done",
-    "phase": "done",
     "priority": "critical",
     "kind": "bug",
     "summary": "Fix /wiki-resume without an explicit task so fresh Pi sessions use persisted CodeWiki focus/resume state instead of falling back to the first active roadmap task.",
@@ -25,7 +20,7 @@
       "acceptance": [
         "/wiki-resume with no explicit task prefers a valid persisted focus/resume task when present.",
         "Generated status/resume views agree with roadmap queue and persisted focus instead of reporting a different next task.",
-        "Smoke coverage proves a later persisted focus on TASK-033 wins over earlier active TASK-29 ordering.",
+        "Smoke coverage proves a later persisted focus on TASK-033 wins over earlier active TASK-029 ordering.",
         "Explicit /wiki-resume TASK-### continues to override persisted focus."
       ],
       "non_goals": [
@@ -40,52 +35,8 @@
     },
     "delta": {
       "desired": "Fresh sessions resume the same focused roadmap task from persisted CodeWiki state.",
-      "current": "New sessions lose Pi branch-local focus, so /wiki-resume can choose the first active roadmap task such as TASK-29 while codewiki_state suggests TASK-033.",
+      "current": "New sessions lose Pi branch-local focus, so /wiki-resume can choose the first active roadmap task such as TASK-029 while codewiki_state suggests TASK-033.",
       "closure": "Resume selection and generated views are aligned, covered, and verified."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/flows/task-loop.md",
-      "title": ".codewiki/kb/system/flows/task-loop.md"
-    },
-    {
-      "path": ".codewiki/kb/system/runtime/overview.md",
-      "title": ".codewiki/kb/system/runtime/overview.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/src/adapters/pi/commands/resume.ts",
-      "extensions/codewiki/src/engine/state.ts",
-      "extensions/codewiki/src/adapters/pi/tools/state.ts",
-      "scripts/smoke-test.mjs"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-042/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-042/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-042/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-042/graph.json"
   }
 }

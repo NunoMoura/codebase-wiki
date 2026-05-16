@@ -7,14 +7,9 @@
   "summary": "Projection firewall first slice completed: canonical/generated contract documented and refresh=false paths now avoid projection locks/rebuilds where safe.",
   "spec_paths": [
     ".codewiki/config.json",
-    ".codewiki/kb/system/overview.md",
-    ".codewiki/kb/system/runtime/overview.md"
+    ".codewiki/kb/system/overview.md"
   ],
-  "code_paths": [
-    "extensions/codewiki/index.ts",
-    "scripts/codewiki-gateway.mjs",
-    "extensions/codewiki/src/engine/rebuild.ts"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "projection-firewall",
@@ -46,5 +41,5 @@
     "closure": "Projection firewall documented and first write-amplification reduction implemented."
   },
   "created": "2026-05-01",
-  "updated": "2026-05-01"
+  "updated": "2026-05-09T09:09:42Z"
 }

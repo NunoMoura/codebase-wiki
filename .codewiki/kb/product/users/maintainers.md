@@ -6,10 +6,10 @@ summary: Human maintainers who use CodeWiki to keep project intent, work state, 
   evidence trustworthy.
 owners:
 - product
-updated: '2026-05-09'
+updated: '2026-05-16'
 code_paths:
-- scripts/smoke-test.mjs
-- scripts/check-architecture.mjs
+- tests/smoke/package-smoke.test.mjs
+- src/application/lint.ts
 ---
 
 # Maintainers

@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.730Z",
+  "generated_at": "2026-05-09T09:10:04Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-017/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-017",
     "title": "Render architecture graph in status panel",
     "status": "done",
-    "phase": "done",
     "priority": "medium",
     "kind": "ui",
     "summary": "Update the CodeWiki status panel to render the generated architecture view and show component or flow details when selected.",
@@ -42,47 +37,5 @@
       "current": "Status panel focuses on status and roadmap, not architecture graph navigation.",
       "closure": "Panel can render graph and detail cards from generated views."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/product/uis/status-panel.md",
-      "title": ".codewiki/kb/product/uis/status-panel.md"
-    },
-    {
-      "path": ".codewiki/kb/system/v2-operating-model.md",
-      "title": ".codewiki/kb/system/v2-operating-model.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/index.ts",
-      "extensions/codewiki/contracts.ts"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-017/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-017/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-017/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-017/graph.json"
   }
 }

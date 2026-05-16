@@ -6,10 +6,10 @@ summary: CodeWiki should keep hot state small while full history remains recover
   through git and harness session storage.
 owners:
 - product
-updated: '2026-05-09'
+updated: '2026-05-16'
 code_paths:
-- scripts/smoke-test.mjs
-- scripts/check-architecture.mjs
+- tests/smoke/package-smoke.test.mjs
+- src/application/lint.ts
 ---
 
 # Sanitize Historical State

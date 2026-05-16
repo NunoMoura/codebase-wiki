@@ -8,8 +8,8 @@ owners:
 - product
 updated: '2026-05-09'
 code_paths:
-- skills/codewiki-implementation/SKILL.md
-- skills/codewiki-documentation/SKILL.md
+- skills/codewiki/loops/implementation.md
+- skills/codewiki/loops/documentation.md
 ---
 
 # Use Gated Agency
@@ -22,7 +22,7 @@ As a user, I want an agent to advance roadmap work automatically while staying b
 - Automation is gated by token budget, time budget, risk level, approval requirements, validation results, and policy boundaries.
 - The agent stops on ambiguity, unsafe work, failed checks, policy gates, budget exhaustion, or missing approval.
 - Users can see what the agent plans to do next, why it is safe, and which gate would stop it.
-- Parallel sessions can claim narrow change scopes, and automation can warn or stop when overlapping claims make work unsafe.
+- Parallel sessions can lease narrow change scopes, and automation can warn or stop when overlapping leases make work unsafe.
 - Context-heavy validation and research can run in isolated fresh contexts and return compact findings.
 - Durable truth remains separated by role: knowledge, builds, roadmap, graph state, validation reports, code, and tests.
 

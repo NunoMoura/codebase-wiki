@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { mutateChangeClaims } from "../../extensions/codewiki/src/application/claims.ts";
-import { writeValidationReport } from "../../extensions/codewiki/src/application/builds.ts";
-import { buildGraph } from "../../extensions/codewiki/src/application/graph.ts";
+import { mutateChangeClaims } from "../../src/application/claims.ts";
+import { writeValidationReport } from "../../src/application/builds.ts";
+import { buildGraph } from "../../src/application/graph.ts";
 
 const root = await mkdtemp(join(tmpdir(), "codewiki-role-worktree-"));
 
@@ -22,7 +22,7 @@ const project = {
 	evidenceRoot: ".codewiki/evidence",
 	researchRoot: ".codewiki/research",
 	indexPath: ".codewiki/index.md",
-	roadmapPath: ".codewiki/roadmap.json",
+	roadmapPath: ".codewiki/roadmap/queue.json",
 	roadmapDocPath: ".codewiki/roadmap.md",
 	roadmapEventsPath: "",
 	metaRoot: ".codewiki",
@@ -51,7 +51,7 @@ try {
 			head_sha: "def5678",
 			clean: true,
 		},
-		scopes: [{ layer: "code", path: "extensions/codewiki/src/application/claims.ts" }],
+		scopes: [{ layer: "code", path: "src/application/claims.ts" }],
 	}, { sessionId: "builder-session", agentName: "Builder" });
 
 	assert.equal(claimResult.claim.role, "builder");
@@ -87,7 +87,7 @@ try {
 	assert.equal(report.isolation.validated_sha, "def5678");
 	assert.equal(report.isolation.builder_claim_id, claimResult.claim.id);
 
-	const claimsFile = JSON.parse(await readFile(join(root, ".codewiki/runtime/claims.json"), "utf8"));
+	const claimsFile = JSON.parse(await readFile(join(root, ".codewiki/session/queue.json"), "utf8"));
 	const graph = buildGraph({
 		project,
 		docs: [],

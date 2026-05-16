@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-16T01:02:10Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-088/context.json",
+  "task": {
+    "id": "TASK-088",
+    "title": "Move web UI out of adapter layer",
+    "status": "in_progress",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Move browser UI source from adapter ownership to src/ui/web while keeping adapters focused on harness/protocol launch and translation.",
+    "labels": [
+      "domain-led-refactor",
+      "ui",
+      "web",
+      "adapter-boundary"
+    ],
+    "goal": {
+      "outcome": "Browser UI code lives under src/ui/web and delegates semantics to application tools, while adapters only launch/connect or translate harness/protocol concerns.",
+      "acceptance": [
+        "src/ui/web owns browser UI rendering/server assets currently under src/adapters/web.",
+        "Pi adapter launch commands delegate to UI/application APIs without importing UI semantics as adapter business logic.",
+        "Web UI does not import Pi SDK/TUI packages, hosted CDNs, or adapter-only APIs.",
+        "Docs/frontmatter code_paths are updated from current src/adapters/web to src/ui/web only after the path exists.",
+        "Package exports, smoke tests, and pack dry-run include the moved UI assets correctly."
+      ],
+      "non_goals": [
+        "Do not redesign the UI feature set during the move.",
+        "Do not make web UI a hosted service or agent harness adapter."
+      ],
+      "verification": [
+        "npm run typecheck",
+        "npm run test:smoke",
+        "npm run test:pack",
+        "manual /wiki-ui or equivalent smoke if available"
+      ]
+    },
+    "delta": {
+      "desired": "Web is treated as product UI under src/ui/web, not an agent harness adapter.",
+      "current": "Browser UI source currently lives under src/adapters/web for historical reasons.",
+      "closure": "UI files move to src/ui/web, launch adapters still work, docs/frontmatter update, and smoke/package checks pass."
+    }
+  }
+}

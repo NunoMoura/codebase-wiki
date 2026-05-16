@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.713Z",
+  "generated_at": "2026-05-09T09:09:04Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-006/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-006",
     "title": "Define CodeWiki outer planning loop",
     "status": "done",
-    "phase": "done",
     "priority": "high",
     "kind": "process",
     "summary": "Specify the automatic outer loop that turns user intent into wiki knowledge updates and roadmap tasks before task execution begins, with user approval only at decision checkpoints.",
@@ -44,51 +39,5 @@
       "current": "Workflow guidance exists but outer-loop responsibilities are not isolated or automated.",
       "closure": "Add planning-specific skill/spec guidance and ensure new tasks follow it with minimal user command choreography."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/product/overview.md",
-      "title": ".codewiki/kb/product/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/system/clients/pi-extension.md",
-      "title": ".codewiki/kb/system/clients/pi-extension.md"
-    },
-    {
-      "path": ".codewiki/kb/product/uis/board.md",
-      "title": ".codewiki/kb/product/uis/board.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "skills/codewiki-plan/SKILL.md",
-      "skills/codewiki/SKILL.md"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-006/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-006/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-006/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-006/graph.json"
   }
 }

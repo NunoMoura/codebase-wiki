@@ -6,14 +6,9 @@
   "kind": "agent-workflow",
   "summary": "Teach agents when to use session RAM, views, canonical docs, subagents, and ThinkCode so default workflows minimize repeated token load.",
   "spec_paths": [
-    ".codewiki/kb/system/flows/context-memory.md",
-    ".codewiki/kb/system/v2-operating-model.md",
     ".codewiki/kb/lexicon.md"
   ],
-  "code_paths": [
-    "skills",
-    "extensions/codewiki/index.ts"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "v2",
@@ -30,7 +25,7 @@
       "Task and outer-loop instructions explain when to spawn subagents or ThinkCode."
     ],
     "non_goals": [
-      "Implement full heartbeat scheduler.",
+      "Implement full agency scheduler.",
       "Build new view schemas from scratch if TASK-018 is not done."
     ],
     "verification": [
@@ -44,5 +39,5 @@
     "closure": "Skills and loop prompts encode the memory policy."
   },
   "created": "2026-05-02",
-  "updated": "2026-05-02"
+  "updated": "2026-05-09T09:10:11Z"
 }

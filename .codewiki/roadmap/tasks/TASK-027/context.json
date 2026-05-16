@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.744Z",
+  "generated_at": "2026-05-09T09:10:56Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-027/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-027",
     "title": "Simplify status panel tabs and header",
     "status": "done",
-    "phase": "done",
     "priority": "high",
     "kind": "ui",
     "summary": "Update CodeWiki status panel UI to show repo-only header, Home/Product/System/Board tabs, deprecate Agents/Channels tabs, and render system Mermaid architecture with selectable components.",
@@ -44,48 +39,5 @@
       "current": "",
       "closure": ""
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/product/uis/status-panel.md",
-      "title": ".codewiki/kb/product/uis/status-panel.md"
-    },
-    {
-      "path": ".codewiki/kb/system/extensions/codewiki/overview.md",
-      "title": ".codewiki/kb/system/extensions/codewiki/overview.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/index.ts",
-      "extensions/codewiki/src/engine/rebuild.ts",
-      "scripts/smoke-test.mjs"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-027/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-027/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-027/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-027/graph.json"
   }
 }

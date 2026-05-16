@@ -1,0 +1,1032 @@
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync, statSync } from "node:fs";
+import { mkdir, writeFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
+import type { CodewikiBuildProducesInput, CodewikiBuildRefsInput, CodewikiBuildToolInput, CodewikiClosureBriefInput, CodewikiDiffTableRowInput, CodewikiValidationReportInput, WikiProject, RoadmapTaskRecord } from "../domain/shared/types.ts";
+import { nowIso, unique } from "../domain/shared/utils.ts";
+import { normalizeWorktreeIsolation } from "./claims.ts";
+import { readRoadmapTask } from "./roadmap.ts";
+import { maybeReadGraph } from "./state-artifacts.ts";
+
+// ---------------------------------------------------------------------------
+// Shared helpers
+// ---------------------------------------------------------------------------
+
+function buildSlug(value: string, defaultPrefix: string): string {
+	return value
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, "-")
+		.replace(/^-+|-+$/g, "")
+		.slice(0, 48) || defaultPrefix;
+}
+
+function addDaysIso(baseIso: string, days: number): string {
+	const date = new Date(baseIso);
+	date.setUTCDate(date.getUTCDate() + days);
+	return date.toISOString();
+}
+
+function buildLifecycle(input: CodewikiBuildToolInput, created: string, defaultTtlDays: number) {
+	const ttlDays = input.lifecycle?.ttl_days ?? defaultTtlDays;
+	return {
+		state: input.lifecycle?.state ?? "accepted",
+		ttl_days: ttlDays,
+		archive_after: input.lifecycle?.archive_after ?? addDaysIso(created, ttlDays),
+		purge_after: input.lifecycle?.purge_after ?? addDaysIso(created, ttlDays * 2),
+	};
+}
+
+function buildBuildPath(project: WikiProject, kind: string, slug: string, day: string): string {
+	const abs = resolve(project.root, `.codewiki/builds/${kind}/${day}-${slug}.json`);
+	return abs;
+}
+
+function trimList(values?: string[]): string[] {
+	return (values ?? []).map((value) => value.trim()).filter(Boolean);
+}
+
+const DEFAULT_REQUIRED_AUDIT_PROFILES: Record<string, string[]> = {
+	feedback: ["alignment"],
+	documentation: ["alignment", "stale-reference"],
+	planning: ["alignment"],
+	implementation: ["alignment", "changed"],
+	"task-close": ["alignment", "changed", "task", "generated-parity"],
+	publication: ["alignment", "package", "security"],
+	publish: ["alignment", "package", "security"],
+	release: ["alignment", "package", "security", "stale-reference"],
+	"drift-audit": ["alignment", "generated-parity"],
+	"graph-audit": ["alignment", "generated-parity"],
+};
+
+function normalizeAuditProfile(value: string): string {
+	return value
+		.trim()
+		.toLowerCase()
+		.replace(/^(profile|audit|audit-profile):/, "")
+		.replace(/^audit\//, "")
+		.replace(/\.json$/, "")
+		.trim();
+}
+
+function requiredAuditProfiles(profile: string, explicit?: string[], policyProfile?: string): string[] {
+	const profileKey = profile.trim().toLowerCase();
+	const policyKey = String(policyProfile || "").trim().toLowerCase();
+	return unique([
+		...(DEFAULT_REQUIRED_AUDIT_PROFILES[profileKey] ?? []),
+		...(policyKey && policyKey !== profileKey ? DEFAULT_REQUIRED_AUDIT_PROFILES[policyKey] ?? [] : []),
+		...trimList(explicit),
+	]).map(normalizeAuditProfile).filter(Boolean);
+}
+
+function auditRequirement(profile: string, policyProfile?: string, explicit?: string[]) {
+	const profiles = requiredAuditProfiles(profile, explicit, policyProfile);
+	return {
+		required: profiles.length > 0,
+		profiles,
+		evidence: profiles.map((auditProfile) => `audit:${auditProfile} or profile:${auditProfile}`),
+		reason: "Gateway profiles require deterministic audit evidence for their build or boundary context.",
+	};
+}
+
+function auditProfileNamesFromRefs(refs: string[]): string[] {
+	return unique(refs.map(normalizeAuditProfile).filter((profile) => DEFAULT_REQUIRED_AUDIT_PROFILES[profile] || /^[a-z0-9-]+$/.test(profile)));
+}
+
+function auditEvidenceGaps(refs: string[], requirement: ReturnType<typeof auditRequirement>): string[] {
+	if (!requirement.required) return [];
+	const present = new Set(auditProfileNamesFromRefs(refs));
+	return requirement.profiles.filter((profile) => !present.has(profile));
+}
+
+function validationContentProofRefs(isolation: ReturnType<typeof normalizeValidationIsolation> | undefined): string[] {
+	return unique([
+		isolation?.validated_sha,
+		isolation?.head_sha,
+		isolation?.published_sha,
+		isolation?.tree_sha,
+		isolation?.working_tree_digest,
+		isolation?.worktree_digest,
+		isolation?.package_digest,
+		isolation?.archive_ref,
+		isolation?.remote_ref,
+	].map((value) => String(value || "").trim()).filter(Boolean));
+}
+
+function sha256Text(value: string): string {
+	return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function sha256Buffer(value: Buffer): string {
+	return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function normalizeRepoPath(value: string): string {
+	return value.trim().replace(/\\/g, "/").replace(/^\.\//, "");
+}
+
+function buildArtifactDigests(project: WikiProject, refs: Array<{ path: string; role: string }>) {
+	const files: Array<{ path: string; role: string; sha256: string; bytes: number }> = [];
+	const skipped: Array<{ path: string; role: string; reason: string }> = [];
+	for (const ref of refs) {
+		const path = normalizeRepoPath(ref.path);
+		if (!path) continue;
+		const absPath = resolve(project.root, path);
+		try {
+			if (!existsSync(absPath)) {
+				skipped.push({ path, role: ref.role, reason: "missing" });
+				continue;
+			}
+			const stats = statSync(absPath);
+			if (!stats.isFile()) {
+				skipped.push({ path, role: ref.role, reason: "not-file" });
+				continue;
+			}
+			if (stats.size > 1_000_000) {
+				skipped.push({ path, role: ref.role, reason: "too-large" });
+				continue;
+			}
+			files.push({ path, role: ref.role, sha256: sha256Buffer(readFileSync(absPath)), bytes: stats.size });
+		} catch {
+			skipped.push({ path, role: ref.role, reason: "unreadable" });
+		}
+	}
+	return { algorithm: "sha256", files, skipped };
+}
+
+function normalizeValidationIsolation(input: CodewikiValidationReportInput["isolation"]) {
+	const base = normalizeWorktreeIsolation(input);
+	const role = String(input?.role || "").trim();
+	const out: Record<string, unknown> = { ...(base ?? {}) };
+	if (["builder", "validator", "publisher", "observer"].includes(role)) out.role = role;
+	return Object.keys(out).length ? out : undefined;
+}
+
+function validationIsolationRequirement(profile: string, policyProfile?: string) {
+	const normalizedProfile = profile.trim().toLowerCase();
+	const normalizedPolicy = String(policyProfile || "").trim().toLowerCase();
+	const preCommitProfiles = new Set(["implementation"]);
+	const immutableProfiles = new Set(["task-close", "publication", "publish", "release"]);
+	const required = preCommitProfiles.has(normalizedProfile) || immutableProfiles.has(normalizedProfile) || normalizedPolicy.includes("isolation-required");
+	const immutableRequired = immutableProfiles.has(normalizedProfile) || normalizedPolicy.includes("publication-proof-required");
+	return isolationBoundary(
+		required,
+		immutableRequired ? "fresh-context-clean-immutable-content" : required ? "fresh-context-checked-content" : "fresh-context-preferred",
+		immutableRequired
+			? "Task-close and publication validation require independent validator context, a clean worktree, and immutable content proof."
+			: required
+				? "Implementation validation requires independent validator context and checked content proof."
+				: "Fresh validation is preferred but not required for this profile.",
+		immutableRequired
+			? ["fresh_context=true", "clean=true", "validated_sha/head_sha/published_sha/tree_sha/package_digest/archive_ref/remote_ref"]
+			: required
+				? ["fresh_context=true", "clean state recorded", "validated_sha/head_sha/published_sha/tree_sha or working_tree_digest"]
+				: ["fresh_context=true when high-risk or policy-required"],
+		`${profile.trim()} validation`,
+		required ? [normalizedProfile] : [],
+	);
+}
+
+function hasImmutableContentProof(isolation: ReturnType<typeof normalizeValidationIsolation> | undefined): boolean {
+	return Boolean(
+		isolation?.validated_sha || isolation?.head_sha || isolation?.published_sha || isolation?.tree_sha ||
+		isolation?.package_digest || isolation?.archive_ref || isolation?.remote_ref,
+	);
+}
+
+function hasWorkingTreeContentProof(isolation: ReturnType<typeof normalizeValidationIsolation> | undefined): boolean {
+	return Boolean(isolation?.working_tree_digest || isolation?.worktree_digest);
+}
+
+function validationIsolationGaps(isolation: ReturnType<typeof normalizeValidationIsolation> | undefined, requirement: ReturnType<typeof isolationBoundary>): string[] {
+	if (!requirement.required) return [];
+	const gaps: string[] = [];
+	const publicationProofRequired = requirement.mode === "fresh-context-clean-immutable-content";
+	const hasImmutableProof = hasImmutableContentProof(isolation);
+	const hasWorkingTreeProof = hasWorkingTreeContentProof(isolation);
+	if (isolation?.fresh_context !== true) gaps.push("fresh_context=true");
+	if (publicationProofRequired) {
+		if (isolation?.clean !== true) gaps.push("clean=true");
+		if (!hasImmutableProof) gaps.push("immutable_content_proof");
+		return gaps;
+	}
+	if (typeof isolation?.clean !== "boolean") gaps.push("clean=true|false");
+	if (!hasImmutableProof && !hasWorkingTreeProof) gaps.push("checked_content_proof");
+	if (isolation?.clean === false && !hasWorkingTreeProof) gaps.push("working_tree_digest");
+	return unique(gaps);
+}
+
+function validationCommitReadinessGaps(project: WikiProject, input: CodewikiValidationReportInput, profile: string, isolationGaps: string[]): string[] {
+	if (profile.trim().toLowerCase() !== "implementation") return [];
+	if (input.verdict !== "pass") return [];
+	if (isolationGaps.length > 0) return [];
+	const source = (input.source ?? "").trim();
+	if (!source) return ["source_implementation_build"];
+	const absPath = resolve(project.root, source.replace(/^\.\//, ""));
+	let build: any;
+	try {
+		build = JSON.parse(readFileSync(absPath, "utf8"));
+	} catch {
+		return ["source_implementation_build_readable"];
+	}
+	const gaps: string[] = [];
+	const taskId = String(build.task_id || build.task?.id || "").trim();
+	if (build.kind !== "implementation_build") gaps.push("source_kind=implementation_build");
+	if (!taskId) gaps.push("task_id");
+	if (!build.source_planning_build && !Array.isArray(build.consumes?.planning)) gaps.push("source_planning_build");
+	if (!Array.isArray(build.acceptance_mapping) || build.acceptance_mapping.length === 0) gaps.push("acceptance_mapping");
+	const codeRefs = unique([...trimList(build.code_files), ...trimList(build.produces?.code)]);
+	const testRefs = unique([...trimList(build.test_files), ...trimList(build.produces?.tests), ...trimList(build.test_design_evidence)]);
+	if (codeRefs.length === 0) gaps.push("code_files");
+	if (testRefs.length === 0) gaps.push("test_files_or_test_design_evidence");
+	if (!Array.isArray(build.checks_run) || build.checks_run.length === 0) gaps.push("checks_run");
+	const closure = build.closure_brief || {};
+	if (!closure.user_intent || !Array.isArray(closure.implemented_changes) || closure.implemented_changes.length === 0 || !Array.isArray(closure.acceptance_evidence) || closure.acceptance_evidence.length === 0 || !Array.isArray(closure.checks) || closure.checks.length === 0) {
+		gaps.push("closure_brief");
+	}
+	const commit = build.publication?.commit || {};
+	const trailers = Array.isArray(commit.trailers) ? commit.trailers.map((value: unknown) => String(value)) : [];
+	const hasTrailer = (name: string, expected?: string) => trailers.some((trailer: string) => {
+		const normalized = trailer.trim();
+		return expected ? normalized === `${name}: ${expected}` : normalized.startsWith(`${name}:`);
+	});
+	if (!String(commit.title || "").trim()) gaps.push("publication.commit.title");
+	if (!String(commit.body || "").trim()) gaps.push("publication.commit.body");
+	if (!hasTrailer("CodeWiki-Task", taskId)) gaps.push("CodeWiki-Task trailer");
+	if (!hasTrailer("CodeWiki-Build", source)) gaps.push("CodeWiki-Build trailer");
+	if (!hasTrailer("CodeWiki-Checks")) gaps.push("CodeWiki-Checks trailer");
+	if (!hasTrailer("CodeWiki-Validation")) gaps.push("CodeWiki-Validation trailer_or_placeholder");
+	if (!hasTrailer("CodeWiki-Recover") && !hasTrailer("CodeWiki-Restore")) gaps.push("CodeWiki-Recover trailer");
+	return unique(gaps);
+}
+
+function trimRefGroups(input?: CodewikiBuildRefsInput): CodewikiBuildRefsInput {
+	return {
+		feedback: trimList(input?.feedback),
+		documentation: trimList(input?.documentation),
+		planning: trimList(input?.planning),
+		implementation: trimList(input?.implementation),
+		roadmap: trimList(input?.roadmap),
+		validation: trimList(input?.validation),
+		source: trimList(input?.source),
+	};
+}
+
+function trimProduces(input?: CodewikiBuildProducesInput): CodewikiBuildProducesInput {
+	return {
+		knowledge: trimList(input?.knowledge),
+		roadmap: trimList(input?.roadmap),
+		code: trimList(input?.code),
+		tests: trimList(input?.tests),
+		validation: trimList(input?.validation),
+		publication: trimList(input?.publication),
+		closure: trimList(input?.closure),
+	};
+}
+
+function mergeProduces(base: CodewikiBuildProducesInput, overrides?: CodewikiBuildProducesInput): CodewikiBuildProducesInput {
+	const extra = trimProduces(overrides);
+	return {
+		knowledge: unique([...(base.knowledge ?? []), ...(extra.knowledge ?? [])]),
+		roadmap: unique([...(base.roadmap ?? []), ...(extra.roadmap ?? [])]),
+		code: unique([...(base.code ?? []), ...(extra.code ?? [])]),
+		tests: unique([...(base.tests ?? []), ...(extra.tests ?? [])]),
+		validation: unique([...(base.validation ?? []), ...(extra.validation ?? [])]),
+		publication: unique([...(base.publication ?? []), ...(extra.publication ?? [])]),
+		closure: unique([...(base.closure ?? []), ...(extra.closure ?? [])]),
+	};
+}
+
+function normalizeCycle(input: CodewikiBuildToolInput, loop: string) {
+	return {
+		loop,
+		sequence: input.cycle?.sequence ?? 1,
+		attempt: String(input.cycle?.attempt || "").trim() || undefined,
+		supersedes: trimList(input.cycle?.supersedes),
+		status: String(input.cycle?.status || input.lifecycle?.state || "accepted").trim(),
+	};
+}
+
+function isolationBoundary(required: boolean, mode: string, reason: string, evidence: string[], handoff: string, profiles: string[] = []) {
+	return { required, mode, reason, evidence, handoff, profiles };
+}
+
+function defaultIsolationPolicy(loop: string) {
+	const nextLoop = loop === "feedback"
+		? "documentation"
+		: loop === "documentation"
+			? "planning"
+			: loop === "planning"
+				? "implementation"
+				: "validation";
+	const compilerBoundary = isolationBoundary(
+		true,
+		"fresh-session-or-clear-context",
+		"Compiler loops start from source refs and build handoffs, not prior loop chat memory.",
+		["new session id or recorded context reset", "handoff build/task refs only"],
+		`${loop}_loop start`,
+	);
+	const semanticValidation = loop === "implementation";
+	return {
+		loop_start: compilerBoundary,
+		validation: semanticValidation
+			? isolationBoundary(
+				true,
+				"fresh-context-checked-content",
+				"Implementation validation must not reuse builder thought context and must cite checked content proof.",
+				["fresh_context=true", "clean state recorded", "validated_sha/head_sha/published_sha/tree_sha or working_tree_digest"],
+				"implementation_build -> validation gateway",
+				["implementation"],
+			)
+			: isolationBoundary(
+				false,
+				"fresh-context-preferred",
+				"Fresh validation is preferred; policy may require it for high-risk semantic gates.",
+				["fresh_context=true when high-risk or policy-required"],
+				`${loop}_build -> validation gateway`,
+			),
+		next_loop: loop === "implementation"
+			? isolationBoundary(
+				true,
+				"fresh-context-checked-content",
+				"The next gateway must independently validate implementation evidence and cite checked content proof.",
+				["fresh_context=true", "clean state recorded", "validated_sha/head_sha/published_sha/tree_sha or working_tree_digest"],
+				"implementation_build -> validation gateway",
+				["implementation"],
+			)
+			: isolationBoundary(
+				true,
+				"fresh-session-or-clear-context",
+				"The next compiler loop should start from the build handoff, not the producing compiler context.",
+				["new session id or recorded context reset", "source build ref"],
+				`${loop}_build -> ${nextLoop}_loop`,
+			),
+	};
+}
+
+function mergeIsolationBoundary(base: ReturnType<typeof isolationBoundary>, override: any) {
+	if (!override || typeof override !== "object") return base;
+	return {
+		required: typeof override.required === "boolean" ? override.required : base.required,
+		mode: String(override.mode || base.mode).trim(),
+		reason: String(override.reason || base.reason).trim(),
+		evidence: unique([...base.evidence, ...trimList(override.evidence)]),
+		handoff: String(override.handoff || base.handoff).trim(),
+		profiles: unique([...base.profiles, ...trimList(override.profiles)]),
+	};
+}
+
+function normalizeIsolationPolicy(input: CodewikiBuildToolInput, loop: string) {
+	const defaults = defaultIsolationPolicy(loop);
+	const overrides = input.policy?.isolation;
+	return {
+		loop_start: mergeIsolationBoundary(defaults.loop_start, overrides?.loop_start),
+		validation: mergeIsolationBoundary(defaults.validation, overrides?.validation),
+		next_loop: mergeIsolationBoundary(defaults.next_loop, overrides?.next_loop),
+	};
+}
+
+function normalizePolicy(input: CodewikiBuildToolInput, defaultProfile: string, loop: string) {
+	const profile = String(input.policy?.profile || defaultProfile).trim();
+	return {
+		profile,
+		exit_criteria: trimList(input.policy?.exit_criteria),
+		required_audits: requiredAuditProfiles(profile, input.policy?.required_audits),
+		audit_refs: trimList(input.policy?.audit_refs),
+		audit_reports: trimList(input.policy?.audit_reports),
+		isolation: normalizeIsolationPolicy(input, loop),
+	};
+}
+
+function normalizeRequirements(input: CodewikiBuildToolInput) {
+	return (input.requirements ?? [])
+		.map((requirement) => ({
+			id: String(requirement.id || "").trim(),
+			text: String(requirement.text || "").trim(),
+			source_refs: trimList(requirement.source_refs),
+			state: String(requirement.state || "accepted").trim(),
+		}))
+		.filter((requirement) => requirement.id && requirement.text);
+}
+
+function normalizeEvidenceMapping(input: CodewikiBuildToolInput) {
+	return (input.evidence_mapping ?? [])
+		.map((mapping) => ({
+			criterion: String(mapping.criterion || "").trim(),
+			evidence: String(mapping.evidence || "").trim(),
+			requirement_ids: trimList(mapping.requirement_ids),
+			source_refs: trimList(mapping.source_refs),
+		}))
+		.filter((mapping) => mapping.criterion && mapping.evidence);
+}
+
+function buildCycleFields(input: CodewikiBuildToolInput, loop: string, defaultPolicyProfile: string) {
+	return {
+		cycle: normalizeCycle(input, loop),
+		policy: normalizePolicy(input, defaultPolicyProfile, loop),
+		requirements: normalizeRequirements(input),
+		evidence_mapping: normalizeEvidenceMapping(input),
+		audit_refs: trimList(input.audit_refs),
+		audit_reports: trimList(input.audit_reports),
+		agent_assessment: String(input.agent_assessment || "").trim(),
+	};
+}
+
+function normalizeDiffTable(rows?: CodewikiDiffTableRowInput[]) {
+	return (rows ?? []).map((row, index) => ({
+		id: String(row.id || `DTR-${String(index + 1).padStart(3, "0")}`).trim(),
+		current_state: String(row.current_state || "").trim(),
+		desired_state: String(row.desired_state || "").trim(),
+		rationale: String(row.rationale || "").trim(),
+		affected_layers: trimList(row.affected_layers),
+		risk: String(row.risk || "medium").trim(),
+		user_action: String(row.user_action || "pending").trim(),
+		alternatives: trimList(row.alternatives),
+	})).filter((row) => row.current_state && row.desired_state && row.rationale);
+}
+
+function approvedDiffRows(rows: ReturnType<typeof normalizeDiffTable>, approvedIds?: string[]) {
+	const explicitApproved = new Set(trimList(approvedIds));
+	return rows.filter((row) => row.user_action === "approved" || explicitApproved.has(row.id));
+}
+
+function normalizeClosureBrief(input: CodewikiClosureBriefInput | undefined, task: RoadmapTaskRecord | null, checksRun: string[], acceptanceEvidence: string[], validationRefs: string[], risks: string[]) {
+	if (!input) return null;
+	return {
+		user_intent: String(input.user_intent || task?.goal?.outcome || "").trim(),
+		implemented_changes: trimList(input.implemented_changes),
+		layers_updated: {
+			knowledge: trimList(input.layers_updated?.knowledge),
+			roadmap: trimList(input.layers_updated?.roadmap),
+			code: trimList(input.layers_updated?.code),
+			tests: trimList(input.layers_updated?.tests),
+			validation: unique([...trimList(input.layers_updated?.validation), ...validationRefs]),
+		},
+		acceptance_evidence: trimList(input.acceptance_evidence).length ? trimList(input.acceptance_evidence) : acceptanceEvidence,
+		checks: trimList(input.checks).length ? trimList(input.checks) : checksRun,
+		non_goals_preserved: trimList(input.non_goals_preserved),
+		remaining_risks: trimList(input.remaining_risks).length ? trimList(input.remaining_risks) : risks,
+	};
+}
+
+function taskSnapshot(task: RoadmapTaskRecord | null) {
+	if (!task) return undefined;
+	return {
+		id: task.id,
+		title: task.title,
+		status: task.status,
+		priority: task.priority,
+		kind: task.kind,
+		summary: task.summary,
+		spec_paths: task.spec_paths,
+		code_paths: task.code_paths,
+		goal: task.goal,
+	};
+}
+
+async function nextFocusTaskId(project: WikiProject, currentTaskId: string): Promise<string> {
+	const graph = await maybeReadGraph(project.graphPath) as any;
+	const openTaskIds = Array.isArray(graph?.lenses?.roadmap?.views?.open_task_ids)
+		? graph.lenses.roadmap.views.open_task_ids.map((id: unknown) => String(id).trim()).filter(Boolean)
+		: [];
+	return openTaskIds.find((id: string) => id !== currentTaskId) || "";
+}
+
+function publicationDefaults(
+	input: CodewikiBuildToolInput,
+	task: RoadmapTaskRecord | null,
+	checksRun: string[],
+	validationRefs: string[],
+	buildPath: string,
+	artifactDigests: ReturnType<typeof buildArtifactDigests>,
+	payloadDigest: string,
+) {
+	const taskId = input.task_id?.trim() || task?.id || "implementation-work";
+	const taskLabel = task ? `${task.id} ${task.title}` : taskId;
+	const archiveRef = input.publication?.archive_ref?.trim() || `refs/codewiki/archive/task/${taskId}`;
+	const restoreCommand = input.publication?.restore_command?.trim() || `/wiki-restore ${taskId}`;
+	const commitTitle = input.publication?.commit_title?.trim() || `chore(codewiki): record ${taskLabel} implementation evidence`;
+	const checksTrailerValue = checksRun.length ? checksRun.join(", ") : "<missing-checks>";
+	const validationTrailerValue = validationRefs.length ? validationRefs.join(", ") : "<pending-validation>";
+	const trailers = [
+		`CodeWiki-Task: ${taskId}`,
+		`CodeWiki-Build: ${buildPath}`,
+		`CodeWiki-Checks: ${checksTrailerValue}`,
+		`CodeWiki-Validation: ${validationTrailerValue}`,
+		`CodeWiki-Recover: ${restoreCommand}`,
+		`CodeWiki-Archive-Ref: ${archiveRef}`,
+		`CodeWiki-Digest: ${payloadDigest}`,
+		`CodeWiki-Restore: ${restoreCommand}`,
+	];
+	const commitBody = input.publication?.commit_body?.trim() || [
+		input.summary.trim(),
+		"",
+		checksRun.length ? `Checks: ${checksRun.join(", ")}` : "Checks: not recorded in build input.",
+		validationRefs.length ? `Validation: ${validationRefs.join(", ")}` : "Validation: no durable validation refs recorded.",
+		"Remote publication requires explicit approval; this build is recommendation-only.",
+		"",
+		...trailers,
+	].join("\n");
+	const secretScan = input.publication?.secret_scan?.trim() || "required";
+	const remoteVisibility = input.publication?.remote_visibility?.trim() || "required";
+	const privateEvidence = input.publication?.private_evidence?.trim() || "required";
+	const safeToPush = input.publication?.safe_to_push === true && secretScan === "pass" && remoteVisibility === "pass" && privateEvidence === "pass";
+	return {
+		policy: {
+			execution: "recommendation_only",
+			approval_required: true,
+			remote_updates: "blocked_until_explicit_approval",
+			security_review_required: true,
+		},
+		commit: {
+			title: commitTitle,
+			body: commitBody,
+			trailers,
+			commit_ready: checksRun.length > 0,
+			validation_ref_policy: validationRefs.length ? "validation refs recorded" : "replace <pending-validation> with validation report ref before commit",
+		},
+		pr: {
+			title: input.publication?.pr_title?.trim() || commitTitle,
+			body: input.publication?.pr_body?.trim() || commitBody,
+		},
+		issue_update: input.publication?.issue_update?.trim() || "",
+		release_notes: input.publication?.release_notes?.trim() || "",
+		git: {
+			strategy: "implementation_build_publication_payload",
+			archive_ref: archiveRef,
+			commit_sha: input.publication?.commit_sha?.trim() || "",
+			remote: input.publication?.remote?.trim() || "origin",
+			branch: input.publication?.branch?.trim() || "",
+			atomic_push_refspecs: ["HEAD", archiveRef],
+			restore: {
+				command: restoreCommand,
+				worktree: `git worktree add --detach <tmp> ${archiveRef}`,
+				show_build: `git show ${archiveRef}:${buildPath}`,
+				sparse_paths: unique([buildPath, ...(task?.spec_paths ?? []), ...(task?.code_paths ?? [])]),
+				note: "Restored history is reference material until promoted into active knowledge or roadmap truth.",
+			},
+		},
+		archive_ledger: {
+			kind: "task",
+			id: taskId,
+			build_path: buildPath,
+			archive_ref: archiveRef,
+			commit_sha: input.publication?.commit_sha?.trim() || "",
+			digest: payloadDigest,
+			restore_command: restoreCommand,
+		},
+		artifact_digests: artifactDigests,
+		push_readiness: {
+			checks_recorded: checksRun,
+			validation_refs: validationRefs,
+			approval_required: true,
+			allowed_by_default: false,
+			safe_to_push: safeToPush,
+			blocked_reasons: safeToPush ? [] : [
+				input.publication?.safe_to_push === true ? "publication safety prerequisites incomplete" : "explicit approval required",
+				secretScan === "pass" ? "" : "secret scan required",
+				remoteVisibility === "pass" ? "" : "remote visibility review required",
+				privateEvidence === "pass" ? "" : "fail/block/private evidence policy required",
+			].filter(Boolean),
+			security: {
+				secret_scan: secretScan,
+				remote_visibility: remoteVisibility,
+				private_evidence: privateEvidence,
+				git_namespaces: "not_access_control",
+			},
+		},
+	};
+}
+
+// ---------------------------------------------------------------------------
+// Build writers
+// ---------------------------------------------------------------------------
+
+export async function writeFeedbackBuild(
+	project: WikiProject,
+	input: CodewikiBuildToolInput,
+) {
+	const diffTable = normalizeDiffTable(input.diff_table);
+	const approvedRows = approvedDiffRows(diffTable, input.approved_diff_rows);
+	const decisions = trimList(input.decisions).length
+		? trimList(input.decisions)
+		: approvedRows.map((row) => row.desired_state);
+	if (!input.summary?.trim()) throw new Error("Feedback build requires summary.");
+
+	const created = nowIso();
+	const slug = buildSlug(input.slug || input.summary, "feedback-build");
+	const day = created.slice(0, 10);
+	const absPath = buildBuildPath(project, "feedback", slug, day);
+	const lifecycle = buildLifecycle(input, created, 30);
+	if (lifecycle.state === "accepted" && approvedRows.length === 0) {
+		throw new Error("Accepted feedback build requires at least one approved diff_table row.");
+	}
+	if (!decisions.length) throw new Error("Feedback build requires at least one accepted decision or approved diff_table row.");
+	const lowerLayerDelta = {
+		knowledge: trimList(input.lower_layer_delta?.knowledge),
+		roadmap: trimList(input.lower_layer_delta?.roadmap),
+		code: trimList(input.lower_layer_delta?.code),
+	};
+	const produces = mergeProduces({
+		knowledge: lowerLayerDelta.knowledge,
+		roadmap: lowerLayerDelta.roadmap,
+		code: lowerLayerDelta.code,
+	}, input.produces);
+	const data = {
+		version: 1,
+		schema_version: input.schema_version ?? 2,
+		kind: "feedback_build",
+		created,
+		source: input.source?.trim() || "codewiki_build tool",
+		status: lifecycle.state,
+		lifecycle,
+		...buildCycleFields(input, "feedback", "feedback"),
+		summary: input.summary.trim(),
+		diff_table: diffTable,
+		approved_diff_rows: approvedRows.map((row) => row.id),
+		accepted_decisions: decisions.map((summary, index) => ({ id: `D${index + 1}`, summary })),
+		assumptions: trimList(input.assumptions),
+		open_questions: trimList(input.open_questions),
+		non_goals: trimList(input.non_goals),
+		lower_layer_delta: lowerLayerDelta,
+		consumes: trimRefGroups(input.consumes),
+		produces,
+	};
+	await mkdir(dirname(absPath), { recursive: true });
+	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");
+	const relPath = `.codewiki/builds/feedback/${day}-${slug}.json`;
+	return { path: relPath, data };
+}
+
+export async function writeDocumentationBuild(
+	project: WikiProject,
+	input: CodewikiBuildToolInput,
+) {
+	if (!input.summary?.trim()) throw new Error("Documentation build requires summary.");
+	if (!input.source_feedback_build?.trim()) throw new Error("Documentation build requires source_feedback_build.");
+
+	const created = nowIso();
+	const slug = buildSlug(input.slug || input.summary, "documentation-build");
+	const day = created.slice(0, 10);
+	const absPath = buildBuildPath(project, "documentation", slug, day);
+	const lifecycle = buildLifecycle(input, created, 14);
+	const knowledgeChanges = trimList(input.knowledge_changes);
+	const roadmapChanges = trimList(input.roadmap_changes);
+	const consumes = trimRefGroups({
+		...input.consumes,
+		feedback: unique([input.source_feedback_build.trim(), ...(input.consumes?.feedback ?? [])]),
+	});
+	const produces = mergeProduces({
+		knowledge: knowledgeChanges,
+		roadmap: roadmapChanges,
+	}, input.produces);
+	const data = {
+		version: 1,
+		schema_version: input.schema_version ?? 2,
+		kind: "documentation_build",
+		created,
+		source: input.source?.trim() || "codewiki_build tool",
+		source_feedback_build: input.source_feedback_build.trim(),
+		status: lifecycle.state,
+		lifecycle,
+		...buildCycleFields(input, "documentation", "documentation"),
+		summary: input.summary.trim(),
+		knowledge_changes: knowledgeChanges,
+		roadmap_changes: roadmapChanges,
+		assumptions: trimList(input.assumptions),
+		open_questions: trimList(input.open_questions),
+		consumes,
+		produces,
+	};
+	await mkdir(dirname(absPath), { recursive: true });
+	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");
+	const relPath = `.codewiki/builds/documentation/${day}-${slug}.json`;
+	return { path: relPath, data };
+}
+
+export async function writePlanningBuild(
+	project: WikiProject,
+	input: CodewikiBuildToolInput,
+) {
+	if (!input.summary?.trim()) throw new Error("Planning build requires summary.");
+	if (!input.source_documentation_build?.trim()) throw new Error("Planning build requires source_documentation_build.");
+
+	const created = nowIso();
+	const slug = buildSlug(input.slug || input.summary, "planning-build");
+	const day = created.slice(0, 10);
+	const absPath = buildBuildPath(project, "planning", slug, day);
+	const lifecycle = buildLifecycle(input, created, 14);
+	const sourceDocumentationBuild = input.source_documentation_build.trim();
+	const taskIds = trimList(input.task_ids);
+	const taskChanges = trimList(input.task_changes).length ? trimList(input.task_changes) : trimList(input.roadmap_changes);
+	const tddPlan = trimList(input.tdd_plan);
+	const candidateTestFiles = trimList(input.candidate_test_files);
+	const candidateCodePaths = trimList(input.candidate_code_paths);
+	const consumes = trimRefGroups({
+		...input.consumes,
+		documentation: unique([sourceDocumentationBuild, ...(input.consumes?.documentation ?? [])]),
+		roadmap: unique([...taskIds, ...(input.consumes?.roadmap ?? [])]),
+	});
+	const produces = mergeProduces({
+		roadmap: taskIds,
+		tests: candidateTestFiles,
+		code: candidateCodePaths,
+	}, input.produces);
+	const data = {
+		version: 1,
+		schema_version: input.schema_version ?? 2,
+		kind: "planning_build",
+		created,
+		source: input.source?.trim() || "codewiki_build tool",
+		source_documentation_build: sourceDocumentationBuild,
+		status: lifecycle.state,
+		lifecycle,
+		...buildCycleFields(input, "planning", "planning"),
+		summary: input.summary.trim(),
+		task_ids: taskIds,
+		task_changes: taskChanges,
+		roadmap_changes: taskChanges,
+		tdd_plan: tddPlan,
+		candidate_test_files: candidateTestFiles,
+		candidate_code_paths: candidateCodePaths,
+		acceptance_mapping: normalizeEvidenceMapping(input).length ? normalizeEvidenceMapping(input) : (input.acceptance_mapping ?? []).filter((m) => m.criterion.trim() && m.evidence.trim()),
+		assumptions: trimList(input.assumptions),
+		open_questions: trimList(input.open_questions),
+		non_goals: trimList(input.non_goals),
+		risks: trimList(input.risks),
+		consumes,
+		produces,
+	};
+	await mkdir(dirname(absPath), { recursive: true });
+	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");
+	const relPath = `.codewiki/builds/planning/${day}-${slug}.json`;
+	return { path: relPath, data };
+}
+
+export async function writeImplementationBuild(
+	project: WikiProject,
+	input: CodewikiBuildToolInput,
+) {
+	if (!input.summary?.trim()) throw new Error("Implementation build requires summary.");
+	if (!input.task_id?.trim()) throw new Error("Implementation build requires task_id.");
+
+	const taskId = input.task_id.trim();
+	const task = await readRoadmapTask(project, taskId);
+	const created = nowIso();
+	const slug = buildSlug(input.slug || input.summary, "implementation-build");
+	const day = created.slice(0, 10);
+	const absPath = buildBuildPath(project, "implementation", slug, day);
+	const relPath = `.codewiki/builds/implementation/${day}-${slug}.json`;
+	const lifecycle = buildLifecycle(input, created, 7);
+	const testFiles = trimList(input.test_files);
+	const codeFiles = trimList(input.code_files);
+	const checksRun = trimList(input.checks_run);
+	const testDesignEvidence = trimList(input.test_design_evidence);
+	const codeChangeEvidence = trimList(input.code_change_evidence);
+	const testerNotes = trimList(input.tester_notes);
+	const builderNotes = trimList(input.builder_notes);
+	const validationRefs = trimList(input.validation_refs);
+	const risks = trimList(input.risks);
+	const openQuestions = trimList(input.open_questions);
+	const nextFocus = await nextFocusTaskId(project, taskId);
+	const sourceDocumentationBuild = (input.source_documentation_build ?? "").trim();
+	const sourcePlanningBuild = (input.source_planning_build ?? "").trim();
+	const acceptanceMapping = (input.acceptance_mapping ?? []).filter((m) => m.criterion.trim() && m.evidence.trim());
+	const acceptanceEvidence = acceptanceMapping.map((mapping) => `${mapping.criterion}: ${mapping.evidence}`);
+	const closureBrief = normalizeClosureBrief(input.closure_brief, task, checksRun, acceptanceEvidence, validationRefs, risks);
+	if (lifecycle.state === "accepted" && !closureBrief) {
+		throw new Error("Accepted implementation build requires closure_brief.");
+	}
+	if (closureBrief && (!closureBrief.user_intent || closureBrief.implemented_changes.length === 0 || closureBrief.acceptance_evidence.length === 0 || closureBrief.checks.length === 0)) {
+		throw new Error("closure_brief requires user_intent, implemented_changes, acceptance_evidence, and checks.");
+	}
+	const compactContext = {
+		source: "implementation_build",
+		task_id: taskId,
+		title: task?.title ?? taskId,
+		summary: input.summary.trim(),
+		spec_paths: task?.spec_paths ?? [],
+		code_paths: unique([...(task?.code_paths ?? []), ...codeFiles]),
+		acceptance: task?.goal?.acceptance ?? [],
+		verification: task?.goal?.verification ?? [],
+		source_planning_build: sourcePlanningBuild || "",
+		checks_run: checksRun,
+		test_design_evidence: testDesignEvidence,
+		code_change_evidence: codeChangeEvidence,
+		validation_refs: validationRefs,
+	};
+	const roleEvidence = {
+		tester: {
+			role: "tester",
+			source_documentation_build: sourceDocumentationBuild || "",
+			source_planning_build: sourcePlanningBuild || "",
+			roadmap_task_id: taskId,
+			test_files: testFiles,
+			evidence: testDesignEvidence,
+			notes: testerNotes,
+			boundary: "derive tests or test-design evidence before code changes where practical",
+		},
+		builder: {
+			role: "builder",
+			source_documentation_build: sourceDocumentationBuild || "",
+			source_planning_build: sourcePlanningBuild || "",
+			roadmap_task_id: taskId,
+			code_files: codeFiles,
+			evidence: codeChangeEvidence,
+			notes: builderNotes,
+			boundary: "change code until tests, roadmap acceptance, and required checks pass",
+		},
+	};
+	const consumes = trimRefGroups({
+		...input.consumes,
+		documentation: unique([...(sourceDocumentationBuild ? [sourceDocumentationBuild] : []), ...(input.consumes?.documentation ?? [])]),
+		planning: unique([...(sourcePlanningBuild ? [sourcePlanningBuild] : []), ...(input.consumes?.planning ?? [])]),
+		roadmap: unique([taskId, ...(input.consumes?.roadmap ?? [])]),
+	});
+	const produces = mergeProduces({
+		code: codeFiles,
+		tests: testFiles,
+		validation: validationRefs,
+		closure: [taskId],
+	}, input.produces);
+	const artifactDigests = buildArtifactDigests(project, [
+		...(sourceDocumentationBuild ? [{ path: sourceDocumentationBuild, role: "source_documentation_build" }] : []),
+		...(sourcePlanningBuild ? [{ path: sourcePlanningBuild, role: "source_planning_build" }] : []),
+		...validationRefs.map((path) => ({ path, role: "validation_ref" })),
+		...testFiles.map((path) => ({ path, role: "test_file" })),
+		...codeFiles.map((path) => ({ path, role: "code_file" })),
+	]);
+	const payloadDigest = sha256Text(JSON.stringify({
+		task_id: taskId,
+		summary: input.summary.trim(),
+		checks_run: checksRun,
+		validation_refs: validationRefs,
+		files_changed: unique([...testFiles, ...codeFiles]),
+		closure_brief: closureBrief,
+		artifact_digests: artifactDigests,
+	}));
+	const publication = publicationDefaults(input, task, checksRun, validationRefs, relPath, artifactDigests, payloadDigest);
+	const data = {
+		version: 1,
+		schema_version: input.schema_version ?? 2,
+		kind: "implementation_build",
+		created,
+		source: input.source?.trim() || "codewiki_build tool",
+		source_documentation_build: sourceDocumentationBuild || undefined,
+		source_planning_build: sourcePlanningBuild || undefined,
+		task_id: taskId,
+		task: taskSnapshot(task),
+		status: lifecycle.state,
+		lifecycle,
+		...buildCycleFields(input, "implementation", "implementation"),
+		summary: input.summary.trim(),
+		consumes,
+		produces,
+		linked_refs: {
+			documentation_build: sourceDocumentationBuild || "",
+			planning_build: sourcePlanningBuild || "",
+			spec_paths: task?.spec_paths ?? [],
+			code_paths: task?.code_paths ?? [],
+		},
+		test_files: testFiles,
+		code_files: codeFiles,
+		files_changed: unique([...testFiles, ...codeFiles]),
+		checks_run: checksRun,
+		role_evidence: roleEvidence,
+		test_design_evidence: testDesignEvidence,
+		code_change_evidence: codeChangeEvidence,
+		acceptance_mapping: acceptanceMapping,
+		validation_refs: validationRefs,
+		closure_brief: closureBrief || undefined,
+		risks,
+		unresolved_issues: openQuestions,
+		open_questions: openQuestions,
+		handoff: {
+			resume: {
+				source: "implementation_build",
+				command: `/wiki-resume ${taskId}`,
+				task_id: taskId,
+				next_focus_task_id: nextFocus,
+				context: compactContext,
+			},
+			restore: publication.git.restore,
+			fallback: "Use codewiki_state refresh=true and this implementation_build; do not rely on chat transcript memory.",
+		},
+		publication,
+	};
+	await mkdir(dirname(absPath), { recursive: true });
+	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");
+	return { path: relPath, data };
+}
+
+export async function writeBuild(
+	project: WikiProject,
+	input: CodewikiBuildToolInput,
+) {
+	switch (input.kind) {
+		case "feedback":
+			return writeFeedbackBuild(project, input);
+		case "documentation":
+			return writeDocumentationBuild(project, input);
+		case "planning":
+			return writePlanningBuild(project, input);
+		case "implementation":
+			return writeImplementationBuild(project, input);
+		default:
+			throw new Error(`Unsupported build kind: ${(input as any).kind}`);
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Validation report writer
+// ---------------------------------------------------------------------------
+
+export async function writeValidationReport(
+	project: WikiProject,
+	input: CodewikiValidationReportInput,
+) {
+	if (!input.profile.trim()) throw new Error("Validation report requires profile.");
+	if (!input.verdict) throw new Error("Validation report requires verdict.");
+	if (!input.rationale.trim()) throw new Error("Validation report requires rationale.");
+
+	const created = nowIso();
+	const isolation = normalizeValidationIsolation(input.isolation);
+	const profile = input.profile.trim();
+	const policyProfile = (input.policy_profile ?? input.profile ?? "").trim() || undefined;
+	const requirement = validationIsolationRequirement(profile, policyProfile);
+	const isolationGaps = validationIsolationGaps(isolation, requirement);
+	const commitReadinessGaps = validationCommitReadinessGaps(project, input, profile, isolationGaps);
+	const auditRefs = unique(trimList(input.audit_refs));
+	const auditReports = unique(trimList(input.audit_reports));
+	const auditReq = auditRequirement(profile, policyProfile, input.required_audits);
+	const auditGaps = input.verdict === "pass" ? auditEvidenceGaps([...auditRefs, ...auditReports], auditReq) : [];
+	const policyGaps = unique([
+		...isolationGaps,
+		...commitReadinessGaps,
+		...auditGaps.map((profileName) => `audit:${profileName}`),
+	]);
+	const policyBlocked = policyGaps.length > 0;
+	const verdict = policyBlocked ? "block" : input.verdict;
+	const taskPart = input.task_id?.trim() ? `-${input.task_id.trim()}` : "";
+	const slug = buildSlug(`${profile}-${verdict}${taskPart}`, "validation-report");
+	const day = created.slice(0, 10);
+	const absPath = resolve(project.root, `.codewiki/validation/${day}-${slug}.json`);
+	const inputIssues = (input.issues ?? []).map((i) => ({ severity: i.severity.trim(), summary: i.summary.trim() })).filter((i) => i.summary);
+	const isolationIssue = isolationGaps.length > 0
+		? [{ severity: "high", summary: `Missing required validation isolation evidence: ${isolationGaps.join(", ")}.` }]
+		: [];
+	const commitReadinessIssue = commitReadinessGaps.length > 0
+		? [{ severity: "high", summary: `Implementation build is not commit-ready: ${commitReadinessGaps.join(", ")}.` }]
+		: [];
+	const auditIssue = auditGaps.length > 0
+		? [{ severity: "high", summary: `Missing required audit evidence for profiles: ${auditGaps.join(", ")}.` }]
+		: [];
+	const contentProofRefs = validationContentProofRefs(isolation);
+	const data = {
+		version: 1,
+		kind: "validation_report",
+		created,
+		profile,
+		task_id: (input.task_id ?? "").trim() || undefined,
+		verdict,
+		rationale: policyBlocked
+			? `${input.rationale.trim()} Policy blocks ${profile} validation until ${policyGaps.join(", ")} are recorded.`
+			: input.rationale.trim(),
+		checks: (input.checks ?? []).map((v) => v.trim()).filter(Boolean),
+		issues: [...inputIssues, ...isolationIssue, ...commitReadinessIssue, ...auditIssue],
+		source: (input.source ?? "").trim() || undefined,
+		policy_profile: policyProfile,
+		required_audits: auditReq.profiles,
+		audit_refs: auditRefs,
+		audit_reports: auditReports,
+		content_proof_refs: contentProofRefs,
+		failed_criteria: unique([
+			...trimList(input.failed_criteria),
+			...(isolationGaps.length > 0 ? ["validation_isolation"] : []),
+			...(commitReadinessGaps.length > 0 ? ["commit_readiness"] : []),
+			...(auditGaps.length > 0 ? ["audit_evidence"] : []),
+		]),
+		blocking_questions: unique([
+			...trimList(input.blocking_questions),
+			...(isolationGaps.length > 0 ? ["Run this gateway from fresh validator context and record required checked content proof for the profile."] : []),
+			...(commitReadinessGaps.length > 0 ? ["Update the implementation build with commit-ready title, body, trailers, checks, validation placeholder, closure brief, and file evidence before validation can pass."] : []),
+			...(auditGaps.length > 0 ? [`Run or cite audit evidence for required profiles: ${auditGaps.join(", ")}.`] : []),
+		]),
+		isolation_requirement: requirement,
+		audit_requirement: {
+			...auditReq,
+			gaps: auditGaps,
+		},
+		commit_readiness_requirement: profile.trim().toLowerCase() === "implementation"
+			? {
+				required: true,
+				evidence: ["task_id", "source_planning_build", "acceptance_mapping", "code_files", "test_files or test_design_evidence", "checks_run", "closure_brief", "publication.commit title/body", "CodeWiki task/build/checks/validation/recover trailers"],
+				gaps: commitReadinessGaps,
+			}
+			: undefined,
+		isolation,
+	};
+	await mkdir(dirname(absPath), { recursive: true });
+	await writeFile(absPath, JSON.stringify(data, null, 2) + "\n", "utf8");
+	const relPath = `.codewiki/validation/${day}-${slug}.json`;
+	return { path: relPath, data };
+}

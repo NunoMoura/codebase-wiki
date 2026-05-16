@@ -6,14 +6,9 @@
   "kind": "architecture",
   "summary": "Refine the inferred boundary docs until wiki/system mirrors the repo's real ownership seams without creating doc sprawl.",
   "spec_paths": [
-    ".codewiki/kb/system/overview.md",
-    ".codewiki/kb/system/extensions/codewiki/overview.md"
+    ".codewiki/kb/system/overview.md"
   ],
-  "code_paths": [
-    "extensions/codewiki",
-    "skills",
-    "scripts/smoke-test.mjs"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "brownfield",
@@ -39,5 +34,5 @@
     "closure": "Add, remove, or rewrite inferred spec folders until they match real stable ownership seams."
   },
   "created": "2026-04-29",
-  "updated": "2026-05-01"
+  "updated": "2026-05-09T09:08:43Z"
 }

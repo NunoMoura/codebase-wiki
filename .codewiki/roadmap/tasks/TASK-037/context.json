@@ -1,19 +1,14 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.758Z",
+  "generated_at": "2026-05-09T09:11:38Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-037/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-037",
     "title": "Build standalone read-only CodeWiki UI",
-    "status": "todo",
-    "phase": "implement",
+    "status": "cancelled",
     "priority": "medium",
     "kind": "architecture",
-    "summary": "Detach the human status interface from Pi by creating an agent-agnostic read-only UI that consumes generated `.codewiki/**` and renders Mermaid outside the Pi TUI constraints.",
+    "summary": "Cancelled in roadmap transition after KB boundary refactor: standalone read-only UI is deferred until graph/API/active-roadmap semantics are stable and a concrete visual UI need is accepted. Product visual UI docs remain as expectations, not immediate implementation work.",
     "labels": [
       "ui",
       "adapter",
@@ -43,52 +38,5 @@
       "current": "",
       "closure": ""
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/product/uis/status-panel.md",
-      "title": ".codewiki/kb/product/uis/status-panel.md"
-    },
-    {
-      "path": ".codewiki/kb/system/components/views.md",
-      "title": ".codewiki/kb/system/components/views.md"
-    },
-    {
-      "path": ".codewiki/kb/system/components/extension.md",
-      "title": ".codewiki/kb/system/components/extension.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/src/adapters/pi/ui",
-      "extensions/codewiki/src/engine/views.ts",
-      "package.json"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-037/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-037/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-037/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-037/graph.json"
   }
 }

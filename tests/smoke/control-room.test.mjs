@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { mkdtemp, rm, mkdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { loadProject } from "../../extensions/codewiki/src/application/project.ts";
+import { loadProject } from "../../src/application/project.ts";
 import {
 	buildControlRoomBoardModel,
 	buildControlRoomGraphModel,
@@ -11,12 +11,12 @@ import {
 	buildControlRoomStateModel,
 	buildControlRoomSystemModel,
 	startControlRoomServer,
-} from "../../extensions/codewiki/src/adapters/web/control-room.ts";
+} from "../../src/adapters/web/control-room.ts";
 import {
 	buildBrowserOpenCommand,
 	formatControlRoomLaunchMessage,
 	parseUiArgs,
-} from "../../extensions/codewiki/src/adapters/pi/commands/ui.ts";
+} from "../../src/adapters/pi/commands/ui.ts";
 
 const root = await mkdtemp(join(tmpdir(), "codewiki-control-room-"));
 let server;
@@ -25,6 +25,7 @@ try {
 	await mkdir(join(root, ".codewiki/kb/product/users"), { recursive: true });
 	await mkdir(join(root, ".codewiki/kb/product/stories"), { recursive: true });
 	await mkdir(join(root, ".codewiki/kb/product/uis"), { recursive: true });
+	await mkdir(join(root, ".codewiki/roadmap"), { recursive: true });
 	await writeFile(join(root, ".codewiki/config.json"), JSON.stringify({
 		project_name: "control-room-smoke",
 		schema_version: 4,
@@ -38,12 +39,12 @@ try {
 			gc: { hot_days: 7 },
 		},
 	}, null, 2));
-	await writeFile(join(root, ".codewiki/roadmap.json"), JSON.stringify({
+	await writeFile(join(root, ".codewiki/roadmap/queue.json"), JSON.stringify({
 		version: 2,
 		updated: "2026-05-11",
 		order: ["TASK-001"],
 		tasks: {
-			"TASK-001": { id: "TASK-001", title: "Ship map", status: "todo", priority: "high", summary: "Map work", goal: { acceptance: ["Shows work"], verification: ["smoke"] }, spec_paths: [".codewiki/kb/system/api.md"], code_paths: ["extensions/codewiki/src/adapters/web/control-room.ts"] },
+			"TASK-001": { id: "TASK-001", title: "Ship map", status: "todo", priority: "high", summary: "Map work", goal: { acceptance: ["Shows work"], verification: ["smoke"] }, spec_paths: [".codewiki/kb/system/api.md"], code_paths: ["src/adapters/web/control-room.ts"] },
 		},
 	}, null, 2));
 	await writeFile(join(root, ".codewiki/kb/system/architecture.mmd"), `flowchart TD
@@ -146,7 +147,7 @@ edges:
 		generated_at: "2026-05-11T00:00:00Z",
 		nodes: [
 			{ id: "doc:.codewiki/kb/system/api.md", kind: "doc", path: ".codewiki/kb/system/api.md" },
-			{ id: "task:TASK-001", kind: "roadmap_task", path: ".codewiki/roadmap.json" },
+			{ id: "task:TASK-001", kind: "roadmap_task", path: ".codewiki/roadmap/queue.json" },
 		],
 		edges: [{ from: "doc:.codewiki/kb/system/api.md", to: "task:TASK-001", kind: "doc_to_task" }],
 		lenses: {
@@ -220,9 +221,14 @@ edges:
 	assert.match(css, /--highlight: #f4f1e8/);
 	assert.match(css, /--accent: #c7a35a/);
 	assert.match(css, /\.graphmap/);
+	assert.match(css, /\.kanban/);
+	assert.match(css, /\.source-drawer/);
 	assert.doesNotMatch(css, /42f5ff|--cyan/i);
 	const js = await fetch(new URL("/assets/control-room.js", server.url)).then((res) => res.text());
 	assert.match(js, /CodeWiki map/);
+	assert.match(js, /Retro Kanban over roadmap truth/);
+	assert.match(js, /Stories and UI surfaces first/);
+	assert.match(js, /Source Markdown/);
 	assert.match(js, /data-zoom="graph:in"/);
 	assert.match(js, /data-zoom="system:fit"/);
 	assert.match(js, /scope <select id="graphScope"/);

@@ -7,14 +7,9 @@
   "summary": "Define the typed CodeWiki capabilities that Pi runtimes such as think-code can call without bypassing .codewiki semantics, including optional executor/fallback boundaries.",
   "spec_paths": [
     ".codewiki/kb/product/overview.md",
-    ".codewiki/kb/system/overview.md",
-    ".codewiki/kb/system/runtime/overview.md"
+    ".codewiki/kb/system/overview.md"
   ],
-  "code_paths": [
-    "scripts/codewiki-gateway.mjs",
-    "extensions/codewiki",
-    "README.md"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "think-code",
@@ -47,5 +42,5 @@
     "closure": "Specify the manifest, fallback behavior, and follow-up implementation tasks."
   },
   "created": "2026-04-30",
-  "updated": "2026-05-01"
+  "updated": "2026-05-09T09:08:52Z"
 }

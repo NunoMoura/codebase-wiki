@@ -1,19 +1,14 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.761Z",
+  "generated_at": "2026-05-09T09:11:42Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-039/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-039",
     "title": "Provide optional ThinkCode runtime adapter",
-    "status": "todo",
-    "phase": "implement",
+    "status": "cancelled",
     "priority": "medium",
     "kind": "architecture",
-    "summary": "Make ThinkCode a first-class optional runtime for bounded CodeWiki context work while preserving native fallback paths for Pi, Codex, Claude Code, and other agent harnesses.",
+    "summary": "Cancelled in roadmap transition after KB boundary refactor: ThinkCode remains an optional agent helper, not core CodeWiki roadmap work. Recreate only if a concrete adapter/runtime need appears after API, graph, and agency semantics stabilize.",
     "labels": [
       "think-code",
       "runtime",
@@ -43,53 +38,5 @@
       "current": "",
       "closure": ""
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/runtime/overview.md",
-      "title": ".codewiki/kb/system/runtime/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/system/components/runtime-gateway.md",
-      "title": ".codewiki/kb/system/components/runtime-gateway.md"
-    },
-    {
-      "path": ".codewiki/kb/system/v2-operating-model.md",
-      "title": ".codewiki/kb/system/v2-operating-model.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "scripts/codewiki-gateway.mjs",
-      "skills",
-      "README.md",
-      "package.json"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-039/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-039/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-039/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-039/graph.json"
   }
 }

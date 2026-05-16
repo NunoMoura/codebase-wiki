@@ -1,21 +1,12 @@
 {
   "id": "TASK-036",
   "title": "Introduce sprint planning model",
-  "status": "todo",
+  "status": "cancelled",
   "priority": "high",
   "kind": "architecture",
-  "summary": "Add a roadmap sprint layer so the roadmap holds broad intent, future sprints stay outcome-level, and only the next sprint is decomposed into executable tasks.",
-  "spec_paths": [
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/components/roadmap.md",
-    ".codewiki/kb/system/flows/task-loop.md"
-  ],
-  "code_paths": [
-    "extensions/codewiki/src/core/roadmap.ts",
-    "extensions/codewiki/src/engine/views.ts",
-    "extensions/codewiki/src/core/types.ts",
-    "extensions/codewiki/templates.ts"
-  ],
+  "summary": "Cancelled in roadmap transition after KB boundary refactor: a sprint layer would overcomplicate the current model. Roadmap should stay active work truth, with builds as briefs and graph/gated agency handling routing. Revisit only if active-roadmap + graph workflow proves insufficient.",
+  "spec_paths": [],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "roadmap",
@@ -46,5 +37,5 @@
     "closure": ""
   },
   "created": "2026-05-06",
-  "updated": "2026-05-06"
+  "updated": "2026-05-09T09:11:32Z"
 }

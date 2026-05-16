@@ -6,14 +6,9 @@
   "kind": "migration",
   "summary": "V2 layout compatibility is implemented: `.codewiki/**` is generated alongside legacy read models and bootstrap/rebuild understand the v2 views root.",
   "spec_paths": [
-    ".codewiki/kb/system/v2-operating-model.md",
     ".codewiki/kb/system/overview.md"
   ],
-  "code_paths": [
-    "extensions/codewiki/templates.ts",
-    "extensions/codewiki/src/engine/rebuild.ts",
-    "extensions/codewiki/index.ts"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "v2",
@@ -24,7 +19,7 @@
     "outcome": "New and migrated repos use canonical knowledge/tasks/evidence plus generated views under the v2 structure without breaking legacy paths.",
     "acceptance": [
       "V2 target paths are represented in config/templates.",
-      "Legacy `.codewiki/roadmap.json` and current generated files remain readable during migration.",
+      "Legacy `.codewiki/roadmap/queue.json` and current generated files remain readable during migration.",
       "Migration or bootstrap creates the v2 directory shape safely.",
       "Rebuild can populate v2 views while preserving current tool behavior."
     ],
@@ -43,5 +38,5 @@
     "closure": "Bootstrap/migration and rebuild understand v2 paths with legacy compatibility."
   },
   "created": "2026-05-02",
-  "updated": "2026-05-02"
+  "updated": "2026-05-09T09:09:56Z"
 }

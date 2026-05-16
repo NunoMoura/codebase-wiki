@@ -1,0 +1,61 @@
+{
+  "id": "TASK-077",
+  "title": "Prevent cross-layer alignment drift",
+  "status": "in_progress",
+  "priority": "critical",
+  "kind": "architecture",
+  "summary": "Umbrella sprint for hardening CodeWiki alignment so dogfood state, product source, docs, roadmap, tests, code, validation, commits, and publication cannot drift silently.",
+  "spec_paths": [
+    ".codewiki/kb/system/alignment-model.md",
+    ".codewiki/kb/system/audits.md",
+    ".codewiki/kb/system/graph.md",
+    ".codewiki/kb/system/validation-gateway.md",
+    ".codewiki/kb/system/file-structure.md"
+  ],
+  "code_paths": [
+    "src/application/graph.ts",
+    "src/application/builds.ts",
+    "src/application/lint.ts",
+    "scripts/check-architecture.mjs",
+    "src/adapters/pi",
+    "tests/smoke"
+  ],
+  "research_ids": [],
+  "labels": [
+    "sprint:alignment-hardening",
+    "umbrella",
+    "alignment",
+    "dogfood",
+    "validation",
+    "publication"
+  ],
+  "goal": {
+    "outcome": "Coordinate the alignment-hardening sprint and close only after child tasks implement executable prevention for vertical drift, horizontal drift, dogfood/source confusion, audit evidence, gateway policy, and publication proof.",
+    "acceptance": [
+      "TASK-078 is closed with passing checks and evidence.",
+      "TASK-079 is closed with passing checks and evidence.",
+      "TASK-080 is closed with passing checks and evidence.",
+      "TASK-081 is closed with passing checks and evidence.",
+      "TASK-082 is closed with passing checks and evidence.",
+      "TASK-083 is closed with passing checks and evidence.",
+      "TASK-084 is closed with passing checks and evidence.",
+      "TASK-085 is closed with passing checks and evidence.",
+      "CodeWiki state is green with no unresolved reconciliation drift after the sprint."
+    ],
+    "non_goals": [
+      "Do not treat this umbrella task as implementation evidence for child tasks.",
+      "Do not close until child tasks complete or are explicitly deferred with accepted feedback."
+    ],
+    "verification": [
+      "codewiki_state reports green health and no reconciliation drift",
+      "All child task verification checks pass"
+    ]
+  },
+  "delta": {
+    "desired": "CodeWiki has executable alignment contracts and sprint tasks that prevent the same drift classes before close, validation, or publication.",
+    "current": "Manual audit found drift after docs, roadmap, generated views, package source, validation reports, and scripts had already diverged.",
+    "closure": "All sprint child tasks are closed or explicitly deferred with accepted feedback and graph/gateway/audit checks pass."
+  },
+  "created": "2026-05-15",
+  "updated": "2026-05-16T01:01:14Z"
+}

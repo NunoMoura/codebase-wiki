@@ -5,14 +5,8 @@
   "priority": "medium",
   "kind": "agent-workflow",
   "summary": "Define and implement compact JSON contracts for verifier, researcher, planner, architecture reviewer, and view auditor subagents.",
-  "spec_paths": [
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/flows/context-memory.md"
-  ],
-  "code_paths": [
-    "extensions/codewiki/contracts.ts",
-    "skills"
-  ],
+  "spec_paths": [],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "subagent-workers",
@@ -42,5 +36,5 @@
     "closure": "Contracts and at least one additional subagent workflow are implemented or stubbed with tests."
   },
   "created": "2026-05-02",
-  "updated": "2026-05-02"
+  "updated": "2026-05-09T09:10:23Z"
 }

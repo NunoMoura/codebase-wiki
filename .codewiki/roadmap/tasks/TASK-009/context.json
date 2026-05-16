@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.719Z",
+  "generated_at": "2026-05-09T09:09:28Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-009/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-009",
     "title": "Add automatic fresh-context verifier agent workflow",
     "status": "done",
-    "phase": "done",
     "priority": "high",
     "kind": "agent-workflow",
     "summary": "Design and implement an automatic verifier stage that spawns a read-only agent when task execution reaches verification, while retaining a manual command only as an override/debug entrypoint.",
@@ -46,48 +41,5 @@
       "current": "Skill guidance recommends fresh verification, but no automatic verifier stage exists.",
       "closure": "Add automatic verifier stage, verifier prompt/protocol, evidence append path, and optional manual override."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/clients/pi-extension.md",
-      "title": ".codewiki/kb/system/clients/pi-extension.md"
-    },
-    {
-      "path": ".codewiki/kb/system/runtime/overview.md",
-      "title": ".codewiki/kb/system/runtime/overview.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/index.ts",
-      "skills/codewiki-verify/SKILL.md",
-      "scripts/smoke-test.mjs"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-009/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-009/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-009/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-009/graph.json"
   }
 }

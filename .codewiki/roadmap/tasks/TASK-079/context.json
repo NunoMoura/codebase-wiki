@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-16T00:59:30Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-079/context.json",
+  "task": {
+    "id": "TASK-079",
+    "title": "Build source-owned CodeWiki audit tool and /audit command",
+    "status": "in_progress",
+    "priority": "critical",
+    "kind": "architecture",
+    "summary": "Create the source-owned audit engine and single /audit [flags] user command with profile-scoped machine-readable evidence; scripts may wrap it but cannot own audit semantics.",
+    "labels": [
+      "sprint:alignment-hardening",
+      "audit",
+      "api",
+      "adapter"
+    ],
+    "goal": {
+      "outcome": "Users, gateways, and agents invoke the same source-owned audit engine for full or scoped audits, and audit results are machine-readable evidence.",
+      "acceptance": [
+        "Audit engine lives in source-owned application/domain code, not scripts, and supports full and selected audit profiles.",
+        "Internal agent-callable audit tool runs full audit and selected profiles through the shared application API.",
+        "/audit command wraps the same engine and supports file-structure, security, alignment, package, changed, task, and layer flags.",
+        "Audit output includes profile, checked scopes, issues, evidence refs, and source/content fingerprints where available.",
+        "Tests cover default full audit and at least three scoped profiles."
+      ],
+      "non_goals": [
+        "Do not make audits decide gateway verdicts directly.",
+        "Do not require full audit for every gateway call.",
+        "Do not place authoritative audit rules in scripts."
+      ],
+      "verification": [
+        "npm run typecheck",
+        "npm run test:smoke",
+        "manual /audit --file-structure or tool equivalent smoke"
+      ]
+    },
+    "delta": {
+      "desired": "One source-owned audit substrate serves users, agents, generated state, and gateways; scripts are optional wrappers only.",
+      "current": "Audits are partly ad hoc and previous drift guards lived in scripts/check-architecture.mjs.",
+      "closure": "Audit tool/command exist with scoped profiles, tests, and no authoritative script-owned semantics."
+    }
+  }
+}

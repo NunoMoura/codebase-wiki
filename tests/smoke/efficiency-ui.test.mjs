@@ -2,16 +2,17 @@ import assert from "node:assert/strict";
 import { mkdtemp, rm, mkdir, writeFile, readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { readRoadmapFile } from "../../extensions/codewiki/src/application/roadmap.ts";
-import { executeDiffTableAction, readRuntimeDiffTables } from "../../extensions/codewiki/src/application/diff-table.ts";
-import { readDiffTablePanelData, readGraphPanelData, updateRuntimeDiffRow } from "../../extensions/codewiki/src/adapters/pi/ui/manager.ts";
+import { readRoadmapFile } from "../../src/application/roadmap.ts";
+import { executeDiffTableAction, readRuntimeDiffTables } from "../../src/application/diff-table.ts";
+import { readDiffTablePanelData, readGraphPanelData, updateRuntimeDiffRow } from "../../src/adapters/pi/ui/manager.ts";
 
 const root = await mkdtemp(join(tmpdir(), "codewiki-efficiency-ui-"));
 try {
 	await mkdir(join(root, ".codewiki/builds/feedback"), { recursive: true });
+	await mkdir(join(root, ".codewiki/roadmap"), { recursive: true });
 	await mkdir(join(root, ".codewiki/runtime"), { recursive: true });
 	await writeFile(join(root, ".codewiki/config.json"), JSON.stringify({ project_name: "smoke", schema_version: 4 }, null, 2));
-	await writeFile(join(root, ".codewiki/roadmap.json"), JSON.stringify({
+	await writeFile(join(root, ".codewiki/roadmap/queue.json"), JSON.stringify({
 		version: 2,
 		updated: "2026-05-11",
 		order: ["TASK-001"],
@@ -23,11 +24,11 @@ try {
 		}
 	}, null, 2));
 
-	const roadmap = await readRoadmapFile(join(root, ".codewiki/roadmap.json"));
+	const roadmap = await readRoadmapFile(join(root, ".codewiki/roadmap/queue.json"));
 	assert.equal(roadmap.sprints["SPRINT-001"].task_ids[0], "TASK-001");
 	assert.equal(roadmap.sprints["SPRINT-001"].budget.maxTokens, 1000);
 
-	const project = { root, graphPath: join(root, ".codewiki/index_graph.json"), config: {}, roadmapPath: ".codewiki/roadmap.json" };
+	const project = { root, graphPath: join(root, ".codewiki/index_graph.json"), config: {}, roadmapPath: ".codewiki/roadmap/queue.json" };
 	const proposed = await executeDiffTableAction(project, {
 		action: "propose",
 		table_id: "DT-001",

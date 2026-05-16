@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.734Z",
+  "generated_at": "2026-05-09T09:10:18Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-020/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-020",
     "title": "Architecture manifest and Mermaid view generator",
     "status": "done",
-    "phase": "done",
     "priority": "high",
     "kind": "architecture",
     "summary": "Add canonical system architecture graph support with component and flow docs, then generate agent-readable and Mermaid architecture views from it.",
@@ -44,48 +39,5 @@
       "current": "System architecture is mostly prose; generated graph state is not a first-class architecture source.",
       "closure": "Architecture graph and Mermaid generation work with validation."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/v2-operating-model.md",
-      "title": ".codewiki/kb/system/v2-operating-model.md"
-    },
-    {
-      "path": ".codewiki/kb/system/flows/context-memory.md",
-      "title": ".codewiki/kb/system/flows/context-memory.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/src/engine/rebuild.ts",
-      "extensions/codewiki/templates.ts",
-      "scripts/smoke-test.mjs"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-020/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-020/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-020/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-020/graph.json"
   }
 }

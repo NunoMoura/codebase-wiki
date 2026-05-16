@@ -5,15 +5,8 @@
   "priority": "medium",
   "kind": "architecture",
   "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
-  "spec_paths": [
-    ".codewiki/kb/system/flows/sanitation-release.md",
-    ".codewiki/kb/system/v2-operating-model.md"
-  ],
-  "code_paths": [
-    "extensions/codewiki/src/engine/rebuild.ts",
-    "extensions/codewiki/index.ts",
-    "extensions/codewiki/templates.ts"
-  ],
+  "spec_paths": [],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "sanitation-policy",
@@ -43,5 +36,5 @@
     "closure": "Archive/checkpoint policy is implemented and documented."
   },
   "created": "2026-05-02",
-  "updated": "2026-05-02"
+  "updated": "2026-05-09T09:10:46Z"
 }

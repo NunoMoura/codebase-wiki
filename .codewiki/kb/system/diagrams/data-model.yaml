@@ -84,18 +84,18 @@ entities:
       - rationale
       - checks
       - issues
-  - id: graph_index
-    label: Graph index
+  - id: state_index
+    label: State index / graph
     storage: .codewiki/index_graph.json
-    role: generated relationship and reconciliation state
+    role: generated state relationship and reconciliation representation
     key_fields:
       - nodes
       - edges
       - lenses
       - reconciliation
-  - id: change_claim
-    label: Change claim
-    storage: .codewiki/runtime/claims.json
+  - id: scoped_lease
+    label: Session queue scoped lease
+    storage: .codewiki/session/queue.json
     role: temporary parallel-work lease
     key_fields:
       - id
@@ -134,26 +134,26 @@ relationships:
   - from: validation_report
     to: implementation_build
     type: supports
-  - from: graph_index
+  - from: state_index
     to: knowledge_doc
     type: derives_from
-  - from: graph_index
+  - from: state_index
     to: roadmap_task
     type: derives_from
-  - from: graph_index
+  - from: state_index
     to: feedback_build
     type: derives_from
-  - from: graph_index
+  - from: state_index
     to: documentation_build
     type: derives_from
-  - from: graph_index
+  - from: state_index
     to: implementation_build
     type: derives_from
-  - from: graph_index
+  - from: state_index
     to: validation_report
     type: derives_from
-  - from: graph_index
-    to: change_claim
+  - from: state_index
+    to: scoped_lease
     type: derives_from
   - from: diagram_spec
     to: knowledge_doc
@@ -163,5 +163,5 @@ ui_hints:
     - knowledge_doc
     - roadmap_task
     - implementation_build
-    - graph_index
+    - state_index
   show_storage_paths: true

@@ -2,8 +2,8 @@ import assert from "node:assert/strict";
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { buildLintReport } from "../../extensions/codewiki/src/application/lint.ts";
-import { buildGraph } from "../../extensions/codewiki/src/application/graph.ts";
+import { buildLintReport } from "../../src/application/lint.ts";
+import { buildGraph } from "../../src/application/graph.ts";
 
 const root = await mkdtemp(join(tmpdir(), "codewiki-hot-retention-"));
 
@@ -16,7 +16,7 @@ const project = {
 	evidenceRoot: "",
 	researchRoot: ".codewiki/research",
 	indexPath: "",
-	roadmapPath: ".codewiki/roadmap.json",
+	roadmapPath: ".codewiki/roadmap/queue.json",
 	roadmapDocPath: "",
 	roadmapEventsPath: "",
 	metaRoot: ".codewiki",

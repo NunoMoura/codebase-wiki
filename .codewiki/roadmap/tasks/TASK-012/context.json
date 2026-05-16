@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.723Z",
+  "generated_at": "2026-05-09T09:09:42Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-012/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-012",
     "title": "Reduce canonical surface and projection write amplification",
     "status": "done",
-    "phase": "done",
     "priority": "high",
     "kind": "architecture",
     "summary": "Projection firewall first slice completed: canonical/generated contract documented and refresh=false paths now avoid projection locks/rebuilds where safe.",
@@ -43,52 +38,5 @@
       "current": "Task/session workflows can rewrite multiple roadmap/state/graph/lint/status projection files, increasing token cost and drift surface.",
       "closure": "Projection firewall documented and first write-amplification reduction implemented."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/config.json",
-      "title": ".codewiki/config.json"
-    },
-    {
-      "path": ".codewiki/kb/system/overview.md",
-      "title": ".codewiki/kb/system/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/system/runtime/overview.md",
-      "title": ".codewiki/kb/system/runtime/overview.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/index.ts",
-      "scripts/codewiki-gateway.mjs",
-      "extensions/codewiki/src/engine/rebuild.ts"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-012/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-012/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-012/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-012/graph.json"
   }
 }

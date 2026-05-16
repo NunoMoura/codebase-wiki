@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.773Z",
+  "generated_at": "2026-05-09T09:12:14Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-047/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-047",
     "title": "Stabilize CodeWiki self-hosting baseline",
     "status": "done",
-    "phase": "done",
     "priority": "critical",
     "kind": "migration",
     "summary": "Make CodeWiki stable enough to dogfood by aligning canonical rebuild, event/state sources, tests, and validation before continuing graph/compiler/role refactors.",
@@ -27,7 +22,7 @@
     "goal": {
       "outcome": "CodeWiki has one trusted self-hosting baseline: TypeScript rebuild is canonical, event/state sources agree, tests pass, and verifier closure can be trusted again.",
       "acceptance": [
-        "Configured rebuild path uses the TypeScript rebuild engine, not extensions/codewiki/src/engine/rebuild.ts or external command aliases.",
+        "Configured rebuild path uses the TypeScript rebuild engine, not src/engine/rebuild.ts or external command aliases.",
         "Legacy legacy rebuild script is removed, archived outside runtime/package scope, or clearly non-runtime with no config/test/docs dependency.",
         "Canonical event/state source for resume/session focus is documented and used consistently by rebuild, codewiki_state, /wiki-resume, and tests.",
         "TASK-042 acceptance passes under the same canonical rebuild path used by codewiki_state and task close verifier.",
@@ -54,70 +49,5 @@
       "current": "Repo truth is split: docs and decisions say TypeScript/graph/compiler model, but config, scripts, tests, generated state, and verifier still see legacy external/events legacy paths.",
       "closure": "TASK-042 and future CodeWiki tasks can be validated against the same rebuilt state that tests and agents use."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/v2-operating-model.md",
-      "title": ".codewiki/kb/system/v2-operating-model.md"
-    },
-    {
-      "path": ".codewiki/kb/system/components/views.md",
-      "title": ".codewiki/kb/system/components/views.md"
-    },
-    {
-      "path": ".codewiki/kb/system/flows/task-loop.md",
-      "title": ".codewiki/kb/system/flows/task-loop.md"
-    },
-    {
-      "path": ".codewiki/kb/system/runtime/overview.md",
-      "title": ".codewiki/kb/system/runtime/overview.md"
-    },
-    {
-      "path": ".codewiki/kb/lexicon.md",
-      "title": ".codewiki/kb/lexicon.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      ".codewiki/config.json",
-      "extensions/codewiki/src/core/project.ts",
-      "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
-      "extensions/codewiki/src/engine/rebuild.ts",
-      "extensions/codewiki/src/engine/state.ts",
-      "extensions/codewiki/src/adapters/pi/commands/resume.ts",
-      "extensions/codewiki/src/adapters/pi/tools/session.ts",
-      "extensions/codewiki/src/adapters/pi/tools/task.ts",
-      "extensions/codewiki/templates.ts",
-      "scripts/codewiki-gateway.mjs",
-      "scripts/codewiki-transaction.mjs",
-      "scripts/smoke-test.mjs",
-      "README.md"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-047/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-047/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-047/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-047/graph.json"
   }
 }

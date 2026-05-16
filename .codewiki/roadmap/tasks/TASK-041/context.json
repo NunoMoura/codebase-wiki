@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.764Z",
+  "generated_at": "2026-05-09T09:11:52Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-041/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-041",
     "title": "Review and improve generated views into a token-efficient context compiler",
     "status": "done",
-    "phase": "done",
     "priority": "critical",
     "kind": "architecture",
     "summary": "Audit and redesign generated `.codewiki/**` as lightweight routing and observability read models, then benchmark prebuilt packs versus bounded programmatic exploration to choose the most token-efficient context strategy for task/sprint/roadmap work.",
@@ -54,61 +49,5 @@
       "current": "",
       "closure": ""
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/components/views.md",
-      "title": ".codewiki/kb/system/components/views.md"
-    },
-    {
-      "path": ".codewiki/kb/system/flows/context-memory.md",
-      "title": ".codewiki/kb/system/flows/context-memory.md"
-    },
-    {
-      "path": ".codewiki/kb/system/v2-operating-model.md",
-      "title": ".codewiki/kb/system/v2-operating-model.md"
-    },
-    {
-      "path": ".codewiki/kb/system/flows/task-loop.md",
-      "title": ".codewiki/kb/system/flows/task-loop.md"
-    },
-    {
-      "path": ".codewiki/kb/lexicon.md",
-      "title": ".codewiki/kb/lexicon.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/src/engine/views.ts",
-      "extensions/codewiki/src/engine/rebuild.ts",
-      "extensions/codewiki/src/engine/graph.ts",
-      "extensions/codewiki/src/engine/state.ts"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-041/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-041/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-041/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-041/graph.json"
   }
 }

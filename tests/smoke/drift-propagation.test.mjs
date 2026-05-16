@@ -2,15 +2,15 @@ import assert from "node:assert/strict";
 import { mkdtemp, rm, mkdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { parseDoc } from "../../extensions/codewiki/src/infrastructure/doc-parser.ts";
-import { buildGraph } from "../../extensions/codewiki/src/application/graph.ts";
-import { buildLintReport } from "../../extensions/codewiki/src/application/lint.ts";
+import { parseDoc } from "../../src/application/knowledge/doc-parser.ts";
+import { buildGraph } from "../../src/application/graph.ts";
+import { buildLintReport } from "../../src/application/lint.ts";
 import {
 	buildRoadmapState,
 	buildStatusState,
 	generatedStatePaths,
 	laneRevisionAnchor,
-} from "../../extensions/codewiki/src/application/state-builders.ts";
+} from "../../src/application/state-builders.ts";
 
 const root = await mkdtemp(join(tmpdir(), "codewiki-drift-propagation-"));
 const claims = { version: 1, claims: [] };
@@ -41,7 +41,7 @@ function projectWithLint(wordCountWarn) {
 		evidenceRoot: ".codewiki/evidence",
 		researchRoot: ".codewiki/research",
 		indexPath: ".codewiki/index.md",
-		roadmapPath: ".codewiki/roadmap.json",
+		roadmapPath: ".codewiki/roadmap/queue.json",
 		roadmapDocPath: ".codewiki/roadmap.md",
 		roadmapEventsPath: "",
 		metaRoot: ".codewiki",

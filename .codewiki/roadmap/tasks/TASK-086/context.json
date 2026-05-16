@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-16T01:01:58Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-086/context.json",
+  "task": {
+    "id": "TASK-086",
+    "title": "Migrate public coordination API to session queue scoped leases",
+    "status": "in_progress",
+    "priority": "high",
+    "kind": "architecture",
+    "summary": "Replace public claim vocabulary with session queue scoped leases while preserving a tested transitional alias for existing callers.",
+    "labels": [
+      "domain-led-refactor",
+      "session-queue",
+      "scoped-leases",
+      "api-compatibility"
+    ],
+    "goal": {
+      "outcome": "CodeWiki public coordination language and API use session queue/scoped lease concepts, with legacy claim naming retained only as a documented transitional alias.",
+      "acceptance": [
+        "Domain/session queue types model focus, waits, scoped leases, handoff metadata, and isolation context without public claim terminology.",
+        "New or renamed application tool/API surface exposes session queue scoped lease operations; legacy codewiki_claim remains as a compatibility alias with deprecation/transition documentation if needed.",
+        "Pi tool schemas, skills, UI labels, generated state summaries, and validation isolation fields use session queue/scoped lease language in public output.",
+        "Storage remains .codewiki/session/queue.json unless migration planning explicitly changes it.",
+        "Tests cover scoped lease create/list/release/heartbeat behavior and legacy alias compatibility."
+      ],
+      "non_goals": [
+        "Do not break existing users abruptly by deleting codewiki_claim before compatibility alias and migration notes exist.",
+        "Do not treat session queue leases as durable roadmap truth."
+      ],
+      "verification": [
+        "npm run typecheck",
+        "npm run test:smoke",
+        "targeted session queue/scoped lease smoke",
+        "stale-term scan for public claim vocabulary with allowed compatibility exceptions only"
+      ]
+    },
+    "delta": {
+      "desired": "Session queue scoped leases are the canonical project lexicon and source/API concept for parallel coordination.",
+      "current": "Implementation and Pi tool names still use change claim terminology while docs now mark claim as transitional.",
+      "closure": "Public API/output/skills use session queue scoped leases, legacy alias is tested, and stale public claim terms are controlled."
+    }
+  }
+}

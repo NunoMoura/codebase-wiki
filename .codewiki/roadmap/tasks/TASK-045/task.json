@@ -1,19 +1,14 @@
 {
   "id": "TASK-045",
   "title": "Add compiler build and validation report schemas",
-  "status": "todo",
+  "status": "done",
   "priority": "high",
   "kind": "architecture",
-  "summary": "Add first-class schemas and writer paths for feedback_build, documentation_build, implementation_build, and validation reports under `.codewiki/builds/**` and `.codewiki/validation/**`.",
+  "summary": "TASK-045: compiler build and validation report schemas complete.",
   "spec_paths": [
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/runtime/overview.md",
     ".codewiki/kb/lexicon.md"
   ],
-  "code_paths": [
-    "extensions/codewiki/src",
-    "extensions/codewiki/src/engine/rebuild.ts"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "compiler-model",
@@ -44,5 +39,5 @@
     "closure": ""
   },
   "created": "2026-05-07",
-  "updated": "2026-05-07"
+  "updated": "2026-05-09T09:12:12Z"
 }

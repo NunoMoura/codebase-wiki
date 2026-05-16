@@ -1,20 +1,14 @@
 {
   "id": "TASK-044",
   "title": "Generate graph-first CodeWiki index",
-  "status": "todo",
+  "status": "done",
   "priority": "high",
   "kind": "migration",
-  "summary": "Replace the legacy generated view zoo with `.codewiki/index_graph.json` as the primary generated read model and derive small status/queue lenses from it when still needed.",
+  "summary": "TASK-044: Graph-first index with build/test/validation nodes, verifier removed, close flow simplified.",
   "spec_paths": [
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/components/views.md",
     ".codewiki/kb/system/overview.md"
   ],
-  "code_paths": [
-    "extensions/codewiki/src/engine/views.ts",
-    "extensions/codewiki/src/engine/rebuild.ts",
-    ".codewiki/index_graph.json"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "compiler-model",
@@ -45,5 +39,5 @@
     "closure": ""
   },
   "created": "2026-05-07",
-  "updated": "2026-05-07"
+  "updated": "2026-05-09T09:12:04Z"
 }

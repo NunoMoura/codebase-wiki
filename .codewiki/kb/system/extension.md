@@ -2,28 +2,28 @@
 id: spec.system.extension
 title: Extension
 state: active
-summary: Packaged CodeWiki distribution, current Pi extension surface, and Control Room launch integration.
+summary: Packaged CodeWiki distribution, current Pi extension surface, and CodeWiki UI launch integration.
 owners:
   - architecture
   - engineering
-updated: "2026-05-09"
+updated: "2026-05-16"
 code_paths:
-  - extensions/codewiki/index.ts
-  - extensions/codewiki/bootstrap.ts
-  - extensions/codewiki/templates.ts
-  - extensions/codewiki/src/adapters/pi
-  - skills
-  - scripts/smoke-test.mjs
-  - scripts/check-architecture.mjs
+  - src/index.ts
+  - src/bootstrap.ts
+  - src/templates.ts
+  - src/application/prompt.ts
+  - src/adapters/pi
+  - skills/codewiki
+  - tests/smoke/package-smoke.test.mjs
 ---
 
 # Extension
 
 ## Responsibility
 
-The extension package distributes CodeWiki for the current Pi host runtime. It registers Pi commands, tools, compact visual status UI, Control Room launch integration, lifecycle hooks, packaged skills, bootstrap templates, and resource discovery, then delegates semantic work to the CodeWiki API.
+The extension package distributes CodeWiki for the current Pi host runtime. It registers Pi commands, tools, compact visual status UI, CodeWiki UI launch integration, lifecycle hooks, packaged skills, and resource discovery, then delegates semantic work to application tools.
 
-The extension is not the product boundary. CodeWiki is the repo-local contract, compiler workflow, graph state machine, API, and standalone local Control Room. Pi is the current adapter and distribution channel.
+The extension is not the product boundary. CodeWiki is the repo-local contract, compiler workflow, state engine, API, and standalone local CodeWiki UI. Pi is the current adapter and distribution channel.
 
 ## Current Pi surface
 
@@ -32,20 +32,21 @@ The Pi adapter owns:
 - `/wiki-*` commands,
 - `codewiki_*` tools,
 - `Alt+W` compact visual status UI,
-- `/wiki-ui [repo-path] [port]` to start the local Control Room, attempt to open its browser URL, and print a plain local URL fallback,
+- `/wiki-ui [repo-path] [port]` to start the local CodeWiki UI, attempt to open its browser URL, and print a plain local URL fallback,
 - `codewiki_agency` as the current Pi-facing agency controller entrypoint,
 - session lifecycle hooks,
 - packaged workflow skills,
-- bootstrap/adoption entrypoints,
+- bootstrap/adoption entrypoints that call application tools,
 - package smoke and resource loading coverage.
 
 ## Package support files
 
-- `extensions/codewiki/index.ts` should remain a thin entrypoint.
-- `bootstrap.ts` owns adoption/bootstrap surface until folded into application/adapter ownership.
-- `templates.ts` owns starter wiki templates.
-- `project-root.ts` owns wiki-root discovery helpers.
-- `mutation-queue.ts` owns local mutation serialization until replaced by infrastructure/application locking ports.
+- `src/index.ts` should remain a thin entrypoint.
+- `src/application/tools/**` owns agent-callable bootstrap, state, build, validation, task, session queue, and publication use cases.
+- `skills/codewiki/bootstrap/**` owns bootstrap workflow guidance and starter contract assets.
+- `skills/codewiki/prompts/**` owns prompt templates as skill assets.
+- `project-root.ts` and `mutation-queue.ts` are transitional support files until folded behind application ports/local runtime services.
+- `scripts/**`, when present, is optional developer convenience only and must not be required for product behavior or gateway policy.
 
 ## Boundaries
 
@@ -63,12 +64,12 @@ The Pi adapter owns:
 - Keep the public extension entrypoint small and stable.
 - Keep harness-specific code inside adapters.
 - Keep generated graph state read-only outside rebuild paths.
-- Keep package smoke, typecheck, architecture check, and pack dry-run green after structural moves.
+- Keep package smoke, typecheck, source-owned architecture/audit checks, and pack dry-run green after structural moves.
 - Test runtime ESM/package loading, not only TypeScript typechecking.
 
 ## Related docs
 
-- [Control Room UI](control-room-ui.md)
+- [CodeWiki UI](control-room-ui.md)
 - [Adapters](adapters.md)
 - [API](api.md)
 - [File Structure](file-structure.md)

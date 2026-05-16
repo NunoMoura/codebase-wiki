@@ -42,45 +42,39 @@ Public command surface is intentionally small:
 - `codewiki_session`
 - `codewiki_agency`
 
-All internal `codewiki_*` tools accept optional `repoPath` so agents can target a repo explicitly when Pi is running outside that repo. Day-to-day execution should center on one read entrypoint (`codewiki_state`), one transient compiler-build writer (`codewiki_build`), one canonical task mutation entrypoint (`codewiki_task`), one scoped parallel-work claim entrypoint (`codewiki_claim`), and one runtime session entrypoint (`codewiki_session`). Claim leases live under `.codewiki/runtime/claims.json` as gitignored runtime input; the graph only exposes derived claim views. `codewiki_agency` plans bounded observe/maintain/work cycles and can include an optional ThinkCode context plan with native CodeWiki fallback steps.
+All internal `codewiki_*` tools accept optional `repoPath` so agents can target a repo explicitly when Pi is running outside that repo. Day-to-day execution should center on one read entrypoint (`codewiki_state`), one transient compiler-build writer (`codewiki_build`), one canonical task mutation entrypoint (`codewiki_task`), one scoped parallel-work claim entrypoint (`codewiki_claim`), and one runtime session entrypoint (`codewiki_session`). Claim leases live under `.codewiki/session/queue.json` as gitignored runtime input; the graph only exposes derived claim views. `codewiki_agency` plans bounded observe/maintain/work cycles and can include an optional ThinkCode context plan with native CodeWiki fallback steps.
 
 ### Skills
 
 - `/skill:codewiki`
-- `/skill:codewiki-feedback`
-- `/skill:codewiki-documentation`
-- `/skill:codewiki-implementation`
-- `/skill:codewiki-verify`
-- `/skill:codewiki-research`
-- `/skill:codewiki-architecture`
-- `/skill:codewiki-view-audit`
 
-The router skill covers package invariants and points the agent to focused workflow skills for:
+The single public CodeWiki skill covers package invariants and points the agent to supporting loop/playbook files under `skills/codewiki/` for:
 
 - intelligent bootstrap/onboarding of a repo-local wiki
-- automatic outer planning from intent to knowledge and roadmap tasks
-- automatic inner task execution from implementation to verification evidence
+- feedback, documentation, planning, implementation, and validation loops
 - research evidence that supports `.codewiki/kb`
-- fresh-context task verification
+- fresh-context task validation
 - architecture review grounded in CodeWiki specs and roadmap tasks
 
 ## Simplified model
 
-Codewiki now centers on a hidden `.codewiki` knowledge system plus derived views:
+Codewiki now centers on a hidden `.codewiki` knowledge system plus derived graph state.
 
-- **knowledge** — canonical markdown knowledge nodes under `.codewiki/kb/product/`, `.codewiki/kb/clients/`, and `.codewiki/kb/system/`
+When maintaining this repository itself, `.codewiki/` is dogfood state, not package source code. Package source lives under `src/`, `skills/`, `scripts/`, `tests/`, and the root package files.
+
+- **knowledge** — canonical markdown knowledge nodes under `.codewiki/kb/product/` and `.codewiki/kb/system/`
 - **sources** — raw provenance under `.codewiki/sources/`
 - **research** — optional compact source-support findings under `.codewiki/research/`
 - **builds** — compiler handoff and implementation evidence under `.codewiki/builds/**`
 - **validation** — hot fail/block/policy-required/current validation reports under `.codewiki/validation/**`
-- **roadmap** — machine-managed tracked delta in `.codewiki/roadmap.json`
+- **roadmap** — machine-managed tracked delta in `.codewiki/roadmap/queue.json`
 - **task** — atomic work unit inside roadmap, canonically named `TASK-###`
 
-Generated navigation and UI views stay hidden under `.codewiki/views/` and are tool-owned views:
+Generated navigation and UI views are tool-owned:
 
-- `.codewiki/index_graph.json` as the only generated graph/index read model
-- `.codewiki/roadmap/index.json`, `.codewiki/roadmap/state.json`, and task context shards
-- top-level generated `wiki/**` files are no longer emitted by default
+- `.codewiki/index_graph.json` is the only generated graph/index read model
+- `.codewiki/roadmap/tasks/**` holds generated task-local context shards
+- top-level generated `wiki/**`, `.codewiki/roadmap/index.json`, and `.codewiki/roadmap/state.json` files are no longer emitted by default
 
 View boundary rule: agents edit canonical truth and append evidence/events; views are rebuilt by tools only. Session mutation avoids view rebuilds, and task mutation can defer them with `refresh=false` when fresh views are not needed immediately.
 
@@ -104,7 +98,8 @@ Working rule:
 - `.codewiki/research/` = optional compact source-support findings
 - `.codewiki/builds/implementation/**` = implementation evidence
 - `.codewiki/validation/**` = hot fail/block/policy-required/current validation reports
-- `.codewiki/roadmap.json` = machine-managed tracked delta from desired state to current reality
+- `.codewiki/roadmap/queue.json` = machine-managed tracked delta and task ordering from desired state to current reality
+- `.codewiki/session/queue.json` = gitignored runtime session queue for active/waiting/ready coordination leases
 - task = atomic work unit inside roadmap
 - Pi session = native execution history linked to tasks
 
@@ -201,7 +196,7 @@ Minimum expected contract:
   "docs_root": ".codewiki/kb",
   "specs_root": ".codewiki/kb",
   "research_root": ".codewiki/research",
-  "roadmap_path": ".codewiki/roadmap.json",
+  "roadmap_path": ".codewiki/roadmap/queue.json",
     "roadmap_retention": {
     "closed_task_limit": 50,
     "archive_path": ".codewiki/roadmap/archive.jsonl",
@@ -253,7 +248,7 @@ Recommended loop:
 
 Working rule for this repo:
 
-- edit canonical sources (`README.md`, knowledge docs under `.codewiki/kb/`, `.codewiki/roadmap.json`, runtime code)
+- edit canonical sources (`README.md`, knowledge docs under `.codewiki/kb/`, `.codewiki/roadmap/queue.json`, runtime code)
 - rebuild generated outputs when fresh views are needed, not after every small canonical mutation
 - do not hand-edit generated `.codewiki/index_graph.json`
 
@@ -298,16 +293,13 @@ Internally, agent tools may still use `codewiki_setup` as a safe non-overwriting
 Starter bootstrap includes:
 
 - `.codewiki/config.json`
-- - `.codewiki/sources/`
-- `.codewiki/kb/product/overview.md`
-- `.codewiki/kb/clients/overview.md`
-- `.codewiki/kb/clients/surfaces/roadmap.md`
-- `.codewiki/kb/clients/surfaces/status-panel.md`
-- `.codewiki/kb/system/overview.md`
-- inferred first-pass boundary `overview.md` files under `.codewiki/kb/system/` when brownfield structure is detected
-- `.codewiki/research/.gitkeep`
-- `.codewiki/roadmap.json`
-- generated outputs like `.codewiki/index_graph.json`
+- `.codewiki/sources/`
+- `.codewiki/research/`
+- `.codewiki/kb/product/**`
+- flat `.codewiki/kb/system/*.md` files
+- `.codewiki/roadmap/queue.json`
+- `.codewiki/roadmap/tasks/`
+- generated `.codewiki/index_graph.json`
 
 ### Status, fix, and review
 
@@ -323,9 +315,9 @@ The always-on surface is optional. When enabled it uses Pi's status area for a o
 
 `/wiki-resume` is the implementation segue. With no argument it resumes the current focused roadmap task when one exists, otherwise it picks the next open task from the roadmap working set. Pass `TASK-###` to force a specific open task.
 
-`/wiki-resume` runs inside the parent-owned task loop. Runtime status and resume output show the active phase plus latest structured evidence summary. Internal agent flows should read state through `codewiki_state`, record canonical task progress and evidence through `codewiki_task`, coordinate overlapping parallel work through `codewiki_claim`, and keep runtime session focus separate through `codewiki_session`.
+`/wiki-resume` runs inside the parent-owned task loop. Runtime status and resume output show the active task status plus latest structured evidence summary. Internal agent flows should read state through `codewiki_state`, record canonical task progress and evidence through `codewiki_task`, coordinate overlapping parallel work through `codewiki_claim`, and keep runtime session focus separate through `codewiki_session`.
 
-For token efficiency, agents should avoid raw wiki truth, full lifecycle logs, and all task shards as default context. Prefer compact state, the current task context shard, or latest lifecycle events first; expand to targeted raw specs/code only when phase or stale revision requires exact source.
+For token efficiency, agents should avoid raw wiki truth, full lifecycle logs, and all task shards as default context. Prefer compact state, the current task context shard, or latest lifecycle events first; expand to targeted raw specs/code only when task status, gates, or stale revision requires exact source.
 
 ### Status summary and panel
 
@@ -355,7 +347,7 @@ It then uses that repo config to:
 - run the packaged TypeScript rebuild engine
 - read `.codewiki/index_graph.json`
 - build semantic audit scopes from `.codewiki/config.json`
-- append structured roadmap tasks to `.codewiki/roadmap.json` when audits uncover real unresolved delta
+- append structured roadmap tasks to `.codewiki/roadmap/queue.json` when audits uncover real unresolved delta
 - update or close existing roadmap tasks through package-native mutation tools instead of manual JSON edits
 - append Pi custom session entries that link current session to roadmap tasks
 - read active task context from Pi session state at runtime
@@ -368,7 +360,7 @@ That means one global package install can operate across many repos, while each 
 codewiki's local gateway is a transitional adapter, not the long-term generic sandbox. The intended split is:
 
 - `.codewiki/config.json` declares codewiki policy: readable paths, direct writable paths, generated read-only paths, caps, and runtime adapter metadata.
-- `scripts/codewiki-gateway.mjs` validates and applies codewiki patches today and can print the semantic capability manifest with `node scripts/codewiki-gateway.mjs manifest [repo]`.
+- `scripts/codewiki-gateway.mjs` validates and applies codewiki patches today and can print the semantic capability manifest with `node scripts/codewiki-gateway.mjs manifest [repo]`. It refuses runtime `npx` fallbacks and gates local JavaScript execution behind explicit `CODEWIKI_ALLOW_UNSAFE_RUN=1 ... unsafe-run`; prefer think-code for sandboxed analysis.
 - a future `think-code` executor can provide generic sandbox isolation while reusing the same repo-local policy, capability manifest, and patch schema.
 
 Current patch shape:
@@ -401,7 +393,7 @@ This package assumes:
 
 - `.codewiki/kb/` is canonical truth for intended product, clients, and system design
 - `.codewiki/evidence/**` is deprecated as a default active surface; use implementation builds, hot validation reports, sources, or research roots instead
-- `.codewiki/roadmap.json` is freshest tracked delta between authored docs and code, kept as a hot working set rather than unbounded history
+- `.codewiki/roadmap/queue.json` is freshest tracked delta between authored docs and code, kept as a hot working set rather than unbounded history
 - closed tasks older than the configured retention window move losslessly to `.codewiki/roadmap/archive.jsonl` by default
 - Pi sessions are execution history, not canonical roadmap truth
 - history defaults to git for full diffs and optional canonical archive artifacts; package does not generate a raw event log by default
@@ -414,29 +406,43 @@ This package assumes:
 ## Repo layout
 
 ```text
-extensions/
-  codewiki/
-    bootstrap.ts
-    index.ts
-    project-root.ts
-    templates.ts
+src/
+  index.ts
+  bootstrap.ts
+  project-root.ts
+  mutation-queue.ts
+  templates.ts
+  domain/
+    shared/
+  application/
+    gateway/
+    graph/
+    knowledge/
+    local/
+  adapters/
+    pi/
+    web/
 skills/
   codewiki/
     SKILL.md
-  codewiki-feedback/
-    SKILL.md
-  codewiki-documentation/
-    SKILL.md
-  codewiki-implementation/
-    SKILL.md
-  codewiki-verify/
-    SKILL.md
-  codewiki-research/
-    SKILL.md
-  codewiki-architecture/
-    SKILL.md
-  codewiki-view-audit/
-    SKILL.md
+    loops/
+      feedback.md
+      documentation.md
+      implementation.md
+      validation.md
+    playbooks/
+      architecture.md
+      research.md
+      view-audit.md
+tests/
+  smoke/
+    package-smoke.test.mjs
+  run.mjs
+scripts/
+  check-architecture.mjs
+  codewiki-gateway.mjs
+  token-benchmark.mjs
+.codewiki/        # dogfood state for this repo, not package source
 LICENSE
 README.md
 package.json

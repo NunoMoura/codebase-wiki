@@ -5,9 +5,9 @@ state: active
 summary: Main runtime areas and ownership boundaries for CodeWiki.
 owners:
   - architecture
-updated: "2026-05-13"
+updated: "2026-05-16"
 code_paths:
-  - extensions/codewiki
+  - src
   - skills
 ---
 
@@ -15,20 +15,20 @@ code_paths:
 
 ## Main boundaries
 
-CodeWiki maintains the repository-local `.codewiki/` contract and exposes it through agent-harness adapters and a standalone local Control Room UI. Pi is the only implemented harness adapter for now; the architecture keeps future Claude Code, Codex, CLI, MCP, or other harness adapters possible without making them immediate product commitments.
+CodeWiki maintains the repository-local `.codewiki/` contract and exposes it through agent-harness adapters and a standalone local CodeWiki UI. Pi is the only implemented harness adapter for now; the architecture keeps future Claude Code, Codex, CLI, MCP, or other harness adapters possible without making them immediate product commitments.
 
 - **Knowledge base semantics** own product specs, visual UI specs, system access-surface specs, system specs, architecture rules, and workflow vocabulary under `.codewiki/kb/**`.
 - **Agency controller** owns bounded roadmap automation through agency cycles and explicit token, time, risk, validation, policy, and approval gates.
 - **Compiler builds** own cycle handoffs for validated intent, knowledge, planning, and implementation evidence under `.codewiki/builds/**`.
 - **Roadmap semantics** own work truth: priorities, active work items, status, progress, blockers, and closure state under `.codewiki/roadmap/**`.
-- **Validation gateways** validate submitted cycle builds against policy, source refs, criteria, and evidence. Hot failed, blocked, policy-kept, current-publication, or audit-required validation reports live under `.codewiki/validation/**`; cold pass reports rely on Git history/archive refs after publication.
-- **Graph state machine** owns generated reconciliation state in `.codewiki/index_graph.json`: drift detection, routing, derived queue order, loop selection, status, and freshness checks.
-- **Control Room UI** owns the standalone local browser command center for humans while delegating all semantics to the CodeWiki API.
-- **Application layer** owns harness-agnostic use cases for setup, state, compiler loops, validation, roadmap mutation, session focus, and rebuild orchestration.
-- **Domain layer** owns pure CodeWiki concepts, rules, entities, state-machine transitions, schemas, and invariants.
-- **Infrastructure layer** owns filesystem, Git, process execution, persistence, graph rebuild implementations, and other concrete side effects behind application ports.
-- **Adapters** own harness-specific translation. The Pi adapter owns current commands, tools, status panel, session integration, packaged skills, bootstrap surface, and resource discovery.
-- **Shared** owns minimal cross-cutting helpers and types that are truly common; it must not become a dumping ground for domain or infrastructure behavior.
+- **Validation gateways** validate submitted cycle builds against policy, source refs, criteria, audit evidence, generated-state context, and content proofs. Hot failed, blocked, policy-kept, current-publication, or audit-required validation reports live under `.codewiki/validation/**`; cold pass reports rely on Git history/archive refs after publication.
+- **State engine** owns generated reconciliation state in `.codewiki/index_graph.json`: drift detection, routing, derived queue order, loop selection, status, and freshness checks. Domain language calls this state; the graph is the generated representation. It is required validation context but never overrides canonical sources or immutable content proof.
+- **Audits** produce deterministic alignment, file-structure, stale-reference, package, security, and generated-parity evidence for users and gateways.
+- **CodeWiki UI** owns the standalone local browser command center for humans under `src/ui/**` while delegating all semantics to the CodeWiki API.
+- **Application layer** owns harness-agnostic compilers, validation gateways, the state engine, agent-facing application tools, ports, and built-in local runtime implementations.
+- **Domain layer** owns pure CodeWiki concepts, rules, entities, schemas, transitions, and invariants for task, roadmap, session queue, build, validation, and state.
+- **Adapters** own harness-specific or protocol-specific translation. The Pi adapter owns current commands, tools, status panel, session integration, packaged skills, and resource discovery. Browser web code is UI, not an agent adapter. Adapters do not own CodeWiki semantics.
+- **Shared** owns minimal cross-cutting helpers and types that are truly common; it must not become a dumping ground for domain or application behavior.
 
 ## Truth boundaries
 
@@ -42,14 +42,16 @@ CodeWiki separates truth by role so that agents can reason about the current sta
 | Knowledge handoff truth | accepted `documentation_build` files under `.codewiki/builds/documentation/**` | Temporary knowledge-alignment brief for the planning loop. |
 | Planning handoff truth | accepted `planning_build` files under `.codewiki/builds/planning/**` | Temporary roadmap, acceptance, verification, and TDD-strategy brief for the implementation loop. |
 | Work truth | `.codewiki/roadmap/**` | Active work items, priority, ownership, progress, status, blockers, and closure state. |
-| Coordination state | `.codewiki/runtime/claims.json` | Temporary scoped change claims for parallel sessions; expires/releases and never replaces durable truth. |
-| State truth | `.codewiki/index_graph.json` | Generated graph state machine for reconciliation, drift detection, derived queue order, routing, status, and freshness. |
+| Coordination state | `.codewiki/session/queue.json` | Session queue with temporary scoped leases, waits, focus, and isolation metadata; expires/releases and never replaces durable truth. |
+| State truth | `.codewiki/index_graph.json` | Generated state/graph representation for reconciliation, drift detection, derived queue order, routing, status, and freshness. |
+| Audit evidence | audit reports, check logs, and build/validation embedded evidence | Deterministic evidence used by gateways; not intent truth by itself. |
 | Executable truth | code and tests | Final behavior and automated proof. |
 | Implementation evidence truth | accepted `implementation_build` files under `.codewiki/builds/implementation/**` | Temporary compiled evidence that changes were successfully implemented and publication payloads for Git-backed archival. |
-| Validation truth | validation gateway output, plus persisted reports when required | Validates submitted builds and records hot fail, block, policy-kept, audit, or current-publication validation outcomes. Cold pass outcomes are recoverable from Git after publication. |
-| Publication truth | implementation builds, validation outcomes, and Git/remote results | Supports commit messages, PR bodies, issue updates, release notes, and push readiness. |
+| Validation attestation | validation gateway output, plus persisted reports when required | Records a gateway judgment over named evidence. It is not proof that content changed. |
+| Content proof | Git tree/commit SHA, package digest, archive ledger, and remote refs | Immutable or externally published proof of what exists or shipped. |
+| Publication truth | implementation builds, validation outcomes, content proofs, and Git/remote results | Supports commit messages, PR bodies, issue updates, release notes, and push readiness. |
 
-Agents should not hand-edit generated graph/index files. Durable changes flow into knowledge, roadmap, code/tests, builds, or validation reports first; generated graph state is rebuilt afterward. Parallel coordination flows through scoped claims, not graph edits. If graph state and canonical inputs disagree, canonical inputs win and the graph is stale or broken.
+Agents should not hand-edit generated graph/index files. Durable changes flow into knowledge, roadmap, code/tests, builds, validation reports, commits, or publication artifacts first; generated graph state is rebuilt afterward. Parallel coordination flows through session queue scoped leases, not graph edits. If graph state and canonical inputs disagree, canonical inputs win and the graph is stale or broken. If a validation report and content proof disagree, content proof wins and the report must be treated as stale or invalid.
 
 Passing validation does not need a separate durable report by default when the accepted build records the validation result. Failed, blocked, policy-required, current publication, release, or audit-mode validation reports should be stored under `.codewiki/validation/**`. After safe Git archival/publication, pass validation reports are cold and should leave the hot working tree.
 
@@ -58,8 +60,10 @@ Passing validation does not need a separate durable report by default when the a
 
 CodeWiki's target alignment model uses four compiler loops and a pure validation gateway:
 
+- [Alignment Model](alignment-model.md) — layer model, graph/gateway/content-proof precedence, and semantic change rules.
 - [Compilers](compilers.md) — feedback, documentation, planning, and implementation loops that produce cycle builds.
 - [Validation Gateway](validation-gateway.md) — validates a submitted build against policy, source refs, criteria, and evidence.
+- [Audits](audits.md) — deterministic audit profiles and `/audit [flags]` semantics.
 
 ```text
 feedback loop -> feedback_build -> validation gateway
@@ -68,7 +72,7 @@ feedback loop -> feedback_build -> validation gateway
       -> implementation loop -> implementation_build -> validation gateway/publication
 ```
 
-A cycle build is one loop attempt. It contains criteria, requirement ids, source refs, evidence mapping, assumptions, risks, and non-goals for the gateway and the next fresh session.
+A cycle build is one loop attempt. It contains criteria, requirement ids, source refs, evidence mapping, assumptions, risks, and non-goals for the gateway and the next fresh session. Every semantic change must trace to an accepted compiler build before it closes, validates, or publishes.
 
 Builds compact one loop for the next; they are not permanent archives. Long-term product/system truth belongs in `.codewiki/kb/**`, work truth in roadmap state, and executable truth in code/tests.
 
@@ -84,22 +88,24 @@ Gateways check vertical and horizontal alignment, but they do not invent require
 - [Architecture Map](architecture.mmd) is a compatibility component diagram until System UI rendering migrates to `diagrams/component-map.yaml`.
 - [File Structure](file-structure.md) owns the target repository and knowledge-base structure rules.
 - [API](api.md) owns the harness-independent CodeWiki access contract.
-- [Control Room UI](control-room-ui.md) owns standalone local web UI hosting and launch semantics.
+- [CodeWiki UI](control-room-ui.md) owns standalone local web UI hosting and launch semantics.
 - [Extension](extension.md) owns packaged distribution and the current Pi extension surface.
 - [Adapters](adapters.md) owns harness translation boundaries for Pi today and CLI/MCP/future harnesses later.
 - [Agency Controller](agency.md) owns bounded roadmap automation through agency cycles and explicit gates.
 - [Compilers](compilers.md) owns the feedback, documentation, planning, and implementation loops.
 - [Validation Gateway](validation-gateway.md) owns pure build-validation semantics.
+- [Audits](audits.md) owns deterministic audit evidence semantics.
 - [Builds](builds.md) owns temporary handoff brief semantics.
-- [Graph](graph.md) owns the generated state-machine contract.
+- [Graph](graph.md) owns the generated state/graph representation contract.
+- [Alignment Model](alignment-model.md) owns cross-layer precedence and propagation semantics.
 - [Knowledge](knowledge.md) owns product/system knowledge-base structure and persistence semantics.
 - [Roadmap](roadmap.md) owns work truth: queue, priority, status, blockers, progress, and closure semantics.
 
-CodeWiki should not implement a general sandbox, hosted SaaS, or duplicate Pi observability/eval packages. It defines `.codewiki/` semantics and exposes them through a stable API and local Control Room that Pi, CLI, MCP, or future harness adapters can use safely.
+CodeWiki should not implement a general sandbox, hosted SaaS, or duplicate Pi observability/eval packages. It defines `.codewiki/` semantics and exposes them through a stable API and local CodeWiki UI that Pi, CLI, MCP, or future harness adapters can use safely.
 
 ## Target package architecture
 
-The package follows the ports/adapters structure owned by [File Structure](file-structure.md): `adapters -> application -> domain`, with infrastructure behind application ports and minimal shared helpers. `scripts/check-architecture.mjs` enforces target boundaries during `npm test`.
+The package follows the structure owned by [File Structure](file-structure.md): `adapters/ui/skills -> application tools -> application compilers/gateways/state-engine -> domain`, with no top-level `infrastructure/` source layer. Built-in local filesystem/Git/process implementations live under `application/local/**` behind application ports. `scripts/**` is optional developer convenience only and must not enforce authoritative CodeWiki semantics.
 
 ## Knowledge-base organization rule
 
@@ -129,25 +135,9 @@ Product docs define users, user stories, and visual user interfaces. System docs
 
 System component docs should stay flat. Each major component should have one matching `.md` file under `system/`, and each component should map to the project file structure. Diagram raw data is the intended nested system exception and lives under `system/diagrams/**`. Avoid nested component folders and avoid `overview.md` files except `product/overview.md`, `system/overview.md`, and `system/diagrams/README.md`.
 
-## Change-intent review loop
+## Change lifecycle
 
-The feedback loop captures user intent with a critical eye. Its goal is not to accept a request blindly; it helps the agent and user find the best solution to the stated intention or problem. The loop should surface tradeoffs, blind spots, pitfalls, simpler alternatives, and conflicts with existing product, system, architecture, or code truth.
-
-The target of an intended change can be product behavior, system design, architecture, workflow, documentation, tests, or code. CodeWiki must support propagation across layers instead of assuming a one-way flow. A code change can require documentation updates. A refactoring idea can start in feedback, propagate to documentation, and then become implementation work. Documentation drift can route back to feedback when intent is unclear.
-
-When feedback proposes a change, the user should see a diff table before canonical edits are applied. Each row should show the current state, proposed state, rationale, affected docs or code, risk, and a user action such as approve, edit, reject, or defer. The table should make clear which components are targeted and how the change impacts adjacent layers.
-
-Accepted rows compile into the feedback build. The graph state machine then routes the accepted change to the next needed loop: documentation, planning, implementation, validation, or observe.
-
-Architecture review is one input to this loop, not an automatic refactor pass. Reviews should look for real friction in module depth, seams, adapters, locality, leverage, testability, and code/spec ownership.
-
-Findings become one of three things:
-
-- a clarification to owning `.codewiki/kb/**` specs,
-- a roadmap work item with acceptance criteria and validation expectations,
-- an explicit non-goal or deferred decision.
-
-When review exposes ambiguity, hidden risk, or unmapped user intent, the work escalates back to the feedback compiler.
+Semantic work starts in the feedback classification path, then propagates through documentation, planning, implementation, validation, and publication as needed. The detailed review and propagation rules live in [Change Lifecycle](change-lifecycle.md).
 
 ## Related docs
 
@@ -155,7 +145,10 @@ When review exposes ambiguity, hidden risk, or unmapped user intent, the work es
 - [Lexicon](../lexicon.md)
 - [Architecture Map](architecture.mmd)
 - [File Structure](file-structure.md)
+- [Alignment Model](alignment-model.md)
+- [Change Lifecycle](change-lifecycle.md)
+- [Audits](audits.md)
 - [API](api.md)
-- [Control Room UI](control-room-ui.md)
+- [CodeWiki UI](control-room-ui.md)
 - [Extension](extension.md)
 - [Agency Controller](agency.md)

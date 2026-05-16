@@ -6,27 +6,9 @@
   "kind": "migration",
   "summary": "Make CodeWiki stable enough to dogfood by aligning canonical rebuild, event/state sources, tests, and validation before continuing graph/compiler/role refactors.",
   "spec_paths": [
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/components/views.md",
-    ".codewiki/kb/system/flows/task-loop.md",
-    ".codewiki/kb/system/runtime/overview.md",
     ".codewiki/kb/lexicon.md"
   ],
-  "code_paths": [
-    ".codewiki/config.json",
-    "extensions/codewiki/src/core/project.ts",
-    "extensions/codewiki/src/infrastructure/rebuild-runner.ts",
-    "extensions/codewiki/src/engine/rebuild.ts",
-    "extensions/codewiki/src/engine/state.ts",
-    "extensions/codewiki/src/adapters/pi/commands/resume.ts",
-    "extensions/codewiki/src/adapters/pi/tools/session.ts",
-    "extensions/codewiki/src/adapters/pi/tools/task.ts",
-    "extensions/codewiki/templates.ts",
-    "scripts/codewiki-gateway.mjs",
-    "scripts/codewiki-transaction.mjs",
-    "scripts/smoke-test.mjs",
-    "README.md"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "dogfood-blocker",
@@ -41,7 +23,7 @@
   "goal": {
     "outcome": "CodeWiki has one trusted self-hosting baseline: TypeScript rebuild is canonical, event/state sources agree, tests pass, and verifier closure can be trusted again.",
     "acceptance": [
-      "Configured rebuild path uses the TypeScript rebuild engine, not extensions/codewiki/src/engine/rebuild.ts or external command aliases.",
+      "Configured rebuild path uses the TypeScript rebuild engine, not src/engine/rebuild.ts or external command aliases.",
       "Legacy legacy rebuild script is removed, archived outside runtime/package scope, or clearly non-runtime with no config/test/docs dependency.",
       "Canonical event/state source for resume/session focus is documented and used consistently by rebuild, codewiki_state, /wiki-resume, and tests.",
       "TASK-042 acceptance passes under the same canonical rebuild path used by codewiki_state and task close verifier.",
@@ -69,5 +51,5 @@
     "closure": "TASK-042 and future CodeWiki tasks can be validated against the same rebuilt state that tests and agents use."
   },
   "created": "2026-05-08",
-  "updated": "2026-05-08T00:16:30Z"
+  "updated": "2026-05-09T09:12:14Z"
 }

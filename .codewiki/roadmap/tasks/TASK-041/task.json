@@ -6,18 +6,9 @@
   "kind": "architecture",
   "summary": "Audit and redesign generated `.codewiki/**` as lightweight routing and observability read models, then benchmark prebuilt packs versus bounded programmatic exploration to choose the most token-efficient context strategy for task/sprint/roadmap work.",
   "spec_paths": [
-    ".codewiki/kb/system/components/views.md",
-    ".codewiki/kb/system/flows/context-memory.md",
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/flows/task-loop.md",
     ".codewiki/kb/lexicon.md"
   ],
-  "code_paths": [
-    "extensions/codewiki/src/engine/views.ts",
-    "extensions/codewiki/src/engine/rebuild.ts",
-    "extensions/codewiki/src/engine/graph.ts",
-    "extensions/codewiki/src/engine/state.ts"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "p0",
@@ -60,5 +51,5 @@
     "closure": ""
   },
   "created": "2026-05-06",
-  "updated": "2026-05-06T05:51:07Z"
+  "updated": "2026-05-09T09:11:52Z"
 }

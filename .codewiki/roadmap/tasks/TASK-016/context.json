@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.729Z",
+  "generated_at": "2026-05-02",
   "context_path": ".codewiki/roadmap/tasks/TASK-016/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-016",
     "title": "Bake product split and lexicon into templates",
     "status": "done",
-    "phase": "done",
     "priority": "high",
     "kind": "docs",
     "summary": "Starter templates now include the v2 product split and shared lexicon, with smoke coverage for the new files.",
@@ -42,55 +37,5 @@
       "current": "This repo has the new product split, but package templates still need to adopt it.",
       "closure": "Templates and smoke tests reflect product split and lexicon."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/product/users/agents.md",
-      "title": ".codewiki/kb/product/users/agents.md"
-    },
-    {
-      "path": ".codewiki/kb/product/stories/intent.md",
-      "title": ".codewiki/kb/product/stories/intent.md"
-    },
-    {
-      "path": ".codewiki/kb/product/uis/status-panel.md",
-      "title": ".codewiki/kb/product/uis/status-panel.md"
-    },
-    {
-      "path": ".codewiki/kb/lexicon.md",
-      "title": ".codewiki/kb/lexicon.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/templates.ts",
-      "scripts/smoke-test.mjs"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-016/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-016/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-016/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-016/graph.json"
   }
 }

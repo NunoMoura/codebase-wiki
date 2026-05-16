@@ -1,20 +1,14 @@
 {
   "id": "TASK-037",
   "title": "Build standalone read-only CodeWiki UI",
-  "status": "todo",
+  "status": "cancelled",
   "priority": "medium",
   "kind": "architecture",
-  "summary": "Detach the human status interface from Pi by creating an agent-agnostic read-only UI that consumes generated `.codewiki/**` and renders Mermaid outside the Pi TUI constraints.",
+  "summary": "Cancelled in roadmap transition after KB boundary refactor: standalone read-only UI is deferred until graph/API/active-roadmap semantics are stable and a concrete visual UI need is accepted. Product visual UI docs remain as expectations, not immediate implementation work.",
   "spec_paths": [
-    ".codewiki/kb/product/uis/status-panel.md",
-    ".codewiki/kb/system/components/views.md",
-    ".codewiki/kb/system/components/extension.md"
+    ".codewiki/kb/product/uis/status-panel.md"
   ],
-  "code_paths": [
-    "extensions/codewiki/src/adapters/pi/ui",
-    "extensions/codewiki/src/engine/views.ts",
-    "package.json"
-  ],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "ui",
@@ -46,5 +40,5 @@
     "closure": ""
   },
   "created": "2026-05-06",
-  "updated": "2026-05-06"
+  "updated": "2026-05-09T09:11:38Z"
 }

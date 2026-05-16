@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T00:21:24.740Z",
+  "generated_at": "2026-05-09T09:10:46Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-024/context.json",
-  "budget": {
-    "target_tokens": 6000,
-    "policy": "Use this packet first."
-  },
   "task": {
     "id": "TASK-024",
     "title": "Sanitation checkpoints and git history policy",
     "status": "done",
-    "phase": "done",
     "priority": "medium",
     "kind": "architecture",
     "summary": "Keep hot wiki state small by relying on git for full history and storing only compact semantic archives and release checkpoints.",
@@ -41,48 +36,5 @@
       "current": "Retention exists but archives and release/version boundaries are not fully aligned with git as full history.",
       "closure": "Archive/checkpoint policy is implemented and documented."
     }
-  },
-  "revision": {
-    "task": {
-      "digest": "dummy"
-    },
-    "git": {
-      "branch": "main",
-      "commit": "000"
-    },
-    "spec_digest": "dummy",
-    "code_digest": "dummy",
-    "graph": {
-      "digest": "dummy"
-    }
-  },
-  "specs": [
-    {
-      "path": ".codewiki/kb/system/flows/sanitation-release.md",
-      "title": ".codewiki/kb/system/flows/sanitation-release.md"
-    },
-    {
-      "path": ".codewiki/kb/system/v2-operating-model.md",
-      "title": ".codewiki/kb/system/v2-operating-model.md"
-    }
-  ],
-  "code": {
-    "paths": [
-      "extensions/codewiki/src/engine/rebuild.ts",
-      "extensions/codewiki/index.ts",
-      "extensions/codewiki/templates.ts"
-    ],
-    "digest": "dummy",
-    "expand": []
-  },
-  "evidence": {},
-  "expansion": {
-    "task_json": ".codewiki/roadmap/tasks/TASK-024/task.json",
-    "roadmap_state": ".codewiki/roadmap-state.json",
-    "status_state": "",
-    "graph": ".codewiki/index_graph.json",
-    "build_pack": ".codewiki/context/tasks/TASK-024/build.json",
-    "verify_pack": ".codewiki/context/tasks/TASK-024/verify.json",
-    "graph_slice": ".codewiki/context/tasks/TASK-024/graph.json"
   }
 }

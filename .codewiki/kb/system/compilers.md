@@ -6,19 +6,23 @@ summary: Alignment loops that create source-backed cycle builds for intent, know
 owners:
   - architecture
   - product
-updated: "2026-05-13"
+updated: "2026-05-16"
 code_paths:
-  - skills/codewiki-feedback/SKILL.md
-  - skills/codewiki-documentation/SKILL.md
-  - skills/codewiki-implementation/SKILL.md
-  - skills/codewiki-verify/SKILL.md
+  - src/application/builds.ts
+  - src/application/roadmap.ts
+  - src/application/task.ts
+  - src/application/gateway
+  - skills/codewiki/loops/feedback.md
+  - skills/codewiki/loops/documentation.md
+  - skills/codewiki/loops/implementation.md
+  - skills/codewiki/loops/validation.md
 ---
 
 # Compilers
 
 ## Responsibility
 
-CodeWiki compilers move information through context-driven development boundaries. Each compiler creates a build for one alignment cycle. The validation gateway evaluates the build; it does not define the requirements or do the compiler's work.
+CodeWiki compilers move information through context-driven development boundaries. Each compiler creates a build for one alignment cycle. Application compiler implementations live under `src/application/compilers/**`. Validation gateway implementations live separately under `src/application/gateways/**` and evaluate the build; they do not define the requirements or do the compiler's work.
 
 The target alignment flow is:
 
@@ -29,17 +33,19 @@ feedback loop -> feedback_build -> validation gateway
       -> implementation loop -> implementation_build -> validation gateway/publication
 ```
 
-A compiler turns one layer of information into the smallest useful source-backed build for the next layer. The graph state machine routes agents to the next required loop and source paths, but the graph is not the alignment engine and does not replace direct reads of builds, knowledge, roadmap tasks, validation evidence, tests, or code.
+A compiler turns one layer of information into the smallest useful source-backed build for the next layer. The state engine routes agents to the next required loop and source paths, but it does not replace direct reads of builds, knowledge, roadmap tasks, validation evidence, tests, code, or content proofs. Every semantic change must trace to an accepted compiler build before it can close, validate, or publish.
 
 ## Alignment cycles
 
 An alignment cycle is one build attempt inside a loop. A cycle starts from upstream source refs, policy, and project state; it ends with a build submitted to the validation gateway.
 
+Each loop should start behind a context boundary: a new agent session when available, or a clearly recorded context reset when the harness cannot spawn a new session. The next loop should read the handoff build, linked knowledge, roadmap task state, validation reports, tests, and code directly instead of relying on the producing loop's chat transcript or reasoning path.
+
 Cycle builds should carry:
 
 - the loop name and cycle sequence,
 - any superseded build or previous failed/blocked cycle,
-- policy profile and exit criteria,
+- policy profile, exit criteria, and isolation requirements for loop start, validation, and next-loop handoff,
 - requirement ids and requirement text,
 - source refs used to create the build,
 - evidence mapping for each criterion,
@@ -63,9 +69,9 @@ It should surface:
 - focused questions when intent is ambiguous,
 - blunt disagreement when the requested direction harms the project.
 
-The feedback loop presents a diff table before canonical edits. Each row shows current state, desired state, rationale, affected layers, risk, and a user action such as approve, edit, reject, or defer. Below the table, the agent should provide a first-principles assessment in the best interest of the project. Approved rows and accepted assessment compile into a `feedback_build`.
+The feedback loop presents a change table before canonical edits. Each row shows current state, desired state, rationale, affected layers, risk, and a user action such as approve, edit, reject, or defer. Below the table, the agent should provide a first-principles assessment in the best interest of the project. Approved rows and accepted assessment compile into a `feedback_build`.
 
-Pending, rejected, or deferred rows can remain in runtime/session UI state or be summarized as open questions, non-goals, or future candidates. They must not silently become downstream requirements.
+Pending, rejected, or deferred change rows can remain in runtime/session UI state or be summarized as open questions, non-goals, or future candidates. They must not silently become downstream requirements.
 
 ## Documentation loop
 
@@ -124,30 +130,36 @@ Compilers remain deterministic handoff producers. They do not own autonomous sch
 
 ## Propagation
 
-A change can originate in any layer:
+All agent-led semantic changes start with feedback classification, even when the observed symptom appears in code, tests, roadmap, documentation, package metadata, or publication. After classification, propagation can originate in any layer:
 
 - product intent can refine feedback requirements and knowledge,
 - knowledge changes can create planning drift,
 - planning changes can create implementation drift,
 - code changes can create documentation or planning drift,
 - validation failures can route back to implementation, planning, documentation, or feedback,
+- audit findings can route to feedback before becoming documentation, planning, or implementation work,
 - missing intent routes to feedback.
 
 Propagation is alignment work. The graph should expose the affected loop and source refs, while compilers produce the next cycle build.
 
 ## Rules
 
-- Builds carry loop handoff truth; they do not replace durable knowledge or executable code.
+- Builds carry loop handoff truth; they do not replace durable knowledge, executable code, or content proof.
 - Roadmap items track work state; they do not duplicate full requirements briefs.
 - Tests live in code/test directories, not in knowledge or roadmap folders.
 - Any compiler may escalate to feedback when intent is unclear.
 - Handoffs require a gateway verdict on the submitted build.
+- Gateways may require audit evidence and checked content proof before passing.
+- Compiler-loop handoffs require a fresh session or recorded context reset unless policy explicitly marks the boundary as not required.
+- Automated compilers should use adapter session handoff capability for required fresh boundaries instead of asking the user to run `/new` or equivalent manually.
 - Automated compiler execution must run through gated agency controls, not through unbounded loops.
 
 ## Related docs
 
 - [Builds](builds.md)
 - [Validation Gateway](validation-gateway.md)
+- [Alignment Model](alignment-model.md)
+- [Audits](audits.md)
 - [Roadmap](roadmap.md)
 - [Graph](graph.md)
 - [Agency Controller](agency.md)

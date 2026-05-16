@@ -1,21 +1,12 @@
 {
   "id": "TASK-039",
   "title": "Provide optional ThinkCode runtime adapter",
-  "status": "todo",
+  "status": "cancelled",
   "priority": "medium",
   "kind": "architecture",
-  "summary": "Make ThinkCode a first-class optional runtime for bounded CodeWiki context work while preserving native fallback paths for Pi, Codex, Claude Code, and other agent harnesses.",
-  "spec_paths": [
-    ".codewiki/kb/system/runtime/overview.md",
-    ".codewiki/kb/system/components/runtime-gateway.md",
-    ".codewiki/kb/system/v2-operating-model.md"
-  ],
-  "code_paths": [
-    "scripts/codewiki-gateway.mjs",
-    "skills",
-    "README.md",
-    "package.json"
-  ],
+  "summary": "Cancelled in roadmap transition after KB boundary refactor: ThinkCode remains an optional agent helper, not core CodeWiki roadmap work. Recreate only if a concrete adapter/runtime need appears after API, graph, and agency semantics stabilize.",
+  "spec_paths": [],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "think-code",
@@ -47,5 +38,5 @@
     "closure": ""
   },
   "created": "2026-05-06",
-  "updated": "2026-05-06"
+  "updated": "2026-05-09T09:11:42Z"
 }

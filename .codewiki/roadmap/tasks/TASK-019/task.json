@@ -5,14 +5,8 @@
   "priority": "high",
   "kind": "architecture",
   "summary": "Define and generate the small, revisioned read models agents and UI consume for status, roadmap queue, task context, drift, product brief, system architecture, and recent evidence.",
-  "spec_paths": [
-    ".codewiki/kb/system/v2-operating-model.md",
-    ".codewiki/kb/system/flows/context-memory.md"
-  ],
-  "code_paths": [
-    "extensions/codewiki/src/engine/rebuild.ts",
-    "extensions/codewiki/contracts.ts"
-  ],
+  "spec_paths": [],
+  "code_paths": [],
   "research_ids": [],
   "labels": [
     "view-schema",
@@ -29,7 +23,7 @@
     ],
     "non_goals": [
       "Build status panel graph interaction.",
-      "Implement heartbeat autonomy."
+      "Implement agency autonomy."
     ],
     "verification": [
       "npm run typecheck -- --pretty false",
@@ -43,5 +37,5 @@
     "closure": "View schemas and generation are implemented and verified."
   },
   "created": "2026-05-02",
-  "updated": "2026-05-02"
+  "updated": "2026-05-09T09:10:15Z"
 }
