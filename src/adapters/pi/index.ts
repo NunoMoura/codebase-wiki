@@ -12,6 +12,7 @@ import { readRoadmapTask } from "../../application/roadmap.ts";
 import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project.ts";
 import { runRebuild } from "../../application/state-artifacts.ts";
 import { executeCodewikiAgency } from "./tools/agency.ts";
+import { registerCodewikiArtifactStatusTool } from "./tools/artifact-status.ts";
 import { registerCodewikiAuditTool } from "./tools/audit.ts";
 import { executeCodewikiClaim } from "./tools/claim.ts";
 import { executeDiffTableAction } from "../../application/diff-table.ts";
@@ -129,6 +130,7 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 	});
 
 	registerCodewikiStateTool(pi);
+	registerCodewikiArtifactStatusTool(pi);
 	registerCodewikiAuditTool(pi);
 	registerCodewikiSessionHandoffTool(pi);
 
@@ -225,14 +227,14 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 
 	pi.registerTool({
 		name: "codewiki_claim",
-		label: "Codewiki Claim",
+		label: "Codewiki Claim (legacy alias)",
 		description:
-			"Create, release, heartbeat, or list scoped change claims for parallel CodeWiki work",
+			"Deprecated compatibility alias for codewiki_artifact_status. Prefer artifact-status language for parallel CodeWiki work.",
 		promptSnippet:
-			"Use scoped change claims to coordinate parallel sessions across docs, roadmap, builds, validation, and code.",
+			"Compatibility only: use codewiki_artifact_status for new runtime artifact coordination.",
 		promptGuidelines: [
-			"Use this before non-trivial semantic changes when another session may touch overlapping docs, roadmap items, builds, validation reports, or code paths.",
-			"Claims are temporary leases, not requirements or source of truth; roadmap tasks, builds, validation, and code remain canonical truth.",
+			"Prefer codewiki_artifact_status. Keep this alias only for existing callers during migration.",
+			"Runtime artifact status is not roadmap truth; roadmap tasks, builds, validation, and code remain canonical truth.",
 			"Read/read overlap is safe, read/write overlap warns, and write/write overlap blocks unless explicitly forced.",
 		],
 		parameters: codewikiClaimToolInputSchema,

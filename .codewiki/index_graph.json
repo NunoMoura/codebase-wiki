@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T07:03:17.894Z",
+  "generated_at": "2026-05-16T08:11:00.229Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -104,7 +104,7 @@
       "kind": "code_path",
       "path": "skills/codewiki/SKILL.md",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/adapters/pi/ui",
@@ -126,7 +126,7 @@
       "kind": "code_path",
       "path": "tests/smoke/package-smoke.test.mjs",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/application/lint.ts",
@@ -209,14 +209,14 @@
       "kind": "code_path",
       "path": "skills",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src",
       "kind": "code_path",
       "path": "src",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/product/users/external-users.md",
@@ -269,21 +269,21 @@
       "kind": "code_path",
       "path": "src/adapters",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/application",
       "kind": "code_path",
       "path": "src/application",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:skills/codewiki",
       "kind": "code_path",
       "path": "skills/codewiki",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/agency.md",
@@ -298,7 +298,7 @@
       "kind": "code_path",
       "path": "src/adapters/pi",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/alignment-model.md",
@@ -313,7 +313,7 @@
       "kind": "code_path",
       "path": "src/application/graph.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/application/builds.ts",
@@ -349,7 +349,7 @@
       "kind": "code_path",
       "path": "src/domain",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/audits.md",
@@ -379,14 +379,14 @@
       "kind": "code_path",
       "path": "src/domain/shared/types.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/adapters/pi/schemas.ts",
       "kind": "code_path",
       "path": "src/adapters/pi/schemas.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/change-lifecycle.md",
@@ -520,14 +520,14 @@
       "kind": "code_path",
       "path": "src/application/state-builders.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/application/state.ts",
       "kind": "code_path",
       "path": "src/application/state.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/knowledge.md",
@@ -1014,7 +1014,7 @@
       "kind": "code_path",
       "path": "src/adapters/pi/index.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "task:TASK-039",
@@ -1109,7 +1109,7 @@
       "kind": "code_path",
       "path": "tests",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:scripts",
@@ -1145,7 +1145,7 @@
       "kind": "code_path",
       "path": "tests/smoke",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "task:TASK-082",
@@ -1204,7 +1204,7 @@
     {
       "id": "task:TASK-086",
       "kind": "roadmap_task",
-      "title": "Migrate public coordination API to session queue scoped leases",
+      "title": "Migrate public coordination API to artifact status",
       "layer": "roadmap",
       "status": "in_progress",
       "alignment_state": "drift"
@@ -1214,7 +1214,7 @@
       "kind": "code_path",
       "path": "src/application/claims.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/application/session.ts",
@@ -1228,7 +1228,21 @@
       "kind": "code_path",
       "path": "src/adapters/pi/tools/claim.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
+    },
+    {
+      "id": "code:src/adapters/pi/tools/session-handoff.ts",
+      "kind": "code_path",
+      "path": "src/adapters/pi/tools/session-handoff.ts",
+      "layer": "code",
+      "alignment_state": "drift"
+    },
+    {
+      "id": "code:tests/smoke/session-handoff.test.mjs",
+      "kind": "code_path",
+      "path": "tests/smoke/session-handoff.test.mjs",
+      "layer": "code",
+      "alignment_state": "drift"
     },
     {
       "id": "task:TASK-087",
@@ -12008,6 +12022,319 @@
       "path": "TASK-082"
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "drift",
+      "compacted": false,
+      "default_hidden": false,
+      "archive_ref": "refs/codewiki/archive/task/TASK-086",
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+          ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+          "codewiki_build tool",
+          ".codewiki/kb/system/api.md",
+          "tests/smoke/session-handoff.test.mjs",
+          "TASK-086"
+        ],
+        "audit_evidence_refs": [],
+        "content_proof_refs": [
+          "tests/smoke/session-handoff.test.mjs@sha256:018f52a3a8356bcfd4bd0356d9e129c559dd5f6aab0a29e3f5d31f0400147d38",
+          ".codewiki/kb/system/api.md@sha256:8d55c8323dff157e44b2286c40dc83def79fb3804507c20cef17cb7e7e3a878a",
+          "refs/codewiki/archive/task/TASK-086",
+          "sha256:2c21feefb606c5c5b4288355ce4bca19550be5a121a8d5d820beb680cd221a15"
+        ],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/session-handoff.test.mjs@sha256:018f52a3a8356bcfd4bd0356d9e129c559dd5f6aab0a29e3f5d31f0400147d38",
+      "kind": "content_proof",
+      "path": "tests/smoke/session-handoff.test.mjs@sha256:018f52a3a8356bcfd4bd0356d9e129c559dd5f6aab0a29e3f5d31f0400147d38",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:.codewiki/kb/system/api.md@sha256:8d55c8323dff157e44b2286c40dc83def79fb3804507c20cef17cb7e7e3a878a",
+      "kind": "content_proof",
+      "path": ".codewiki/kb/system/api.md@sha256:8d55c8323dff157e44b2286c40dc83def79fb3804507c20cef17cb7e7e3a878a",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:refs/codewiki/archive/task/TASK-086",
+      "kind": "content_proof",
+      "path": "refs/codewiki/archive/task/TASK-086",
+      "proof_kind": "git_ref",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:2c21feefb606c5c5b4288355ce4bca19550be5a121a8d5d820beb680cd221a15",
+      "kind": "content_proof",
+      "path": "sha256:2c21feefb606c5c5b4288355ce4bca19550be5a121a8d5d820beb680cd221a15",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "archive_ref:refs/codewiki/archive/task/TASK-086",
+      "kind": "git_archive_ref",
+      "path": "refs/codewiki/archive/task/TASK-086",
+      "task_id": "TASK-086",
+      "digest": "sha256:2c21feefb606c5c5b4288355ce4bca19550be5a121a8d5d820beb680cd221a15",
+      "restore_command": "/wiki-restore TASK-086",
+      "safety_status": "blocked",
+      "default_hidden": true,
+      "layer": "archive"
+    },
+    {
+      "id": "closure:TASK-086",
+      "kind": "closure_brief",
+      "path": "TASK-086"
+    },
+    {
+      "id": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
+      "archive_ref": "refs/codewiki/archive/task/TASK-086",
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+          ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+          "codewiki_build tool",
+          "README.md",
+          ".codewiki/kb/system/api.md",
+          ".codewiki/kb/system/adapters.md",
+          ".codewiki/kb/system/agency.md",
+          "TASK-086",
+          "tests/smoke/session-handoff.test.mjs",
+          "tests/smoke/package-smoke.test.mjs"
+        ],
+        "audit_evidence_refs": [],
+        "content_proof_refs": [
+          "tests/smoke/session-handoff.test.mjs@sha256:018f52a3a8356bcfd4bd0356d9e129c559dd5f6aab0a29e3f5d31f0400147d38",
+          "tests/smoke/package-smoke.test.mjs@sha256:21aa3d3ccb3644f0d98925719becf502597adafd30e55c4a18837bfd22c00cf4",
+          "README.md@sha256:855aa70acb23772372faf71aa5802c56911aae8c2a960de7d8663404ddee5d0a",
+          ".codewiki/kb/system/api.md@sha256:9e2a4f88bbd4db69acafc7f476220f0ed3a9ee4fcbd2ab537899acde1418ecc3",
+          ".codewiki/kb/system/adapters.md@sha256:9c75248953903b8f7ca72d89d7f82244170785d5413cab5e715d1d6f3a023c02",
+          ".codewiki/kb/system/agency.md@sha256:d1e6c8ac66c69156b9308d79d6b1c904eb832d216e593ea376308a372d6c92b8",
+          "refs/codewiki/archive/task/TASK-086",
+          "sha256:eaaa078d6acab17c768f375d731f566807d4ee1f877e71d5f6a6d69fd9ee97fa"
+        ],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/package-smoke.test.mjs@sha256:21aa3d3ccb3644f0d98925719becf502597adafd30e55c4a18837bfd22c00cf4",
+      "kind": "content_proof",
+      "path": "tests/smoke/package-smoke.test.mjs@sha256:21aa3d3ccb3644f0d98925719becf502597adafd30e55c4a18837bfd22c00cf4",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:README.md@sha256:855aa70acb23772372faf71aa5802c56911aae8c2a960de7d8663404ddee5d0a",
+      "kind": "content_proof",
+      "path": "README.md@sha256:855aa70acb23772372faf71aa5802c56911aae8c2a960de7d8663404ddee5d0a",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:.codewiki/kb/system/api.md@sha256:9e2a4f88bbd4db69acafc7f476220f0ed3a9ee4fcbd2ab537899acde1418ecc3",
+      "kind": "content_proof",
+      "path": ".codewiki/kb/system/api.md@sha256:9e2a4f88bbd4db69acafc7f476220f0ed3a9ee4fcbd2ab537899acde1418ecc3",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:.codewiki/kb/system/adapters.md@sha256:9c75248953903b8f7ca72d89d7f82244170785d5413cab5e715d1d6f3a023c02",
+      "kind": "content_proof",
+      "path": ".codewiki/kb/system/adapters.md@sha256:9c75248953903b8f7ca72d89d7f82244170785d5413cab5e715d1d6f3a023c02",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:.codewiki/kb/system/agency.md@sha256:d1e6c8ac66c69156b9308d79d6b1c904eb832d216e593ea376308a372d6c92b8",
+      "kind": "content_proof",
+      "path": ".codewiki/kb/system/agency.md@sha256:d1e6c8ac66c69156b9308d79d6b1c904eb832d216e593ea376308a372d6c92b8",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:eaaa078d6acab17c768f375d731f566807d4ee1f877e71d5f6a6d69fd9ee97fa",
+      "kind": "content_proof",
+      "path": "sha256:eaaa078d6acab17c768f375d731f566807d4ee1f877e71d5f6a6d69fd9ee97fa",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "drift",
+      "compacted": false,
+      "default_hidden": false,
+      "archive_ref": "refs/codewiki/archive/task/TASK-086",
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+          ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+          "User request: fix /wiki-session-handoff before continuing parallel resume work",
+          "codewiki_build tool",
+          ".codewiki/kb/system/adapters.md",
+          ".codewiki/kb/system/agency.md",
+          "src/adapters/pi/tools/session-handoff.ts",
+          "src/adapters/pi/schemas.ts",
+          "skills/codewiki/SKILL.md",
+          "tests/smoke/session-handoff.test.mjs",
+          "TASK-086"
+        ],
+        "audit_evidence_refs": [],
+        "content_proof_refs": [
+          "tests/smoke/session-handoff.test.mjs@sha256:23408888e1d98f5194d083579c18d34484a3e9d20497c42c4f9aa75da28d9784",
+          "src/adapters/pi/tools/session-handoff.ts@sha256:6de493025dbaf093399ac75bd31d63e14fb9ba6a42005e492d3838f8f23fa3d3",
+          "src/adapters/pi/schemas.ts@sha256:eca95da803b52fc446499a87c3e4caf4d8e2911a18cebcc31f5dde2caadd9b88",
+          "skills/codewiki/SKILL.md@sha256:5a15823af1ea04db0067ad97c79b0de1ee13413e61d4d60af24e44ba466862b1",
+          ".codewiki/kb/system/adapters.md@sha256:c2345a3422b017c164452f96750129f467d965953785e291daed1bf77aea420e",
+          ".codewiki/kb/system/agency.md@sha256:67af8e359a00d795bd333ba1dc3cad9f53f91e69d3ba228b72753dad8b08a31f",
+          "refs/codewiki/archive/task/TASK-086",
+          "sha256:72b5ec4c52f2e4f3579c2167d812ff451e69d6adb1f229ae5918a06c7563d7a0"
+        ],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:User request: fix /wiki-session-handoff before continuing parallel resume work",
+      "kind": "canonical_source_ref",
+      "path": "User request: fix /wiki-session-handoff before continuing parallel resume work",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/adapters/pi/tools/session-handoff.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/adapters/pi/tools/session-handoff.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/session-handoff.test.mjs@sha256:23408888e1d98f5194d083579c18d34484a3e9d20497c42c4f9aa75da28d9784",
+      "kind": "content_proof",
+      "path": "tests/smoke/session-handoff.test.mjs@sha256:23408888e1d98f5194d083579c18d34484a3e9d20497c42c4f9aa75da28d9784",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/tools/session-handoff.ts@sha256:6de493025dbaf093399ac75bd31d63e14fb9ba6a42005e492d3838f8f23fa3d3",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/tools/session-handoff.ts@sha256:6de493025dbaf093399ac75bd31d63e14fb9ba6a42005e492d3838f8f23fa3d3",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/schemas.ts@sha256:eca95da803b52fc446499a87c3e4caf4d8e2911a18cebcc31f5dde2caadd9b88",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/schemas.ts@sha256:eca95da803b52fc446499a87c3e4caf4d8e2911a18cebcc31f5dde2caadd9b88",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:skills/codewiki/SKILL.md@sha256:5a15823af1ea04db0067ad97c79b0de1ee13413e61d4d60af24e44ba466862b1",
+      "kind": "content_proof",
+      "path": "skills/codewiki/SKILL.md@sha256:5a15823af1ea04db0067ad97c79b0de1ee13413e61d4d60af24e44ba466862b1",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:.codewiki/kb/system/adapters.md@sha256:c2345a3422b017c164452f96750129f467d965953785e291daed1bf77aea420e",
+      "kind": "content_proof",
+      "path": ".codewiki/kb/system/adapters.md@sha256:c2345a3422b017c164452f96750129f467d965953785e291daed1bf77aea420e",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:.codewiki/kb/system/agency.md@sha256:67af8e359a00d795bd333ba1dc3cad9f53f91e69d3ba228b72753dad8b08a31f",
+      "kind": "content_proof",
+      "path": ".codewiki/kb/system/agency.md@sha256:67af8e359a00d795bd333ba1dc3cad9f53f91e69d3ba228b72753dad8b08a31f",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:72b5ec4c52f2e4f3579c2167d812ff451e69d6adb1f229ae5918a06c7563d7a0",
+      "kind": "content_proof",
+      "path": "sha256:72b5ec4c52f2e4f3579c2167d812ff451e69d6adb1f229ae5918a06c7563d7a0",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "code:.codewiki/kb/system/agency.md",
+      "kind": "code_path",
+      "path": ".codewiki/kb/system/agency.md",
+      "layer": "code"
+    },
+    {
       "id": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
       "kind": "implementation_build",
       "path": ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
@@ -12522,6 +12849,237 @@
       "default_hidden": true
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "drift",
+      "compacted": false,
+      "default_hidden": false,
+      "archive_ref": "refs/codewiki/archive/task/TASK-086",
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+          ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
+          ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+          "codewiki_build tool",
+          "src/adapters/pi/tools/artifact-status.ts",
+          "src/adapters/pi/index.ts",
+          "src/adapters/pi/schemas.ts",
+          "src/adapters/pi/tools/claim.ts",
+          "src/adapters/pi/tools/state.ts",
+          "src/application/claims.ts",
+          "src/application/graph.ts",
+          "src/application/state.ts",
+          "src/application/state-builders.ts",
+          "src/domain/shared/types.ts",
+          "README.md",
+          "skills/codewiki/SKILL.md",
+          "package.json",
+          "tests/smoke/package-smoke.test.mjs",
+          "tests/smoke/resume-scheduler.test.mjs",
+          "TASK-086"
+        ],
+        "audit_evidence_refs": [],
+        "content_proof_refs": [
+          "tests/smoke/package-smoke.test.mjs@sha256:21aa3d3ccb3644f0d98925719becf502597adafd30e55c4a18837bfd22c00cf4",
+          "tests/smoke/resume-scheduler.test.mjs@sha256:dd2a6324ceee14efee4f2bde910e6083e9e3e7079c371166822a01f0b51f0c99",
+          "src/adapters/pi/tools/artifact-status.ts@sha256:055c294e6905813caf3f07b88326997631f15f1eb911284d121d5c6709b57e8a",
+          "src/adapters/pi/index.ts@sha256:7f2e0cc37ad319a4f9466f73ccbad8c2b84c17a4e16448b90c471439c066e655",
+          "src/adapters/pi/schemas.ts@sha256:7a1db43a3e4f22c8729f25b28df9b248746965edfc97cd0d18759cb361484d8b",
+          "src/adapters/pi/tools/claim.ts@sha256:fabbc273ff9ad65875ed9a5558bb1e90a1dfd547f3deb2a813e2507c11612397",
+          "src/adapters/pi/tools/state.ts@sha256:00d387ce2dfefdf6453dc89d3f874a102c832481c3c4aa893f09cce81172e657",
+          "src/application/claims.ts@sha256:96f78de0187cbadae13f10f49a65ad338d93a72c80aaa9db619b1580b095a07a",
+          "src/application/graph.ts@sha256:db3bbe85f8fe798878b3932fddb993f1acd0c3cdb447006673fa05c95405be91",
+          "src/application/state.ts@sha256:c661ee49955a4b0ee22790d256a3745d0cc8f338ca67af6b3e2b9dfce2018f90",
+          "src/application/state-builders.ts@sha256:e6176bfae54b3de2147d7341d800f87471d5bc1c47baaf5bd54ed86aba9be0ae",
+          "src/domain/shared/types.ts@sha256:834c40d4c9106462afc9f994b0f9b35976d36b987a3441bb32ea1faf7d004343",
+          "README.md@sha256:2e961747eb2a6032a7ba985a60a165050e9233d00bb5c713130c4bebf799691c",
+          "skills/codewiki/SKILL.md@sha256:b768aeb2e33088c62487ed20c34869e6ef278dcc0c06fdc34d10f469acbc6ec5",
+          "package.json@sha256:d09359ff5c2d4dbd4093ab8509edae19fb1963977b3eb606718256bfdf31236f",
+          "refs/codewiki/archive/task/TASK-086",
+          "sha256:cd0b609cb3a9a57ca4257b84169936ef4a82c04a230eecca753a3ca49e022ca1"
+        ],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/adapters/pi/tools/artifact-status.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/adapters/pi/tools/artifact-status.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/adapters/pi/tools/claim.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/adapters/pi/tools/claim.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/adapters/pi/tools/state.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/adapters/pi/tools/state.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:tests/smoke/resume-scheduler.test.mjs",
+      "kind": "canonical_source_ref",
+      "path": "tests/smoke/resume-scheduler.test.mjs",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/resume-scheduler.test.mjs@sha256:dd2a6324ceee14efee4f2bde910e6083e9e3e7079c371166822a01f0b51f0c99",
+      "kind": "content_proof",
+      "path": "tests/smoke/resume-scheduler.test.mjs@sha256:dd2a6324ceee14efee4f2bde910e6083e9e3e7079c371166822a01f0b51f0c99",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/tools/artifact-status.ts@sha256:055c294e6905813caf3f07b88326997631f15f1eb911284d121d5c6709b57e8a",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/tools/artifact-status.ts@sha256:055c294e6905813caf3f07b88326997631f15f1eb911284d121d5c6709b57e8a",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/index.ts@sha256:7f2e0cc37ad319a4f9466f73ccbad8c2b84c17a4e16448b90c471439c066e655",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/index.ts@sha256:7f2e0cc37ad319a4f9466f73ccbad8c2b84c17a4e16448b90c471439c066e655",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/schemas.ts@sha256:7a1db43a3e4f22c8729f25b28df9b248746965edfc97cd0d18759cb361484d8b",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/schemas.ts@sha256:7a1db43a3e4f22c8729f25b28df9b248746965edfc97cd0d18759cb361484d8b",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/tools/claim.ts@sha256:fabbc273ff9ad65875ed9a5558bb1e90a1dfd547f3deb2a813e2507c11612397",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/tools/claim.ts@sha256:fabbc273ff9ad65875ed9a5558bb1e90a1dfd547f3deb2a813e2507c11612397",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/tools/state.ts@sha256:00d387ce2dfefdf6453dc89d3f874a102c832481c3c4aa893f09cce81172e657",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/tools/state.ts@sha256:00d387ce2dfefdf6453dc89d3f874a102c832481c3c4aa893f09cce81172e657",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/application/claims.ts@sha256:96f78de0187cbadae13f10f49a65ad338d93a72c80aaa9db619b1580b095a07a",
+      "kind": "content_proof",
+      "path": "src/application/claims.ts@sha256:96f78de0187cbadae13f10f49a65ad338d93a72c80aaa9db619b1580b095a07a",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/application/graph.ts@sha256:db3bbe85f8fe798878b3932fddb993f1acd0c3cdb447006673fa05c95405be91",
+      "kind": "content_proof",
+      "path": "src/application/graph.ts@sha256:db3bbe85f8fe798878b3932fddb993f1acd0c3cdb447006673fa05c95405be91",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/application/state.ts@sha256:c661ee49955a4b0ee22790d256a3745d0cc8f338ca67af6b3e2b9dfce2018f90",
+      "kind": "content_proof",
+      "path": "src/application/state.ts@sha256:c661ee49955a4b0ee22790d256a3745d0cc8f338ca67af6b3e2b9dfce2018f90",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/application/state-builders.ts@sha256:e6176bfae54b3de2147d7341d800f87471d5bc1c47baaf5bd54ed86aba9be0ae",
+      "kind": "content_proof",
+      "path": "src/application/state-builders.ts@sha256:e6176bfae54b3de2147d7341d800f87471d5bc1c47baaf5bd54ed86aba9be0ae",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/domain/shared/types.ts@sha256:834c40d4c9106462afc9f994b0f9b35976d36b987a3441bb32ea1faf7d004343",
+      "kind": "content_proof",
+      "path": "src/domain/shared/types.ts@sha256:834c40d4c9106462afc9f994b0f9b35976d36b987a3441bb32ea1faf7d004343",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:README.md@sha256:2e961747eb2a6032a7ba985a60a165050e9233d00bb5c713130c4bebf799691c",
+      "kind": "content_proof",
+      "path": "README.md@sha256:2e961747eb2a6032a7ba985a60a165050e9233d00bb5c713130c4bebf799691c",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:skills/codewiki/SKILL.md@sha256:b768aeb2e33088c62487ed20c34869e6ef278dcc0c06fdc34d10f469acbc6ec5",
+      "kind": "content_proof",
+      "path": "skills/codewiki/SKILL.md@sha256:b768aeb2e33088c62487ed20c34869e6ef278dcc0c06fdc34d10f469acbc6ec5",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:package.json@sha256:d09359ff5c2d4dbd4093ab8509edae19fb1963977b3eb606718256bfdf31236f",
+      "kind": "content_proof",
+      "path": "package.json@sha256:d09359ff5c2d4dbd4093ab8509edae19fb1963977b3eb606718256bfdf31236f",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:cd0b609cb3a9a57ca4257b84169936ef4a82c04a230eecca753a3ca49e022ca1",
+      "kind": "content_proof",
+      "path": "sha256:cd0b609cb3a9a57ca4257b84169936ef4a82c04a230eecca753a3ca49e022ca1",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "code:src/adapters/pi/tools/artifact-status.ts",
+      "kind": "code_path",
+      "path": "src/adapters/pi/tools/artifact-status.ts",
+      "layer": "code"
+    },
+    {
+      "id": "code:src/adapters/pi/tools/state.ts",
+      "kind": "code_path",
+      "path": "src/adapters/pi/tools/state.ts",
+      "layer": "code"
+    },
+    {
+      "id": "test:tests/smoke/resume-scheduler.test.mjs",
+      "kind": "test_file",
+      "path": "tests/smoke/resume-scheduler.test.mjs"
+    },
+    {
       "id": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
       "kind": "implementation_build",
       "path": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
@@ -12529,9 +13087,9 @@
       "status": "accepted",
       "layer": "build",
       "lifecycle_state": "accepted",
-      "alignment_state": "aligned",
-      "compacted": true,
-      "default_hidden": true,
+      "alignment_state": "drift",
+      "compacted": false,
+      "default_hidden": false,
       "archive_ref": "refs/codewiki/archive/task/TASK-086",
       "superseded_by": [],
       "evidence_summary": {
@@ -12561,28 +13119,6 @@
         ],
         "validation_attestation_refs": []
       }
-    },
-    {
-      "id": "source:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "kind": "canonical_source_ref",
-      "path": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "source:tests/smoke/resume-scheduler.test.mjs",
-      "kind": "canonical_source_ref",
-      "path": "tests/smoke/resume-scheduler.test.mjs",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:tests/smoke/resume-scheduler.test.mjs@sha256:dd2a6324ceee14efee4f2bde910e6083e9e3e7079c371166822a01f0b51f0c99",
-      "kind": "content_proof",
-      "path": "tests/smoke/resume-scheduler.test.mjs@sha256:dd2a6324ceee14efee4f2bde910e6083e9e3e7079c371166822a01f0b51f0c99",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
     },
     {
       "id": "content_proof:tests/smoke/package-smoke.test.mjs@sha256:5906cfa76159013f2b1e3cb08904973686adc64108e06bc10308b5457f02dccf",
@@ -12617,22 +13153,6 @@
       "default_hidden": true
     },
     {
-      "id": "content_proof:package.json@sha256:d09359ff5c2d4dbd4093ab8509edae19fb1963977b3eb606718256bfdf31236f",
-      "kind": "content_proof",
-      "path": "package.json@sha256:d09359ff5c2d4dbd4093ab8509edae19fb1963977b3eb606718256bfdf31236f",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:refs/codewiki/archive/task/TASK-086",
-      "kind": "content_proof",
-      "path": "refs/codewiki/archive/task/TASK-086",
-      "proof_kind": "git_ref",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
       "id": "content_proof:sha256:ac815696d14260ed60582a484178b17042662471d07a562343675328526de7ee",
       "kind": "content_proof",
       "path": "sha256:ac815696d14260ed60582a484178b17042662471d07a562343675328526de7ee",
@@ -12641,15 +13161,179 @@
       "default_hidden": true
     },
     {
-      "id": "archive_ref:refs/codewiki/archive/task/TASK-086",
-      "kind": "git_archive_ref",
-      "path": "refs/codewiki/archive/task/TASK-086",
-      "task_id": "TASK-086",
-      "digest": "sha256:ac815696d14260ed60582a484178b17042662471d07a562343675328526de7ee",
-      "restore_command": "/wiki-restore TASK-086",
-      "safety_status": "blocked",
-      "default_hidden": true,
-      "layer": "archive"
+      "id": "claim:CLAIM-061",
+      "kind": "change_claim",
+      "claim_id": "CLAIM-061",
+      "session_id": "019e2fa1-fd52-7709-bcaf-f52789dc174d",
+      "agent_name": "Puma",
+      "mode": "read",
+      "role": "validator",
+      "status": "active",
+      "summary": "Fresh implementation validation for TASK-086 artifact-status public API slice",
+      "expires_at": "2026-05-16T09:14:28.600Z",
+      "scopes": [
+        {
+          "layer": "roadmap",
+          "task_id": "TASK-086"
+        },
+        {
+          "layer": "build",
+          "ref": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json"
+        },
+        {
+          "layer": "validation",
+          "path": ".codewiki/validation/**"
+        },
+        {
+          "layer": "code",
+          "path": "src/adapters/pi/tools/artifact-status.ts"
+        },
+        {
+          "layer": "code",
+          "path": "src/adapters/pi/tools/claim.ts"
+        },
+        {
+          "layer": "code",
+          "path": "src/application/claims.ts"
+        },
+        {
+          "layer": "code",
+          "path": "tests/smoke/package-smoke.test.mjs"
+        }
+      ]
+    },
+    {
+      "id": "claim_scope:TASK-086",
+      "kind": "change_claim_scope",
+      "path": "TASK-086"
+    },
+    {
+      "id": "claim_scope:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "kind": "change_claim_scope",
+      "path": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json"
+    },
+    {
+      "id": "claim_scope:.codewiki/validation/**",
+      "kind": "change_claim_scope",
+      "path": ".codewiki/validation/**"
+    },
+    {
+      "id": "claim_scope:src/adapters/pi/tools/artifact-status.ts",
+      "kind": "change_claim_scope",
+      "path": "src/adapters/pi/tools/artifact-status.ts"
+    },
+    {
+      "id": "claim_scope:src/adapters/pi/tools/claim.ts",
+      "kind": "change_claim_scope",
+      "path": "src/adapters/pi/tools/claim.ts"
+    },
+    {
+      "id": "claim_scope:src/application/claims.ts",
+      "kind": "change_claim_scope",
+      "path": "src/application/claims.ts"
+    },
+    {
+      "id": "claim_scope:tests/smoke/package-smoke.test.mjs",
+      "kind": "change_claim_scope",
+      "path": "tests/smoke/package-smoke.test.mjs"
+    },
+    {
+      "id": "claim:CLAIM-060",
+      "kind": "change_claim",
+      "claim_id": "CLAIM-060",
+      "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
+      "agent_name": "Ibis",
+      "mode": "write",
+      "role": "builder",
+      "status": "active",
+      "summary": "Continue TASK-086 with public artifact-status tool/API alias over session queue.",
+      "expires_at": "2026-05-16T11:04:51.880Z",
+      "scopes": [
+        {
+          "layer": "code",
+          "path": "src/application/claims.ts"
+        },
+        {
+          "layer": "code",
+          "path": "src/adapters/pi/tools/**"
+        },
+        {
+          "layer": "code",
+          "path": "src/adapters/pi/index.ts"
+        },
+        {
+          "layer": "code",
+          "path": "src/adapters/pi/schemas.ts"
+        },
+        {
+          "layer": "code",
+          "path": "src/domain/shared/types.ts"
+        },
+        {
+          "layer": "code",
+          "path": "tests/smoke/**"
+        },
+        {
+          "layer": "code",
+          "path": "README.md"
+        },
+        {
+          "layer": "code",
+          "path": "skills/codewiki/SKILL.md"
+        },
+        {
+          "layer": "roadmap",
+          "task_id": "TASK-086"
+        },
+        {
+          "layer": "build",
+          "path": ".codewiki/builds/implementation/**"
+        },
+        {
+          "layer": "validation",
+          "path": ".codewiki/validation/**"
+        }
+      ]
+    },
+    {
+      "id": "claim_scope:src/adapters/pi/tools/**",
+      "kind": "change_claim_scope",
+      "path": "src/adapters/pi/tools/**"
+    },
+    {
+      "id": "claim_scope:src/adapters/pi/index.ts",
+      "kind": "change_claim_scope",
+      "path": "src/adapters/pi/index.ts"
+    },
+    {
+      "id": "claim_scope:src/adapters/pi/schemas.ts",
+      "kind": "change_claim_scope",
+      "path": "src/adapters/pi/schemas.ts"
+    },
+    {
+      "id": "claim_scope:src/domain/shared/types.ts",
+      "kind": "change_claim_scope",
+      "path": "src/domain/shared/types.ts"
+    },
+    {
+      "id": "claim_scope:tests/smoke/**",
+      "kind": "change_claim_scope",
+      "path": "tests/smoke/**"
+    },
+    {
+      "id": "claim_scope:README.md",
+      "kind": "change_claim_scope",
+      "path": "README.md"
+    },
+    {
+      "id": "claim_scope:skills/codewiki/SKILL.md",
+      "kind": "change_claim_scope",
+      "path": "skills/codewiki/SKILL.md"
+    },
+    {
+      "id": "claim_scope:.codewiki/builds/implementation/**",
+      "kind": "change_claim_scope",
+      "path": ".codewiki/builds/implementation/**"
     },
     {
       "id": "validation:.codewiki/validation/2026-05-13-task-close-block-task-074.json",
@@ -13056,6 +13740,130 @@
       "default_hidden": true
     },
     {
+      "id": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "verdict": "block",
+      "isolation_status": "isolated",
+      "isolation": {
+        "worktree_path": "/home/nunoc/projects/codewiki",
+        "base_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+        "head_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+        "validated_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+        "tree_sha": "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+        "working_tree_digest": "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1",
+        "clean": false,
+        "fresh_context": true,
+        "notes": "Fresh validator context. Worktree dirty by TASK-086 changes; digest computed from git status --short, git diff --binary, and untracked file content hashes before writing this validation artifact.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json"
+        ],
+        "audit_evidence_refs": [
+          "codewiki_audit:alignment:pass",
+          "codewiki_audit:changed:warning",
+          "codewiki_audit:task:pass",
+          "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only"
+        ],
+        "content_proof_refs": [
+          "2d2673719bd55fd50876ccae84672c3773b7215a",
+          "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+          "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1"
+        ]
+      }
+    },
+    {
+      "id": "audit:codewiki_audit:alignment:pass",
+      "kind": "audit_evidence",
+      "path": "codewiki_audit:alignment:pass",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:codewiki_audit:changed:warning",
+      "kind": "audit_evidence",
+      "path": "codewiki_audit:changed:warning",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:codewiki_audit:task:pass",
+      "kind": "audit_evidence",
+      "path": "codewiki_audit:task:pass",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only",
+      "kind": "audit_evidence",
+      "path": "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:2d2673719bd55fd50876ccae84672c3773b7215a",
+      "kind": "content_proof",
+      "path": "2d2673719bd55fd50876ccae84672c3773b7215a",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+      "kind": "content_proof",
+      "path": "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1",
+      "kind": "content_proof",
+      "path": "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+      "verdict": "fail",
+      "isolation_status": "isolated",
+      "isolation": {
+        "worktree_path": "/home/nunoc/projects/codewiki",
+        "base_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+        "validated_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+        "tree_sha": "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+        "working_tree_digest": "sha256:316210a5c85ac533cf8ffe07ab9bbd2858ea441fbc03e3f0fa271d47757df05d",
+        "clean": false,
+        "fresh_context": true,
+        "notes": "Checked dirty pre-commit content from fresh validator context before writing this validation artifact; digest covers HEAD, status, staged/unstaged binary diffs, and untracked file content hashes.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json"
+        ],
+        "audit_evidence_refs": [],
+        "content_proof_refs": [
+          "2d2673719bd55fd50876ccae84672c3773b7215a",
+          "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+          "sha256:316210a5c85ac533cf8ffe07ab9bbd2858ea441fbc03e3f0fa271d47757df05d"
+        ]
+      }
+    },
+    {
+      "id": "content_proof:sha256:316210a5c85ac533cf8ffe07ab9bbd2858ea441fbc03e3f0fa271d47757df05d",
+      "kind": "content_proof",
+      "path": "sha256:316210a5c85ac533cf8ffe07ab9bbd2858ea441fbc03e3f0fa271d47757df05d",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
       "id": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-16-implementation-pass-task-079.json",
@@ -13285,44 +14093,33 @@
       "verdict": "pass",
       "isolation_status": "isolated",
       "isolation": {
-        "working_tree_digest": "sha256:bdfe7803cdfb9034c491120803516c74db14a3f1f5b1c87b61eacfa4097bbef9",
+        "worktree_path": "/home/nunoc/projects/codewiki",
+        "base_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+        "head_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+        "validated_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+        "tree_sha": "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+        "working_tree_digest": "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1",
         "clean": false,
         "fresh_context": true,
-        "builder_claim_id": "CLAIM-059",
-        "related_claim_ids": [
-          "CLAIM-059"
-        ],
-        "notes": "Validated from implementation build and source artifacts, not builder chat. Dirty pre-commit worktree proof covers changed/untracked files listed by git status.",
+        "notes": "Fresh validator context. Worktree dirty by TASK-086 changes; digest computed from git status --short, git diff --binary, and untracked file content hashes before writing validation artifacts.",
         "role": "validator"
       },
       "evidence_summary": {
         "canonical_source_refs": [
-          ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+          ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json"
         ],
         "audit_evidence_refs": [
           "audit:alignment",
           "audit:changed",
-          "codewiki_audit profiles=alignment,changed task_id=TASK-086 warning(changed/generated-file-changed .codewiki/index_graph.json)"
+          "audit:task",
+          "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only"
         ],
         "content_proof_refs": [
-          "sha256:bdfe7803cdfb9034c491120803516c74db14a3f1f5b1c87b61eacfa4097bbef9"
+          "2d2673719bd55fd50876ccae84672c3773b7215a",
+          "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+          "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1"
         ]
       }
-    },
-    {
-      "id": "audit:codewiki_audit profiles=alignment,changed task_id=TASK-086 warning(changed/generated-file-changed .codewiki/index_graph.json)",
-      "kind": "audit_evidence",
-      "path": "codewiki_audit profiles=alignment,changed task_id=TASK-086 warning(changed/generated-file-changed .codewiki/index_graph.json)",
-      "layer": "audit",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:sha256:bdfe7803cdfb9034c491120803516c74db14a3f1f5b1c87b61eacfa4097bbef9",
-      "kind": "content_proof",
-      "path": "sha256:bdfe7803cdfb9034c491120803516c74db14a3f1f5b1c87b61eacfa4097bbef9",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
     },
     {
       "id": "validation:.codewiki/validation/2026-05-16-planning-pass-task-077.json",
@@ -15838,6 +16635,16 @@
       "to": "doc:.codewiki/kb/system/file-structure.md"
     },
     {
+      "kind": "task_spec",
+      "from": "task:TASK-086",
+      "to": "doc:.codewiki/kb/system/validation-gateway.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-086",
+      "to": "doc:skills/codewiki/SKILL.md"
+    },
+    {
       "kind": "task_code_path",
       "from": "task:TASK-086",
       "to": "code:src/application/claims.ts"
@@ -15871,6 +16678,16 @@
       "kind": "task_code_path",
       "from": "task:TASK-086",
       "to": "code:tests/smoke"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-086",
+      "to": "code:src/adapters/pi/tools/session-handoff.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-086",
+      "to": "code:tests/smoke/session-handoff.test.mjs"
     },
     {
       "kind": "task_spec",
@@ -30657,6 +31474,416 @@
     },
     {
       "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "source:.codewiki/kb/system/api.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "source:tests/smoke/session-handoff.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "source:TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "content_proof:tests/smoke/session-handoff.test.mjs@sha256:018f52a3a8356bcfd4bd0356d9e129c559dd5f6aab0a29e3f5d31f0400147d38",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "content_proof:.codewiki/kb/system/api.md@sha256:8d55c8323dff157e44b2286c40dc83def79fb3804507c20cef17cb7e7e3a878a",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "content_proof:refs/codewiki/archive/task/TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "content_proof:sha256:2c21feefb606c5c5b4288355ce4bca19550be5a121a8d5d820beb680cd221a15",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "build_archive_ref",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "archive_ref:refs/codewiki/archive/task/TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "build_consumes_validation",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "doc:.codewiki/kb/system/api.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "code:.codewiki/kb/system/api.md"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "test:tests/smoke/session-handoff.test.mjs"
+    },
+    {
+      "kind": "build_produces_closure",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "to": "closure:TASK-086"
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "source:README.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "source:.codewiki/kb/system/api.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "source:.codewiki/kb/system/adapters.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "source:.codewiki/kb/system/agency.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "source:TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "source:tests/smoke/session-handoff.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "source:tests/smoke/package-smoke.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "content_proof:tests/smoke/session-handoff.test.mjs@sha256:018f52a3a8356bcfd4bd0356d9e129c559dd5f6aab0a29e3f5d31f0400147d38",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "content_proof:tests/smoke/package-smoke.test.mjs@sha256:21aa3d3ccb3644f0d98925719becf502597adafd30e55c4a18837bfd22c00cf4",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "content_proof:README.md@sha256:855aa70acb23772372faf71aa5802c56911aae8c2a960de7d8663404ddee5d0a",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "content_proof:.codewiki/kb/system/api.md@sha256:9e2a4f88bbd4db69acafc7f476220f0ed3a9ee4fcbd2ab537899acde1418ecc3",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "content_proof:.codewiki/kb/system/adapters.md@sha256:9c75248953903b8f7ca72d89d7f82244170785d5413cab5e715d1d6f3a023c02",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "content_proof:.codewiki/kb/system/agency.md@sha256:d1e6c8ac66c69156b9308d79d6b1c904eb832d216e593ea376308a372d6c92b8",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "content_proof:refs/codewiki/archive/task/TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "content_proof:sha256:eaaa078d6acab17c768f375d731f566807d4ee1f877e71d5f6a6d69fd9ee97fa",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "build_archive_ref",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "to": "archive_ref:refs/codewiki/archive/task/TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:User request: fix /wiki-session-handoff before continuing parallel resume work",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:.codewiki/kb/system/adapters.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:.codewiki/kb/system/agency.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:src/adapters/pi/tools/session-handoff.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:src/adapters/pi/schemas.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:skills/codewiki/SKILL.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:tests/smoke/session-handoff.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "content_proof:tests/smoke/session-handoff.test.mjs@sha256:23408888e1d98f5194d083579c18d34484a3e9d20497c42c4f9aa75da28d9784",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "content_proof:src/adapters/pi/tools/session-handoff.ts@sha256:6de493025dbaf093399ac75bd31d63e14fb9ba6a42005e492d3838f8f23fa3d3",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "content_proof:src/adapters/pi/schemas.ts@sha256:eca95da803b52fc446499a87c3e4caf4d8e2911a18cebcc31f5dde2caadd9b88",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "content_proof:skills/codewiki/SKILL.md@sha256:5a15823af1ea04db0067ad97c79b0de1ee13413e61d4d60af24e44ba466862b1",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "content_proof:.codewiki/kb/system/adapters.md@sha256:c2345a3422b017c164452f96750129f467d965953785e291daed1bf77aea420e",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "content_proof:.codewiki/kb/system/agency.md@sha256:67af8e359a00d795bd333ba1dc3cad9f53f91e69d3ba228b72753dad8b08a31f",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "content_proof:refs/codewiki/archive/task/TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "content_proof:sha256:72b5ec4c52f2e4f3579c2167d812ff451e69d6adb1f229ae5918a06c7563d7a0",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "build_archive_ref",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "archive_ref:refs/codewiki/archive/task/TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "build_consumes_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "source:User request: fix /wiki-session-handoff before continuing parallel resume work"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "doc:.codewiki/kb/system/adapters.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "doc:.codewiki/kb/system/agency.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "code:src/adapters/pi/tools/session-handoff.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "code:src/adapters/pi/schemas.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "code:skills/codewiki/SKILL.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "code:.codewiki/kb/system/adapters.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "code:.codewiki/kb/system/agency.md"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "test:tests/smoke/session-handoff.test.mjs"
+    },
+    {
+      "kind": "build_produces_closure",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "to": "closure:TASK-086"
+    },
+    {
+      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
       "default_hidden": true
@@ -31319,6 +32546,339 @@
     },
     {
       "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:src/adapters/pi/tools/artifact-status.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:src/adapters/pi/index.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:src/adapters/pi/schemas.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:src/adapters/pi/tools/claim.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:src/adapters/pi/tools/state.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:src/application/claims.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:src/application/graph.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:src/application/state.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:src/application/state-builders.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:src/domain/shared/types.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:README.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:skills/codewiki/SKILL.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:package.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:tests/smoke/package-smoke.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:tests/smoke/resume-scheduler.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "source:TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:tests/smoke/package-smoke.test.mjs@sha256:21aa3d3ccb3644f0d98925719becf502597adafd30e55c4a18837bfd22c00cf4",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:tests/smoke/resume-scheduler.test.mjs@sha256:dd2a6324ceee14efee4f2bde910e6083e9e3e7079c371166822a01f0b51f0c99",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:src/adapters/pi/tools/artifact-status.ts@sha256:055c294e6905813caf3f07b88326997631f15f1eb911284d121d5c6709b57e8a",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:src/adapters/pi/index.ts@sha256:7f2e0cc37ad319a4f9466f73ccbad8c2b84c17a4e16448b90c471439c066e655",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:src/adapters/pi/schemas.ts@sha256:7a1db43a3e4f22c8729f25b28df9b248746965edfc97cd0d18759cb361484d8b",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:src/adapters/pi/tools/claim.ts@sha256:fabbc273ff9ad65875ed9a5558bb1e90a1dfd547f3deb2a813e2507c11612397",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:src/adapters/pi/tools/state.ts@sha256:00d387ce2dfefdf6453dc89d3f874a102c832481c3c4aa893f09cce81172e657",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:src/application/claims.ts@sha256:96f78de0187cbadae13f10f49a65ad338d93a72c80aaa9db619b1580b095a07a",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:src/application/graph.ts@sha256:db3bbe85f8fe798878b3932fddb993f1acd0c3cdb447006673fa05c95405be91",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:src/application/state.ts@sha256:c661ee49955a4b0ee22790d256a3745d0cc8f338ca67af6b3e2b9dfce2018f90",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:src/application/state-builders.ts@sha256:e6176bfae54b3de2147d7341d800f87471d5bc1c47baaf5bd54ed86aba9be0ae",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:src/domain/shared/types.ts@sha256:834c40d4c9106462afc9f994b0f9b35976d36b987a3441bb32ea1faf7d004343",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:README.md@sha256:2e961747eb2a6032a7ba985a60a165050e9233d00bb5c713130c4bebf799691c",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:skills/codewiki/SKILL.md@sha256:b768aeb2e33088c62487ed20c34869e6ef278dcc0c06fdc34d10f469acbc6ec5",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:package.json@sha256:d09359ff5c2d4dbd4093ab8509edae19fb1963977b3eb606718256bfdf31236f",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:refs/codewiki/archive/task/TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "content_proof:sha256:cd0b609cb3a9a57ca4257b84169936ef4a82c04a230eecca753a3ca49e022ca1",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "build_archive_ref",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "archive_ref:refs/codewiki/archive/task/TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "build:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "build_consumes_validation",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-086.json"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:src/adapters/pi/tools/artifact-status.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:src/adapters/pi/index.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:src/adapters/pi/schemas.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:src/adapters/pi/tools/claim.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:src/adapters/pi/tools/state.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:src/application/claims.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:src/application/graph.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:src/application/state.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:src/application/state-builders.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:src/domain/shared/types.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:README.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:skills/codewiki/SKILL.md"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "code:package.json"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "test:tests/smoke/package-smoke.test.mjs"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "test:tests/smoke/resume-scheduler.test.mjs"
+    },
+    {
+      "kind": "build_produces_closure",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+      "to": "closure:TASK-086"
+    },
+    {
+      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
       "default_hidden": true
@@ -31441,6 +33001,166 @@
       "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
       "to": "archive_ref:refs/codewiki/archive/task/TASK-086",
       "default_hidden": true
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "build:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "build_consumes_validation",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "validation:.codewiki/validation/2026-05-16-feedback-pass.json"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "code:src/adapters/pi/commands/resume.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "code:src/application/claims.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "code:src/domain/shared/types.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "code:package.json"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "test:tests/smoke/resume-scheduler.test.mjs"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "test:tests/smoke/package-smoke.test.mjs"
+    },
+    {
+      "kind": "build_produces_closure",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "closure:TASK-086"
+    },
+    {
+      "kind": "claim_task",
+      "from": "claim:CLAIM-061",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "claim_build",
+      "from": "claim:CLAIM-061",
+      "to": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-061",
+      "to": "claim_scope:TASK-086"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-061",
+      "to": "claim_scope:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-061",
+      "to": "claim_scope:.codewiki/validation/**"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-061",
+      "to": "claim_scope:src/adapters/pi/tools/artifact-status.ts"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-061",
+      "to": "claim_scope:src/adapters/pi/tools/claim.ts"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-061",
+      "to": "claim_scope:src/application/claims.ts"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-061",
+      "to": "claim_scope:tests/smoke/package-smoke.test.mjs"
+    },
+    {
+      "kind": "claim_task",
+      "from": "claim:CLAIM-060",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:src/application/claims.ts"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:src/adapters/pi/tools/**"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:src/adapters/pi/index.ts"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:src/adapters/pi/schemas.ts"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:src/domain/shared/types.ts"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:tests/smoke/**"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:README.md"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:skills/codewiki/SKILL.md"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:TASK-086"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:.codewiki/builds/implementation/**"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-060",
+      "to": "claim_scope:.codewiki/validation/**"
     },
     {
       "kind": "validation_attests_source",
@@ -31676,6 +33396,88 @@
     },
     {
       "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "to": "audit:codewiki_audit:alignment:pass",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "to": "audit:codewiki_audit:changed:warning",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "to": "audit:codewiki_audit:task:pass",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "to": "audit:codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "to": "content_proof:2d2673719bd55fd50876ccae84672c3773b7215a",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "to": "content_proof:3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "to": "content_proof:sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+      "to": "content_proof:2d2673719bd55fd50876ccae84672c3773b7215a",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+      "to": "content_proof:3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+      "to": "content_proof:sha256:316210a5c85ac533cf8ffe07ab9bbd2858ea441fbc03e3f0fa271d47757df05d",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
       "default_hidden": true
@@ -31860,7 +33662,7 @@
     {
       "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-086.json",
-      "to": "source:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
       "default_hidden": true
     },
     {
@@ -31878,13 +33680,31 @@
     {
       "kind": "validation_audit_evidence",
       "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-086.json",
-      "to": "audit:codewiki_audit profiles=alignment,changed task_id=TASK-086 warning(changed/generated-file-changed .codewiki/index_graph.json)",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-086.json",
+      "to": "audit:codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only",
       "default_hidden": true
     },
     {
       "kind": "validation_content_proof",
       "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-086.json",
-      "to": "content_proof:sha256:bdfe7803cdfb9034c491120803516c74db14a3f1f5b1c87b61eacfa4097bbef9",
+      "to": "content_proof:2d2673719bd55fd50876ccae84672c3773b7215a",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-086.json",
+      "to": "content_proof:3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-086.json",
+      "to": "content_proof:sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1",
       "default_hidden": true
     },
     {
@@ -32579,6 +34399,7 @@
         "src/adapters/pi/tools/**",
         "src/adapters/pi/tools/agency.ts",
         "src/adapters/pi/tools/claim.ts",
+        "src/adapters/pi/tools/session-handoff.ts",
         "src/adapters/pi/tools/task.ts",
         "src/adapters/pi/ui",
         "src/adapters/pi/ui/**",
@@ -32612,20 +34433,253 @@
         "tests/fixtures",
         "tests/smoke",
         "tests/smoke/package-smoke.test.mjs",
+        "tests/smoke/session-handoff.test.mjs",
         "tsconfig.json"
       ],
-      "dirty_paths": []
+      "dirty_paths": [
+        "README.md",
+        "skills/codewiki/SKILL.md",
+        "src/adapters/pi/index.ts",
+        "src/adapters/pi/schemas.ts",
+        "src/adapters/pi/tools/claim.ts",
+        "src/adapters/pi/tools/session-handoff.ts",
+        "src/adapters/pi/tools/state.ts",
+        "src/application/claims.ts",
+        "src/application/graph.ts",
+        "src/application/state-builders.ts",
+        "src/application/state.ts",
+        "src/domain/shared/types.ts",
+        "tests/smoke/package-smoke.test.mjs",
+        "tests/smoke/session-handoff.test.mjs"
+      ]
     },
     "claims": {
-      "active_claim_count": 0,
-      "warning_count": 0,
+      "active_claim_count": 2,
+      "warning_count": 6,
       "conflict_count": 0,
       "pending_waiter_count": 0,
       "ready_waiter_count": 0,
-      "by_role": {},
-      "isolation": [],
-      "claims": [],
-      "conflicts": [],
+      "by_role": {
+        "validator": 1,
+        "builder": 1
+      },
+      "isolation": [
+        {
+          "id": "CLAIM-061",
+          "role": "validator",
+          "mode": "read",
+          "task_id": "TASK-086"
+        },
+        {
+          "id": "CLAIM-060",
+          "role": "builder",
+          "mode": "write",
+          "task_id": "TASK-086"
+        }
+      ],
+      "claims": [
+        {
+          "id": "CLAIM-061",
+          "session_id": "019e2fa1-fd52-7709-bcaf-f52789dc174d",
+          "agent_name": "Puma",
+          "status": "active",
+          "mode": "read",
+          "role": "validator",
+          "summary": "Fresh implementation validation for TASK-086 artifact-status public API slice",
+          "task_id": "TASK-086",
+          "build_ref": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+          "scopes": [
+            {
+              "layer": "roadmap",
+              "task_id": "TASK-086"
+            },
+            {
+              "layer": "build",
+              "ref": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json"
+            },
+            {
+              "layer": "validation",
+              "path": ".codewiki/validation/**"
+            },
+            {
+              "layer": "code",
+              "path": "src/adapters/pi/tools/artifact-status.ts"
+            },
+            {
+              "layer": "code",
+              "path": "src/adapters/pi/tools/claim.ts"
+            },
+            {
+              "layer": "code",
+              "path": "src/application/claims.ts"
+            },
+            {
+              "layer": "code",
+              "path": "tests/smoke/package-smoke.test.mjs"
+            }
+          ],
+          "created_at": "2026-05-16T07:14:28Z",
+          "updated_at": "2026-05-16T07:14:28Z",
+          "expires_at": "2026-05-16T09:14:28.600Z"
+        },
+        {
+          "id": "CLAIM-060",
+          "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
+          "agent_name": "Ibis",
+          "status": "active",
+          "mode": "write",
+          "role": "builder",
+          "summary": "Continue TASK-086 with public artifact-status tool/API alias over session queue.",
+          "task_id": "TASK-086",
+          "scopes": [
+            {
+              "layer": "code",
+              "path": "src/application/claims.ts"
+            },
+            {
+              "layer": "code",
+              "path": "src/adapters/pi/tools/**"
+            },
+            {
+              "layer": "code",
+              "path": "src/adapters/pi/index.ts"
+            },
+            {
+              "layer": "code",
+              "path": "src/adapters/pi/schemas.ts"
+            },
+            {
+              "layer": "code",
+              "path": "src/domain/shared/types.ts"
+            },
+            {
+              "layer": "code",
+              "path": "tests/smoke/**"
+            },
+            {
+              "layer": "code",
+              "path": "README.md"
+            },
+            {
+              "layer": "code",
+              "path": "skills/codewiki/SKILL.md"
+            },
+            {
+              "layer": "roadmap",
+              "task_id": "TASK-086"
+            },
+            {
+              "layer": "build",
+              "path": ".codewiki/builds/implementation/**"
+            },
+            {
+              "layer": "validation",
+              "path": ".codewiki/validation/**"
+            }
+          ],
+          "created_at": "2026-05-16T07:04:51Z",
+          "updated_at": "2026-05-16T07:04:51Z",
+          "expires_at": "2026-05-16T11:04:51.880Z"
+        }
+      ],
+      "conflicts": [
+        {
+          "kind": "warning",
+          "claim_ids": [
+            "CLAIM-060",
+            "CLAIM-061"
+          ],
+          "sessions": [
+            "019e25c0-2de2-706e-84ba-77b32db98cc3",
+            "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+          ],
+          "scope": {
+            "layer": "roadmap",
+            "task_id": "TASK-086"
+          },
+          "reason": "Read/write overlap from different sessions."
+        },
+        {
+          "kind": "warning",
+          "claim_ids": [
+            "CLAIM-060",
+            "CLAIM-061"
+          ],
+          "sessions": [
+            "019e25c0-2de2-706e-84ba-77b32db98cc3",
+            "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+          ],
+          "scope": {
+            "layer": "validation",
+            "path": ".codewiki/validation/**"
+          },
+          "reason": "Read/write overlap from different sessions."
+        },
+        {
+          "kind": "warning",
+          "claim_ids": [
+            "CLAIM-060",
+            "CLAIM-061"
+          ],
+          "sessions": [
+            "019e25c0-2de2-706e-84ba-77b32db98cc3",
+            "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+          ],
+          "scope": {
+            "layer": "code",
+            "path": "src/adapters/pi/tools/artifact-status.ts"
+          },
+          "reason": "Read/write overlap from different sessions."
+        },
+        {
+          "kind": "warning",
+          "claim_ids": [
+            "CLAIM-060",
+            "CLAIM-061"
+          ],
+          "sessions": [
+            "019e25c0-2de2-706e-84ba-77b32db98cc3",
+            "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+          ],
+          "scope": {
+            "layer": "code",
+            "path": "src/adapters/pi/tools/claim.ts"
+          },
+          "reason": "Read/write overlap from different sessions."
+        },
+        {
+          "kind": "warning",
+          "claim_ids": [
+            "CLAIM-060",
+            "CLAIM-061"
+          ],
+          "sessions": [
+            "019e25c0-2de2-706e-84ba-77b32db98cc3",
+            "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+          ],
+          "scope": {
+            "layer": "code",
+            "path": "src/application/claims.ts"
+          },
+          "reason": "Read/write overlap from different sessions."
+        },
+        {
+          "kind": "warning",
+          "claim_ids": [
+            "CLAIM-060",
+            "CLAIM-061"
+          ],
+          "sessions": [
+            "019e25c0-2de2-706e-84ba-77b32db98cc3",
+            "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+          ],
+          "scope": {
+            "layer": "code",
+            "path": "tests/smoke/package-smoke.test.mjs"
+          },
+          "reason": "Read/write overlap from different sessions."
+        }
+      ],
       "waiters": []
     },
     "validation": {
@@ -32791,6 +34845,43 @@
           "content_proof_refs": []
         },
         {
+          "path": ".codewiki/validation/2026-05-16-implementation-block-task-086.json",
+          "task_id": "TASK-086",
+          "verdict": "block",
+          "status": "isolated",
+          "role": "validator",
+          "worktree_path": "/home/nunoc/projects/codewiki",
+          "base_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+          "head_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+          "validated_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+          "clean": false,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "2d2673719bd55fd50876ccae84672c3773b7215a",
+            "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+            "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1"
+          ]
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+          "task_id": "TASK-086",
+          "verdict": "fail",
+          "status": "isolated",
+          "role": "validator",
+          "worktree_path": "/home/nunoc/projects/codewiki",
+          "base_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+          "validated_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+          "clean": false,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "2d2673719bd55fd50876ccae84672c3773b7215a",
+            "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+            "sha256:316210a5c85ac533cf8ffe07ab9bbd2858ea441fbc03e3f0fa271d47757df05d"
+          ]
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-implementation-pass-task-079.json",
           "task_id": "TASK-079",
           "verdict": "pass",
@@ -32841,14 +34932,17 @@
           "verdict": "pass",
           "status": "isolated",
           "role": "validator",
+          "worktree_path": "/home/nunoc/projects/codewiki",
+          "base_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+          "head_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
+          "validated_sha": "2d2673719bd55fd50876ccae84672c3773b7215a",
           "clean": false,
           "fresh_context": true,
-          "builder_claim_id": "CLAIM-059",
-          "related_claim_ids": [
-            "CLAIM-059"
-          ],
+          "related_claim_ids": [],
           "content_proof_refs": [
-            "sha256:bdfe7803cdfb9034c491120803516c74db14a3f1f5b1c87b61eacfa4097bbef9"
+            "2d2673719bd55fd50876ccae84672c3773b7215a",
+            "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+            "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1"
           ]
         },
         {
@@ -33052,10 +35146,14 @@
         ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
         ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
         ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
+        ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+        ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+        ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
         ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
         ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
         ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
         ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
+        ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
         ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
         ".codewiki/builds/planning/2026-05-13-loop-session-isolation-policy-plan.json",
         ".codewiki/builds/planning/2026-05-13-plan-implementation-of-pi-adapter-session-handof.json",
@@ -33339,6 +35437,7 @@
         "User request on 2026-05-12 accepted via ask_user: Adopt + open task.",
         "User request on 2026-05-12 after simplification: settings should live in local web app header top-right cog and map CodeWiki config options.",
         "User request to implement final scripts/deprecated-code cleanup suggestions",
+        "User request: fix /wiki-session-handoff before continuing parallel resume work",
         "User requested assurance that code/docs/intent changes propagate through CodeWiki; accepted fixes after current-state review.",
         "User requested research and work on using Git, worktrees, push metadata, and differentiated artifact handling to keep CodeWiki hot state lean; user clarified implementation build is the publication payload, not a new capsule.",
         "User requested web research for open-source graph visualization tools, then approved proceeding with implementation.",
@@ -33451,7 +35550,11 @@
         "src/adapters/pi/index.ts",
         "src/adapters/pi/schemas.ts",
         "src/adapters/pi/tools/**",
+        "src/adapters/pi/tools/artifact-status.ts",
         "src/adapters/pi/tools/audit.ts",
+        "src/adapters/pi/tools/claim.ts",
+        "src/adapters/pi/tools/session-handoff.ts",
+        "src/adapters/pi/tools/state.ts",
         "src/adapters/pi/tools/task.ts",
         "src/adapters/pi/ui/manager.ts",
         "src/adapters/pi/ui/theme.ts",
@@ -33557,10 +35660,13 @@
         "codewiki_audit profiles alignment,changed,task,generated-parity,file-structure,package task_id=TASK-081 include_fingerprints=true: pass; issues=0; changed pass checked 0 changed files; generated-parity pass checked graph presence/freshness and 8 active roadmap task views.",
         "codewiki_audit profiles file-structure,stale-reference,generated-parity include_fingerprints=false: pass; issues=0.",
         "codewiki_audit profiles package include_fingerprints=true: pass; issues=0.",
-        "codewiki_audit profiles=alignment,changed task_id=TASK-086 warning(changed/generated-file-changed .codewiki/index_graph.json)",
+        "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only",
         "codewiki_audit:alignment:feedback+roadmap:pass",
+        "codewiki_audit:alignment:pass",
+        "codewiki_audit:changed:warning",
         "codewiki_audit:task+generated-parity:TASK-086:pass",
         "codewiki_audit:task:TASK-083:pass",
+        "codewiki_audit:task:pass",
         "executeCodewikiAudit direct assertion: kind=audit_report, machine-readable profiles/checked_scopes/issues/evidence_refs/fingerprints present; full fingerprints=17; scoped file-structure/security/package sha256 fingerprints present.",
         "profile:alignment"
       ],
@@ -33578,12 +35684,18 @@
         ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json@sha256:eb76e2a398723df4204a4cab13fd13e8b1943350e170a92c00070806d121f8d3",
         ".codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json@sha256:a18cebe9bf67d26c3d3b4ca5779cd8209b13d1bcbd825401d507ff8d1ce1bb7e",
         ".codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json@sha256:cf8b46289e6be5d1adc557e49f4cf8541d41e06a78ddddcfdb9883eb3abb95f9",
+        ".codewiki/kb/system/adapters.md@sha256:9c75248953903b8f7ca72d89d7f82244170785d5413cab5e715d1d6f3a023c02",
         ".codewiki/kb/system/adapters.md@sha256:c1f891afa3d1fcafba331f700c5e197537e83a0059e44c0c8909bec9d284c1c1",
+        ".codewiki/kb/system/adapters.md@sha256:c2345a3422b017c164452f96750129f467d965953785e291daed1bf77aea420e",
         ".codewiki/kb/system/adapters.md@sha256:c2ac94be84c1a374ffb363e97549c51afc4e72f3609eec669b51ba2dd86688be",
+        ".codewiki/kb/system/agency.md@sha256:67af8e359a00d795bd333ba1dc3cad9f53f91e69d3ba228b72753dad8b08a31f",
         ".codewiki/kb/system/agency.md@sha256:6eeec039e399dab857c393747033aea38691b5affc0df8b2ef8fb8d37e9027ca",
         ".codewiki/kb/system/agency.md@sha256:78f169c907873911258c4e31a7c45a85648f7fe66a3a28c6ff5b0253b6f5d51d",
+        ".codewiki/kb/system/agency.md@sha256:d1e6c8ac66c69156b9308d79d6b1c904eb832d216e593ea376308a372d6c92b8",
         ".codewiki/kb/system/api.md@sha256:228e84f970f47e655e890b9c8f50b24a0696fc62c68aca1b25866f3a501d47a7",
         ".codewiki/kb/system/api.md@sha256:24ea26b7a856cc5bbdaa2c4f9613ab94e4c5d7acf03934f5a163a2e217a65034",
+        ".codewiki/kb/system/api.md@sha256:8d55c8323dff157e44b2286c40dc83def79fb3804507c20cef17cb7e7e3a878a",
+        ".codewiki/kb/system/api.md@sha256:9e2a4f88bbd4db69acafc7f476220f0ed3a9ee4fcbd2ab537899acde1418ecc3",
         ".codewiki/kb/system/api.md@sha256:da13b50e6cfc123e6f8d1ce52349bfb7c7a21c9ac125ea7856ad03e2520d9552",
         ".codewiki/kb/system/builds.md@sha256:6bd6ea66186a5402cfdcb0166657c053f63937d99e24e129cf0c4f83c0cc252b",
         ".codewiki/kb/system/compilers.md@sha256:925fe8fd12c69ef93d8b4cd66ec9def3c242b251852b7450bdd566240e3057e7",
@@ -33592,12 +35704,16 @@
         ".codewiki/kb/system/validation-gateway.md@sha256:28412c990a27c6c0c269f079e13dec20e7685ec99bc8c91c2bee42dbf3d7418a",
         ".codewiki/kb/system/validation-gateway.md@sha256:ad22379f1adaca77f4bee521f9ef75959b7d99b69fa56715bd73d78bb610f265",
         ".codewiki/kb/system/validation-gateway.md@sha256:eaa503964317945e84f67e89a1519b39651cd2cabc2fff79ad72a753f71ed6a0",
+        "2d2673719bd55fd50876ccae84672c3773b7215a",
         "335e0dab36bf7c49eb14ff1c50477c6d08ed0c1f",
         "3680881721d01f5450aa2ba5aeedc4f15e216b17",
+        "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
         "59ebea7622e14a3faf6596b8a03a5dcb9710730f",
         "69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363",
         "9299b9cb7eb8d2498a5c382ff2ee84404308d854",
         "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+        "README.md@sha256:2e961747eb2a6032a7ba985a60a165050e9233d00bb5c713130c4bebf799691c",
+        "README.md@sha256:855aa70acb23772372faf71aa5802c56911aae8c2a960de7d8663404ddee5d0a",
         "README.md@sha256:9424413daed9b80f70072963b79941f58637fb8a4cb79e78b5b8005f578f38de",
         "README.md@sha256:bca59b2e9eba71f64f76252f0bb13562265476168f9c48396ffd45cee2073403",
         "README.md@sha256:d48e668b6c8cc75e27d8c108977ce223bab6f87791e08fea7ba961ca05089467",
@@ -33694,14 +35810,17 @@
         "sha256:0f9ba243c61c6963a118eeae1c145d54fec2f0903a4de0682ede65d3552c4cb2",
         "sha256:1165ab5921f6a65464f500a1a944bc1bc0521cf47b22d12f280d78ee64e58795",
         "sha256:15dae35baadaf35df1f27f0220d4778a81726fc2efb5853e7d42bf3679af1a2d",
+        "sha256:2c21feefb606c5c5b4288355ce4bca19550be5a121a8d5d820beb680cd221a15",
         "sha256:2d36f5e59b7dfb48abd39129b6a43570324f19abde1d100f54d8badf87e14376",
         "sha256:31156ddd2c3cd9a300e09026f54c60de7fe4eb940dbb9b979149a3d408808bd6",
+        "sha256:316210a5c85ac533cf8ffe07ab9bbd2858ea441fbc03e3f0fa271d47757df05d",
         "sha256:38aeecaf4921dba93abb7c79a94e0ab768eae857c9ff8120cd53530fb1d7f931",
         "sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319",
         "sha256:4c50a48ca7842e2a2cece48c90ac2a23a7a60bd51083db52e1746ff473e9f9a5",
         "sha256:67d12b59d541d3905ecb9dd7dee9f92dee06958a1807cb16e1dbfd403fcf333f",
         "sha256:690ff9aca6ed94170703349d6e0f4e97ee41840f8bb3868b8ba50a644a3d7774",
         "sha256:6aeabe57629acc7aa269c67eae2df27e33fe1025a3781f800afb0a0fa84a9232",
+        "sha256:72b5ec4c52f2e4f3579c2167d812ff451e69d6adb1f229ae5918a06c7563d7a0",
         "sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
         "sha256:81af747f2b6792d09ce2dfa6b446cfd397bf04ff4c538349819ecc730cc12b22",
         "sha256:83053599b3df1bcb277f5bb5033bc1d116e65af9631e48e1bb8a4573f6f9ea47",
@@ -33711,14 +35830,16 @@
         "sha256:a40ebc4cf2101c3dee0794194623bf4b03e6e491a3337e959f3ce38f5f48707b",
         "sha256:ac815696d14260ed60582a484178b17042662471d07a562343675328526de7ee",
         "sha256:b57ee1974aa33054c7df1f4b709ef5d245a53370a45055a9c378475f3b987f79",
-        "sha256:bdfe7803cdfb9034c491120803516c74db14a3f1f5b1c87b61eacfa4097bbef9",
+        "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1",
         "sha256:be7075ef0f749954140b215aa8d17923624abec5bda46a33b8f00ddee49e7462",
         "sha256:c1486ae9360c1bf1078fb605f98df5c6127ac8be407022aadb2f2b7e74a848c5",
         "sha256:c87a2cb9d57bcada8eec6721961e91c4a3dc6f7d074bca98db2854104cb50d91",
         "sha256:cce756b39627583364da737b59d787abb4e5ad3cef03c53aa7c434f6fa86d572",
+        "sha256:cd0b609cb3a9a57ca4257b84169936ef4a82c04a230eecca753a3ca49e022ca1",
         "sha256:d3b051063201e72454da26777777a1eb41f4b5ef98cc729b6a703dec7f5700ba",
         "sha256:d43907a7c3792419b36c5964e89dd0e57b4643fd72236297329288929c708000",
         "sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa",
+        "sha256:eaaa078d6acab17c768f375d731f566807d4ee1f877e71d5f6a6d69fd9ee97fa",
         "sha256:f1a04ef408659121072174891739cc06359b039b2d38cad58d0d4d061ebf8193",
         "sha256:f45804f8b82fccec1ddb33b3e7b85fb2d7e6b1ef9472815518ce322005a21f26",
         "sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5",
@@ -33731,7 +35852,9 @@
         "skills/codewiki-verify/SKILL.md@sha256:c595176a54d1e74865eca16359a5602147460c34f943e617b905c6ae5bda9401",
         "skills/codewiki-view-audit/SKILL.md@sha256:780eb2439b9390215f1046ae9d6f983e038f22cb8388d5134f680b1485c0653a",
         "skills/codewiki/SKILL.md@sha256:28df0b353334cb77414b7ce35ba1d44362c57d428a573ff001b967da5c44e7ff",
+        "skills/codewiki/SKILL.md@sha256:5a15823af1ea04db0067ad97c79b0de1ee13413e61d4d60af24e44ba466862b1",
         "skills/codewiki/SKILL.md@sha256:9c04125894d43de760417e4bfb53a4e28cd7a38ae8a536a1e47dbdfd91854a5f",
+        "skills/codewiki/SKILL.md@sha256:b768aeb2e33088c62487ed20c34869e6ef278dcc0c06fdc34d10f469acbc6ec5",
         "skills/codewiki/SKILL.md@sha256:c4c823552828663c5f32f841622069675bde6f72cf5346a375e4f1ed3eb6150a",
         "skills/codewiki/loops/validation.md@sha256:a062bdc9c5af7d4176b0d790ff4314b8faff52fde3d7855e0616d5bac3ad6450",
         "src/adapters/pi/commands/audit.ts@sha256:74fd10c234b084032d33e81183bae5097abcf64c8e51b460da6fb7d18d473400",
@@ -33742,12 +35865,19 @@
         "src/adapters/pi/index.ts@sha256:2830119090c04300df61c9ac353e5dab143dfdb06901c38017481c28668c5d91",
         "src/adapters/pi/index.ts@sha256:2937f82219bda79bda881dac2037e00089ce456774936f8651cd3e35de06db53",
         "src/adapters/pi/index.ts@sha256:33d420dd89a3deccd18ea06a59c11d9618f95fcba1997ccf4f0aa81e42235c79",
+        "src/adapters/pi/index.ts@sha256:7f2e0cc37ad319a4f9466f73ccbad8c2b84c17a4e16448b90c471439c066e655",
         "src/adapters/pi/schemas.ts@sha256:1a01e4edaa6eb0e0249152e848a0ec54933cd56ad04855f7bf77614c8de5d452",
         "src/adapters/pi/schemas.ts@sha256:31beb34cb119c06c058158886e5b07723023c27c79319f8e29f5c07dc3b04a64",
         "src/adapters/pi/schemas.ts@sha256:55930ef954c45898e43bb10a8c2b4f36099e1f57ae3047a88ecaaac257703eba",
+        "src/adapters/pi/schemas.ts@sha256:7a1db43a3e4f22c8729f25b28df9b248746965edfc97cd0d18759cb361484d8b",
+        "src/adapters/pi/schemas.ts@sha256:eca95da803b52fc446499a87c3e4caf4d8e2911a18cebcc31f5dde2caadd9b88",
         "src/adapters/pi/schemas.ts@sha256:f49ee7522cc419f2a15801650095b38667e1328bbbf56af228885708ac57df0a",
         "src/adapters/pi/schemas.ts@sha256:ff165157117544c7b45f756e3f1df119de670820ec84ec7476cc87e0308073c2",
+        "src/adapters/pi/tools/artifact-status.ts@sha256:055c294e6905813caf3f07b88326997631f15f1eb911284d121d5c6709b57e8a",
         "src/adapters/pi/tools/audit.ts@sha256:1981841bd7bd58edc1a08e01f11432cfb0c3ce7d9759f11faf67cb2682911d0a",
+        "src/adapters/pi/tools/claim.ts@sha256:fabbc273ff9ad65875ed9a5558bb1e90a1dfd547f3deb2a813e2507c11612397",
+        "src/adapters/pi/tools/session-handoff.ts@sha256:6de493025dbaf093399ac75bd31d63e14fb9ba6a42005e492d3838f8f23fa3d3",
+        "src/adapters/pi/tools/state.ts@sha256:00d387ce2dfefdf6453dc89d3f874a102c832481c3c4aa893f09cce81172e657",
         "src/adapters/pi/tools/task.ts@sha256:731ebd356a20b6a6e8ff245d565675db4884cfd1a36759d000e7af1ed1d95f6e",
         "src/adapters/pi/ui/manager.ts@sha256:06762f8a6da87accb03ededf75e7b3d6224697fc79b6ddcac6e6b5de2292b8ae",
         "src/adapters/pi/ui/manager.ts@sha256:637485a7d4dd9532be0ebb67e0d86f2aad787fac722fe56c4bec619fadf13590",
@@ -33759,6 +35889,7 @@
         "src/application/builds.ts@sha256:2b4148fedd4ddc8ded0627bd5620779e56d71ebce3f7ea766d0264a1f8d8cc86",
         "src/application/builds.ts@sha256:3b7e7d1d8c1f93726486264ab4a3b7af13f93e1952a5b79d7ea4e1f315e7c316",
         "src/application/builds.ts@sha256:7436fc7eecc66f112be2d3e55968043686b894227b8661e8830849ffd9663e2d",
+        "src/application/claims.ts@sha256:96f78de0187cbadae13f10f49a65ad338d93a72c80aaa9db619b1580b095a07a",
         "src/application/claims.ts@sha256:e872a0bab9f9508dfa413ba95238a59dd2c4d736fea9fe2eddbc1b89d7aca47a",
         "src/application/claims.ts@sha256:f26b9af8385e6d23690b2b302b6b3a16d2cbe0e56cc38aecca390b2713afd9cf",
         "src/application/gateway/index.ts@sha256:9738b9f51a558f72560e2aa4d92ee68bd8f11c862dfaa1cc21de0bfc25347969",
@@ -33770,6 +35901,7 @@
         "src/application/graph.ts@sha256:9261daedb6cb408e3ede564d3e79a1f05053776f7432d2e544e29d1ec2ccf9ca",
         "src/application/graph.ts@sha256:a42369357aaa082024e8c41a7f7ff5247bace8a23b303ced003d793ffd556a96",
         "src/application/graph.ts@sha256:d808463a2008f1e35629d954c00f4cd4b01fa5ce5a9651a0ac960915a0648121",
+        "src/application/graph.ts@sha256:db3bbe85f8fe798878b3932fddb993f1acd0c3cdb447006673fa05c95405be91",
         "src/application/graph/rebuilder.ts@sha256:d5bdb810d085a1f69d8e5871595fd6df7cf169d9823b8059463438a314c7e669",
         "src/application/lint.ts@sha256:87ef7d53ae8128ceaef60258ed47893a56b632297e3133f29fe0c4bc7ed947e3",
         "src/application/lint.ts@sha256:caacbf6687388a10a614c9cb4a8139a498a4c958539cfac915d09d69f200c2ba",
@@ -33782,13 +35914,16 @@
         "src/application/state-artifacts.ts@sha256:3ece85c560ba58802b65ddcd15670e0b3928959b1a776a60d7a1a30d6b9fe7bc",
         "src/application/state-builders.ts@sha256:30c93fbdaaba85b1e0aacfd56975d7dfcbb278e54df9b2a4d11c54fd273e0866",
         "src/application/state-builders.ts@sha256:c57f72657fa0d99c413d5652fbcb5611676d730c6c96358e3dc6ae9b3e37cd44",
+        "src/application/state-builders.ts@sha256:e6176bfae54b3de2147d7341d800f87471d5bc1c47baaf5bd54ed86aba9be0ae",
         "src/application/state.ts@sha256:8731dc608e99cadb3cce9ea219963d03488038340204c06c89911da94518e973",
+        "src/application/state.ts@sha256:c661ee49955a4b0ee22790d256a3745d0cc8f338ca67af6b3e2b9dfce2018f90",
         "src/application/task.ts@sha256:df99a38c882e1e514a5a80a5a6f930caee9e8ee7fdde89513c47caa833f6996b",
         "src/application/tools/audit.ts@sha256:73dd0c9e8547736c992e37f22d7dfdf030875eeac170e39a5b5212d91774e571",
         "src/application/tools/audit.ts@sha256:7eb3133c47619c3e125c066a351bf3fe4416ba3b621c5e64e111e8bb86ea1dc6",
         "src/domain/shared/types.ts@sha256:0c036abb177f5fdb85834d494b8f8f4768f98f0c91f35fe1c40e87cfe4be8fc7",
         "src/domain/shared/types.ts@sha256:41fd258395cdf7b6cfb497878ac8ea7afa2d1328d14c7fca3ae1fd95c6408dab",
         "src/domain/shared/types.ts@sha256:7b2d12acf9b9be38c1d367b0445a8f7c358d313896aa6c733956df30b5d58d24",
+        "src/domain/shared/types.ts@sha256:834c40d4c9106462afc9f994b0f9b35976d36b987a3441bb32ea1faf7d004343",
         "src/domain/shared/types.ts@sha256:afa34dacb523235ba9b160f90c910dac3fc7d43acc0711c4890877c4d3ab9012",
         "src/domain/shared/types.ts@sha256:b0dedae713acc1e4d1ef4d66a32ceef234802d3bc88f745a85be453935419523",
         "src/domain/shared/types.ts@sha256:ccbf0aea6fdb713b6abc7b2e9cff244187052a6b293150e3c5b3df62c92ef95d",
@@ -33816,6 +35951,7 @@
         "tests/smoke/loop-isolation-policy.test.mjs@sha256:916486e1558833358e78654d288aca0afe29771f039b803b5b037723fb8689a6",
         "tests/smoke/loop-isolation-policy.test.mjs@sha256:caa794e138690d8000303176f46bf67e6043fb3f9763b09e53e9ab54f013b6ce",
         "tests/smoke/loop-isolation-policy.test.mjs@sha256:f58df644a548f3491355b25257b202afa8dfa91d6ed0a9f139f9c7e670113c14",
+        "tests/smoke/package-smoke.test.mjs@sha256:21aa3d3ccb3644f0d98925719becf502597adafd30e55c4a18837bfd22c00cf4",
         "tests/smoke/package-smoke.test.mjs@sha256:318e0201f24d0d78cda469803d941a58599335d21d151ddcced3298da03a27de",
         "tests/smoke/package-smoke.test.mjs@sha256:506942a02ba8fb8b3d3346e9ba76fb5297fef5d26d4b6724ca5b2c245aa8bb86",
         "tests/smoke/package-smoke.test.mjs@sha256:5906cfa76159013f2b1e3cb08904973686adc64108e06bc10308b5457f02dccf",
@@ -33827,6 +35963,8 @@
         "tests/smoke/project-resolution.test.mjs@sha256:8039ca345668951b29211e282d3c766accbb486be8563a97c2aeda82714d146f",
         "tests/smoke/resume-scheduler.test.mjs@sha256:dd2a6324ceee14efee4f2bde910e6083e9e3e7079c371166822a01f0b51f0c99",
         "tests/smoke/role-worktree-isolation.test.mjs@sha256:7fffd93ecfe87b2a2ece47848143e1ee53f9664a0293ca58b0c2d116c793b55a",
+        "tests/smoke/session-handoff.test.mjs@sha256:018f52a3a8356bcfd4bd0356d9e129c559dd5f6aab0a29e3f5d31f0400147d38",
+        "tests/smoke/session-handoff.test.mjs@sha256:23408888e1d98f5194d083579c18d34484a3e9d20497c42c4f9aa75da28d9784",
         "tests/smoke/session-handoff.test.mjs@sha256:3a6870a546e72e72f45f276dd69365d462711f6ac333938cad05b4740faad5a0",
         "tests/smoke/session-handoff.test.mjs@sha256:84993a9bac353d799a878cbc2d0719ddb8ce4c860d3d2b334978fe4011e7ab2e",
         "tsconfig.json@sha256:ff7d9d92e2754b6e79cfcef6830f717e6043be721290a2a49aafe2526c489001"
@@ -34001,6 +36139,43 @@
           "isolation_status": "partial"
         },
         {
+          "path": ".codewiki/validation/2026-05-16-implementation-block-task-086.json",
+          "verdict": "block",
+          "profile": "implementation",
+          "task_id": "TASK-086",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json"
+          ],
+          "audit_evidence_refs": [
+            "codewiki_audit:alignment:pass",
+            "codewiki_audit:changed:warning",
+            "codewiki_audit:task:pass",
+            "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only"
+          ],
+          "content_proof_refs": [
+            "2d2673719bd55fd50876ccae84672c3773b7215a",
+            "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+            "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+          "verdict": "fail",
+          "profile": "implementation",
+          "task_id": "TASK-086",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json"
+          ],
+          "audit_evidence_refs": [],
+          "content_proof_refs": [
+            "2d2673719bd55fd50876ccae84672c3773b7215a",
+            "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+            "sha256:316210a5c85ac533cf8ffe07ab9bbd2858ea441fbc03e3f0fa271d47757df05d"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-implementation-pass-task-079.json",
           "verdict": "pass",
           "profile": "implementation",
@@ -34073,15 +36248,18 @@
           "profile": "implementation",
           "task_id": "TASK-086",
           "source_refs": [
-            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+            ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json"
           ],
           "audit_evidence_refs": [
             "audit:alignment",
             "audit:changed",
-            "codewiki_audit profiles=alignment,changed task_id=TASK-086 warning(changed/generated-file-changed .codewiki/index_graph.json)"
+            "audit:task",
+            "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only"
           ],
           "content_proof_refs": [
-            "sha256:bdfe7803cdfb9034c491120803516c74db14a3f1f5b1c87b61eacfa4097bbef9"
+            "2d2673719bd55fd50876ccae84672c3773b7215a",
+            "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+            "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1"
           ],
           "isolation_status": "isolated"
         },
@@ -35484,7 +37662,9 @@
             ".codewiki/kb/system/roadmap.md",
             ".codewiki/kb/system/adapters.md",
             ".codewiki/kb/system/graph.md",
-            ".codewiki/kb/system/file-structure.md"
+            ".codewiki/kb/system/file-structure.md",
+            ".codewiki/kb/system/validation-gateway.md",
+            "skills/codewiki/SKILL.md"
           ],
           "code_paths": [
             "src/application/claims.ts",
@@ -35493,7 +37673,9 @@
             "src/adapters/pi/schemas.ts",
             "src/domain/shared/types.ts",
             "skills/codewiki",
-            "tests/smoke"
+            "tests/smoke",
+            "src/adapters/pi/tools/session-handoff.ts",
+            "tests/smoke/session-handoff.test.mjs"
           ]
         },
         "TASK-087": {
@@ -35604,13 +37786,22 @@
           ],
           "build_paths": [
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-            ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json"
+            ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
+            ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+            ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
           ],
           "validation_paths": [
             ".codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-            ".codewiki/validation/2026-05-16-feedback-block.json"
+            ".codewiki/validation/2026-05-16-feedback-block.json",
+            ".codewiki/validation/2026-05-16-implementation-block-task-086.json",
+            ".codewiki/validation/2026-05-16-implementation-fail-task-086.json"
           ],
-          "claim_ids": [],
+          "claim_ids": [
+            "CLAIM-061",
+            "CLAIM-060"
+          ],
           "claim_wait_ids": []
         },
         "warm": {
@@ -35704,11 +37895,11 @@
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+            ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
-            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
           ],
           "validation_paths": [
             ".codewiki/validation/2026-05-14-documentation-pass.json",
@@ -35831,11 +38022,11 @@
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+            ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
-            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
           ]
         },
         "purgeable": {
@@ -36067,6 +38258,36 @@
         },
         {
           "kind": "task",
+          "id": "TASK-086",
+          "build_path": ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+          "archive_ref": "refs/codewiki/archive/task/TASK-086",
+          "commit_sha": "",
+          "digest": "sha256:2c21feefb606c5c5b4288355ce4bca19550be5a121a8d5d820beb680cd221a15",
+          "restore_command": "/wiki-restore TASK-086",
+          "safety_status": "blocked"
+        },
+        {
+          "kind": "task",
+          "id": "TASK-086",
+          "build_path": ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+          "archive_ref": "refs/codewiki/archive/task/TASK-086",
+          "commit_sha": "",
+          "digest": "sha256:eaaa078d6acab17c768f375d731f566807d4ee1f877e71d5f6a6d69fd9ee97fa",
+          "restore_command": "/wiki-restore TASK-086",
+          "safety_status": "blocked"
+        },
+        {
+          "kind": "task",
+          "id": "TASK-086",
+          "build_path": ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+          "archive_ref": "refs/codewiki/archive/task/TASK-086",
+          "commit_sha": "",
+          "digest": "sha256:72b5ec4c52f2e4f3579c2167d812ff451e69d6adb1f229ae5918a06c7563d7a0",
+          "restore_command": "/wiki-restore TASK-086",
+          "safety_status": "blocked"
+        },
+        {
+          "kind": "task",
           "id": "TASK-079",
           "build_path": ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           "archive_ref": "refs/codewiki/archive/task/TASK-079",
@@ -36108,6 +38329,16 @@
         {
           "kind": "task",
           "id": "TASK-086",
+          "build_path": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+          "archive_ref": "refs/codewiki/archive/task/TASK-086",
+          "commit_sha": "",
+          "digest": "sha256:cd0b609cb3a9a57ca4257b84169936ef4a82c04a230eecca753a3ca49e022ca1",
+          "restore_command": "/wiki-restore TASK-086",
+          "safety_status": "blocked"
+        },
+        {
+          "kind": "task",
+          "id": "TASK-086",
           "build_path": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
           "archive_ref": "refs/codewiki/archive/task/TASK-086",
           "commit_sha": "",
@@ -36117,7 +38348,7 @@
         }
       ],
       "git_archive": {
-        "ledger_count": 25,
+        "ledger_count": 29,
         "archive_refs": [
           "refs/codewiki/archive/task/TASK-068",
           "refs/codewiki/archive/task/TASK-070",
@@ -36139,10 +38370,14 @@
           "refs/codewiki/archive/task/TASK-081",
           "refs/codewiki/archive/task/TASK-081",
           "refs/codewiki/archive/task/TASK-082",
+          "refs/codewiki/archive/task/TASK-086",
+          "refs/codewiki/archive/task/TASK-086",
+          "refs/codewiki/archive/task/TASK-086",
           "refs/codewiki/archive/task/TASK-079",
           "refs/codewiki/archive/task/TASK-080",
           "refs/codewiki/archive/task/TASK-080",
           "refs/codewiki/archive/task/TASK-081",
+          "refs/codewiki/archive/task/TASK-086",
           "refs/codewiki/archive/task/TASK-086"
         ],
         "build_paths": [
@@ -36166,10 +38401,14 @@
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
           ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
+          ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+          ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+          ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
           ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
           ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
+          ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
           ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
         ],
         "blocked_purge_build_paths": [
@@ -36186,11 +38425,11 @@
           ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+          ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
           ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-          ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
-          ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+          ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
         ],
         "gate": "validated + artifact digests + archive ledger + publication safety pass"
       }
@@ -36220,6 +38459,50 @@
           "to_layer": "validation",
           "next_loop": "validation",
           "task_id": "TASK-082",
+          "reason": "Accepted implementation build still needs passing validation gateway evidence."
+        },
+        {
+          "id": "reconcile:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+          "source_id": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+          "state": "drift",
+          "direction": "gateway",
+          "from_layer": "build",
+          "to_layer": "validation",
+          "next_loop": "validation",
+          "task_id": "TASK-086",
+          "reason": "Accepted implementation build still needs passing validation gateway evidence."
+        },
+        {
+          "id": "reconcile:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+          "source_id": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+          "state": "drift",
+          "direction": "gateway",
+          "from_layer": "build",
+          "to_layer": "validation",
+          "next_loop": "validation",
+          "task_id": "TASK-086",
+          "reason": "Accepted implementation build still needs passing validation gateway evidence."
+        },
+        {
+          "id": "reconcile:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+          "source_id": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+          "state": "drift",
+          "direction": "gateway",
+          "from_layer": "build",
+          "to_layer": "validation",
+          "next_loop": "validation",
+          "task_id": "TASK-086",
+          "reason": "Accepted implementation build still needs passing validation gateway evidence."
+        },
+        {
+          "id": "reconcile:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+          "source_id": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+          "state": "drift",
+          "direction": "gateway",
+          "from_layer": "build",
+          "to_layer": "validation",
+          "next_loop": "validation",
+          "task_id": "TASK-086",
           "reason": "Accepted implementation build still needs passing validation gateway evidence."
         },
         {
@@ -36342,6 +38625,28 @@
           "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
         },
         {
+          "id": "reconcile:validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+          "source_id": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
+          "state": "blocked",
+          "direction": "gateway",
+          "from_layer": "validation",
+          "to_layer": "feedback",
+          "next_loop": "feedback",
+          "task_id": "TASK-086",
+          "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
+        },
+        {
+          "id": "reconcile:validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+          "source_id": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
+          "state": "drift",
+          "direction": "gateway",
+          "from_layer": "validation",
+          "to_layer": "documentation",
+          "next_loop": "documentation",
+          "task_id": "TASK-086",
+          "reason": "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps."
+        },
+        {
           "id": "reconcile:task:TASK-077",
           "source_id": "task:TASK-077",
           "state": "drift",
@@ -36375,17 +38680,6 @@
           "reason": "TASK-085 is open implementation delta below knowledge."
         },
         {
-          "id": "reconcile:task:TASK-086",
-          "source_id": "task:TASK-086",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "roadmap",
-          "to_layer": "code",
-          "next_loop": "implementation",
-          "task_id": "TASK-086",
-          "reason": "TASK-086 is open implementation delta below knowledge."
-        },
-        {
           "id": "reconcile:task:TASK-087",
           "source_id": "task:TASK-087",
           "state": "drift",
@@ -36409,10 +38703,10 @@
         }
       ],
       "counts_by_loop": {
-        "validation": 2,
-        "documentation": 8,
-        "feedback": 1,
-        "implementation": 6
+        "validation": 6,
+        "documentation": 9,
+        "feedback": 2,
+        "implementation": 5
       },
       "next_action": {
         "loop": "feedback",
@@ -36446,13 +38740,13 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T07:03:17.832Z",
+      "generated_at": "2026-05-16T08:11:00.186Z",
       "counts": {},
       "issues": []
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T07:03:17Z",
+      "generated_at": "2026-05-16T08:11:00Z",
       "health": {
         "color": "green",
         "errors": 0,
@@ -36474,9 +38768,9 @@
           "todo": 1
         },
         "priority_counts": {
-          "high": 32,
+          "high": 31,
           "medium": 13,
-          "critical": 10,
+          "critical": 11,
           "low": 1
         }
       },
@@ -39133,17 +41427,21 @@
         },
         "TASK-086": {
           "id": "TASK-086",
-          "title": "Migrate public coordination API to session queue scoped leases",
+          "title": "Migrate public coordination API to artifact status",
           "status": "in_progress",
-          "priority": "high",
+          "priority": "critical",
           "kind": "architecture",
-          "summary": "Replace public claim vocabulary with artifact-status-first session queue coordination while preserving transitional compatibility for existing claim/lease callers.",
+          "summary": "Replace public claim/lease vocabulary with artifact-status-first session queue coordination while preserving transitional compatibility for existing claim/lease callers.",
           "labels": [
             "domain-led-refactor",
             "session-queue",
             "artifact-status",
             "api-compatibility",
-            "parallel-resume"
+            "parallel-resume",
+            "session-handoff",
+            "pi-adapter",
+            "validation-gateway",
+            "fresh-context"
           ],
           "goal": {
             "outcome": "CodeWiki public coordination language/API expose artifact availability, in-use, waiting, conflict, and stale status from session queue state; sessions are holders/waiters behind artifact status, and /wiki-resume allocates safe parallel work from that state.",
@@ -39156,13 +41454,21 @@
               "Tests cover artifact status create/list/release/heartbeat/wait behavior and legacy alias compatibility.",
               "/wiki-resume without an explicit task reads fresh CodeWiki state plus session queue artifact statuses and selects the next unblocked atomic task whose relevant artifacts are available or read-compatible.",
               "/wiki-resume TASK-### honors an explicit non-closed task request even when an umbrella task is active, unless task policy or artifact conflict provides a real block with a clear explanation.",
-              "Resume output includes selected task, artifact statuses, conflicting artifacts and holders/waiters, temporary session usage record, and helper-safe next steps so one tab/session can start parallel work with a single /wiki-resume invocation."
+              "Resume output includes selected task, artifact statuses, conflicting artifacts and holders/waiters, temporary session usage record, and helper-safe next steps so one tab/session can start parallel work with a single /wiki-resume invocation.",
+              "codewiki_session_handoff no longer treats a killed spawned Pi subprocess as an acceptable validation/handoff path.",
+              "Tool-context new-session handoff stages a durable handoff artifact and reports the exact /wiki-session-handoff command when interactive replacement is required.",
+              "/wiki-session-handoff can execute a staged handoff via ctx.newSession and marks started/completed/cancelled/failures accurately.",
+              "Tests cover tool staging behavior, no unbounded spawn by default, command-context ctx.newSession execution, and stale/bad handoff handling.",
+              "Public schemas/skill guidance no longer claim tool context reliably spawns fresh pi processes for validation."
             ],
             "non_goals": [
               "Do not break existing users abruptly by deleting codewiki_claim before compatibility alias and migration notes exist.",
               "Do not treat session queue artifact status as durable roadmap truth.",
               "Do not use broad umbrella tasks such as TASK-077 as default implementation work when safe child/atomic tasks are available.",
-              "Do not make claim or lease primary project lexicon terms."
+              "Do not make claim or lease primary project lexicon terms.",
+              "Do not implement a full subagent scheduler.",
+              "Do not change Pi core APIs.",
+              "Do not close or validate unrelated artifact-status scheduler work."
             ],
             "verification": [
               "npm run typecheck",
@@ -39170,7 +41476,9 @@
               "targeted artifact-status session queue smoke",
               "targeted legacy claim/lease alias compatibility smoke",
               "targeted /wiki-resume parallel allocation smoke with active umbrella focus and artifact conflict fixtures",
-              "stale-term scan for public claim/lease vocabulary with allowed compatibility/internal exceptions only"
+              "stale-term scan for public claim/lease vocabulary with allowed compatibility/internal exceptions only",
+              "node tests/smoke/session-handoff.test.mjs",
+              "codewiki_state refresh=true"
             ]
           },
           "spec_paths": [
@@ -39179,7 +41487,9 @@
             ".codewiki/kb/system/roadmap.md",
             ".codewiki/kb/system/adapters.md",
             ".codewiki/kb/system/graph.md",
-            ".codewiki/kb/system/file-structure.md"
+            ".codewiki/kb/system/file-structure.md",
+            ".codewiki/kb/system/validation-gateway.md",
+            "skills/codewiki/SKILL.md"
           ],
           "code_paths": [
             "src/application/claims.ts",
@@ -39188,9 +41498,11 @@
             "src/adapters/pi/schemas.ts",
             "src/domain/shared/types.ts",
             "skills/codewiki",
-            "tests/smoke"
+            "tests/smoke",
+            "src/adapters/pi/tools/session-handoff.ts",
+            "tests/smoke/session-handoff.test.mjs"
           ],
-          "updated": "2026-05-16T07:02:11Z",
+          "updated": "2026-05-16T08:10:53Z",
           "context_path": ".codewiki/roadmap/tasks/TASK-086/context.json",
           "loop": {
             "updated_at": "",
@@ -39318,7 +41630,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T07:03:17Z",
+      "generated_at": "2026-05-16T08:11:00Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -39469,13 +41781,22 @@
             ],
             "build_paths": [
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-              ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json"
+              ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
+              ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
+              ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
+              ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+              ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
             ],
             "validation_paths": [
               ".codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-              ".codewiki/validation/2026-05-16-feedback-block.json"
+              ".codewiki/validation/2026-05-16-feedback-block.json",
+              ".codewiki/validation/2026-05-16-implementation-block-task-086.json",
+              ".codewiki/validation/2026-05-16-implementation-fail-task-086.json"
             ],
-            "claim_ids": [],
+            "claim_ids": [
+              "CLAIM-061",
+              "CLAIM-060"
+            ],
             "claim_wait_ids": []
           },
           "warm": {
@@ -39569,11 +41890,11 @@
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+              ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
               ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-              ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
-              ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+              ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
             ],
             "validation_paths": [
               ".codewiki/validation/2026-05-14-documentation-pass.json",
@@ -39696,11 +42017,11 @@
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+              ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
               ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-              ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
-              ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+              ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
             ]
           },
           "purgeable": {
@@ -39730,7 +42051,7 @@
       },
       "direction": [
         "Validation blocked; escalate ambiguous intent to feedback compiler.",
-        "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
+        "Parallel sessions: 0 active, 0 collision task(s), 2 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
         "Tracked drift coverage: 17/17."
@@ -39765,7 +42086,7 @@
           "primary_task": {
             "id": "TASK-086",
             "status": "in_progress",
-            "title": "Migrate public coordination API to session queue scoped leases"
+            "title": "Migrate public coordination API to artifact status"
           },
           "revision": {
             "digest": "b5051fbe8f0404be1c939f3d3786c73c575d42f322f9c828d7e5d933a2af4736",
@@ -39887,10 +42208,10 @@
           "primary_task": {
             "id": "TASK-086",
             "status": "in_progress",
-            "title": "Migrate public coordination API to session queue scoped leases"
+            "title": "Migrate public coordination API to artifact status"
           },
           "revision": {
-            "digest": "1742af3803631e15ca0b851b8a0d5c89371cd209cf4441f3b6d84f9d9d5783e0",
+            "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
             "basis": "source_content"
           },
           "note": "tracked by TASK-086"
@@ -39956,10 +42277,10 @@
           "primary_task": {
             "id": "TASK-086",
             "status": "in_progress",
-            "title": "Migrate public coordination API to session queue scoped leases"
+            "title": "Migrate public coordination API to artifact status"
           },
           "revision": {
-            "digest": "97e1605a0e24e9de06d45d797069a2bd55c6abf4a3aa5b433edf10cda13473d7",
+            "digest": "7bb646a33f0fdf2586aceb2d73d618d1ad3e99d6a7b9dfb9d68e81b3b4250834",
             "basis": "source_content"
           },
           "note": "tracked by TASK-086"
@@ -40270,7 +42591,7 @@
           "primary_task": {
             "id": "TASK-086",
             "status": "in_progress",
-            "title": "Migrate public coordination API to session queue scoped leases"
+            "title": "Migrate public coordination API to artifact status"
           },
           "revision": {
             "digest": "c96ec2a09a42eb7dd12fd673bf8289be34adffee9fe08be91389d40abbe77fc1",
@@ -40297,6 +42618,7 @@
           },
           "related_task_ids": [
             "TASK-077",
+            "TASK-086",
             "TASK-087",
             "TASK-085",
             "TASK-034",
@@ -40644,7 +42966,7 @@
             "title": "Align CodeWiki skill package with compiler and API contracts"
           },
           "revision": {
-            "digest": "dac7b53f7d5473529cc68dd674439825bed9d5d0771bcbcbbb58e6216f10d978",
+            "digest": "1ba90db16066f0dba14b236fd637992a332ea5615313a32fef5b1d9536eb0420",
             "basis": "source_content"
           },
           "note": "no deterministic drift signals"
@@ -40743,7 +43065,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T07:03:17Z",
+        "generated_at": "2026-05-16T08:11:00Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -40771,12 +43093,32 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T07:03:17Z",
+            "checked_at": "2026-05-16T08:11:00Z",
             "revision": {
               "git": {
-                "head": "c07b9eccf181fbd784d63296aadb59bb0a8eab27",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "2d2673719bd55fd50876ccae84672c3773b7215a",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/kb/system/adapters.md",
+                  ".codewiki/kb/system/agency.md",
+                  ".codewiki/kb/system/api.md",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-086/context.json",
+                  ".codewiki/roadmap/tasks/TASK-086/task.json",
+                  ".codewiki/validation/2026-05-16-implementation-pass-task-086.json",
+                  "skills/codewiki/SKILL.md",
+                  "src/adapters/pi/index.ts",
+                  "src/adapters/pi/schemas.ts",
+                  "src/adapters/pi/tools/claim.ts",
+                  "src/adapters/pi/tools/session-handoff.ts",
+                  "src/adapters/pi/tools/state.ts",
+                  "src/application/claims.ts",
+                  "src/application/graph.ts",
+                  "src/application/state-builders.ts",
+                  "src/application/state.ts",
+                  "src/domain/shared/types.ts",
+                  "tests/smoke/package-smoke.test.mjs"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -40856,15 +43198,15 @@
                   "tests/smoke/package-smoke.test.mjs": "c288d528e6b18ff140a6901e3080edfca45d646b"
                 }
               },
-              "spec_digest": "7dd2528fc40345a33ee7c2b5855cebd66468226c2e16e2a74f5eaaf317b9a6ab",
-              "task_digest": "f8a41df368064819495d5dae3dfb24e7e6d536f5adfb5c8097def75fe8cd9b38",
-              "code_digest": "d6c61f0746743f68842fbe38cdd388a8e6920625364501af53555d759229d5fe",
-              "digest": "9cd408542866392d240c4a198310b617691027510be5e619a2c60a5afcafe762"
+              "spec_digest": "4bf38b0b0799a1d9e074211f0a26a5f2e390b38c058a2860504ffc83da3742d6",
+              "task_digest": "8799d35b459d4de6e902b290bffef3ae136c7b49be27babab4cb895a254124a1",
+              "code_digest": "be5d4ca82c398d29520b7fa4daceec490c90705df77e56eeaa99d8f8eb076de2",
+              "digest": "fc918852138ca186a5b6f4d39ec8e284fe2a854fc9302aef87c7f38a465e5000"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T07:03:17Z",
+              "checked_at": "2026-05-16T08:11:00Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -41005,12 +43347,32 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T07:03:17Z",
+            "checked_at": "2026-05-16T08:11:00Z",
             "revision": {
               "git": {
-                "head": "c07b9eccf181fbd784d63296aadb59bb0a8eab27",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "2d2673719bd55fd50876ccae84672c3773b7215a",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/kb/system/adapters.md",
+                  ".codewiki/kb/system/agency.md",
+                  ".codewiki/kb/system/api.md",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-086/context.json",
+                  ".codewiki/roadmap/tasks/TASK-086/task.json",
+                  ".codewiki/validation/2026-05-16-implementation-pass-task-086.json",
+                  "skills/codewiki/SKILL.md",
+                  "src/adapters/pi/index.ts",
+                  "src/adapters/pi/schemas.ts",
+                  "src/adapters/pi/tools/claim.ts",
+                  "src/adapters/pi/tools/session-handoff.ts",
+                  "src/adapters/pi/tools/state.ts",
+                  "src/application/claims.ts",
+                  "src/application/graph.ts",
+                  "src/application/state-builders.ts",
+                  "src/application/state.ts",
+                  "src/domain/shared/types.ts",
+                  "tests/smoke/package-smoke.test.mjs"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -41069,15 +43431,15 @@
                   "tests/smoke/package-smoke.test.mjs": "c288d528e6b18ff140a6901e3080edfca45d646b"
                 }
               },
-              "spec_digest": "03d72cb217ce699ecec7e27d5224f94ea696d9a63c8a8fdd68103c83244bb2be",
-              "task_digest": "f8a41df368064819495d5dae3dfb24e7e6d536f5adfb5c8097def75fe8cd9b38",
-              "code_digest": "b6aaf1713f4fce0913df6d359d7f4f310ccfbeb47e5ec164f19831ffc05c8a0b",
-              "digest": "c2e0b04dfca5c3c06619c662f2051238c59aa37befcfb2f6cb77dbba8b80c253"
+              "spec_digest": "1757fe47f3161a515c55357a302f40f341273552190f7a6b913b4136b1c89cb5",
+              "task_digest": "8799d35b459d4de6e902b290bffef3ae136c7b49be27babab4cb895a254124a1",
+              "code_digest": "dcbe452b3d3688ed60dc1eb41d94985ca0c97195bd43c3ac9e6d9c8d2a040657",
+              "digest": "2c8592f0b57bd270a9f2a6c14bcec7c3bcff2c433e34a1e92327ce0c44d66b2f"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T07:03:17Z",
+              "checked_at": "2026-05-16T08:11:00Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -41194,12 +43556,32 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T07:03:17Z",
+            "checked_at": "2026-05-16T08:11:00Z",
             "revision": {
               "git": {
-                "head": "c07b9eccf181fbd784d63296aadb59bb0a8eab27",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "2d2673719bd55fd50876ccae84672c3773b7215a",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/kb/system/adapters.md",
+                  ".codewiki/kb/system/agency.md",
+                  ".codewiki/kb/system/api.md",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-086/context.json",
+                  ".codewiki/roadmap/tasks/TASK-086/task.json",
+                  ".codewiki/validation/2026-05-16-implementation-pass-task-086.json",
+                  "skills/codewiki/SKILL.md",
+                  "src/adapters/pi/index.ts",
+                  "src/adapters/pi/schemas.ts",
+                  "src/adapters/pi/tools/claim.ts",
+                  "src/adapters/pi/tools/session-handoff.ts",
+                  "src/adapters/pi/tools/state.ts",
+                  "src/application/claims.ts",
+                  "src/application/graph.ts",
+                  "src/application/state-builders.ts",
+                  "src/application/state.ts",
+                  "src/domain/shared/types.ts",
+                  "tests/smoke/package-smoke.test.mjs"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -41279,15 +43661,15 @@
                   "tests/smoke/package-smoke.test.mjs": "c288d528e6b18ff140a6901e3080edfca45d646b"
                 }
               },
-              "spec_digest": "7dd2528fc40345a33ee7c2b5855cebd66468226c2e16e2a74f5eaaf317b9a6ab",
-              "task_digest": "f8a41df368064819495d5dae3dfb24e7e6d536f5adfb5c8097def75fe8cd9b38",
-              "code_digest": "d6c61f0746743f68842fbe38cdd388a8e6920625364501af53555d759229d5fe",
-              "digest": "9cd408542866392d240c4a198310b617691027510be5e619a2c60a5afcafe762"
+              "spec_digest": "4bf38b0b0799a1d9e074211f0a26a5f2e390b38c058a2860504ffc83da3742d6",
+              "task_digest": "8799d35b459d4de6e902b290bffef3ae136c7b49be27babab4cb895a254124a1",
+              "code_digest": "be5d4ca82c398d29520b7fa4daceec490c90705df77e56eeaa99d8f8eb076de2",
+              "digest": "fc918852138ca186a5b6f4d39ec8e284fe2a854fc9302aef87c7f38a465e5000"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T07:03:17Z",
+              "checked_at": "2026-05-16T08:11:00Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -41429,18 +43811,219 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T07:03:17Z",
+        "generated_at": "2026-05-16T08:11:00Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
-        "active_claim_count": 0,
-        "claim_warning_count": 0,
+        "active_claim_count": 2,
+        "claim_warning_count": 6,
         "claim_conflict_count": 0,
         "claim_pending_wait_count": 0,
         "claim_ready_wait_count": 0,
-        "claims": [],
+        "claims": [
+          {
+            "id": "CLAIM-061",
+            "session_id": "019e2fa1-fd52-7709-bcaf-f52789dc174d",
+            "agent_name": "Puma",
+            "status": "active",
+            "mode": "read",
+            "role": "validator",
+            "summary": "Fresh implementation validation for TASK-086 artifact-status public API slice",
+            "task_id": "TASK-086",
+            "build_ref": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+            "scopes": [
+              {
+                "layer": "roadmap",
+                "task_id": "TASK-086"
+              },
+              {
+                "layer": "build",
+                "ref": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json"
+              },
+              {
+                "layer": "validation",
+                "path": ".codewiki/validation/**"
+              },
+              {
+                "layer": "code",
+                "path": "src/adapters/pi/tools/artifact-status.ts"
+              },
+              {
+                "layer": "code",
+                "path": "src/adapters/pi/tools/claim.ts"
+              },
+              {
+                "layer": "code",
+                "path": "src/application/claims.ts"
+              },
+              {
+                "layer": "code",
+                "path": "tests/smoke/package-smoke.test.mjs"
+              }
+            ],
+            "created_at": "2026-05-16T07:14:28Z",
+            "updated_at": "2026-05-16T07:14:28Z",
+            "expires_at": "2026-05-16T09:14:28.600Z"
+          },
+          {
+            "id": "CLAIM-060",
+            "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
+            "agent_name": "Ibis",
+            "status": "active",
+            "mode": "write",
+            "role": "builder",
+            "summary": "Continue TASK-086 with public artifact-status tool/API alias over session queue.",
+            "task_id": "TASK-086",
+            "scopes": [
+              {
+                "layer": "code",
+                "path": "src/application/claims.ts"
+              },
+              {
+                "layer": "code",
+                "path": "src/adapters/pi/tools/**"
+              },
+              {
+                "layer": "code",
+                "path": "src/adapters/pi/index.ts"
+              },
+              {
+                "layer": "code",
+                "path": "src/adapters/pi/schemas.ts"
+              },
+              {
+                "layer": "code",
+                "path": "src/domain/shared/types.ts"
+              },
+              {
+                "layer": "code",
+                "path": "tests/smoke/**"
+              },
+              {
+                "layer": "code",
+                "path": "README.md"
+              },
+              {
+                "layer": "code",
+                "path": "skills/codewiki/SKILL.md"
+              },
+              {
+                "layer": "roadmap",
+                "task_id": "TASK-086"
+              },
+              {
+                "layer": "build",
+                "path": ".codewiki/builds/implementation/**"
+              },
+              {
+                "layer": "validation",
+                "path": ".codewiki/validation/**"
+              }
+            ],
+            "created_at": "2026-05-16T07:04:51Z",
+            "updated_at": "2026-05-16T07:04:51Z",
+            "expires_at": "2026-05-16T11:04:51.880Z"
+          }
+        ],
         "claim_waiters": [],
-        "claim_conflicts": []
+        "claim_conflicts": [
+          {
+            "kind": "warning",
+            "claim_ids": [
+              "CLAIM-060",
+              "CLAIM-061"
+            ],
+            "sessions": [
+              "019e25c0-2de2-706e-84ba-77b32db98cc3",
+              "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+            ],
+            "scope": {
+              "layer": "roadmap",
+              "task_id": "TASK-086"
+            },
+            "reason": "Read/write overlap from different sessions."
+          },
+          {
+            "kind": "warning",
+            "claim_ids": [
+              "CLAIM-060",
+              "CLAIM-061"
+            ],
+            "sessions": [
+              "019e25c0-2de2-706e-84ba-77b32db98cc3",
+              "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+            ],
+            "scope": {
+              "layer": "validation",
+              "path": ".codewiki/validation/**"
+            },
+            "reason": "Read/write overlap from different sessions."
+          },
+          {
+            "kind": "warning",
+            "claim_ids": [
+              "CLAIM-060",
+              "CLAIM-061"
+            ],
+            "sessions": [
+              "019e25c0-2de2-706e-84ba-77b32db98cc3",
+              "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+            ],
+            "scope": {
+              "layer": "code",
+              "path": "src/adapters/pi/tools/artifact-status.ts"
+            },
+            "reason": "Read/write overlap from different sessions."
+          },
+          {
+            "kind": "warning",
+            "claim_ids": [
+              "CLAIM-060",
+              "CLAIM-061"
+            ],
+            "sessions": [
+              "019e25c0-2de2-706e-84ba-77b32db98cc3",
+              "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+            ],
+            "scope": {
+              "layer": "code",
+              "path": "src/adapters/pi/tools/claim.ts"
+            },
+            "reason": "Read/write overlap from different sessions."
+          },
+          {
+            "kind": "warning",
+            "claim_ids": [
+              "CLAIM-060",
+              "CLAIM-061"
+            ],
+            "sessions": [
+              "019e25c0-2de2-706e-84ba-77b32db98cc3",
+              "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+            ],
+            "scope": {
+              "layer": "code",
+              "path": "src/application/claims.ts"
+            },
+            "reason": "Read/write overlap from different sessions."
+          },
+          {
+            "kind": "warning",
+            "claim_ids": [
+              "CLAIM-060",
+              "CLAIM-061"
+            ],
+            "sessions": [
+              "019e25c0-2de2-706e-84ba-77b32db98cc3",
+              "019e2fa1-fd52-7709-bcaf-f52789dc174d"
+            ],
+            "scope": {
+              "layer": "code",
+              "path": "tests/smoke/package-smoke.test.mjs"
+            },
+            "reason": "Read/write overlap from different sessions."
+          }
+        ]
       },
       "wiki": {
         "rows": [
@@ -41473,7 +44056,7 @@
             "primary_task": {
               "id": "TASK-086",
               "status": "in_progress",
-              "title": "Migrate public coordination API to session queue scoped leases"
+              "title": "Migrate public coordination API to artifact status"
             },
             "revision": {
               "digest": "b5051fbe8f0404be1c939f3d3786c73c575d42f322f9c828d7e5d933a2af4736",
@@ -41595,10 +44178,10 @@
             "primary_task": {
               "id": "TASK-086",
               "status": "in_progress",
-              "title": "Migrate public coordination API to session queue scoped leases"
+              "title": "Migrate public coordination API to artifact status"
             },
             "revision": {
-              "digest": "1742af3803631e15ca0b851b8a0d5c89371cd209cf4441f3b6d84f9d9d5783e0",
+              "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
               "basis": "source_content"
             },
             "note": "tracked by TASK-086"
@@ -41664,10 +44247,10 @@
             "primary_task": {
               "id": "TASK-086",
               "status": "in_progress",
-              "title": "Migrate public coordination API to session queue scoped leases"
+              "title": "Migrate public coordination API to artifact status"
             },
             "revision": {
-              "digest": "97e1605a0e24e9de06d45d797069a2bd55c6abf4a3aa5b433edf10cda13473d7",
+              "digest": "7bb646a33f0fdf2586aceb2d73d618d1ad3e99d6a7b9dfb9d68e81b3b4250834",
               "basis": "source_content"
             },
             "note": "tracked by TASK-086"
@@ -41978,7 +44561,7 @@
             "primary_task": {
               "id": "TASK-086",
               "status": "in_progress",
-              "title": "Migrate public coordination API to session queue scoped leases"
+              "title": "Migrate public coordination API to artifact status"
             },
             "revision": {
               "digest": "c96ec2a09a42eb7dd12fd673bf8289be34adffee9fe08be91389d40abbe77fc1",
@@ -42005,6 +44588,7 @@
             },
             "related_task_ids": [
               "TASK-077",
+              "TASK-086",
               "TASK-087",
               "TASK-085",
               "TASK-034",
@@ -42352,7 +44936,7 @@
               "title": "Align CodeWiki skill package with compiler and API contracts"
             },
             "revision": {
-              "digest": "dac7b53f7d5473529cc68dd674439825bed9d5d0771bcbcbbb58e6216f10d978",
+              "digest": "1ba90db16066f0dba14b236fd637992a332ea5615313a32fef5b1d9536eb0420",
               "basis": "source_content"
             },
             "note": "no deterministic drift signals"
@@ -42884,7 +45468,7 @@
                 "primary_task": {
                   "id": "TASK-086",
                   "status": "in_progress",
-                  "title": "Migrate public coordination API to session queue scoped leases"
+                  "title": "Migrate public coordination API to artifact status"
                 },
                 "revision": {
                   "digest": "b5051fbe8f0404be1c939f3d3786c73c575d42f322f9c828d7e5d933a2af4736",
@@ -42916,10 +45500,10 @@
                 "primary_task": {
                   "id": "TASK-086",
                   "status": "in_progress",
-                  "title": "Migrate public coordination API to session queue scoped leases"
+                  "title": "Migrate public coordination API to artifact status"
                 },
                 "revision": {
-                  "digest": "1742af3803631e15ca0b851b8a0d5c89371cd209cf4441f3b6d84f9d9d5783e0",
+                  "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
                   "basis": "source_content"
                 },
                 "note": "tracked by TASK-086"
@@ -42985,10 +45569,10 @@
                 "primary_task": {
                   "id": "TASK-086",
                   "status": "in_progress",
-                  "title": "Migrate public coordination API to session queue scoped leases"
+                  "title": "Migrate public coordination API to artifact status"
                 },
                 "revision": {
-                  "digest": "97e1605a0e24e9de06d45d797069a2bd55c6abf4a3aa5b433edf10cda13473d7",
+                  "digest": "7bb646a33f0fdf2586aceb2d73d618d1ad3e99d6a7b9dfb9d68e81b3b4250834",
                   "basis": "source_content"
                 },
                 "note": "tracked by TASK-086"
@@ -43299,7 +45883,7 @@
                 "primary_task": {
                   "id": "TASK-086",
                   "status": "in_progress",
-                  "title": "Migrate public coordination API to session queue scoped leases"
+                  "title": "Migrate public coordination API to artifact status"
                 },
                 "revision": {
                   "digest": "c96ec2a09a42eb7dd12fd673bf8289be34adffee9fe08be91389d40abbe77fc1",
@@ -43326,6 +45910,7 @@
                 },
                 "related_task_ids": [
                   "TASK-077",
+                  "TASK-086",
                   "TASK-087",
                   "TASK-085",
                   "TASK-034",
@@ -43369,7 +45954,7 @@
                   "title": "Align CodeWiki skill package with compiler and API contracts"
                 },
                 "revision": {
-                  "digest": "dac7b53f7d5473529cc68dd674439825bed9d5d0771bcbcbbb58e6216f10d978",
+                  "digest": "1ba90db16066f0dba14b236fd637992a332ea5615313a32fef5b1d9536eb0420",
                   "basis": "source_content"
                 },
                 "note": "no deterministic drift signals"

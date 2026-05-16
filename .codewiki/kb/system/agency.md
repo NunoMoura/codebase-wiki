@@ -84,9 +84,9 @@ When intent is unclear, it routes to feedback. When knowledge must change, it ro
 - The controller must not mutate generated graph state directly.
 - The controller must not bypass validation gateway or policy decisions.
 - Commit, push, release, and remote updates require explicit publication policy approval.
-- Parallel sprint execution must lease narrow scopes and stop on write/write conflicts unless policy explicitly permits override.
+- Parallel sprint execution must mark narrow artifact scopes in use and stop on write/write conflicts unless policy explicitly permits override.
 - Agency plans must expose token, time, cost, write, session, and risk budgets in bounded context and policy output.
-- Agency may spend session budget by requesting adapter session handoffs; each handoff must carry a minimal kickoff prompt, source refs, task/build ids, and expected output. A fresh worker process satisfies context isolation even when the host cannot replace the current interactive session from a tool.
+- Agency may spend session budget by requesting adapter session handoffs; each handoff must carry a minimal kickoff prompt, source refs, task/build ids, and expected output. In Pi, tool-context requests stage handoff artifacts; only command-context `/wiki-session-handoff` performs interactive session replacement, while future worker-process adapters must be bounded and explicit.
 
 ## Related docs
 

@@ -307,6 +307,7 @@ export async function readCodewikiState(
 						conflict_count: artifacts.statusState.parallel.claim_conflict_count ?? 0,
 						pending_waiter_count: artifacts.statusState.parallel.claim_pending_wait_count ?? 0,
 						ready_waiter_count: artifacts.statusState.parallel.claim_ready_wait_count ?? 0,
+						artifact_statuses: artifacts.statusState.parallel.artifact_statuses ?? [],
 					}
 				: null,
 		};
@@ -323,6 +324,7 @@ export async function readCodewikiState(
 			claims: artifacts.statusState?.parallel.claims ?? [],
 			waiters: artifacts.statusState?.parallel.claim_waiters ?? [],
 			conflicts: artifacts.statusState?.parallel.claim_conflicts ?? [],
+			artifact_statuses: artifacts.statusState?.parallel.artifact_statuses ?? [],
 		};
 	}
 

@@ -53,6 +53,7 @@ export const CHANGE_CLAIM_LAYER_VALUES = ["knowledge", "roadmap", "code", "build
 export const CHANGE_CLAIM_STATUS_VALUES = ["active", "released", "expired"] as const;
 export const CHANGE_CLAIM_WAITER_STATUS_VALUES = ["pending", "ready", "cancelled", "expired"] as const;
 export const ARTIFACT_STATUS_VALUES = ["available", "in-use", "waiting", "conflict", "stale"] as const;
+export const ARTIFACT_STATUS_ACTION_VALUES = ["mark", "wait", "release", "heartbeat", "list"] as const;
 export const AGENCY_MODE_VALUES = ["auto", "dry-run", "manual", "observe", "maintain", "work"] as const;
 export const AGENCY_TRIGGER_VALUES = ["manual", "task_end", "sprint_end", "roadmap_end", "budget_end"] as const;
 export const AGENCY_RISK_VALUES = ["low", "medium", "high"] as const;
@@ -86,6 +87,7 @@ export type ChangeClaimLayer = (typeof CHANGE_CLAIM_LAYER_VALUES)[number];
 export type ChangeClaimStatus = (typeof CHANGE_CLAIM_STATUS_VALUES)[number];
 export type ChangeClaimWaiterStatus = (typeof CHANGE_CLAIM_WAITER_STATUS_VALUES)[number];
 export type ArtifactStatus = (typeof ARTIFACT_STATUS_VALUES)[number];
+export type ArtifactStatusAction = (typeof ARTIFACT_STATUS_ACTION_VALUES)[number];
 export type ToolTaskStatus = (typeof TOOL_TASK_STATUS_VALUES)[number];
 export type TaskEvidenceResult = (typeof TASK_EVIDENCE_RESULT_VALUES)[number];
 export type SubagentRole = (typeof SUBAGENT_ROLE_VALUES)[number];
@@ -842,6 +844,22 @@ export interface CodewikiClaimToolInput {
 	refresh?: boolean;
 }
 
+export interface CodewikiArtifactStatusToolInput {
+	repoPath?: string;
+	action: ArtifactStatusAction;
+	recordId?: string;
+	taskId?: string;
+	buildRef?: string;
+	summary?: string;
+	mode?: ChangeClaimMode;
+	role?: ChangeClaimRole;
+	worktree?: WorktreeIsolationMetadata;
+	scopes?: ChangeClaimScope[];
+	ttl_minutes?: number;
+	force?: boolean;
+	refresh?: boolean;
+}
+
 export interface CodewikiStateToolInput {
 	repoPath?: string;
 	refresh?: boolean;
@@ -962,6 +980,14 @@ export interface StatusStateFile {
 		claims?: ChangeClaimRecord[];
 		claim_waiters?: ChangeClaimWaiterRecord[];
 		claim_conflicts?: ChangeClaimConflict[];
+		artifact_statuses?: ArtifactStatusRecord[];
+		artifact_status?: {
+			in_use_count: number;
+			warning_count: number;
+			conflict_count: number;
+			waiting_count: number;
+			ready_waiter_count: number;
+		};
 	};
 	wiki: {
 		rows: StatusStateSpecRow[];

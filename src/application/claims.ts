@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import type {
 	ArtifactStatusHolder,
 	ArtifactStatusRecord,
+	CodewikiArtifactStatusToolInput,
 	ChangeClaimConflict,
 	ChangeClaimMode,
 	ChangeClaimRecord,
@@ -520,6 +521,62 @@ type ChangeClaimMutationResult = {
 	summary: string;
 };
 
+export type ArtifactStatusMutationResult = ChangeClaimMutationResult & {
+	artifact_statuses: ArtifactStatusRecord[];
+	artifact_summary: string;
+};
+
+export async function mutateArtifactStatuses(
+	project: WikiProject,
+	input: CodewikiArtifactStatusToolInput,
+	session: { sessionId: string; agentName: string },
+): Promise<ArtifactStatusMutationResult> {
+	const mapped = mapArtifactStatusInput(input);
+	const result = await mutateChangeClaims(project, mapped, session);
+	const state = buildChangeClaimState({
+		version: 1,
+		updated_at: nowIso(),
+		next_sequence: 1,
+		claims: result.claims,
+		waiters: result.waiters,
+	});
+	const artifactSummary = summarizeArtifactStatusAction(input.action, state.artifact_statuses || []);
+	return {
+		...result,
+		artifact_statuses: state.artifact_statuses || [],
+		artifact_summary: artifactSummary,
+		summary: artifactSummary,
+	};
+}
+
+function mapArtifactStatusInput(input: CodewikiArtifactStatusToolInput): CodewikiClaimToolInput {
+	const action = input.action === "mark" ? "claim" : input.action;
+	return {
+		repoPath: input.repoPath,
+		action,
+		claimId: input.recordId,
+		taskId: input.taskId,
+		buildRef: input.buildRef,
+		summary: input.summary,
+		mode: input.mode,
+		role: input.role,
+		worktree: input.worktree,
+		scopes: input.scopes,
+		ttl_minutes: input.ttl_minutes,
+		force: input.force,
+		refresh: input.refresh,
+	};
+}
+
+function summarizeArtifactStatusAction(action: string, statuses: ArtifactStatusRecord[]): string {
+	const counts = new Map<string, number>();
+	for (const status of statuses) counts.set(status.status, (counts.get(status.status) || 0) + 1);
+	const parts = ["available", "in-use", "waiting", "conflict", "stale"]
+		.map((key) => `${key}=${counts.get(key) || 0}`)
+		.join(", ");
+	return `codewiki artifact-status: ${action} (${parts})`;
+}
+
 export async function mutateChangeClaims(
 	project: WikiProject,
 	input: CodewikiClaimToolInput,
@@ -772,12 +829,12 @@ function summarizeClaimAction(action: string, state: ChangeClaimState, claim?: C
 	if (action === "claim" && claim) {
 		const role = claim.role ? `, role=${claim.role}` : "";
 		const worktree = claim.worktree?.worktree_path ? ", worktree=recorded" : "";
-		return `codewiki claim: ${claim.id} active (${claim.mode}${role}${worktree}, scopes=${claim.scopes.length}, warnings=${state.warning_count}, conflicts=${state.conflict_count})`;
+		return `codewiki artifact-status: ${claim.id} in-use (${claim.mode}${role}${worktree}, artifacts=${claim.scopes.length}, warnings=${state.warning_count}, conflicts=${state.conflict_count})`;
 	}
 	if (action === "wait" && waiter) {
-		return `codewiki claim: ${waiter.id} ${waiter.status} (${waiter.mode}, scopes=${waiter.scopes.length}, blocked_by=${waiter.blocked_by_claim_ids.length})`;
+		return `codewiki artifact-status: ${waiter.id} ${waiter.status} (${waiter.mode}, artifacts=${waiter.scopes.length}, blocked_by=${waiter.blocked_by_claim_ids.length})`;
 	}
-	return `codewiki claim: ${state.active_claim_count} active, ${state.conflict_count + state.warning_count} overlap(s), ${state.pending_waiter_count} waiting, ${state.ready_waiter_count} ready`;
+	return `codewiki artifact-status: ${state.active_claim_count} in-use, ${state.conflict_count + state.warning_count} overlap(s), ${state.pending_waiter_count} waiting, ${state.ready_waiter_count} ready`;
 }
 
 export function claimScopeLabels(scopes: ChangeClaimScope[]): string[] {

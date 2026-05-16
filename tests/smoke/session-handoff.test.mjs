@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
@@ -60,28 +60,15 @@ try {
 	assert.match(toolStaged.relativePath, /^\.codewiki\/runtime\/session-handoffs\/HANDOFF-/);
 	assert.match(toolStaged.command, /^\/wiki-session-handoff \.codewiki\/runtime\/session-handoffs\/HANDOFF-/);
 
-	const execCalls = [];
 	const toolResult = await executeSessionHandoffFromTool(
-		{
-			exec: async (command, args, options) => {
-				execCalls.push({ command, args, options });
-				return { stdout: '{"type":"message_end"}\n', stderr: "", code: 0, killed: false };
-			},
-		},
-		project,
 		toolStaged,
 		{ compact: () => assert.fail("new-session handoff should not compact") },
 	);
-	assert.equal(toolResult.action, "spawn-process");
-	assert.equal(toolResult.spawn.status, "completed");
-	assert.equal(execCalls[0].command, "pi");
-	assert.deepEqual(execCalls[0].args.slice(0, 4), ["--mode", "json", "-p", "--no-session"]);
-	assert.match(execCalls[0].args.at(-1), /fresh validation report/);
-	assert.equal(execCalls[0].options.cwd, root);
-	const toolCompleted = JSON.parse(await readFile(toolStaged.absolutePath, "utf8"));
-	assert.equal(toolCompleted.status, "completed");
-	const transcript = JSON.parse(await readFile(toolResult.spawn.transcriptPath, "utf8"));
-	assert.equal(transcript.result.code, 0);
+	assert.equal(toolResult.action, "staged");
+	assert.equal(toolResult.command, toolStaged.command);
+	assert.match(toolResult.reason, /ctx\.newSession/);
+	const toolQueued = JSON.parse(await readFile(toolStaged.absolutePath, "utf8"));
+	assert.equal(toolQueued.status, "queued");
 
 	const commandStaged = await stageSessionHandoff(project, input);
 	let waited = false;
@@ -109,6 +96,28 @@ try {
 
 	const commandCompleted = JSON.parse(await readFile(commandStaged.absolutePath, "utf8"));
 	assert.equal(commandCompleted.status, "completed");
+
+	const latestStaged = await stageSessionHandoff(project, { ...input, reason: "Latest queued handoff should run without path." });
+	replacementPrompt = undefined;
+	const latestResult = await runSessionHandoffCommand("", commandCtx);
+	assert.equal(latestResult.cancelled, false);
+	assert.equal(latestResult.payload.id, latestStaged.payload.id);
+	assert.match(replacementPrompt, /Latest queued handoff/);
+	const latestCompleted = JSON.parse(await readFile(latestStaged.absolutePath, "utf8"));
+	assert.equal(latestCompleted.status, "completed");
+
+	const failingStaged = await stageSessionHandoff(project, { ...input, reason: "New session throws." });
+	const failingCtx = {
+		...commandCtx,
+		newSession: async () => { throw new Error("newSession failed"); },
+	};
+	await assert.rejects(() => runSessionHandoffCommand(failingStaged.relativePath, failingCtx), /newSession failed/);
+	const failed = JSON.parse(await readFile(failingStaged.absolutePath, "utf8"));
+	assert.equal(failed.status, "failed");
+
+	const badRelativePath = ".codewiki/runtime/session-handoffs/bad.json";
+	await writeFile(join(root, badRelativePath), JSON.stringify({ kind: "not_codewiki" }) + "\n", "utf8");
+	await assert.rejects(() => runSessionHandoffCommand(badRelativePath, commandCtx), /Invalid CodeWiki session handoff/);
 } finally {
 	await rm(root, { recursive: true, force: true });
 }

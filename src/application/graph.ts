@@ -1405,6 +1405,15 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			claims: claimState.claims,
 			conflicts: claimState.conflicts,
 			waiters: claimState.waiters,
+			artifact_statuses: claimState.artifact_statuses || [],
+		},
+		artifact_status: {
+			in_use_count: claimState.active_claim_count,
+			warning_count: claimState.warning_count,
+			conflict_count: claimState.conflict_count,
+			waiting_count: claimState.pending_waiter_count,
+			ready_waiter_count: claimState.ready_waiter_count,
+			artifacts: claimState.artifact_statuses || [],
 		},
 		validation: {
 			isolation: validationIsolationRows,

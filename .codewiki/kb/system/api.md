@@ -30,7 +30,7 @@ The API should expose CodeWiki operations as typed capabilities instead of askin
 | `codewiki.documentation` | Apply accepted feedback to product/system knowledge and produce documentation builds. |
 | `codewiki.implementation` | Coordinate implementation work, evidence collection, and implementation builds. |
 | `codewiki.roadmap` | Manage work truth: queue, status, priority, blockers, progress, and closure. |
-| `codewiki.session_queue` | Manage session focus, scoped leases, waits, handoffs, and isolation metadata for parallel session coordination across knowledge, roadmap, code, builds, validation, and state/source refs. |
+| `codewiki.session_queue` | Manage session focus, artifact availability/in-use/waiting/conflict/stale status, handoffs, and isolation metadata for parallel session coordination across knowledge, roadmap, code, builds, validation, and state/source refs. |
 | `codewiki.agency` | Run bounded roadmap, sprint, or task automation through token, time, cost, write, session, risk, validation, policy, and approval gates. |
 | `codewiki.session_handoff` | Request adapter-managed fresh-process/fresh-session, context-reset, or external-orchestrator handoffs with bounded kickoff context. |
 | `codewiki.build` | Read and write accepted compiler build briefs. |
@@ -60,15 +60,15 @@ All access surfaces must preserve the same `.codewiki/` semantics.
 - Code/test changes flow through implementation loops.
 - Roadmap changes record work truth, not full requirements briefs.
 - Roadmap task creation must check active work for related intent and refine matching tasks before creating duplicates.
-- Parallel sessions should use session queue scoped leases before non-trivial overlapping documentation, roadmap, build, validation, or code edits.
-- Scoped leases are temporary coordination records; they do not replace roadmap tasks, builds, validation, git, or code review.
-- Session queue callers may register wait entries when an overlapping write lease blocks needed scopes. Wait entries have their own TTL/heartbeat, can be cancelled through release, and become ready when blocking active write leases release or expire.
+- Parallel sessions should mark affected artifacts in the session queue before non-trivial overlapping documentation, roadmap, build, validation, or code edits.
+- Artifact status records are temporary coordination records; they do not replace roadmap tasks, builds, validation, git, or code review.
+- Session queue callers may register wait entries when an overlapping write artifact status blocks needed scopes. Wait entries have their own TTL/heartbeat, can be cancelled through release, and become ready when blocking active write status records release or expire.
 - Ready wait entries are wake signals, not stale-context revival. Adapters should resume from task/build/scope artifacts and current generated state, or request a fresh session handoff when policy requires it.
-- Session queue callers may provide role/worktree metadata for builder, validator, publisher, or observer sessions so status and generated state views can explain isolation without making leases the filesystem source of truth.
+- Session queue callers may provide role/worktree metadata for builder, validator, publisher, or observer sessions so status and generated state views can explain isolation without making artifact status records the filesystem source of truth.
 - Validation callers may provide isolation metadata such as fresh-context status, worktree path, branch, base/head/validated SHA, and clean worktree result when independence matters.
 - Validation callers must provide fresh-context, clean-worktree, and checked-SHA evidence for implementation, task-close, publication, publish, and release profiles; otherwise the API records a `block` verdict.
 - Gated agency runs must respect token, time, cost, write, session, risk, validation, policy, and approval gates.
-- Session handoff callers must provide reason, source refs, expected output, and mode; adapters decide whether that becomes a replacement session, context reset, fresh subprocess, or external orchestration plan. Tool-driven Pi handoffs use fresh subprocess execution because Pi session replacement is only exposed to command handlers.
+- Session handoff callers must provide reason, source refs, expected output, and mode; adapters decide whether that becomes a replacement session, context reset, bounded worker process, or external orchestration plan. Tool-context Pi `new-session` handoffs stage a durable handoff artifact and return `/wiki-session-handoff`; command-context `/wiki-session-handoff` performs `ctx.newSession` replacement because Pi session replacement is only exposed to command handlers.
 - Pending diff tables are runtime/session decision surfaces; accepted rows become feedback build truth. The CodeWiki UI diff surface and compact status-panel diff affordance can approve, reject, defer, or attach alternatives to pending rows.
 - Builds are accepted loop handoff briefs and should expose explicit consumes/produces edges plus loop-start, validation, and next-loop isolation policy.
 - Config schema v4 defines quiet rebuild defaults, scoped agency budgets, parallelism/session-per-sprint policy, and hot/warm/cold/purge garbage-collection windows.

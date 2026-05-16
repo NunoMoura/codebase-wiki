@@ -1,16 +1,14 @@
 {
   "version": 1,
   "kind": "validation_report",
-  "created": "2026-05-16T08:10:34Z",
+  "created": "2026-05-16T08:10:06Z",
   "profile": "implementation",
   "task_id": "TASK-086",
-  "verdict": "pass",
-  "rationale": "Fresh validation from repo truth passes. codewiki_state(refresh=true, taskId=TASK-086) reported health green. Required audit evidence is cited as audit:alignment and audit:changed: alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; changed warnings limited to generated state/view files .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, and .codewiki/roadmap/tasks/TASK-086/task.json. README.md presents codewiki_artifact_status/artifact status as primary day-to-day coordination and codewiki_claim only as legacy compatibility alias. api.md/adapters.md/agency.md/SKILL.md state tool-context Pi new-session handoffs stage durable handoff artifacts and return /wiki-session-handoff; only command-context /wiki-session-handoff performs ctx.newSession. session-handoff.ts has no child_process/spawn/exec implementation; tool path returns staged command for new-session, command path calls ctx.newSession and marks started/completed/cancelled/failed. session-handoff smoke passed in this validation session.",
+  "verdict": "block",
+  "rationale": "Fresh validation from repo truth passes. codewiki_state(refresh=true, taskId=TASK-086) reported health green. codewiki_audit(profiles=[alignment, changed], task_id=TASK-086) evidence: alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; warnings limited to generated state/view files .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, and .codewiki/roadmap/tasks/TASK-086/task.json. README.md presents codewiki_artifact_status as primary day-to-day artifact-status coordination and codewiki_claim only as legacy compatibility alias. api.md/adapters.md/agency.md/SKILL.md state tool-context Pi new-session handoffs stage durable handoff artifacts and return /wiki-session-handoff; only command-context /wiki-session-handoff performs ctx.newSession. session-handoff.ts has no child_process/spawn/exec implementation; tool path returns staged command for new-session, command path calls ctx.newSession and marks started/completed/cancelled/failed. session-handoff smoke passed in this validation session. Policy blocks implementation validation until audit:alignment, audit:changed are recorded.",
   "checks": [
     "codewiki_state(refresh=true, taskId=TASK-086) => health green (0 errors, 0 warnings)",
-    "audit:alignment => pass — Checked generated graph health and roadmap queue reachability.",
-    "audit:changed => warning — Checked 29 changed files across 7 layers; generated-file-changed warnings only for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json.",
-    "audit:task => pass — Checked roadmap task TASK-086.",
+    "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086) => alignment pass; changed warning with generated-file-changed only; task pass",
     "README.md lines 40-49: codewiki_artifact_status listed; codewiki_claim legacy compatibility alias; day-to-day execution centers on artifact-status coordination entrypoint",
     "README.md line 325: overlapping parallel work coordinated through codewiki_artifact_status",
     "api.md line 71: tool-context Pi new-session handoffs stage durable artifact and return /wiki-session-handoff; command-context performs ctx.newSession",
@@ -25,9 +23,14 @@
     "node tests/smoke/session-handoff.test.mjs => pass",
     "git rev-parse HEAD => 2d2673719bd55fd50876ccae84672c3773b7215a",
     "git rev-parse HEAD^{tree} => 3ac936ffbbad8b32613427c515a5b5e46ecc3062",
-    "dirty working-tree digest before validation artifacts => sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1"
+    "dirty working-tree digest before writing this validation report => sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1"
   ],
-  "issues": [],
+  "issues": [
+    {
+      "severity": "high",
+      "summary": "Missing required audit evidence for profiles: alignment, changed."
+    }
+  ],
   "source": ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
   "policy_profile": "implementation",
   "required_audits": [
@@ -35,9 +38,9 @@
     "changed"
   ],
   "audit_refs": [
-    "audit:alignment",
-    "audit:changed",
-    "audit:task"
+    "codewiki_audit:alignment:pass",
+    "codewiki_audit:changed:warning",
+    "codewiki_audit:task:pass"
   ],
   "audit_reports": [
     "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only"
@@ -47,8 +50,12 @@
     "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
     "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1"
   ],
-  "failed_criteria": [],
-  "blocking_questions": [],
+  "failed_criteria": [
+    "audit_evidence"
+  ],
+  "blocking_questions": [
+    "Run or cite audit evidence for required profiles: alignment, changed."
+  ],
   "isolation_requirement": {
     "required": true,
     "mode": "fresh-context-checked-content",
@@ -74,7 +81,10 @@
       "audit:changed or profile:changed"
     ],
     "reason": "Gateway profiles require deterministic audit evidence for their build or boundary context.",
-    "gaps": []
+    "gaps": [
+      "alignment",
+      "changed"
+    ]
   },
   "commit_readiness_requirement": {
     "required": true,
@@ -100,7 +110,7 @@
     "working_tree_digest": "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1",
     "clean": false,
     "fresh_context": true,
-    "notes": "Fresh validator context. Worktree dirty by TASK-086 changes; digest computed from git status --short, git diff --binary, and untracked file content hashes before writing validation artifacts.",
+    "notes": "Fresh validator context. Worktree dirty by TASK-086 changes; digest computed from git status --short, git diff --binary, and untracked file content hashes before writing this validation artifact.",
     "role": "validator"
   }
 }

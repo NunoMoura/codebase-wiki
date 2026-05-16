@@ -248,6 +248,7 @@ async function main() {
 				"codewiki_setup",
 				"codewiki_bootstrap",
 				"codewiki_state",
+				"codewiki_artifact_status",
 				"codewiki_audit",
 				"codewiki_build",
 				"codewiki_validation",
@@ -988,6 +989,11 @@ async function main() {
 			"State tool should point to task-local context shard",
 		);
 
+		const artifactStatusTool = extension.tools.get("codewiki_artifact_status");
+		assert.ok(
+			artifactStatusTool && typeof artifactStatusTool.definition?.execute === "function",
+			"Artifact status tool missing execute function",
+		);
 		const claimTool = extension.tools.get("codewiki_claim");
 		assert.ok(
 			claimTool && typeof claimTool.definition?.execute === "function",
@@ -1059,8 +1065,43 @@ async function main() {
 			undefined,
 			outsideToolCtx,
 		);
-		assert.equal(claimStateResult.details.claims.active_claim_count, 2, "State should expose active claims");
-		assert.equal(claimStateResult.details.claims.warning_count, 1, "State should expose claim warnings");
+		assert.equal(claimStateResult.details.claims.active_claim_count, 2, "State should expose active artifact records");
+		assert.equal(claimStateResult.details.claims.warning_count, 1, "State should expose artifact overlap warnings");
+		assert.ok(
+			claimStateResult.details.claims.artifact_statuses.some((status) => status.status === "in-use"),
+			"State should expose artifact-status records derived from session queue",
+		);
+		const artifactMarkResult = await artifactStatusTool.definition.execute(
+			"artifact-status-mark-smoke",
+			{
+				repoPath: projectDir,
+				action: "mark",
+				taskId: "TASK-001",
+				summary: "Mark source file artifact in use through public artifact-status API.",
+				mode: "write",
+				scopes: [{ layer: "code", path: "src/index.ts" }],
+				ttl_minutes: 30,
+			},
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		assert.match(
+			artifactMarkResult.content[0]?.text ?? "",
+			/artifact-status: mark/i,
+			"Artifact status tool should report artifact-status terminology",
+		);
+		assert.ok(
+			artifactMarkResult.details.artifact_statuses.some((status) => status.artifact.path === "src/index.ts"),
+			"Artifact status tool should return marked artifact status",
+		);
+		await artifactStatusTool.definition.execute(
+			"artifact-status-release-smoke",
+			{ repoPath: projectDir, action: "release", recordId: artifactMarkResult.details.claim.id },
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
 		await claimTool.definition.execute(
 			"claim-release-smoke-1",
 			{ repoPath: projectDir, action: "release", claimId: claimResult.details.claim.id },

@@ -1,0 +1,69 @@
+import type {
+	ExtensionAPI,
+	ExtensionContext,
+} from "@earendil-works/pi-coding-agent";
+import type {
+	CodewikiArtifactStatusToolInput,
+	WikiProject,
+} from "../../../domain/shared/types.ts";
+import { mutateArtifactStatuses } from "../../../application/claims.ts";
+import { runRebuild } from "../../../application/state-artifacts.ts";
+import { stableAgentName } from "../../../application/state-builders.ts";
+import { resolveToolProject } from "../../../application/project.ts";
+import { codewikiArtifactStatusToolInputSchema } from "../schemas.ts";
+import { currentTaskLink } from "../session.ts";
+import { refreshStatusDock } from "../ui/manager.ts";
+
+export async function executeCodewikiArtifactStatus(
+	_pi: ExtensionAPI,
+	project: WikiProject,
+	ctx: ExtensionContext,
+	input: CodewikiArtifactStatusToolInput,
+) {
+	const sessionId = String(ctx.sessionManager?.getSessionId?.() || "session-unknown").trim() || "session-unknown";
+	const agentName = stableAgentName(sessionId);
+	const result = await mutateArtifactStatuses(project, input, { sessionId, agentName });
+	if ((input.refresh ?? true) && result.changed) await runRebuild(project);
+	const conflictCount = result.conflicts.filter((conflict) => conflict.kind === "conflict").length;
+	const warningCount = result.conflicts.filter((conflict) => conflict.kind === "warning").length;
+	const waiterCount = result.waiters?.length || 0;
+	const readyWaiters = (result.waiters || []).filter((waiter) => waiter.status === "ready").length;
+	ctx.ui.setStatus?.(
+		"codewiki-artifacts",
+		result.artifact_statuses.length > 0 || waiterCount > 0
+			? `${result.artifact_statuses.length} artifact status(es), ${waiterCount} wait(s), ${readyWaiters} ready, ${conflictCount} conflict(s), ${warningCount} warning(s)`
+			: undefined,
+	);
+	return result;
+}
+
+export function registerCodewikiArtifactStatusTool(pi: ExtensionAPI): void {
+	pi.registerTool({
+		name: "codewiki_artifact_status",
+		label: "Codewiki Artifact Status",
+		description:
+			"Inspect or update runtime artifact status for parallel CodeWiki work through the session queue.",
+		promptSnippet:
+			"Use artifact status to see or mark tasks, paths, builds, and validation refs as available, in-use, waiting, or conflicted.",
+		promptGuidelines: [
+			"Use this before non-trivial semantic changes when another session may touch overlapping docs, roadmap items, builds, validation reports, or code paths.",
+			"Artifact status is runtime coordination evidence, not durable roadmap truth; roadmap tasks, builds, validation, and code remain canonical truth.",
+			"Use action=mark to record current session use, wait to queue behind unavailable artifacts, list to inspect holders/waiters, heartbeat to extend, and release when done.",
+			"Legacy codewiki_claim remains a compatibility alias; prefer artifact-status language in new prompts and docs.",
+		],
+		parameters: codewikiArtifactStatusToolInputSchema,
+		async execute(_toolCallId: string, params: CodewikiArtifactStatusToolInput, _signal: unknown, _onUpdate: unknown, ctx: ExtensionContext) {
+			const project = await resolveToolProject(
+				ctx.cwd,
+				params.repoPath,
+				"codewiki_artifact_status",
+			);
+			const result = await executeCodewikiArtifactStatus(pi, project, ctx, params);
+			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
+			return {
+				content: [{ type: "text", text: result.artifact_summary }],
+				details: result,
+			};
+		},
+	} as any);
+}

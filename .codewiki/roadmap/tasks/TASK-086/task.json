@@ -1,17 +1,19 @@
 {
   "id": "TASK-086",
-  "title": "Migrate public coordination API to session queue scoped leases",
+  "title": "Migrate public coordination API to artifact status",
   "status": "in_progress",
-  "priority": "high",
+  "priority": "critical",
   "kind": "architecture",
-  "summary": "Replace public claim vocabulary with artifact-status-first session queue coordination while preserving transitional compatibility for existing claim/lease callers.",
+  "summary": "Replace public claim/lease vocabulary with artifact-status-first session queue coordination while preserving transitional compatibility for existing claim/lease callers.",
   "spec_paths": [
     ".codewiki/kb/lexicon.md",
     ".codewiki/kb/system/api.md",
     ".codewiki/kb/system/roadmap.md",
     ".codewiki/kb/system/adapters.md",
     ".codewiki/kb/system/graph.md",
-    ".codewiki/kb/system/file-structure.md"
+    ".codewiki/kb/system/file-structure.md",
+    ".codewiki/kb/system/validation-gateway.md",
+    "skills/codewiki/SKILL.md"
   ],
   "code_paths": [
     "src/application/claims.ts",
@@ -20,7 +22,9 @@
     "src/adapters/pi/schemas.ts",
     "src/domain/shared/types.ts",
     "skills/codewiki",
-    "tests/smoke"
+    "tests/smoke",
+    "src/adapters/pi/tools/session-handoff.ts",
+    "tests/smoke/session-handoff.test.mjs"
   ],
   "research_ids": [],
   "labels": [
@@ -28,7 +32,11 @@
     "session-queue",
     "artifact-status",
     "api-compatibility",
-    "parallel-resume"
+    "parallel-resume",
+    "session-handoff",
+    "pi-adapter",
+    "validation-gateway",
+    "fresh-context"
   ],
   "goal": {
     "outcome": "CodeWiki public coordination language/API expose artifact availability, in-use, waiting, conflict, and stale status from session queue state; sessions are holders/waiters behind artifact status, and /wiki-resume allocates safe parallel work from that state.",
@@ -41,13 +49,21 @@
       "Tests cover artifact status create/list/release/heartbeat/wait behavior and legacy alias compatibility.",
       "/wiki-resume without an explicit task reads fresh CodeWiki state plus session queue artifact statuses and selects the next unblocked atomic task whose relevant artifacts are available or read-compatible.",
       "/wiki-resume TASK-### honors an explicit non-closed task request even when an umbrella task is active, unless task policy or artifact conflict provides a real block with a clear explanation.",
-      "Resume output includes selected task, artifact statuses, conflicting artifacts and holders/waiters, temporary session usage record, and helper-safe next steps so one tab/session can start parallel work with a single /wiki-resume invocation."
+      "Resume output includes selected task, artifact statuses, conflicting artifacts and holders/waiters, temporary session usage record, and helper-safe next steps so one tab/session can start parallel work with a single /wiki-resume invocation.",
+      "codewiki_session_handoff no longer treats a killed spawned Pi subprocess as an acceptable validation/handoff path.",
+      "Tool-context new-session handoff stages a durable handoff artifact and reports the exact /wiki-session-handoff command when interactive replacement is required.",
+      "/wiki-session-handoff can execute a staged handoff via ctx.newSession and marks started/completed/cancelled/failures accurately.",
+      "Tests cover tool staging behavior, no unbounded spawn by default, command-context ctx.newSession execution, and stale/bad handoff handling.",
+      "Public schemas/skill guidance no longer claim tool context reliably spawns fresh pi processes for validation."
     ],
     "non_goals": [
       "Do not break existing users abruptly by deleting codewiki_claim before compatibility alias and migration notes exist.",
       "Do not treat session queue artifact status as durable roadmap truth.",
       "Do not use broad umbrella tasks such as TASK-077 as default implementation work when safe child/atomic tasks are available.",
-      "Do not make claim or lease primary project lexicon terms."
+      "Do not make claim or lease primary project lexicon terms.",
+      "Do not implement a full subagent scheduler.",
+      "Do not change Pi core APIs.",
+      "Do not close or validate unrelated artifact-status scheduler work."
     ],
     "verification": [
       "npm run typecheck",
@@ -55,14 +71,16 @@
       "targeted artifact-status session queue smoke",
       "targeted legacy claim/lease alias compatibility smoke",
       "targeted /wiki-resume parallel allocation smoke with active umbrella focus and artifact conflict fixtures",
-      "stale-term scan for public claim/lease vocabulary with allowed compatibility/internal exceptions only"
+      "stale-term scan for public claim/lease vocabulary with allowed compatibility/internal exceptions only",
+      "node tests/smoke/session-handoff.test.mjs",
+      "codewiki_state refresh=true"
     ]
   },
   "delta": {
-    "desired": "Artifact statuses are the canonical public coordination model, backed by session queue runtime state; /wiki-resume allocates safe parallel work from artifact availability/conflict state.",
-    "current": "Implementation and Pi tool names still use change claim terminology, and /wiki-resume can prefer persisted active umbrella focus without artifact-status scheduling.",
-    "closure": "Public API/output/skills use artifact status language, legacy claim/lease aliases are tested, /wiki-resume selects conflict-safe work from fresh artifact status state, and stale public claim/lease terms are controlled."
+    "desired": "Artifact statuses are the canonical public coordination model, backed by session queue runtime state; /wiki-resume allocates safe parallel work from artifact availability/conflict state. Fresh-context handoffs have an honest, bounded adapter contract: tools stage and commands replace sessions; validation only passes after actual fresh context evidence.",
+    "current": "Public API/source/docs have been migrated to artifact-status-first coordination, /wiki-resume uses artifact availability/conflict state, and session handoff no longer relies on unbounded tool-context Pi subprocess spawning.",
+    "closure": "Public API/output/skills use artifact status language, legacy claim/lease aliases are compatibility details, /wiki-resume selects conflict-safe work from fresh artifact status state, session handoff is command-bound and validated, and stale public claim/lease/tool-spawn terms are controlled."
   },
   "created": "2026-05-16",
-  "updated": "2026-05-16T07:02:11Z"
+  "updated": "2026-05-16T08:10:53Z"
 }

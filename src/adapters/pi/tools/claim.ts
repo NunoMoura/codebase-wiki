@@ -29,9 +29,9 @@ export async function executeCodewikiClaim(
 	const waiterCount = result.waiters?.length || 0;
 	const readyWaiters = (result.waiters || []).filter((waiter) => waiter.status === "ready").length;
 	ctx.ui.setStatus?.(
-		"codewiki-claims",
+		"codewiki-artifacts",
 		result.claims.length > 0 || waiterCount > 0
-			? `${result.claims.length} claim(s), ${waiterCount} wait(s), ${readyWaiters} ready, ${conflictCount} conflict(s), ${warningCount} warning(s)`
+			? `${result.claims.length} artifact(s) in-use, ${waiterCount} wait(s), ${readyWaiters} ready, ${conflictCount} conflict(s), ${warningCount} warning(s)`
 			: undefined,
 	);
 	return {

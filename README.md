@@ -37,15 +37,16 @@ Public command surface is intentionally small:
 - `codewiki_setup`
 - `codewiki_bootstrap`
 - `codewiki_state`
+- `codewiki_artifact_status`
 - `codewiki_audit`
 - `codewiki_build`
 - `codewiki_validation`
 - `codewiki_task`
-- `codewiki_claim`
+- `codewiki_claim` (legacy compatibility alias for `codewiki_artifact_status`)
 - `codewiki_session`
 - `codewiki_agency`
 
-All internal `codewiki_*` tools accept optional `repoPath` so agents can target a repo explicitly when Pi is running outside that repo. Day-to-day execution should center on one read entrypoint (`codewiki_state`), one transient compiler-build writer (`codewiki_build`), one canonical task mutation entrypoint (`codewiki_task`), one scoped parallel-work claim entrypoint (`codewiki_claim`), and one runtime session entrypoint (`codewiki_session`). Claim leases live under `.codewiki/session/queue.json` as gitignored runtime input; the graph only exposes derived claim views. `codewiki_agency` plans bounded observe/maintain/work cycles and can include an optional ThinkCode context plan with native CodeWiki fallback steps.
+All internal `codewiki_*` tools accept optional `repoPath` so agents can target a repo explicitly when Pi is running outside that repo. Day-to-day execution should center on one read entrypoint (`codewiki_state`), one transient compiler-build writer (`codewiki_build`), one canonical task mutation entrypoint (`codewiki_task`), one artifact-status coordination entrypoint (`codewiki_artifact_status`), and one runtime session entrypoint (`codewiki_session`). Runtime artifact status lives under `.codewiki/session/queue.json` as gitignored coordination input; the graph exposes derived holder/waiter/conflict views. `codewiki_claim` remains a legacy compatibility alias for existing callers. `codewiki_agency` plans bounded observe/maintain/work cycles and can include an optional ThinkCode context plan with native CodeWiki fallback steps.
 
 ### Skills
 
@@ -102,7 +103,7 @@ Working rule:
 - `.codewiki/builds/implementation/**` = implementation evidence
 - `.codewiki/validation/**` = hot fail/block/policy-required/current validation reports
 - `.codewiki/roadmap/queue.json` = machine-managed tracked delta and task ordering from desired state to current reality
-- `.codewiki/session/queue.json` = gitignored runtime session queue for active/waiting/ready coordination leases
+- `.codewiki/session/queue.json` = gitignored runtime session queue for artifact availability, in-use, waiting, conflict, stale, holder, and waiter status
 - task = atomic work unit inside roadmap
 - Pi session = native execution history linked to tasks
 
@@ -321,7 +322,7 @@ The always-on surface is optional. When enabled it uses Pi's status area for a o
 
 `/wiki-resume` is the implementation segue. With no argument it resumes the current focused roadmap task when one exists, otherwise it picks the next open task from the roadmap working set. Pass `TASK-###` to force a specific open task.
 
-`/wiki-resume` runs inside the parent-owned task loop. Runtime status and resume output show the active task status plus latest structured evidence summary. Internal agent flows should read state through `codewiki_state`, record canonical task progress and evidence through `codewiki_task`, coordinate overlapping parallel work through `codewiki_claim`, and keep runtime session focus separate through `codewiki_session`.
+`/wiki-resume` runs inside the parent-owned task loop. Runtime status and resume output show the active task status plus latest structured evidence summary. Internal agent flows should read state through `codewiki_state`, record canonical task progress and evidence through `codewiki_task`, coordinate overlapping parallel work through `codewiki_artifact_status`, and keep runtime session focus separate through `codewiki_session`.
 
 For token efficiency, agents should avoid raw wiki truth, full lifecycle logs, and all task shards as default context. Prefer compact state, the current task context shard, or latest lifecycle events first; expand to targeted raw specs/code only when task status, gates, or stale revision requires exact source.
 

@@ -1,8 +1,8 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path";
-import type { ExecResult, ExtensionAPI, ExtensionCommandContext, ExtensionContext } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI, ExtensionCommandContext, ExtensionContext } from "@earendil-works/pi-coding-agent";
 import type { WikiProject, CodewikiSessionHandoffToolInput } from "../../../domain/shared/types.ts";
-import { nowIso, unique, splitCommandArgs } from "../../../domain/shared/utils.ts";
+import { unique, splitCommandArgs } from "../../../domain/shared/utils.ts";
 import { resolveToolProject } from "../../../application/project.ts";
 import { refreshStatusDock, withUiErrorHandling } from "../ui/manager.ts";
 import { currentTaskLink } from "../session.ts";
@@ -10,10 +10,8 @@ import { codewikiSessionHandoffToolInputSchema } from "../schemas.ts";
 
 const HANDOFF_COMMAND = "wiki-session-handoff";
 const HANDOFF_KIND = "codewiki_session_handoff";
-const SPAWN_TIMEOUT_MS = 30 * 60 * 1000;
-
 type HandoffMode = "new-session" | "context-reset" | "external-orchestrator";
-type HandoffStatus = "queued" | "started" | "spawned" | "completed" | "cancelled" | "external" | "failed";
+type HandoffStatus = "queued" | "started" | "completed" | "cancelled" | "external" | "failed";
 
 export interface CodewikiSessionHandoffPayload {
 	version: 1;
@@ -40,12 +38,10 @@ export interface StagedSessionHandoff {
 	command: string;
 }
 
-export interface SpawnedSessionHandoff {
-	status: "completed" | "failed";
-	command: string;
-	args: string[];
-	result: ExecResult;
-	transcriptPath: string;
+export interface ToolSessionHandoffResult {
+	action: "staged" | "external" | "context-reset";
+	command?: string;
+	reason?: string;
 }
 
 function slug(value: string): string {
@@ -78,7 +74,7 @@ export function buildSessionHandoffPrompt(payload: Omit<CodewikiSessionHandoffPa
 		"Start:",
 		`1. Run codewiki_state for repo ${payload.repo_path}${payload.task_id ? ` and ${payload.task_id}` : ""}.`,
 		"2. Read only the handoff refs needed for the active loop.",
-		"3. Use claims, builds, validation, and task evidence normally.",
+		"3. Use artifact statuses, builds, validation, and task evidence normally.",
 		"",
 		"Handoff refs:",
 		refs,
@@ -89,7 +85,8 @@ export function buildSessionHandoffPayload(
 	project: WikiProject,
 	input: CodewikiSessionHandoffToolInput,
 ): CodewikiSessionHandoffPayload {
-	const created = nowIso();
+	const createdAt = new Date();
+	const created = createdAt.toISOString().replace(/\.\d{3}Z$/, "Z");
 	const mode = normalizeMode(input.mode);
 	const reason = input.reason.trim();
 	const taskId = input.taskId?.trim() || undefined;
@@ -100,7 +97,7 @@ export function buildSessionHandoffPayload(
 		...(buildRef ? [buildRef] : []),
 		...(taskId ? [taskId] : []),
 	].map((ref) => ref.trim()).filter(Boolean));
-	const id = `HANDOFF-${created.replace(/[-:.TZ]/g, "").slice(0, 14)}-${slug(taskId || profile || reason)}`;
+	const id = `HANDOFF-${createdAt.toISOString().replace(/[-:.TZ]/g, "").slice(0, 17)}-${slug(taskId || profile || reason)}`;
 	const base = {
 		version: 1 as const,
 		kind: HANDOFF_KIND as typeof HANDOFF_KIND,
@@ -140,48 +137,51 @@ export async function stageSessionHandoff(
 	return { payload, absolutePath, relativePath, command: handoffCommand(relativePath) };
 }
 
-async function readStagedHandoff(cwd: string, arg: string): Promise<{ payload: CodewikiSessionHandoffPayload; path: string }> {
-	const raw = splitCommandArgs(arg)[0];
-	if (!raw) throw new Error(`/${HANDOFF_COMMAND} requires a staged handoff path.`);
-	const absolutePath = isAbsolute(raw) ? raw : resolve(cwd, raw);
+async function readHandoffFile(absolutePath: string): Promise<{ payload: CodewikiSessionHandoffPayload; path: string }> {
 	const payload = JSON.parse(await readFile(absolutePath, "utf8")) as CodewikiSessionHandoffPayload;
 	if (payload.kind !== HANDOFF_KIND) throw new Error(`Invalid CodeWiki session handoff: ${basename(absolutePath)}`);
 	return { payload, path: absolutePath };
+}
+
+async function readLatestQueuedHandoff(cwd: string): Promise<{ payload: CodewikiSessionHandoffPayload; path: string } | undefined> {
+	const dir = resolve(cwd, ".codewiki/runtime/session-handoffs");
+	let names: string[];
+	try {
+		names = await readdir(dir);
+	} catch {
+		return undefined;
+	}
+	const handoffs: { payload: CodewikiSessionHandoffPayload; path: string }[] = [];
+	for (const name of names) {
+		if (!name.endsWith(".json") || name.endsWith(".spawn.json")) continue;
+		try {
+			const handoff = await readHandoffFile(join(dir, name));
+			if (handoff.payload.status === "queued") handoffs.push(handoff);
+		} catch {
+			// Ignore unrelated or malformed runtime files while finding latest queued handoff.
+		}
+	}
+	return handoffs.sort((a, b) =>
+		b.payload.created.localeCompare(a.payload.created) || b.payload.id.localeCompare(a.payload.id),
+	)[0];
+}
+
+async function readStagedHandoff(cwd: string, arg: string): Promise<{ payload: CodewikiSessionHandoffPayload; path: string }> {
+	const raw = splitCommandArgs(arg)[0];
+	if (raw) return readHandoffFile(isAbsolute(raw) ? raw : resolve(cwd, raw));
+	const latest = await readLatestQueuedHandoff(cwd);
+	if (latest) return latest;
+	throw new Error(`/${HANDOFF_COMMAND} requires a staged handoff path or a queued handoff in .codewiki/runtime/session-handoffs.`);
 }
 
 async function markHandoff(path: string, payload: CodewikiSessionHandoffPayload, status: HandoffStatus): Promise<void> {
 	await writeFile(path, JSON.stringify({ ...payload, status }, null, 2) + "\n", "utf8");
 }
 
-async function writeSpawnTranscript(staged: StagedSessionHandoff, details: Omit<SpawnedSessionHandoff, "transcriptPath">): Promise<string> {
-	const transcriptPath = staged.absolutePath.replace(/\.json$/, ".spawn.json");
-	await writeFile(transcriptPath, JSON.stringify({ handoff: staged.payload, ...details }, null, 2) + "\n", "utf8");
-	return transcriptPath;
-}
-
-export async function spawnSessionHandoffProcess(
-	pi: Pick<ExtensionAPI, "exec">,
-	project: WikiProject,
-	staged: StagedSessionHandoff,
-	signal?: AbortSignal,
-): Promise<SpawnedSessionHandoff> {
-	await markHandoff(staged.absolutePath, staged.payload, "spawned");
-	const command = "pi";
-	const args = ["--mode", "json", "-p", "--no-session", staged.payload.kickoff_prompt];
-	const result = await pi.exec(command, args, { cwd: project.root, signal, timeout: SPAWN_TIMEOUT_MS });
-	const status = result.code === 0 && !result.killed ? "completed" : "failed";
-	await markHandoff(staged.absolutePath, staged.payload, status);
-	const transcriptPath = await writeSpawnTranscript(staged, { status, command, args, result });
-	return { status, command, args, result, transcriptPath };
-}
-
 export async function executeSessionHandoffFromTool(
-	pi: Pick<ExtensionAPI, "exec">,
-	project: WikiProject,
 	staged: StagedSessionHandoff,
 	ctx: Pick<ExtensionContext, "compact">,
-	signal?: AbortSignal,
-): Promise<{ action: "staged" | "external" | "context-reset" | "spawn-process"; spawn?: SpawnedSessionHandoff }> {
+): Promise<ToolSessionHandoffResult> {
 	if (staged.payload.mode === "external-orchestrator") {
 		await markHandoff(staged.absolutePath, staged.payload, "external");
 		return { action: "external" };
@@ -191,8 +191,11 @@ export async function executeSessionHandoffFromTool(
 		await markHandoff(staged.absolutePath, staged.payload, "completed");
 		return { action: "context-reset" };
 	}
-	const spawn = await spawnSessionHandoffProcess(pi, project, staged, signal);
-	return { action: "spawn-process", spawn };
+	return {
+		action: "staged",
+		command: staged.command,
+		reason: "new-session handoffs require command-context ctx.newSession; run the staged /wiki-session-handoff command from an interactive Pi session.",
+	};
 }
 
 export async function runSessionHandoffCommand(
@@ -213,19 +216,25 @@ export async function runSessionHandoffCommand(
 	}
 	await markHandoff(path, payload, "started");
 	const parentSession = ctx.sessionManager.getSessionFile();
-	const result = await ctx.newSession({
-		parentSession,
-		setup: async (sessionManager: any) => {
-			try {
-				sessionManager.appendCustomEntry?.(HANDOFF_KIND, { ...payload, status: "started" });
-			} catch {
-				// Optional session metadata only.
-			}
-		},
-		withSession: async (replacementCtx: any) => {
-			await replacementCtx.sendUserMessage(payload.kickoff_prompt);
-		},
-	});
+	let result: { cancelled?: boolean } | undefined;
+	try {
+		result = await ctx.newSession({
+			parentSession,
+			setup: async (sessionManager: any) => {
+				try {
+					sessionManager.appendCustomEntry?.(HANDOFF_KIND, { ...payload, status: "started" });
+				} catch {
+					// Optional session metadata only.
+				}
+			},
+			withSession: async (replacementCtx: any) => {
+				await replacementCtx.sendUserMessage(payload.kickoff_prompt);
+			},
+		});
+	} catch (error) {
+		await markHandoff(path, payload, "failed");
+		throw error;
+	}
 	if (result?.cancelled) {
 		await markHandoff(path, payload, "cancelled");
 		return { payload, cancelled: true };
@@ -249,25 +258,25 @@ export function registerCodewikiSessionHandoffTool(pi: ExtensionAPI): void {
 	pi.registerTool({
 		name: "codewiki_session_handoff",
 		label: "Codewiki Session Handoff",
-		description: "Stage and execute a CodeWiki fresh-process/fresh-session or context-reset handoff for the adapter.",
+		description: "Stage a CodeWiki fresh-session/context-reset handoff and execute only handoffs that are safe from tool context.",
 		promptSnippet: "Request a fresh CodeWiki session/context handoff at compiler, validation, or agency boundaries.",
 		promptGuidelines: [
 			"Use codewiki_session_handoff when graph/build policy requires a fresh session or context reset; do not ask the user to run /new manually.",
-			"From tool context, Pi cannot call ctx.newSession; codewiki_session_handoff therefore spawns a fresh `pi --mode json --no-session` process for new-session handoffs.",
-			"For user-invoked interactive replacement, /wiki-session-handoff still uses command-context ctx.newSession with the same staged handoff file.",
-			"Session handoffs do not replace claims, validation, task evidence, checks, or publication policy.",
+			"From tool context, Pi cannot call ctx.newSession; for new-session handoffs codewiki_session_handoff stages a durable handoff file and returns the /wiki-session-handoff command instead of running an unbounded subprocess.",
+			"/wiki-session-handoff uses command-context ctx.newSession with the staged handoff file and is the reliable Pi replacement-session execution path.",
+			"Session handoffs do not replace artifact status coordination, validation, task evidence, checks, or publication policy.",
 		],
 		parameters: codewikiSessionHandoffToolInputSchema,
-		async execute(_toolCallId: string, params: CodewikiSessionHandoffToolInput, signal: AbortSignal | undefined, _onUpdate: unknown, ctx: ExtensionContext) {
+		async execute(_toolCallId: string, params: CodewikiSessionHandoffToolInput, _signal: AbortSignal | undefined, _onUpdate: unknown, ctx: ExtensionContext) {
 			const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_session_handoff");
 			const staged = await stageSessionHandoff(project, params);
 			const result = params.autoQueue ?? true
-				? await executeSessionHandoffFromTool(pi, project, staged, ctx, signal)
-				: { action: "staged" as const };
+				? await executeSessionHandoffFromTool(staged, ctx)
+				: { action: "staged" as const, command: staged.command };
 			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
-			const suffix = result.action === "spawn-process" ? ` (${result.spawn?.status})` : "";
+			const commandHint = result.command ? `; command: ${result.command}` : "";
 			return {
-				content: [{ type: "text", text: `codewiki session_handoff: ${result.action}${suffix} ${staged.relativePath}` }],
+				content: [{ type: "text", text: `codewiki session_handoff: ${result.action} ${staged.relativePath}${commandHint}` }],
 				details: { ...staged, result },
 			};
 		},

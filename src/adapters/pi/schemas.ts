@@ -128,6 +128,9 @@ export const taskEvidenceResultSchema = Type.Union(
 export const changeClaimActionSchema = Type.Union(
 	T.CHANGE_CLAIM_ACTION_VALUES.map((value) => Type.Literal(value)),
 );
+export const artifactStatusActionSchema = Type.Union(
+	T.ARTIFACT_STATUS_ACTION_VALUES.map((value) => Type.Literal(value)),
+);
 export const changeClaimModeSchema = Type.Union(
 	T.CHANGE_CLAIM_MODE_VALUES.map((value) => Type.Literal(value)),
 );
@@ -168,7 +171,7 @@ export const changeClaimLayerSchema = Type.Union(
 export const changeClaimScopeSchema = Type.Object({
 	layer: changeClaimLayerSchema,
 	path: Type.Optional(Type.String({ description: "Repo-relative path or glob-like prefix, e.g. .codewiki/kb/system/**." })),
-	task_id: Type.Optional(Type.String({ description: "Roadmap task id when layer is roadmap or the claim targets task state." })),
+	task_id: Type.Optional(Type.String({ description: "Roadmap task id when layer is roadmap or artifact status targets task state." })),
 	ref: Type.Optional(Type.String({ description: "Build, validation, graph, branch, or other stable reference." })),
 	description: Type.Optional(Type.String({ description: "Short human label when no path/task/ref fits." })),
 });
@@ -583,21 +586,37 @@ export const codewikiSessionHandoffToolInputSchema = Type.Object({
 	kickoff_prompt: Type.Optional(Type.String({ minLength: 1 })),
 	autoQueue: Type.Optional(Type.Boolean({
 		default: true,
-		description: "When true, execute the adapter handoff immediately. Pi tool context spawns a fresh pi process for new-session handoffs; command context can still use /wiki-session-handoff for interactive replacement.",
+		description: "When true, execute tool-safe handoffs immediately. Pi tool context stages new-session handoffs and returns the /wiki-session-handoff command because ctx.newSession is command-only.",
 	})),
 });
-export const codewikiClaimToolInputSchema = Type.Object({
+export const codewikiArtifactStatusToolInputSchema = Type.Object({
 	repoPath: repoPathToolField,
-	action: changeClaimActionSchema,
-	claimId: Type.Optional(Type.String({ minLength: 1, description: "Existing CLAIM-### or WAIT-### id for release/cancel or heartbeat." })),
+	action: artifactStatusActionSchema,
+	recordId: Type.Optional(Type.String({ minLength: 1, description: "Existing runtime artifact status record id for release/cancel or heartbeat." })),
 	taskId: Type.Optional(toolTaskIdField),
-	buildRef: Type.Optional(Type.String({ minLength: 1, description: "Optional compiler build path anchoring this claim." })),
-	summary: Type.Optional(Type.String({ minLength: 1, description: "Short reason for the claim or wait entry." })),
+	buildRef: Type.Optional(Type.String({ minLength: 1, description: "Optional compiler build path anchoring this artifact status." })),
+	summary: Type.Optional(Type.String({ minLength: 1, description: "Short reason for marking or waiting on artifact status." })),
 	mode: Type.Optional(changeClaimModeSchema),
 	role: Type.Optional(changeClaimRoleSchema),
 	worktree: Type.Optional(worktreeIsolationSchema),
 	scopes: Type.Optional(Type.Array(changeClaimScopeSchema, { minItems: 1 })),
-	ttl_minutes: Type.Optional(Type.Number({ minimum: 1, description: "Lease TTL in minutes for claims or wait entries; default 120, max 1440." })),
-	force: Type.Optional(Type.Boolean({ default: false, description: "Allow creation despite write/write claim conflicts." })),
-	refresh: Type.Optional(Type.Boolean({ default: true, description: "Rebuild generated graph/status after claim mutation." })),
+	ttl_minutes: Type.Optional(Type.Number({ minimum: 1, description: "Runtime artifact status TTL in minutes; default 120, max 1440." })),
+	force: Type.Optional(Type.Boolean({ default: false, description: "Allow mark despite write/write artifact conflicts." })),
+	refresh: Type.Optional(Type.Boolean({ default: true, description: "Rebuild generated graph/status after artifact status mutation." })),
+});
+
+export const codewikiClaimToolInputSchema = Type.Object({
+	repoPath: repoPathToolField,
+	action: changeClaimActionSchema,
+	claimId: Type.Optional(Type.String({ minLength: 1, description: "Existing legacy CLAIM-### or WAIT-### id for release/cancel or heartbeat." })),
+	taskId: Type.Optional(toolTaskIdField),
+	buildRef: Type.Optional(Type.String({ minLength: 1, description: "Optional compiler build path anchoring this compatibility alias." })),
+	summary: Type.Optional(Type.String({ minLength: 1, description: "Short reason for the legacy compatibility entry." })),
+	mode: Type.Optional(changeClaimModeSchema),
+	role: Type.Optional(changeClaimRoleSchema),
+	worktree: Type.Optional(worktreeIsolationSchema),
+	scopes: Type.Optional(Type.Array(changeClaimScopeSchema, { minItems: 1 })),
+	ttl_minutes: Type.Optional(Type.Number({ minimum: 1, description: "Runtime artifact status TTL in minutes; default 120, max 1440." })),
+	force: Type.Optional(Type.Boolean({ default: false, description: "Allow creation despite write/write artifact conflicts." })),
+	refresh: Type.Optional(Type.Boolean({ default: true, description: "Rebuild generated graph/status after compatibility mutation." })),
 });

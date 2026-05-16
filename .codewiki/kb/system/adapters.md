@@ -36,14 +36,14 @@ Pi is the only implemented harness adapter now. It packages:
 - skills,
 - session integration,
 - session handoff control,
-- session queue scoped leases for parallel work,
+- session queue artifact statuses for parallel work,
 - setup actions that call application bootstrap tools.
 
 ## Future adapters
 
 Future harnesses may not support Pi packages or extensions. They should use the same API through CLI, MCP, or a package-level programmatic interface.
 
-Session handoff is an adapter capability, not a Pi-only semantic. CodeWiki can request `new-session`, `context-reset`, or `external-orchestrator` modes when build/graph policy requires fresh context. Each adapter maps that semantic request to its native mechanism. In Pi, an LLM-callable tool cannot call command-only `ctx.newSession()`, so tool-driven `new-session` handoffs spawn a fresh `pi --mode json --no-session` process with bounded kickoff context. User-invoked `/wiki-session-handoff` remains available for interactive replacement through command-context `ctx.newSession()`. A CLI/MCP adapter may spawn a new process, clear conversation state, or emit a plan-only handoff when it cannot replace context itself.
+Session handoff is an adapter capability, not a Pi-only semantic. CodeWiki can request `new-session`, `context-reset`, or `external-orchestrator` modes when build/graph policy requires fresh context. Each adapter maps that semantic request to its native mechanism. In Pi, an LLM-callable tool cannot call command-only `ctx.newSession()`, so tool-context `new-session` handoffs stage a durable handoff artifact and return the `/wiki-session-handoff` command rather than running an unbounded subprocess. `/wiki-session-handoff` is the reliable interactive replacement path and executes through command-context `ctx.newSession()`. A CLI/MCP adapter may spawn a bounded worker process, clear conversation state, or emit a plan-only handoff when it cannot replace context itself.
 
 Potential future access paths:
 

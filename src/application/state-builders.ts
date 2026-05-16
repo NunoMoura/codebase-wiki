@@ -930,6 +930,14 @@ export function buildStatusState(
 	parallel.claims = claimState.claims.slice(0, 12);
 	parallel.claim_waiters = claimState.waiters.slice(0, 12);
 	parallel.claim_conflicts = claimState.conflicts.slice(0, 12);
+	parallel.artifact_statuses = (claimState.artifact_statuses || []).slice(0, 24);
+	parallel.artifact_status = {
+		in_use_count: claimState.active_claim_count,
+		warning_count: claimState.warning_count,
+		conflict_count: claimState.conflict_count,
+		waiting_count: claimState.pending_waiter_count,
+		ready_waiter_count: claimState.ready_waiter_count,
+	};
 	const persistedFocusTaskId = latestPersistedFocusTaskId(events, roadmapState);
 	const resume = buildResumeState(roadmapState, agencyLanes, nextStep, persistedFocusTaskId);
 	const graphViews: any = graph.views || {};
@@ -969,7 +977,7 @@ export function buildStatusState(
 
 	const direction = [
 		nextStep.reason,
-		`Parallel sessions: ${parallel.active_session_count} active, ${parallel.collision_task_ids.length} collision task(s), ${claimState.active_claim_count} active claim(s), ${claimState.conflict_count} claim conflict(s), ${claimState.pending_waiter_count} waiting, ${claimState.ready_waiter_count} ready.`,
+		`Parallel sessions: ${parallel.active_session_count} active, ${parallel.collision_task_ids.length} collision task(s), ${claimState.active_claim_count} artifact(s) in-use, ${claimState.conflict_count} artifact conflict(s), ${claimState.pending_waiter_count} waiting, ${claimState.ready_waiter_count} ready.`,
 		`Agency lanes: ${agencySummary.lane_count} work-first (high=${agencySummary.high_cadence_lane_ids.length}, medium=${agencySummary.medium_cadence_lane_ids.length}, low=${agencySummary.low_cadence_lane_ids.length}).`,
 		`Mapped specs: ${mappedSpecs}/${totalSpecs}.`,
 	];
