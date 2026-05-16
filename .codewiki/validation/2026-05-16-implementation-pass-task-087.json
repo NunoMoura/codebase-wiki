@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-16T20:52:57Z",
+  "profile": "implementation",
+  "task_id": "TASK-087",
+  "verdict": "pass",
+  "rationale": "Fresh validation passes for TASK-087 narrow dependency-direction guard slice. Accepted feedback, documentation, planning, and implementation builds form a traceable chain. Implementation build uses change_type=system, traceability.requires_accepted_build=true, and accepted_build_refs includes .codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json. The slice adds regression fixture coverage proving source-owned file-structure audit detects forbidden domain-to-application and application-to-adapter imports. It satisfies the TASK-087 acceptance item for dependency checks/tests while leaving broader source migration open.",
+  "checks": [
+    "read .codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
+    "read .codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
+    "read .codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
+    "read .codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
+    "node tests/smoke/audit-drift.test.mjs",
+    "npm run check:architecture",
+    "npm run typecheck",
+    "audit:alignment",
+    "audit:changed",
+    "audit:task",
+    "dirty diff digest sha256:fea3d0c8ce23ea099b7c68c3d85e5f2ebe4fc6c5b9420880274063a8233006e7"
+  ],
+  "issues": [
+    {
+      "severity": "low",
+      "summary": "audit:alignment reports pre-existing graph health warnings; audit:changed and audit:task pass."
+    }
+  ],
+  "source": ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
+  "policy_profile": "implementation",
+  "required_audits": [
+    "alignment",
+    "changed",
+    "task"
+  ],
+  "audit_refs": [
+    "audit:alignment",
+    "audit:changed",
+    "audit:task"
+  ],
+  "audit_reports": [
+    "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+    "audit:changed pass Checked 7 changed files across 4 layers.",
+    "audit:task pass Checked roadmap task TASK-087."
+  ],
+  "content_proof_refs": [
+    "sha256:fea3d0c8ce23ea099b7c68c3d85e5f2ebe4fc6c5b9420880274063a8233006e7"
+  ],
+  "failed_criteria": [],
+  "blocking_questions": [],
+  "isolation_requirement": {
+    "required": true,
+    "mode": "fresh-context-checked-content",
+    "reason": "Implementation validation requires independent validator context and checked content proof.",
+    "evidence": [
+      "fresh_context=true",
+      "clean state recorded",
+      "validated_sha/head_sha/published_sha/tree_sha or working_tree_digest"
+    ],
+    "handoff": "implementation validation",
+    "profiles": [
+      "implementation"
+    ]
+  },
+  "audit_requirement": {
+    "required": true,
+    "profiles": [
+      "alignment",
+      "changed",
+      "task"
+    ],
+    "evidence": [
+      "audit:alignment or profile:alignment",
+      "audit:changed or profile:changed",
+      "audit:task or profile:task"
+    ],
+    "reason": "Gateway profiles require deterministic audit evidence for their build or boundary context.",
+    "gaps": []
+  },
+  "commit_readiness_requirement": {
+    "required": true,
+    "evidence": [
+      "task_id",
+      "source_planning_build",
+      "accepted_planning_build_ref",
+      "acceptance_mapping",
+      "code_files",
+      "test_files or test_design_evidence",
+      "checks_run",
+      "closure_brief",
+      "publication.commit title/body",
+      "CodeWiki task/build/checks/validation/recover trailers"
+    ],
+    "gaps": []
+  },
+  "semantic_traceability_requirement": {
+    "required": true,
+    "evidence": [
+      "source implementation build",
+      "change_type",
+      "accepted upstream compiler build refs"
+    ],
+    "gaps": [],
+    "warnings": []
+  },
+  "isolation": {
+    "working_tree_digest": "sha256:fea3d0c8ce23ea099b7c68c3d85e5f2ebe4fc6c5b9420880274063a8233006e7",
+    "clean": false,
+    "fresh_context": true,
+    "notes": "Dirty pre-commit validation for narrow guard slice; TASK-087 remains open for broader migration.",
+    "role": "validator"
+  }
+}

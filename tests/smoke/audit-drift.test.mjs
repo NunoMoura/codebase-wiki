@@ -27,6 +27,8 @@ function createFixture() {
 	mkdir(resolve(root, ".codewiki", "kb", "system"));
 	mkdir(resolve(root, ".codewiki", "roadmap", "tasks", "TASK-001"));
 	mkdir(resolve(root, "src", "core"));
+	mkdir(resolve(root, "src", "domain", "bad"));
+	mkdir(resolve(root, "src", "application", "bad"));
 	mkdir(resolve(root, "src"));
 	mkdir(resolve(root, "scripts"));
 	mkdir(resolve(root, "skills", "codewiki"));
@@ -49,6 +51,8 @@ function createFixture() {
 	write(resolve(root, "README.md"), "This stale fixture still points at extensions/codewiki/src. It also says .codewiki/ stores package source and generated task views are canonical truth.\n");
 	write(resolve(root, "src", "index.ts"), "export const ok = true;\n");
 	write(resolve(root, "src", "core", "bad.ts"), "export const bad = true;\n");
+	write(resolve(root, "src", "domain", "bad", "imports-application.ts"), "import { bad } from '../../application/bad/imports-adapter.ts';\nexport const domainBad = bad;\n");
+	write(resolve(root, "src", "application", "bad", "imports-adapter.ts"), "import { adapterBad } from '../../adapters/pi/nope.ts';\nexport const bad = adapterBad;\n");
 	write(resolve(root, "scripts", "check-architecture.mjs"), "import { executeCodewikiAudit } from '../src/application/tools/audit.ts';\nvoid executeCodewikiAudit;\n");
 	write(resolve(root, "scripts", "rogue.mjs"), "const checks = ['audit'];\nconsole.log('.codewiki/roadmap/queue.json', checks);\n");
 	write(resolve(root, "skills", "codewiki", "SKILL.md"), "---\nname: codewiki\ndescription: fixture\n---\n# Skill\n");
@@ -70,6 +74,8 @@ async function main() {
 		const fileStructure = await executeCodewikiAudit(project, { profiles: ["file-structure"], include_fingerprints: false });
 		assert.equal(fileStructure.status, "fail");
 		assertIssue(fileStructure, "transitional-layer-no-new-files");
+		assertIssue(fileStructure, "domain-is-pure");
+		assertIssue(fileStructure, "application-is-agent-agnostic");
 		assertIssue(fileStructure, "script-owned-product-logic");
 
 		const staleReference = await executeCodewikiAudit(project, { profiles: ["stale-reference"], include_fingerprints: false });
