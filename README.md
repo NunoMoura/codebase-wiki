@@ -55,6 +55,7 @@ All internal `codewiki_*` tools accept optional `repoPath` so agents can target 
 The single public CodeWiki skill covers package invariants and points the agent to supporting loop/playbook files under `skills/codewiki/` for:
 
 - intelligent bootstrap/onboarding of a repo-local wiki
+- skill-owned bootstrap/resume prompt templates consumed by source-owned command orchestration
 - feedback, documentation, planning, implementation, and validation loops
 - research evidence that supports `.codewiki/kb`
 - fresh-context task validation
@@ -367,7 +368,7 @@ That means one global package install can operate across many repos, while each 
 codewiki's local gateway is a transitional adapter, not the long-term generic sandbox. The intended split is:
 
 - `.codewiki/config.json` declares codewiki policy: readable paths, direct writable paths, generated read-only paths, caps, and runtime adapter metadata.
-- `scripts/codewiki-gateway.mjs` validates and applies codewiki patches today and can print the semantic capability manifest with `node scripts/codewiki-gateway.mjs manifest [repo]`. It refuses runtime `npx` fallbacks and gates local JavaScript execution behind explicit `CODEWIKI_ALLOW_UNSAFE_RUN=1 ... unsafe-run`; prefer think-code for sandboxed analysis.
+- source-owned CodeWiki application APIs validate and apply codewiki patches; `scripts/codewiki-gateway.mjs` is an optional local wrapper that can print the semantic capability manifest with `node scripts/codewiki-gateway.mjs manifest [repo]`. It refuses runtime `npx` fallbacks and gates local JavaScript execution behind explicit `CODEWIKI_ALLOW_UNSAFE_RUN=1 ... unsafe-run`; prefer think-code for sandboxed analysis.
 - a future `think-code` executor can provide generic sandbox isolation while reusing the same repo-local policy, capability manifest, and patch schema.
 
 Current patch shape:

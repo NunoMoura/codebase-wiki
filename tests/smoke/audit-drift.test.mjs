@@ -46,7 +46,7 @@ function createFixture() {
 	writeJson(resolve(root, ".codewiki", "roadmap", "tasks", "TASK-001", "task.json"), { ...task, title: "Stale generated task" });
 	writeJson(resolve(root, ".codewiki", "roadmap", "tasks", "TASK-001", "context.json"), { version: 1, task: { ...task, summary: "Stale context summary" } });
 	writeJson(resolve(root, ".codewiki", "index_graph.json"), { version: 1, generated_at: new Date().toISOString(), lenses: { status: { health: { errors: 0, warnings: 0 } } } });
-	write(resolve(root, "README.md"), "This stale fixture still points at extensions/codewiki/src.\n");
+	write(resolve(root, "README.md"), "This stale fixture still points at extensions/codewiki/src. It also says .codewiki/ stores package source and generated task views are canonical truth.\n");
 	write(resolve(root, "src", "index.ts"), "export const ok = true;\n");
 	write(resolve(root, "src", "core", "bad.ts"), "export const bad = true;\n");
 	write(resolve(root, "scripts", "check-architecture.mjs"), "import { executeCodewikiAudit } from '../src/application/tools/audit.ts';\nvoid executeCodewikiAudit;\n");
@@ -75,6 +75,8 @@ async function main() {
 		const staleReference = await executeCodewikiAudit(project, { profiles: ["stale-reference"], include_fingerprints: false });
 		assert.equal(staleReference.status, "fail");
 		assertIssue(staleReference, "stale-reference");
+		assertIssue(staleReference, "dogfood-as-package-source");
+		assertIssue(staleReference, "generated-task-view-as-truth");
 
 		const generatedParity = await executeCodewikiAudit(project, { profiles: ["generated-parity"], include_fingerprints: false });
 		assert.equal(generatedParity.status, "fail");

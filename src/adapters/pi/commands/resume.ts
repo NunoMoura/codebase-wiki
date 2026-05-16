@@ -68,7 +68,7 @@ import type {
 export function registerResumeCommand(pi: ExtensionAPI): void {
 	pi.registerCommand(`wiki-resume`, {
 		description:
-			"Resume roadmap work from current task focus or next open task. Usage: /wiki-resume [TASK-###] [repo-path]",
+			"Resume roadmap work from current task focus or next open task. Usage: /wiki-resume [TASK-###] [repo-path] [-- follow-up intent]",
 		handler: async (args, ctx) => {
 			await withUiErrorHandling(ctx, async () => {
 				await runResumeCommand(pi, "wiki-resume", args, ctx);
@@ -83,7 +83,7 @@ async function runResumeCommand(
 	args: string,
 	ctx: ExtensionCommandContext,
 ): Promise<void> {
-	const { requestedTaskId, pathArg } = normalizeCodeArgs(args);
+	const { requestedTaskId, pathArg, followUpIntent } = normalizeCodeArgs(args);
 	const project = await resolveCommandProject(ctx, pathArg, commandName);
 	const summary = await rebuildAndSummarize(project);
 	const graph = await maybeReadGraph(project.graphPath);
@@ -186,32 +186,67 @@ async function runResumeCommand(
 			resumedTask,
 			evidence,
 			taskContext,
+			followUpIntent,
 		),
 	);
 }
 
-function normalizeCodeArgs(args: string): {
+export function normalizeCodeArgs(args: string): {
 	requestedTaskId: string | null;
 	pathArg: string | null;
+	followUpIntent: string;
 } {
 	const tokens = splitCommandArgs(args);
-	if (tokens.length === 0) return { requestedTaskId: null, pathArg: null };
-
-	const first = tokens[0];
-	const last = tokens[tokens.length - 1];
-	if (isRoadmapTaskToken(first)) {
-		return {
-			requestedTaskId: first,
-			pathArg: joinCommandArgs(tokens.slice(1)),
-		};
+	if (tokens.length === 0) {
+		return { requestedTaskId: null, pathArg: null, followUpIntent: "" };
 	}
-	if (tokens.length > 1 && isRoadmapTaskToken(last)) {
+
+	const delimiterIndex = tokens.indexOf("--");
+	const commandTokens = delimiterIndex >= 0 ? tokens.slice(0, delimiterIndex) : tokens;
+	const explicitIntent = delimiterIndex >= 0 ? joinIntentTokens(tokens.slice(delimiterIndex + 1)) : "";
+	if (commandTokens.length === 0) {
+		return { requestedTaskId: null, pathArg: null, followUpIntent: explicitIntent };
+	}
+
+	const first = commandTokens[0];
+	const last = commandTokens[commandTokens.length - 1];
+	if (isRoadmapTaskToken(first)) {
+		const remainderTokens = commandTokens.slice(1);
+		const remainder = joinCommandArgs(remainderTokens) ?? "";
+		return looksLikePathArg(remainder) || explicitIntent
+			? { requestedTaskId: first, pathArg: remainder || null, followUpIntent: explicitIntent }
+			: { requestedTaskId: first, pathArg: null, followUpIntent: joinIntentTokens(remainderTokens) };
+	}
+	if (commandTokens.length > 1 && isRoadmapTaskToken(last)) {
 		return {
 			requestedTaskId: last,
-			pathArg: joinCommandArgs(tokens.slice(0, -1)),
+			pathArg: joinCommandArgs(commandTokens.slice(0, -1)) || null,
+			followUpIntent: explicitIntent,
 		};
 	}
-	return { requestedTaskId: null, pathArg: joinCommandArgs(tokens) };
+	const remainder = joinCommandArgs(commandTokens) ?? "";
+	return looksLikePathArg(remainder) || explicitIntent
+		? { requestedTaskId: null, pathArg: remainder || null, followUpIntent: explicitIntent }
+		: { requestedTaskId: null, pathArg: null, followUpIntent: joinIntentTokens(commandTokens) };
+}
+
+function joinIntentTokens(tokens: string[]): string {
+	return tokens.join(" ").trim();
+}
+
+function looksLikePathArg(value: string): boolean {
+	const trimmed = value.trim();
+	return Boolean(
+		trimmed &&
+		(
+			trimmed.startsWith(".") ||
+			trimmed.startsWith("/") ||
+			trimmed.startsWith("~") ||
+			/^[A-Za-z]:[\\/]/.test(trimmed) ||
+			trimmed.includes("/") ||
+			trimmed.includes("\\")
+		),
+	);
 }
 
 export interface ResumeSelection {
@@ -363,11 +398,25 @@ async function markResumeArtifactsInUse(project: WikiProject, task: RoadmapTaskR
 function describeArtifactPromptContext(statuses: ArtifactStatusRecord[], usageSummary: string, skipped: string[]): string {
 	const lines = [
 		"Artifact status preflight:",
-		`- ${usageSummary}`,
-		...statuses.slice(0, 10).map((status) => `- ${artifactScopeLabel(status.artifact)}: ${status.status}${status.holders.length > 0 ? ` (${status.holders.length} holder(s))` : ""}${status.waiters.length > 0 ? `, ${status.waiters.length} waiter(s)` : ""}`),
+		`- Temporary session usage record: ${usageSummary}`,
+		...statuses.slice(0, 10).map(describeArtifactStatusLine),
 	];
 	if (skipped.length > 0) {
 		lines.push("Skipped artifact conflicts or coordination tasks:", ...unique(skipped).slice(0, 8).map((item) => `- ${item}`));
 	}
 	return lines.join("\n");
+}
+
+function describeArtifactStatusLine(status: ArtifactStatusRecord): string {
+	const holders = status.holders
+		.map((holder) => `${holder.record_id}:${holder.session_id}${holder.agent_name ? `/${holder.agent_name}` : ""}`)
+		.join(", ");
+	const waiters = status.waiters
+		.map((waiter) => `${waiter.record_id}:${waiter.session_id}${waiter.agent_name ? `/${waiter.agent_name}` : ""}`)
+		.join(", ");
+	return [
+		`- ${artifactScopeLabel(status.artifact)}: ${status.status}`,
+		holders ? `holders=[${holders}]` : "holders=[]",
+		waiters ? `waiters=[${waiters}]` : "waiters=[]",
+	].join("; ");
 }

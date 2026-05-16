@@ -2,6 +2,7 @@ import { access, mkdir, readdir, writeFile } from "node:fs/promises";
 import { basename, dirname, extname, resolve } from "node:path";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { Type } from "@sinclair/typebox";
+import { renderSkillAsset } from "./application/skill-assets.ts";
 import { withLockedPaths } from "./mutation-queue.ts";
 import { resolveSetupRoot } from "./project-root.ts";
 import {
@@ -328,30 +329,24 @@ function resolveToolStartDir(cwd: string, repoPath?: string): string {
 	return repoPath ? resolve(cwd, repoPath) : cwd;
 }
 
+export function renderOnboardingPrompt(result: BootstrapResult): string {
+	return renderSkillAsset("bootstrap/onboarding.md", {
+		projectName: result.projectName,
+		root: result.root,
+		inferredProjectState: result.inferredProjectState,
+		inferredBoundaries:
+			result.inferredBoundaries.length > 0
+				? result.inferredBoundaries.map((path) => `\`${path}\``).join(", ")
+				: "none detected yet",
+	});
+}
+
 function queueOnboardingPrompt(
 	pi: ExtensionAPI,
 	ctx: { isIdle?: () => boolean },
 	result: BootstrapResult,
 ): void {
-	const prompt = [
-		`Intelligently onboard the project after /wiki-bootstrap completed for ${result.projectName}.`,
-		`Wiki root: ${result.root}`,
-		`Inferred project state: ${result.inferredProjectState}`,
-		`Inferred boundaries: ${result.inferredBoundaries.length > 0 ? result.inferredBoundaries.map((path) => `\`${path}\``).join(", ") : "none detected yet"}`,
-		"Tasks:",
-		"1. Inspect the repo and current wiki/spec structure.",
-		"2. Confirm or refine inferred project shape: greenfield vs brownfield, app vs library vs service vs monorepo, and major ownership seams.",
-		"3. Infer what can be learned confidently from the codebase before asking the user anything.",
-		"4. Ask at most 4 high-value questions only when answers materially reduce ambiguity or edit scope.",
-		"5. Use roadmap as the top-level container, tasks as atomic work units, and Pi sessions as native execution history.",
-		"Output format:",
-		"- Inferred project shape",
-		"- Confident assumptions",
-		"- Questions for the user (only if truly needed)",
-		"- Suggested next step using /wiki-status or /wiki-resume",
-		"Do not dump large file listings. Be concise and evidence-backed.",
-	].join("\n");
-
+	const prompt = renderOnboardingPrompt(result);
 	try {
 		if (typeof ctx.isIdle === "function" && ctx.isIdle())
 			pi.sendUserMessage(prompt);

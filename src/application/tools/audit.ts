@@ -378,6 +378,20 @@ async function auditStaleReference(project: WikiProject, input: CodewikiAuditInp
 		{ pattern: /scripts\/codewiki-transaction\.mjs/g, message: "Deprecated script-owned CodeWiki transaction path appears in active docs/source." },
 		{ pattern: /\/wiki-verify\b/g, message: "Deprecated wiki-verify command appears in active docs/source." },
 	];
+	const semanticMisusePatterns: Array<{ kind: string; pattern: RegExp; allowed: RegExp; message: string }> = [
+		{
+			kind: "dogfood-as-package-source",
+			pattern: /(?:\.codewiki\/`?|\.codewiki\/\*\*).{0,100}(?:is|are|as|contains|holds|stores).{0,100}package source/gi,
+			allowed: /\b(?:not|never|do not|must not)\b.{0,80}package source|package source.{0,80}\b(?:not|never)\b/i,
+			message: ".codewiki dogfood state is described as package source.",
+		},
+		{
+			kind: "generated-task-view-as-truth",
+			pattern: /(?:\.codewiki\/roadmap\/tasks\/\*\*|generated task (?:views|shards|context)).{0,120}(?:canonical|source[- ]of[- ]truth|truth)/gi,
+			allowed: /\b(?:not|never|do not|must not|read-only)\b.{0,100}(?:canonical|truth|hand-edit|source)/i,
+			message: "Generated task views are described as canonical truth.",
+		},
+	];
 	for (const file of activeTextFiles) {
 		const rel = normalizeRel(relative(project.root, file));
 		const text = await maybeReadText(file);
@@ -386,6 +400,15 @@ async function auditStaleReference(project: WikiProject, input: CodewikiAuditInp
 			item.pattern.lastIndex = 0;
 			if (item.pattern.test(text)) {
 				issues.push(createIssue(profile, "error", "stale-reference", item.message, rel));
+			}
+		}
+		for (const item of semanticMisusePatterns) {
+			item.pattern.lastIndex = 0;
+			for (const match of text.matchAll(item.pattern)) {
+				const matched = match[0] ?? "";
+				if (item.allowed.test(matched)) continue;
+				issues.push(createIssue(profile, "error", item.kind, item.message, rel));
+				break;
 			}
 		}
 	}
@@ -456,9 +479,20 @@ async function auditPackage(project: WikiProject, input: CodewikiAuditInput): Pr
 		if (!packageJson.scripts?.["check:architecture"]) {
 			issues.push(createIssue(profile, "warning", "package-checks", "package.json should expose check:architecture wrapper for CI/package smoke.", packageJsonPath));
 		}
+		const requiredSkillAssets = [
+			"skills/codewiki/SKILL.md",
+			"skills/codewiki/prompts/resume-implementation.md",
+			"skills/codewiki/bootstrap/onboarding.md",
+			"skills/codewiki/bootstrap/starter-taxonomy.md",
+		];
+		for (const asset of requiredSkillAssets) {
+			if (!(await pathExists(resolve(project.root, asset)))) {
+				issues.push(createIssue(profile, "error", "skill-asset-unreachable", `Skill asset is unreachable: ${asset}.`, asset));
+			}
+		}
 		const packedFiles = await npmPackDryRunFiles(project);
 		if (packedFiles) {
-			for (const required of ["src/index.ts", "skills/codewiki/SKILL.md", "scripts/check-architecture.mjs", "package.json", "README.md"]) {
+			for (const required of ["src/index.ts", ...requiredSkillAssets, "scripts/check-architecture.mjs", "package.json", "README.md"]) {
 				if (!packedFiles.includes(required)) {
 					issues.push(createIssue(profile, "error", "package-dry-run-missing", `npm pack --dry-run omits required artifact ${required}.`, packageJsonPath));
 				}
@@ -475,7 +509,7 @@ async function auditPackage(project: WikiProject, input: CodewikiAuditInput): Pr
 	if (packageJson && !(await pathExists(resolve(project.root, "package-lock.json")))) {
 		issues.push(createIssue(profile, "error", "missing-lockfile", "package-lock.json is absent; publication reproducibility is not anchored.", "package-lock.json"));
 	}
-	const fingerprints = await fingerprintFiles(project, ["package.json", "package-lock.json", "src/index.ts", "skills/codewiki/SKILL.md"], input.include_fingerprints !== false);
+	const fingerprints = await fingerprintFiles(project, ["package.json", "package-lock.json", "src/index.ts", "skills/codewiki/SKILL.md", "skills/codewiki/prompts/resume-implementation.md", "skills/codewiki/bootstrap/onboarding.md", "skills/codewiki/bootstrap/starter-taxonomy.md"], input.include_fingerprints !== false);
 	return {
 		profile,
 		status: statusForIssues(issues),

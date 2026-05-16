@@ -1,4 +1,5 @@
 import { basename, posix } from "node:path";
+import { renderSkillAsset } from "./application/skill-assets.ts";
 
 export interface StarterBoundary {
 	codePath: string;
@@ -691,6 +692,10 @@ function systemSpecDoc(
 		"",
 		"For existing repos, setup should infer first-pass ownership specs from repo-relative boundaries before humans refine the language and invariants.",
 		"",
+		"## Path taxonomy",
+		"",
+		renderSkillAsset("bootstrap/starter-taxonomy.md", { projectName }),
+		"",
 		"## Related docs",
 		"",
 		"- [Product](../product/overview.md)",
@@ -724,7 +729,7 @@ function runtimePolicyDoc(projectName: string, date: string): string {
 		"## Split of responsibility",
 		"",
 		"- `.codewiki/config.json` declares readable paths, direct writable paths, generated read-only paths, byte caps, and runtime adapter metadata.",
-		"- `scripts/codewiki-gateway.mjs` is the current adapter for compact reads and validated patch application.",
+		"- Source-owned CodeWiki application APIs own compact reads and validated patch semantics; optional scripts may wrap those APIs for local developer convenience.",
 		"- A future `think-code` executor may provide generic sandbox isolation while reusing the same policy and patch schema.",
 		"- codewiki owns domain semantics: generated files stay read-only, implementation evidence lives in implementation builds, roadmap/task state goes through canonical mutation APIs, and views are rebuilt after accepted writes.",
 		"",

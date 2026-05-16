@@ -1,3 +1,4 @@
+import { renderSkillAsset } from "./skill-assets.ts";
 import { unique } from "../domain/shared/utils.ts";
 import type { 
     WikiProject, 
@@ -230,6 +231,15 @@ export function renderTaskContextForPrompt(
 	];
 }
 
+function renderBlock(lines: string[]): string {
+	return lines.length > 0 ? lines.join("\n") : "- none";
+}
+
+function renderFollowUpIntentSection(followUpIntent: string): string {
+	const trimmed = followUpIntent.trim();
+	return trimmed ? `User follow-up intent:\n${trimmed}` : "";
+}
+
 export function codePrompt(
 	project: WikiProject,
 	graph: GraphFile | null,
@@ -237,6 +247,7 @@ export function codePrompt(
 	task: RoadmapTaskRecord,
 	evidence = "No closure evidence recorded yet.",
 	taskContext: RoadmapTaskContextPacket | null = null,
+	followUpIntent = "",
 ): string {
 	const drift = buildDriftContext(project, graph);
 	const taskContextLines = renderTaskContextForPrompt(taskContext);
@@ -247,69 +258,49 @@ export function codePrompt(
 		"Spec map:",
 		...renderSpecPromptMap(graph),
 	];
-	return [
-		`Implement roadmap task ${task.id} for ${project.label}.`,
-		`Task title: ${task.title}.`,
-		`Task status: ${task.status}.`,
-		`Task priority: ${task.priority}.`,
-		`Task kind: ${task.kind}.`,
-		`Task summary: ${task.summary}.`,
-		`Latest evidence summary: ${evidence}.`,
-		...(task.goal.outcome ? [`Task outcome: ${task.goal.outcome}.`] : []),
+	const taskSummaryLines = [
+		`- Title: ${task.title}`,
+		`- Status: ${task.status}`,
+		`- Priority: ${task.priority}`,
+		`- Kind: ${task.kind}`,
+		`- Summary: ${task.summary}`,
+		...(task.goal.outcome ? [`- Outcome: ${task.goal.outcome}`] : []),
 		...(task.goal.acceptance.length > 0
-			? [
-					"Task success signals:",
-					...task.goal.acceptance.map((item) => `- ${item}`),
-				]
+			? ["- Success signals:", ...task.goal.acceptance.map((item) => `  - ${item}`)]
 			: []),
 		...(task.goal.non_goals.length > 0
-			? ["Task non-goals:", ...task.goal.non_goals.map((item) => `- ${item}`)]
+			? ["- Non-goals:", ...task.goal.non_goals.map((item) => `  - ${item}`)]
 			: []),
 		...(task.goal.verification.length > 0
-			? [
-					"Task verification steps:",
-					...task.goal.verification.map((item) => `- ${item}`),
-				]
+			? ["- Verification steps:", ...task.goal.verification.map((item) => `  - ${item}`)]
 			: []),
-		`Deterministic preflight color: ${statusColor(report)}.`,
-		...(taskContextLines.length > 0 ? taskContextLines : fallbackContextLines),
-		"Task delta:",
-		`- Desired: ${task.delta.desired}`,
-		`- Current: ${task.delta.current}`,
-		`- Closure: ${task.delta.closure}`,
+	];
+	const taskRefLines = [
 		...(task.spec_paths.length > 0
-			? ["Task spec paths:", ...task.spec_paths.map((path) => `- ${path}`)]
+			? ["Spec paths:", ...task.spec_paths.map((path) => `- ${path}`)]
 			: []),
 		...(task.code_paths.length > 0
-			? ["Task code paths:", ...task.code_paths.map((path) => `- ${path}`)]
+			? ["Code paths:", ...task.code_paths.map((path) => `- ${path}`)]
 			: []),
 		...(task.research_ids.length > 0
-			? [
-					"Task research ids:",
-					...task.research_ids.map((researchId) => `- ${researchId}`),
-				]
+			? ["Research ids:", ...task.research_ids.map((researchId) => `- ${researchId}`)]
 			: []),
-		"Rules:",
-		"- implement surgically from roadmap/build context, then submit build evidence to the validation gateway",
-		"- treat parent context as expensive RAM: keep focused task, loaded view revisions, and small decisions; do not load raw wiki trees by default",
-		"- consume graph/status as a map first, then read linked source-of-truth docs/builds/roadmap/validation/code directly before semantic edits",
-		"- use subagents for fresh validation/research/architecture review and available bounded context tools for programmatic context packets; ThinkCode is optional and governed by its own skill",
-		"- use graph/state to locate the roadmap item, linked builds, validation refs, code paths, and exact specs; read those sources before changing code or wiki surgically",
-		"- during implementation, use lint, typecheck, tests, runtime feedback, and Pi-lens as short-cycle correction signals for mechanical code quality",
-		"- validation gateway should judge alignment/coherence; do not reduce it to linting or typechecking",
-		"- gather research only when uncertainty or unsupported claims require new evidence",
-		"- implement according to specs and roadmap; surface drift instead of silently choosing code over wiki",
-		"- keep public UX focused on wiki-bootstrap, wiki-status, wiki-config, and wiki-resume, while Alt+W toggles the live status panel",
-		"- do not create a separate user-facing wiki-edit command; update roadmap/wiki artifacts automatically when user intent requires it",
-		"- if intended design must change, update wiki docs and code consistently",
-		"- if this task finishes, blocks, or needs evidence recorded, use codewiki_task to persist canonical task truth",
-		"- if follow-up delta appears that is not already tracked, use codewiki_task action=create",
-		"- rebuild generated outputs before finishing",
-		"- rerun deterministic status before summarizing",
-		"Output format:",
-		"- Changes made",
-		"- Task status recommendation: todo|in_progress|done|blocked",
-		"- Wiki updates made automatically, if any",
-		"- Remaining risks or follow-ups",
-	].join("\n");
+	];
+	return renderSkillAsset("prompts/resume-implementation.md", {
+		"project.label": project.label,
+		"task.id": task.id,
+		"task.summary_block": renderBlock(taskSummaryLines),
+		"task.context_block": renderBlock(
+			taskContextLines.length > 0 ? taskContextLines : fallbackContextLines,
+		),
+		"task.delta_block": renderBlock([
+			`- Desired: ${task.delta.desired}`,
+			`- Current: ${task.delta.current}`,
+			`- Closure: ${task.delta.closure}`,
+		]),
+		"task.refs_block": renderBlock(taskRefLines),
+		"preflight.color": statusColor(report),
+		"evidence": evidence,
+		"follow_up_intent_section": renderFollowUpIntentSection(followUpIntent),
+	});
 }

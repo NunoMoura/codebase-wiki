@@ -32,7 +32,7 @@ user conversation -> inspect .codewiki/kb and code -> propose diff table + agent
    - Keep rows high-signal and decision-oriented. Prefer 3-7 rows; split unrelated decisions into separate feedback handoffs.
    - Capture accepted decisions, assumptions, open questions, non-goals, risks, and requirement ids where useful.
    - Map which knowledge, planning, roadmap, build, validation, or code artifacts may need to change.
-   - Note likely scoped change claims when parallel-session overlap risk is visible.
+   - Note likely artifact-status scopes when parallel-session overlap risk is visible.
    - Ask user to accept before documentation compiler runs.
 
 4. **Handoff**

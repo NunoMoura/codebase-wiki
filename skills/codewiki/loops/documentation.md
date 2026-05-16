@@ -16,7 +16,7 @@ accepted feedback_build -> use graph to locate sources -> read kb/build truth ->
 - Use `codewiki_state` first as a map and freshness/drift index; treat loaded graph/build revisions as parent-session RAM anchors.
 - Use the graph to locate relevant sources, then read KB, build, roadmap, validation, or code truth directly before making semantic changes.
 - Expand raw knowledge files only when graph/build context points there, a decision needs exact source, or drift cannot be resolved from the located sources.
-- Use scoped change claims for non-trivial KB or roadmap edits when parallel sessions may overlap.
+- Mark narrow artifact statuses for non-trivial KB or roadmap edits when parallel sessions may overlap.
 - Use `codewiki_task` for task creation/update. Do not edit roadmap JSON manually.
 
 ## Workflow

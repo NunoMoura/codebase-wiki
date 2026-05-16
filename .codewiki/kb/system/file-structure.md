@@ -80,7 +80,7 @@ Renderer-specific Mermaid, Cytoscape, or SVG output should be treated as generat
 | Alignment model | `alignment-model.md` | graph/gateway/content-proof precedence and semantic-change rules |
 | Audits | `audits.md` | audit engine, `/audit [flags]`, gateway-required audit profiles |
 | Roadmap | `roadmap.md` | `.codewiki/roadmap/queue.json`, active task state, release checkpoints, archive files |
-| Session queue coordination | `api.md`, `adapters.md`, `graph.md` | `.codewiki/session/queue.json`, scoped leases, generated session views |
+| Session queue coordination | `api.md`, `adapters.md`, `graph.md` | `.codewiki/session/queue.json`, artifact statuses, generated session views |
 | State engine / generated graph | `graph.md` | `.codewiki/index_graph.json`, `src/domain/state/**`, `src/application/state-engine/**` |
 | Task-linked tests | `file-structure.md` | `tests/tasks/TASK-###/**`, stable smoke/regression tests under `tests/smoke/**` |
 | Skill assets and bootstrap | `extension.md`, `adapters.md`, `compilers.md` | `skills/codewiki/**` prompt templates, bootstrap workflow assets, loops, and playbooks |
@@ -165,7 +165,7 @@ src/
   domain/
     task/
     roadmap/
-    session/               # session queue, scoped leases, focus, handoff concepts
+    session/               # session queue, artifact statuses, focus, handoff concepts
     build/
     validation/
     state/                 # generated-state and reconciliation domain concepts

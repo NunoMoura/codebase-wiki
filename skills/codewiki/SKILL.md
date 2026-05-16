@@ -20,6 +20,7 @@ Use this as the single public CodeWiki skill. Load supporting workflow files onl
 - `playbooks/architecture.md` — architecture review for seams, ownership friction, testability gaps, and roadmap-worthy refactors.
 - `playbooks/research.md` — external/source research workflow for evidence-backed knowledge and planning decisions.
 - `playbooks/view-audit.md` — generated graph/index audit workflow.
+- `prompts/**` and `bootstrap/**` — skill-owned prompt templates and bootstrap onboarding/starter guidance consumed by source-owned command orchestration.
 
 Keep user-provided or repo-local research preferences outside CodeWiki when they are not CodeWiki-specific. CodeWiki owns the compiler loops, validation gateway, graph-backed context, and repo-local memory contract; other skills may own domain-specific research, writing, testing, or implementation style.
 
@@ -32,7 +33,8 @@ Public commands:
 - `Alt+W` to toggle the compact live status panel
 - `/wiki-ui [repo-path] [port]` to start the standalone local Control Room
 - `/wiki-config`
-- `/wiki-resume [TASK-###]`
+- `/wiki-resume [TASK-###] [repo-path] [-- follow-up intent]`
+- `/wiki-session-handoff [handoff-path]`
 
 Internal agent tools:
 
