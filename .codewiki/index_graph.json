@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T10:12:59.017Z",
+  "generated_at": "2026-05-16T10:14:39.951Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -15203,15 +15203,6 @@
       "proof_kind": "git_sha",
       "layer": "content_proof",
       "default_hidden": true
-    },
-    {
-      "id": "lint:roadmap-missing-research-id:.codewiki/roadmap/queue.json",
-      "kind": "lint_issue",
-      "path": ".codewiki/roadmap/queue.json",
-      "layer": "validation",
-      "severity": "warning",
-      "issue_kind": "roadmap-missing-research-id",
-      "message": "TASK-077 references unknown research id: .codewiki/builds/feedback/2026-05-16-accepted-change-type-taxonomy.json"
     }
   ],
   "edges": [
@@ -17279,11 +17270,6 @@
       "kind": "task_code_path",
       "from": "task:TASK-077",
       "to": "code:src/application/state-builders.ts"
-    },
-    {
-      "kind": "task_research",
-      "from": "task:TASK-077",
-      "to": "research_entry:.codewiki/builds/feedback/2026-05-16-accepted-change-type-taxonomy.json"
     },
     {
       "kind": "task_spec",
@@ -35446,11 +35432,6 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
       "to": "task:TASK-086"
-    },
-    {
-      "kind": "lint_issue_path",
-      "from": "lint:roadmap-missing-research-id:.codewiki/roadmap/queue.json",
-      "to": "doc:.codewiki/roadmap/queue.json"
     }
   ],
   "views": {
@@ -39719,19 +39700,6 @@
           "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
         },
         {
-          "id": "reconcile:lint:roadmap-missing-research-id:.codewiki/roadmap/queue.json",
-          "source_id": "lint:roadmap-missing-research-id:.codewiki/roadmap/queue.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "knowledge",
-          "to_layer": "roadmap",
-          "next_loop": "documentation",
-          "reason": "Lint warning (roadmap-missing-research-id) has no open roadmap coverage; reconcile knowledge or create scoped work.",
-          "doc_paths": [
-            ".codewiki/roadmap/queue.json"
-          ]
-        },
-        {
           "id": "reconcile:task:TASK-077",
           "source_id": "task:TASK-077",
           "state": "drift",
@@ -39777,7 +39745,7 @@
         }
       ],
       "counts_by_loop": {
-        "documentation": 2,
+        "documentation": 1,
         "feedback": 1,
         "implementation": 4
       },
@@ -39804,7 +39772,7 @@
       },
       "layer_states": {
         "intent": "aligned",
-        "knowledge": "drift",
+        "knowledge": "aligned",
         "roadmap": "drift",
         "code": "drift",
         "validation": "drift"
@@ -39813,10 +39781,9 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T10:12:58.928Z",
+      "generated_at": "2026-05-16T10:14:39.874Z",
       "counts": {
-        "large-doc": 1,
-        "roadmap-missing-research-id": 1
+        "large-doc": 1
       },
       "issues": [
         {
@@ -39824,23 +39791,17 @@
           "kind": "large-doc",
           "path": ".codewiki/kb/system/builds.md",
           "message": "Live doc has 1684 words; consider split or cut."
-        },
-        {
-          "severity": "warning",
-          "kind": "roadmap-missing-research-id",
-          "path": ".codewiki/roadmap/queue.json",
-          "message": "TASK-077 references unknown research id: .codewiki/builds/feedback/2026-05-16-accepted-change-type-taxonomy.json"
         }
       ]
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T10:12:59Z",
+      "generated_at": "2026-05-16T10:14:39Z",
       "health": {
         "color": "yellow",
         "errors": 0,
-        "warnings": 2,
-        "total_issues": 2
+        "warnings": 1,
+        "total_issues": 1
       },
       "source": {
         "task_context_root": ".codewiki/roadmap/tasks"
@@ -42255,7 +42216,7 @@
             "src/application/state.ts",
             "src/application/state-builders.ts"
           ],
-          "updated": "2026-05-16T10:12:05Z",
+          "updated": "2026-05-16T10:14:32Z",
           "context_path": ".codewiki/roadmap/tasks/TASK-077/context.json",
           "loop": {
             "updated_at": "",
@@ -42532,7 +42493,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T10:12:59Z",
+      "generated_at": "2026-05-16T10:14:40Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -42541,8 +42502,8 @@
       "health": {
         "color": "yellow",
         "errors": 0,
-        "warnings": 2,
-        "total_issues": 2
+        "warnings": 1,
+        "total_issues": 1
       },
       "summary": {
         "total_specs": 16,
@@ -43951,7 +43912,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T10:12:59Z",
+        "generated_at": "2026-05-16T10:14:40Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -43979,12 +43940,16 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T10:12:59Z",
+            "checked_at": "2026-05-16T10:14:39Z",
             "revision": {
               "git": {
-                "head": "40dbaf32cc9134c9bf5c60d45bbcf0e59ce29af1",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "097bdb8e48c240232651d94f6fef64ca1d32d3fd",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-077/context.json",
+                  ".codewiki/roadmap/tasks/TASK-077/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -44065,14 +44030,14 @@
                 }
               },
               "spec_digest": "86132c1054f20719d69e1224c2324cceb5f0897e7ac842c07268d1a15952ae93",
-              "task_digest": "86f8e9e64a052b2733bddbc6db3698b29ed739079c51880112756b801e474492",
-              "code_digest": "f44ba46575cdb02ebfb29d771924962fd337d1672e6d27918e0ac038bad41718",
-              "digest": "117656b00d80d7a619cb042ab7f1943d0da71e2eb04456fbec8e283e58457cff"
+              "task_digest": "ee2b675dae9747f2ddd05f69743cf0676665104844cad21e2ef9f52e345c31d9",
+              "code_digest": "1eaeb04214b05601b1404ffc1a86d0a8d945f1ba5cc6dee72f85f0da9a0e2a19",
+              "digest": "dab35f3d5766ce3dd48df1d0e7907aa34ec0c4edaf42ce449b884cd5fa30fd8b"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T10:12:59Z",
+              "checked_at": "2026-05-16T10:14:39Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -44208,12 +44173,16 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T10:12:59Z",
+            "checked_at": "2026-05-16T10:14:39Z",
             "revision": {
               "git": {
-                "head": "40dbaf32cc9134c9bf5c60d45bbcf0e59ce29af1",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "097bdb8e48c240232651d94f6fef64ca1d32d3fd",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-077/context.json",
+                  ".codewiki/roadmap/tasks/TASK-077/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -44273,14 +44242,14 @@
                 }
               },
               "spec_digest": "b3b549e70e3b97858bc976490b5d97529fe498ee0953b792f9f2f97bb9a65c71",
-              "task_digest": "86f8e9e64a052b2733bddbc6db3698b29ed739079c51880112756b801e474492",
-              "code_digest": "2259ed2c5e83bce3af73b4da735dc21304b1952dcbb273cb8635a8f0818b5144",
-              "digest": "5f5f75fd3ba321c9c03c256d57fa91b231509c3b7a66d450771dcf27f67c39f0"
+              "task_digest": "ee2b675dae9747f2ddd05f69743cf0676665104844cad21e2ef9f52e345c31d9",
+              "code_digest": "8a47803d153b6a8bcfdb4929e5d01b03f0f792130bcac3538c2351ba047e37da",
+              "digest": "35b344453c8aa003aa8190c35ba0f8b25849e4bd2c969cfe2fc5a154d0b28333"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T10:12:59Z",
+              "checked_at": "2026-05-16T10:14:39Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -44392,12 +44361,16 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T10:12:59Z",
+            "checked_at": "2026-05-16T10:14:40Z",
             "revision": {
               "git": {
-                "head": "40dbaf32cc9134c9bf5c60d45bbcf0e59ce29af1",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "097bdb8e48c240232651d94f6fef64ca1d32d3fd",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-077/context.json",
+                  ".codewiki/roadmap/tasks/TASK-077/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -44478,14 +44451,14 @@
                 }
               },
               "spec_digest": "86132c1054f20719d69e1224c2324cceb5f0897e7ac842c07268d1a15952ae93",
-              "task_digest": "86f8e9e64a052b2733bddbc6db3698b29ed739079c51880112756b801e474492",
-              "code_digest": "f44ba46575cdb02ebfb29d771924962fd337d1672e6d27918e0ac038bad41718",
-              "digest": "117656b00d80d7a619cb042ab7f1943d0da71e2eb04456fbec8e283e58457cff"
+              "task_digest": "ee2b675dae9747f2ddd05f69743cf0676665104844cad21e2ef9f52e345c31d9",
+              "code_digest": "1eaeb04214b05601b1404ffc1a86d0a8d945f1ba5cc6dee72f85f0da9a0e2a19",
+              "digest": "dab35f3d5766ce3dd48df1d0e7907aa34ec0c4edaf42ce449b884cd5fa30fd8b"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T10:12:59Z",
+              "checked_at": "2026-05-16T10:14:40Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -44622,7 +44595,7 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T10:12:59Z",
+        "generated_at": "2026-05-16T10:14:40Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
