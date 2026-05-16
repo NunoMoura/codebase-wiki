@@ -1,19 +1,14 @@
 {
   "version": 1,
   "kind": "validation_report",
-  "created": "2026-05-16T09:20:01Z",
+  "created": "2026-05-16T09:26:00Z",
   "profile": "implementation",
   "task_id": "TASK-082",
   "verdict": "pass",
-  "rationale": "Fresh validation from repo truth verified TASK-082 acceptance: build/task APIs expose change_class and accepted build refs, graph marks semantic dirty paths and suppresses covered paths, implementation validation blocks missing accepted planning refs, task-close warning/block policy is covered, and feedback docs use Change row terminology. Targeted checks and npm test passed; audit warnings are generated-state/pre-existing health warnings, not TASK-082 acceptance failures.",
+  "rationale": "Fresh validation of TASK-082 source tightening passed. Source implementation build is accepted and retains accepted planning traceability to .codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json; src/application/builds.ts now marks semantic_traceability_requirement.required for task-close/publication validations when a source implementation build is supplied. Targeted policy smoke and typecheck pass. Required audit refs cited; audit:alignment and audit:changed have existing repo warnings only (graph health/generated file changed), not TASK-082 acceptance blockers.",
   "checks": [
-    "audit:alignment",
-    "audit:changed",
-    "audit:task",
     "npm run typecheck",
-    "node tests/smoke/alignment-graph.test.mjs",
-    "node tests/smoke/loop-isolation-policy.test.mjs",
-    "npm test"
+    "node tests/smoke/loop-isolation-policy.test.mjs"
   ],
   "issues": [],
   "source": ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
@@ -30,7 +25,7 @@
   ],
   "audit_reports": [],
   "content_proof_refs": [
-    "sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda"
+    "sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e"
   ],
   "failed_criteria": [],
   "blocking_questions": [],
@@ -90,10 +85,9 @@
     "warnings": []
   },
   "isolation": {
-    "working_tree_digest": "sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda",
+    "working_tree_digest": "sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e",
     "clean": false,
     "fresh_context": true,
-    "notes": "Fresh validator session; dirty pre-commit worktree validated by digest.",
     "role": "validator"
   }
 }

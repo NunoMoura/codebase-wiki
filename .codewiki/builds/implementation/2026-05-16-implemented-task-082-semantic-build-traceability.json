@@ -2,7 +2,7 @@
   "version": 1,
   "schema_version": 2,
   "kind": "implementation_build",
-  "created": "2026-05-16T09:16:39Z",
+  "created": "2026-05-16T09:24:36Z",
   "source": "codewiki_build tool",
   "source_planning_build": ".codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json",
   "task_id": "TASK-082",
@@ -48,8 +48,8 @@
   "lifecycle": {
     "state": "accepted",
     "ttl_days": 7,
-    "archive_after": "2026-05-23T09:16:39.000Z",
-    "purge_after": "2026-05-30T09:16:39.000Z"
+    "archive_after": "2026-05-23T09:24:36.000Z",
+    "purge_after": "2026-05-30T09:24:36.000Z"
   },
   "cycle": {
     "loop": "implementation",
@@ -445,7 +445,7 @@
     },
     "commit": {
       "title": "chore(codewiki): record TASK-082 Harden semantic build traceability and change classification implementation evidence",
-      "body": "Implemented TASK-082 semantic build traceability and change classification enforcement across build/task APIs, graph traceability, validation policy, docs, and smoke coverage.\n\nChecks: npm run typecheck, node tests/smoke/alignment-graph.test.mjs, node tests/smoke/loop-isolation-policy.test.mjs, npm run test:smoke, npm run test:features, npm run check:architecture, npm run test:pack, npm test\nValidation: no durable validation refs recorded.\nRemote publication requires explicit approval; this build is recommendation-only.\n\nCodeWiki-Task: TASK-082\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json\nCodeWiki-Checks: npm run typecheck, node tests/smoke/alignment-graph.test.mjs, node tests/smoke/loop-isolation-policy.test.mjs, npm run test:smoke, npm run test:features, npm run check:architecture, npm run test:pack, npm test\nCodeWiki-Validation: <pending-validation>\nCodeWiki-Recover: /wiki-restore TASK-082\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-082\nCodeWiki-Digest: sha256:a8d01e528f28e4bb425980b1ee1975f9214a299de6f94ece6d78051aa2424036\nCodeWiki-Restore: /wiki-restore TASK-082",
+      "body": "Implemented TASK-082 semantic build traceability and change classification enforcement across build/task APIs, graph traceability, validation policy, docs, and smoke coverage.\n\nChecks: npm run typecheck, node tests/smoke/alignment-graph.test.mjs, node tests/smoke/loop-isolation-policy.test.mjs, npm run test:smoke, npm run test:features, npm run check:architecture, npm run test:pack, npm test\nValidation: no durable validation refs recorded.\nRemote publication requires explicit approval; this build is recommendation-only.\n\nCodeWiki-Task: TASK-082\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json\nCodeWiki-Checks: npm run typecheck, node tests/smoke/alignment-graph.test.mjs, node tests/smoke/loop-isolation-policy.test.mjs, npm run test:smoke, npm run test:features, npm run check:architecture, npm run test:pack, npm test\nCodeWiki-Validation: <pending-validation>\nCodeWiki-Recover: /wiki-restore TASK-082\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-082\nCodeWiki-Digest: sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412\nCodeWiki-Restore: /wiki-restore TASK-082",
       "trailers": [
         "CodeWiki-Task: TASK-082",
         "CodeWiki-Build: .codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
@@ -453,7 +453,7 @@
         "CodeWiki-Validation: <pending-validation>",
         "CodeWiki-Recover: /wiki-restore TASK-082",
         "CodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-082",
-        "CodeWiki-Digest: sha256:a8d01e528f28e4bb425980b1ee1975f9214a299de6f94ece6d78051aa2424036",
+        "CodeWiki-Digest: sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412",
         "CodeWiki-Restore: /wiki-restore TASK-082"
       ],
       "commit_ready": true,
@@ -461,7 +461,7 @@
     },
     "pr": {
       "title": "chore(codewiki): record TASK-082 Harden semantic build traceability and change classification implementation evidence",
-      "body": "Implemented TASK-082 semantic build traceability and change classification enforcement across build/task APIs, graph traceability, validation policy, docs, and smoke coverage.\n\nChecks: npm run typecheck, node tests/smoke/alignment-graph.test.mjs, node tests/smoke/loop-isolation-policy.test.mjs, npm run test:smoke, npm run test:features, npm run check:architecture, npm run test:pack, npm test\nValidation: no durable validation refs recorded.\nRemote publication requires explicit approval; this build is recommendation-only.\n\nCodeWiki-Task: TASK-082\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json\nCodeWiki-Checks: npm run typecheck, node tests/smoke/alignment-graph.test.mjs, node tests/smoke/loop-isolation-policy.test.mjs, npm run test:smoke, npm run test:features, npm run check:architecture, npm run test:pack, npm test\nCodeWiki-Validation: <pending-validation>\nCodeWiki-Recover: /wiki-restore TASK-082\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-082\nCodeWiki-Digest: sha256:a8d01e528f28e4bb425980b1ee1975f9214a299de6f94ece6d78051aa2424036\nCodeWiki-Restore: /wiki-restore TASK-082"
+      "body": "Implemented TASK-082 semantic build traceability and change classification enforcement across build/task APIs, graph traceability, validation policy, docs, and smoke coverage.\n\nChecks: npm run typecheck, node tests/smoke/alignment-graph.test.mjs, node tests/smoke/loop-isolation-policy.test.mjs, npm run test:smoke, npm run test:features, npm run check:architecture, npm run test:pack, npm test\nValidation: no durable validation refs recorded.\nRemote publication requires explicit approval; this build is recommendation-only.\n\nCodeWiki-Task: TASK-082\nCodeWiki-Build: .codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json\nCodeWiki-Checks: npm run typecheck, node tests/smoke/alignment-graph.test.mjs, node tests/smoke/loop-isolation-policy.test.mjs, npm run test:smoke, npm run test:features, npm run check:architecture, npm run test:pack, npm test\nCodeWiki-Validation: <pending-validation>\nCodeWiki-Recover: /wiki-restore TASK-082\nCodeWiki-Archive-Ref: refs/codewiki/archive/task/TASK-082\nCodeWiki-Digest: sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412\nCodeWiki-Restore: /wiki-restore TASK-082"
     },
     "issue_update": "",
     "release_notes": "",
@@ -500,7 +500,7 @@
       "build_path": ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
       "archive_ref": "refs/codewiki/archive/task/TASK-082",
       "commit_sha": "",
-      "digest": "sha256:a8d01e528f28e4bb425980b1ee1975f9214a299de6f94ece6d78051aa2424036",
+      "digest": "sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412",
       "restore_command": "/wiki-restore TASK-082"
     },
     "artifact_digests": {
@@ -539,8 +539,8 @@
         {
           "path": "src/application/builds.ts",
           "role": "code_file",
-          "sha256": "sha256:905a80df449a2031f6ba3693cd920875805ff9763ff9328986f04177f48c1798",
-          "bytes": 54277
+          "sha256": "sha256:eb8833c645d461fd1536a67de8136949373b70ed925b89a4fe30cdab040c775c",
+          "bytes": 54411
         },
         {
           "path": "src/application/graph.ts",

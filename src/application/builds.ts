@@ -1215,7 +1215,7 @@ export async function writeValidationReport(
 			}
 			: undefined,
 		semantic_traceability_requirement: {
-			required: traceabilityPolicy.gaps.length > 0 || profile.trim().toLowerCase() === "implementation",
+			required: traceabilityPolicy.gaps.length > 0 || profile.trim().toLowerCase() === "implementation" || Boolean((input.source ?? "").trim() && ["task-close", "publication", "publish", "release"].includes(profile.trim().toLowerCase())),
 			evidence: ["source implementation build", "change_class", "accepted upstream compiler build refs"],
 			gaps: traceabilityPolicy.gaps,
 			warnings: traceabilityPolicy.warnings,

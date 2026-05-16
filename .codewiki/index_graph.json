@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T09:21:24.373Z",
+  "generated_at": "2026-05-16T09:26:01.007Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -216,7 +216,7 @@
       "kind": "code_path",
       "path": "src",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/product/users/external-users.md",
@@ -276,7 +276,7 @@
       "kind": "code_path",
       "path": "src/application",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:skills/codewiki",
@@ -320,7 +320,7 @@
       "kind": "code_path",
       "path": "src/application/builds.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/application/gateway",
@@ -12329,13 +12329,13 @@
           "tests/smoke/loop-isolation-policy.test.mjs@sha256:de56e29e98ed6b22d05b7a58e314a66dd7931740c1b0bfb0c702547e4f4da0dc",
           "src/domain/shared/types.ts@sha256:5ff285bd8984b5826629aeeca80948f7aad0530c66605b9f679e7508b11b0ee6",
           "src/adapters/pi/schemas.ts@sha256:4abcfb74514100c382893f49cb1ef74082095bd7baa2a8484c75f51cdf4a529a",
-          "src/application/builds.ts@sha256:905a80df449a2031f6ba3693cd920875805ff9763ff9328986f04177f48c1798",
+          "src/application/builds.ts@sha256:eb8833c645d461fd1536a67de8136949373b70ed925b89a4fe30cdab040c775c",
           "src/application/graph.ts@sha256:e347c8bfdb47121f67b3e2592ef8ce7f3ce673719fd50c5d0620d0757aeff9e8",
           "src/application/roadmap.ts@sha256:20316ec510c6822868e2c6db3528232cc51b5dad2287cb7d7d44fb829a850569",
           "src/application/state.ts@sha256:a96e1d094eacd32190050f5b4f5175cbefeeadf4be4c32fdccac8d312ce47082",
           "src/application/state-builders.ts@sha256:9e3f89753fb3e1ea8a3167922f07be6ff00d9e2640733641160d4b0ef4f08f43",
           "refs/codewiki/archive/task/TASK-082",
-          "sha256:a8d01e528f28e4bb425980b1ee1975f9214a299de6f94ece6d78051aa2424036"
+          "sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412"
         ],
         "validation_attestation_refs": []
       }
@@ -12408,9 +12408,9 @@
       "default_hidden": true
     },
     {
-      "id": "content_proof:src/application/builds.ts@sha256:905a80df449a2031f6ba3693cd920875805ff9763ff9328986f04177f48c1798",
+      "id": "content_proof:src/application/builds.ts@sha256:eb8833c645d461fd1536a67de8136949373b70ed925b89a4fe30cdab040c775c",
       "kind": "content_proof",
-      "path": "src/application/builds.ts@sha256:905a80df449a2031f6ba3693cd920875805ff9763ff9328986f04177f48c1798",
+      "path": "src/application/builds.ts@sha256:eb8833c645d461fd1536a67de8136949373b70ed925b89a4fe30cdab040c775c",
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
@@ -12448,9 +12448,9 @@
       "default_hidden": true
     },
     {
-      "id": "content_proof:sha256:a8d01e528f28e4bb425980b1ee1975f9214a299de6f94ece6d78051aa2424036",
+      "id": "content_proof:sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412",
       "kind": "content_proof",
-      "path": "sha256:a8d01e528f28e4bb425980b1ee1975f9214a299de6f94ece6d78051aa2424036",
+      "path": "sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412",
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
@@ -14312,10 +14312,9 @@
       "verdict": "pass",
       "isolation_status": "isolated",
       "isolation": {
-        "working_tree_digest": "sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda",
+        "working_tree_digest": "sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e",
         "clean": false,
         "fresh_context": true,
-        "notes": "Fresh validator session; dirty pre-commit worktree validated by digest.",
         "role": "validator"
       },
       "evidence_summary": {
@@ -14328,14 +14327,14 @@
           "audit:task"
         ],
         "content_proof_refs": [
-          "sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda"
+          "sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e"
         ]
       }
     },
     {
-      "id": "content_proof:sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda",
+      "id": "content_proof:sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e",
       "kind": "content_proof",
-      "path": "sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda",
+      "path": "sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e",
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
@@ -14650,6 +14649,53 @@
       "id": "content_proof:3680881721d01f5450aa2ba5aeedc4f15e216b17",
       "kind": "content_proof",
       "path": "3680881721d01f5450aa2ba5aeedc4f15e216b17",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "verdict": "pass",
+      "isolation_status": "isolated",
+      "isolation": {
+        "head_sha": "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+        "validated_sha": "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+        "tree_sha": "40745ca6d355a423c9bcbd35b8798ed7f1b62559",
+        "clean": true,
+        "fresh_context": true,
+        "notes": "Fresh task-close validation from repo truth; git status --short clean immediately before report write.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:generated-parity"
+        ],
+        "content_proof_refs": [
+          "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+          "40745ca6d355a423c9bcbd35b8798ed7f1b62559"
+        ]
+      }
+    },
+    {
+      "id": "content_proof:eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+      "kind": "content_proof",
+      "path": "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:40745ca6d355a423c9bcbd35b8798ed7f1b62559",
+      "kind": "content_proof",
+      "path": "40745ca6d355a423c9bcbd35b8798ed7f1b62559",
       "proof_kind": "git_sha",
       "layer": "content_proof",
       "default_hidden": true
@@ -32239,7 +32285,7 @@
     {
       "kind": "build_content_proof",
       "from": "build:.codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
-      "to": "content_proof:src/application/builds.ts@sha256:905a80df449a2031f6ba3693cd920875805ff9763ff9328986f04177f48c1798",
+      "to": "content_proof:src/application/builds.ts@sha256:eb8833c645d461fd1536a67de8136949373b70ed925b89a4fe30cdab040c775c",
       "default_hidden": true
     },
     {
@@ -32275,7 +32321,7 @@
     {
       "kind": "build_content_proof",
       "from": "build:.codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
-      "to": "content_proof:sha256:a8d01e528f28e4bb425980b1ee1975f9214a299de6f94ece6d78051aa2424036",
+      "to": "content_proof:sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412",
       "default_hidden": true
     },
     {
@@ -34095,7 +34141,7 @@
     {
       "kind": "validation_content_proof",
       "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-082.json",
-      "to": "content_proof:sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda",
+      "to": "content_proof:sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e",
       "default_hidden": true
     },
     {
@@ -34461,6 +34507,53 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
       "to": "task:TASK-081"
+    },
+    {
+      "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "audit:audit:generated-parity",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "content_proof:eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "content_proof:40745ca6d355a423c9bcbd35b8798ed7f1b62559",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "task:TASK-082"
     },
     {
       "kind": "validation_attests_source",
@@ -35033,7 +35126,9 @@
         "tests/smoke/package-smoke.test.mjs",
         "tsconfig.json"
       ],
-      "dirty_paths": []
+      "dirty_paths": [
+        "src/application/builds.ts"
+      ]
     },
     "claims": {
       "active_claim_count": 0,
@@ -35045,7 +35140,16 @@
       "isolation": [],
       "claims": [],
       "conflicts": [],
-      "waiters": []
+      "waiters": [],
+      "artifact_statuses": []
+    },
+    "artifact_status": {
+      "in_use_count": 0,
+      "warning_count": 0,
+      "conflict_count": 0,
+      "waiting_count": 0,
+      "ready_waiter_count": 0,
+      "artifacts": []
     },
     "validation": {
       "isolation": [
@@ -35317,7 +35421,7 @@
           "fresh_context": true,
           "related_claim_ids": [],
           "content_proof_refs": [
-            "sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda"
+            "sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e"
           ]
         },
         {
@@ -35424,6 +35528,22 @@
           "content_proof_refs": [
             "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
             "3680881721d01f5450aa2ba5aeedc4f15e216b17"
+          ]
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+          "task_id": "TASK-082",
+          "verdict": "pass",
+          "status": "isolated",
+          "role": "validator",
+          "head_sha": "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+          "validated_sha": "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+          "clean": true,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+            "40745ca6d355a423c9bcbd35b8798ed7f1b62559"
           ]
         },
         {
@@ -36171,6 +36291,7 @@
         "335e0dab36bf7c49eb14ff1c50477c6d08ed0c1f",
         "3680881721d01f5450aa2ba5aeedc4f15e216b17",
         "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
+        "40745ca6d355a423c9bcbd35b8798ed7f1b62559",
         "4757f167a6306f11c8f6d142605cc2e9a8220d89",
         "59ebea7622e14a3faf6596b8a03a5dcb9710730f",
         "69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363",
@@ -36188,6 +36309,7 @@
         "c87e595962a5df630a22e211afe310d936e8e3e4",
         "d72fb38ed289c5089bbafaf3676b0367325400b8",
         "e2c184a96a3fd7c10bf169b78409ec6ab5ab95bf",
+        "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
         "extensions/codewiki/src/adapters/pi/commands/ui.ts@sha256:0c9fa18f4e09f008c27f734fb135bfeab947fc9350ab4a9b483a3c72676fe7cb",
         "extensions/codewiki/src/adapters/pi/index.ts@sha256:41f056530809bf5dcd625fb946a87b0980045b8e1a6ee4c62875a5adbab6437c",
         "extensions/codewiki/src/adapters/pi/index.ts@sha256:5224bd2f575dbf1d222591ac720d19c91c14b4a612c3ca9b823cabe1c9239193",
@@ -36277,7 +36399,7 @@
         "scripts/token-benchmark.mjs@sha256:f47fbac152550a4f4a4eb82dd756265b2dff9820f083d2dd4dc2f0d23d84a5e5",
         "sha256:000889d11f4466a03a1383627bc0c34d3a75c749abd931a2da128d45ec909b92",
         "sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
-        "sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda",
+        "sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412",
         "sha256:0f9ba243c61c6963a118eeae1c145d54fec2f0903a4de0682ede65d3552c4cb2",
         "sha256:1165ab5921f6a65464f500a1a944bc1bc0521cf47b22d12f280d78ee64e58795",
         "sha256:15dae35baadaf35df1f27f0220d4778a81726fc2efb5853e7d42bf3679af1a2d",
@@ -36302,7 +36424,6 @@
         "sha256:8b798a19408202c17f862a9b7994f65a41df569e15de1f4d0f342b325344e955",
         "sha256:a2392d7bc50595e7946c6cd87021cfae7d17ceb1f2d6a19354e4246ca791c661",
         "sha256:a40ebc4cf2101c3dee0794194623bf4b03e6e491a3337e959f3ce38f5f48707b",
-        "sha256:a8d01e528f28e4bb425980b1ee1975f9214a299de6f94ece6d78051aa2424036",
         "sha256:ac815696d14260ed60582a484178b17042662471d07a562343675328526de7ee",
         "sha256:b57ee1974aa33054c7df1f4b709ef5d245a53370a45055a9c378475f3b987f79",
         "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1",
@@ -36318,6 +36439,7 @@
         "sha256:f1a04ef408659121072174891739cc06359b039b2d38cad58d0d4d061ebf8193",
         "sha256:f45804f8b82fccec1ddb33b3e7b85fb2d7e6b1ef9472815518ce322005a21f26",
         "sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5",
+        "sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e",
         "skills/codewiki-documentation/SKILL.md@sha256:f3c86e2944ef5c1947f2f0d378c2a6c2ff826a83b64dbf6350c56ff755190b82",
         "skills/codewiki-feedback/SKILL.md@sha256:f4a0d228feb5a1f4e2786f7d9db9369dac0c90690ed8e43d7fc88e72112eb67e",
         "skills/codewiki-implementation/SKILL.md@sha256:866923ee583a237ddb2c11821c5e169140fcc7bba363196eb2776c49068602a0",
@@ -36369,7 +36491,7 @@
         "src/application/builds.ts@sha256:2b4148fedd4ddc8ded0627bd5620779e56d71ebce3f7ea766d0264a1f8d8cc86",
         "src/application/builds.ts@sha256:3b7e7d1d8c1f93726486264ab4a3b7af13f93e1952a5b79d7ea4e1f315e7c316",
         "src/application/builds.ts@sha256:7436fc7eecc66f112be2d3e55968043686b894227b8661e8830849ffd9663e2d",
-        "src/application/builds.ts@sha256:905a80df449a2031f6ba3693cd920875805ff9763ff9328986f04177f48c1798",
+        "src/application/builds.ts@sha256:eb8833c645d461fd1536a67de8136949373b70ed925b89a4fe30cdab040c775c",
         "src/application/claims.ts@sha256:96f78de0187cbadae13f10f49a65ad338d93a72c80aaa9db619b1580b095a07a",
         "src/application/claims.ts@sha256:e872a0bab9f9508dfa413ba95238a59dd2c4d736fea9fe2eddbc1b89d7aca47a",
         "src/application/claims.ts@sha256:f26b9af8385e6d23690b2b302b6b3a16d2cbe0e56cc38aecca390b2713afd9cf",
@@ -36769,7 +36891,7 @@
             "audit:task"
           ],
           "content_proof_refs": [
-            "sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda"
+            "sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e"
           ],
           "isolation_status": "isolated"
         },
@@ -36917,6 +37039,26 @@
           "isolation_status": "isolated"
         },
         {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+          "verdict": "pass",
+          "profile": "task-close",
+          "task_id": "TASK-082",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:generated-parity"
+          ],
+          "content_proof_refs": [
+            "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+            "40745ca6d355a423c9bcbd35b8798ed7f1b62559"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
           "verdict": "pass",
           "profile": "task-close",
@@ -36963,6 +37105,25 @@
     },
     "traceability": {
       "rows": [],
+      "semantic_change_rows": [
+        {
+          "path": "src/application/builds.ts",
+          "change_class": "code-bugfix",
+          "semantic": true,
+          "accepted_build_refs": [
+            ".codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json",
+            ".codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json",
+            ".codewiki/builds/implementation/2026-05-15-task-080-implementation-gateway-now-enforces-com.json",
+            ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
+            ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
+            ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
+            ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
+            ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json"
+          ],
+          "gaps": []
+        }
+      ],
+      "semantic_change_gaps": [],
       "gap_count": 0,
       "gaps": []
     },
@@ -38163,6 +38324,7 @@
             ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-080.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+            ".codewiki/validation/2026-05-16-task-close-pass-task-082.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-086.json"
           ]
@@ -38546,7 +38708,7 @@
           "build_path": ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
           "archive_ref": "refs/codewiki/archive/task/TASK-082",
           "commit_sha": "",
-          "digest": "sha256:a8d01e528f28e4bb425980b1ee1975f9214a299de6f94ece6d78051aa2424036",
+          "digest": "sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412",
           "restore_command": "/wiki-restore TASK-082",
           "safety_status": "blocked"
         },
@@ -38849,7 +39011,7 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T09:21:24.296Z",
+      "generated_at": "2026-05-16T09:26:00.872Z",
       "counts": {
         "large-doc": 1
       },
@@ -38864,7 +39026,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T09:21:24Z",
+      "generated_at": "2026-05-16T09:26:01Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -41593,7 +41755,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T09:21:24Z",
+      "generated_at": "2026-05-16T09:26:01Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -41867,6 +42029,7 @@
               ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-080.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+              ".codewiki/validation/2026-05-16-task-close-pass-task-082.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-086.json"
             ]
@@ -42014,7 +42177,7 @@
       },
       "direction": [
         "Validation blocked; escalate ambiguous intent to feedback compiler.",
-        "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
+        "Parallel sessions: 0 active, 0 collision task(s), 0 artifact(s) in-use, 0 artifact conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
         "Tracked drift coverage: 14/14."
@@ -43008,7 +43171,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T09:21:24Z",
+        "generated_at": "2026-05-16T09:26:01Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -43036,12 +43199,15 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T09:21:24Z",
+            "checked_at": "2026-05-16T09:26:01Z",
             "revision": {
               "git": {
-                "head": "bb274608eed0558faa8cdf36b967977a0e484f0f",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/validation/2026-05-16-implementation-pass-task-082.json",
+                  "src/application/builds.ts"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -43123,13 +43289,13 @@
               },
               "spec_digest": "c991867bd5e65f4968349adf25c1c66f06801f2273b5915561e39a2bc6274241",
               "task_digest": "814d9ec17687a3253490ad9ed1fbef694feed8a79a9573fcbd548d6506b03e1e",
-              "code_digest": "c83a9e2fb93c8f3d189378e230e424901e8eddba56bead4fac8b2fdf65eeae0f",
-              "digest": "b5034358e48c457e70dfc7777f44097805dd94ba37a29c08b15bbf690c828f7c"
+              "code_digest": "bcc6d03d45be48a66b1d038883efe549a3e0e9cabb6ca3729b4ab577462b0e3b",
+              "digest": "1243ecd5ae2474bf7234ce2d0b862da7e67b060c52889a0b285ce0a73036870a"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T09:21:24Z",
+              "checked_at": "2026-05-16T09:26:01Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -43266,12 +43432,15 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T09:21:24Z",
+            "checked_at": "2026-05-16T09:26:01Z",
             "revision": {
               "git": {
-                "head": "bb274608eed0558faa8cdf36b967977a0e484f0f",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/validation/2026-05-16-implementation-pass-task-082.json",
+                  "src/application/builds.ts"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -43332,13 +43501,13 @@
               },
               "spec_digest": "f99cd3dabede72fc0b99e277d4237efca9009b8da3816742d1b03029fd4d0614",
               "task_digest": "814d9ec17687a3253490ad9ed1fbef694feed8a79a9573fcbd548d6506b03e1e",
-              "code_digest": "e1db5768d89c3954ab1bd7279cf9da7593d06786135d1892b80c3343bbd66134",
-              "digest": "9bc22bea912628fbe0b4991dc7e82c8cc764b2919688b8994ccf4a45516605d0"
+              "code_digest": "ae3f87a126ef907ba64efc1b5f3a9a434fb9029b17bc55c7ca10ffdf0d34b337",
+              "digest": "becb0348c390e35d28a299f6af07fccbc8f79957ea77f08c604023547189459d"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T09:21:24Z",
+              "checked_at": "2026-05-16T09:26:01Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -43451,12 +43620,15 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T09:21:24Z",
+            "checked_at": "2026-05-16T09:26:01Z",
             "revision": {
               "git": {
-                "head": "bb274608eed0558faa8cdf36b967977a0e484f0f",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "eb2a320eccb5bd0e2444cab303a86bf52c68a42e",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/validation/2026-05-16-implementation-pass-task-082.json",
+                  "src/application/builds.ts"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -43538,13 +43710,13 @@
               },
               "spec_digest": "c991867bd5e65f4968349adf25c1c66f06801f2273b5915561e39a2bc6274241",
               "task_digest": "814d9ec17687a3253490ad9ed1fbef694feed8a79a9573fcbd548d6506b03e1e",
-              "code_digest": "c83a9e2fb93c8f3d189378e230e424901e8eddba56bead4fac8b2fdf65eeae0f",
-              "digest": "b5034358e48c457e70dfc7777f44097805dd94ba37a29c08b15bbf690c828f7c"
+              "code_digest": "bcc6d03d45be48a66b1d038883efe549a3e0e9cabb6ca3729b4ab577462b0e3b",
+              "digest": "1243ecd5ae2474bf7234ce2d0b862da7e67b060c52889a0b285ce0a73036870a"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T09:21:24Z",
+              "checked_at": "2026-05-16T09:26:01Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -43682,7 +43854,7 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T09:21:24Z",
+        "generated_at": "2026-05-16T09:26:01Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
@@ -43693,7 +43865,15 @@
         "claim_ready_wait_count": 0,
         "claims": [],
         "claim_waiters": [],
-        "claim_conflicts": []
+        "claim_conflicts": [],
+        "artifact_statuses": [],
+        "artifact_status": {
+          "in_use_count": 0,
+          "warning_count": 0,
+          "conflict_count": 0,
+          "waiting_count": 0,
+          "ready_waiter_count": 0
+        }
       },
       "wiki": {
         "rows": [
