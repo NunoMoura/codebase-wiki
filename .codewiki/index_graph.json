@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T03:34:21.602Z",
+  "generated_at": "2026-05-16T03:41:06.571Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -216,7 +216,7 @@
       "kind": "code_path",
       "path": "src",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/product/users/external-users.md",
@@ -254,7 +254,7 @@
       "kind": "code_path",
       "path": "package.json",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "doc:.codewiki/kb/system/adapters.md",
@@ -276,7 +276,7 @@
       "kind": "code_path",
       "path": "src/application",
       "layer": "code",
-      "alignment_state": "drift"
+      "alignment_state": "aligned"
     },
     {
       "id": "code:skills/codewiki",
@@ -1144,21 +1144,6 @@
       "id": "code:tests/smoke",
       "kind": "code_path",
       "path": "tests/smoke",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
-      "id": "task:TASK-081",
-      "kind": "roadmap_task",
-      "title": "Move architecture drift checks out of scripts into source-owned audits",
-      "layer": "roadmap",
-      "status": "in_progress",
-      "alignment_state": "drift"
-    },
-    {
-      "id": "code:package-lock.json",
-      "kind": "code_path",
-      "path": "package-lock.json",
       "layer": "code",
       "alignment_state": "aligned"
     },
@@ -11760,9 +11745,9 @@
       "status": "accepted",
       "layer": "build",
       "lifecycle_state": "accepted",
-      "alignment_state": "drift",
-      "compacted": false,
-      "default_hidden": false,
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
       "archive_ref": "refs/codewiki/archive/task/TASK-081",
       "superseded_by": [],
       "evidence_summary": {
@@ -11837,12 +11822,6 @@
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
-    },
-    {
-      "id": "code:scripts/token-benchmark.mjs",
-      "kind": "code_path",
-      "path": "scripts/token-benchmark.mjs",
-      "layer": "code"
     },
     {
       "id": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
@@ -12449,83 +12428,6 @@
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
-    },
-    {
-      "id": "claim:CLAIM-055",
-      "kind": "change_claim",
-      "claim_id": "CLAIM-055",
-      "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
-      "agent_name": "Ibis",
-      "mode": "write",
-      "role": "builder",
-      "status": "active",
-      "summary": "Add source-owned drift audit rules and fixtures for TASK-081.",
-      "expires_at": "2026-05-16T07:19:19.127Z",
-      "scopes": [
-        {
-          "layer": "code",
-          "path": "src/application/tools/audit.ts"
-        },
-        {
-          "layer": "code",
-          "path": "scripts/check-architecture.mjs"
-        },
-        {
-          "layer": "code",
-          "path": "tests/smoke/**"
-        },
-        {
-          "layer": "code",
-          "path": "package.json"
-        },
-        {
-          "layer": "roadmap",
-          "task_id": "TASK-081"
-        },
-        {
-          "layer": "build",
-          "path": ".codewiki/builds/implementation/**"
-        },
-        {
-          "layer": "validation",
-          "path": ".codewiki/validation/**"
-        }
-      ]
-    },
-    {
-      "id": "claim_scope:src/application/tools/audit.ts",
-      "kind": "change_claim_scope",
-      "path": "src/application/tools/audit.ts"
-    },
-    {
-      "id": "claim_scope:scripts/check-architecture.mjs",
-      "kind": "change_claim_scope",
-      "path": "scripts/check-architecture.mjs"
-    },
-    {
-      "id": "claim_scope:tests/smoke/**",
-      "kind": "change_claim_scope",
-      "path": "tests/smoke/**"
-    },
-    {
-      "id": "claim_scope:package.json",
-      "kind": "change_claim_scope",
-      "path": "package.json"
-    },
-    {
-      "id": "claim_scope:TASK-081",
-      "kind": "change_claim_scope",
-      "path": "TASK-081"
-    },
-    {
-      "id": "claim_scope:.codewiki/builds/implementation/**",
-      "kind": "change_claim_scope",
-      "path": ".codewiki/builds/implementation/**"
-    },
-    {
-      "id": "claim_scope:.codewiki/validation/**",
-      "kind": "change_claim_scope",
-      "path": ".codewiki/validation/**"
     },
     {
       "id": "validation:.codewiki/validation/2026-05-13-task-close-block-task-074.json",
@@ -13213,6 +13115,71 @@
       "id": "content_proof:69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363",
       "kind": "content_proof",
       "path": "69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "verdict": "pass",
+      "isolation_status": "isolated",
+      "isolation": {
+        "head_sha": "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+        "tree_sha": "3680881721d01f5450aa2ba5aeedc4f15e216b17",
+        "clean": true,
+        "fresh_context": true,
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:full",
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:generated-parity",
+          "audit:file-structure",
+          "audit:package",
+          "codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
+          "codewiki_audit profiles alignment,changed,task,generated-parity,file-structure,package task_id=TASK-081 include_fingerprints=true: pass; issues=0; changed pass checked 0 changed files; generated-parity pass checked graph presence/freshness and 8 active roadmap task views.",
+          "TASK-081 implementation validation report .codewiki/validation/2026-05-16-implementation-pass-task-081.json: pass; recorded package audit dry-run contents, npm audit 0 vulnerabilities, npm test 15 passed, full audit pass."
+        ],
+        "content_proof_refs": [
+          "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+          "3680881721d01f5450aa2ba5aeedc4f15e216b17"
+        ]
+      }
+    },
+    {
+      "id": "audit:codewiki_audit profiles alignment,changed,task,generated-parity,file-structure,package task_id=TASK-081 include_fingerprints=true: pass; issues=0; changed pass checked 0 changed files; generated-parity pass checked graph presence/freshness and 8 active roadmap task views.",
+      "kind": "audit_evidence",
+      "path": "codewiki_audit profiles alignment,changed,task,generated-parity,file-structure,package task_id=TASK-081 include_fingerprints=true: pass; issues=0; changed pass checked 0 changed files; generated-parity pass checked graph presence/freshness and 8 active roadmap task views.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:TASK-081 implementation validation report .codewiki/validation/2026-05-16-implementation-pass-task-081.json: pass; recorded package audit dry-run contents, npm audit 0 vulnerabilities, npm test 15 passed, full audit pass.",
+      "kind": "audit_evidence",
+      "path": "TASK-081 implementation validation report .codewiki/validation/2026-05-16-implementation-pass-task-081.json: pass; recorded package audit dry-run contents, npm audit 0 vulnerabilities, npm test 15 passed, full audit pass.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+      "kind": "content_proof",
+      "path": "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:3680881721d01f5450aa2ba5aeedc4f15e216b17",
+      "kind": "content_proof",
+      "path": "3680881721d01f5450aa2ba5aeedc4f15e216b17",
       "proof_kind": "git_sha",
       "layer": "content_proof",
       "default_hidden": true
@@ -15248,56 +15215,6 @@
       "kind": "task_code_path",
       "from": "task:TASK-077",
       "to": "code:tests/smoke"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-081",
-      "to": "doc:.codewiki/kb/system/file-structure.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-081",
-      "to": "doc:.codewiki/kb/system/audits.md"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-081",
-      "to": "code:src/application/lint.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-081",
-      "to": "code:src/application/graph/rebuilder.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-081",
-      "to": "code:src/application"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-081",
-      "to": "code:src/adapters/pi"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-081",
-      "to": "code:package.json"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-081",
-      "to": "code:package-lock.json"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-081",
-      "to": "code:tests/smoke"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-081",
-      "to": "code:scripts/check-architecture.mjs"
     },
     {
       "kind": "task_spec",
@@ -30096,146 +30013,6 @@
       "default_hidden": true
     },
     {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "build:.codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json"
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json"
-    },
-    {
-      "kind": "build_consumes_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "task:TASK-081"
-    },
-    {
-      "kind": "build_consumes_planning",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "build:.codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json"
-    },
-    {
-      "kind": "build_consumes_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "source:user decision: no task phases; just task status plus compiler/gateway builds"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "doc:.codewiki/kb/system/roadmap.md"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "doc:.codewiki/kb/product/uis/status-panel.md"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "doc:.codewiki/kb/product/stories/navigation.md"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "doc:README.md"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:README.md"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:scripts/check-architecture.mjs"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:scripts/token-benchmark.mjs"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/domain/shared/types.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/adapters/pi/schemas.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/application/roadmap.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/application/state-artifacts.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/application/state-builders.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/application/state.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/application/prompt.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/adapters/pi/commands/resume.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/adapters/pi/tools/task.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/adapters/pi/ui/theme.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/adapters/pi/ui/manager.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "code:src/adapters/web/control-room.ts"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "test:tests/smoke/package-smoke.test.mjs"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "test:tests/smoke/builds.test.mjs"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "test:tests/run.mjs"
-    },
-    {
-      "kind": "build_produces_closure",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-      "to": "closure:TASK-081"
-    },
-    {
       "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
       "to": "source:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
@@ -31060,46 +30837,6 @@
       "default_hidden": true
     },
     {
-      "kind": "claim_task",
-      "from": "claim:CLAIM-055",
-      "to": "task:TASK-081"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-055",
-      "to": "claim_scope:src/application/tools/audit.ts"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-055",
-      "to": "claim_scope:scripts/check-architecture.mjs"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-055",
-      "to": "claim_scope:tests/smoke/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-055",
-      "to": "claim_scope:package.json"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-055",
-      "to": "claim_scope:TASK-081"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-055",
-      "to": "claim_scope:.codewiki/builds/implementation/**"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-055",
-      "to": "claim_scope:.codewiki/validation/**"
-    },
-    {
       "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-13-task-close-block-task-074.json",
       "to": "source:.codewiki/builds/implementation/2026-05-13-task-074-session-handoff-fresh-process-fix.json; .codewiki/builds/implementation/2026-05-13-task-074-loop-isolation-session-handoff.json",
@@ -31587,6 +31324,89 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-080.json",
       "to": "task:TASK-080"
+    },
+    {
+      "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "audit:audit:full",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "audit:audit:generated-parity",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "audit:audit:file-structure",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "audit:audit:package",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "audit:codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "audit:codewiki_audit profiles alignment,changed,task,generated-parity,file-structure,package task_id=TASK-081 include_fingerprints=true: pass; issues=0; changed pass checked 0 changed files; generated-parity pass checked graph presence/freshness and 8 active roadmap task views.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "audit:TASK-081 implementation validation report .codewiki/validation/2026-05-16-implementation-pass-task-081.json: pass; recorded package audit dry-run contents, npm audit 0 vulnerabilities, npm test 15 passed, full audit pass.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "content_proof:935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "content_proof:3680881721d01f5450aa2ba5aeedc4f15e216b17",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+      "to": "task:TASK-081"
     }
   ],
   "views": {
@@ -31756,7 +31576,6 @@
         "TASK-050",
         "TASK-076",
         "TASK-077",
-        "TASK-081",
         "TASK-082",
         "TASK-083",
         "TASK-084",
@@ -31768,7 +31587,6 @@
       ],
       "open_task_ids": [
         "TASK-077",
-        "TASK-081",
         "TASK-082",
         "TASK-083",
         "TASK-085",
@@ -31778,7 +31596,6 @@
       ],
       "in_progress_task_ids": [
         "TASK-077",
-        "TASK-081",
         "TASK-082",
         "TASK-083",
         "TASK-086",
@@ -31845,7 +31662,7 @@
       "status_counts": {
         "done": 45,
         "cancelled": 4,
-        "in_progress": 7,
+        "in_progress": 6,
         "todo": 1
       },
       "sprint_ids": [
@@ -31944,7 +31761,6 @@
           ],
           "open_task_ids": [
             "TASK-077",
-            "TASK-081",
             "TASK-082",
             "TASK-083",
             "TASK-085"
@@ -32002,7 +31818,6 @@
         ".codewiki/roadmap/queue.json",
         ".codewiki/validation",
         ".pi/APPEND_SYSTEM.md",
-        "package-lock.json",
         "package.json",
         "scripts",
         "scripts/check-architecture.mjs",
@@ -32062,73 +31877,17 @@
         "tests/smoke/package-smoke.test.mjs",
         "tsconfig.json"
       ],
-      "dirty_paths": [
-        "package.json",
-        "src/application/tools/audit.ts"
-      ]
+      "dirty_paths": []
     },
     "claims": {
-      "active_claim_count": 1,
+      "active_claim_count": 0,
       "warning_count": 0,
       "conflict_count": 0,
       "pending_waiter_count": 0,
       "ready_waiter_count": 0,
-      "by_role": {
-        "builder": 1
-      },
-      "isolation": [
-        {
-          "id": "CLAIM-055",
-          "role": "builder",
-          "mode": "write",
-          "task_id": "TASK-081"
-        }
-      ],
-      "claims": [
-        {
-          "id": "CLAIM-055",
-          "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
-          "agent_name": "Ibis",
-          "status": "active",
-          "mode": "write",
-          "role": "builder",
-          "summary": "Add source-owned drift audit rules and fixtures for TASK-081.",
-          "task_id": "TASK-081",
-          "scopes": [
-            {
-              "layer": "code",
-              "path": "src/application/tools/audit.ts"
-            },
-            {
-              "layer": "code",
-              "path": "scripts/check-architecture.mjs"
-            },
-            {
-              "layer": "code",
-              "path": "tests/smoke/**"
-            },
-            {
-              "layer": "code",
-              "path": "package.json"
-            },
-            {
-              "layer": "roadmap",
-              "task_id": "TASK-081"
-            },
-            {
-              "layer": "build",
-              "path": ".codewiki/builds/implementation/**"
-            },
-            {
-              "layer": "validation",
-              "path": ".codewiki/validation/**"
-            }
-          ],
-          "created_at": "2026-05-16T03:19:19Z",
-          "updated_at": "2026-05-16T03:19:19Z",
-          "expires_at": "2026-05-16T07:19:19.127Z"
-        }
-      ],
+      "by_role": {},
+      "isolation": [],
+      "claims": [],
       "conflicts": [],
       "waiters": []
     },
@@ -32374,6 +32133,21 @@
           "content_proof_refs": [
             "b04129f22f54723e0bbe2aabbefe18bcf2ad7324",
             "69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363"
+          ]
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+          "task_id": "TASK-081",
+          "verdict": "pass",
+          "status": "isolated",
+          "role": "validator",
+          "head_sha": "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+          "clean": true,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+            "3680881721d01f5450aa2ba5aeedc4f15e216b17"
           ]
         }
       ]
@@ -32984,6 +32758,7 @@
         "validation-gateway, roadmap, builds, graph/api docs specify isolation metadata and gateway expectations."
       ],
       "audit_evidence_refs": [
+        "TASK-081 implementation validation report .codewiki/validation/2026-05-16-implementation-pass-task-081.json: pass; recorded package audit dry-run contents, npm audit 0 vulnerabilities, npm test 15 passed, full audit pass.",
         "audit:alignment",
         "audit:changed",
         "audit:file-structure",
@@ -32997,6 +32772,7 @@
         "codewiki_audit profiles alignment,changed task_id=TASK-079 include_fingerprints=true: warning; alignment pass, changed warning generated-file-changed .codewiki/index_graph.json, task pass.",
         "codewiki_audit profiles alignment,changed,task task_id=TASK-081 include_fingerprints=true: warning; alignment pass, task pass, changed warning generated-file-changed .codewiki/index_graph.json.",
         "codewiki_audit profiles alignment,changed,task,generated-parity task_id=TASK-079 include_fingerprints=true: pass; alignment pass, changed pass with 0 changed files, task pass, generated-parity pass; issues=0.",
+        "codewiki_audit profiles alignment,changed,task,generated-parity,file-structure,package task_id=TASK-081 include_fingerprints=true: pass; issues=0; changed pass checked 0 changed files; generated-parity pass checked graph presence/freshness and 8 active roadmap task views.",
         "codewiki_audit profiles file-structure,stale-reference,generated-parity include_fingerprints=false: pass; issues=0.",
         "codewiki_audit profiles package include_fingerprints=true: pass; issues=0.",
         "executeCodewikiAudit direct assertion: kind=audit_report, machine-readable profiles/checked_scopes/issues/evidence_refs/fingerprints present; full fingerprints=17; scoped file-structure/security/package sha256 fingerprints present."
@@ -33030,9 +32806,11 @@
         ".codewiki/kb/system/validation-gateway.md@sha256:ad22379f1adaca77f4bee521f9ef75959b7d99b69fa56715bd73d78bb610f265",
         ".codewiki/kb/system/validation-gateway.md@sha256:eaa503964317945e84f67e89a1519b39651cd2cabc2fff79ad72a753f71ed6a0",
         "335e0dab36bf7c49eb14ff1c50477c6d08ed0c1f",
+        "3680881721d01f5450aa2ba5aeedc4f15e216b17",
         "59ebea7622e14a3faf6596b8a03a5dcb9710730f",
         "69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363",
         "9299b9cb7eb8d2498a5c382ff2ee84404308d854",
+        "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
         "README.md@sha256:9424413daed9b80f70072963b79941f58637fb8a4cb79e78b5b8005f578f38de",
         "README.md@sha256:bca59b2e9eba71f64f76252f0bb13562265476168f9c48396ffd45cee2073403",
         "README.md@sha256:d48e668b6c8cc75e27d8c108977ce223bab6f87791e08fea7ba961ca05089467",
@@ -33529,6 +33307,32 @@
             "69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363"
           ],
           "isolation_status": "isolated"
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+          "verdict": "pass",
+          "profile": "task-close",
+          "task_id": "TASK-081",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:full",
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:generated-parity",
+            "audit:file-structure",
+            "audit:package",
+            "codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
+            "codewiki_audit profiles alignment,changed,task,generated-parity,file-structure,package task_id=TASK-081 include_fingerprints=true: pass; issues=0; changed pass checked 0 changed files; generated-parity pass checked graph presence/freshness and 8 active roadmap task views.",
+            "TASK-081 implementation validation report .codewiki/validation/2026-05-16-implementation-pass-task-081.json: pass; recorded package audit dry-run contents, npm audit 0 vulnerabilities, npm test 15 passed, full audit pass."
+          ],
+          "content_proof_refs": [
+            "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+            "3680881721d01f5450aa2ba5aeedc4f15e216b17"
+          ],
+          "isolation_status": "isolated"
         }
       ]
     },
@@ -33589,7 +33393,6 @@
           "TASK-050",
           "TASK-076",
           "TASK-077",
-          "TASK-081",
           "TASK-082",
           "TASK-083",
           "TASK-084",
@@ -33601,7 +33404,6 @@
         ],
         "open_task_ids": [
           "TASK-077",
-          "TASK-081",
           "TASK-082",
           "TASK-083",
           "TASK-085",
@@ -33706,7 +33508,6 @@
           ],
           "open_task_ids": [
             "TASK-077",
-            "TASK-081",
             "TASK-082",
             "TASK-083",
             "TASK-085"
@@ -34408,33 +34209,6 @@
             "tests/smoke"
           ]
         },
-        "TASK-081": {
-          "kind": "task",
-          "id": "TASK-081",
-          "task_ids": [
-            "TASK-081"
-          ],
-          "open_task_ids": [
-            "TASK-081"
-          ],
-          "sprint_ids": [
-            "SPRINT-003"
-          ],
-          "spec_paths": [
-            ".codewiki/kb/system/file-structure.md",
-            ".codewiki/kb/system/audits.md"
-          ],
-          "code_paths": [
-            "src/application/lint.ts",
-            "src/application/graph/rebuilder.ts",
-            "src/application",
-            "src/adapters/pi",
-            "package.json",
-            "package-lock.json",
-            "tests/smoke",
-            "scripts/check-architecture.mjs"
-          ]
-        },
         "TASK-082": {
           "kind": "task",
           "id": "TASK-082",
@@ -34646,13 +34420,13 @@
       }
     },
     "workflow_cursor": {
-      "active_loop": "feedback",
-      "reason": "Validation blocked; escalate ambiguous intent to feedback compiler.",
+      "active_loop": "documentation",
+      "reason": "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps.",
       "input_refs": [
-        "validation:.codewiki/validation/2026-05-15-implementation-block-task-081.json",
-        "TASK-081"
+        "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
+        "TASK-077"
       ],
-      "expected_output": "feedback_build",
+      "expected_output": "documentation_build",
       "exit_gate": "validation pass or explicit user decision",
       "scope": {
         "kind": "sprint",
@@ -34666,12 +34440,12 @@
           "new session id or recorded context reset",
           "handoff build/task refs only"
         ],
-        "handoff": "feedback_loop start"
+        "handoff": "documentation_loop start"
       },
       "context_boundary": "fresh-session-or-clear-context",
       "handoff_refs": [
-        "validation:.codewiki/validation/2026-05-15-implementation-block-task-081.json",
-        "TASK-081"
+        "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
+        "TASK-077"
       ]
     },
     "gc": {
@@ -34686,7 +34460,6 @@
         "hot": {
           "task_ids": [
             "TASK-077",
-            "TASK-081",
             "TASK-082",
             "TASK-083",
             "TASK-085",
@@ -34699,16 +34472,12 @@
           ],
           "build_paths": [
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-            ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
             ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json"
           ],
           "validation_paths": [
-            ".codewiki/validation/2026-05-15-implementation-block-task-081.json",
             ".codewiki/validation/2026-05-16-documentation-fail-task-077.json"
           ],
-          "claim_ids": [
-            "CLAIM-055"
-          ],
+          "claim_ids": [],
           "claim_wait_ids": []
         },
         "warm": {
@@ -34799,6 +34568,7 @@
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
+            ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -34816,7 +34586,8 @@
             ".codewiki/validation/2026-05-16-implementation-pass-task-081.json",
             ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
-            ".codewiki/validation/2026-05-16-task-close-pass-task-080.json"
+            ".codewiki/validation/2026-05-16-task-close-pass-task-080.json",
+            ".codewiki/validation/2026-05-16-task-close-pass-task-081.json"
           ]
         },
         "cold": {
@@ -34920,6 +34691,7 @@
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
+            ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -35261,6 +35033,7 @@
           ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
           ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
+          ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
           ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -35286,17 +35059,6 @@
           "reason": "Accepted implementation build still needs passing validation gateway evidence."
         },
         {
-          "id": "reconcile:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-          "source_id": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "build",
-          "to_layer": "validation",
-          "next_loop": "validation",
-          "task_id": "TASK-081",
-          "reason": "Accepted implementation build still needs passing validation gateway evidence."
-        },
-        {
           "id": "reconcile:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
           "source_id": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
           "state": "drift",
@@ -35306,17 +35068,6 @@
           "next_loop": "validation",
           "task_id": "TASK-082",
           "reason": "Accepted implementation build still needs passing validation gateway evidence."
-        },
-        {
-          "id": "reconcile:validation:.codewiki/validation/2026-05-15-implementation-block-task-081.json",
-          "source_id": "validation:.codewiki/validation/2026-05-15-implementation-block-task-081.json",
-          "state": "blocked",
-          "direction": "gateway",
-          "from_layer": "validation",
-          "to_layer": "feedback",
-          "next_loop": "feedback",
-          "task_id": "TASK-081",
-          "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
         },
         {
           "id": "reconcile:validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
@@ -35397,16 +35148,15 @@
         }
       ],
       "counts_by_loop": {
-        "validation": 3,
-        "feedback": 1,
+        "validation": 2,
         "documentation": 1,
         "implementation": 6
       },
       "next_action": {
-        "loop": "feedback",
-        "command": "Run feedback compiler",
-        "reason": "Validation blocked; escalate ambiguous intent to feedback compiler.",
-        "item_id": "reconcile:validation:.codewiki/validation/2026-05-15-implementation-block-task-081.json",
+        "loop": "documentation",
+        "command": "Run documentation compiler",
+        "reason": "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps.",
+        "item_id": "reconcile:validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
         "isolation_required": true,
         "isolation": {
           "required": true,
@@ -35416,12 +35166,12 @@
             "new session id or recorded context reset",
             "handoff build/task refs only"
           ],
-          "handoff": "feedback_loop start"
+          "handoff": "documentation_loop start"
         },
         "context_boundary": "fresh-session-or-clear-context",
         "handoff_refs": [
-          "validation:.codewiki/validation/2026-05-15-implementation-block-task-081.json",
-          "TASK-081"
+          "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
+          "TASK-077"
         ]
       },
       "layer_states": {
@@ -35435,13 +35185,13 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T03:34:21.506Z",
+      "generated_at": "2026-05-16T03:41:06.472Z",
       "counts": {},
       "issues": []
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T03:34:21Z",
+      "generated_at": "2026-05-16T03:41:06Z",
       "health": {
         "color": "green",
         "errors": 0,
@@ -35452,18 +35202,18 @@
         "task_context_root": ".codewiki/roadmap/tasks"
       },
       "summary": {
-        "task_count": 57,
-        "open_count": 8,
+        "task_count": 56,
+        "open_count": 7,
         "sprint_count": 3,
         "active_sprint_count": 1,
         "status_counts": {
           "done": 45,
           "cancelled": 4,
-          "in_progress": 7,
+          "in_progress": 6,
           "todo": 1
         },
         "priority_counts": {
-          "high": 33,
+          "high": 32,
           "medium": 13,
           "critical": 10,
           "low": 1
@@ -35519,7 +35269,6 @@
           "TASK-050",
           "TASK-076",
           "TASK-077",
-          "TASK-081",
           "TASK-082",
           "TASK-083",
           "TASK-084",
@@ -35531,7 +35280,6 @@
         ],
         "open_task_ids": [
           "TASK-077",
-          "TASK-081",
           "TASK-082",
           "TASK-083",
           "TASK-086",
@@ -35635,7 +35383,6 @@
             ],
             "open_task_ids": [
               "TASK-077",
-              "TASK-081",
               "TASK-082",
               "TASK-083",
               "TASK-085"
@@ -35680,7 +35427,6 @@
         ],
         "in_progress_task_ids": [
           "TASK-077",
-          "TASK-081",
           "TASK-082",
           "TASK-083",
           "TASK-086",
@@ -35745,7 +35491,6 @@
           "TASK-039"
         ],
         "recent_task_ids": [
-          "TASK-081",
           "TASK-088",
           "TASK-087",
           "TASK-086",
@@ -37864,61 +37609,6 @@
             "evidence": null
           }
         },
-        "TASK-081": {
-          "id": "TASK-081",
-          "title": "Move architecture drift checks out of scripts into source-owned audits",
-          "status": "in_progress",
-          "priority": "high",
-          "kind": "testing",
-          "summary": "Replace script-owned architecture drift checks with source-owned audit/test modules for dogfood/source taxonomy, stale architecture references, package reachability, generated-vs-canonical parity, and lock/audit readiness.",
-          "labels": [
-            "sprint:alignment-hardening",
-            "file-structure",
-            "package",
-            "stale-refs"
-          ],
-          "goal": {
-            "outcome": "The class of file-structure drift recently found manually is caught by source-owned audit/test checks, while scripts remain disposable wrappers or are removed.",
-            "acceptance": [
-              "Checks fail on forbidden source folders, stale CodeWiki path references, product logic under scripts, and generated/canonical task-view mismatch.",
-              "Package audit fails when shipped source is unreachable/stale, lockfile is missing, or package dry-run includes/omits unexpected artifacts.",
-              "Generated .codewiki/roadmap/tasks/** parity is checked against .codewiki/roadmap/queue.json.",
-              "No product, gateway, or test semantic check depends on scripts for authoritative logic; any remaining script is a thin optional wrapper over source-owned code or is deleted.",
-              "Tests or fixtures intentionally introduce drift and confirm checks fail."
-            ],
-            "non_goals": [
-              "Do not preserve scripts as authoritative product surfaces.",
-              "Do not conflate developer helper wrappers with application audit APIs."
-            ],
-            "verification": [
-              "npm run typecheck",
-              "npm run test:smoke",
-              "npm run test:pack",
-              "npm audit --audit-level=moderate --omit=dev",
-              "source-owned audit smoke covers file-structure drift"
-            ]
-          },
-          "spec_paths": [
-            ".codewiki/kb/system/file-structure.md",
-            ".codewiki/kb/system/audits.md"
-          ],
-          "code_paths": [
-            "src/application/lint.ts",
-            "src/application/graph/rebuilder.ts",
-            "src/application",
-            "src/adapters/pi",
-            "package.json",
-            "package-lock.json",
-            "tests/smoke",
-            "scripts/check-architecture.mjs"
-          ],
-          "updated": "2026-05-16T03:34:14Z",
-          "context_path": ".codewiki/roadmap/tasks/TASK-081/context.json",
-          "loop": {
-            "updated_at": "",
-            "evidence": null
-          }
-        },
         "TASK-082": {
           "id": "TASK-082",
           "title": "Harden semantic build traceability and change classification",
@@ -38352,7 +38042,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T03:34:21Z",
+      "generated_at": "2026-05-16T03:41:06Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -38372,8 +38062,8 @@
         "untracked_specs": 0,
         "blocked_specs": 0,
         "unmapped_specs": 0,
-        "task_count": 57,
-        "open_task_count": 8,
+        "task_count": 56,
+        "open_task_count": 7,
         "done_task_count": 45
       },
       "bars": {
@@ -38386,8 +38076,8 @@
         "roadmap_done": {
           "label": "Roadmap Done",
           "value": 45,
-          "total": 57,
-          "percent": 79
+          "total": 56,
+          "percent": 80
         },
         "spec_mapping": {
           "label": "Spec Mapping",
@@ -38430,7 +38120,6 @@
         ],
         "open_task_ids": [
           "TASK-077",
-          "TASK-081",
           "TASK-082",
           "TASK-083",
           "TASK-086",
@@ -38448,19 +38137,19 @@
         ]
       },
       "next_step": {
-        "kind": "reconciliation:feedback",
-        "command": "Run feedback compiler",
-        "reason": "Validation blocked; escalate ambiguous intent to feedback compiler.",
-        "item_id": "reconcile:validation:.codewiki/validation/2026-05-15-implementation-block-task-081.json"
+        "kind": "reconciliation:documentation",
+        "command": "Run documentation compiler",
+        "reason": "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps.",
+        "item_id": "reconcile:validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json"
       },
       "workflow_cursor": {
-        "active_loop": "feedback",
-        "reason": "Validation blocked; escalate ambiguous intent to feedback compiler.",
+        "active_loop": "documentation",
+        "reason": "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps.",
         "input_refs": [
-          "validation:.codewiki/validation/2026-05-15-implementation-block-task-081.json",
-          "TASK-081"
+          "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
+          "TASK-077"
         ],
-        "expected_output": "feedback_build",
+        "expected_output": "documentation_build",
         "exit_gate": "validation pass or explicit user decision",
         "scope": {
           "kind": "sprint",
@@ -38474,12 +38163,12 @@
             "new session id or recorded context reset",
             "handoff build/task refs only"
           ],
-          "handoff": "feedback_loop start"
+          "handoff": "documentation_loop start"
         },
         "context_boundary": "fresh-session-or-clear-context",
         "handoff_refs": [
-          "validation:.codewiki/validation/2026-05-15-implementation-block-task-081.json",
-          "TASK-081"
+          "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
+          "TASK-077"
         ]
       },
       "gc": {
@@ -38494,7 +38183,6 @@
           "hot": {
             "task_ids": [
               "TASK-077",
-              "TASK-081",
               "TASK-082",
               "TASK-083",
               "TASK-085",
@@ -38507,16 +38195,12 @@
             ],
             "build_paths": [
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-              ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
               ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json"
             ],
             "validation_paths": [
-              ".codewiki/validation/2026-05-15-implementation-block-task-081.json",
               ".codewiki/validation/2026-05-16-documentation-fail-task-077.json"
             ],
-            "claim_ids": [
-              "CLAIM-055"
-            ],
+            "claim_ids": [],
             "claim_wait_ids": []
           },
           "warm": {
@@ -38607,6 +38291,7 @@
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
+              ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
               ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -38624,7 +38309,8 @@
               ".codewiki/validation/2026-05-16-implementation-pass-task-081.json",
               ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
-              ".codewiki/validation/2026-05-16-task-close-pass-task-080.json"
+              ".codewiki/validation/2026-05-16-task-close-pass-task-080.json",
+              ".codewiki/validation/2026-05-16-task-close-pass-task-081.json"
             ]
           },
           "cold": {
@@ -38728,6 +38414,7 @@
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
+              ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
               ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -38760,8 +38447,8 @@
         ]
       },
       "direction": [
-        "Validation blocked; escalate ambiguous intent to feedback compiler.",
-        "Parallel sessions: 0 active, 0 collision task(s), 1 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
+        "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps.",
+        "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
         "Tracked drift coverage: 17/17."
@@ -39014,7 +38701,6 @@
           },
           "related_task_ids": [
             "TASK-077",
-            "TASK-081",
             "TASK-085"
           ],
           "primary_task": {
@@ -39181,7 +38867,6 @@
           },
           "related_task_ids": [
             "TASK-077",
-            "TASK-081",
             "TASK-083",
             "TASK-086",
             "TASK-087",
@@ -39776,7 +39461,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T03:34:21Z",
+        "generated_at": "2026-05-16T03:41:06Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -39804,17 +39489,16 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T03:34:21Z",
+            "checked_at": "2026-05-16T03:41:06Z",
             "revision": {
               "git": {
-                "head": "1a8de3a25c2795f21de07da40d3d0fe96b1609d0",
+                "head": "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
                 "dirty": true,
                 "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
                   ".codewiki/roadmap/tasks/TASK-081/context.json",
-                  ".codewiki/roadmap/tasks/TASK-081/task.json",
-                  "package.json",
-                  "src/application/tools/audit.ts"
+                  ".codewiki/roadmap/tasks/TASK-081/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -39854,9 +39538,9 @@
                   ".codewiki/kb/system/roadmap.md": "47ca7c9b7856d6c9d1dff2a0be630d070acae51c",
                   ".codewiki/kb/system/validation-gateway.md": "38c6c3d0ea9c8368e6651c1b38df1a52bf9fab02",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "520b8675f897fbe810e7619c4bc7d6894093416a",
+                  ".codewiki/roadmap/queue.json": "4390bde74738605b80e2b31ffe1aec450b029293",
                   ".codewiki/validation": "",
-                  "package.json": "810b42966ec69c048a68543a00d8c66eb6082a28",
+                  "package.json": "1413614c4e98c9f85f81a592bc6146c007d9a79c",
                   "skills": "",
                   "skills/codewiki": "",
                   "skills/codewiki/SKILL.md": "64697a1e348cd0de05693e5b27c4ab3d2882c0c7",
@@ -39896,14 +39580,14 @@
                 }
               },
               "spec_digest": "7dd2528fc40345a33ee7c2b5855cebd66468226c2e16e2a74f5eaaf317b9a6ab",
-              "task_digest": "05cdce913536af79a46ede7e5874c655db37acf4edf7a861155f42fa19081871",
-              "code_digest": "fc311dcc668812ad217734db0be1fb4ac8b5c0711a632c6ca73f665ea11f4c47",
-              "digest": "91a9115c2cec0c7f1087f976412eddecfd2eb2b8bf86c2fb19b1af127fe2cfce"
+              "task_digest": "0573f65157394909a1649bcc4d437533f8eda6fafad5a49e334b7bf19eab460b",
+              "code_digest": "a103119df43ac2d745ca7c94fe60c3265b31153cacd8808c62a871c364cbbb41",
+              "digest": "dff6e8649d556bd6ffb0229b213f7c825f62e698de5516515647f1e17f28d09d"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T03:34:21Z",
+              "checked_at": "2026-05-16T03:41:06Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -39991,7 +39675,6 @@
             "code_area": "src, .codewiki +3 more",
             "open_task_ids": [
               "TASK-077",
-              "TASK-081",
               "TASK-082",
               "TASK-083",
               "TASK-085",
@@ -40045,16 +39728,16 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T03:34:21Z",
+            "checked_at": "2026-05-16T03:41:06Z",
             "revision": {
               "git": {
-                "head": "1a8de3a25c2795f21de07da40d3d0fe96b1609d0",
+                "head": "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
                 "dirty": true,
                 "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
                   ".codewiki/roadmap/tasks/TASK-081/context.json",
-                  ".codewiki/roadmap/tasks/TASK-081/task.json",
-                  "src/application/tools/audit.ts"
+                  ".codewiki/roadmap/tasks/TASK-081/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -40078,7 +39761,7 @@
                   ".codewiki/kb/system/roadmap.md": "47ca7c9b7856d6c9d1dff2a0be630d070acae51c",
                   ".codewiki/kb/system/validation-gateway.md": "38c6c3d0ea9c8368e6651c1b38df1a52bf9fab02",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "520b8675f897fbe810e7619c4bc7d6894093416a",
+                  ".codewiki/roadmap/queue.json": "4390bde74738605b80e2b31ffe1aec450b029293",
                   ".codewiki/validation": "",
                   "skills": "",
                   "skills/codewiki": "",
@@ -40115,14 +39798,14 @@
                 }
               },
               "spec_digest": "03d72cb217ce699ecec7e27d5224f94ea696d9a63c8a8fdd68103c83244bb2be",
-              "task_digest": "05cdce913536af79a46ede7e5874c655db37acf4edf7a861155f42fa19081871",
-              "code_digest": "0e9cfc279784d756b37109cabf2cac8c9d0bc474d7f47f55911ad0ddcc10086a",
-              "digest": "09ec617e90a1ccb72a9f17ea35ee2541d76d17d04b74e460d47e871a13c8c370"
+              "task_digest": "0573f65157394909a1649bcc4d437533f8eda6fafad5a49e334b7bf19eab460b",
+              "code_digest": "85fe1d0e675bd54bad8f67985571fd8fd83e06999170d8f717c50463ea4c3dab",
+              "digest": "aeee9409f2e3140ef4228ba1b59e24172d6e24a088a635a43bc758a81f946d78"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T03:34:21Z",
+              "checked_at": "2026-05-16T03:41:06Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -40189,7 +39872,6 @@
             "code_area": "src, skills +2 more",
             "open_task_ids": [
               "TASK-077",
-              "TASK-081",
               "TASK-082",
               "TASK-083",
               "TASK-085",
@@ -40240,17 +39922,16 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T03:34:21Z",
+            "checked_at": "2026-05-16T03:41:06Z",
             "revision": {
               "git": {
-                "head": "1a8de3a25c2795f21de07da40d3d0fe96b1609d0",
+                "head": "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
                 "dirty": true,
                 "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
                   ".codewiki/roadmap/tasks/TASK-081/context.json",
-                  ".codewiki/roadmap/tasks/TASK-081/task.json",
-                  "package.json",
-                  "src/application/tools/audit.ts"
+                  ".codewiki/roadmap/tasks/TASK-081/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -40290,9 +39971,9 @@
                   ".codewiki/kb/system/roadmap.md": "47ca7c9b7856d6c9d1dff2a0be630d070acae51c",
                   ".codewiki/kb/system/validation-gateway.md": "38c6c3d0ea9c8368e6651c1b38df1a52bf9fab02",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "520b8675f897fbe810e7619c4bc7d6894093416a",
+                  ".codewiki/roadmap/queue.json": "4390bde74738605b80e2b31ffe1aec450b029293",
                   ".codewiki/validation": "",
-                  "package.json": "810b42966ec69c048a68543a00d8c66eb6082a28",
+                  "package.json": "1413614c4e98c9f85f81a592bc6146c007d9a79c",
                   "skills": "",
                   "skills/codewiki": "",
                   "skills/codewiki/SKILL.md": "64697a1e348cd0de05693e5b27c4ab3d2882c0c7",
@@ -40332,14 +40013,14 @@
                 }
               },
               "spec_digest": "7dd2528fc40345a33ee7c2b5855cebd66468226c2e16e2a74f5eaaf317b9a6ab",
-              "task_digest": "05cdce913536af79a46ede7e5874c655db37acf4edf7a861155f42fa19081871",
-              "code_digest": "fc311dcc668812ad217734db0be1fb4ac8b5c0711a632c6ca73f665ea11f4c47",
-              "digest": "91a9115c2cec0c7f1087f976412eddecfd2eb2b8bf86c2fb19b1af127fe2cfce"
+              "task_digest": "0573f65157394909a1649bcc4d437533f8eda6fafad5a49e334b7bf19eab460b",
+              "code_digest": "a103119df43ac2d745ca7c94fe60c3265b31153cacd8808c62a871c364cbbb41",
+              "digest": "dff6e8649d556bd6ffb0229b213f7c825f62e698de5516515647f1e17f28d09d"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T03:34:21Z",
+              "checked_at": "2026-05-16T03:41:06Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -40427,7 +40108,6 @@
             "code_area": "src, .codewiki +3 more",
             "open_task_ids": [
               "TASK-077",
-              "TASK-081",
               "TASK-082",
               "TASK-083",
               "TASK-085",
@@ -40482,60 +40162,16 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T03:34:21Z",
+        "generated_at": "2026-05-16T03:41:06Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
-        "active_claim_count": 1,
+        "active_claim_count": 0,
         "claim_warning_count": 0,
         "claim_conflict_count": 0,
         "claim_pending_wait_count": 0,
         "claim_ready_wait_count": 0,
-        "claims": [
-          {
-            "id": "CLAIM-055",
-            "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
-            "agent_name": "Ibis",
-            "status": "active",
-            "mode": "write",
-            "role": "builder",
-            "summary": "Add source-owned drift audit rules and fixtures for TASK-081.",
-            "task_id": "TASK-081",
-            "scopes": [
-              {
-                "layer": "code",
-                "path": "src/application/tools/audit.ts"
-              },
-              {
-                "layer": "code",
-                "path": "scripts/check-architecture.mjs"
-              },
-              {
-                "layer": "code",
-                "path": "tests/smoke/**"
-              },
-              {
-                "layer": "code",
-                "path": "package.json"
-              },
-              {
-                "layer": "roadmap",
-                "task_id": "TASK-081"
-              },
-              {
-                "layer": "build",
-                "path": ".codewiki/builds/implementation/**"
-              },
-              {
-                "layer": "validation",
-                "path": ".codewiki/validation/**"
-              }
-            ],
-            "created_at": "2026-05-16T03:19:19Z",
-            "updated_at": "2026-05-16T03:19:19Z",
-            "expires_at": "2026-05-16T07:19:19.127Z"
-          }
-        ],
+        "claims": [],
         "claim_waiters": [],
         "claim_conflicts": []
       },
@@ -40788,7 +40424,6 @@
             },
             "related_task_ids": [
               "TASK-077",
-              "TASK-081",
               "TASK-085"
             ],
             "primary_task": {
@@ -40955,7 +40590,6 @@
             },
             "related_task_ids": [
               "TASK-077",
-              "TASK-081",
               "TASK-083",
               "TASK-086",
               "TASK-087",
@@ -42111,7 +41745,6 @@
                 },
                 "related_task_ids": [
                   "TASK-077",
-                  "TASK-081",
                   "TASK-085"
                 ],
                 "primary_task": {
@@ -42278,7 +41911,6 @@
                 },
                 "related_task_ids": [
                   "TASK-077",
-                  "TASK-081",
                   "TASK-083",
                   "TASK-086",
                   "TASK-087",
@@ -42581,7 +42213,6 @@
         "blocked_task_ids": [],
         "in_progress_task_ids": [
           "TASK-077",
-          "TASK-081",
           "TASK-082",
           "TASK-083",
           "TASK-086",
@@ -42685,7 +42316,6 @@
             ],
             "open_task_ids": [
               "TASK-077",
-              "TASK-081",
               "TASK-082",
               "TASK-083",
               "TASK-085"
@@ -42741,7 +42371,6 @@
             "label": "Implement",
             "task_ids": [
               "TASK-077",
-              "TASK-081",
               "TASK-082",
               "TASK-083",
               "TASK-086",
