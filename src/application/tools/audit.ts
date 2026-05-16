@@ -16,6 +16,7 @@ import type {
 import { AUDIT_PROFILE_VALUES } from "../../domain/shared/types.ts";
 import { formatError, nowIso, unique } from "../../domain/shared/utils.ts";
 import { pathExists } from "../local/filesystem.ts";
+import { assessRoadmapTaskBoundary } from "../task-boundary.ts";
 
 const execFileAsync = promisify(execFile);
 const FULL_AUDIT_PROFILES: AuditProfile[] = [
@@ -719,6 +720,10 @@ async function auditTask(project: WikiProject, input: CodewikiAuditInput): Promi
 	} else if (!task) {
 		issues.push(createIssue(profile, "error", "task-not-found", `${taskId} was not found in roadmap queue.`, queuePath));
 	} else {
+		const boundary = assessRoadmapTaskBoundary(task as any);
+		if (!boundary.executable) {
+			issues.push(createIssue(profile, "error", "roadmap-container-task", `${taskId} is not self-contained executable work; use a sprint for grouping. ${boundary.reasons.join("; ")}`, queuePath));
+		}
 		for (const rel of [...(task.spec_paths || []), ...(task.code_paths || [])].filter((path: string) => !path.includes("*")).map(String)) {
 			if (!(await pathExists(resolve(project.root, rel)))) {
 				issues.push(createIssue(profile, "warning", "task-path-missing", `${taskId} references a missing path: ${rel}.`, rel));

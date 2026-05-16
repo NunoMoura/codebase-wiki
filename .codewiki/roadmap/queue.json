@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-05-16T10:42:07Z",
+  "updated": "2026-05-16T20:31:51Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -55,7 +55,7 @@
     "TASK-085",
     "TASK-087",
     "TASK-088",
-    "TASK-089"
+    "TASK-090"
   ],
   "tasks": {
     "TASK-001": {
@@ -75,6 +75,7 @@
         "foundation",
         "specs"
       ],
+      "change_type": "product",
       "goal": {
         "outcome": "Project intent and ownership boundaries are explicit enough to guide implementation.",
         "acceptance": [
@@ -113,6 +114,7 @@
         "brownfield",
         "mapping"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "wiki/system reflects real stable ownership seams in the repo.",
         "acceptance": [
@@ -151,6 +153,7 @@
         "roadmap",
         "process"
       ],
+      "change_type": "task",
       "goal": {
         "outcome": "Tracked delta lives in roadmap tasks instead of scattered prose.",
         "acceptance": [
@@ -191,6 +194,7 @@
         "capabilities",
         "runtime-boundary"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki exposes a clear capability/transaction surface for reads, task mutations, evidence appends, graph rebuilds, and validated wiki edits while composing with think-code as an optional bounded executor.",
         "acceptance": [
@@ -236,6 +240,7 @@
         "workflow",
         "pocock-adaptation"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Agents load only the CodeWiki workflow instructions needed for the current job while preserving shared CodeWiki invariants.",
         "acceptance": [
@@ -280,6 +285,7 @@
         "planning",
         "roadmap"
       ],
+      "change_type": "task",
       "goal": {
         "outcome": "CodeWiki has an automatic planning workflow for clarifying intent, gathering evidence when needed, updating knowledge, and creating roadmap tasks.",
         "acceptance": [
@@ -325,6 +331,7 @@
         "implement-verify",
         "think-code"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Each roadmap task has an automatic implement→verify loop grounded in task context, tests, and evidence.",
         "acceptance": [
@@ -369,6 +376,7 @@
         "evidence",
         "knowledge"
       ],
+      "change_type": "task",
       "goal": {
         "outcome": "CodeWiki distinguishes research evidence for intended knowledge from execution evidence for task closure.",
         "acceptance": [
@@ -409,6 +417,7 @@
         "subagent",
         "pi-extension"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki automatically verifies task completion through a separate read-only Pi agent as part of the inner loop before closure.",
         "acceptance": [
@@ -456,6 +465,7 @@
         "deep-modules",
         "pocock-adaptation"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki can run architecture reviews that produce knowledge updates and roadmap tasks rather than ad hoc refactor suggestions.",
         "acceptance": [
@@ -497,6 +507,7 @@
         "global-agent-skills",
         "compatibility"
       ],
+      "change_type": "product",
       "goal": {
         "outcome": "There is a durable CodeWiki decision record for global Pi skills versus CodeWiki-specific skills.",
         "acceptance": [
@@ -540,6 +551,7 @@
         "token-efficiency",
         "drift-control"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Normal CodeWiki updates write only canonical truth while generated graph/status/lint/roadmap views are rebuilt as disposable projections.",
         "acceptance": [
@@ -584,6 +596,7 @@
         "roadmap-retention",
         "write-amplification"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Closing tasks can enforce roadmap archive retention through the canonical task mutation path without depending on rebuild side effects.",
         "acceptance": [
@@ -629,6 +642,7 @@
         "view-boundary",
         "memory-model"
       ],
+      "change_type": "product",
       "goal": {
         "outcome": "The wiki records the v2 canonical/view model, product split, memory policy, subagent/agency/think-code roles, and sanitation/versioning policy as roadmap-backed intent.",
         "acceptance": [
@@ -672,6 +686,7 @@
         "migration",
         "wiki-layout"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "New and migrated repos use canonical knowledge/tasks/evidence plus generated views under the v2 structure without breaking legacy paths.",
         "acceptance": [
@@ -718,6 +733,7 @@
         "lexicon",
         "templates"
       ],
+      "change_type": "product",
       "goal": {
         "outcome": "New wikis start with focused product knowledge and a shared lexicon rather than one large product overview.",
         "acceptance": [
@@ -760,6 +776,7 @@
         "status-panel",
         "architecture-graph"
       ],
+      "change_type": "task",
       "goal": {
         "outcome": "Humans and agents can inspect system architecture visually through the status panel and zoom into component or flow detail cards.",
         "acceptance": [
@@ -804,6 +821,7 @@
         "skills",
         "token-efficiency"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki skills and loops default to tiny views and targeted expansion instead of reloading raw wiki state into the parent session.",
         "acceptance": [
@@ -844,6 +862,7 @@
         "read-models",
         "routing-context"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki exposes compact generated views that route agents to the right next read without loading raw wiki state.",
         "acceptance": [
@@ -886,6 +905,7 @@
         "flow-docs",
         "mermaid-view"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "System architecture is represented as a structured canonical graph with component and flow detail docs and generated visual/read views.",
         "acceptance": [
@@ -928,6 +948,7 @@
         "json-contracts",
         "fresh-ram"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Context-heavy or bias-sensitive CodeWiki work can run in fresh subagent sessions and return bounded results to the parent agent.",
         "acceptance": [
@@ -970,6 +991,7 @@
         "autonomous-budget",
         "stop-conditions"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Users can run CodeWiki autonomously within explicit budgets and modes without losing alignment with wiki truth or project safety.",
         "acceptance": [
@@ -1010,6 +1032,7 @@
         "context-etl",
         "graph-validation"
       ],
+      "change_type": "task",
       "goal": {
         "outcome": "CodeWiki can delegate bounded query/ETL and validation tasks to ThinkCode while preserving CodeWiki semantic write boundaries.",
         "acceptance": [
@@ -1050,6 +1073,7 @@
         "release-checkpoints",
         "git-history"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki distinguishes hot current truth, generated views, compact semantic history, and full git recovery.",
         "acceptance": [
@@ -1090,6 +1114,7 @@
       "labels": [
         "read-model-language"
       ],
+      "change_type": "product",
       "goal": {
         "outcome": "User-facing and agent-facing text use the same v2 vocabulary for views and canonical truth.",
         "acceptance": [
@@ -1131,6 +1156,7 @@
         "decoupling",
         "think-code"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki operates independently as a Pi package while allowing ThinkCode or other tools to integrate optionally.",
         "acceptance": [
@@ -1173,6 +1199,7 @@
         "ui",
         "views"
       ],
+      "change_type": "task",
       "goal": {
         "outcome": "Status panel presents user-focused Home, Product, System, and Board tabs while backend roadmap terminology remains unchanged.",
         "acceptance": [
@@ -1218,6 +1245,7 @@
         "stabilization",
         "migration"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki has a green baseline before further architecture migration proceeds.",
         "acceptance": [
@@ -1263,6 +1291,7 @@
         "testing",
         "guardrails"
       ],
+      "change_type": "code",
       "goal": {
         "outcome": "Refactor work is protected by automated import-boundary checks and behavior characterization tests.",
         "acceptance": [
@@ -1307,6 +1336,7 @@
         "migration",
         "pi-adapter"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Repository layout matches the target ports/adapters architecture without duplicate engine/core surfaces.",
         "acceptance": [
@@ -1352,6 +1382,7 @@
         "cli",
         "adapter-proof"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "A second simple adapter validates that CodeWiki workflows are no longer Pi-bound.",
         "acceptance": [
@@ -1397,6 +1428,7 @@
         "release-gate",
         "depends-on:TASK-040"
       ],
+      "change_type": "task",
       "goal": {
         "outcome": "After TASK-040 hardens the verifier, current TASK-028 through TASK-032 are verified, closed, and recorded as a stable dogfooding baseline.",
         "acceptance": [
@@ -1454,6 +1486,7 @@
         "compilers",
         "api-contract"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki packaged skills reflect the flat KB, builds-as-briefs model, gated agency, validation gateway, and active-roadmap truth boundaries.",
         "acceptance": [
@@ -1497,6 +1530,7 @@
         "sprints",
         "planning-loop"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki supports `roadmap -> sprints -> tasks` while keeping task execution atomic and verifiable.",
         "acceptance": [
@@ -1541,6 +1575,7 @@
         "mermaid",
         "agent-agnostic"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Humans can inspect CodeWiki status, roadmap, product/system views, and Mermaid architecture without running Pi.",
         "acceptance": [
@@ -1598,6 +1633,7 @@
         "gated-agency",
         "openclaw-replaced"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Users can choose understandable agency triggers and safe autonomy budgets instead of opaque autonomy levels or OpenClaw-derived agency-loop terminology.",
         "acceptance": [
@@ -1644,6 +1680,7 @@
         "adapters",
         "agent-agnostic"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki can prefer ThinkCode when available but remains usable from any agent runtime through views, CLI/gateway, MCP/future adapters, or native tools.",
         "acceptance": [
@@ -1689,6 +1726,7 @@
         "dogfood-gate",
         "depends-on:TASK-041"
       ],
+      "change_type": "code",
       "goal": {
         "outcome": "Task closure and future sprint/release/drift checks use a robust verification gateway instead of ad hoc verifier prompts or parent-session confidence, using hardened context packs from the view/context-compiler work where needed.",
         "acceptance": [
@@ -1741,6 +1779,7 @@
         "observability",
         "dogfood-gate"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Generated views become a first-class context routing layer that supports compact role-specific packs, graph slices, and optional bounded programmatic exploration without confusing observability with verification gates.",
         "acceptance": [
@@ -1793,6 +1832,7 @@
         "bug",
         "blocks:TASK-033"
       ],
+      "change_type": "code",
       "goal": {
         "outcome": "A new Pi session can run /wiki-resume and pick the intended persisted focus task, matching codewiki_state guidance.",
         "acceptance": [
@@ -1836,6 +1876,7 @@
         "graph-index",
         "migration"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki rebuild produces `.codewiki/index_graph.json` as the primary generated graph and treats any remaining status/queue outputs as cached graph lenses.",
         "acceptance": [
@@ -1879,6 +1920,7 @@
         "validation-gateway",
         "schemas"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Compiler builds and validation reports have explicit schemas, write paths, and validation rules.",
         "acceptance": [
@@ -1927,6 +1969,7 @@
         "blocks:TASK-045",
         "blocks:TASK-046"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki has one trusted self-hosting baseline: TypeScript rebuild is canonical, event/state sources agree, tests pass, and verifier closure can be trusted again.",
         "acceptance": [
@@ -1975,6 +2018,7 @@
         "knowledge-base",
         "skills"
       ],
+      "change_type": "product",
       "goal": {
         "outcome": "Each compiler has its own KB spec file under .codewiki/kb/system/compilers/ and the feedback compiler has a dedicated codewiki-feedback SKILL.md file.",
         "acceptance": [
@@ -2019,6 +2063,7 @@
         "build-artifacts",
         "agent-workflow"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Agents can run the feedback loop and produce a durable but transient accepted feedback_build through CodeWiki tooling or documented command flow.",
         "acceptance": [
@@ -2064,6 +2109,7 @@
         "graph",
         "compiler-model"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki can derive alignment state from the graph and recommend the correct loop entry point: feedback, documentation, or implementation.",
         "acceptance": [
@@ -2118,6 +2164,7 @@
         "filesystem",
         "dogfood-boundary"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Project file structure matches the agreed root-src, single-skill, dogfood-state boundary without adding new behavior.",
         "acceptance": [
@@ -2193,6 +2240,7 @@
         "taxonomy",
         "feedback"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Coordinate the alignment-hardening sprint and close only after child tasks implement executable prevention for vertical drift, horizontal drift, dogfood/source confusion, audit evidence, gateway policy, and publication proof.",
         "acceptance": [
@@ -2264,6 +2312,7 @@
         "content-proof",
         "git"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Publication gates and graph reconciliation distinguish validation attestations from immutable content proof and block publication when proof or claim alignment is missing.",
         "acceptance": [
@@ -2291,54 +2340,59 @@
     },
     "TASK-085": {
       "id": "TASK-085",
-      "title": "Add alignment drift regression fixtures",
-      "status": "todo",
-      "priority": "high",
-      "kind": "testing",
-      "summary": "Create regression fixtures for vertical drift, horizontal drift, dogfood/source confusion, stale generated output, missing build traceability, missing audit evidence, and invalid publication proof.",
+      "title": "Validate bounded roadmap task scope",
+      "status": "in_progress",
+      "priority": "critical",
+      "kind": "architecture",
+      "summary": "Add executable checks so each TASK record stays a self-contained work item and related-work grouping stays in sprint metadata.",
       "spec_paths": [
-        ".codewiki/kb/system/alignment-model.md",
-        ".codewiki/kb/system/audits.md",
-        ".codewiki/kb/system/graph.md",
-        ".codewiki/kb/system/validation-gateway.md"
+        ".codewiki/kb/system/roadmap.md",
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/audits.md"
       ],
       "code_paths": [
-        "tests/smoke",
-        "tests/fixtures",
-        "scripts/check-architecture.mjs",
-        "src/application/graph.ts"
+        "src/application/roadmap.ts",
+        "src/application/tools/audit.ts",
+        "src/application/graph.ts",
+        "src/application/state-builders.ts",
+        "tests/smoke/roadmap-task-boundary.test.mjs"
       ],
       "research_ids": [],
       "labels": [
-        "sprint:alignment-hardening",
-        "testing",
-        "fixtures",
-        "drift"
+        "roadmap",
+        "validation",
+        "task-boundary"
       ],
+      "change_type": "system",
       "goal": {
-        "outcome": "Future refactors cannot silently reintroduce known drift classes because fixtures make them fail deterministically.",
+        "outcome": "Roadmap APIs, audits, and routing reject task records whose closure depends on managing other task records, while allowing sprint metadata to group related bounded tasks.",
         "acceptance": [
-          "Fixtures cover vertical drift, horizontal drift, dogfood/source confusion, stale generated output, missing accepted build, missing audit evidence, and invalid publication proof.",
-          "Tests assert each fixture fails with a specific issue kind or reconciliation item.",
-          "Clean fixture passes full audit/graph checks.",
-          "Regression suite is documented as required for architecture/gateway changes."
+          "Roadmap task create/update rejects records whose title, summary, goal, acceptance, non-goals, or verification describe managing other task records rather than delivering its own outcome.",
+          "Task-close and task audit block active task records whose acceptance primarily depends on other TASK-### records closing or validating.",
+          "Next-action routing skips or blocks non-executable task records instead of treating them as implementation work.",
+          "Sprint metadata remains allowed to group related bounded task ids without substituting for each task's acceptance evidence.",
+          "Existing TASK-077 container-style wording is removed from active task truth or converted into explicit migration/block evidence, while preserving validated slice builds and validations as historical evidence.",
+          "Tests cover rejected container-style task patterns and allowed bounded task patterns."
         ],
         "non_goals": [
-          "Do not make fixtures depend on external network or remote GitHub state."
+          "Do not delete historical build or validation evidence.",
+          "Do not make sprint metadata acceptance evidence for tasks.",
+          "Do not infer invalid scope solely from shared code paths."
         ],
         "verification": [
-          "npm run test:smoke",
-          "npm run check:architecture",
+          "node tests/smoke/roadmap-task-boundary.test.mjs",
+          "npm run typecheck",
+          "node tests/smoke/alignment-graph.test.mjs",
           "npm test"
         ]
       },
       "delta": {
-        "desired": "Known drift classes are codified as failing fixtures.",
-        "current": "Drift was discovered through manual broad audit, not regression fixtures.",
-        "closure": "Regression tests cover drift classes and pass on clean repo."
+        "desired": "Executable invariant keeps TASK records self-contained and routes grouping through sprints only.",
+        "current": "Implementation and validation pass for bounded task-scope enforcement.",
+        "closure": "Close after recording implementation validation evidence."
       },
       "created": "2026-05-15",
-      "updated": "2026-05-15T01:40:00Z"
+      "updated": "2026-05-16T20:31:51Z"
     },
     "TASK-078": {
       "id": "TASK-078",
@@ -2365,6 +2419,7 @@
         "alignment",
         "validation"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Graph reconciliation v2 represents required layer edges, validation attestations, audit evidence, and content proof without treating graph state as canonical truth.",
         "acceptance": [
@@ -2425,6 +2480,7 @@
         "gateways",
         "state-engine"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "CodeWiki source follows the documented dependency direction: adapters/UI/skills call application tools, application compilers/gateways/state-engine use domain concepts, and domain owns task/roadmap/session/build/validation/state semantics.",
         "acceptance": [
@@ -2484,6 +2540,7 @@
         "web",
         "adapter-boundary"
       ],
+      "change_type": "system",
       "goal": {
         "outcome": "Browser UI code lives under src/ui/web and delegates semantics to application tools, while adapters only launch/connect or translate harness/protocol concerns.",
         "acceptance": [
@@ -2512,61 +2569,55 @@
       "created": "2026-05-16",
       "updated": "2026-05-16T01:02:10Z"
     },
-    "TASK-089": {
-      "id": "TASK-089",
-      "title": "Enforce task/sprint boundary semantics",
-      "status": "in_progress",
-      "priority": "high",
-      "kind": "agent-workflow",
-      "summary": "Make CodeWiki treat tasks as self-contained executable work and sprints as the only grouping unit, then prevent container tasks from becoming next work or passing validation.",
+    "TASK-090": {
+      "id": "TASK-090",
+      "title": "Codify alignment drift fixture matrix",
+      "status": "todo",
+      "priority": "critical",
+      "kind": "testing",
+      "summary": "Add deterministic fixture cases for alignment drift detection in fixture-only test assets.",
       "spec_paths": [
-        ".codewiki/kb/system/roadmap.md",
-        "skills/codewiki/SKILL.md",
-        "skills/codewiki/loops/validation.md",
-        "skills/codewiki/loops/implementation.md"
+        ".codewiki/kb/system/alignment-model.md",
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/audits.md",
+        ".codewiki/kb/system/validation-gateway.md"
       ],
       "code_paths": [
-        "src/application/roadmap.ts",
-        "src/application/lint.ts",
-        "src/application/state-builders.ts",
-        "src/adapters/pi/commands/resume.ts",
-        "tests/smoke/resume-scheduler.test.mjs"
+        "tests/fixtures/alignment-drift",
+        "tests/smoke/alignment-drift-fixtures.test.mjs"
       ],
       "research_ids": [],
       "labels": [
-        "sprint:alignment-hardening",
-        "task-boundary",
-        "validation",
-        "scheduler",
-        "planning:.codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json"
+        "alignment",
+        "drift",
+        "fixtures"
       ],
+      "change_type": "code",
       "goal": {
-        "outcome": "CodeWiki enforces self-contained task boundaries and keeps sprint grouping separate from executable task work.",
+        "outcome": "Known alignment drift classes have deterministic fixture coverage independent of task-boundary enforcement.",
         "acceptance": [
-          "Skill guidance defines task as self-contained executable work and sprint as related-task cluster, with container tasks forbidden.",
-          "Validation guidance requires other-agent validators to block container tasks and closure criteria that mostly close other tasks.",
-          "Roadmap mutation/preflight logic rejects or blocks active container tasks before they become normal executable work.",
-          "State and resume routing skip non-executable tasks and select concrete tasks instead.",
-          "Existing TASK-077 umbrella state is removed from active executable sprint work or marked superseded by SPRINT-003."
+          "Fixture cases cover vertical drift, horizontal drift, dogfood/source confusion, stale generated output, missing accepted build, missing audit evidence, and invalid publication proof.",
+          "Each failing fixture asserts a specific issue kind or reconciliation item.",
+          "Clean fixture passes the same audit/graph check path.",
+          "Fixture runner is included in smoke or feature tests."
         ],
         "non_goals": [
-          "Do not build a full sprint mutation API in this task.",
-          "Do not redesign all roadmap schema fields beyond task/sprint boundary enforcement.",
-          "Do not require tasks touching the same file to be impossible; only overlapping ownership without clear boundaries is forbidden."
+          "Do not change task-boundary enforcement.",
+          "Do not depend on network or remote Git state."
         ],
         "verification": [
+          "node tests/smoke/alignment-drift-fixtures.test.mjs",
           "npm run typecheck",
-          "node tests/smoke/resume-scheduler.test.mjs",
-          "npm run test:smoke"
+          "npm test"
         ]
       },
       "delta": {
-        "desired": "Task/sprint semantics are enforced by skill policy, validation guidance, mutation/preflight checks, and scheduler state.",
-        "current": "TASK-077 showed a container task could become next executable work inside SPRINT-003.",
-        "closure": "Close when policy docs, validation guidance, source checks, and scheduler tests prove container tasks are blocked or skipped."
+        "desired": "Fixture matrix covers known alignment drift classes.",
+        "current": "Task-boundary enforcement slice is complete; fixture matrix remains separate testing work.",
+        "closure": ""
       },
       "created": "2026-05-16",
-      "updated": "2026-05-16T10:42:07Z"
+      "updated": "2026-05-16"
     }
   },
   "sprints": {
