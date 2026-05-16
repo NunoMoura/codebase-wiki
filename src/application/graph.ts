@@ -1,3 +1,4 @@
+import { normalizeChangeType, normalizeTraceabilityExemption } from "../domain/change/traceability.ts";
 import type { ChangeClaimsFile, GraphEdge, GraphFile, GraphNode, GraphViews, LintReport, RoadmapTaskRecord, WikiProject } from "../domain/shared/types.ts";
 import { GitCache } from "./local/git-cache.ts";
 import type { ParsedDoc } from "./knowledge/doc-parser.ts";
@@ -108,15 +109,6 @@ function pathsOverlap(left: string, right: string): boolean {
 	return a === b || a.startsWith(`${b}/`) || b.startsWith(`${a}/`) || pathMatchesScope(a, b) || pathMatchesScope(b, a);
 }
 
-const CHANGE_TYPES = new Set(["product", "system", "task", "code"]);
-const LEGACY_CHANGE_TYPE_ALIASES = new Map<string, string>([
-	["code-bugfix", "code"],
-	["maintenance", "code"],
-	["audit", "system"],
-	["security", "product"],
-	["publication", "system"],
-]);
-const TRACEABILITY_EXEMPTIONS = new Set(["generated", "runtime", "mechanical"]);
 const ACCEPTED_BUILD_STATES = new Set(["accepted", "applied", "validated", "consumed", "archived"]);
 
 function buildLifecycleState(data: any, fallback?: string): string {
@@ -125,17 +117,6 @@ function buildLifecycleState(data: any, fallback?: string): string {
 
 function isAcceptedBuild(build: BuildArtifact): boolean {
 	return ACCEPTED_BUILD_STATES.has(buildLifecycleState(build.data, build.status));
-}
-
-function normalizeChangeType(value: unknown, fallback = "task"): string {
-	const normalized = String(value || "").trim().toLowerCase();
-	if (CHANGE_TYPES.has(normalized)) return normalized;
-	return LEGACY_CHANGE_TYPE_ALIASES.get(normalized) ?? fallback;
-}
-
-function normalizeTraceabilityExemption(value: unknown): string | undefined {
-	const normalized = String(value || "").trim().toLowerCase();
-	return TRACEABILITY_EXEMPTIONS.has(normalized) ? normalized : undefined;
 }
 
 function isSemanticTraceability(build: BuildArtifact, fallbackChangeType: string): boolean {

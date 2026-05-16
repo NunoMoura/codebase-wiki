@@ -1,31 +1,28 @@
 {
   "version": 1,
   "kind": "validation_report",
-  "created": "2026-05-16T20:59:20Z",
+  "created": "2026-05-16T21:06:32Z",
   "profile": "implementation",
   "task_id": "TASK-087",
   "verdict": "pass",
-  "rationale": "Fresh validation passes for TASK-087 task-boundary domain extraction slice. Roadmap task-boundary semantics moved from application to domain roadmap module while application compatibility re-export preserves existing imports. Typecheck, boundary smoke, and architecture audit pass. This satisfies a narrow part of TASK-087 domain-led layering; task remains open for broader migration.",
+  "rationale": "Fresh validation passes for TASK-087 traceability taxonomy domain extraction slice. change_type and traceability exemption normalization semantics moved to src/domain/change/traceability.ts and are reused by builds and graph, removing duplicated application-layer taxonomy logic. Checks pass; TASK-087 remains open for broader migration.",
   "checks": [
     "npm run typecheck",
-    "node tests/smoke/roadmap-task-boundary.test.mjs",
+    "node tests/smoke/loop-isolation-policy.test.mjs",
+    "node tests/smoke/alignment-graph.test.mjs",
     "npm run check:architecture",
     "audit:alignment",
     "audit:changed",
     "audit:task",
-    "dirty diff digest sha256:117f80076421e0d4b0655c34fc502280a98b9919fbfb32a2d930854898789796"
+    "dirty diff digest sha256:21c1001f673d0972feb66950d1aba7af8c2b91f331cf4af5c012d5ee8493d809"
   ],
   "issues": [
     {
       "severity": "low",
       "summary": "audit:alignment reports pre-existing graph health warnings; audit:changed and audit:task pass."
-    },
-    {
-      "severity": "low",
-      "summary": "Implementation build uses prior TASK-087 planning chain rather than a dedicated extraction planning build; acceptable for this small continuation slice but future slices should create exact planning refs."
     }
   ],
-  "source": ".codewiki/builds/implementation/2026-05-16-extracted-roadmap-task-boundary-semantics-into-d.json",
+  "source": ".codewiki/builds/implementation/2026-05-16-extracted-change-traceability-normalization-sema.json",
   "policy_profile": "implementation",
   "required_audits": [
     "alignment",
@@ -39,11 +36,11 @@
   ],
   "audit_reports": [
     "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
-    "audit:changed pass Checked 4 changed files across 3 layers.",
+    "audit:changed pass Checked 5 changed files across 3 layers.",
     "audit:task pass Checked roadmap task TASK-087."
   ],
   "content_proof_refs": [
-    "sha256:117f80076421e0d4b0655c34fc502280a98b9919fbfb32a2d930854898789796"
+    "sha256:21c1001f673d0972feb66950d1aba7af8c2b91f331cf4af5c012d5ee8493d809"
   ],
   "failed_criteria": [],
   "blocking_questions": [],
@@ -103,10 +100,10 @@
     "warnings": []
   },
   "isolation": {
-    "working_tree_digest": "sha256:117f80076421e0d4b0655c34fc502280a98b9919fbfb32a2d930854898789796",
+    "working_tree_digest": "sha256:21c1001f673d0972feb66950d1aba7af8c2b91f331cf4af5c012d5ee8493d809",
     "clean": false,
     "fresh_context": true,
-    "notes": "Dirty pre-commit validation for narrow extraction slice; TASK-087 remains open.",
+    "notes": "Dirty pre-commit validation for narrow traceability extraction slice; TASK-087 remains open.",
     "role": "validator"
   }
 }

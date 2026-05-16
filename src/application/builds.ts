@@ -3,6 +3,7 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import type { CodewikiBuildProducesInput, CodewikiBuildRefsInput, CodewikiBuildToolInput, CodewikiClosureBriefInput, CodewikiDiffTableRowInput, CodewikiValidationReportInput, WikiProject, RoadmapTaskRecord } from "../domain/shared/types.ts";
+import { normalizeChangeType, normalizeTraceabilityExemption, isSemanticTraceability } from "../domain/change/traceability.ts";
 import { nowIso, unique } from "../domain/shared/utils.ts";
 import { normalizeWorktreeIsolation } from "./claims.ts";
 import { readRoadmapTask } from "./roadmap.ts";
@@ -45,27 +46,7 @@ function trimList(values?: unknown[]): string[] {
 	return (values ?? []).map((value) => String(value || "").trim()).filter(Boolean);
 }
 
-const CHANGE_TYPES = new Set(["product", "system", "task", "code"]);
-const LEGACY_CHANGE_TYPE_ALIASES = new Map<string, string>([
-	["code-bugfix", "code"],
-	["maintenance", "code"],
-	["audit", "system"],
-	["security", "product"],
-	["publication", "system"],
-]);
-const TRACEABILITY_EXEMPTIONS = new Set(["generated", "runtime", "mechanical"]);
 const ACCEPTED_BUILD_STATES = new Set(["accepted", "applied", "validated", "consumed", "archived"]);
-
-function normalizeChangeType(value: unknown, fallback: string): string {
-	const normalized = String(value || "").trim().toLowerCase();
-	if (CHANGE_TYPES.has(normalized)) return normalized;
-	return LEGACY_CHANGE_TYPE_ALIASES.get(normalized) ?? fallback;
-}
-
-function normalizeTraceabilityExemption(value: unknown): string | undefined {
-	const normalized = String(value || "").trim().toLowerCase();
-	return TRACEABILITY_EXEMPTIONS.has(normalized) ? normalized : undefined;
-}
 
 function inferChangeTypeForBuild(kind: string, inputOrBuild: any): string {
 	if (kind === "feedback_build" || kind === "feedback") {
@@ -94,10 +75,6 @@ function inferChangeTypeForBuild(kind: string, inputOrBuild: any): string {
 		return "code";
 	}
 	return "task";
-}
-
-function isSemanticTraceability(semantic: unknown, exemption: string | undefined): boolean {
-	return typeof semantic === "boolean" ? semantic : !exemption;
 }
 
 function buildLifecycleState(data: any): string {
