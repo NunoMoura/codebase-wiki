@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-05-16T01:30:03Z",
+  "updated": "2026-05-16T02:34:46Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -52,7 +52,6 @@
     "TASK-077",
     "TASK-078",
     "TASK-079",
-    "TASK-080",
     "TASK-081",
     "TASK-082",
     "TASK-083",
@@ -2271,60 +2270,6 @@
       },
       "created": "2026-05-15",
       "updated": "2026-05-16T00:59:30Z"
-    },
-    "TASK-080": {
-      "id": "TASK-080",
-      "title": "Wire gateway policies to audit and content-proof evidence",
-      "status": "in_progress",
-      "priority": "critical",
-      "kind": "architecture",
-      "summary": "Strengthen validation gateway profiles so required audits, graph context, fresh isolation, and content proof are enforced by build kind and change class.",
-      "spec_paths": [
-        ".codewiki/kb/system/validation-gateway.md",
-        ".codewiki/kb/system/audits.md",
-        ".codewiki/kb/system/builds.md",
-        ".codewiki/kb/system/alignment-model.md"
-      ],
-      "code_paths": [
-        "src/application/builds.ts",
-        "src/application/graph.ts",
-        "src/domain/shared/types.ts",
-        "tests/smoke",
-        "src/adapters/pi/index.ts",
-        "src/adapters/pi/schemas.ts"
-      ],
-      "research_ids": [],
-      "labels": [
-        "sprint:alignment-hardening",
-        "gateway",
-        "policy",
-        "validation"
-      ],
-      "goal": {
-        "outcome": "Gateways block when required audit evidence, graph context, fresh isolation, or content-proof refs are missing for sensitive boundaries.",
-        "acceptance": [
-          "Validation profiles declare required audit profiles by feedback/documentation/planning/implementation/task-close/publication contexts.",
-          "Implementation, task-close, publication, publish, and release validation require fresh context plus checked SHA/tree/digest evidence according to policy.",
-          "Validation reports distinguish attestation fields from content-proof refs.",
-          "Tests prove missing audit/content-proof evidence blocks and valid evidence passes."
-        ],
-        "non_goals": [
-          "Do not implement remote push/release automation.",
-          "Do not replace deterministic tests with non-deterministic validation."
-        ],
-        "verification": [
-          "npm run typecheck",
-          "npm run test:smoke",
-          "targeted validation smoke covering block/pass"
-        ]
-      },
-      "delta": {
-        "desired": "Gateway policy closes only after required audit evidence, fresh validation, and working-tree/content-proof evidence are present for sensitive boundaries.",
-        "current": "Fresh TASK-080 builder loop added audit-profile declarations, missing-audit blocking, and explicit content_proof_refs with targeted checks passing; canonical audit output still depends on TASK-079, and independent validation/task-close proof is still pending.",
-        "closure": "Close only after fresh validation of .codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json plus task-close validation/commit or tree proof."
-      },
-      "created": "2026-05-15",
-      "updated": "2026-05-16T01:30:03Z"
     },
     "TASK-081": {
       "id": "TASK-081",
