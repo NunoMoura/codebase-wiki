@@ -17,7 +17,7 @@ code_paths:
 
 # Alignment Model
 
-## Purpose
+## Intent
 
 CodeWiki's main product promise is context-driven software development through alignment at every stage of the development process. The system must preserve traceability from user-agent interaction through documentation, roadmap, tests, code, validation, commits, and publication.
 
