@@ -130,7 +130,7 @@ Compilers remain deterministic handoff producers. They do not own autonomous sch
 
 ## Propagation
 
-All agent-led semantic changes start with feedback classification, even when the observed symptom appears in code, tests, roadmap, documentation, package metadata, or publication. After classification, propagation can originate in any layer:
+All agent-led semantic changes start with feedback classification, even when the observed symptom appears in code, tests, roadmap, documentation, package metadata, or publication. Builds classify the target with `change_type` (`product`, `system`, `task`, or `code`); generated, runtime, or mechanical-only work uses traceability exemption metadata instead of a separate type. After classification, propagation can originate in any layer:
 
 - product intent can refine feedback requirements and knowledge,
 - knowledge changes can create planning drift,

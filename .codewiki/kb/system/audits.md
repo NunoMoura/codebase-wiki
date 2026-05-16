@@ -61,7 +61,7 @@ The command prints a concise human report and stores or links machine-readable e
 
 ## Gateway use
 
-Gateways call the internal audit engine directly. Gateway policy selects required profiles by build kind, change class, and publication risk.
+Gateways call the internal audit engine directly. Gateway policy selects required profiles by build kind, change type, and publication risk.
 
 Examples:
 

@@ -45,33 +45,34 @@ function trimList(values?: unknown[]): string[] {
 	return (values ?? []).map((value) => String(value || "").trim()).filter(Boolean);
 }
 
-const CHANGE_CLASSES = new Set([
-	"product",
-	"system",
-	"task",
-	"code-bugfix",
-	"maintenance",
-	"audit",
-	"security",
-	"publication",
-	"generated",
-	"runtime",
-	"mechanical",
+const CHANGE_TYPES = new Set(["product", "system", "task", "code"]);
+const LEGACY_CHANGE_TYPE_ALIASES = new Map<string, string>([
+	["code-bugfix", "code"],
+	["maintenance", "code"],
+	["audit", "system"],
+	["security", "product"],
+	["publication", "system"],
 ]);
-const NON_SEMANTIC_CHANGE_CLASSES = new Set(["generated", "runtime", "mechanical"]);
+const TRACEABILITY_EXEMPTIONS = new Set(["generated", "runtime", "mechanical"]);
 const ACCEPTED_BUILD_STATES = new Set(["accepted", "applied", "validated", "consumed", "archived"]);
 
-function normalizeChangeClass(value: unknown, fallback: string): string {
+function normalizeChangeType(value: unknown, fallback: string): string {
 	const normalized = String(value || "").trim().toLowerCase();
-	return CHANGE_CLASSES.has(normalized) ? normalized : fallback;
+	if (CHANGE_TYPES.has(normalized)) return normalized;
+	return LEGACY_CHANGE_TYPE_ALIASES.get(normalized) ?? fallback;
 }
 
-function inferChangeClassForBuild(kind: string, inputOrBuild: any): string {
+function normalizeTraceabilityExemption(value: unknown): string | undefined {
+	const normalized = String(value || "").trim().toLowerCase();
+	return TRACEABILITY_EXEMPTIONS.has(normalized) ? normalized : undefined;
+}
+
+function inferChangeTypeForBuild(kind: string, inputOrBuild: any): string {
 	if (kind === "feedback_build" || kind === "feedback") {
 		const delta = inputOrBuild.lower_layer_delta || {};
 		const produces = inputOrBuild.produces || {};
 		if (trimList(delta.roadmap).length || trimList(produces.roadmap).length) return "task";
-		if (trimList(delta.code).length || trimList(produces.code).length) return "code-bugfix";
+		if (trimList(delta.code).length || trimList(produces.code).length) return "code";
 		return "product";
 	}
 	if (kind === "documentation_build" || kind === "documentation") {
@@ -82,19 +83,21 @@ function inferChangeClassForBuild(kind: string, inputOrBuild: any): string {
 	if (kind === "implementation_build" || kind === "implementation") {
 		const refs = [
 			...trimList(inputOrBuild.code_files),
+			...trimList(inputOrBuild.test_files),
 			...trimList(inputOrBuild.produces?.code),
+			...trimList(inputOrBuild.produces?.tests),
 			...trimList(inputOrBuild.produces?.publication),
 		];
-		if (refs.some((ref) => /security|secret|vulnerab/i.test(ref))) return "security";
-		if (refs.some((ref) => /package\.json|package-lock\.json|release|publish/i.test(ref)) || trimList(inputOrBuild.produces?.publication).length) return "publication";
-		if (refs.some((ref) => /audit|check-architecture/i.test(ref))) return "audit";
-		return "task";
+		if (refs.some((ref) => ref.startsWith(".codewiki/roadmap/") || /^TASK-\d+/.test(ref))) return "task";
+		if (refs.some((ref) => ref.startsWith(".codewiki/kb/product/"))) return "product";
+		if (refs.some((ref) => ref.startsWith(".codewiki/kb/system/") || ref.startsWith("skills/codewiki/"))) return "system";
+		return "code";
 	}
 	return "task";
 }
 
-function isSemanticChangeClass(changeClass: string): boolean {
-	return Boolean(changeClass) && !NON_SEMANTIC_CHANGE_CLASSES.has(changeClass);
+function isSemanticTraceability(semantic: unknown, exemption: string | undefined): boolean {
+	return typeof semantic === "boolean" ? semantic : !exemption;
 }
 
 function buildLifecycleState(data: any): string {
@@ -158,8 +161,9 @@ function requiredUpstreamLoop(kind: string): "feedback" | "documentation" | "pla
 
 function semanticTraceabilityGaps(project: WikiProject, build: any): string[] {
 	const kind = String(build?.kind || "").trim();
-	const changeClass = normalizeChangeClass(build?.traceability?.change_class ?? build?.change_class, inferChangeClassForBuild(kind, build));
-	const requires = build?.traceability?.requires_accepted_build ?? (isSemanticChangeClass(changeClass) && requiredUpstreamLoop(kind) !== null);
+	const exemption = normalizeTraceabilityExemption(build?.traceability?.exemption ?? build?.traceability?.change_class ?? build?.change_class);
+	const semantic = isSemanticTraceability(build?.traceability?.semantic, exemption);
+	const requires = build?.traceability?.requires_accepted_build ?? (semantic && requiredUpstreamLoop(kind) !== null);
 	if (!requires) return [];
 	const upstream = requiredUpstreamLoop(kind);
 	if (!upstream) return [];
@@ -167,8 +171,12 @@ function semanticTraceabilityGaps(project: WikiProject, build: any): string[] {
 }
 
 function buildTraceability(kind: string, input: CodewikiBuildToolInput, consumes: CodewikiBuildRefsInput, produces: CodewikiBuildProducesInput) {
-	const changeClass = normalizeChangeClass(input.traceability?.change_class ?? input.change_class, inferChangeClassForBuild(kind, { ...input, consumes, produces }));
-	const semantic = input.traceability?.semantic ?? isSemanticChangeClass(changeClass);
+	const exemption = normalizeTraceabilityExemption(input.traceability?.exemption ?? input.traceability?.change_class ?? input.change_class);
+	const changeType = normalizeChangeType(
+		input.traceability?.change_type ?? input.change_type ?? input.traceability?.change_class ?? input.change_class,
+		inferChangeTypeForBuild(kind, { ...input, consumes, produces }),
+	);
+	const semantic = isSemanticTraceability(input.traceability?.semantic, exemption);
 	const upstreamLoop = requiredUpstreamLoop(`${kind}_build`);
 	const upstreamBuildRefs = unique([
 		...trimList(input.upstream_build_refs),
@@ -181,7 +189,8 @@ function buildTraceability(kind: string, input: CodewikiBuildToolInput, consumes
 		...upstreamBuildRefs,
 	]);
 	return {
-		change_class: changeClass,
+		change_type: changeType,
+		exemption,
 		semantic,
 		requires_accepted_build: input.traceability?.requires_accepted_build ?? (semantic && upstreamLoop !== null),
 		upstream_loop: upstreamLoop,
@@ -821,7 +830,7 @@ export async function writeFeedbackBuild(
 		open_questions: trimList(input.open_questions),
 		non_goals: trimList(input.non_goals),
 		lower_layer_delta: lowerLayerDelta,
-		change_class: traceability.change_class,
+		change_type: traceability.change_type,
 		traceability,
 		consumes,
 		produces,
@@ -870,7 +879,7 @@ export async function writeDocumentationBuild(
 		roadmap_changes: roadmapChanges,
 		assumptions: trimList(input.assumptions),
 		open_questions: trimList(input.open_questions),
-		change_class: traceability.change_class,
+		change_type: traceability.change_type,
 		traceability,
 		consumes,
 		produces,
@@ -932,7 +941,7 @@ export async function writePlanningBuild(
 		open_questions: trimList(input.open_questions),
 		non_goals: trimList(input.non_goals),
 		risks: trimList(input.risks),
-		change_class: traceability.change_class,
+		change_type: traceability.change_type,
 		traceability,
 		consumes,
 		produces,
@@ -1061,7 +1070,7 @@ export async function writeImplementationBuild(
 		lifecycle,
 		...buildCycleFields(input, "implementation", "implementation"),
 		summary: input.summary.trim(),
-		change_class: traceability.change_class,
+		change_type: traceability.change_type,
 		traceability,
 		consumes,
 		produces,
@@ -1199,7 +1208,7 @@ export async function writeValidationReport(
 			...trimList(input.blocking_questions),
 			...(isolationGaps.length > 0 ? ["Run this gateway from fresh validator context and record required checked content proof for the profile."] : []),
 			...(commitReadinessGaps.length > 0 ? ["Update the implementation build with commit-ready title, body, trailers, checks, validation placeholder, closure brief, and file evidence before validation can pass."] : []),
-			...(traceabilityPolicy.gaps.length > 0 ? ["Cite an accepted upstream compiler build chain for semantic changes or classify the change as generated/runtime/mechanical when policy allows."] : []),
+			...(traceabilityPolicy.gaps.length > 0 ? ["Cite an accepted upstream compiler build chain for semantic changes or set a generated/runtime/mechanical traceability exemption when policy allows."] : []),
 			...(auditGaps.length > 0 ? [`Run or cite audit evidence for required profiles: ${auditGaps.join(", ")}.`] : []),
 		]),
 		isolation_requirement: requirement,
@@ -1216,7 +1225,7 @@ export async function writeValidationReport(
 			: undefined,
 		semantic_traceability_requirement: {
 			required: traceabilityPolicy.gaps.length > 0 || profile.trim().toLowerCase() === "implementation" || Boolean((input.source ?? "").trim() && ["task-close", "publication", "publish", "release"].includes(profile.trim().toLowerCase())),
-			evidence: ["source implementation build", "change_class", "accepted upstream compiler build refs"],
+			evidence: ["source implementation build", "change_type", "accepted upstream compiler build refs"],
 			gaps: traceabilityPolicy.gaps,
 			warnings: traceabilityPolicy.warnings,
 		},

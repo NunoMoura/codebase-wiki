@@ -142,11 +142,11 @@ New builds should expose explicit DAG fields:
 
 - `consumes`: upstream build, roadmap, validation, or source refs this build depends on,
 - `produces`: downstream knowledge, roadmap, code, test, validation, publication, or closure refs this build creates or updates,
-- `change_class`: product, system, task, code-bugfix, maintenance, audit, security, publication, generated, runtime, or mechanical,
-- `traceability`: semantic flag, required upstream loop, upstream build refs, and accepted build refs used to prove semantic propagation,
+- `change_type`: canonical target bucket, one of `product`, `system`, `task`, or `code`,
+- `traceability`: semantic flag, optional `exemption` (`generated`, `runtime`, or `mechanical`), required upstream loop, upstream build refs, and accepted build refs used to prove semantic propagation,
 - `policy.isolation`: loop-start, validation, and next-loop context-boundary requirements.
 
-Graph reconciliation should prefer these explicit edges over inferred legacy fields. Requirement traceability should use requirement ids and evidence mapping rather than prose matching. Semantic changes in knowledge, roadmap, code, tests, package metadata, or publication claims should have accepted upstream build refs before implementation validation or task closure can pass. Generated, runtime, and mechanical-only changes may set non-semantic classification when policy allows.
+Graph reconciliation should prefer these explicit edges over inferred legacy fields. Requirement traceability should use requirement ids and evidence mapping rather than prose matching. Semantic changes in knowledge, roadmap, code, tests, package metadata, or publication claims should have accepted upstream build refs before implementation validation or task closure can pass. Generated, runtime, and mechanical-only changes may set `traceability.exemption` and `semantic=false` when policy allows. Legacy `change_class` inputs can be read for compatibility, but new builds should write `change_type`.
 
 ## Lifecycle
 

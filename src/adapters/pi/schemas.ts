@@ -1,9 +1,22 @@
 import { Type } from "@sinclair/typebox";
 import * as T from "../../domain/shared/types.ts";
 
-export const changeClassSchema = Type.Union(
-	T.CHANGE_CLASS_VALUES.map((value) => Type.Literal(value)),
+export const changeTypeSchema = Type.Union(
+	T.CHANGE_TYPE_VALUES.map((value) => Type.Literal(value)),
 );
+export const traceabilityExemptionSchema = Type.Union(
+	T.TRACEABILITY_EXEMPTION_VALUES.map((value) => Type.Literal(value)),
+);
+/** @deprecated Use change_type plus traceability.exemption. */
+export const changeClassSchema = Type.Union([
+	...T.CHANGE_TYPE_VALUES.map((value) => Type.Literal(value)),
+	...T.TRACEABILITY_EXEMPTION_VALUES.map((value) => Type.Literal(value)),
+	Type.Literal("code-bugfix"),
+	Type.Literal("maintenance"),
+	Type.Literal("audit"),
+	Type.Literal("security"),
+	Type.Literal("publication"),
+]);
 
 export const subagentRoleSchema = Type.Union(
 	T.SUBAGENT_ROLE_VALUES.map((value) => Type.Literal(value)),
@@ -114,6 +127,7 @@ export const codewikiTaskCreateSchema = Type.Object({
 	code_paths: Type.Optional(Type.Array(Type.String(), { default: [] })),
 	research_ids: Type.Optional(Type.Array(Type.String(), { default: [] })),
 	labels: Type.Optional(Type.Array(Type.String(), { default: [] })),
+	change_type: Type.Optional(changeTypeSchema),
 	change_class: Type.Optional(changeClassSchema),
 	goal: Type.Optional(roadmapTaskGoalSchema),
 	delta: Type.Optional(
@@ -269,6 +283,7 @@ export const codewikiTaskPatchSchema = Type.Object({
 	code_paths: Type.Optional(Type.Array(Type.String())),
 	research_ids: Type.Optional(Type.Array(Type.String())),
 	labels: Type.Optional(Type.Array(Type.String())),
+	change_type: Type.Optional(changeTypeSchema),
 	change_class: Type.Optional(changeClassSchema),
 	goal: Type.Optional(roadmapTaskGoalSchema),
 	delta: Type.Optional(
@@ -439,11 +454,14 @@ export const codewikiBuildToolInputSchema = Type.Object({
 	schema_version: Type.Optional(Type.Number()),
 	consumes: Type.Optional(codewikiBuildRefsSchema),
 	produces: Type.Optional(codewikiBuildProducesSchema),
+	change_type: Type.Optional(changeTypeSchema),
 	change_class: Type.Optional(changeClassSchema),
 	upstream_build_refs: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
 	accepted_build_refs: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
 	traceability: Type.Optional(Type.Object({
+		change_type: Type.Optional(changeTypeSchema),
 		change_class: Type.Optional(changeClassSchema),
+		exemption: Type.Optional(traceabilityExemptionSchema),
 		semantic: Type.Optional(Type.Boolean()),
 		requires_accepted_build: Type.Optional(Type.Boolean()),
 		upstream_build_refs: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),

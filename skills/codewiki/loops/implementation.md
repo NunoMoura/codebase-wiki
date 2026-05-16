@@ -13,7 +13,7 @@ graph locates -> planning_build + roadmap item + linked specs/code
 - Start implementation from the validated `planning_build` and roadmap task in a fresh session, fresh worker process, or recorded context reset; do not rely on prior compiler-loop chat memory. When the adapter exposes `codewiki_session_handoff`, use it instead of asking the user to run `/new` manually.
 - Use `codewiki_session` when starting or continuing a task; keep task id, graph/build revisions, and current decision state in parent RAM.
 - Use `codewiki_state` as the map, then read the planning build, roadmap item, linked builds, linked specs, validation reports, and code/test paths as sources of truth before changing behavior.
-- For semantic work, preserve `change_class` and accepted upstream build refs in implementation evidence; generated, runtime, or mechanical-only work may be non-semantic only when policy allows.
+- For semantic work, preserve `change_type` (`product`, `system`, `task`, or `code`) and accepted upstream build refs in implementation evidence; generated, runtime, or mechanical-only work may use traceability exemption metadata and `semantic=false` only when policy allows.
 - Claim narrow write scopes for non-trivial implementation work when parallel sessions may touch overlapping code, tests, docs, roadmap, builds, or validation refs.
 - Read only linked sources unless graph drift/freshness signals or those sources prove broader context is needed.
 - Tests live in code/test directories, not in `.codewiki/kb/**` or roadmap task folders.
@@ -60,7 +60,7 @@ The split is optional. Use it when independence matters more than coordination c
    - If tester/builder split was used, verify tester evidence, builder evidence, and checks line up.
 
 6. **Emit implementation build**
-   - Record task id, change class, accepted source planning build, tests changed, code changed, tester evidence, builder evidence, checks, requirement/acceptance mapping, unresolved issues, validation refs, and publication/readiness recommendations under `.codewiki/builds/implementation/**` when useful.
+   - Record task id, `change_type`, traceability exemption when applicable, accepted source planning build, tests changed, code changed, tester evidence, builder evidence, checks, requirement/acceptance mapping, unresolved issues, validation refs, and publication/readiness recommendations under `.codewiki/builds/implementation/**` when useful.
 
 7. **Close/block/follow-up**
    - Use `codewiki_task` for lifecycle mutation.

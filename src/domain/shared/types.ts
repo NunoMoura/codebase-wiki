@@ -59,19 +59,10 @@ export const AGENCY_TRIGGER_VALUES = ["manual", "task_end", "sprint_end", "roadm
 export const AGENCY_RISK_VALUES = ["low", "medium", "high"] as const;
 export const AGENCY_SCOPE_KIND_VALUES = ["roadmap", "sprint", "task"] as const;
 export const WORKFLOW_LOOP_VALUES = ["feedback", "documentation", "planning", "implementation", "validation", "observe"] as const;
-export const CHANGE_CLASS_VALUES = [
-	"product",
-	"system",
-	"task",
-	"code-bugfix",
-	"maintenance",
-	"audit",
-	"security",
-	"publication",
-	"generated",
-	"runtime",
-	"mechanical",
-] as const;
+export const CHANGE_TYPE_VALUES = ["product", "system", "task", "code"] as const;
+export const TRACEABILITY_EXEMPTION_VALUES = ["generated", "runtime", "mechanical"] as const;
+/** @deprecated Use CHANGE_TYPE_VALUES. */
+export const CHANGE_CLASS_VALUES = CHANGE_TYPE_VALUES;
 export const GC_ARTIFACT_TEMPERATURE_VALUES = ["hot", "warm", "cold", "purgeable"] as const;
 export const SPRINT_STATUS_VALUES = ["planned", "active", "review", "closed", "cancelled"] as const;
 export const STATUS_DOCK_DENSITY_VALUES = ["minimal", "standard", "full"] as const;
@@ -113,7 +104,11 @@ export type AgencyTrigger = (typeof AGENCY_TRIGGER_VALUES)[number];
 export type AgencyRisk = (typeof AGENCY_RISK_VALUES)[number];
 export type AgencyScopeKind = (typeof AGENCY_SCOPE_KIND_VALUES)[number];
 export type WorkflowLoop = (typeof WORKFLOW_LOOP_VALUES)[number];
-export type ChangeClass = (typeof CHANGE_CLASS_VALUES)[number];
+export type ChangeType = (typeof CHANGE_TYPE_VALUES)[number];
+export type TraceabilityExemption = (typeof TRACEABILITY_EXEMPTION_VALUES)[number];
+export type LegacyChangeClass = ChangeType | TraceabilityExemption | "code-bugfix" | "maintenance" | "audit" | "security" | "publication";
+/** @deprecated Use ChangeType. */
+export type ChangeClass = LegacyChangeClass;
 export type GcArtifactTemperature = (typeof GC_ARTIFACT_TEMPERATURE_VALUES)[number];
 export type SprintStatus = (typeof SPRINT_STATUS_VALUES)[number];
 export type StatusDockDensity = (typeof STATUS_DOCK_DENSITY_VALUES)[number];
@@ -182,7 +177,9 @@ export interface RoadmapTaskInput {
 	code_paths?: string[];
 	research_ids?: string[];
 	labels?: string[];
-	change_class?: ChangeClass;
+	change_type?: ChangeType;
+	/** @deprecated Use change_type. */
+	change_class?: LegacyChangeClass;
 	goal?: Partial<RoadmapTaskGoal>;
 	delta?: Partial<{ desired: string; current: string; closure: string }>;
 }
@@ -198,7 +195,9 @@ export interface RoadmapTaskUpdateInput {
 	code_paths?: string[];
 	research_ids?: string[];
 	labels?: string[];
-	change_class?: ChangeClass;
+	change_type?: ChangeType;
+	/** @deprecated Use change_type. */
+	change_class?: LegacyChangeClass;
 	goal?: Partial<RoadmapTaskGoal>;
 	delta?: Partial<{ desired: string; current: string; closure: string }>;
 }
@@ -213,7 +212,9 @@ export interface RoadmapTaskUpdateFields {
 	code_paths?: string[];
 	research_ids?: string[];
 	labels?: string[];
-	change_class?: ChangeClass;
+	change_type?: ChangeType;
+	/** @deprecated Use change_type. */
+	change_class?: LegacyChangeClass;
 	goal?: Partial<RoadmapTaskGoal>;
 	delta?: Partial<{ desired: string; current: string; closure: string }>;
 }
@@ -236,7 +237,9 @@ export interface RoadmapTaskRecord {
 	code_paths: string[];
 	research_ids: string[];
 	labels: string[];
-	change_class?: ChangeClass;
+	change_type?: ChangeType;
+	/** @deprecated Use change_type. */
+	change_class?: LegacyChangeClass;
 	goal: RoadmapTaskGoal;
 	delta: {
 		desired: string;
@@ -627,7 +630,9 @@ export interface CodewikiTaskPatchInput {
 	code_paths?: string[];
 	research_ids?: string[];
 	labels?: string[];
-	change_class?: ChangeClass;
+	change_type?: ChangeType;
+	/** @deprecated Use change_type. */
+	change_class?: LegacyChangeClass;
 	goal?: Partial<RoadmapTaskGoal>;
 	delta?: Partial<{ desired: string; current: string; closure: string }>;
 }
@@ -731,11 +736,16 @@ export interface CodewikiBuildToolInput {
 	schema_version?: number;
 	consumes?: CodewikiBuildRefsInput;
 	produces?: CodewikiBuildProducesInput;
-	change_class?: ChangeClass;
+	change_type?: ChangeType;
+	/** @deprecated Use change_type. */
+	change_class?: LegacyChangeClass;
 	upstream_build_refs?: string[];
 	accepted_build_refs?: string[];
 	traceability?: {
-		change_class?: ChangeClass;
+		change_type?: ChangeType;
+		/** @deprecated Use change_type. */
+		change_class?: LegacyChangeClass;
+		exemption?: TraceabilityExemption;
 		semantic?: boolean;
 		requires_accepted_build?: boolean;
 		upstream_build_refs?: string[];

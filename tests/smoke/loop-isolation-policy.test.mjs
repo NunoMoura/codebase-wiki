@@ -76,9 +76,31 @@ try {
 	const badBuildPath = ".codewiki/builds/implementation/not-commit-ready.json";
 	const implementationData = JSON.parse(await readFile(join(root, implementation.path), "utf8"));
 	assert.deepEqual(implementationData.policy.required_audits, ["alignment", "changed"]);
-	assert.equal(implementationData.change_class, "task");
+	assert.equal(implementationData.change_type, "code");
 	assert.equal(implementationData.traceability.requires_accepted_build, true);
 	assert.deepEqual(implementationData.traceability.accepted_build_refs, [planning.path]);
+
+	const legacyGenerated = await writeImplementationBuild(project, {
+		kind: "implementation",
+		summary: "Refresh generated graph.",
+		task_id: "TASK-123",
+		change_class: "generated",
+		code_files: [".codewiki/index_graph.json"],
+		checks_run: ["codewiki_state refresh=true"],
+		acceptance_mapping: [{ criterion: "Graph refreshed", evidence: "Generated artifact updated" }],
+		closure_brief: {
+			user_intent: "Refresh generated graph.",
+			implemented_changes: ["Regenerated graph output."],
+			acceptance_evidence: ["Graph refresh completed"],
+			checks: ["codewiki_state refresh=true"],
+		},
+	});
+	const legacyGeneratedData = JSON.parse(await readFile(join(root, legacyGenerated.path), "utf8"));
+	assert.equal(legacyGeneratedData.change_type, "code");
+	assert.equal(legacyGeneratedData.traceability.exemption, "generated");
+	assert.equal(legacyGeneratedData.traceability.semantic, false);
+	assert.equal(legacyGeneratedData.traceability.requires_accepted_build, false);
+
 	const badBuild = JSON.parse(JSON.stringify(implementationData));
 	badBuild.publication.commit.trailers = badBuild.publication.commit.trailers.filter((trailer) => !String(trailer).startsWith("CodeWiki-Validation:"));
 	await mkdir(join(root, ".codewiki/builds/implementation"), { recursive: true });

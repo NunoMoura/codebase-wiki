@@ -162,6 +162,7 @@ const validationReport = {
 		builds: [],
 	});
 	const row = graph.views.traceability.semantic_change_gaps.find((entry) => entry.path === "src/application/graph.ts");
+	assert.equal(row?.change_type, "code");
 	assert.ok(row?.gaps.includes("missing_accepted_build_coverage"), "Dirty semantic code should require accepted build coverage");
 	assert.ok(graph.views.reconciliation.items.some((item) => item.id === "reconcile:semantic-build:src/application/graph.ts"), "Graph should route missing semantic build coverage");
 }

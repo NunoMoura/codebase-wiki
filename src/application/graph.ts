@@ -108,7 +108,15 @@ function pathsOverlap(left: string, right: string): boolean {
 	return a === b || a.startsWith(`${b}/`) || b.startsWith(`${a}/`) || pathMatchesScope(a, b) || pathMatchesScope(b, a);
 }
 
-const NON_SEMANTIC_CHANGE_CLASSES = new Set(["generated", "runtime", "mechanical"]);
+const CHANGE_TYPES = new Set(["product", "system", "task", "code"]);
+const LEGACY_CHANGE_TYPE_ALIASES = new Map<string, string>([
+	["code-bugfix", "code"],
+	["maintenance", "code"],
+	["audit", "system"],
+	["security", "product"],
+	["publication", "system"],
+]);
+const TRACEABILITY_EXEMPTIONS = new Set(["generated", "runtime", "mechanical"]);
 const ACCEPTED_BUILD_STATES = new Set(["accepted", "applied", "validated", "consumed", "archived"]);
 
 function buildLifecycleState(data: any, fallback?: string): string {
@@ -119,13 +127,21 @@ function isAcceptedBuild(build: BuildArtifact): boolean {
 	return ACCEPTED_BUILD_STATES.has(buildLifecycleState(build.data, build.status));
 }
 
-function normalizeChangeClass(value: unknown): string {
-	return String(value || "").trim().toLowerCase();
+function normalizeChangeType(value: unknown, fallback = "task"): string {
+	const normalized = String(value || "").trim().toLowerCase();
+	if (CHANGE_TYPES.has(normalized)) return normalized;
+	return LEGACY_CHANGE_TYPE_ALIASES.get(normalized) ?? fallback;
 }
 
-function isSemanticChangeClass(value: unknown): boolean {
-	const changeClass = normalizeChangeClass(value || "task");
-	return Boolean(changeClass) && !NON_SEMANTIC_CHANGE_CLASSES.has(changeClass);
+function normalizeTraceabilityExemption(value: unknown): string | undefined {
+	const normalized = String(value || "").trim().toLowerCase();
+	return TRACEABILITY_EXEMPTIONS.has(normalized) ? normalized : undefined;
+}
+
+function isSemanticTraceability(build: BuildArtifact, fallbackChangeType: string): boolean {
+	const exemption = normalizeTraceabilityExemption(build.data?.traceability?.exemption ?? build.data?.traceability?.change_class ?? build.data?.change_class);
+	if (typeof build.data?.traceability?.semantic === "boolean") return build.data.traceability.semantic;
+	return Boolean(normalizeChangeType(build.data?.traceability?.change_type ?? build.data?.change_type ?? build.data?.traceability?.change_class ?? build.data?.change_class, fallbackChangeType)) && !exemption;
 }
 
 function classifySemanticPath(project: WikiProject, path: string): string | null {
@@ -137,9 +153,9 @@ function classifySemanticPath(project: WikiProject, path: string): string | null
 	if (normalized.startsWith(".codewiki/kb/product/")) return "product";
 	if (normalized.startsWith(".codewiki/kb/system/") || normalized === ".codewiki/kb/lexicon.md") return "system";
 	if (normalized === ".codewiki/roadmap/queue.json") return "task";
-	if (normalized === "package.json" || normalized === "package-lock.json") return "publication";
+	if (normalized === "package.json" || normalized === "package-lock.json") return "system";
 	if (normalized.startsWith("skills/codewiki/") || normalized.startsWith("src/application/tools/audit") || normalized.startsWith("scripts/check-architecture")) return "system";
-	if (normalized.startsWith("tests/") || normalized.startsWith("src/") || normalized.startsWith("scripts/")) return "code-bugfix";
+	if (normalized.startsWith("tests/") || normalized.startsWith("src/") || normalized.startsWith("scripts/")) return "code";
 	if (normalized === "README.md" || normalized.startsWith("docs/")) return "system";
 	return null;
 }
@@ -164,9 +180,9 @@ function refsFromBuild(build: BuildArtifact): string[] {
 	]).filter(Boolean);
 }
 
-function buildCoversSemanticPath(build: BuildArtifact, path: string, changeClass: string): boolean {
+function buildCoversSemanticPath(build: BuildArtifact, path: string, changeType: string): boolean {
 	if (!isAcceptedBuild(build)) return false;
-	if (!isSemanticChangeClass(build.data?.traceability?.change_class || build.data?.change_class || changeClass)) return false;
+	if (!isSemanticTraceability(build, changeType)) return false;
 	const refs = refsFromBuild(build);
 	if (refs.some((ref) => pathsOverlap(ref, path))) return true;
 	if (path === ".codewiki/roadmap/queue.json" && refs.some((ref) => /^TASK-\d+/.test(ref))) return true;
@@ -657,7 +673,7 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			title: task.title,
 			layer: "roadmap",
 			status,
-			change_class: task.change_class,
+			change_type: task.change_type,
 			alignment_state: isOpenTaskStatus(status) ? "drift" : "aligned",
 		});
 
@@ -971,16 +987,16 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 
 	const traceabilityRows: any[] = [];
 	const semanticChangeRows = unique(rawDirtyPaths)
-		.map((path) => ({ path, change_class: classifySemanticPath(project, path) }))
-		.filter((row): row is { path: string; change_class: string } => Boolean(row.change_class))
+		.map((path) => ({ path, change_type: classifySemanticPath(project, path) }))
+		.filter((row): row is { path: string; change_type: string } => Boolean(row.change_type))
 		.map((row) => {
 			const accepted_build_refs = builds
-				.filter((build) => buildCoversSemanticPath(build, row.path, row.change_class))
+				.filter((build) => buildCoversSemanticPath(build, row.path, row.change_type))
 				.map((build) => normalizeCodewikiRef(build.path));
 			const gaps = accepted_build_refs.length > 0 ? [] : ["missing_accepted_build_coverage"];
 			return {
 				path: row.path,
-				change_class: row.change_class,
+				change_type: row.change_type,
 				semantic: true,
 				accepted_build_refs,
 				gaps,
@@ -992,12 +1008,12 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 			source_id: `path:${row.path}`,
 			state: "drift",
 			direction: "upward",
-			from_layer: row.change_class === "code-bugfix" ? "code" : row.change_class === "task" ? "roadmap" : "knowledge",
+			from_layer: row.change_type === "code" ? "code" : row.change_type === "task" ? "roadmap" : "knowledge",
 			to_layer: "build",
-			next_loop: row.change_class === "product" || row.change_class === "system" || row.change_class === "security" ? "feedback" : row.change_class === "task" ? "planning" : "implementation",
-			reason: `Semantic ${row.change_class} change ${row.path} lacks accepted compiler build coverage.`,
+			next_loop: row.change_type === "product" || row.change_type === "system" ? "feedback" : row.change_type === "task" ? "planning" : "implementation",
+			reason: `Semantic ${row.change_type} change ${row.path} lacks accepted compiler build coverage.`,
 			gaps: row.gaps,
-			change_class: row.change_class,
+			change_type: row.change_type,
 		});
 	}
 	for (const feedback of builds.filter((build) => {

@@ -70,19 +70,18 @@ Every semantic change must trace to an accepted compiler build before it can clo
 
 Generated files, runtime/session queue state, validation/audit reports, and purely mechanical formatting do not require their own build. If they are part of a semantic change set, they must attach to the relevant accepted build and evidence mapping.
 
-## Change classification
+## Change type
 
-All agent-led semantic work starts with feedback classification, then routes to the owning loop:
+All agent-led semantic work starts with feedback classification, then routes to the owning loop. Builds and task metadata use `change_type` for the target that changed:
 
-| Change class | Primary owner | Required propagation check |
+| Change type | Primary owner | Required propagation check |
 | --- | --- | --- |
-| Product change | Feedback -> documentation | Product docs, system impact, roadmap/tests/code needs. |
-| System or architecture change | Feedback -> documentation | System docs, file ownership, graph/gateway policy, roadmap/code needs. |
-| Task execution | Planning -> implementation | Existing accepted intent/docs/task links, tests/code evidence. |
-| Code-level bugfix | Feedback or planning | Upward docs/roadmap impact if behavior changes. |
-| Maintenance or audit finding | Feedback | Whether finding changes policy, docs, tasks, code, or publication. |
-| Security change | Feedback -> documentation/planning | Security audit evidence, dependency/package impact, publication policy. |
-| Publication change | Implementation -> validation/publication | Commit/package/PR/release assertions match accepted builds and checked content. |
+| `product` | Feedback -> documentation | Product docs, system impact, roadmap/tests/code needs. |
+| `system` | Feedback -> documentation | System docs, file ownership, graph/gateway policy, roadmap/code needs. |
+| `task` | Planning -> implementation | Existing accepted intent/docs/task links, tests/code evidence. |
+| `code` | Feedback, planning, or implementation | Upward docs/roadmap impact if behavior changes. |
+
+Security, audit, publication, and maintenance describe risk, workflow, or intent. They should be represented as labels, profiles, risk metadata, or publication context rather than primary change types. Generated, runtime, and mechanical-only work should use traceability exemption metadata (`generated`, `runtime`, or `mechanical`) and `semantic=false` when policy allows.
 
 When intent is unclear, work routes back to feedback before canonical docs, roadmap, tests, or code change.
 

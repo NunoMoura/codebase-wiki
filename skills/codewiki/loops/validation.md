@@ -36,7 +36,7 @@ Use the smallest useful context:
 
 1. Read the compact brief first.
 2. Inspect only enough source to validate claims.
-3. Validate the submitted build against its policy, change class, accepted upstream build refs, source refs, requirement ids, evidence mapping, and isolation requirements.
+3. Validate the submitted build against its policy, change type, accepted upstream build refs, source refs, requirement ids, evidence mapping, and isolation requirements.
 4. Run or review relevant checks when allowed.
 5. Judge acceptance criteria one by one.
 6. Judge non-goals and scope.
