@@ -15,10 +15,12 @@ import type {
 	TaskVerifierResult,
 	RoadmapTaskInput,
 	TaskLoopUpdateInput,
+	ChangeClass,
 } from "../domain/shared/types.ts";
 import {
 	ROADMAP_STATUS_VALUES,
 	ROADMAP_PRIORITY_VALUES,
+	CHANGE_CLASS_VALUES,
 } from "../domain/shared/types.ts";
 import { unique, nowIso, formatError } from "../domain/shared/utils.ts";
 import { withLockedPaths } from "../mutation-queue.ts";
@@ -60,6 +62,7 @@ export function hasCodewikiTaskPatchChanges(
 				patch.goal?.acceptance !== undefined ||
 				patch.goal?.non_goals !== undefined ||
 				patch.goal?.verification !== undefined ||
+				patch.change_class !== undefined ||
 				patch.delta?.desired !== undefined ||
 				patch.delta?.current !== undefined ||
 				patch.delta?.closure !== undefined),
@@ -87,6 +90,7 @@ export function buildRoadmapTaskUpdateFromCodewikiPatch(
 		code_paths: patch.code_paths,
 		research_ids: patch.research_ids,
 		labels: patch.labels,
+		change_class: patch.change_class,
 		goal: patch.goal,
 		delta: patch.delta,
 	};
@@ -759,6 +763,7 @@ export async function appendRoadmapTasks(
 					code_paths: unique(input.code_paths ?? []),
 					research_ids: unique(input.research_ids ?? []),
 					labels: unique(input.labels ?? []),
+					change_class: normalizeTaskChangeClass(input.change_class, input.kind),
 					goal: normalizeRoadmapTaskGoal(input.goal, input.summary ?? ""),
 					delta: {
 						desired: input.delta?.desired ?? "",
@@ -860,6 +865,13 @@ export async function updateRoadmapTask(
 				const next = unique(update.labels);
 				if (next.join(",") !== task.labels.join(",")) {
 					task.labels = next;
+					changed = true;
+				}
+			}
+			if (update.change_class !== undefined) {
+				const next = normalizeTaskChangeClass(update.change_class, task.kind);
+				if (next !== task.change_class) {
+					task.change_class = next;
 					changed = true;
 				}
 			}
@@ -1209,6 +1221,19 @@ export function normalizeRoadmapTaskGoal(
 	};
 }
 
+function normalizeTaskChangeClass(value: unknown, fallbackKind?: unknown): ChangeClass {
+	const normalized = String(value || "").trim().toLowerCase();
+	if ((CHANGE_CLASS_VALUES as readonly string[]).includes(normalized)) return normalized as ChangeClass;
+	const kind = String(fallbackKind || "").trim().toLowerCase();
+	if (/security|vulnerab|secret/.test(kind)) return "security";
+	if (/publish|release|package/.test(kind)) return "publication";
+	if (/audit|maintenance|chore/.test(kind)) return "maintenance";
+	if (/bug|fix/.test(kind)) return "code-bugfix";
+	if (/doc|product/.test(kind)) return "product";
+	if (/architecture|system|migration|workflow|agent/.test(kind)) return "system";
+	return "task";
+}
+
 /**
  * Normalize a roadmap status string.
  */
@@ -1294,6 +1319,7 @@ export async function readRoadmapFile(path: string): Promise<RoadmapFile> {
 						Array.isArray(record.research_ids) ? record.research_ids : [],
 					),
 					labels: unique(Array.isArray(record.labels) ? record.labels : []),
+					change_class: normalizeTaskChangeClass(record.change_class, record.kind),
 					goal: normalizeRoadmapTaskGoal(
 						record.goal,
 						String(record.summary ?? ""),

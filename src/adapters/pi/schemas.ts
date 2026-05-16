@@ -1,6 +1,10 @@
 import { Type } from "@sinclair/typebox";
 import * as T from "../../domain/shared/types.ts";
 
+export const changeClassSchema = Type.Union(
+	T.CHANGE_CLASS_VALUES.map((value) => Type.Literal(value)),
+);
+
 export const subagentRoleSchema = Type.Union(
 	T.SUBAGENT_ROLE_VALUES.map((value) => Type.Literal(value)),
 );
@@ -110,6 +114,7 @@ export const codewikiTaskCreateSchema = Type.Object({
 	code_paths: Type.Optional(Type.Array(Type.String(), { default: [] })),
 	research_ids: Type.Optional(Type.Array(Type.String(), { default: [] })),
 	labels: Type.Optional(Type.Array(Type.String(), { default: [] })),
+	change_class: Type.Optional(changeClassSchema),
 	goal: Type.Optional(roadmapTaskGoalSchema),
 	delta: Type.Optional(
 		Type.Object({
@@ -264,6 +269,7 @@ export const codewikiTaskPatchSchema = Type.Object({
 	code_paths: Type.Optional(Type.Array(Type.String())),
 	research_ids: Type.Optional(Type.Array(Type.String())),
 	labels: Type.Optional(Type.Array(Type.String())),
+	change_class: Type.Optional(changeClassSchema),
 	goal: Type.Optional(roadmapTaskGoalSchema),
 	delta: Type.Optional(
 		Type.Object({
@@ -433,6 +439,16 @@ export const codewikiBuildToolInputSchema = Type.Object({
 	schema_version: Type.Optional(Type.Number()),
 	consumes: Type.Optional(codewikiBuildRefsSchema),
 	produces: Type.Optional(codewikiBuildProducesSchema),
+	change_class: Type.Optional(changeClassSchema),
+	upstream_build_refs: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	accepted_build_refs: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	traceability: Type.Optional(Type.Object({
+		change_class: Type.Optional(changeClassSchema),
+		semantic: Type.Optional(Type.Boolean()),
+		requires_accepted_build: Type.Optional(Type.Boolean()),
+		upstream_build_refs: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+		accepted_build_refs: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	})),
 	cycle: Type.Optional(codewikiBuildCycleSchema),
 	policy: Type.Optional(codewikiBuildPolicySchema),
 	requirements: Type.Optional(Type.Array(codewikiBuildRequirementSchema)),

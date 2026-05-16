@@ -10,7 +10,7 @@ user conversation -> inspect .codewiki/kb and code -> propose diff table + agent
 
 - May read `.codewiki/kb/**` and code for grounding. Does not write canonical knowledge until the build is accepted.
 - Surfaces ambiguity, risk, blind spots, simpler alternatives, and blunt disagreement when the requested direction harms the project.
-- Must present a compact diff table before asking the user to accept feedback. The table is the feedback-loop decision surface.
+- Must present a compact Change row table before asking the user to accept feedback. The table is the feedback-loop decision surface.
 - Uses `ask_user` for decision handoffs. Never guesses user intent silently.
 - Any compiler may escalate back here when it finds ambiguous or missing intent.
 - Start feedback work from a fresh session or a recorded context reset when it follows another compiler loop.
@@ -27,7 +27,7 @@ user conversation -> inspect .codewiki/kb and code -> propose diff table + agent
    - Surface drift between knowledge and code instead of choosing silently.
 
 3. **Propose feedback build**
-   - Present a markdown diff table before acceptance with these columns: `Current state`, `Desired state`, `Rationale`, `Affected layers`, `Risk`, `User action`.
+   - Present a markdown Change row table before acceptance with these columns: `Current state`, `Desired state`, `Rationale`, `Affected layers`, `Risk`, `User action`.
    - Below the table, provide a first-principles agent assessment: what is sound, what is risky, where intent is unclear, which simpler alternatives exist, and where you disagree.
    - Keep rows high-signal and decision-oriented. Prefer 3-7 rows; split unrelated decisions into separate feedback handoffs.
    - Capture accepted decisions, assumptions, open questions, non-goals, risks, and requirement ids where useful.

@@ -142,6 +142,7 @@ export function buildRoadmapState(
 			status,
 			priority,
 			kind: String(item.kind || "task").trim(),
+			change_class: String(item.change_class || "").trim() || undefined,
 			summary: String(item.summary || "").trim(),
 			labels: Array.isArray(item.labels) ? item.labels : [],
 			goal: {

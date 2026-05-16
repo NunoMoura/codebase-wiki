@@ -76,10 +76,38 @@ try {
 	const badBuildPath = ".codewiki/builds/implementation/not-commit-ready.json";
 	const implementationData = JSON.parse(await readFile(join(root, implementation.path), "utf8"));
 	assert.deepEqual(implementationData.policy.required_audits, ["alignment", "changed"]);
+	assert.equal(implementationData.change_class, "task");
+	assert.equal(implementationData.traceability.requires_accepted_build, true);
+	assert.deepEqual(implementationData.traceability.accepted_build_refs, [planning.path]);
 	const badBuild = JSON.parse(JSON.stringify(implementationData));
 	badBuild.publication.commit.trailers = badBuild.publication.commit.trailers.filter((trailer) => !String(trailer).startsWith("CodeWiki-Validation:"));
 	await mkdir(join(root, ".codewiki/builds/implementation"), { recursive: true });
 	await writeFile(join(root, badBuildPath), JSON.stringify(badBuild, null, 2) + "\n", "utf8");
+	const missingTraceabilityBuildPath = ".codewiki/builds/implementation/missing-traceability.json";
+	const missingTraceabilityBuild = JSON.parse(JSON.stringify(implementationData));
+	delete missingTraceabilityBuild.source_planning_build;
+	missingTraceabilityBuild.consumes.planning = [];
+	missingTraceabilityBuild.traceability.accepted_build_refs = [];
+	missingTraceabilityBuild.traceability.upstream_build_refs = [];
+	await writeFile(join(root, missingTraceabilityBuildPath), JSON.stringify(missingTraceabilityBuild, null, 2) + "\n", "utf8");
+	const traceabilityBlocked = await writeValidationReport(project, {
+		profile: "implementation",
+		task_id: "TASK-123",
+		verdict: "pass",
+		rationale: "Fresh validator cannot pass semantic work missing accepted planning build traceability.",
+		source: missingTraceabilityBuildPath,
+		audit_refs: implementationAuditRefs,
+		isolation: {
+			role: "validator",
+			fresh_context: true,
+			clean: false,
+			working_tree_digest: "sha256:dirty-tree",
+		},
+	});
+	assert.equal(traceabilityBlocked.data.verdict, "block");
+	assert.ok(traceabilityBlocked.data.failed_criteria.includes("semantic_build_traceability"));
+	assert.match(traceabilityBlocked.data.issues.map((issue) => issue.summary).join("\n"), /accepted_planning_build_ref|source_planning_build/);
+
 	const commitReadinessBlocked = await writeValidationReport(project, {
 		profile: "implementation",
 		task_id: "TASK-123",
@@ -165,6 +193,22 @@ try {
 	});
 	assert.equal(dirtyPreCommitPassed.data.verdict, "pass");
 	assert.equal(dirtyPreCommitPassed.data.isolation.working_tree_digest, "sha256:dirty-tree");
+
+	const taskCloseTraceabilityWarn = await writeValidationReport(project, {
+		profile: "task-close",
+		task_id: "TASK-123",
+		verdict: "pass",
+		rationale: "Legacy task-close report has immutable proof but no source build.",
+		audit_refs: taskCloseAuditRefs,
+		isolation: {
+			role: "validator",
+			fresh_context: true,
+			clean: true,
+			validated_sha: "abc1234",
+		},
+	});
+	assert.equal(taskCloseTraceabilityWarn.data.verdict, "pass");
+	assert.ok(taskCloseTraceabilityWarn.data.semantic_traceability_requirement.warnings.some((item) => /source_implementation_build missing/.test(item)));
 
 	const dirtyTaskCloseBlocked = await writeValidationReport(project, {
 		profile: "task-close",

@@ -60,7 +60,7 @@ Cycle builds should be created at loop-level handoff boundaries, not for every t
 A feedback build should include:
 
 - user intention or problem,
-- approved change-table rows,
+- approved Change rows,
 - accepted decisions,
 - agent assessment from first principles,
 - assumptions,
@@ -70,7 +70,7 @@ A feedback build should include:
 - expected lower-layer changes,
 - requirement ids that downstream loops can trace.
 
-The approved change table is mandatory for new feedback builds because it is the user-facing intent contract. Each row records current state, desired state, rationale, affected layers, risk, and user action. Pending or rejected rows can live in runtime/session UI state; only approved rows become canonical feedback build content.
+The approved Change row table is mandatory for new feedback builds because it is the user-facing intent contract. Each Change row records current state, desired state, rationale, affected layers, risk, and user action. Pending or rejected rows can live in runtime/session UI state; only approved rows become canonical feedback build content.
 
 ## Documentation build
 
@@ -142,9 +142,11 @@ New builds should expose explicit DAG fields:
 
 - `consumes`: upstream build, roadmap, validation, or source refs this build depends on,
 - `produces`: downstream knowledge, roadmap, code, test, validation, publication, or closure refs this build creates or updates,
+- `change_class`: product, system, task, code-bugfix, maintenance, audit, security, publication, generated, runtime, or mechanical,
+- `traceability`: semantic flag, required upstream loop, upstream build refs, and accepted build refs used to prove semantic propagation,
 - `policy.isolation`: loop-start, validation, and next-loop context-boundary requirements.
 
-Graph reconciliation should prefer these explicit edges over inferred legacy fields. Requirement traceability should use requirement ids and evidence mapping rather than prose matching.
+Graph reconciliation should prefer these explicit edges over inferred legacy fields. Requirement traceability should use requirement ids and evidence mapping rather than prose matching. Semantic changes in knowledge, roadmap, code, tests, package metadata, or publication claims should have accepted upstream build refs before implementation validation or task closure can pass. Generated, runtime, and mechanical-only changes may set non-semantic classification when policy allows.
 
 ## Lifecycle
 

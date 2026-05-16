@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-16T09:20:01Z",
+  "profile": "implementation",
+  "task_id": "TASK-082",
+  "verdict": "pass",
+  "rationale": "Fresh validation from repo truth verified TASK-082 acceptance: build/task APIs expose change_class and accepted build refs, graph marks semantic dirty paths and suppresses covered paths, implementation validation blocks missing accepted planning refs, task-close warning/block policy is covered, and feedback docs use Change row terminology. Targeted checks and npm test passed; audit warnings are generated-state/pre-existing health warnings, not TASK-082 acceptance failures.",
+  "checks": [
+    "audit:alignment",
+    "audit:changed",
+    "audit:task",
+    "npm run typecheck",
+    "node tests/smoke/alignment-graph.test.mjs",
+    "node tests/smoke/loop-isolation-policy.test.mjs",
+    "npm test"
+  ],
+  "issues": [],
+  "source": ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
+  "policy_profile": "implementation",
+  "required_audits": [
+    "alignment",
+    "changed",
+    "task"
+  ],
+  "audit_refs": [
+    "audit:alignment",
+    "audit:changed",
+    "audit:task"
+  ],
+  "audit_reports": [],
+  "content_proof_refs": [
+    "sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda"
+  ],
+  "failed_criteria": [],
+  "blocking_questions": [],
+  "isolation_requirement": {
+    "required": true,
+    "mode": "fresh-context-checked-content",
+    "reason": "Implementation validation requires independent validator context and checked content proof.",
+    "evidence": [
+      "fresh_context=true",
+      "clean state recorded",
+      "validated_sha/head_sha/published_sha/tree_sha or working_tree_digest"
+    ],
+    "handoff": "implementation validation",
+    "profiles": [
+      "implementation"
+    ]
+  },
+  "audit_requirement": {
+    "required": true,
+    "profiles": [
+      "alignment",
+      "changed",
+      "task"
+    ],
+    "evidence": [
+      "audit:alignment or profile:alignment",
+      "audit:changed or profile:changed",
+      "audit:task or profile:task"
+    ],
+    "reason": "Gateway profiles require deterministic audit evidence for their build or boundary context.",
+    "gaps": []
+  },
+  "commit_readiness_requirement": {
+    "required": true,
+    "evidence": [
+      "task_id",
+      "source_planning_build",
+      "accepted_planning_build_ref",
+      "acceptance_mapping",
+      "code_files",
+      "test_files or test_design_evidence",
+      "checks_run",
+      "closure_brief",
+      "publication.commit title/body",
+      "CodeWiki task/build/checks/validation/recover trailers"
+    ],
+    "gaps": []
+  },
+  "semantic_traceability_requirement": {
+    "required": true,
+    "evidence": [
+      "source implementation build",
+      "change_class",
+      "accepted upstream compiler build refs"
+    ],
+    "gaps": [],
+    "warnings": []
+  },
+  "isolation": {
+    "working_tree_digest": "sha256:0e5d856116367abb47e442be0598e6808fcc85b309cc73ed19efd22a1a94afda",
+    "clean": false,
+    "fresh_context": true,
+    "notes": "Fresh validator session; dirty pre-commit worktree validated by digest.",
+    "role": "validator"
+  }
+}

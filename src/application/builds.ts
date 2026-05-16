@@ -41,8 +41,153 @@ function buildBuildPath(project: WikiProject, kind: string, slug: string, day: s
 	return abs;
 }
 
-function trimList(values?: string[]): string[] {
-	return (values ?? []).map((value) => value.trim()).filter(Boolean);
+function trimList(values?: unknown[]): string[] {
+	return (values ?? []).map((value) => String(value || "").trim()).filter(Boolean);
+}
+
+const CHANGE_CLASSES = new Set([
+	"product",
+	"system",
+	"task",
+	"code-bugfix",
+	"maintenance",
+	"audit",
+	"security",
+	"publication",
+	"generated",
+	"runtime",
+	"mechanical",
+]);
+const NON_SEMANTIC_CHANGE_CLASSES = new Set(["generated", "runtime", "mechanical"]);
+const ACCEPTED_BUILD_STATES = new Set(["accepted", "applied", "validated", "consumed", "archived"]);
+
+function normalizeChangeClass(value: unknown, fallback: string): string {
+	const normalized = String(value || "").trim().toLowerCase();
+	return CHANGE_CLASSES.has(normalized) ? normalized : fallback;
+}
+
+function inferChangeClassForBuild(kind: string, inputOrBuild: any): string {
+	if (kind === "feedback_build" || kind === "feedback") {
+		const delta = inputOrBuild.lower_layer_delta || {};
+		const produces = inputOrBuild.produces || {};
+		if (trimList(delta.roadmap).length || trimList(produces.roadmap).length) return "task";
+		if (trimList(delta.code).length || trimList(produces.code).length) return "code-bugfix";
+		return "product";
+	}
+	if (kind === "documentation_build" || kind === "documentation") {
+		const paths = [...trimList(inputOrBuild.knowledge_changes), ...trimList(inputOrBuild.produces?.knowledge)];
+		return paths.some((path) => path.includes("/product/")) ? "product" : "system";
+	}
+	if (kind === "planning_build" || kind === "planning") return "task";
+	if (kind === "implementation_build" || kind === "implementation") {
+		const refs = [
+			...trimList(inputOrBuild.code_files),
+			...trimList(inputOrBuild.produces?.code),
+			...trimList(inputOrBuild.produces?.publication),
+		];
+		if (refs.some((ref) => /security|secret|vulnerab/i.test(ref))) return "security";
+		if (refs.some((ref) => /package\.json|package-lock\.json|release|publish/i.test(ref)) || trimList(inputOrBuild.produces?.publication).length) return "publication";
+		if (refs.some((ref) => /audit|check-architecture/i.test(ref))) return "audit";
+		return "task";
+	}
+	return "task";
+}
+
+function isSemanticChangeClass(changeClass: string): boolean {
+	return Boolean(changeClass) && !NON_SEMANTIC_CHANGE_CLASSES.has(changeClass);
+}
+
+function buildLifecycleState(data: any): string {
+	return String(data?.lifecycle?.state || data?.status || "").trim().toLowerCase();
+}
+
+function isAcceptedBuildData(data: any): boolean {
+	return ACCEPTED_BUILD_STATES.has(buildLifecycleState(data));
+}
+
+function normalizeBuildPath(ref: string): string {
+	return normalizeRepoPath(ref).replace(/^\.\//, "");
+}
+
+function readBuildRef(project: WikiProject, ref: string): { ok: true; data: any } | { ok: false; reason: string } {
+	const normalized = normalizeBuildPath(ref);
+	if (!normalized.startsWith(".codewiki/builds/")) return { ok: false, reason: "not-build-ref" };
+	try {
+		return { ok: true, data: JSON.parse(readFileSync(resolve(project.root, normalized), "utf8")) };
+	} catch {
+		return { ok: false, reason: "unreadable" };
+	}
+}
+
+function acceptedBuildRefGaps(project: WikiProject, refs: string[], gapName: string): string[] {
+	if (refs.length === 0) return [gapName];
+	const gaps: string[] = [];
+	for (const ref of refs) {
+		const result = readBuildRef(project, ref);
+		if (!result.ok) {
+			gaps.push(`${gapName}:${ref}:${result.reason}`);
+			continue;
+		}
+		if (!isAcceptedBuildData(result.data)) gaps.push(`${gapName}:${ref}:not_accepted`);
+	}
+	return unique(gaps);
+}
+
+function buildRefsByKind(build: any, loop: "feedback" | "documentation" | "planning" | "implementation"): string[] {
+	const field = loop === "feedback"
+		? "source_feedback_build"
+		: loop === "documentation"
+			? "source_documentation_build"
+			: loop === "planning"
+				? "source_planning_build"
+				: "source_implementation_build";
+	return unique([
+		...trimList([build?.[field]]),
+		...trimList(build?.consumes?.[loop]),
+		...trimList(build?.traceability?.accepted_build_refs).filter((ref) => ref.includes(`/builds/${loop}/`)),
+		...trimList(build?.accepted_build_refs).filter((ref) => ref.includes(`/builds/${loop}/`)),
+	]);
+}
+
+function requiredUpstreamLoop(kind: string): "feedback" | "documentation" | "planning" | null {
+	if (kind === "documentation_build") return "feedback";
+	if (kind === "planning_build") return "documentation";
+	if (kind === "implementation_build") return "planning";
+	return null;
+}
+
+function semanticTraceabilityGaps(project: WikiProject, build: any): string[] {
+	const kind = String(build?.kind || "").trim();
+	const changeClass = normalizeChangeClass(build?.traceability?.change_class ?? build?.change_class, inferChangeClassForBuild(kind, build));
+	const requires = build?.traceability?.requires_accepted_build ?? (isSemanticChangeClass(changeClass) && requiredUpstreamLoop(kind) !== null);
+	if (!requires) return [];
+	const upstream = requiredUpstreamLoop(kind);
+	if (!upstream) return [];
+	return acceptedBuildRefGaps(project, buildRefsByKind(build, upstream), `accepted_${upstream}_build_ref`);
+}
+
+function buildTraceability(kind: string, input: CodewikiBuildToolInput, consumes: CodewikiBuildRefsInput, produces: CodewikiBuildProducesInput) {
+	const changeClass = normalizeChangeClass(input.traceability?.change_class ?? input.change_class, inferChangeClassForBuild(kind, { ...input, consumes, produces }));
+	const semantic = input.traceability?.semantic ?? isSemanticChangeClass(changeClass);
+	const upstreamLoop = requiredUpstreamLoop(`${kind}_build`);
+	const upstreamBuildRefs = unique([
+		...trimList(input.upstream_build_refs),
+		...trimList(input.traceability?.upstream_build_refs),
+		...(upstreamLoop ? buildRefsByKind({ ...input, consumes }, upstreamLoop) : []),
+	]);
+	const acceptedBuildRefs = unique([
+		...trimList(input.accepted_build_refs),
+		...trimList(input.traceability?.accepted_build_refs),
+		...upstreamBuildRefs,
+	]);
+	return {
+		change_class: changeClass,
+		semantic,
+		requires_accepted_build: input.traceability?.requires_accepted_build ?? (semantic && upstreamLoop !== null),
+		upstream_loop: upstreamLoop,
+		upstream_build_refs: upstreamBuildRefs,
+		accepted_build_refs: acceptedBuildRefs,
+	};
 }
 
 const DEFAULT_REQUIRED_AUDIT_PROFILES: Record<string, string[]> = {
@@ -232,7 +377,10 @@ function validationCommitReadinessGaps(project: WikiProject, input: CodewikiVali
 	const taskId = String(build.task_id || build.task?.id || "").trim();
 	if (build.kind !== "implementation_build") gaps.push("source_kind=implementation_build");
 	if (!taskId) gaps.push("task_id");
-	if (!build.source_planning_build && !Array.isArray(build.consumes?.planning)) gaps.push("source_planning_build");
+	const planningRefs = buildRefsByKind(build, "planning");
+	if (planningRefs.length === 0) gaps.push("source_planning_build");
+	else gaps.push(...acceptedBuildRefGaps(project, planningRefs, "accepted_planning_build_ref"));
+	gaps.push(...semanticTraceabilityGaps(project, build));
 	if (!Array.isArray(build.acceptance_mapping) || build.acceptance_mapping.length === 0) gaps.push("acceptance_mapping");
 	const codeRefs = unique([...trimList(build.code_files), ...trimList(build.produces?.code)]);
 	const testRefs = unique([...trimList(build.test_files), ...trimList(build.produces?.tests), ...trimList(build.test_design_evidence)]);
@@ -257,6 +405,29 @@ function validationCommitReadinessGaps(project: WikiProject, input: CodewikiVali
 	if (!hasTrailer("CodeWiki-Validation")) gaps.push("CodeWiki-Validation trailer_or_placeholder");
 	if (!hasTrailer("CodeWiki-Recover") && !hasTrailer("CodeWiki-Restore")) gaps.push("CodeWiki-Recover trailer");
 	return unique(gaps);
+}
+
+function validationSemanticTraceability(project: WikiProject, input: CodewikiValidationReportInput, profile: string): { gaps: string[]; warnings: string[] } {
+	if (input.verdict !== "pass") return { gaps: [], warnings: [] };
+	const normalizedProfile = profile.trim().toLowerCase();
+	if (!["implementation", "task-close", "publication", "publish", "release"].includes(normalizedProfile)) return { gaps: [], warnings: [] };
+	const source = (input.source ?? "").trim();
+	if (!source) {
+		const warning = "source_implementation_build missing; semantic build traceability could not be checked.";
+		const strict = String(input.policy_profile || "").toLowerCase().includes("traceability-required");
+		return strict ? { gaps: ["source_implementation_build"], warnings: [] } : { gaps: [], warnings: [warning] };
+	}
+	const result = readBuildRef(project, source);
+	if (!result.ok) return { gaps: [`source_implementation_build:${result.reason}`], warnings: [] };
+	const build = result.data;
+	const gaps: string[] = [];
+	if (build.kind !== "implementation_build") gaps.push("source_kind=implementation_build");
+	const expectedTaskId = String(input.task_id || "").trim();
+	const buildTaskId = String(build.task_id || build.task?.id || "").trim();
+	if (expectedTaskId && buildTaskId && expectedTaskId !== buildTaskId) gaps.push("source_task_id_mismatch");
+	if (!isAcceptedBuildData(build)) gaps.push("source_implementation_build_accepted");
+	gaps.push(...semanticTraceabilityGaps(project, build));
+	return { gaps: unique(gaps), warnings: [] };
 }
 
 function trimRefGroups(input?: CodewikiBuildRefsInput): CodewikiBuildRefsInput {
@@ -631,6 +802,8 @@ export async function writeFeedbackBuild(
 		roadmap: lowerLayerDelta.roadmap,
 		code: lowerLayerDelta.code,
 	}, input.produces);
+	const consumes = trimRefGroups(input.consumes);
+	const traceability = buildTraceability("feedback", input, consumes, produces);
 	const data = {
 		version: 1,
 		schema_version: input.schema_version ?? 2,
@@ -648,7 +821,9 @@ export async function writeFeedbackBuild(
 		open_questions: trimList(input.open_questions),
 		non_goals: trimList(input.non_goals),
 		lower_layer_delta: lowerLayerDelta,
-		consumes: trimRefGroups(input.consumes),
+		change_class: traceability.change_class,
+		traceability,
+		consumes,
 		produces,
 	};
 	await mkdir(dirname(absPath), { recursive: true });
@@ -679,6 +854,7 @@ export async function writeDocumentationBuild(
 		knowledge: knowledgeChanges,
 		roadmap: roadmapChanges,
 	}, input.produces);
+	const traceability = buildTraceability("documentation", input, consumes, produces);
 	const data = {
 		version: 1,
 		schema_version: input.schema_version ?? 2,
@@ -694,6 +870,8 @@ export async function writeDocumentationBuild(
 		roadmap_changes: roadmapChanges,
 		assumptions: trimList(input.assumptions),
 		open_questions: trimList(input.open_questions),
+		change_class: traceability.change_class,
+		traceability,
 		consumes,
 		produces,
 	};
@@ -731,6 +909,7 @@ export async function writePlanningBuild(
 		tests: candidateTestFiles,
 		code: candidateCodePaths,
 	}, input.produces);
+	const traceability = buildTraceability("planning", input, consumes, produces);
 	const data = {
 		version: 1,
 		schema_version: input.schema_version ?? 2,
@@ -753,6 +932,8 @@ export async function writePlanningBuild(
 		open_questions: trimList(input.open_questions),
 		non_goals: trimList(input.non_goals),
 		risks: trimList(input.risks),
+		change_class: traceability.change_class,
+		traceability,
 		consumes,
 		produces,
 	};
@@ -848,6 +1029,7 @@ export async function writeImplementationBuild(
 		validation: validationRefs,
 		closure: [taskId],
 	}, input.produces);
+	const traceability = buildTraceability("implementation", input, consumes, produces);
 	const artifactDigests = buildArtifactDigests(project, [
 		...(sourceDocumentationBuild ? [{ path: sourceDocumentationBuild, role: "source_documentation_build" }] : []),
 		...(sourcePlanningBuild ? [{ path: sourcePlanningBuild, role: "source_planning_build" }] : []),
@@ -879,6 +1061,8 @@ export async function writeImplementationBuild(
 		lifecycle,
 		...buildCycleFields(input, "implementation", "implementation"),
 		summary: input.summary.trim(),
+		change_class: traceability.change_class,
+		traceability,
 		consumes,
 		produces,
 		linked_refs: {
@@ -955,6 +1139,7 @@ export async function writeValidationReport(
 	const requirement = validationIsolationRequirement(profile, policyProfile);
 	const isolationGaps = validationIsolationGaps(isolation, requirement);
 	const commitReadinessGaps = validationCommitReadinessGaps(project, input, profile, isolationGaps);
+	const traceabilityPolicy = validationSemanticTraceability(project, input, profile);
 	const auditRefs = unique(trimList(input.audit_refs));
 	const auditReports = unique(trimList(input.audit_reports));
 	const auditReq = auditRequirement(profile, policyProfile, input.required_audits);
@@ -962,6 +1147,7 @@ export async function writeValidationReport(
 	const policyGaps = unique([
 		...isolationGaps,
 		...commitReadinessGaps,
+		...traceabilityPolicy.gaps,
 		...auditGaps.map((profileName) => `audit:${profileName}`),
 	]);
 	const policyBlocked = policyGaps.length > 0;
@@ -980,6 +1166,9 @@ export async function writeValidationReport(
 	const auditIssue = auditGaps.length > 0
 		? [{ severity: "high", summary: `Missing required audit evidence for profiles: ${auditGaps.join(", ")}.` }]
 		: [];
+	const traceabilityIssue = traceabilityPolicy.gaps.length > 0
+		? [{ severity: "high", summary: `Missing accepted semantic build traceability: ${traceabilityPolicy.gaps.join(", ")}.` }]
+		: traceabilityPolicy.warnings.map((summary) => ({ severity: "medium", summary }));
 	const contentProofRefs = validationContentProofRefs(isolation);
 	const data = {
 		version: 1,
@@ -992,7 +1181,7 @@ export async function writeValidationReport(
 			? `${input.rationale.trim()} Policy blocks ${profile} validation until ${policyGaps.join(", ")} are recorded.`
 			: input.rationale.trim(),
 		checks: (input.checks ?? []).map((v) => v.trim()).filter(Boolean),
-		issues: [...inputIssues, ...isolationIssue, ...commitReadinessIssue, ...auditIssue],
+		issues: [...inputIssues, ...isolationIssue, ...commitReadinessIssue, ...traceabilityIssue, ...auditIssue],
 		source: (input.source ?? "").trim() || undefined,
 		policy_profile: policyProfile,
 		required_audits: auditReq.profiles,
@@ -1003,12 +1192,14 @@ export async function writeValidationReport(
 			...trimList(input.failed_criteria),
 			...(isolationGaps.length > 0 ? ["validation_isolation"] : []),
 			...(commitReadinessGaps.length > 0 ? ["commit_readiness"] : []),
+			...(traceabilityPolicy.gaps.length > 0 ? ["semantic_build_traceability"] : []),
 			...(auditGaps.length > 0 ? ["audit_evidence"] : []),
 		]),
 		blocking_questions: unique([
 			...trimList(input.blocking_questions),
 			...(isolationGaps.length > 0 ? ["Run this gateway from fresh validator context and record required checked content proof for the profile."] : []),
 			...(commitReadinessGaps.length > 0 ? ["Update the implementation build with commit-ready title, body, trailers, checks, validation placeholder, closure brief, and file evidence before validation can pass."] : []),
+			...(traceabilityPolicy.gaps.length > 0 ? ["Cite an accepted upstream compiler build chain for semantic changes or classify the change as generated/runtime/mechanical when policy allows."] : []),
 			...(auditGaps.length > 0 ? [`Run or cite audit evidence for required profiles: ${auditGaps.join(", ")}.`] : []),
 		]),
 		isolation_requirement: requirement,
@@ -1019,10 +1210,16 @@ export async function writeValidationReport(
 		commit_readiness_requirement: profile.trim().toLowerCase() === "implementation"
 			? {
 				required: true,
-				evidence: ["task_id", "source_planning_build", "acceptance_mapping", "code_files", "test_files or test_design_evidence", "checks_run", "closure_brief", "publication.commit title/body", "CodeWiki task/build/checks/validation/recover trailers"],
+				evidence: ["task_id", "source_planning_build", "accepted_planning_build_ref", "acceptance_mapping", "code_files", "test_files or test_design_evidence", "checks_run", "closure_brief", "publication.commit title/body", "CodeWiki task/build/checks/validation/recover trailers"],
 				gaps: commitReadinessGaps,
 			}
 			: undefined,
+		semantic_traceability_requirement: {
+			required: traceabilityPolicy.gaps.length > 0 || profile.trim().toLowerCase() === "implementation",
+			evidence: ["source implementation build", "change_class", "accepted upstream compiler build refs"],
+			gaps: traceabilityPolicy.gaps,
+			warnings: traceabilityPolicy.warnings,
+		},
 		isolation,
 	};
 	await mkdir(dirname(absPath), { recursive: true });

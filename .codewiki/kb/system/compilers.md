@@ -69,9 +69,9 @@ It should surface:
 - focused questions when intent is ambiguous,
 - blunt disagreement when the requested direction harms the project.
 
-The feedback loop presents a change table before canonical edits. Each row shows current state, desired state, rationale, affected layers, risk, and a user action such as approve, edit, reject, or defer. Below the table, the agent should provide a first-principles assessment in the best interest of the project. Approved rows and accepted assessment compile into a `feedback_build`.
+The feedback loop presents a Change row table before canonical edits. Each Change row shows current state, desired state, rationale, affected layers, risk, and a user action such as approve, edit, reject, or defer. Below the table, the agent should provide a first-principles assessment in the best interest of the project. Approved Change rows and accepted assessment compile into a `feedback_build`.
 
-Pending, rejected, or deferred change rows can remain in runtime/session UI state or be summarized as open questions, non-goals, or future candidates. They must not silently become downstream requirements.
+Pending, rejected, or deferred Change rows can remain in runtime/session UI state or be summarized as open questions, non-goals, or future candidates. They must not silently become downstream requirements.
 
 ## Documentation loop
 

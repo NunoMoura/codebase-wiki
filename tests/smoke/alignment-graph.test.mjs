@@ -157,6 +157,24 @@ const validationReport = {
 }
 
 {
+	const graph = baseGraph({
+		gitCache: { getDirtyPaths: () => ["src/application/graph.ts"] },
+		builds: [],
+	});
+	const row = graph.views.traceability.semantic_change_gaps.find((entry) => entry.path === "src/application/graph.ts");
+	assert.ok(row?.gaps.includes("missing_accepted_build_coverage"), "Dirty semantic code should require accepted build coverage");
+	assert.ok(graph.views.reconciliation.items.some((item) => item.id === "reconcile:semantic-build:src/application/graph.ts"), "Graph should route missing semantic build coverage");
+}
+
+{
+	const graph = baseGraph({
+		gitCache: { getDirtyPaths: () => ["src/application/graph.ts"] },
+		builds: [implementationBuild],
+	});
+	assert.ok(!graph.views.traceability.semantic_change_gaps.some((entry) => entry.path === "src/application/graph.ts"), "Accepted implementation build should cover dirty semantic code");
+}
+
+{
 	const graph = baseGraph({ builds: [feedbackBuild, documentationBuild] });
 	assert.ok(graph.views.reconciliation.items.some((item) => item.source_id === `build:${documentationPath}` && item.next_loop === "planning"), "Documentation build with lower-layer delta should route to planning when no planning evidence exists");
 }

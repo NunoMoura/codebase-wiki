@@ -36,7 +36,7 @@ Use the smallest useful context:
 
 1. Read the compact brief first.
 2. Inspect only enough source to validate claims.
-3. Validate the submitted build against its policy, source refs, requirement ids, evidence mapping, and isolation requirements.
+3. Validate the submitted build against its policy, change class, accepted upstream build refs, source refs, requirement ids, evidence mapping, and isolation requirements.
 4. Run or review relevant checks when allowed.
 5. Judge acceptance criteria one by one.
 6. Judge non-goals and scope.
@@ -63,7 +63,7 @@ Use the smallest useful context:
 }
 ```
 
-`fail` means requirements are not satisfied. `block` means validation cannot safely decide because context, checks, schema, source refs, policy, isolation evidence, or task meaning is insufficient. For implementation, task-close, publication, publish, or release profiles, missing `fresh_context=true`, `clean=true`, or checked SHA evidence must block rather than pass. The gateway evaluates builds; it does not invent requirements or mutate canonical truth.
+`fail` means requirements are not satisfied. `block` means validation cannot safely decide because context, checks, schema, source refs, accepted build traceability, policy, isolation evidence, or task meaning is insufficient. For implementation, task-close, publication, publish, or release profiles, missing `fresh_context=true`, `clean=true`, checked SHA evidence, or required semantic build traceability must block rather than pass. The gateway evaluates builds; it does not invent requirements or mutate canonical truth.
 
 Passing validation does not require durable storage by default. Failed, blocked, or policy-required reports should be stored under `.codewiki/validation/**` by the parent process.
 
