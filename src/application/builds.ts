@@ -4,6 +4,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import type { CodewikiBuildProducesInput, CodewikiBuildRefsInput, CodewikiBuildToolInput, CodewikiClosureBriefInput, CodewikiDiffTableRowInput, CodewikiValidationReportInput, WikiProject, RoadmapTaskRecord } from "../domain/shared/types.ts";
 import { isAcceptedBuildData } from "../domain/build/lifecycle.ts";
+import type { ChangeType } from "../domain/shared/types.ts";
 import { normalizeChangeType, normalizeTraceabilityExemption, isSemanticTraceability } from "../domain/change/traceability.ts";
 import { nowIso, unique } from "../domain/shared/utils.ts";
 import { normalizeWorktreeIsolation } from "./claims.ts";
@@ -47,7 +48,7 @@ function trimList(values?: unknown[]): string[] {
 	return (values ?? []).map((value) => String(value || "").trim()).filter(Boolean);
 }
 
-function inferChangeTypeForBuild(kind: string, inputOrBuild: any): string {
+function inferChangeTypeForBuild(kind: string, inputOrBuild: any): ChangeType {
 	if (kind === "feedback_build" || kind === "feedback") {
 		const delta = inputOrBuild.lower_layer_delta || {};
 		const produces = inputOrBuild.produces || {};

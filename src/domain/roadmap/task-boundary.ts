@@ -1,4 +1,5 @@
-import type { RoadmapStatus, RoadmapTaskGoal, RoadmapTaskInput, RoadmapTaskRecord } from "../shared/types.ts";
+import type { RoadmapTaskGoal, RoadmapTaskInput, RoadmapTaskRecord } from "../shared/types.ts";
+import { isOpenRoadmapStatus } from "./status.ts";
 
 export interface RoadmapTaskBoundaryAssessment {
 	executable: boolean;
@@ -93,12 +94,10 @@ export function isExecutableRoadmapTask(task: TaskBoundaryInput): boolean {
 	return assessRoadmapTaskBoundary(task).executable;
 }
 
-export function isOpenRoadmapTaskStatus(status: RoadmapStatus | string | undefined): boolean {
-	return status === "todo" || status === "in_progress" || status === "blocked";
-}
+export const isOpenRoadmapTaskStatus = isOpenRoadmapStatus;
 
 export function assertExecutableRoadmapTask(task: TaskBoundaryInput, action = "roadmap mutation"): void {
-	if (!isOpenRoadmapTaskStatus(task.status)) return;
+	if (!isOpenRoadmapStatus(task.status)) return;
 	const assessment = assessRoadmapTaskBoundary(task);
 	if (assessment.executable) return;
 	const id = String(task.id || "new task").trim();
