@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-05-16T09:20:30Z",
+  "updated": "2026-05-16T09:29:48Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -51,7 +51,6 @@
     "TASK-076",
     "TASK-077",
     "TASK-078",
-    "TASK-082",
     "TASK-084",
     "TASK-085",
     "TASK-087",
@@ -2212,58 +2211,6 @@
       },
       "created": "2026-05-15",
       "updated": "2026-05-16T01:01:14Z"
-    },
-    "TASK-082": {
-      "id": "TASK-082",
-      "title": "Harden semantic build traceability and change classification",
-      "status": "in_progress",
-      "priority": "critical",
-      "kind": "architecture",
-      "summary": "Require semantic changes to trace to accepted builds and add change-class routing rules for product, system, task, code bugfix, maintenance/audit, security, and publication changes.",
-      "spec_paths": [
-        ".codewiki/kb/system/alignment-model.md",
-        ".codewiki/kb/system/compilers.md",
-        ".codewiki/kb/system/builds.md"
-      ],
-      "code_paths": [
-        "src/application/builds.ts",
-        "src/application/graph.ts",
-        "src/application/roadmap.ts",
-        "src/adapters/pi/tools/task.ts",
-        "skills/codewiki/loops",
-        "tests/smoke"
-      ],
-      "research_ids": [],
-      "labels": [
-        "sprint:alignment-hardening",
-        "feedback",
-        "traceability",
-        "builds"
-      ],
-      "goal": {
-        "outcome": "Task closure, implementation validation, and publication cannot proceed for semantic changes without accepted upstream build traceability and change-class propagation evidence.",
-        "acceptance": [
-          "Build/roadmap/task APIs model change class and upstream accepted build refs where required.",
-          "Graph flags semantic code/docs/roadmap changes without accepted build coverage.",
-          "Task-close blocks or warns according to policy when accepted build traceability is missing.",
-          "Feedback loop docs/skill use Change row terminology consistently."
-        ],
-        "non_goals": [
-          "Do not force a new build for generated/runtime/mechanical-only changes."
-        ],
-        "verification": [
-          "npm run typecheck",
-          "npm run test:smoke",
-          "codewiki_state/graph shows missing-build drift in fixture"
-        ]
-      },
-      "delta": {
-        "desired": "Semantic changes must pass through accepted build traceability before close/validate/publish.",
-        "current": "Semantic traceability can be bypassed during direct implementation/cleanup.",
-        "closure": "APIs, graph, gateway, and tests enforce build traceability without build-per-file tax."
-      },
-      "created": "2026-05-15",
-      "updated": "2026-05-16T09:20:30Z"
     },
     "TASK-084": {
       "id": "TASK-084",

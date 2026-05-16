@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T09:27:23.295Z",
+  "generated_at": "2026-05-16T09:29:59.970Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -1144,21 +1144,6 @@
       "id": "code:tests/smoke",
       "kind": "code_path",
       "path": "tests/smoke",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
-      "id": "task:TASK-082",
-      "kind": "roadmap_task",
-      "title": "Harden semantic build traceability and change classification",
-      "layer": "roadmap",
-      "status": "in_progress",
-      "alignment_state": "drift"
-    },
-    {
-      "id": "code:src/adapters/pi/tools/task.ts",
-      "kind": "code_path",
-      "path": "src/adapters/pi/tools/task.ts",
       "layer": "code",
       "alignment_state": "aligned"
     },
@@ -11232,9 +11217,9 @@
       "status": "accepted",
       "layer": "build",
       "lifecycle_state": "accepted",
-      "alignment_state": "drift",
-      "compacted": false,
-      "default_hidden": false,
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
       "archive_ref": "refs/codewiki/archive/task/TASK-081",
       "superseded_by": [],
       "evidence_summary": {
@@ -11527,34 +11512,6 @@
       "safety_status": "blocked",
       "default_hidden": true,
       "layer": "archive"
-    },
-    {
-      "id": "code:src/application/state-artifacts.ts",
-      "kind": "code_path",
-      "path": "src/application/state-artifacts.ts",
-      "layer": "code"
-    },
-    {
-      "id": "code:src/adapters/pi/commands/resume.ts",
-      "kind": "code_path",
-      "path": "src/adapters/pi/commands/resume.ts",
-      "layer": "code"
-    },
-    {
-      "id": "code:src/adapters/pi/ui/theme.ts",
-      "kind": "code_path",
-      "path": "src/adapters/pi/ui/theme.ts",
-      "layer": "code"
-    },
-    {
-      "id": "test:tests/run.mjs",
-      "kind": "test_file",
-      "path": "tests/run.mjs"
-    },
-    {
-      "id": "closure:TASK-081",
-      "kind": "closure_brief",
-      "path": "TASK-081"
     },
     {
       "id": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
@@ -11898,9 +11855,9 @@
       "status": "accepted",
       "layer": "build",
       "lifecycle_state": "accepted",
-      "alignment_state": "drift",
-      "compacted": false,
-      "default_hidden": false,
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
       "archive_ref": "refs/codewiki/archive/task/TASK-082",
       "superseded_by": [],
       "evidence_summary": {
@@ -11976,11 +11933,6 @@
       "safety_status": "blocked",
       "default_hidden": true,
       "layer": "archive"
-    },
-    {
-      "id": "closure:TASK-082",
-      "kind": "closure_brief",
-      "path": "TASK-082"
     },
     {
       "id": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
@@ -14654,6 +14606,53 @@
       "default_hidden": true
     },
     {
+      "id": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "verdict": "pass",
+      "isolation_status": "isolated",
+      "isolation": {
+        "head_sha": "5e4b003070f672cf11c78c8712a7ced5450b6502",
+        "validated_sha": "5e4b003070f672cf11c78c8712a7ced5450b6502",
+        "tree_sha": "0113a07e9a69ce1914d83b6188603fae1dc98650",
+        "clean": true,
+        "fresh_context": true,
+        "notes": "Fresh task-close validation; only validation artifact may be written.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:generated-parity"
+        ],
+        "content_proof_refs": [
+          "5e4b003070f672cf11c78c8712a7ced5450b6502",
+          "0113a07e9a69ce1914d83b6188603fae1dc98650"
+        ]
+      }
+    },
+    {
+      "id": "content_proof:5e4b003070f672cf11c78c8712a7ced5450b6502",
+      "kind": "content_proof",
+      "path": "5e4b003070f672cf11c78c8712a7ced5450b6502",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:0113a07e9a69ce1914d83b6188603fae1dc98650",
+      "kind": "content_proof",
+      "path": "0113a07e9a69ce1914d83b6188603fae1dc98650",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
       "id": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
@@ -16809,51 +16808,6 @@
     {
       "kind": "task_code_path",
       "from": "task:TASK-077",
-      "to": "code:tests/smoke"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-082",
-      "to": "doc:.codewiki/kb/system/alignment-model.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-082",
-      "to": "doc:.codewiki/kb/system/compilers.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-082",
-      "to": "doc:.codewiki/kb/system/builds.md"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-082",
-      "to": "code:src/application/builds.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-082",
-      "to": "code:src/application/graph.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-082",
-      "to": "code:src/application/roadmap.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-082",
-      "to": "code:src/adapters/pi/tools/task.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-082",
-      "to": "code:skills/codewiki/loops"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-082",
       "to": "code:tests/smoke"
     },
     {
@@ -30860,151 +30814,6 @@
       "default_hidden": true
     },
     {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "build:.codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json"
-    },
-    {
-      "kind": "build_consumes_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "task:TASK-081"
-    },
-    {
-      "kind": "build_consumes_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "task:TASK-082"
-    },
-    {
-      "kind": "build_consumes_planning",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "build:.codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json"
-    },
-    {
-      "kind": "build_consumes_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "source:user feedback: drifts continue to surface; CodeWiki must prevent them"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "doc:.codewiki/kb/system/roadmap.md"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "doc:.codewiki/kb/system/control-room-ui.md"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "doc:.codewiki/kb/product/uis/board.md"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "doc:.codewiki/kb/product/uis/control-room.md"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "doc:skills/codewiki/loops/validation.md"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:scripts/check-architecture.mjs"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/domain/shared/types.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/adapters/pi/schemas.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/application/roadmap.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/application/state-artifacts.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/application/state-builders.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/application/graph.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/application/lint.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/application/prompt.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/application/task.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/adapters/pi/commands/resume.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/adapters/pi/ui/theme.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/adapters/pi/ui/manager.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:src/adapters/web/control-room.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "code:skills/codewiki/loops/validation.md"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "test:tests/smoke/package-smoke.test.mjs"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "test:tests/smoke/builds.test.mjs"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "test:tests/run.mjs"
-    },
-    {
-      "kind": "build_produces_closure",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-      "to": "closure:TASK-081"
-    },
-    {
       "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
       "to": "source:.codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
@@ -31713,56 +31522,6 @@
       "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
       "to": "archive_ref:refs/codewiki/archive/task/TASK-082",
       "default_hidden": true
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-      "to": "build:.codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json"
-    },
-    {
-      "kind": "build_consumes_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-      "to": "task:TASK-082"
-    },
-    {
-      "kind": "build_consumes_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-      "to": "task:TASK-084"
-    },
-    {
-      "kind": "build_consumes_planning",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-      "to": "build:.codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json"
-    },
-    {
-      "kind": "build_consumes_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-      "to": "source:user request: enforce commit proof so next agent cannot miss rule"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-      "to": "doc:.codewiki/kb/system/validation-gateway.md"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-      "to": "code:src/application/task.ts"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-      "to": "test:tests/smoke/builds.test.mjs"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-      "to": "test:tests/smoke/package-smoke.test.mjs"
-    },
-    {
-      "kind": "build_produces_closure",
-      "from": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-      "to": "closure:TASK-082"
     },
     {
       "kind": "build_references_canonical_source",
@@ -34463,6 +34222,53 @@
     },
     {
       "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "audit:audit:generated-parity",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "content_proof:5e4b003070f672cf11c78c8712a7ced5450b6502",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "content_proof:0113a07e9a69ce1914d83b6188603fae1dc98650",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+      "to": "task:TASK-082"
+    },
+    {
+      "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
       "default_hidden": true
@@ -34741,7 +34547,6 @@
         "TASK-050",
         "TASK-076",
         "TASK-077",
-        "TASK-082",
         "TASK-084",
         "TASK-085",
         "TASK-078",
@@ -34750,14 +34555,12 @@
       ],
       "open_task_ids": [
         "TASK-077",
-        "TASK-082",
         "TASK-085",
         "TASK-087",
         "TASK-088"
       ],
       "in_progress_task_ids": [
         "TASK-077",
-        "TASK-082",
         "TASK-087",
         "TASK-088"
       ],
@@ -34821,7 +34624,7 @@
       "status_counts": {
         "done": 45,
         "cancelled": 4,
-        "in_progress": 4,
+        "in_progress": 3,
         "todo": 1
       },
       "sprint_ids": [
@@ -34920,7 +34723,6 @@
           ],
           "open_task_ids": [
             "TASK-077",
-            "TASK-082",
             "TASK-085"
           ],
           "budget": {
@@ -34999,7 +34801,6 @@
         "src/adapters/pi/schemas.ts",
         "src/adapters/pi/tools/**",
         "src/adapters/pi/tools/agency.ts",
-        "src/adapters/pi/tools/task.ts",
         "src/adapters/pi/ui",
         "src/adapters/pi/ui/**",
         "src/adapters/pi/ui/manager.ts",
@@ -35423,6 +35224,22 @@
           "content_proof_refs": [
             "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
             "3680881721d01f5450aa2ba5aeedc4f15e216b17"
+          ]
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+          "task_id": "TASK-082",
+          "verdict": "pass",
+          "status": "isolated",
+          "role": "validator",
+          "head_sha": "5e4b003070f672cf11c78c8712a7ced5450b6502",
+          "validated_sha": "5e4b003070f672cf11c78c8712a7ced5450b6502",
+          "clean": true,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "5e4b003070f672cf11c78c8712a7ced5450b6502",
+            "0113a07e9a69ce1914d83b6188603fae1dc98650"
           ]
         },
         {
@@ -36165,6 +35982,7 @@
         ".codewiki/kb/system/validation-gateway.md@sha256:28412c990a27c6c0c269f079e13dec20e7685ec99bc8c91c2bee42dbf3d7418a",
         ".codewiki/kb/system/validation-gateway.md@sha256:ad22379f1adaca77f4bee521f9ef75959b7d99b69fa56715bd73d78bb610f265",
         ".codewiki/kb/system/validation-gateway.md@sha256:eaa503964317945e84f67e89a1519b39651cd2cabc2fff79ad72a753f71ed6a0",
+        "0113a07e9a69ce1914d83b6188603fae1dc98650",
         "16f3b1810573b1a797196f223a2320bd4ea11db5",
         "2d2673719bd55fd50876ccae84672c3773b7215a",
         "335e0dab36bf7c49eb14ff1c50477c6d08ed0c1f",
@@ -36172,6 +35990,7 @@
         "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
         "4757f167a6306f11c8f6d142605cc2e9a8220d89",
         "59ebea7622e14a3faf6596b8a03a5dcb9710730f",
+        "5e4b003070f672cf11c78c8712a7ced5450b6502",
         "69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363",
         "6c53ab1b0cd9ae116fe1fe80286e873424004bee",
         "75f303d0673612b82c959387b9845c7379fe8bb4",
@@ -36916,6 +36735,26 @@
           "isolation_status": "isolated"
         },
         {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-082.json",
+          "verdict": "pass",
+          "profile": "task-close",
+          "task_id": "TASK-082",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:generated-parity"
+          ],
+          "content_proof_refs": [
+            "5e4b003070f672cf11c78c8712a7ced5450b6502",
+            "0113a07e9a69ce1914d83b6188603fae1dc98650"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
           "verdict": "pass",
           "profile": "task-close",
@@ -37017,7 +36856,6 @@
           "TASK-050",
           "TASK-076",
           "TASK-077",
-          "TASK-082",
           "TASK-084",
           "TASK-085",
           "TASK-078",
@@ -37026,7 +36864,6 @@
         ],
         "open_task_ids": [
           "TASK-077",
-          "TASK-082",
           "TASK-085",
           "TASK-087",
           "TASK-088"
@@ -37128,7 +36965,6 @@
           ],
           "open_task_ids": [
             "TASK-077",
-            "TASK-082",
             "TASK-085"
           ],
           "budget": {
@@ -37828,32 +37664,6 @@
             "tests/smoke"
           ]
         },
-        "TASK-082": {
-          "kind": "task",
-          "id": "TASK-082",
-          "task_ids": [
-            "TASK-082"
-          ],
-          "open_task_ids": [
-            "TASK-082"
-          ],
-          "sprint_ids": [
-            "SPRINT-003"
-          ],
-          "spec_paths": [
-            ".codewiki/kb/system/alignment-model.md",
-            ".codewiki/kb/system/compilers.md",
-            ".codewiki/kb/system/builds.md"
-          ],
-          "code_paths": [
-            "src/application/builds.ts",
-            "src/application/graph.ts",
-            "src/application/roadmap.ts",
-            "src/adapters/pi/tools/task.ts",
-            "skills/codewiki/loops",
-            "tests/smoke"
-          ]
-        },
         "TASK-084": {
           "kind": "task",
           "id": "TASK-084",
@@ -38022,7 +37832,6 @@
         "hot": {
           "task_ids": [
             "TASK-077",
-            "TASK-082",
             "TASK-085",
             "TASK-087",
             "TASK-088"
@@ -38030,10 +37839,7 @@
           "sprint_ids": [
             "SPRINT-003"
           ],
-          "build_paths": [
-            ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-            ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json"
-          ],
+          "build_paths": [],
           "validation_paths": [
             ".codewiki/validation/2026-05-16-documentation-fail-task-077.json",
             ".codewiki/validation/2026-05-16-feedback-block.json"
@@ -38130,8 +37936,10 @@
             ".codewiki/builds/implementation/2026-05-15-task-080-implementation-gateway-now-enforces-com.json",
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
+            ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+            ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
             ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
             ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
             ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
@@ -38162,6 +37970,7 @@
             ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-080.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+            ".codewiki/validation/2026-05-16-task-close-pass-task-082.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-086.json"
           ]
@@ -38267,8 +38076,10 @@
             ".codewiki/builds/implementation/2026-05-15-task-080-implementation-gateway-now-enforces-com.json",
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
+            ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+            ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
             ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
             ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
             ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
@@ -38700,8 +38511,10 @@
           ".codewiki/builds/implementation/2026-05-15-task-080-implementation-gateway-now-enforces-com.json",
           ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
           ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
+          ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+          ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
           ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
           ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
           ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
@@ -38722,28 +38535,6 @@
       "controller": "reconciliation_gateway",
       "model": "graph-backed-state-machine",
       "items": [
-        {
-          "id": "reconcile:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-          "source_id": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "build",
-          "to_layer": "validation",
-          "next_loop": "validation",
-          "task_id": "TASK-081",
-          "reason": "Accepted implementation build still needs passing validation gateway evidence."
-        },
-        {
-          "id": "reconcile:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-          "source_id": "build:.codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "build",
-          "to_layer": "validation",
-          "next_loop": "validation",
-          "task_id": "TASK-082",
-          "reason": "Accepted implementation build still needs passing validation gateway evidence."
-        },
         {
           "id": "reconcile:validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
           "source_id": "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
@@ -38811,7 +38602,6 @@
         }
       ],
       "counts_by_loop": {
-        "validation": 2,
         "documentation": 1,
         "feedback": 1,
         "implementation": 4
@@ -38848,7 +38638,7 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T09:27:23.215Z",
+      "generated_at": "2026-05-16T09:29:59.896Z",
       "counts": {
         "large-doc": 1
       },
@@ -38863,7 +38653,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T09:27:23Z",
+      "generated_at": "2026-05-16T09:29:59Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -38874,20 +38664,20 @@
         "task_context_root": ".codewiki/roadmap/tasks"
       },
       "summary": {
-        "task_count": 54,
-        "open_count": 5,
+        "task_count": 53,
+        "open_count": 4,
         "sprint_count": 3,
         "active_sprint_count": 1,
         "status_counts": {
           "done": 45,
           "cancelled": 4,
-          "in_progress": 4,
+          "in_progress": 3,
           "todo": 1
         },
         "priority_counts": {
           "high": 30,
           "medium": 13,
-          "critical": 10,
+          "critical": 9,
           "low": 1
         }
       },
@@ -38941,7 +38731,6 @@
           "TASK-050",
           "TASK-076",
           "TASK-077",
-          "TASK-082",
           "TASK-084",
           "TASK-085",
           "TASK-078",
@@ -38950,7 +38739,6 @@
         ],
         "open_task_ids": [
           "TASK-077",
-          "TASK-082",
           "TASK-087",
           "TASK-088",
           "TASK-085"
@@ -39051,7 +38839,6 @@
             ],
             "open_task_ids": [
               "TASK-077",
-              "TASK-082",
               "TASK-085"
             ],
             "budget": {
@@ -39094,7 +38881,6 @@
         ],
         "in_progress_task_ids": [
           "TASK-077",
-          "TASK-082",
           "TASK-087",
           "TASK-088"
         ],
@@ -39156,7 +38942,6 @@
           "TASK-039"
         ],
         "recent_task_ids": [
-          "TASK-082",
           "TASK-088",
           "TASK-087",
           "TASK-077",
@@ -41272,56 +41057,6 @@
             "evidence": null
           }
         },
-        "TASK-082": {
-          "id": "TASK-082",
-          "title": "Harden semantic build traceability and change classification",
-          "status": "in_progress",
-          "priority": "critical",
-          "kind": "architecture",
-          "summary": "Require semantic changes to trace to accepted builds and add change-class routing rules for product, system, task, code bugfix, maintenance/audit, security, and publication changes.",
-          "labels": [
-            "sprint:alignment-hardening",
-            "feedback",
-            "traceability",
-            "builds"
-          ],
-          "goal": {
-            "outcome": "Task closure, implementation validation, and publication cannot proceed for semantic changes without accepted upstream build traceability and change-class propagation evidence.",
-            "acceptance": [
-              "Build/roadmap/task APIs model change class and upstream accepted build refs where required.",
-              "Graph flags semantic code/docs/roadmap changes without accepted build coverage.",
-              "Task-close blocks or warns according to policy when accepted build traceability is missing.",
-              "Feedback loop docs/skill use Change row terminology consistently."
-            ],
-            "non_goals": [
-              "Do not force a new build for generated/runtime/mechanical-only changes."
-            ],
-            "verification": [
-              "npm run typecheck",
-              "npm run test:smoke",
-              "codewiki_state/graph shows missing-build drift in fixture"
-            ]
-          },
-          "spec_paths": [
-            ".codewiki/kb/system/alignment-model.md",
-            ".codewiki/kb/system/compilers.md",
-            ".codewiki/kb/system/builds.md"
-          ],
-          "code_paths": [
-            "src/application/builds.ts",
-            "src/application/graph.ts",
-            "src/application/roadmap.ts",
-            "src/adapters/pi/tools/task.ts",
-            "skills/codewiki/loops",
-            "tests/smoke"
-          ],
-          "updated": "2026-05-16T09:20:30Z",
-          "context_path": ".codewiki/roadmap/tasks/TASK-082/context.json",
-          "loop": {
-            "updated_at": "",
-            "evidence": null
-          }
-        },
         "TASK-084": {
           "id": "TASK-084",
           "title": "Model publication and content-proof alignment",
@@ -41592,7 +41327,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T09:27:23Z",
+      "generated_at": "2026-05-16T09:30:00Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -41607,27 +41342,27 @@
       "summary": {
         "total_specs": 16,
         "mapped_specs": 16,
-        "aligned_specs": 20,
-        "tracked_specs": 14,
+        "aligned_specs": 21,
+        "tracked_specs": 13,
         "untracked_specs": 0,
         "blocked_specs": 0,
         "unmapped_specs": 0,
-        "task_count": 54,
-        "open_task_count": 5,
+        "task_count": 53,
+        "open_task_count": 4,
         "done_task_count": 45
       },
       "bars": {
         "tracked_drift": {
           "label": "Tracked Drift",
-          "value": 14,
-          "total": 14,
+          "value": 13,
+          "total": 13,
           "percent": 100
         },
         "roadmap_done": {
           "label": "Roadmap Done",
           "value": 45,
-          "total": 54,
-          "percent": 83
+          "total": 53,
+          "percent": 85
         },
         "spec_mapping": {
           "label": "Spec Mapping",
@@ -41645,7 +41380,6 @@
           ".codewiki/kb/system/alignment-model.md",
           ".codewiki/kb/system/api.md",
           ".codewiki/kb/system/audits.md",
-          ".codewiki/kb/system/builds.md",
           ".codewiki/kb/system/compilers.md",
           ".codewiki/kb/system/control-room-ui.md",
           ".codewiki/kb/system/file-structure.md",
@@ -41661,13 +41395,12 @@
           ".codewiki/kb/system/alignment-model.md",
           ".codewiki/kb/system/api.md",
           ".codewiki/kb/system/audits.md",
-          ".codewiki/kb/system/builds.md",
           ".codewiki/kb/system/compilers.md",
-          ".codewiki/kb/system/control-room-ui.md"
+          ".codewiki/kb/system/control-room-ui.md",
+          ".codewiki/kb/system/file-structure.md"
         ],
         "open_task_ids": [
           "TASK-077",
-          "TASK-082",
           "TASK-087",
           "TASK-088",
           "TASK-085"
@@ -41726,7 +41459,6 @@
           "hot": {
             "task_ids": [
               "TASK-077",
-              "TASK-082",
               "TASK-085",
               "TASK-087",
               "TASK-088"
@@ -41734,10 +41466,7 @@
             "sprint_ids": [
               "SPRINT-003"
             ],
-            "build_paths": [
-              ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-              ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json"
-            ],
+            "build_paths": [],
             "validation_paths": [
               ".codewiki/validation/2026-05-16-documentation-fail-task-077.json",
               ".codewiki/validation/2026-05-16-feedback-block.json"
@@ -41834,8 +41563,10 @@
               ".codewiki/builds/implementation/2026-05-15-task-080-implementation-gateway-now-enforces-com.json",
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
+              ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+              ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
               ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
               ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
               ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
@@ -41866,6 +41597,7 @@
               ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-080.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+              ".codewiki/validation/2026-05-16-task-close-pass-task-082.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-086.json"
             ]
@@ -41971,8 +41703,10 @@
               ".codewiki/builds/implementation/2026-05-15-task-080-implementation-gateway-now-enforces-com.json",
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
+              ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+              ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
               ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
               ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
               ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
@@ -42016,7 +41750,7 @@
         "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
-        "Tracked drift coverage: 14/14."
+        "Tracked drift coverage: 13/13."
       ],
       "specs": [
         {
@@ -42160,7 +41894,6 @@
           },
           "related_task_ids": [
             "TASK-077",
-            "TASK-082",
             "TASK-085",
             "TASK-078",
             "TASK-084"
@@ -42240,39 +41973,6 @@
           "note": "tracked by TASK-077"
         },
         {
-          "path": ".codewiki/kb/system/builds.md",
-          "title": "Builds",
-          "summary": "High-signal cycle build contracts for intent, knowledge, planning, implementation evidence, and state reconciliation.",
-          "drift_status": "tracked",
-          "code_paths": [
-            ".codewiki/builds",
-            "src/application/builds.ts",
-            "src/application/graph.ts",
-            "src/domain/shared/types.ts",
-            "src/adapters/pi/schemas.ts"
-          ],
-          "code_area": ".codewiki, src",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-082",
-            "TASK-084"
-          ],
-          "primary_task": {
-            "id": "TASK-082",
-            "status": "in_progress",
-            "title": "Harden semantic build traceability and change classification"
-          },
-          "revision": {
-            "digest": "0a7ab631b83eea237291f729c7b359b1168a58ed29309811d5f27f3ea9f356c2",
-            "basis": "source_content"
-          },
-          "note": "tracked by TASK-082"
-        },
-        {
           "path": ".codewiki/kb/system/compilers.md",
           "title": "Compilers",
           "summary": "Alignment loops that create source-backed cycle builds for intent, knowledge, planning, and implementation.",
@@ -42294,21 +41994,20 @@
             "total": 0
           },
           "related_task_ids": [
-            "TASK-082",
             "TASK-087",
             "TASK-034",
             "TASK-038"
           ],
           "primary_task": {
-            "id": "TASK-082",
+            "id": "TASK-087",
             "status": "in_progress",
-            "title": "Harden semantic build traceability and change classification"
+            "title": "Migrate source to domain-led CodeWiki layers"
           },
           "revision": {
             "digest": "512384b09d1e4c9f68cf8c2a735861b9f705807c7555886871b0f6abc6cbf133",
             "basis": "source_content"
           },
-          "note": "tracked by TASK-082"
+          "note": "tracked by TASK-087"
         },
         {
           "path": ".codewiki/kb/system/control-room-ui.md",
@@ -42862,6 +42561,38 @@
           "note": "no deterministic drift signals"
         },
         {
+          "path": ".codewiki/kb/system/builds.md",
+          "title": "Builds",
+          "summary": "High-signal cycle build contracts for intent, knowledge, planning, implementation evidence, and state reconciliation.",
+          "drift_status": "aligned",
+          "code_paths": [
+            ".codewiki/builds",
+            "src/application/builds.ts",
+            "src/application/graph.ts",
+            "src/domain/shared/types.ts",
+            "src/adapters/pi/schemas.ts"
+          ],
+          "code_area": ".codewiki, src",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [
+            "TASK-084"
+          ],
+          "primary_task": {
+            "id": "TASK-084",
+            "status": "done",
+            "title": "Model publication and content-proof alignment"
+          },
+          "revision": {
+            "digest": "0a7ab631b83eea237291f729c7b359b1168a58ed29309811d5f27f3ea9f356c2",
+            "basis": "source_content"
+          },
+          "note": "no deterministic drift signals"
+        },
+        {
           "path": ".codewiki/kb/system/change-lifecycle.md",
           "title": "Change Lifecycle",
           "summary": "Feedback classification and propagation rules for semantic CodeWiki changes.",
@@ -43007,7 +42738,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T09:27:23Z",
+        "generated_at": "2026-05-16T09:30:00Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -43035,12 +42766,17 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T09:27:23Z",
+            "checked_at": "2026-05-16T09:29:59Z",
             "revision": {
               "git": {
-                "head": "76b88b4272ae4525651486590f6971022ad8ef33",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "5e4b003070f672cf11c78c8712a7ced5450b6502",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-082/context.json",
+                  ".codewiki/roadmap/tasks/TASK-082/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -43121,14 +42857,14 @@
                 }
               },
               "spec_digest": "c991867bd5e65f4968349adf25c1c66f06801f2273b5915561e39a2bc6274241",
-              "task_digest": "814d9ec17687a3253490ad9ed1fbef694feed8a79a9573fcbd548d6506b03e1e",
-              "code_digest": "bcc6d03d45be48a66b1d038883efe549a3e0e9cabb6ca3729b4ab577462b0e3b",
-              "digest": "ddca8fb988341da92cdb3be9b598dbca31dcaae77e51024a2dd3efe454733ce6"
+              "task_digest": "ce4078198d31366bca051650223dffabc2f5b23e82e5b3079aebd69618985500",
+              "code_digest": "99baf458335d59a14f524ef5d03d39caac699f9798c41a50829b034f82814e1f",
+              "digest": "5614dc161ad1839bffa6152a2b6fa43275dcf7cb8beba0029faaf85829e57d18"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T09:27:23Z",
+              "checked_at": "2026-05-16T09:29:59Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -43152,7 +42888,6 @@
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/file-structure.md",
@@ -43160,6 +42895,7 @@
               ".codewiki/kb/system/overview.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/agency.md",
+              ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/control-room-ui-details.md",
               ".codewiki/kb/system/diagrams/README.md",
@@ -43194,9 +42930,6 @@
               "skills/codewiki/loops",
               "src/domain",
               "src/adapters/pi",
-              ".codewiki/builds",
-              "src/domain/shared/types.ts",
-              "src/adapters/pi/schemas.ts",
               "src/application/roadmap.ts",
               "src/application/task.ts",
               "skills/codewiki/loops/validation.md",
@@ -43205,7 +42938,10 @@
               "src/application/graph/rebuilder.ts",
               "src/application/state-builders.ts",
               "src/application/state.ts",
+              "src/domain/shared/types.ts",
               ".codewiki/validation",
+              ".codewiki/builds",
+              "src/adapters/pi/schemas.ts",
               "src/adapters/web/control-room.ts",
               "src/bootstrap.ts",
               "src/templates.ts",
@@ -43216,7 +42952,6 @@
             "code_area": "src, .codewiki +3 more",
             "open_task_ids": [
               "TASK-077",
-              "TASK-082",
               "TASK-085",
               "TASK-087",
               "TASK-088"
@@ -43229,7 +42964,6 @@
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/file-structure.md",
@@ -43239,8 +42973,8 @@
             ],
             "stats": {
               "total_specs": 33,
-              "aligned_specs": 19,
-              "tracked_specs": 14,
+              "aligned_specs": 20,
+              "tracked_specs": 13,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -43265,12 +42999,17 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T09:27:23Z",
+            "checked_at": "2026-05-16T09:30:00Z",
             "revision": {
               "git": {
-                "head": "76b88b4272ae4525651486590f6971022ad8ef33",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "5e4b003070f672cf11c78c8712a7ced5450b6502",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-082/context.json",
+                  ".codewiki/roadmap/tasks/TASK-082/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -43330,14 +43069,14 @@
                 }
               },
               "spec_digest": "f99cd3dabede72fc0b99e277d4237efca9009b8da3816742d1b03029fd4d0614",
-              "task_digest": "814d9ec17687a3253490ad9ed1fbef694feed8a79a9573fcbd548d6506b03e1e",
-              "code_digest": "ae3f87a126ef907ba64efc1b5f3a9a434fb9029b17bc55c7ca10ffdf0d34b337",
-              "digest": "cee64426723f17f4faa89611fb76c276f0f2b7a93cd8ed6b1fce684512009206"
+              "task_digest": "ce4078198d31366bca051650223dffabc2f5b23e82e5b3079aebd69618985500",
+              "code_digest": "1469f6ca376668ad50898203f6cbfa9d376fd455e99a9dbd58f4062fe58114e4",
+              "digest": "e1c8f85375db1fa2b5643a27e42687c13d932678641990a5e6f66d14e5706703"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T09:27:23Z",
+              "checked_at": "2026-05-16T09:30:00Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -43346,7 +43085,6 @@
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/file-structure.md",
@@ -43354,6 +43092,7 @@
               ".codewiki/kb/system/overview.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/agency.md",
+              ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/control-room-ui-details.md",
               ".codewiki/kb/system/diagrams/README.md",
@@ -43372,9 +43111,6 @@
               "skills/codewiki/loops",
               "src/domain",
               "src/adapters/pi",
-              ".codewiki/builds",
-              "src/domain/shared/types.ts",
-              "src/adapters/pi/schemas.ts",
               "src/application/roadmap.ts",
               "src/application/task.ts",
               "skills/codewiki/loops/feedback.md",
@@ -43389,8 +43125,11 @@
               "src/application/graph/rebuilder.ts",
               "src/application/state-builders.ts",
               "src/application/state.ts",
+              "src/domain/shared/types.ts",
               "skills",
               ".codewiki/validation",
+              ".codewiki/builds",
+              "src/adapters/pi/schemas.ts",
               "src/adapters/web/control-room.ts",
               "src/adapters/pi/ui/manager.ts",
               "src/index.ts",
@@ -43404,7 +43143,6 @@
             "code_area": "src, skills +2 more",
             "open_task_ids": [
               "TASK-077",
-              "TASK-082",
               "TASK-085",
               "TASK-087",
               "TASK-088"
@@ -43414,7 +43152,6 @@
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/file-structure.md",
@@ -43424,8 +43161,8 @@
             ],
             "stats": {
               "total_specs": 18,
-              "aligned_specs": 7,
-              "tracked_specs": 11,
+              "aligned_specs": 8,
+              "tracked_specs": 10,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -43450,12 +43187,17 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T09:27:23Z",
+            "checked_at": "2026-05-16T09:30:00Z",
             "revision": {
               "git": {
-                "head": "76b88b4272ae4525651486590f6971022ad8ef33",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "5e4b003070f672cf11c78c8712a7ced5450b6502",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-082/context.json",
+                  ".codewiki/roadmap/tasks/TASK-082/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -43536,14 +43278,14 @@
                 }
               },
               "spec_digest": "c991867bd5e65f4968349adf25c1c66f06801f2273b5915561e39a2bc6274241",
-              "task_digest": "814d9ec17687a3253490ad9ed1fbef694feed8a79a9573fcbd548d6506b03e1e",
-              "code_digest": "bcc6d03d45be48a66b1d038883efe549a3e0e9cabb6ca3729b4ab577462b0e3b",
-              "digest": "ddca8fb988341da92cdb3be9b598dbca31dcaae77e51024a2dd3efe454733ce6"
+              "task_digest": "ce4078198d31366bca051650223dffabc2f5b23e82e5b3079aebd69618985500",
+              "code_digest": "99baf458335d59a14f524ef5d03d39caac699f9798c41a50829b034f82814e1f",
+              "digest": "5614dc161ad1839bffa6152a2b6fa43275dcf7cb8beba0029faaf85829e57d18"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T09:27:23Z",
+              "checked_at": "2026-05-16T09:30:00Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -43567,7 +43309,6 @@
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/file-structure.md",
@@ -43575,6 +43316,7 @@
               ".codewiki/kb/system/overview.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/agency.md",
+              ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/control-room-ui-details.md",
               ".codewiki/kb/system/diagrams/README.md",
@@ -43609,9 +43351,6 @@
               "skills/codewiki/loops",
               "src/domain",
               "src/adapters/pi",
-              ".codewiki/builds",
-              "src/domain/shared/types.ts",
-              "src/adapters/pi/schemas.ts",
               "src/application/roadmap.ts",
               "src/application/task.ts",
               "skills/codewiki/loops/validation.md",
@@ -43620,7 +43359,10 @@
               "src/application/graph/rebuilder.ts",
               "src/application/state-builders.ts",
               "src/application/state.ts",
+              "src/domain/shared/types.ts",
               ".codewiki/validation",
+              ".codewiki/builds",
+              "src/adapters/pi/schemas.ts",
               "src/adapters/web/control-room.ts",
               "src/bootstrap.ts",
               "src/templates.ts",
@@ -43631,7 +43373,6 @@
             "code_area": "src, .codewiki +3 more",
             "open_task_ids": [
               "TASK-077",
-              "TASK-082",
               "TASK-085",
               "TASK-087",
               "TASK-088"
@@ -43644,7 +43385,6 @@
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/file-structure.md",
@@ -43654,8 +43394,8 @@
             ],
             "stats": {
               "total_specs": 33,
-              "aligned_specs": 19,
-              "tracked_specs": 14,
+              "aligned_specs": 20,
+              "tracked_specs": 13,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -43681,7 +43421,7 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T09:27:23Z",
+        "generated_at": "2026-05-16T09:30:00Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
@@ -43837,7 +43577,6 @@
             },
             "related_task_ids": [
               "TASK-077",
-              "TASK-082",
               "TASK-085",
               "TASK-078",
               "TASK-084"
@@ -43917,39 +43656,6 @@
             "note": "tracked by TASK-077"
           },
           {
-            "path": ".codewiki/kb/system/builds.md",
-            "title": "Builds",
-            "summary": "High-signal cycle build contracts for intent, knowledge, planning, implementation evidence, and state reconciliation.",
-            "drift_status": "tracked",
-            "code_paths": [
-              ".codewiki/builds",
-              "src/application/builds.ts",
-              "src/application/graph.ts",
-              "src/domain/shared/types.ts",
-              "src/adapters/pi/schemas.ts"
-            ],
-            "code_area": ".codewiki, src",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-082",
-              "TASK-084"
-            ],
-            "primary_task": {
-              "id": "TASK-082",
-              "status": "in_progress",
-              "title": "Harden semantic build traceability and change classification"
-            },
-            "revision": {
-              "digest": "0a7ab631b83eea237291f729c7b359b1168a58ed29309811d5f27f3ea9f356c2",
-              "basis": "source_content"
-            },
-            "note": "tracked by TASK-082"
-          },
-          {
             "path": ".codewiki/kb/system/compilers.md",
             "title": "Compilers",
             "summary": "Alignment loops that create source-backed cycle builds for intent, knowledge, planning, and implementation.",
@@ -43971,21 +43677,20 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-082",
               "TASK-087",
               "TASK-034",
               "TASK-038"
             ],
             "primary_task": {
-              "id": "TASK-082",
+              "id": "TASK-087",
               "status": "in_progress",
-              "title": "Harden semantic build traceability and change classification"
+              "title": "Migrate source to domain-led CodeWiki layers"
             },
             "revision": {
               "digest": "512384b09d1e4c9f68cf8c2a735861b9f705807c7555886871b0f6abc6cbf133",
               "basis": "source_content"
             },
-            "note": "tracked by TASK-082"
+            "note": "tracked by TASK-087"
           },
           {
             "path": ".codewiki/kb/system/control-room-ui.md",
@@ -44534,6 +44239,38 @@
             },
             "revision": {
               "digest": "1ba90db16066f0dba14b236fd637992a332ea5615313a32fef5b1d9536eb0420",
+              "basis": "source_content"
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".codewiki/kb/system/builds.md",
+            "title": "Builds",
+            "summary": "High-signal cycle build contracts for intent, knowledge, planning, implementation evidence, and state reconciliation.",
+            "drift_status": "aligned",
+            "code_paths": [
+              ".codewiki/builds",
+              "src/application/builds.ts",
+              "src/application/graph.ts",
+              "src/domain/shared/types.ts",
+              "src/adapters/pi/schemas.ts"
+            ],
+            "code_area": ".codewiki, src",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-084"
+            ],
+            "primary_task": {
+              "id": "TASK-084",
+              "status": "done",
+              "title": "Model publication and content-proof alignment"
+            },
+            "revision": {
+              "digest": "0a7ab631b83eea237291f729c7b359b1168a58ed29309811d5f27f3ea9f356c2",
               "basis": "source_content"
             },
             "note": "no deterministic drift signals"
@@ -45139,7 +44876,6 @@
                 },
                 "related_task_ids": [
                   "TASK-077",
-                  "TASK-082",
                   "TASK-085",
                   "TASK-078",
                   "TASK-084"
@@ -45219,39 +44955,6 @@
                 "note": "tracked by TASK-077"
               },
               {
-                "path": ".codewiki/kb/system/builds.md",
-                "title": "Builds",
-                "summary": "High-signal cycle build contracts for intent, knowledge, planning, implementation evidence, and state reconciliation.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  ".codewiki/builds",
-                  "src/application/builds.ts",
-                  "src/application/graph.ts",
-                  "src/domain/shared/types.ts",
-                  "src/adapters/pi/schemas.ts"
-                ],
-                "code_area": ".codewiki, src",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-082",
-                  "TASK-084"
-                ],
-                "primary_task": {
-                  "id": "TASK-082",
-                  "status": "in_progress",
-                  "title": "Harden semantic build traceability and change classification"
-                },
-                "revision": {
-                  "digest": "0a7ab631b83eea237291f729c7b359b1168a58ed29309811d5f27f3ea9f356c2",
-                  "basis": "source_content"
-                },
-                "note": "tracked by TASK-082"
-              },
-              {
                 "path": ".codewiki/kb/system/compilers.md",
                 "title": "Compilers",
                 "summary": "Alignment loops that create source-backed cycle builds for intent, knowledge, planning, and implementation.",
@@ -45273,21 +44976,20 @@
                   "total": 0
                 },
                 "related_task_ids": [
-                  "TASK-082",
                   "TASK-087",
                   "TASK-034",
                   "TASK-038"
                 ],
                 "primary_task": {
-                  "id": "TASK-082",
+                  "id": "TASK-087",
                   "status": "in_progress",
-                  "title": "Harden semantic build traceability and change classification"
+                  "title": "Migrate source to domain-led CodeWiki layers"
                 },
                 "revision": {
                   "digest": "512384b09d1e4c9f68cf8c2a735861b9f705807c7555886871b0f6abc6cbf133",
                   "basis": "source_content"
                 },
-                "note": "tracked by TASK-082"
+                "note": "tracked by TASK-087"
               },
               {
                 "path": ".codewiki/kb/system/control-room-ui.md",
@@ -45537,6 +45239,38 @@
                 "note": "no deterministic drift signals"
               },
               {
+                "path": ".codewiki/kb/system/builds.md",
+                "title": "Builds",
+                "summary": "High-signal cycle build contracts for intent, knowledge, planning, implementation evidence, and state reconciliation.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  ".codewiki/builds",
+                  "src/application/builds.ts",
+                  "src/application/graph.ts",
+                  "src/domain/shared/types.ts",
+                  "src/adapters/pi/schemas.ts"
+                ],
+                "code_area": ".codewiki, src",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [
+                  "TASK-084"
+                ],
+                "primary_task": {
+                  "id": "TASK-084",
+                  "status": "done",
+                  "title": "Model publication and content-proof alignment"
+                },
+                "revision": {
+                  "digest": "0a7ab631b83eea237291f729c7b359b1168a58ed29309811d5f27f3ea9f356c2",
+                  "basis": "source_content"
+                },
+                "note": "no deterministic drift signals"
+              },
+              {
                 "path": ".codewiki/kb/system/change-lifecycle.md",
                 "title": "Change Lifecycle",
                 "summary": "Feedback classification and propagation rules for semantic CodeWiki changes.",
@@ -45694,7 +45428,6 @@
         "blocked_task_ids": [],
         "in_progress_task_ids": [
           "TASK-077",
-          "TASK-082",
           "TASK-087",
           "TASK-088"
         ],
@@ -45795,7 +45528,6 @@
             ],
             "open_task_ids": [
               "TASK-077",
-              "TASK-082",
               "TASK-085"
             ],
             "budget": {
@@ -45849,7 +45581,6 @@
             "label": "Implement",
             "task_ids": [
               "TASK-077",
-              "TASK-082",
               "TASK-087",
               "TASK-088"
             ]
