@@ -196,6 +196,9 @@ export const agencyScopeKindSchema = Type.Union(
 export const workflowLoopSchema = Type.Union(
 	T.WORKFLOW_LOOP_VALUES.map((value) => Type.Literal(value)),
 );
+export const auditProfileSchema = Type.Union(
+	T.AUDIT_PROFILE_VALUES.map((value) => Type.Literal(value)),
+);
 export const agencyScopeSchema = Type.Object({
 	kind: agencyScopeKindSchema,
 	id: Type.Optional(Type.String({ minLength: 1 })),
@@ -277,6 +280,17 @@ export const codewikiTaskEvidenceSchema = Type.Object({
 	files_touched: Type.Optional(Type.Array(Type.String(), { default: [] })),
 	issues: Type.Optional(Type.Array(Type.String(), { default: [] })),
 });
+export const codewikiAuditToolInputSchema = Type.Object({
+	repoPath: repoPathToolField,
+	profiles: Type.Optional(Type.Array(auditProfileSchema, { description: "Selected audit profiles. Omit for full audit." })),
+	paths: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	layers: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { description: "Selected logical layers for scoped alignment audit.", default: [] })),
+	task_id: Type.Optional(Type.String({ minLength: 1, description: "Roadmap task id for the task audit profile." })),
+	changed: Type.Optional(Type.Boolean({ description: "Include the changed-files audit profile." })),
+	full: Type.Optional(Type.Boolean({ description: "Run the full default audit profile set." })),
+	include_fingerprints: Type.Optional(Type.Boolean({ description: "Include source/content fingerprints where available.", default: true })),
+});
+
 export const codewikiStateToolInputSchema = Type.Object({
 	repoPath: repoPathToolField,
 	refresh: Type.Optional(

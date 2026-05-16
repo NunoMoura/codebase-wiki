@@ -62,6 +62,18 @@ export const SPRINT_STATUS_VALUES = ["planned", "active", "review", "closed", "c
 export const STATUS_DOCK_DENSITY_VALUES = ["minimal", "standard", "full"] as const;
 export const STATUS_DOCK_MODE_VALUES = ["auto", "pin", "off"] as const;
 export const STATUS_SCOPE_VALUES = ["repo", "task", "spec", "both", "docs", "code"] as const;
+export const AUDIT_PROFILE_VALUES = [
+	"alignment",
+	"file-structure",
+	"stale-reference",
+	"package",
+	"security",
+	"generated-parity",
+	"changed",
+	"task",
+] as const;
+export const AUDIT_SEVERITY_VALUES = ["info", "warning", "error"] as const;
+export const AUDIT_STATUS_VALUES = ["pass", "warning", "fail"] as const;
 
 export type RoadmapStatus = (typeof ROADMAP_STATUS_VALUES)[number];
 export type RoadmapPriority = (typeof ROADMAP_PRIORITY_VALUES)[number];
@@ -89,6 +101,57 @@ export type SprintStatus = (typeof SPRINT_STATUS_VALUES)[number];
 export type StatusDockDensity = (typeof STATUS_DOCK_DENSITY_VALUES)[number];
 export type StatusDockMode = (typeof STATUS_DOCK_MODE_VALUES)[number];
 export type StatusScope = (typeof STATUS_SCOPE_VALUES)[number];
+export type AuditProfile = (typeof AUDIT_PROFILE_VALUES)[number];
+export type AuditSeverity = (typeof AUDIT_SEVERITY_VALUES)[number];
+export type AuditStatus = (typeof AUDIT_STATUS_VALUES)[number];
+
+export interface AuditIssue {
+	profile: AuditProfile;
+	severity: AuditSeverity;
+	kind: string;
+	message: string;
+	path?: string;
+	rationale?: string;
+	refs?: string[];
+}
+
+export interface AuditFingerprint {
+	path: string;
+	digest: string;
+	bytes: number;
+}
+
+export interface AuditScope {
+	root?: string;
+	files?: string[];
+	layers?: string[];
+	task_id?: string;
+	changed?: boolean;
+}
+
+export interface AuditProfileResult {
+	profile: AuditProfile;
+	status: AuditStatus;
+	summary: string;
+	checked_scopes: AuditScope;
+	issues: AuditIssue[];
+	evidence_refs: string[];
+	fingerprints: AuditFingerprint[];
+}
+
+export interface AuditReport {
+	kind: "audit_report";
+	version: number;
+	generated_at: string;
+	project: string;
+	status: AuditStatus;
+	profiles: AuditProfile[];
+	checked_scopes: AuditScope;
+	issues: AuditIssue[];
+	evidence_refs: string[];
+	fingerprints: AuditFingerprint[];
+	profile_results: AuditProfileResult[];
+}
 
 export interface RoadmapTaskInput {
 	id?: string;

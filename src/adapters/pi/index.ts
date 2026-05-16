@@ -2,6 +2,7 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import type { ActiveStatusPanel } from "../../domain/shared/types.ts";
 import { registerBootstrapFeatures } from "../../bootstrap.ts";
 import { codewikiBuildToolInputSchema, codewikiAgencyToolInputSchema, codewikiClaimToolInputSchema, codewikiDiffTableToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas.ts";
+import { registerAuditCommand } from "./commands/audit.ts";
 import { registerConfigCommand } from "./commands/config.ts";
 import { registerResumeCommand } from "./commands/resume.ts";
 import { registerStatusCommand } from "./commands/status.ts";
@@ -11,6 +12,7 @@ import { readRoadmapTask } from "../../application/roadmap.ts";
 import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project.ts";
 import { runRebuild } from "../../application/state-artifacts.ts";
 import { executeCodewikiAgency } from "./tools/agency.ts";
+import { registerCodewikiAuditTool } from "./tools/audit.ts";
 import { executeCodewikiClaim } from "./tools/claim.ts";
 import { executeDiffTableAction } from "../../application/diff-table.ts";
 import { executeCodewikiSession } from "./tools/session.ts";
@@ -71,6 +73,7 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 		});
 	});
 
+	registerAuditCommand(pi);
 	registerConfigCommand(pi);
 	registerStatusCommand(pi);
 	registerUiCommand(pi);
@@ -126,6 +129,7 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 	});
 
 	registerCodewikiStateTool(pi);
+	registerCodewikiAuditTool(pi);
 	registerCodewikiSessionHandoffTool(pi);
 
 	pi.registerTool({

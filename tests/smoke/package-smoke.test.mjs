@@ -213,13 +213,13 @@ async function main() {
 		const commandNames = [...extension.commands.keys()];
 		ensureIncludes(
 			commandNames,
-			["wiki-bootstrap", "wiki-config", "wiki-status", "wiki-ui", "wiki-resume", "wiki-session-handoff"],
+			["audit", "wiki-bootstrap", "wiki-config", "wiki-status", "wiki-ui", "wiki-resume", "wiki-session-handoff"],
 			"extension commands",
 		);
 		assert.equal(
 			commandNames.length,
-			6,
-			`Expected exactly 6 public commands, got ${commandNames.length}: ${commandNames.join(", ")}`,
+			7,
+			`Expected exactly 7 public commands, got ${commandNames.length}: ${commandNames.join(", ")}`,
 		);
 		for (const legacyCommand of [
 			"wiki-fix",
@@ -248,6 +248,7 @@ async function main() {
 				"codewiki_setup",
 				"codewiki_bootstrap",
 				"codewiki_state",
+				"codewiki_audit",
 				"codewiki_build",
 				"codewiki_validation",
 				"codewiki_task",
@@ -1183,11 +1184,16 @@ async function main() {
 			terminalInput: null,
 			widget: null,
 		};
+		const auditCommand = extension.commands.get("audit");
 		const configCommand = extension.commands.get("wiki-config");
 		const statusCommand = extension.commands.get("wiki-status");
 		const resumeCommand = extension.commands.get("wiki-resume");
 		const handoffCommand = extension.commands.get("wiki-session-handoff");
 		const statusShortcut = extension.shortcuts.get("alt+w");
+		assert.ok(
+			auditCommand && typeof auditCommand.handler === "function",
+			"audit command missing handler",
+		);
 		assert.ok(
 			configCommand && typeof configCommand.handler === "function",
 			"wiki-config command missing handler",

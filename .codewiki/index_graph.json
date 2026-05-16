@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T02:35:22.826Z",
+  "generated_at": "2026-05-16T03:11:11.183Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -104,7 +104,7 @@
       "kind": "code_path",
       "path": "skills/codewiki/SKILL.md",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/adapters/pi/ui",
@@ -126,7 +126,7 @@
       "kind": "code_path",
       "path": "tests/smoke/package-smoke.test.mjs",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/application/lint.ts",
@@ -209,14 +209,14 @@
       "kind": "code_path",
       "path": "skills",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src",
       "kind": "code_path",
       "path": "src",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/product/users/external-users.md",
@@ -254,7 +254,7 @@
       "kind": "code_path",
       "path": "package.json",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/adapters.md",
@@ -269,7 +269,7 @@
       "kind": "code_path",
       "path": "src/adapters",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/application",
@@ -283,7 +283,7 @@
       "kind": "code_path",
       "path": "skills/codewiki",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/agency.md",
@@ -298,7 +298,7 @@
       "kind": "code_path",
       "path": "src/adapters/pi",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/alignment-model.md",
@@ -349,7 +349,7 @@
       "kind": "code_path",
       "path": "src/domain",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/audits.md",
@@ -379,14 +379,14 @@
       "kind": "code_path",
       "path": "src/domain/shared/types.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/adapters/pi/schemas.ts",
       "kind": "code_path",
       "path": "src/adapters/pi/schemas.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/system/change-lifecycle.md",
@@ -1014,7 +1014,7 @@
       "kind": "code_path",
       "path": "src/adapters/pi/index.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "task:TASK-039",
@@ -1109,14 +1109,14 @@
       "kind": "code_path",
       "path": "tests",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:scripts",
       "kind": "code_path",
       "path": "scripts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:.pi/APPEND_SYSTEM.md",
@@ -1145,7 +1145,7 @@
       "kind": "code_path",
       "path": "tests/smoke",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "task:TASK-079",
@@ -11945,6 +11945,218 @@
       "path": "TASK-082"
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
+      "archive_ref": "refs/codewiki/archive/task/TASK-079",
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+          ".codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json",
+          "codewiki_build tool",
+          "src/application/tools/audit.ts",
+          "src/domain/shared/types.ts",
+          "src/adapters/pi/commands/audit.ts",
+          "src/adapters/pi/tools/audit.ts",
+          "src/adapters/pi/index.ts",
+          "src/adapters/pi/schemas.ts",
+          "scripts/check-architecture.mjs",
+          "package.json",
+          "README.md",
+          "skills/codewiki/SKILL.md",
+          "tests/smoke/audit.test.mjs",
+          "tests/smoke/package-smoke.test.mjs",
+          "TASK-079"
+        ],
+        "audit_evidence_refs": [],
+        "content_proof_refs": [
+          ".codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json@sha256:cf8b46289e6be5d1adc557e49f4cf8541d41e06a78ddddcfdb9883eb3abb95f9",
+          "tests/smoke/audit.test.mjs@sha256:4ddf6c75d2a45b13a5edda5fd971c8f6187102d3e76d5a0715f39fe72f8c766e",
+          "tests/smoke/package-smoke.test.mjs@sha256:318e0201f24d0d78cda469803d941a58599335d21d151ddcced3298da03a27de",
+          "src/application/tools/audit.ts@sha256:7eb3133c47619c3e125c066a351bf3fe4416ba3b621c5e64e111e8bb86ea1dc6",
+          "src/domain/shared/types.ts@sha256:ccbf0aea6fdb713b6abc7b2e9cff244187052a6b293150e3c5b3df62c92ef95d",
+          "src/adapters/pi/commands/audit.ts@sha256:74fd10c234b084032d33e81183bae5097abcf64c8e51b460da6fb7d18d473400",
+          "src/adapters/pi/tools/audit.ts@sha256:1981841bd7bd58edc1a08e01f11432cfb0c3ce7d9759f11faf67cb2682911d0a",
+          "src/adapters/pi/index.ts@sha256:2830119090c04300df61c9ac353e5dab143dfdb06901c38017481c28668c5d91",
+          "src/adapters/pi/schemas.ts@sha256:55930ef954c45898e43bb10a8c2b4f36099e1f57ae3047a88ecaaac257703eba",
+          "scripts/check-architecture.mjs@sha256:15040f43ff6adccd34f18a36c6abc9d36f64b83742991139f2f28d5d299074be",
+          "package.json@sha256:4f7166e2775b6896906fd878e6aa7eb936701f4b3d615367e3739a3f51b0e24b",
+          "README.md@sha256:bca59b2e9eba71f64f76252f0bb13562265476168f9c48396ffd45cee2073403",
+          "skills/codewiki/SKILL.md@sha256:c4c823552828663c5f32f841622069675bde6f72cf5346a375e4f1ed3eb6150a",
+          "refs/codewiki/archive/task/TASK-079",
+          "sha256:4c50a48ca7842e2a2cece48c90ac2a23a7a60bd51083db52e1746ff473e9f9a5"
+        ],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/application/tools/audit.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/application/tools/audit.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/adapters/pi/commands/audit.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/adapters/pi/commands/audit.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/adapters/pi/tools/audit.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/adapters/pi/tools/audit.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:.codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json@sha256:cf8b46289e6be5d1adc557e49f4cf8541d41e06a78ddddcfdb9883eb3abb95f9",
+      "kind": "content_proof",
+      "path": ".codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json@sha256:cf8b46289e6be5d1adc557e49f4cf8541d41e06a78ddddcfdb9883eb3abb95f9",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/audit.test.mjs@sha256:4ddf6c75d2a45b13a5edda5fd971c8f6187102d3e76d5a0715f39fe72f8c766e",
+      "kind": "content_proof",
+      "path": "tests/smoke/audit.test.mjs@sha256:4ddf6c75d2a45b13a5edda5fd971c8f6187102d3e76d5a0715f39fe72f8c766e",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/package-smoke.test.mjs@sha256:318e0201f24d0d78cda469803d941a58599335d21d151ddcced3298da03a27de",
+      "kind": "content_proof",
+      "path": "tests/smoke/package-smoke.test.mjs@sha256:318e0201f24d0d78cda469803d941a58599335d21d151ddcced3298da03a27de",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/application/tools/audit.ts@sha256:7eb3133c47619c3e125c066a351bf3fe4416ba3b621c5e64e111e8bb86ea1dc6",
+      "kind": "content_proof",
+      "path": "src/application/tools/audit.ts@sha256:7eb3133c47619c3e125c066a351bf3fe4416ba3b621c5e64e111e8bb86ea1dc6",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/domain/shared/types.ts@sha256:ccbf0aea6fdb713b6abc7b2e9cff244187052a6b293150e3c5b3df62c92ef95d",
+      "kind": "content_proof",
+      "path": "src/domain/shared/types.ts@sha256:ccbf0aea6fdb713b6abc7b2e9cff244187052a6b293150e3c5b3df62c92ef95d",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/commands/audit.ts@sha256:74fd10c234b084032d33e81183bae5097abcf64c8e51b460da6fb7d18d473400",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/commands/audit.ts@sha256:74fd10c234b084032d33e81183bae5097abcf64c8e51b460da6fb7d18d473400",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/tools/audit.ts@sha256:1981841bd7bd58edc1a08e01f11432cfb0c3ce7d9759f11faf67cb2682911d0a",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/tools/audit.ts@sha256:1981841bd7bd58edc1a08e01f11432cfb0c3ce7d9759f11faf67cb2682911d0a",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/index.ts@sha256:2830119090c04300df61c9ac353e5dab143dfdb06901c38017481c28668c5d91",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/index.ts@sha256:2830119090c04300df61c9ac353e5dab143dfdb06901c38017481c28668c5d91",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/schemas.ts@sha256:55930ef954c45898e43bb10a8c2b4f36099e1f57ae3047a88ecaaac257703eba",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/schemas.ts@sha256:55930ef954c45898e43bb10a8c2b4f36099e1f57ae3047a88ecaaac257703eba",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:scripts/check-architecture.mjs@sha256:15040f43ff6adccd34f18a36c6abc9d36f64b83742991139f2f28d5d299074be",
+      "kind": "content_proof",
+      "path": "scripts/check-architecture.mjs@sha256:15040f43ff6adccd34f18a36c6abc9d36f64b83742991139f2f28d5d299074be",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:package.json@sha256:4f7166e2775b6896906fd878e6aa7eb936701f4b3d615367e3739a3f51b0e24b",
+      "kind": "content_proof",
+      "path": "package.json@sha256:4f7166e2775b6896906fd878e6aa7eb936701f4b3d615367e3739a3f51b0e24b",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:README.md@sha256:bca59b2e9eba71f64f76252f0bb13562265476168f9c48396ffd45cee2073403",
+      "kind": "content_proof",
+      "path": "README.md@sha256:bca59b2e9eba71f64f76252f0bb13562265476168f9c48396ffd45cee2073403",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:skills/codewiki/SKILL.md@sha256:c4c823552828663c5f32f841622069675bde6f72cf5346a375e4f1ed3eb6150a",
+      "kind": "content_proof",
+      "path": "skills/codewiki/SKILL.md@sha256:c4c823552828663c5f32f841622069675bde6f72cf5346a375e4f1ed3eb6150a",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:refs/codewiki/archive/task/TASK-079",
+      "kind": "content_proof",
+      "path": "refs/codewiki/archive/task/TASK-079",
+      "proof_kind": "git_ref",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:4c50a48ca7842e2a2cece48c90ac2a23a7a60bd51083db52e1746ff473e9f9a5",
+      "kind": "content_proof",
+      "path": "sha256:4c50a48ca7842e2a2cece48c90ac2a23a7a60bd51083db52e1746ff473e9f9a5",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "archive_ref:refs/codewiki/archive/task/TASK-079",
+      "kind": "git_archive_ref",
+      "path": "refs/codewiki/archive/task/TASK-079",
+      "task_id": "TASK-079",
+      "digest": "sha256:4c50a48ca7842e2a2cece48c90ac2a23a7a60bd51083db52e1746ff473e9f9a5",
+      "restore_command": "/wiki-restore TASK-079",
+      "safety_status": "blocked",
+      "default_hidden": true,
+      "layer": "archive"
+    },
+    {
       "id": "build:.codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
       "kind": "implementation_build",
       "path": ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
@@ -12021,14 +12233,6 @@
       "id": "content_proof:.codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json@sha256:11fcd069fa0503de8a246661a0f0ea846b4f4f1838babb23270ed10b4911cd0d",
       "kind": "content_proof",
       "path": ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json@sha256:11fcd069fa0503de8a246661a0f0ea846b4f4f1838babb23270ed10b4911cd0d",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:.codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json@sha256:cf8b46289e6be5d1adc557e49f4cf8541d41e06a78ddddcfdb9883eb3abb95f9",
-      "kind": "content_proof",
-      "path": ".codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json@sha256:cf8b46289e6be5d1adc557e49f4cf8541d41e06a78ddddcfdb9883eb3abb95f9",
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
@@ -12166,6 +12370,92 @@
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
+    },
+    {
+      "id": "claim:CLAIM-053",
+      "kind": "change_claim",
+      "claim_id": "CLAIM-053",
+      "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
+      "agent_name": "Ibis",
+      "mode": "write",
+      "role": "builder",
+      "status": "active",
+      "summary": "Implement source-owned audit engine, /audit command, and smoke coverage.",
+      "expires_at": "2026-05-16T06:47:11.708Z",
+      "scopes": [
+        {
+          "layer": "code",
+          "path": "src/application/**"
+        },
+        {
+          "layer": "code",
+          "path": "src/adapters/pi/**"
+        },
+        {
+          "layer": "code",
+          "path": "src/domain/shared/types.ts"
+        },
+        {
+          "layer": "code",
+          "path": "scripts/check-architecture.mjs"
+        },
+        {
+          "layer": "code",
+          "path": "tests/smoke/**"
+        },
+        {
+          "layer": "roadmap",
+          "task_id": "TASK-079"
+        },
+        {
+          "layer": "build",
+          "path": ".codewiki/builds/implementation/**"
+        },
+        {
+          "layer": "validation",
+          "path": ".codewiki/validation/**"
+        }
+      ]
+    },
+    {
+      "id": "claim_scope:src/application/**",
+      "kind": "change_claim_scope",
+      "path": "src/application/**"
+    },
+    {
+      "id": "claim_scope:src/adapters/pi/**",
+      "kind": "change_claim_scope",
+      "path": "src/adapters/pi/**"
+    },
+    {
+      "id": "claim_scope:src/domain/shared/types.ts",
+      "kind": "change_claim_scope",
+      "path": "src/domain/shared/types.ts"
+    },
+    {
+      "id": "claim_scope:scripts/check-architecture.mjs",
+      "kind": "change_claim_scope",
+      "path": "scripts/check-architecture.mjs"
+    },
+    {
+      "id": "claim_scope:tests/smoke/**",
+      "kind": "change_claim_scope",
+      "path": "tests/smoke/**"
+    },
+    {
+      "id": "claim_scope:TASK-079",
+      "kind": "change_claim_scope",
+      "path": "TASK-079"
+    },
+    {
+      "id": "claim_scope:.codewiki/builds/implementation/**",
+      "kind": "change_claim_scope",
+      "path": ".codewiki/builds/implementation/**"
+    },
+    {
+      "id": "claim_scope:.codewiki/validation/**",
+      "kind": "change_claim_scope",
+      "path": ".codewiki/validation/**"
     },
     {
       "id": "validation:.codewiki/validation/2026-05-13-task-close-block-task-074.json",
@@ -12462,6 +12752,93 @@
       }
     },
     {
+      "id": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "verdict": "pass",
+      "isolation_status": "isolated",
+      "isolation": {
+        "working_tree_digest": "sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319",
+        "clean": false,
+        "fresh_context": true,
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:full",
+          "codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
+          "codewiki_audit profiles alignment,changed task_id=TASK-079 include_fingerprints=true: warning; alignment pass, changed warning generated-file-changed .codewiki/index_graph.json, task pass.",
+          "executeCodewikiAudit direct assertion: kind=audit_report, machine-readable profiles/checked_scopes/issues/evidence_refs/fingerprints present; full fingerprints=17; scoped file-structure/security/package sha256 fingerprints present."
+        ],
+        "content_proof_refs": [
+          "sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319"
+        ]
+      }
+    },
+    {
+      "id": "audit:audit:alignment",
+      "kind": "audit_evidence",
+      "path": "audit:alignment",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:changed",
+      "kind": "audit_evidence",
+      "path": "audit:changed",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:task",
+      "kind": "audit_evidence",
+      "path": "audit:task",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:full",
+      "kind": "audit_evidence",
+      "path": "audit:full",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
+      "kind": "audit_evidence",
+      "path": "codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:codewiki_audit profiles alignment,changed task_id=TASK-079 include_fingerprints=true: warning; alignment pass, changed warning generated-file-changed .codewiki/index_graph.json, task pass.",
+      "kind": "audit_evidence",
+      "path": "codewiki_audit profiles alignment,changed task_id=TASK-079 include_fingerprints=true: warning; alignment pass, changed warning generated-file-changed .codewiki/index_graph.json, task pass.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:executeCodewikiAudit direct assertion: kind=audit_report, machine-readable profiles/checked_scopes/issues/evidence_refs/fingerprints present; full fingerprints=17; scoped file-structure/security/package sha256 fingerprints present.",
+      "kind": "audit_evidence",
+      "path": "executeCodewikiAudit direct assertion: kind=audit_report, machine-readable profiles/checked_scopes/issues/evidence_refs/fingerprints present; full fingerprints=17; scoped file-structure/security/package sha256 fingerprints present.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319",
+      "kind": "content_proof",
+      "path": "sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
       "id": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-080.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-16-implementation-pass-task-080.json",
@@ -12486,20 +12863,6 @@
           "sha256:15dae35baadaf35df1f27f0220d4778a81726fc2efb5853e7d42bf3679af1a2d"
         ]
       }
-    },
-    {
-      "id": "audit:audit:alignment",
-      "kind": "audit_evidence",
-      "path": "audit:alignment",
-      "layer": "audit",
-      "default_hidden": true
-    },
-    {
-      "id": "audit:audit:changed",
-      "kind": "audit_evidence",
-      "path": "audit:changed",
-      "layer": "audit",
-      "default_hidden": true
     },
     {
       "id": "content_proof:sha256:15dae35baadaf35df1f27f0220d4778a81726fc2efb5853e7d42bf3679af1a2d",
@@ -12557,13 +12920,6 @@
           "9299b9cb7eb8d2498a5c382ff2ee84404308d854"
         ]
       }
-    },
-    {
-      "id": "audit:audit:task",
-      "kind": "audit_evidence",
-      "path": "audit:task",
-      "layer": "audit",
-      "default_hidden": true
     },
     {
       "id": "audit:audit:generated-parity",
@@ -29856,6 +30212,203 @@
     },
     {
       "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:.codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:src/application/tools/audit.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:src/domain/shared/types.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:src/adapters/pi/commands/audit.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:src/adapters/pi/tools/audit.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:src/adapters/pi/index.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:src/adapters/pi/schemas.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:scripts/check-architecture.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:package.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:README.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:skills/codewiki/SKILL.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:tests/smoke/audit.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:tests/smoke/package-smoke.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "source:TASK-079",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:.codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json@sha256:cf8b46289e6be5d1adc557e49f4cf8541d41e06a78ddddcfdb9883eb3abb95f9",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:tests/smoke/audit.test.mjs@sha256:4ddf6c75d2a45b13a5edda5fd971c8f6187102d3e76d5a0715f39fe72f8c766e",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:tests/smoke/package-smoke.test.mjs@sha256:318e0201f24d0d78cda469803d941a58599335d21d151ddcced3298da03a27de",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:src/application/tools/audit.ts@sha256:7eb3133c47619c3e125c066a351bf3fe4416ba3b621c5e64e111e8bb86ea1dc6",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:src/domain/shared/types.ts@sha256:ccbf0aea6fdb713b6abc7b2e9cff244187052a6b293150e3c5b3df62c92ef95d",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:src/adapters/pi/commands/audit.ts@sha256:74fd10c234b084032d33e81183bae5097abcf64c8e51b460da6fb7d18d473400",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:src/adapters/pi/tools/audit.ts@sha256:1981841bd7bd58edc1a08e01f11432cfb0c3ce7d9759f11faf67cb2682911d0a",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:src/adapters/pi/index.ts@sha256:2830119090c04300df61c9ac353e5dab143dfdb06901c38017481c28668c5d91",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:src/adapters/pi/schemas.ts@sha256:55930ef954c45898e43bb10a8c2b4f36099e1f57ae3047a88ecaaac257703eba",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:scripts/check-architecture.mjs@sha256:15040f43ff6adccd34f18a36c6abc9d36f64b83742991139f2f28d5d299074be",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:package.json@sha256:4f7166e2775b6896906fd878e6aa7eb936701f4b3d615367e3739a3f51b0e24b",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:README.md@sha256:bca59b2e9eba71f64f76252f0bb13562265476168f9c48396ffd45cee2073403",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:skills/codewiki/SKILL.md@sha256:c4c823552828663c5f32f841622069675bde6f72cf5346a375e4f1ed3eb6150a",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:refs/codewiki/archive/task/TASK-079",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "content_proof:sha256:4c50a48ca7842e2a2cece48c90ac2a23a7a60bd51083db52e1746ff473e9f9a5",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "task:TASK-079"
+    },
+    {
+      "kind": "build_archive_ref",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "to": "archive_ref:refs/codewiki/archive/task/TASK-079",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
       "default_hidden": true
@@ -30195,6 +30748,51 @@
       "default_hidden": true
     },
     {
+      "kind": "claim_task",
+      "from": "claim:CLAIM-053",
+      "to": "task:TASK-079"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-053",
+      "to": "claim_scope:src/application/**"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-053",
+      "to": "claim_scope:src/adapters/pi/**"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-053",
+      "to": "claim_scope:src/domain/shared/types.ts"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-053",
+      "to": "claim_scope:scripts/check-architecture.mjs"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-053",
+      "to": "claim_scope:tests/smoke/**"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-053",
+      "to": "claim_scope:TASK-079"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-053",
+      "to": "claim_scope:.codewiki/builds/implementation/**"
+    },
+    {
+      "kind": "claim_scope",
+      "from": "claim:CLAIM-053",
+      "to": "claim_scope:.codewiki/validation/**"
+    },
+    {
       "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-13-task-close-block-task-074.json",
       "to": "source:.codewiki/builds/implementation/2026-05-13-task-074-session-handoff-fresh-process-fix.json; .codewiki/builds/implementation/2026-05-13-task-074-loop-isolation-session-handoff.json",
@@ -30329,6 +30927,65 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-16-documentation-pass-task-077.json",
       "to": "task:TASK-077"
+    },
+    {
+      "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "to": "audit:audit:full",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "to": "audit:codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "to": "audit:codewiki_audit profiles alignment,changed task_id=TASK-079 include_fingerprints=true: warning; alignment pass, changed warning generated-file-changed .codewiki/index_graph.json, task pass.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "to": "audit:executeCodewikiAudit direct assertion: kind=audit_report, machine-readable profiles/checked_scopes/issues/evidence_refs/fingerprints present; full fingerprints=17; scoped file-structure/security/package sha256 fingerprints present.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "to": "content_proof:sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+      "to": "task:TASK-079"
     },
     {
       "kind": "validation_attests_source",
@@ -30942,17 +31599,83 @@
         "tests/smoke/package-smoke.test.mjs",
         "tsconfig.json"
       ],
-      "dirty_paths": []
+      "dirty_paths": [
+        "README.md",
+        "package.json",
+        "scripts/check-architecture.mjs",
+        "skills/codewiki/SKILL.md",
+        "src/adapters/pi/index.ts",
+        "src/adapters/pi/schemas.ts",
+        "src/domain/shared/types.ts",
+        "tests/smoke/package-smoke.test.mjs"
+      ]
     },
     "claims": {
-      "active_claim_count": 0,
+      "active_claim_count": 1,
       "warning_count": 0,
       "conflict_count": 0,
       "pending_waiter_count": 0,
       "ready_waiter_count": 0,
-      "by_role": {},
-      "isolation": [],
-      "claims": [],
+      "by_role": {
+        "builder": 1
+      },
+      "isolation": [
+        {
+          "id": "CLAIM-053",
+          "role": "builder",
+          "mode": "write",
+          "task_id": "TASK-079"
+        }
+      ],
+      "claims": [
+        {
+          "id": "CLAIM-053",
+          "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
+          "agent_name": "Ibis",
+          "status": "active",
+          "mode": "write",
+          "role": "builder",
+          "summary": "Implement source-owned audit engine, /audit command, and smoke coverage.",
+          "task_id": "TASK-079",
+          "scopes": [
+            {
+              "layer": "code",
+              "path": "src/application/**"
+            },
+            {
+              "layer": "code",
+              "path": "src/adapters/pi/**"
+            },
+            {
+              "layer": "code",
+              "path": "src/domain/shared/types.ts"
+            },
+            {
+              "layer": "code",
+              "path": "scripts/check-architecture.mjs"
+            },
+            {
+              "layer": "code",
+              "path": "tests/smoke/**"
+            },
+            {
+              "layer": "roadmap",
+              "task_id": "TASK-079"
+            },
+            {
+              "layer": "build",
+              "path": ".codewiki/builds/implementation/**"
+            },
+            {
+              "layer": "validation",
+              "path": ".codewiki/validation/**"
+            }
+          ],
+          "created_at": "2026-05-16T02:47:11Z",
+          "updated_at": "2026-05-16T02:47:11Z",
+          "expires_at": "2026-05-16T06:47:11.708Z"
+        }
+      ],
       "conflicts": [],
       "waiters": []
     },
@@ -31099,6 +31822,19 @@
           "fresh_context": true,
           "related_claim_ids": [],
           "content_proof_refs": []
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+          "task_id": "TASK-079",
+          "verdict": "pass",
+          "status": "isolated",
+          "role": "validator",
+          "clean": false,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319"
+          ]
         },
         {
           "path": ".codewiki/validation/2026-05-16-implementation-pass-task-080.json",
@@ -31283,6 +32019,7 @@
         ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
         ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
         ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
+        ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
         ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
         ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
         ".codewiki/builds/planning/2026-05-13-loop-session-isolation-policy-plan.json",
@@ -31672,10 +32409,12 @@
         "skills/codewiki/loops/validation.md",
         "src/adapters/pi",
         "src/adapters/pi/commands/**",
+        "src/adapters/pi/commands/audit.ts",
         "src/adapters/pi/commands/resume.ts",
         "src/adapters/pi/index.ts",
         "src/adapters/pi/schemas.ts",
         "src/adapters/pi/tools/**",
+        "src/adapters/pi/tools/audit.ts",
         "src/adapters/pi/tools/task.ts",
         "src/adapters/pi/ui/manager.ts",
         "src/adapters/pi/ui/theme.ts",
@@ -31703,6 +32442,7 @@
         "src/application/state-builders.ts",
         "src/application/state.ts",
         "src/application/task.ts",
+        "src/application/tools/audit.ts",
         "src/bootstrap.ts",
         "src/domain",
         "src/domain/shared/types.ts",
@@ -31758,8 +32498,12 @@
       "audit_evidence_refs": [
         "audit:alignment",
         "audit:changed",
+        "audit:full",
         "audit:generated-parity",
-        "audit:task"
+        "audit:task",
+        "codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
+        "codewiki_audit profiles alignment,changed task_id=TASK-079 include_fingerprints=true: warning; alignment pass, changed warning generated-file-changed .codewiki/index_graph.json, task pass.",
+        "executeCodewikiAudit direct assertion: kind=audit_report, machine-readable profiles/checked_scopes/issues/evidence_refs/fingerprints present; full fingerprints=17; scoped file-structure/security/package sha256 fingerprints present."
       ],
       "content_proof_refs": [
         ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json@sha256:5219d9f10245e95f4e133e06e2c33ac4d0c1c0a59954b7ae88c27f6d8d565e3d",
@@ -31794,6 +32538,7 @@
         "69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363",
         "9299b9cb7eb8d2498a5c382ff2ee84404308d854",
         "README.md@sha256:9424413daed9b80f70072963b79941f58637fb8a4cb79e78b5b8005f578f38de",
+        "README.md@sha256:bca59b2e9eba71f64f76252f0bb13562265476168f9c48396ffd45cee2073403",
         "README.md@sha256:d48e668b6c8cc75e27d8c108977ce223bab6f87791e08fea7ba961ca05089467",
         "b04129f22f54723e0bbe2aabbefe18bcf2ad7324",
         "extensions/codewiki/src/adapters/pi/commands/ui.ts@sha256:0c9fa18f4e09f008c27f734fb135bfeab947fc9350ab4a9b483a3c72676fe7cb",
@@ -31850,6 +32595,7 @@
         "extensions/codewiki/templates.ts@sha256:ca26fa6f7e5ff8bc4a10b8e6664585b30b03bb928e922b4a231ff252aa98b296",
         "package-lock.json@sha256:81536d88910c1deb22c05ef2af12c325094b089acab55cd750c9cfc97cddccb5",
         "package.json@sha256:44806c850b93d7c685b589d8b20f0199bb7df0f7219bca31eaa08d90636005f1",
+        "package.json@sha256:4f7166e2775b6896906fd878e6aa7eb936701f4b3d615367e3739a3f51b0e24b",
         "refs/codewiki/archive/task/TASK-068",
         "refs/codewiki/archive/task/TASK-070",
         "refs/codewiki/archive/task/TASK-071",
@@ -31859,9 +32605,11 @@
         "refs/codewiki/archive/task/TASK-075",
         "refs/codewiki/archive/task/TASK-076",
         "refs/codewiki/archive/task/TASK-078",
+        "refs/codewiki/archive/task/TASK-079",
         "refs/codewiki/archive/task/TASK-080",
         "refs/codewiki/archive/task/TASK-081",
         "refs/codewiki/archive/task/TASK-082",
+        "scripts/check-architecture.mjs@sha256:15040f43ff6adccd34f18a36c6abc9d36f64b83742991139f2f28d5d299074be",
         "scripts/check-architecture.mjs@sha256:529464c1e0bf8c7d45058392e3e5fe6df0fc4819748aa298728ac4c2e34518d7",
         "scripts/check-architecture.mjs@sha256:8658e95fdaef6a0bb55abf3e8ddc85f4fbc4f967ec229af6b5d6885d25d08532",
         "scripts/check-architecture.mjs@sha256:b5d001b2c65932fcc2faba89d1d5167859ec8e58a89adaeb4b4e463314626f03",
@@ -31883,6 +32631,8 @@
         "sha256:2d36f5e59b7dfb48abd39129b6a43570324f19abde1d100f54d8badf87e14376",
         "sha256:31156ddd2c3cd9a300e09026f54c60de7fe4eb940dbb9b979149a3d408808bd6",
         "sha256:38aeecaf4921dba93abb7c79a94e0ab768eae857c9ff8120cd53530fb1d7f931",
+        "sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319",
+        "sha256:4c50a48ca7842e2a2cece48c90ac2a23a7a60bd51083db52e1746ff473e9f9a5",
         "sha256:67d12b59d541d3905ecb9dd7dee9f92dee06958a1807cb16e1dbfd403fcf333f",
         "sha256:690ff9aca6ed94170703349d6e0f4e97ee41840f8bb3868b8ba50a644a3d7774",
         "sha256:6aeabe57629acc7aa269c67eae2df27e33fe1025a3781f800afb0a0fa84a9232",
@@ -31912,16 +32662,21 @@
         "skills/codewiki-view-audit/SKILL.md@sha256:780eb2439b9390215f1046ae9d6f983e038f22cb8388d5134f680b1485c0653a",
         "skills/codewiki/SKILL.md@sha256:28df0b353334cb77414b7ce35ba1d44362c57d428a573ff001b967da5c44e7ff",
         "skills/codewiki/SKILL.md@sha256:9c04125894d43de760417e4bfb53a4e28cd7a38ae8a536a1e47dbdfd91854a5f",
+        "skills/codewiki/SKILL.md@sha256:c4c823552828663c5f32f841622069675bde6f72cf5346a375e4f1ed3eb6150a",
         "skills/codewiki/loops/validation.md@sha256:a062bdc9c5af7d4176b0d790ff4314b8faff52fde3d7855e0616d5bac3ad6450",
+        "src/adapters/pi/commands/audit.ts@sha256:74fd10c234b084032d33e81183bae5097abcf64c8e51b460da6fb7d18d473400",
         "src/adapters/pi/commands/resume.ts@sha256:a162d4c74dcd3c36cff09fe6bcba1319e5628b54f2e63b73daf10b66ad627afc",
         "src/adapters/pi/commands/resume.ts@sha256:a4ef8a0e6ecb34ae75092ac32a60f3d3bdfb3a096f2d3cf5355db71d2e47443e",
         "src/adapters/pi/index.ts@sha256:1fdc288150b440e502f2954934675fba8e2efcca4898874f073de445d64f6396",
+        "src/adapters/pi/index.ts@sha256:2830119090c04300df61c9ac353e5dab143dfdb06901c38017481c28668c5d91",
         "src/adapters/pi/index.ts@sha256:2937f82219bda79bda881dac2037e00089ce456774936f8651cd3e35de06db53",
         "src/adapters/pi/index.ts@sha256:33d420dd89a3deccd18ea06a59c11d9618f95fcba1997ccf4f0aa81e42235c79",
         "src/adapters/pi/schemas.ts@sha256:1a01e4edaa6eb0e0249152e848a0ec54933cd56ad04855f7bf77614c8de5d452",
         "src/adapters/pi/schemas.ts@sha256:31beb34cb119c06c058158886e5b07723023c27c79319f8e29f5c07dc3b04a64",
+        "src/adapters/pi/schemas.ts@sha256:55930ef954c45898e43bb10a8c2b4f36099e1f57ae3047a88ecaaac257703eba",
         "src/adapters/pi/schemas.ts@sha256:f49ee7522cc419f2a15801650095b38667e1328bbbf56af228885708ac57df0a",
         "src/adapters/pi/schemas.ts@sha256:ff165157117544c7b45f756e3f1df119de670820ec84ec7476cc87e0308073c2",
+        "src/adapters/pi/tools/audit.ts@sha256:1981841bd7bd58edc1a08e01f11432cfb0c3ce7d9759f11faf67cb2682911d0a",
         "src/adapters/pi/tools/task.ts@sha256:731ebd356a20b6a6e8ff245d565675db4884cfd1a36759d000e7af1ed1d95f6e",
         "src/adapters/pi/ui/manager.ts@sha256:06762f8a6da87accb03ededf75e7b3d6224697fc79b6ddcac6e6b5de2292b8ae",
         "src/adapters/pi/ui/manager.ts@sha256:637485a7d4dd9532be0ebb67e0d86f2aad787fac722fe56c4bec619fadf13590",
@@ -31957,12 +32712,15 @@
         "src/application/state-builders.ts@sha256:c57f72657fa0d99c413d5652fbcb5611676d730c6c96358e3dc6ae9b3e37cd44",
         "src/application/state.ts@sha256:8731dc608e99cadb3cce9ea219963d03488038340204c06c89911da94518e973",
         "src/application/task.ts@sha256:df99a38c882e1e514a5a80a5a6f930caee9e8ee7fdde89513c47caa833f6996b",
+        "src/application/tools/audit.ts@sha256:7eb3133c47619c3e125c066a351bf3fe4416ba3b621c5e64e111e8bb86ea1dc6",
         "src/domain/shared/types.ts@sha256:0c036abb177f5fdb85834d494b8f8f4768f98f0c91f35fe1c40e87cfe4be8fc7",
         "src/domain/shared/types.ts@sha256:41fd258395cdf7b6cfb497878ac8ea7afa2d1328d14c7fca3ae1fd95c6408dab",
         "src/domain/shared/types.ts@sha256:7b2d12acf9b9be38c1d367b0445a8f7c358d313896aa6c733956df30b5d58d24",
         "src/domain/shared/types.ts@sha256:b0dedae713acc1e4d1ef4d66a32ceef234802d3bc88f745a85be453935419523",
+        "src/domain/shared/types.ts@sha256:ccbf0aea6fdb713b6abc7b2e9cff244187052a6b293150e3c5b3df62c92ef95d",
         "tests/run.mjs@sha256:412097fb5944ab7751c54ce73e3acdb02ee86448d4266d7e80695c660ae96230",
         "tests/smoke/alignment-graph.test.mjs@sha256:59e97f5d8532b207b62650e0d0767525a7070f1df818fea8a5eaa99326b03753",
+        "tests/smoke/audit.test.mjs@sha256:4ddf6c75d2a45b13a5edda5fd971c8f6187102d3e76d5a0715f39fe72f8c766e",
         "tests/smoke/builds.test.mjs@sha256:00f5df96bf50da7827735045a112faabf504700c8115bd6b44af20427f93b6fd",
         "tests/smoke/builds.test.mjs@sha256:114f13f095ee6aa1d6fe3bdc7a8c64e93dc5268bce3040930762f6e30875532d",
         "tests/smoke/builds.test.mjs@sha256:19467188bfb848f95bce216b1fbd2f7e096860baba14aea416e206175ab4e016",
@@ -31983,6 +32741,7 @@
         "tests/smoke/loop-isolation-policy.test.mjs@sha256:916486e1558833358e78654d288aca0afe29771f039b803b5b037723fb8689a6",
         "tests/smoke/loop-isolation-policy.test.mjs@sha256:caa794e138690d8000303176f46bf67e6043fb3f9763b09e53e9ab54f013b6ce",
         "tests/smoke/loop-isolation-policy.test.mjs@sha256:f58df644a548f3491355b25257b202afa8dfa91d6ed0a9f139f9c7e670113c14",
+        "tests/smoke/package-smoke.test.mjs@sha256:318e0201f24d0d78cda469803d941a58599335d21d151ddcced3298da03a27de",
         "tests/smoke/package-smoke.test.mjs@sha256:506942a02ba8fb8b3d3346e9ba76fb5297fef5d26d4b6724ca5b2c245aa8bb86",
         "tests/smoke/package-smoke.test.mjs@sha256:6d94cf8e9767323a551f55c849dbbcfa97d45c4295e2b2f79444342ae84185bf",
         "tests/smoke/package-smoke.test.mjs@sha256:9bbf5521dbb7549e9077a911af36e6a5c51383ff3521ce7793d38f541ff2275e",
@@ -32125,6 +32884,28 @@
           "audit_evidence_refs": [],
           "content_proof_refs": [],
           "isolation_status": "partial"
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-implementation-pass-task-079.json",
+          "verdict": "pass",
+          "profile": "implementation",
+          "task_id": "TASK-079",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:full",
+            "codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
+            "codewiki_audit profiles alignment,changed task_id=TASK-079 include_fingerprints=true: warning; alignment pass, changed warning generated-file-changed .codewiki/index_graph.json, task pass.",
+            "executeCodewikiAudit direct assertion: kind=audit_report, machine-readable profiles/checked_scopes/issues/evidence_refs/fingerprints present; full fingerprints=17; scoped file-structure/security/package sha256 fingerprints present."
+          ],
+          "content_proof_refs": [
+            "sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319"
+          ],
+          "isolation_status": "isolated"
         },
         {
           "path": ".codewiki/validation/2026-05-16-implementation-pass-task-080.json",
@@ -33400,7 +34181,9 @@
             ".codewiki/validation/2026-05-15-implementation-block-task-081.json",
             ".codewiki/validation/2026-05-16-documentation-fail-task-077.json"
           ],
-          "claim_ids": [],
+          "claim_ids": [
+            "CLAIM-053"
+          ],
           "claim_wait_ids": []
         },
         "warm": {
@@ -33491,6 +34274,7 @@
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
+            ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json"
           ],
@@ -33501,6 +34285,7 @@
             ".codewiki/validation/2026-05-15-implementation-pass-task-080.json",
             ".codewiki/validation/2026-05-15-implementation-pass-task-081.json",
             ".codewiki/validation/2026-05-16-documentation-pass-task-077.json",
+            ".codewiki/validation/2026-05-16-implementation-pass-task-079.json",
             ".codewiki/validation/2026-05-16-implementation-pass-task-080.json",
             ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-080.json"
@@ -33607,6 +34392,7 @@
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
+            ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json"
           ]
@@ -33840,6 +34626,16 @@
         },
         {
           "kind": "task",
+          "id": "TASK-079",
+          "build_path": ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
+          "archive_ref": "refs/codewiki/archive/task/TASK-079",
+          "commit_sha": "",
+          "digest": "sha256:4c50a48ca7842e2a2cece48c90ac2a23a7a60bd51083db52e1746ff473e9f9a5",
+          "restore_command": "/wiki-restore TASK-079",
+          "safety_status": "blocked"
+        },
+        {
+          "kind": "task",
           "id": "TASK-080",
           "build_path": ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           "archive_ref": "refs/codewiki/archive/task/TASK-080",
@@ -33860,7 +34656,7 @@
         }
       ],
       "git_archive": {
-        "ledger_count": 22,
+        "ledger_count": 23,
         "archive_refs": [
           "refs/codewiki/archive/task/TASK-068",
           "refs/codewiki/archive/task/TASK-070",
@@ -33882,6 +34678,7 @@
           "refs/codewiki/archive/task/TASK-081",
           "refs/codewiki/archive/task/TASK-081",
           "refs/codewiki/archive/task/TASK-082",
+          "refs/codewiki/archive/task/TASK-079",
           "refs/codewiki/archive/task/TASK-080",
           "refs/codewiki/archive/task/TASK-080"
         ],
@@ -33906,6 +34703,7 @@
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
           ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
+          ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json"
         ],
@@ -33922,6 +34720,7 @@
           ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
           ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
+          ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json"
         ],
@@ -34105,13 +34904,13 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T02:35:22.783Z",
+      "generated_at": "2026-05-16T03:11:11.053Z",
       "counts": {},
       "issues": []
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T02:35:22Z",
+      "generated_at": "2026-05-16T03:11:11Z",
       "health": {
         "color": "green",
         "errors": 0,
@@ -34419,13 +35218,13 @@
           "TASK-039"
         ],
         "recent_task_ids": [
+          "TASK-079",
           "TASK-088",
           "TASK-087",
           "TASK-086",
           "TASK-077",
           "TASK-083",
           "TASK-081",
-          "TASK-079",
           "TASK-082",
           "TASK-084",
           "TASK-078",
@@ -36584,7 +37383,7 @@
             "src/domain/shared/types.ts",
             "tests/smoke"
           ],
-          "updated": "2026-05-16T00:59:30Z",
+          "updated": "2026-05-16T03:11:06Z",
           "context_path": ".codewiki/roadmap/tasks/TASK-079/context.json",
           "loop": {
             "updated_at": "",
@@ -37079,7 +37878,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T02:35:22Z",
+      "generated_at": "2026-05-16T03:11:11Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -37243,7 +38042,9 @@
               ".codewiki/validation/2026-05-15-implementation-block-task-081.json",
               ".codewiki/validation/2026-05-16-documentation-fail-task-077.json"
             ],
-            "claim_ids": [],
+            "claim_ids": [
+              "CLAIM-053"
+            ],
             "claim_wait_ids": []
           },
           "warm": {
@@ -37334,6 +38135,7 @@
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
+              ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json"
             ],
@@ -37344,6 +38146,7 @@
               ".codewiki/validation/2026-05-15-implementation-pass-task-080.json",
               ".codewiki/validation/2026-05-15-implementation-pass-task-081.json",
               ".codewiki/validation/2026-05-16-documentation-pass-task-077.json",
+              ".codewiki/validation/2026-05-16-implementation-pass-task-079.json",
               ".codewiki/validation/2026-05-16-implementation-pass-task-080.json",
               ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-080.json"
@@ -37450,6 +38253,7 @@
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
+              ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json"
             ]
@@ -37481,7 +38285,7 @@
       },
       "direction": [
         "Validation blocked; escalate ambiguous intent to feedback compiler.",
-        "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
+        "Parallel sessions: 0 active, 0 collision task(s), 1 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
         "Tracked drift coverage: 17/17."
@@ -38500,7 +39304,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T02:35:22Z",
+        "generated_at": "2026-05-16T03:11:11Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -38528,12 +39332,22 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T02:35:22Z",
+            "checked_at": "2026-05-16T03:11:11Z",
             "revision": {
               "git": {
-                "head": "8ebb2b51aa0993bf8c9fa004897cab48ef30a014",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "cae25daee778dc21994477eb6111e032cc35f3cb",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-079/context.json",
+                  ".codewiki/roadmap/tasks/TASK-079/task.json",
+                  "package.json",
+                  "skills/codewiki/SKILL.md",
+                  "src/adapters/pi/index.ts",
+                  "src/adapters/pi/schemas.ts",
+                  "src/domain/shared/types.ts",
+                  "tests/smoke/package-smoke.test.mjs"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -38614,14 +39428,14 @@
                 }
               },
               "spec_digest": "7dd2528fc40345a33ee7c2b5855cebd66468226c2e16e2a74f5eaaf317b9a6ab",
-              "task_digest": "ddc7161dd7c94120c10738b408241f158e579df0a083d0bfebf58cb06f25bf8b",
-              "code_digest": "dd404419aeccdad35fee64c0e48e0d40658190b7a6b253e4083d9e7700665a03",
-              "digest": "6f5803dca24188657e39a9c70cb61a6fdf6213907e65e298751275d6bf0a7670"
+              "task_digest": "225a2e970d55da62b958efaa7f7a35772f486431f16779e8e82764120b505958",
+              "code_digest": "19fc2d79e86045dbc6beed90459bf0dcd736158f332597bc5c9ce659af29a6aa",
+              "digest": "b0be2dcbd6644e8ec4076f919cd2ff2b316338f1630c2dce2de4e4a676030b7a"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T02:35:22Z",
+              "checked_at": "2026-05-16T03:11:11Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -38764,12 +39578,21 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T02:35:22Z",
+            "checked_at": "2026-05-16T03:11:11Z",
             "revision": {
               "git": {
-                "head": "8ebb2b51aa0993bf8c9fa004897cab48ef30a014",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "cae25daee778dc21994477eb6111e032cc35f3cb",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-079/context.json",
+                  ".codewiki/roadmap/tasks/TASK-079/task.json",
+                  "skills/codewiki/SKILL.md",
+                  "src/adapters/pi/index.ts",
+                  "src/adapters/pi/schemas.ts",
+                  "src/domain/shared/types.ts",
+                  "tests/smoke/package-smoke.test.mjs"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -38829,14 +39652,14 @@
                 }
               },
               "spec_digest": "03d72cb217ce699ecec7e27d5224f94ea696d9a63c8a8fdd68103c83244bb2be",
-              "task_digest": "ddc7161dd7c94120c10738b408241f158e579df0a083d0bfebf58cb06f25bf8b",
-              "code_digest": "4854d4b365a05b35a772c491bbe0bb4a6644dbc949e7c90f95756cb9ce3d3992",
-              "digest": "0f4dd2e78e586d0d2fd76f22156a07fccf397d17657aa543306da8b433b3313e"
+              "task_digest": "225a2e970d55da62b958efaa7f7a35772f486431f16779e8e82764120b505958",
+              "code_digest": "b87baca24f64c7e29fd3ad98c611dab1bfcd2f17fe45f5bc28327ac1a444403b",
+              "digest": "fc9c6436acace49c13557109be10e7239cb7f1117dd7ee6bc2732c97036cdc19"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T02:35:22Z",
+              "checked_at": "2026-05-16T03:11:11Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -38955,12 +39778,22 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T02:35:22Z",
+            "checked_at": "2026-05-16T03:11:11Z",
             "revision": {
               "git": {
-                "head": "8ebb2b51aa0993bf8c9fa004897cab48ef30a014",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "cae25daee778dc21994477eb6111e032cc35f3cb",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-079/context.json",
+                  ".codewiki/roadmap/tasks/TASK-079/task.json",
+                  "package.json",
+                  "skills/codewiki/SKILL.md",
+                  "src/adapters/pi/index.ts",
+                  "src/adapters/pi/schemas.ts",
+                  "src/domain/shared/types.ts",
+                  "tests/smoke/package-smoke.test.mjs"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -39041,14 +39874,14 @@
                 }
               },
               "spec_digest": "7dd2528fc40345a33ee7c2b5855cebd66468226c2e16e2a74f5eaaf317b9a6ab",
-              "task_digest": "ddc7161dd7c94120c10738b408241f158e579df0a083d0bfebf58cb06f25bf8b",
-              "code_digest": "dd404419aeccdad35fee64c0e48e0d40658190b7a6b253e4083d9e7700665a03",
-              "digest": "6f5803dca24188657e39a9c70cb61a6fdf6213907e65e298751275d6bf0a7670"
+              "task_digest": "225a2e970d55da62b958efaa7f7a35772f486431f16779e8e82764120b505958",
+              "code_digest": "19fc2d79e86045dbc6beed90459bf0dcd736158f332597bc5c9ce659af29a6aa",
+              "digest": "b0be2dcbd6644e8ec4076f919cd2ff2b316338f1630c2dce2de4e4a676030b7a"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T02:35:22Z",
+              "checked_at": "2026-05-16T03:11:11Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -39192,16 +40025,64 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T02:35:22Z",
+        "generated_at": "2026-05-16T03:11:11Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
-        "active_claim_count": 0,
+        "active_claim_count": 1,
         "claim_warning_count": 0,
         "claim_conflict_count": 0,
         "claim_pending_wait_count": 0,
         "claim_ready_wait_count": 0,
-        "claims": [],
+        "claims": [
+          {
+            "id": "CLAIM-053",
+            "session_id": "019e25c0-2de2-706e-84ba-77b32db98cc3",
+            "agent_name": "Ibis",
+            "status": "active",
+            "mode": "write",
+            "role": "builder",
+            "summary": "Implement source-owned audit engine, /audit command, and smoke coverage.",
+            "task_id": "TASK-079",
+            "scopes": [
+              {
+                "layer": "code",
+                "path": "src/application/**"
+              },
+              {
+                "layer": "code",
+                "path": "src/adapters/pi/**"
+              },
+              {
+                "layer": "code",
+                "path": "src/domain/shared/types.ts"
+              },
+              {
+                "layer": "code",
+                "path": "scripts/check-architecture.mjs"
+              },
+              {
+                "layer": "code",
+                "path": "tests/smoke/**"
+              },
+              {
+                "layer": "roadmap",
+                "task_id": "TASK-079"
+              },
+              {
+                "layer": "build",
+                "path": ".codewiki/builds/implementation/**"
+              },
+              {
+                "layer": "validation",
+                "path": ".codewiki/validation/**"
+              }
+            ],
+            "created_at": "2026-05-16T02:47:11Z",
+            "updated_at": "2026-05-16T02:47:11Z",
+            "expires_at": "2026-05-16T06:47:11.708Z"
+          }
+        ],
         "claim_waiters": [],
         "claim_conflicts": []
       },

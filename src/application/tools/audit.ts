@@ -1,0 +1,677 @@
+import { execFile } from "node:child_process";
+import { createHash } from "node:crypto";
+import { readdir, readFile, stat } from "node:fs/promises";
+import { relative, resolve } from "node:path";
+import { promisify } from "node:util";
+import type {
+	AuditFingerprint,
+	AuditIssue,
+	AuditProfile,
+	AuditProfileResult,
+	AuditReport,
+	AuditScope,
+	AuditStatus,
+	WikiProject,
+} from "../../domain/shared/types.ts";
+import { AUDIT_PROFILE_VALUES } from "../../domain/shared/types.ts";
+import { formatError, nowIso, unique } from "../../domain/shared/utils.ts";
+import { pathExists } from "../local/filesystem.ts";
+
+const execFileAsync = promisify(execFile);
+const FULL_AUDIT_PROFILES: AuditProfile[] = [
+	"alignment",
+	"file-structure",
+	"stale-reference",
+	"package",
+	"security",
+	"generated-parity",
+];
+const AUDIT_VERSION = 1;
+
+type JsonObject = Record<string, any>;
+
+interface TextRule {
+	name: string;
+	prefix: string;
+	forbidden: RegExp[];
+	forbiddenOutside?: string;
+}
+
+export interface CodewikiAuditInput {
+	profiles?: AuditProfile[];
+	paths?: string[];
+	layers?: string[];
+	task_id?: string;
+	changed?: boolean;
+	full?: boolean;
+	include_fingerprints?: boolean;
+}
+
+const ARCHITECTURE_RULES: TextRule[] = [
+	{
+		name: "no-deprecated-pi-package-scope",
+		prefix: "",
+		forbidden: [/@mariozechner\//],
+	},
+	{
+		name: "domain-is-pure",
+		prefix: "domain/",
+		forbidden: [
+			/@mariozechner\//,
+			/@earendil-works\//,
+			/from\s+["']node:/,
+			/import\s+["']node:/,
+			/from\s+["'](?:\.\.\/)+application/,
+			/from\s+["'](?:\.\.\/)+adapters/,
+			/from\s+["'](?:\.\.\/)+core/,
+			/from\s+["'](?:\.\.\/)+engine/,
+			/from\s+["'](?:\.\.\/)+tools/,
+			/from\s+["'](?:\.\.\/)+commands/,
+			/from\s+["'](?:\.\.\/)+ui/,
+		],
+	},
+	{
+		name: "application-is-agent-agnostic",
+		prefix: "application/",
+		forbidden: [
+			/@mariozechner\//,
+			/@earendil-works\//,
+			/from\s+["'](?:\.\.\/)+adapters/,
+			/from\s+["'](?:\.\.\/)+tools/,
+			/from\s+["'](?:\.\.\/)+commands/,
+			/from\s+["'](?:\.\.\/)+ui/,
+		],
+	},
+	{
+		name: "shared-has-no-product-behavior",
+		prefix: "shared/",
+		forbidden: [
+			/@mariozechner\//,
+			/@earendil-works\//,
+			/from\s+["']node:/,
+			/import\s+["']node:/,
+			/from\s+["'](?:\.\.\/)+domain/,
+			/from\s+["'](?:\.\.\/)+application/,
+			/from\s+["'](?:\.\.\/)+adapters/,
+			/from\s+["'](?:\.\.\/)+core/,
+			/from\s+["'](?:\.\.\/)+engine/,
+		],
+	},
+	{
+		name: "pi-sdk-only-in-pi-adapter",
+		prefix: "",
+		forbiddenOutside: "adapters/pi/",
+		forbidden: [/@earendil-works\/pi-/],
+	},
+];
+const PI_SDK_ENTRYPOINT_ALLOWLIST = new Set(["index.ts", "bootstrap.ts", "mutation-queue.ts"]);
+const CANONICAL_ROADMAP_STATUSES = ["todo", "in_progress", "blocked", "done", "cancelled"];
+const LEGACY_ROADMAP_WORKFLOW_VALUES = new Set(["research", "implement", "verify"]);
+
+function normalizeRel(path: string): string {
+	return path.replaceAll("\\", "/").replace(/^\.\//, "");
+}
+
+function isAuditProfile(value: string): value is AuditProfile {
+	return (AUDIT_PROFILE_VALUES as readonly string[]).includes(value);
+}
+
+export function normalizeAuditProfiles(input: CodewikiAuditInput): AuditProfile[] {
+	const requested: AuditProfile[] = [...new Set((input.profiles || []).filter(isAuditProfile))];
+	if (input.full || requested.length === 0) {
+		if (input.changed && !requested.includes("changed")) requested.push("changed");
+		if (input.task_id && !requested.includes("task")) requested.push("task");
+		if (input.layers?.length && requested.length === 0) requested.push("alignment");
+		return requested.length ? requested : FULL_AUDIT_PROFILES;
+	}
+	if (input.changed && !requested.includes("changed")) requested.push("changed");
+	if (input.task_id && !requested.includes("task")) requested.push("task");
+	return requested;
+}
+
+function createIssue(
+	profile: AuditProfile,
+	severity: AuditIssue["severity"],
+	kind: string,
+	message: string,
+	path?: string,
+	rationale?: string,
+	refs?: string[],
+): AuditIssue {
+	return {
+		profile,
+		severity,
+		kind,
+		message,
+		...(path ? { path } : {}),
+		...(rationale ? { rationale } : {}),
+		...(refs?.length ? { refs } : {}),
+	};
+}
+
+function statusForIssues(issues: AuditIssue[]): AuditStatus {
+	if (issues.some((issue) => issue.severity === "error")) return "fail";
+	if (issues.some((issue) => issue.severity === "warning")) return "warning";
+	return "pass";
+}
+
+async function maybeReadJson(path: string): Promise<JsonObject | null> {
+	try {
+		return JSON.parse(await readFile(path, "utf8")) as JsonObject;
+	} catch {
+		return null;
+	}
+}
+
+async function maybeReadText(path: string): Promise<string | null> {
+	try {
+		return await readFile(path, "utf8");
+	} catch {
+		return null;
+	}
+}
+
+async function walkFiles(dir: string, predicate: (path: string) => boolean = () => true): Promise<string[]> {
+	if (!(await pathExists(dir))) return [];
+	const out: string[] = [];
+	for (const entry of await readdir(dir, { withFileTypes: true })) {
+		if (entry.name === "node_modules" || entry.name === ".git") continue;
+		const child = resolve(dir, entry.name);
+		if (entry.isDirectory()) out.push(...(await walkFiles(child, predicate)));
+		else if (predicate(child)) out.push(child);
+	}
+	return out.sort();
+}
+
+async function fingerprintFile(project: WikiProject, relPath: string): Promise<AuditFingerprint | null> {
+	const absolute = resolve(project.root, relPath);
+	try {
+		const fileStat = await stat(absolute);
+		if (!fileStat.isFile()) return null;
+		const content = await readFile(absolute);
+		return {
+			path: relPath,
+			digest: `sha256:${createHash("sha256").update(content).digest("hex")}`,
+			bytes: content.length,
+		};
+	} catch {
+		return null;
+	}
+}
+
+async function fingerprintFiles(project: WikiProject, files: string[], enabled: boolean): Promise<AuditFingerprint[]> {
+	if (!enabled) return [];
+	const out: AuditFingerprint[] = [];
+	for (const relPath of unique(files.map(normalizeRel)).sort().slice(0, 60)) {
+		const fingerprint = await fingerprintFile(project, relPath);
+		if (fingerprint) out.push(fingerprint);
+	}
+	return out;
+}
+
+function exportedStringArray(source: string, exportName: string): string[] | null {
+	const match = source.match(new RegExp(`export\\s+const\\s+${exportName}\\s*=\\s*\\[([\\s\\S]*?)\\]\\s*as\\s+const`));
+	if (!match) return null;
+	return [...match[1].matchAll(/["']([^"']+)["']/g)].map((item) => item[1]);
+}
+
+function pushArrayEqualsIssue(issues: AuditIssue[], actual: string[] | null, exportName: string): void {
+	if (!actual) {
+		issues.push(createIssue("file-structure", "error", "workflow-drift", `Missing ${exportName} export.`, "src/domain/shared/types.ts"));
+		return;
+	}
+	if (JSON.stringify(actual) !== JSON.stringify(CANONICAL_ROADMAP_STATUSES)) {
+		issues.push(createIssue(
+			"file-structure",
+			"error",
+			"workflow-drift",
+			`${exportName} = ${JSON.stringify(actual)}, expected ${JSON.stringify(CANONICAL_ROADMAP_STATUSES)}.`,
+			"src/domain/shared/types.ts",
+		));
+	}
+}
+
+async function auditFileStructure(project: WikiProject, input: CodewikiAuditInput): Promise<AuditProfileResult> {
+	const profile: AuditProfile = "file-structure";
+	const issues: AuditIssue[] = [];
+	const evidence = ["src/application/tools/audit.ts", "scripts/check-architecture.mjs"];
+	const srcRoot = resolve(project.root, "src");
+	const tsFiles = await walkFiles(srcRoot, (path) => path.endsWith(".ts"));
+	if (tsFiles.length === 0) {
+		issues.push(createIssue(profile, "warning", "missing-source-tree", "No TypeScript source files found under src/.", "src"));
+	}
+
+	const typesPath = resolve(project.root, "src/domain/shared/types.ts");
+	const typesText = await maybeReadText(typesPath);
+	if (typesText) {
+		pushArrayEqualsIssue(issues, exportedStringArray(typesText, "ROADMAP_STATUS_VALUES"), "ROADMAP_STATUS_VALUES");
+		if (/TASK_PHASE_VALUES|TaskPhase|phase\?:/.test(typesText)) {
+			issues.push(createIssue(profile, "error", "workflow-drift", "Task phases must not be canonical types; use roadmap status plus build/validation gates.", "src/domain/shared/types.ts"));
+		}
+	} else {
+		issues.push(createIssue(profile, "warning", "missing-types", "Unable to read shared domain types.", "src/domain/shared/types.ts"));
+	}
+
+	const schemaText = await maybeReadText(resolve(project.root, "src/adapters/pi/schemas.ts"));
+	if (schemaText && /taskLoopPhaseSchema|phase:\s*Type\.Optional|Type\.Literal\(["']verify["']\)/.test(schemaText)) {
+		issues.push(createIssue(profile, "error", "workflow-drift", "Pi schema must not expose task phase fields or deprecated 'verify' literal.", "src/adapters/pi/schemas.ts"));
+	}
+
+	const graphText = await maybeReadText(resolve(project.root, ".codewiki/index_graph.json"));
+	if (graphText && /"phase"\s*:/.test(graphText)) {
+		issues.push(createIssue(profile, "error", "workflow-drift", "Generated index_graph.json must not expose task phase fields.", ".codewiki/index_graph.json"));
+	}
+
+	const queue = await maybeReadJson(resolve(project.root, project.roadmapPath));
+	if (queue?.tasks && typeof queue.tasks === "object") {
+		for (const [taskId, task] of Object.entries(queue.tasks)) {
+			const status = String((task as JsonObject)?.status || "").trim();
+			if (LEGACY_ROADMAP_WORKFLOW_VALUES.has(status)) {
+				issues.push(createIssue(profile, "error", "workflow-drift", `${taskId} uses deprecated roadmap status '${status}'.`, project.roadmapPath));
+			}
+		}
+	}
+
+	for (const file of tsFiles) {
+		const rel = normalizeRel(relative(srcRoot, file));
+		const text = await readFile(file, "utf8");
+		if (rel.startsWith("core/") || rel.startsWith("engine/") || rel.startsWith("infrastructure/")) {
+			issues.push(createIssue(profile, "error", "transitional-layer-no-new-files", `${rel} is in a removed source layer.`, `src/${rel}`));
+		}
+		for (const rule of ARCHITECTURE_RULES) {
+			if (!rel.startsWith(rule.prefix)) continue;
+			if (rule.forbiddenOutside && (rel.startsWith(rule.forbiddenOutside) || PI_SDK_ENTRYPOINT_ALLOWLIST.has(rel))) continue;
+			for (const pattern of rule.forbidden) {
+				if (pattern.test(text)) {
+					issues.push(createIssue(profile, "error", rule.name, `${rel} matches ${pattern}.`, `src/${rel}`));
+				}
+			}
+		}
+	}
+
+	const architectureScript = await maybeReadText(resolve(project.root, "scripts/check-architecture.mjs"));
+	if (!architectureScript) {
+		issues.push(createIssue(profile, "warning", "missing-script-wrapper", "Optional architecture script wrapper is absent.", "scripts/check-architecture.mjs"));
+	} else {
+		if (!architectureScript.includes("executeCodewikiAudit")) {
+			issues.push(createIssue(profile, "error", "script-owned-audit-semantics", "Architecture check script must delegate to the source-owned audit engine.", "scripts/check-architecture.mjs"));
+		}
+		if (/const\s+checks\s*=|ARCHITECTURE_RULES|domain-is-pure/.test(architectureScript)) {
+			issues.push(createIssue(profile, "error", "script-owned-audit-semantics", "Architecture check script must not define authoritative audit rules.", "scripts/check-architecture.mjs"));
+		}
+	}
+
+	const fingerprints = await fingerprintFiles(project, [
+		"src/application/tools/audit.ts",
+		"src/domain/shared/types.ts",
+		"src/adapters/pi/schemas.ts",
+		"src/adapters/pi/index.ts",
+		"scripts/check-architecture.mjs",
+	], input.include_fingerprints !== false);
+	return {
+		profile,
+		status: statusForIssues(issues),
+		summary: `Checked ${tsFiles.length} TypeScript source files and architecture wrapper boundaries.`,
+		checked_scopes: { root: project.root, files: ["src/**/*.ts", "scripts/check-architecture.mjs"] },
+		issues,
+		evidence_refs: evidence,
+		fingerprints,
+	};
+}
+
+async function auditAlignment(project: WikiProject, input: CodewikiAuditInput): Promise<AuditProfileResult> {
+	const profile: AuditProfile = "alignment";
+	const issues: AuditIssue[] = [];
+	const graphPath = ".codewiki/index_graph.json";
+	const queuePath = project.roadmapPath;
+	const graph = await maybeReadJson(resolve(project.root, graphPath));
+	if (!graph) {
+		issues.push(createIssue(profile, "error", "missing-graph", "Generated graph index is missing or unreadable.", graphPath));
+	} else {
+		const health = graph?.lenses?.status?.health || graph?.status?.health;
+		if (health?.errors > 0) {
+			issues.push(createIssue(profile, "error", "graph-health", `Graph health reports ${health.errors} errors.`, graphPath));
+		}
+		if (health?.warnings > 0) {
+			issues.push(createIssue(profile, "warning", "graph-health", `Graph health reports ${health.warnings} warnings.`, graphPath));
+		}
+	}
+	const queue = await maybeReadJson(resolve(project.root, queuePath));
+	if (!queue?.tasks) {
+		issues.push(createIssue(profile, "error", "missing-roadmap", "Roadmap queue is missing or unreadable.", queuePath));
+	}
+	const fingerprints = await fingerprintFiles(project, [graphPath, queuePath, ...(input.paths || [])], input.include_fingerprints !== false);
+	return {
+		profile,
+		status: statusForIssues(issues),
+		summary: "Checked generated graph health and roadmap queue reachability.",
+		checked_scopes: { root: project.root, layers: input.layers, files: [graphPath, queuePath] },
+		issues,
+		evidence_refs: [graphPath, queuePath],
+		fingerprints,
+	};
+}
+
+async function auditStaleReference(project: WikiProject, input: CodewikiAuditInput): Promise<AuditProfileResult> {
+	const profile: AuditProfile = "stale-reference";
+	const issues: AuditIssue[] = [];
+	const docsRoot = resolve(project.root, project.docsRoot);
+	const docs = await walkFiles(docsRoot, (path) => path.endsWith(".md") || path.endsWith(".mdx"));
+	const activeTextFiles = [
+		...docs,
+		...(await walkFiles(resolve(project.root, "skills"), (path) => path.endsWith(".md"))),
+		resolve(project.root, "README.md"),
+	].filter(Boolean);
+	const stalePatterns: Array<{ pattern: RegExp; message: string }> = [
+		{ pattern: /extensions\/codewiki\/src/g, message: "Legacy package-source path extensions/codewiki/src appears in active docs/source." },
+		{ pattern: /\.codewiki\/roadmap\.json/g, message: "Legacy root roadmap path appears in active docs/source." },
+		{ pattern: /scripts\/codewiki-transaction\.mjs/g, message: "Deprecated script-owned CodeWiki transaction path appears in active docs/source." },
+		{ pattern: /\/wiki-verify\b/g, message: "Deprecated wiki-verify command appears in active docs/source." },
+	];
+	for (const file of activeTextFiles) {
+		const rel = normalizeRel(relative(project.root, file));
+		const text = await maybeReadText(file);
+		if (!text) continue;
+		for (const item of stalePatterns) {
+			item.pattern.lastIndex = 0;
+			if (item.pattern.test(text)) {
+				issues.push(createIssue(profile, "warning", "stale-reference", item.message, rel));
+			}
+		}
+	}
+	const fingerprints = await fingerprintFiles(project, [project.docsRoot, "skills/codewiki/SKILL.md", "README.md", ...(input.paths || [])], input.include_fingerprints !== false);
+	return {
+		profile,
+		status: statusForIssues(issues),
+		summary: `Scanned ${activeTextFiles.length} active markdown/source text files for known stale references.`,
+		checked_scopes: { root: project.root, files: [project.docsRoot, "skills/**/*.md", "README.md"] },
+		issues,
+		evidence_refs: [project.docsRoot, "skills", "README.md"],
+		fingerprints,
+	};
+}
+
+async function auditPackage(project: WikiProject, input: CodewikiAuditInput): Promise<AuditProfileResult> {
+	const profile: AuditProfile = "package";
+	const issues: AuditIssue[] = [];
+	const packageJsonPath = "package.json";
+	const packageJson = await maybeReadJson(resolve(project.root, packageJsonPath));
+	if (!packageJson) {
+		issues.push(createIssue(profile, "warning", "missing-package-json", "No package.json found; package audit has no package surface to inspect.", packageJsonPath));
+	} else {
+		const files = Array.isArray(packageJson.files) ? packageJson.files.map(String) : [];
+		for (const required of ["src", "skills", "scripts", "README.md", "package.json"]) {
+			if (!files.includes(required)) {
+				issues.push(createIssue(profile, "error", "package-files", `package.json files must include ${required}.`, packageJsonPath));
+			}
+		}
+		if (files.some((item: string) => item.startsWith("extensions"))) {
+			issues.push(createIssue(profile, "error", "package-files", "package.json files must not include deprecated extensions/ source paths.", packageJsonPath));
+		}
+		const extensions = Array.isArray(packageJson.pi?.extensions) ? packageJson.pi.extensions.map(String) : [];
+		if (!extensions.includes("./src/index.ts")) {
+			issues.push(createIssue(profile, "error", "pi-extension-entry", "Pi extension entry must resolve from ./src/index.ts.", packageJsonPath));
+		}
+		const skills = Array.isArray(packageJson.pi?.skills) ? packageJson.pi.skills.map(String) : [];
+		if (!skills.includes("./skills")) {
+			issues.push(createIssue(profile, "error", "pi-skill-entry", "Pi skill entry must resolve from ./skills.", packageJsonPath));
+		}
+		if (!packageJson.scripts?.["check:architecture"]) {
+			issues.push(createIssue(profile, "warning", "package-checks", "package.json should expose check:architecture wrapper for CI/package smoke.", packageJsonPath));
+		}
+	}
+	if (!(await pathExists(resolve(project.root, "package-lock.json")))) {
+		issues.push(createIssue(profile, "warning", "missing-lockfile", "package-lock.json is absent; publication reproducibility may be weaker.", "package-lock.json"));
+	}
+	const fingerprints = await fingerprintFiles(project, ["package.json", "package-lock.json", "src/index.ts", "skills/codewiki/SKILL.md"], input.include_fingerprints !== false);
+	return {
+		profile,
+		status: statusForIssues(issues),
+		summary: "Checked package manifest reachability, Pi package entries, and lockfile presence.",
+		checked_scopes: { root: project.root, files: ["package.json", "package-lock.json", "src/index.ts", "skills"] },
+		issues,
+		evidence_refs: ["package.json", "package-lock.json"],
+		fingerprints,
+	};
+}
+
+async function gitOutput(project: WikiProject, args: string[]): Promise<string | null> {
+	try {
+		const result = await execFileAsync("git", args, { cwd: project.root, encoding: "utf8", maxBuffer: 1024 * 1024 * 8 });
+		return result.stdout;
+	} catch {
+		return null;
+	}
+}
+
+async function auditSecurity(project: WikiProject, input: CodewikiAuditInput): Promise<AuditProfileResult> {
+	const profile: AuditProfile = "security";
+	const issues: AuditIssue[] = [];
+	const packageJson = await maybeReadJson(resolve(project.root, "package.json"));
+	const riskyScriptPattern = /\b(curl|wget|sudo|chmod\s+777|rm\s+-rf\s+\/|npm\s+publish)\b/;
+	if (packageJson?.scripts) {
+		for (const [name, script] of Object.entries(packageJson.scripts)) {
+			if (riskyScriptPattern.test(String(script))) {
+				issues.push(createIssue(profile, "warning", "risky-package-script", `package script ${name} contains a risky shell fragment.`, "package.json"));
+			}
+		}
+	}
+	const tracked = await gitOutput(project, ["ls-files"]);
+	if (tracked) {
+		for (const rel of tracked.split("\n").filter(Boolean)) {
+			if (/(^|\/)(\.env|id_rsa|id_dsa|.*\.pem|.*\.p12)$/.test(rel)) {
+				issues.push(createIssue(profile, "error", "secret-risk-path", `Tracked path looks like a secret-bearing file: ${rel}.`, rel));
+			}
+		}
+	} else {
+		issues.push(createIssue(profile, "warning", "git-unavailable", "Unable to inspect git tracked files for secret-risk paths."));
+	}
+	const fingerprints = await fingerprintFiles(project, ["package.json", "package-lock.json", ...(input.paths || [])], input.include_fingerprints !== false);
+	return {
+		profile,
+		status: statusForIssues(issues),
+		summary: "Checked package scripts and tracked secret-risk paths.",
+		checked_scopes: { root: project.root, files: ["package.json", "git ls-files"] },
+		issues,
+		evidence_refs: ["package.json", "git ls-files"],
+		fingerprints,
+	};
+}
+
+async function auditGeneratedParity(project: WikiProject, input: CodewikiAuditInput): Promise<AuditProfileResult> {
+	const profile: AuditProfile = "generated-parity";
+	const issues: AuditIssue[] = [];
+	const graphPath = resolve(project.root, ".codewiki/index_graph.json");
+	const canonicalPaths = [project.roadmapPath, project.docsRoot].map((path) => resolve(project.root, path));
+	let graphStat: Awaited<ReturnType<typeof stat>> | null = null;
+	try {
+		graphStat = await stat(graphPath);
+	} catch {
+		issues.push(createIssue(profile, "error", "missing-generated-state", "Generated index_graph.json is missing.", ".codewiki/index_graph.json"));
+	}
+	if (graphStat) {
+		for (const canonicalPath of canonicalPaths) {
+			try {
+				const canonicalStat = await stat(canonicalPath);
+				if (canonicalStat.mtimeMs - graphStat.mtimeMs > 1000) {
+					issues.push(createIssue(
+						profile,
+						"warning",
+						"generated-state-maybe-stale",
+						`${normalizeRel(relative(project.root, canonicalPath))} is newer than .codewiki/index_graph.json; refresh generated state before close/publication.`,
+						".codewiki/index_graph.json",
+					));
+				}
+			} catch {
+				issues.push(createIssue(profile, "warning", "canonical-path-unreadable", `Unable to stat ${normalizeRel(relative(project.root, canonicalPath))}.`, normalizeRel(relative(project.root, canonicalPath))));
+			}
+		}
+	}
+	const fingerprints = await fingerprintFiles(project, [".codewiki/index_graph.json", project.roadmapPath, ...(input.paths || [])], input.include_fingerprints !== false);
+	return {
+		profile,
+		status: statusForIssues(issues),
+		summary: "Checked generated graph presence and freshness against canonical docs/roadmap mtimes.",
+		checked_scopes: { root: project.root, files: [".codewiki/index_graph.json", project.roadmapPath, project.docsRoot] },
+		issues,
+		evidence_refs: [".codewiki/index_graph.json", project.roadmapPath, project.docsRoot],
+		fingerprints,
+	};
+}
+
+function parseGitStatusPorcelain(raw: string): string[] {
+	const files: string[] = [];
+	const entries = raw.split("\0").filter(Boolean);
+	for (let i = 0; i < entries.length; i++) {
+		const entry = entries[i];
+		const statusCode = entry.slice(0, 2);
+		const path = entry.slice(3);
+		if (!path) continue;
+		files.push(normalizeRel(path));
+		if (statusCode.includes("R") || statusCode.includes("C")) i++;
+	}
+	return unique(files).sort();
+}
+
+function classifyLayer(path: string): string {
+	if (path.startsWith(".codewiki/kb/")) return "knowledge";
+	if (path === ".codewiki/roadmap/queue.json") return "roadmap";
+	if (path.startsWith(".codewiki/roadmap/tasks/") || path === ".codewiki/index_graph.json") return "generated";
+	if (path.startsWith(".codewiki/builds/")) return "build";
+	if (path.startsWith(".codewiki/validation/")) return "validation";
+	if (path.startsWith("src/") || path.startsWith("skills/") || path.startsWith("scripts/") || path.startsWith("tests/") || path === "package.json") return "source";
+	return "other";
+}
+
+async function auditChanged(project: WikiProject, input: CodewikiAuditInput): Promise<AuditProfileResult> {
+	const profile: AuditProfile = "changed";
+	const issues: AuditIssue[] = [];
+	let changedFiles: string[] = [];
+	const raw = await gitOutput(project, ["status", "--porcelain=v1", "-z", "--untracked-files=all"]);
+	if (raw === null) {
+		issues.push(createIssue(profile, "warning", "git-unavailable", "Unable to read git status for changed-file audit."));
+	} else {
+		changedFiles = parseGitStatusPorcelain(raw);
+		for (const file of changedFiles) {
+			if (file.startsWith(".codewiki/roadmap/tasks/") || file === ".codewiki/index_graph.json") {
+				issues.push(createIssue(profile, "warning", "generated-file-changed", "Generated state/view file is changed; refresh or revert generated output before publication.", file));
+			}
+		}
+	}
+	const layers = unique(changedFiles.map(classifyLayer)).sort();
+	const fingerprints = await fingerprintFiles(project, changedFiles, input.include_fingerprints !== false);
+	return {
+		profile,
+		status: statusForIssues(issues),
+		summary: `Checked ${changedFiles.length} changed files across ${layers.length} layers.`,
+		checked_scopes: { root: project.root, files: changedFiles, layers, changed: true },
+		issues,
+		evidence_refs: ["git status --porcelain=v1 -z --untracked-files=all"],
+		fingerprints,
+	};
+}
+
+async function auditTask(project: WikiProject, input: CodewikiAuditInput): Promise<AuditProfileResult> {
+	const profile: AuditProfile = "task";
+	const issues: AuditIssue[] = [];
+	const taskId = input.task_id;
+	const queuePath = project.roadmapPath;
+	const queue = await maybeReadJson(resolve(project.root, queuePath));
+	const task = taskId && queue?.tasks ? (queue.tasks[taskId] as JsonObject | undefined) : undefined;
+	if (!taskId) {
+		issues.push(createIssue(profile, "error", "missing-task-id", "Task audit requires task_id or /audit --task TASK-###."));
+	} else if (!task) {
+		issues.push(createIssue(profile, "error", "task-not-found", `${taskId} was not found in roadmap queue.`, queuePath));
+	} else {
+		for (const rel of [...(task.spec_paths || []), ...(task.code_paths || [])].filter((path: string) => !path.includes("*")).map(String)) {
+			if (!(await pathExists(resolve(project.root, rel)))) {
+				issues.push(createIssue(profile, "warning", "task-path-missing", `${taskId} references a missing path: ${rel}.`, rel));
+			}
+		}
+		if (task.status === "done") {
+			const validationDir = resolve(project.root, ".codewiki/validation");
+			const validations = await walkFiles(validationDir, (path) => path.endsWith(".json"));
+			const hasClosePass = validations.some((path) => path.includes("task-close-pass") && path.includes(taskId.toLowerCase()));
+			if (!hasClosePass) {
+				issues.push(createIssue(profile, "warning", "missing-task-close-validation", `${taskId} is done but no matching task-close pass report was found.`, ".codewiki/validation"));
+			}
+		}
+	}
+	const fingerprints = await fingerprintFiles(project, [queuePath, ...(taskId ? [`.codewiki/roadmap/tasks/${taskId}/task.json`, `.codewiki/roadmap/tasks/${taskId}/context.json`] : [])], input.include_fingerprints !== false);
+	return {
+		profile,
+		status: statusForIssues(issues),
+		summary: taskId ? `Checked roadmap task ${taskId}.` : "Task audit missing task id.",
+		checked_scopes: { root: project.root, task_id: taskId, files: [queuePath] },
+		issues,
+		evidence_refs: [queuePath, ...(taskId ? [`.codewiki/roadmap/tasks/${taskId}/task.json`] : [])],
+		fingerprints,
+	};
+}
+
+async function runProfile(project: WikiProject, profile: AuditProfile, input: CodewikiAuditInput): Promise<AuditProfileResult> {
+	switch (profile) {
+		case "alignment": return auditAlignment(project, input);
+		case "file-structure": return auditFileStructure(project, input);
+		case "stale-reference": return auditStaleReference(project, input);
+		case "package": return auditPackage(project, input);
+		case "security": return auditSecurity(project, input);
+		case "generated-parity": return auditGeneratedParity(project, input);
+		case "changed": return auditChanged(project, input);
+		case "task": return auditTask(project, input);
+	}
+}
+
+function mergeScope(project: WikiProject, input: CodewikiAuditInput, profileResults: AuditProfileResult[]): AuditScope {
+	return {
+		root: project.root,
+		files: unique(profileResults.flatMap((result) => result.checked_scopes.files || [])).sort(),
+		layers: unique([...(input.layers || []), ...profileResults.flatMap((result) => result.checked_scopes.layers || [])]).sort(),
+		task_id: input.task_id,
+		changed: input.changed || profileResults.some((result) => result.checked_scopes.changed),
+	};
+}
+
+export async function executeCodewikiAudit(project: WikiProject, input: CodewikiAuditInput = {}): Promise<AuditReport> {
+	const profiles = normalizeAuditProfiles(input);
+	const profileResults: AuditProfileResult[] = [];
+	for (const profile of profiles) {
+		profileResults.push(await runProfile(project, profile, input));
+	}
+	const issues = profileResults.flatMap((result) => result.issues);
+	const fingerprints = profileResults.flatMap((result) => result.fingerprints);
+	return {
+		kind: "audit_report",
+		version: AUDIT_VERSION,
+		generated_at: nowIso(),
+		project: project.label,
+		status: statusForIssues(issues),
+		profiles,
+		checked_scopes: mergeScope(project, input, profileResults),
+		issues,
+		evidence_refs: unique(profileResults.flatMap((result) => result.evidence_refs)).sort(),
+		fingerprints,
+		profile_results: profileResults,
+	};
+}
+
+export function formatAuditReport(report: AuditReport): string {
+	const lines = [
+		`CodeWiki audit: ${report.status}`,
+		`profiles: ${report.profiles.join(", ")}`,
+		`issues: ${report.issues.length}`,
+	];
+	for (const result of report.profile_results) {
+		lines.push(`- ${result.profile}: ${result.status} — ${result.summary}`);
+	}
+	for (const issue of report.issues.slice(0, 30)) {
+		const path = issue.path ? ` ${issue.path}` : "";
+		lines.push(`  [${issue.severity}] ${issue.profile}/${issue.kind}${path}: ${issue.message}`);
+	}
+	if (report.issues.length > 30) lines.push(`  … ${report.issues.length - 30} more issues`);
+	return lines.join("\n");
+}
+
+export function explainAuditError(error: unknown): string {
+	return `CodeWiki audit failed: ${formatError(error)}`;
+}

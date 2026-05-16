@@ -27,6 +27,7 @@ Keep user-provided or repo-local research preferences outside CodeWiki when they
 
 Public commands:
 
+- `/audit [flags]`
 - `/wiki-bootstrap [project name] [--force]`
 - `Alt+W` to toggle the compact live status panel
 - `/wiki-ui [repo-path] [port]` to start the standalone local Control Room
@@ -38,6 +39,7 @@ Internal agent tools:
 - `codewiki_setup`
 - `codewiki_bootstrap`
 - `codewiki_state`
+- `codewiki_audit`
 - `codewiki_build`
 - `codewiki_validation`
 - `codewiki_task`
