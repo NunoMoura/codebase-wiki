@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T08:40:18.409Z",
+  "generated_at": "2026-05-16T08:42:19.055Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -1161,14 +1161,6 @@
       "path": "src/adapters/pi/tools/task.ts",
       "layer": "code",
       "alignment_state": "aligned"
-    },
-    {
-      "id": "task:TASK-083",
-      "kind": "roadmap_task",
-      "title": "Move bootstrap and prompt templates into CodeWiki skill assets",
-      "layer": "roadmap",
-      "status": "in_progress",
-      "alignment_state": "drift"
     },
     {
       "id": "task:TASK-084",
@@ -14471,6 +14463,61 @@
       "default_hidden": true
     },
     {
+      "id": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "verdict": "pass",
+      "isolation_status": "isolated",
+      "isolation": {
+        "head_sha": "c87e595962a5df630a22e211afe310d936e8e3e4",
+        "validated_sha": "c87e595962a5df630a22e211afe310d936e8e3e4",
+        "tree_sha": "75f303d0673612b82c959387b9845c7379fe8bb4",
+        "clean": true,
+        "fresh_context": true,
+        "notes": "Fresh validation from repo state and specified files/commits, not prior chat. Clean confirmed before writing validation artifact; only validation artifact written afterward.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:generated-parity",
+          "codewiki_audit profiles=alignment,changed,task,generated-parity task_id=TASK-083 — warning overall; alignment pass, changed warning for .codewiki/index_graph.json generated-file change during audit, task pass, generated-parity pass"
+        ],
+        "content_proof_refs": [
+          "c87e595962a5df630a22e211afe310d936e8e3e4",
+          "75f303d0673612b82c959387b9845c7379fe8bb4"
+        ]
+      }
+    },
+    {
+      "id": "audit:codewiki_audit profiles=alignment,changed,task,generated-parity task_id=TASK-083 — warning overall; alignment pass, changed warning for .codewiki/index_graph.json generated-file change during audit, task pass, generated-parity pass",
+      "kind": "audit_evidence",
+      "path": "codewiki_audit profiles=alignment,changed,task,generated-parity task_id=TASK-083 — warning overall; alignment pass, changed warning for .codewiki/index_graph.json generated-file change during audit, task pass, generated-parity pass",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:c87e595962a5df630a22e211afe310d936e8e3e4",
+      "kind": "content_proof",
+      "path": "c87e595962a5df630a22e211afe310d936e8e3e4",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:75f303d0673612b82c959387b9845c7379fe8bb4",
+      "kind": "content_proof",
+      "path": "75f303d0673612b82c959387b9845c7379fe8bb4",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
       "id": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-16-task-close-pass-task-086.json",
@@ -16616,56 +16663,6 @@
     {
       "kind": "task_code_path",
       "from": "task:TASK-082",
-      "to": "code:tests/smoke"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-083",
-      "to": "doc:.pi/APPEND_SYSTEM.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-083",
-      "to": "doc:skills/codewiki/SKILL.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-083",
-      "to": "doc:.codewiki/kb/system/file-structure.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-083",
-      "to": "doc:.codewiki/kb/system/alignment-model.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-083",
-      "to": "doc:.codewiki/kb/system/extension.md"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-083",
-      "to": "code:src/bootstrap.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-083",
-      "to": "code:src/templates.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-083",
-      "to": "code:src/application/prompt.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-083",
-      "to": "code:skills/codewiki"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-083",
       "to": "code:tests/smoke"
     },
     {
@@ -34031,6 +34028,59 @@
     },
     {
       "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "to": "audit:audit:generated-parity",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "to": "audit:codewiki_audit profiles=alignment,changed,task,generated-parity task_id=TASK-083 — warning overall; alignment pass, changed warning for .codewiki/index_graph.json generated-file change during audit, task pass, generated-parity pass",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "to": "content_proof:c87e595962a5df630a22e211afe310d936e8e3e4",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "to": "content_proof:75f303d0673612b82c959387b9845c7379fe8bb4",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+      "to": "task:TASK-083"
+    },
+    {
+      "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
       "to": "source:fresh task-close validation for TASK-086",
       "default_hidden": true
@@ -34257,7 +34307,6 @@
         "TASK-076",
         "TASK-077",
         "TASK-082",
-        "TASK-083",
         "TASK-084",
         "TASK-085",
         "TASK-078",
@@ -34267,7 +34316,6 @@
       "open_task_ids": [
         "TASK-077",
         "TASK-082",
-        "TASK-083",
         "TASK-085",
         "TASK-087",
         "TASK-088"
@@ -34275,7 +34323,6 @@
       "in_progress_task_ids": [
         "TASK-077",
         "TASK-082",
-        "TASK-083",
         "TASK-087",
         "TASK-088"
       ],
@@ -34339,7 +34386,7 @@
       "status_counts": {
         "done": 45,
         "cancelled": 4,
-        "in_progress": 5,
+        "in_progress": 4,
         "todo": 1
       },
       "sprint_ids": [
@@ -34439,7 +34486,6 @@
           "open_task_ids": [
             "TASK-077",
             "TASK-082",
-            "TASK-083",
             "TASK-085"
           ],
           "budget": {
@@ -34929,6 +34975,22 @@
           "content_proof_refs": [
             "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
             "3680881721d01f5450aa2ba5aeedc4f15e216b17"
+          ]
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+          "task_id": "TASK-083",
+          "verdict": "pass",
+          "status": "isolated",
+          "role": "validator",
+          "head_sha": "c87e595962a5df630a22e211afe310d936e8e3e4",
+          "validated_sha": "c87e595962a5df630a22e211afe310d936e8e3e4",
+          "clean": true,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "c87e595962a5df630a22e211afe310d936e8e3e4",
+            "75f303d0673612b82c959387b9845c7379fe8bb4"
           ]
         },
         {
@@ -35605,6 +35667,7 @@
         "codewiki_audit profiles package include_fingerprints=true: pass; issues=0.",
         "codewiki_audit profiles=alignment,changed,task task_id=TASK-083 status=warning; alignment pass, task pass, changed warning generated-file-changed",
         "codewiki_audit profiles=alignment,changed,task task_id=TASK-083 — warning overall; alignment pass, changed warning, task pass",
+        "codewiki_audit profiles=alignment,changed,task,generated-parity task_id=TASK-083 — warning overall; alignment pass, changed warning for .codewiki/index_graph.json generated-file change during audit, task pass, generated-parity pass",
         "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only",
         "codewiki_audit(profiles=[alignment,changed], task_id=TASK-086): pass — alignment pass; changed pass (0 changed files across 0 layers); task pass.",
         "codewiki_audit(profiles=[generated-parity], task_id=TASK-086): pass — generated-parity pass (generated graph presence, freshness, and 7 active roadmap task views checked); task pass.",
@@ -35660,6 +35723,7 @@
         "59ebea7622e14a3faf6596b8a03a5dcb9710730f",
         "69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363",
         "6c53ab1b0cd9ae116fe1fe80286e873424004bee",
+        "75f303d0673612b82c959387b9845c7379fe8bb4",
         "9299b9cb7eb8d2498a5c382ff2ee84404308d854",
         "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
         "95ce6bdf777f0aec24dde7b154fe459bd3a15f14",
@@ -35669,6 +35733,7 @@
         "README.md@sha256:bca59b2e9eba71f64f76252f0bb13562265476168f9c48396ffd45cee2073403",
         "README.md@sha256:d48e668b6c8cc75e27d8c108977ce223bab6f87791e08fea7ba961ca05089467",
         "b04129f22f54723e0bbe2aabbefe18bcf2ad7324",
+        "c87e595962a5df630a22e211afe310d936e8e3e4",
         "d72fb38ed289c5089bbafaf3676b0367325400b8",
         "e2c184a96a3fd7c10bf169b78409ec6ab5ab95bf",
         "extensions/codewiki/src/adapters/pi/commands/ui.ts@sha256:0c9fa18f4e09f008c27f734fb135bfeab947fc9350ab4a9b483a3c72676fe7cb",
@@ -36371,6 +36436,27 @@
           "isolation_status": "isolated"
         },
         {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
+          "verdict": "pass",
+          "profile": "task-close",
+          "task_id": "TASK-083",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:generated-parity",
+            "codewiki_audit profiles=alignment,changed,task,generated-parity task_id=TASK-083 — warning overall; alignment pass, changed warning for .codewiki/index_graph.json generated-file change during audit, task pass, generated-parity pass"
+          ],
+          "content_proof_refs": [
+            "c87e595962a5df630a22e211afe310d936e8e3e4",
+            "75f303d0673612b82c959387b9845c7379fe8bb4"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-task-close-pass-task-086.json",
           "verdict": "pass",
           "profile": "task-close",
@@ -36395,291 +36481,9 @@
       ]
     },
     "traceability": {
-      "rows": [
-        {
-          "requirement_id": "FB-ART-001",
-          "requirement_text": "Public CodeWiki coordination should be artifact-status-first: artifacts expose availability/in-use/waiting/conflict/stale state, with session holders/waiters as supporting evidence.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-ART-002",
-          "requirement_text": ".codewiki/session/queue.json remains the runtime coordination store, but public API/UI/prompts should use artifact status terminology; claim/lease names are compatibility or internal implementation details only.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-ART-003",
-          "requirement_text": "/wiki-resume should select and explain parallel work in artifact-status terms: selected task, available artifacts, conflicting artifacts, holders/waiters, and temporary session usage record.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-PAR-001",
-          "requirement_text": "/wiki-resume without explicit task should act as a parallel-work scheduler: read fresh CodeWiki state and session queue scoped leases, then select the next unblocked task whose write scopes do not conflict with active leases.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-PAR-002",
-          "requirement_text": "/wiki-resume TASK-### must honor explicit requested child tasks even when an umbrella task is active, unless the session queue reports a real lease conflict or task policy block.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-PAR-003",
-          "requirement_text": "Injected /wiki-resume prompts should come from skill-owned prompt/template assets and preserve user-supplied follow-up intent instead of discarding it.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-PAR-004",
-          "requirement_text": "Parallel helpers should be able to start with one /wiki-resume invocation per tab/session and receive a narrow task, suggested scoped lease, and conflict-safe implementation prompt.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        }
-      ],
-      "gap_count": 14,
-      "gaps": [
-        {
-          "requirement_id": "FB-ART-001",
-          "requirement_text": "Public CodeWiki coordination should be artifact-status-first: artifacts expose availability/in-use/waiting/conflict/stale state, with session holders/waiters as supporting evidence.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-ART-002",
-          "requirement_text": ".codewiki/session/queue.json remains the runtime coordination store, but public API/UI/prompts should use artifact status terminology; claim/lease names are compatibility or internal implementation details only.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-ART-003",
-          "requirement_text": "/wiki-resume should select and explain parallel work in artifact-status terms: selected task, available artifacts, conflicting artifacts, holders/waiters, and temporary session usage record.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-PAR-001",
-          "requirement_text": "/wiki-resume without explicit task should act as a parallel-work scheduler: read fresh CodeWiki state and session queue scoped leases, then select the next unblocked task whose write scopes do not conflict with active leases.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-PAR-002",
-          "requirement_text": "/wiki-resume TASK-### must honor explicit requested child tasks even when an umbrella task is active, unless the session queue reports a real lease conflict or task policy block.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-PAR-003",
-          "requirement_text": "Injected /wiki-resume prompts should come from skill-owned prompt/template assets and preserve user-supplied follow-up intent instead of discarding it.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "requirement_id": "FB-PAR-004",
-          "requirement_text": "Parallel helpers should be able to start with one /wiki-resume invocation per tab/session and receive a narrow task, suggested scoped lease, and conflict-safe implementation prompt.",
-          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "documentation_builds": [],
-          "knowledge_paths": [],
-          "planning_builds": [],
-          "roadmap_task_ids": [],
-          "test_paths": [],
-          "code_paths": [],
-          "implementation_builds": [],
-          "validation_paths": [],
-          "audit_evidence_refs": [],
-          "publication_refs": [],
-          "content_proof_refs": [],
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        }
-      ]
+      "rows": [],
+      "gap_count": 0,
+      "gaps": []
     },
     "scope_views": {
       "roadmap": {
@@ -36734,7 +36538,6 @@
           "TASK-076",
           "TASK-077",
           "TASK-082",
-          "TASK-083",
           "TASK-084",
           "TASK-085",
           "TASK-078",
@@ -36744,7 +36547,6 @@
         "open_task_ids": [
           "TASK-077",
           "TASK-082",
-          "TASK-083",
           "TASK-085",
           "TASK-087",
           "TASK-088"
@@ -36847,7 +36649,6 @@
           "open_task_ids": [
             "TASK-077",
             "TASK-082",
-            "TASK-083",
             "TASK-085"
           ],
           "budget": {
@@ -37573,33 +37374,6 @@
             "tests/smoke"
           ]
         },
-        "TASK-083": {
-          "kind": "task",
-          "id": "TASK-083",
-          "task_ids": [
-            "TASK-083"
-          ],
-          "open_task_ids": [
-            "TASK-083"
-          ],
-          "sprint_ids": [
-            "SPRINT-003"
-          ],
-          "spec_paths": [
-            ".pi/APPEND_SYSTEM.md",
-            "skills/codewiki/SKILL.md",
-            ".codewiki/kb/system/file-structure.md",
-            ".codewiki/kb/system/alignment-model.md",
-            ".codewiki/kb/system/extension.md"
-          ],
-          "code_paths": [
-            "src/bootstrap.ts",
-            "src/templates.ts",
-            "src/application/prompt.ts",
-            "skills/codewiki",
-            "tests/smoke"
-          ]
-        },
         "TASK-084": {
           "kind": "task",
           "id": "TASK-084",
@@ -37769,7 +37543,6 @@
           "task_ids": [
             "TASK-077",
             "TASK-082",
-            "TASK-083",
             "TASK-085",
             "TASK-087",
             "TASK-088"
@@ -37783,8 +37556,7 @@
           ],
           "validation_paths": [
             ".codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-            ".codewiki/validation/2026-05-16-feedback-block.json",
-            ".codewiki/validation/2026-05-16-implementation-block-task-083.json"
+            ".codewiki/validation/2026-05-16-feedback-block.json"
           ],
           "claim_ids": [],
           "claim_wait_ids": []
@@ -37908,6 +37680,7 @@
             ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-080.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+            ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-086.json"
           ]
         },
@@ -38476,104 +38249,6 @@
           "reason": "Accepted implementation build still needs passing validation gateway evidence."
         },
         {
-          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json:FB-ART-001",
-          "source_id": "build:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "intent",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Traceability gap for FB-ART-001: missing_documentation_build, missing_planning_build.",
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json:FB-ART-002",
-          "source_id": "build:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "intent",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Traceability gap for FB-ART-002: missing_documentation_build, missing_planning_build.",
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json:FB-ART-003",
-          "source_id": "build:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "intent",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Traceability gap for FB-ART-003: missing_documentation_build, missing_planning_build.",
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json:FB-PAR-001",
-          "source_id": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "intent",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Traceability gap for FB-PAR-001: missing_documentation_build, missing_planning_build.",
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json:FB-PAR-002",
-          "source_id": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "intent",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Traceability gap for FB-PAR-002: missing_documentation_build, missing_planning_build.",
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json:FB-PAR-003",
-          "source_id": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "intent",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Traceability gap for FB-PAR-003: missing_documentation_build, missing_planning_build.",
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
-          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json:FB-PAR-004",
-          "source_id": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "intent",
-          "to_layer": "knowledge",
-          "next_loop": "documentation",
-          "reason": "Traceability gap for FB-PAR-004: missing_documentation_build, missing_planning_build.",
-          "gaps": [
-            "missing_documentation_build",
-            "missing_planning_build"
-          ]
-        },
-        {
           "id": "reconcile:validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
           "source_id": "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
           "state": "drift",
@@ -38595,17 +38270,6 @@
           "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
         },
         {
-          "id": "reconcile:validation:.codewiki/validation/2026-05-16-implementation-block-task-083.json",
-          "source_id": "validation:.codewiki/validation/2026-05-16-implementation-block-task-083.json",
-          "state": "blocked",
-          "direction": "gateway",
-          "from_layer": "validation",
-          "to_layer": "feedback",
-          "next_loop": "feedback",
-          "task_id": "TASK-083",
-          "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
-        },
-        {
           "id": "reconcile:task:TASK-077",
           "source_id": "task:TASK-077",
           "state": "drift",
@@ -38615,17 +38279,6 @@
           "next_loop": "implementation",
           "task_id": "TASK-077",
           "reason": "TASK-077 is open implementation delta below knowledge."
-        },
-        {
-          "id": "reconcile:task:TASK-083",
-          "source_id": "task:TASK-083",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "roadmap",
-          "to_layer": "code",
-          "next_loop": "implementation",
-          "task_id": "TASK-083",
-          "reason": "TASK-083 is open implementation delta below knowledge."
         },
         {
           "id": "reconcile:task:TASK-085",
@@ -38663,9 +38316,9 @@
       ],
       "counts_by_loop": {
         "validation": 2,
-        "documentation": 8,
-        "feedback": 2,
-        "implementation": 5
+        "documentation": 1,
+        "feedback": 1,
+        "implementation": 4
       },
       "next_action": {
         "loop": "feedback",
@@ -38689,8 +38342,8 @@
         ]
       },
       "layer_states": {
-        "intent": "drift",
-        "knowledge": "drift",
+        "intent": "aligned",
+        "knowledge": "aligned",
         "roadmap": "drift",
         "code": "drift",
         "validation": "drift"
@@ -38699,13 +38352,13 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T08:40:18.374Z",
+      "generated_at": "2026-05-16T08:42:19.020Z",
       "counts": {},
       "issues": []
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T08:40:18Z",
+      "generated_at": "2026-05-16T08:42:19Z",
       "health": {
         "color": "green",
         "errors": 0,
@@ -38716,18 +38369,18 @@
         "task_context_root": ".codewiki/roadmap/tasks"
       },
       "summary": {
-        "task_count": 55,
-        "open_count": 6,
+        "task_count": 54,
+        "open_count": 5,
         "sprint_count": 3,
         "active_sprint_count": 1,
         "status_counts": {
           "done": 45,
           "cancelled": 4,
-          "in_progress": 5,
+          "in_progress": 4,
           "todo": 1
         },
         "priority_counts": {
-          "high": 31,
+          "high": 30,
           "medium": 13,
           "critical": 10,
           "low": 1
@@ -38784,7 +38437,6 @@
           "TASK-076",
           "TASK-077",
           "TASK-082",
-          "TASK-083",
           "TASK-084",
           "TASK-085",
           "TASK-078",
@@ -38794,7 +38446,6 @@
         "open_task_ids": [
           "TASK-077",
           "TASK-082",
-          "TASK-083",
           "TASK-087",
           "TASK-088",
           "TASK-085"
@@ -38896,7 +38547,6 @@
             "open_task_ids": [
               "TASK-077",
               "TASK-082",
-              "TASK-083",
               "TASK-085"
             ],
             "budget": {
@@ -38940,7 +38590,6 @@
         "in_progress_task_ids": [
           "TASK-077",
           "TASK-082",
-          "TASK-083",
           "TASK-087",
           "TASK-088"
         ],
@@ -39002,7 +38651,6 @@
           "TASK-039"
         ],
         "recent_task_ids": [
-          "TASK-083",
           "TASK-088",
           "TASK-087",
           "TASK-077",
@@ -41169,68 +40817,6 @@
             "evidence": null
           }
         },
-        "TASK-083": {
-          "id": "TASK-083",
-          "title": "Move bootstrap and prompt templates into CodeWiki skill assets",
-          "status": "in_progress",
-          "priority": "high",
-          "kind": "agent-workflow",
-          "summary": "Make the CodeWiki-product vs CodeWiki-dogfood boundary explicit while moving bootstrap, /wiki-resume prompt templates, and starter template assets to the CodeWiki skill asset boundary.",
-          "labels": [
-            "sprint:alignment-hardening",
-            "dogfood",
-            "prompt",
-            "templates",
-            "bootstrap",
-            "skill-assets",
-            "parallel-resume"
-          ],
-          "goal": {
-            "outcome": "Agents cannot confuse .codewiki/ dogfood state with package source, and bootstrap/resume prompt/template assets are owned by the CodeWiki skill while source executes them through application APIs.",
-            "acceptance": [
-              "Repo prompt/skill/template language explicitly distinguishes dogfood state, generated state, runtime state, and package source.",
-              "Starter templates include canonical/generated/runtime path taxonomy guidance.",
-              "Bootstrap workflow guidance and prompt templates live under the CodeWiki skill asset boundary, with source code only exposing executable application tools or compatibility loaders.",
-              "/wiki-resume injected implementation prompts are rendered from skill-owned templates/assets rather than hard-coded application prompt text.",
-              "/wiki-resume preserves or incorporates user-supplied follow-up intent after command invocation instead of discarding it.",
-              "Resume prompt templates include selected task, artifact statuses, conflicting artifacts and holders/waiters when relevant, temporary session usage record, and helper-safe next steps for parallel sessions.",
-              "Packaged skills include required bootstrap/prompt/template assets and smoke tests prove package reachability.",
-              "Architecture/audit check detects active docs/source that call .codewiki/ package source or generated task views canonical truth."
-            ],
-            "non_goals": [
-              "Do not make skills import adapters or own product semantics.",
-              "Do not remove compatibility loaders before packaging and migration tests pass.",
-              "Do not implement session queue/artifact-status scheduling policy in the template layer; TASK-086 owns allocation semantics."
-            ],
-            "verification": [
-              "npm run typecheck",
-              "npm run test:smoke",
-              "npm run test:pack",
-              "source-owned package/audit check verifies skill assets are reachable",
-              "/wiki-resume prompt fixture proves skill-owned template rendering, artifact-status wording, and follow-up intent preservation"
-            ]
-          },
-          "spec_paths": [
-            ".pi/APPEND_SYSTEM.md",
-            "skills/codewiki/SKILL.md",
-            ".codewiki/kb/system/file-structure.md",
-            ".codewiki/kb/system/alignment-model.md",
-            ".codewiki/kb/system/extension.md"
-          ],
-          "code_paths": [
-            "src/bootstrap.ts",
-            "src/templates.ts",
-            "src/application/prompt.ts",
-            "skills/codewiki",
-            "tests/smoke"
-          ],
-          "updated": "2026-05-16T08:39:17Z",
-          "context_path": ".codewiki/roadmap/tasks/TASK-083/context.json",
-          "loop": {
-            "updated_at": "",
-            "evidence": null
-          }
-        },
         "TASK-084": {
           "id": "TASK-084",
           "title": "Model publication and content-proof alignment",
@@ -41501,7 +41087,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T08:40:18Z",
+      "generated_at": "2026-05-16T08:42:19Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -41516,27 +41102,27 @@
       "summary": {
         "total_specs": 16,
         "mapped_specs": 16,
-        "aligned_specs": 19,
-        "tracked_specs": 15,
+        "aligned_specs": 20,
+        "tracked_specs": 14,
         "untracked_specs": 0,
         "blocked_specs": 0,
         "unmapped_specs": 0,
-        "task_count": 55,
-        "open_task_count": 6,
+        "task_count": 54,
+        "open_task_count": 5,
         "done_task_count": 45
       },
       "bars": {
         "tracked_drift": {
           "label": "Tracked Drift",
-          "value": 15,
-          "total": 15,
+          "value": 14,
+          "total": 14,
           "percent": 100
         },
         "roadmap_done": {
           "label": "Roadmap Done",
           "value": 45,
-          "total": 55,
-          "percent": 82
+          "total": 54,
+          "percent": 83
         },
         "spec_mapping": {
           "label": "Spec Mapping",
@@ -41557,7 +41143,6 @@
           ".codewiki/kb/system/builds.md",
           ".codewiki/kb/system/compilers.md",
           ".codewiki/kb/system/control-room-ui.md",
-          ".codewiki/kb/system/extension.md",
           ".codewiki/kb/system/file-structure.md",
           ".codewiki/kb/system/graph.md",
           ".codewiki/kb/system/overview.md",
@@ -41578,7 +41163,6 @@
         "open_task_ids": [
           "TASK-077",
           "TASK-082",
-          "TASK-083",
           "TASK-087",
           "TASK-088",
           "TASK-085"
@@ -41638,7 +41222,6 @@
             "task_ids": [
               "TASK-077",
               "TASK-082",
-              "TASK-083",
               "TASK-085",
               "TASK-087",
               "TASK-088"
@@ -41652,8 +41235,7 @@
             ],
             "validation_paths": [
               ".codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-              ".codewiki/validation/2026-05-16-feedback-block.json",
-              ".codewiki/validation/2026-05-16-implementation-block-task-083.json"
+              ".codewiki/validation/2026-05-16-feedback-block.json"
             ],
             "claim_ids": [],
             "claim_wait_ids": []
@@ -41777,6 +41359,7 @@
               ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-080.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+              ".codewiki/validation/2026-05-16-task-close-pass-task-083.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-086.json"
             ]
           },
@@ -41925,7 +41508,7 @@
         "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
-        "Tracked drift coverage: 15/15."
+        "Tracked drift coverage: 14/14."
       ],
       "specs": [
         {
@@ -42070,7 +41653,6 @@
           "related_task_ids": [
             "TASK-077",
             "TASK-082",
-            "TASK-083",
             "TASK-085",
             "TASK-078",
             "TASK-084"
@@ -42251,40 +41833,6 @@
           "note": "tracked by TASK-088"
         },
         {
-          "path": ".codewiki/kb/system/extension.md",
-          "title": "Extension",
-          "summary": "Packaged CodeWiki distribution, current Pi extension surface, and CodeWiki UI launch integration.",
-          "drift_status": "tracked",
-          "code_paths": [
-            "src/index.ts",
-            "src/bootstrap.ts",
-            "src/templates.ts",
-            "src/application/prompt.ts",
-            "src/adapters/pi",
-            "skills/codewiki",
-            "tests/smoke/package-smoke.test.mjs"
-          ],
-          "code_area": "src, skills +1 more",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-083"
-          ],
-          "primary_task": {
-            "id": "TASK-083",
-            "status": "in_progress",
-            "title": "Move bootstrap and prompt templates into CodeWiki skill assets"
-          },
-          "revision": {
-            "digest": "870ff3d651945f9403e105c0bc58c957fccc8843083846a06f87068ccee175a1",
-            "basis": "source_content"
-          },
-          "note": "tracked by TASK-083"
-        },
-        {
           "path": ".codewiki/kb/system/file-structure.md",
           "title": "File Structure",
           "summary": "Target knowledge-base and package file structure for CodeWiki.",
@@ -42302,7 +41850,6 @@
           },
           "related_task_ids": [
             "TASK-077",
-            "TASK-083",
             "TASK-087",
             "TASK-088",
             "TASK-076"
@@ -42877,6 +42424,34 @@
           "note": "no deterministic drift signals"
         },
         {
+          "path": ".codewiki/kb/system/extension.md",
+          "title": "Extension",
+          "summary": "Packaged CodeWiki distribution, current Pi extension surface, and CodeWiki UI launch integration.",
+          "drift_status": "aligned",
+          "code_paths": [
+            "src/index.ts",
+            "src/bootstrap.ts",
+            "src/templates.ts",
+            "src/application/prompt.ts",
+            "src/adapters/pi",
+            "skills/codewiki",
+            "tests/smoke/package-smoke.test.mjs"
+          ],
+          "code_area": "src, skills +1 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [],
+          "primary_task": null,
+          "revision": {
+            "digest": "870ff3d651945f9403e105c0bc58c957fccc8843083846a06f87068ccee175a1",
+            "basis": "source_content"
+          },
+          "note": "no deterministic drift signals"
+        },
+        {
           "path": ".codewiki/kb/system/knowledge.md",
           "title": "Knowledge",
           "summary": "Durable product and system knowledge structure for CodeWiki projects.",
@@ -42924,7 +42499,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T08:40:18Z",
+        "generated_at": "2026-05-16T08:42:19Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -42952,12 +42527,17 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T08:40:18Z",
+            "checked_at": "2026-05-16T08:42:19Z",
             "revision": {
               "git": {
-                "head": "1f74fe25848ea50ca34ddb97c7948259589d8d44",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "c87e595962a5df630a22e211afe310d936e8e3e4",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-083/context.json",
+                  ".codewiki/roadmap/tasks/TASK-083/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -43038,14 +42618,14 @@
                 }
               },
               "spec_digest": "f345f2f9e809588079994da350dd672204349633e0ce6e38267801e9ae88d961",
-              "task_digest": "5db994247631da7aae1e267cc8641ea61020b0bebaa8d13be469047137db878d",
-              "code_digest": "9071abcd3524e33a6f23df78205226b63919af6cb3399423d8de191d2692bca8",
-              "digest": "ee212c2af7ffda4878ff3668c999b9750fcfe3bf9986a837ea069b550e400201"
+              "task_digest": "2c5db25f5b6fbd6ff205958b8d9254ba9cb1f57767e55d45fd7cee14fbd90d24",
+              "code_digest": "dc61018cf765c41c8f4fef228bd75a9bb785f5e0f5dbee61abb5b6758ef78d5e",
+              "digest": "e57dc30c653dc221e2ae0636fcbe91ee517aaefc6cf9180bce6d231868a8c180"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T08:40:18Z",
+              "checked_at": "2026-05-16T08:42:19Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -43072,7 +42652,6 @@
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
@@ -43081,6 +42660,7 @@
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/control-room-ui-details.md",
               ".codewiki/kb/system/diagrams/README.md",
+              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/knowledge.md",
               ".codewiki/kb/system/roadmap.md"
             ],
@@ -43117,9 +42697,6 @@
               "src/application/roadmap.ts",
               "src/application/task.ts",
               "skills/codewiki/loops/validation.md",
-              "src/bootstrap.ts",
-              "src/templates.ts",
-              "src/application/prompt.ts",
               ".codewiki/kb",
               ".codewiki/index_graph.json",
               "src/application/graph/rebuilder.ts",
@@ -43127,6 +42704,9 @@
               "src/application/state.ts",
               ".codewiki/validation",
               "src/adapters/web/control-room.ts",
+              "src/bootstrap.ts",
+              "src/templates.ts",
+              "src/application/prompt.ts",
               ".codewiki/roadmap/queue.json",
               ".codewiki/roadmap"
             ],
@@ -43134,7 +42714,6 @@
             "open_task_ids": [
               "TASK-077",
               "TASK-082",
-              "TASK-083",
               "TASK-085",
               "TASK-087",
               "TASK-088"
@@ -43150,7 +42729,6 @@
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
@@ -43158,8 +42736,8 @@
             ],
             "stats": {
               "total_specs": 33,
-              "aligned_specs": 18,
-              "tracked_specs": 15,
+              "aligned_specs": 19,
+              "tracked_specs": 14,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -43184,12 +42762,17 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T08:40:18Z",
+            "checked_at": "2026-05-16T08:42:19Z",
             "revision": {
               "git": {
-                "head": "1f74fe25848ea50ca34ddb97c7948259589d8d44",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "c87e595962a5df630a22e211afe310d936e8e3e4",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-083/context.json",
+                  ".codewiki/roadmap/tasks/TASK-083/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -43249,14 +42832,14 @@
                 }
               },
               "spec_digest": "3d0bcb6f53347714e1f5cf9844f3436c682c2472a11d7ecec5bb294dfdbb48d2",
-              "task_digest": "5db994247631da7aae1e267cc8641ea61020b0bebaa8d13be469047137db878d",
-              "code_digest": "12415a77e28155132560d6ebb47bfafddc788d780f8a28ef84af423036c2a8af",
-              "digest": "ad65977d0fa84192b4c837cf388d02ce1da487e79bf5b9ffd8e3daba8ecb7d33"
+              "task_digest": "2c5db25f5b6fbd6ff205958b8d9254ba9cb1f57767e55d45fd7cee14fbd90d24",
+              "code_digest": "369bf433aa10fd5784aa8296cdfe61a03cb2f8f6a0bef1b29d2b02835f492512",
+              "digest": "8efd1c2da6126cfcb7c12e455fbfcbce1976869f11b9f663d5b3c3f47acd6985"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T08:40:18Z",
+              "checked_at": "2026-05-16T08:42:19Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -43268,7 +42851,6 @@
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
@@ -43277,6 +42859,7 @@
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/control-room-ui-details.md",
               ".codewiki/kb/system/diagrams/README.md",
+              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/knowledge.md",
               ".codewiki/kb/system/roadmap.md"
             ],
@@ -43302,11 +42885,6 @@
               "skills/codewiki/loops/validation.md",
               "src/adapters/web",
               "src/adapters/pi/commands",
-              "src/index.ts",
-              "src/bootstrap.ts",
-              "src/templates.ts",
-              "src/application/prompt.ts",
-              "tests/smoke/package-smoke.test.mjs",
               ".codewiki/kb",
               "src",
               ".codewiki/index_graph.json",
@@ -43317,6 +42895,11 @@
               ".codewiki/validation",
               "src/adapters/web/control-room.ts",
               "src/adapters/pi/ui/manager.ts",
+              "src/index.ts",
+              "src/bootstrap.ts",
+              "src/templates.ts",
+              "src/application/prompt.ts",
+              "tests/smoke/package-smoke.test.mjs",
               ".codewiki/roadmap/queue.json",
               ".codewiki/roadmap"
             ],
@@ -43324,7 +42907,6 @@
             "open_task_ids": [
               "TASK-077",
               "TASK-082",
-              "TASK-083",
               "TASK-085",
               "TASK-087",
               "TASK-088"
@@ -43337,7 +42919,6 @@
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
@@ -43345,8 +42926,8 @@
             ],
             "stats": {
               "total_specs": 18,
-              "aligned_specs": 6,
-              "tracked_specs": 12,
+              "aligned_specs": 7,
+              "tracked_specs": 11,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -43371,12 +42952,17 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T08:40:18Z",
+            "checked_at": "2026-05-16T08:42:19Z",
             "revision": {
               "git": {
-                "head": "1f74fe25848ea50ca34ddb97c7948259589d8d44",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "c87e595962a5df630a22e211afe310d936e8e3e4",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-083/context.json",
+                  ".codewiki/roadmap/tasks/TASK-083/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -43457,14 +43043,14 @@
                 }
               },
               "spec_digest": "f345f2f9e809588079994da350dd672204349633e0ce6e38267801e9ae88d961",
-              "task_digest": "5db994247631da7aae1e267cc8641ea61020b0bebaa8d13be469047137db878d",
-              "code_digest": "9071abcd3524e33a6f23df78205226b63919af6cb3399423d8de191d2692bca8",
-              "digest": "ee212c2af7ffda4878ff3668c999b9750fcfe3bf9986a837ea069b550e400201"
+              "task_digest": "2c5db25f5b6fbd6ff205958b8d9254ba9cb1f57767e55d45fd7cee14fbd90d24",
+              "code_digest": "dc61018cf765c41c8f4fef228bd75a9bb785f5e0f5dbee61abb5b6758ef78d5e",
+              "digest": "e57dc30c653dc221e2ae0636fcbe91ee517aaefc6cf9180bce6d231868a8c180"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T08:40:18Z",
+              "checked_at": "2026-05-16T08:42:19Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -43491,7 +43077,6 @@
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
@@ -43500,6 +43085,7 @@
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/control-room-ui-details.md",
               ".codewiki/kb/system/diagrams/README.md",
+              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/knowledge.md",
               ".codewiki/kb/system/roadmap.md"
             ],
@@ -43536,9 +43122,6 @@
               "src/application/roadmap.ts",
               "src/application/task.ts",
               "skills/codewiki/loops/validation.md",
-              "src/bootstrap.ts",
-              "src/templates.ts",
-              "src/application/prompt.ts",
               ".codewiki/kb",
               ".codewiki/index_graph.json",
               "src/application/graph/rebuilder.ts",
@@ -43546,6 +43129,9 @@
               "src/application/state.ts",
               ".codewiki/validation",
               "src/adapters/web/control-room.ts",
+              "src/bootstrap.ts",
+              "src/templates.ts",
+              "src/application/prompt.ts",
               ".codewiki/roadmap/queue.json",
               ".codewiki/roadmap"
             ],
@@ -43553,7 +43139,6 @@
             "open_task_ids": [
               "TASK-077",
               "TASK-082",
-              "TASK-083",
               "TASK-085",
               "TASK-087",
               "TASK-088"
@@ -43569,7 +43154,6 @@
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
@@ -43577,8 +43161,8 @@
             ],
             "stats": {
               "total_specs": 33,
-              "aligned_specs": 18,
-              "tracked_specs": 15,
+              "aligned_specs": 19,
+              "tracked_specs": 14,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -43604,7 +43188,7 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T08:40:18Z",
+        "generated_at": "2026-05-16T08:42:19Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
@@ -43761,7 +43345,6 @@
             "related_task_ids": [
               "TASK-077",
               "TASK-082",
-              "TASK-083",
               "TASK-085",
               "TASK-078",
               "TASK-084"
@@ -43942,40 +43525,6 @@
             "note": "tracked by TASK-088"
           },
           {
-            "path": ".codewiki/kb/system/extension.md",
-            "title": "Extension",
-            "summary": "Packaged CodeWiki distribution, current Pi extension surface, and CodeWiki UI launch integration.",
-            "drift_status": "tracked",
-            "code_paths": [
-              "src/index.ts",
-              "src/bootstrap.ts",
-              "src/templates.ts",
-              "src/application/prompt.ts",
-              "src/adapters/pi",
-              "skills/codewiki",
-              "tests/smoke/package-smoke.test.mjs"
-            ],
-            "code_area": "src, skills +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-083"
-            ],
-            "primary_task": {
-              "id": "TASK-083",
-              "status": "in_progress",
-              "title": "Move bootstrap and prompt templates into CodeWiki skill assets"
-            },
-            "revision": {
-              "digest": "870ff3d651945f9403e105c0bc58c957fccc8843083846a06f87068ccee175a1",
-              "basis": "source_content"
-            },
-            "note": "tracked by TASK-083"
-          },
-          {
             "path": ".codewiki/kb/system/file-structure.md",
             "title": "File Structure",
             "summary": "Target knowledge-base and package file structure for CodeWiki.",
@@ -43993,7 +43542,6 @@
             },
             "related_task_ids": [
               "TASK-077",
-              "TASK-083",
               "TASK-087",
               "TASK-088",
               "TASK-076"
@@ -44568,6 +44116,34 @@
             "note": "no deterministic drift signals"
           },
           {
+            "path": ".codewiki/kb/system/extension.md",
+            "title": "Extension",
+            "summary": "Packaged CodeWiki distribution, current Pi extension surface, and CodeWiki UI launch integration.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "src/index.ts",
+              "src/bootstrap.ts",
+              "src/templates.ts",
+              "src/application/prompt.ts",
+              "src/adapters/pi",
+              "skills/codewiki",
+              "tests/smoke/package-smoke.test.mjs"
+            ],
+            "code_area": "src, skills +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "870ff3d651945f9403e105c0bc58c957fccc8843083846a06f87068ccee175a1",
+              "basis": "source_content"
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
             "path": ".codewiki/kb/system/knowledge.md",
             "title": "Knowledge",
             "summary": "Durable product and system knowledge structure for CodeWiki projects.",
@@ -45071,7 +44647,6 @@
                 "related_task_ids": [
                   "TASK-077",
                   "TASK-082",
-                  "TASK-083",
                   "TASK-085",
                   "TASK-078",
                   "TASK-084"
@@ -45252,40 +44827,6 @@
                 "note": "tracked by TASK-088"
               },
               {
-                "path": ".codewiki/kb/system/extension.md",
-                "title": "Extension",
-                "summary": "Packaged CodeWiki distribution, current Pi extension surface, and CodeWiki UI launch integration.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  "src/index.ts",
-                  "src/bootstrap.ts",
-                  "src/templates.ts",
-                  "src/application/prompt.ts",
-                  "src/adapters/pi",
-                  "skills/codewiki",
-                  "tests/smoke/package-smoke.test.mjs"
-                ],
-                "code_area": "src, skills +1 more",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-083"
-                ],
-                "primary_task": {
-                  "id": "TASK-083",
-                  "status": "in_progress",
-                  "title": "Move bootstrap and prompt templates into CodeWiki skill assets"
-                },
-                "revision": {
-                  "digest": "870ff3d651945f9403e105c0bc58c957fccc8843083846a06f87068ccee175a1",
-                  "basis": "source_content"
-                },
-                "note": "tracked by TASK-083"
-              },
-              {
                 "path": ".codewiki/kb/system/file-structure.md",
                 "title": "File Structure",
                 "summary": "Target knowledge-base and package file structure for CodeWiki.",
@@ -45303,7 +44844,6 @@
                 },
                 "related_task_ids": [
                   "TASK-077",
-                  "TASK-083",
                   "TASK-087",
                   "TASK-088",
                   "TASK-076"
@@ -45574,6 +45114,34 @@
                 "note": "no deterministic drift signals"
               },
               {
+                "path": ".codewiki/kb/system/extension.md",
+                "title": "Extension",
+                "summary": "Packaged CodeWiki distribution, current Pi extension surface, and CodeWiki UI launch integration.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  "src/index.ts",
+                  "src/bootstrap.ts",
+                  "src/templates.ts",
+                  "src/application/prompt.ts",
+                  "src/adapters/pi",
+                  "skills/codewiki",
+                  "tests/smoke/package-smoke.test.mjs"
+                ],
+                "code_area": "src, skills +1 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [],
+                "primary_task": null,
+                "revision": {
+                  "digest": "870ff3d651945f9403e105c0bc58c957fccc8843083846a06f87068ccee175a1",
+                  "basis": "source_content"
+                },
+                "note": "no deterministic drift signals"
+              },
+              {
                 "path": ".codewiki/kb/system/knowledge.md",
                 "title": "Knowledge",
                 "summary": "Durable product and system knowledge structure for CodeWiki projects.",
@@ -45634,7 +45202,6 @@
         "in_progress_task_ids": [
           "TASK-077",
           "TASK-082",
-          "TASK-083",
           "TASK-087",
           "TASK-088"
         ],
@@ -45736,7 +45303,6 @@
             "open_task_ids": [
               "TASK-077",
               "TASK-082",
-              "TASK-083",
               "TASK-085"
             ],
             "budget": {
@@ -45791,7 +45357,6 @@
             "task_ids": [
               "TASK-077",
               "TASK-082",
-              "TASK-083",
               "TASK-087",
               "TASK-088"
             ]
