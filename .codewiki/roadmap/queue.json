@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-05-16T21:45:59Z",
+  "updated": "2026-05-16T21:50:53Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -51,8 +51,7 @@
     "TASK-076",
     "TASK-077",
     "TASK-078",
-    "TASK-084",
-    "TASK-090"
+    "TASK-084"
   ],
   "tasks": {
     "TASK-001": {
@@ -2386,57 +2385,6 @@
       },
       "created": "2026-05-15",
       "updated": "2026-05-15T03:08:30Z"
-    },
-    "TASK-090": {
-      "id": "TASK-090",
-      "title": "Codify alignment drift fixture matrix",
-      "status": "in_progress",
-      "priority": "critical",
-      "kind": "testing",
-      "summary": "Add deterministic fixture cases for generally applicable alignment drift detection in fixture-only test assets.",
-      "spec_paths": [
-        ".codewiki/kb/system/alignment-model.md",
-        ".codewiki/kb/system/graph.md",
-        ".codewiki/kb/system/audits.md",
-        ".codewiki/kb/system/validation-gateway.md"
-      ],
-      "code_paths": [
-        "tests/fixtures/alignment-drift",
-        "tests/smoke/alignment-drift-fixtures.test.mjs"
-      ],
-      "research_ids": [],
-      "labels": [
-        "alignment",
-        "drift",
-        "fixtures"
-      ],
-      "change_type": "code",
-      "goal": {
-        "outcome": "Known generally applicable alignment drift classes have deterministic fixture coverage independent of task-boundary enforcement and CodeWiki dogfood-only concerns.",
-        "acceptance": [
-          "Fixture cases cover vertical drift, horizontal drift, stale generated output, missing accepted build, missing audit evidence, and invalid publication proof.",
-          "Each failing fixture asserts a specific issue kind or reconciliation item.",
-          "Clean fixture passes the same audit/graph check path.",
-          "Fixture runner is included in smoke or feature tests."
-        ],
-        "non_goals": [
-          "Do not change task-boundary enforcement.",
-          "Do not depend on network or remote Git state.",
-          "Do not include CodeWiki dogfood-only source/package confusion as a distributed general fixture."
-        ],
-        "verification": [
-          "node tests/smoke/alignment-drift-fixtures.test.mjs",
-          "npm run typecheck",
-          "npm test"
-        ]
-      },
-      "delta": {
-        "desired": "Fixture matrix covers known generally applicable alignment drift classes.",
-        "current": "Fixture matrix implemented; dogfood-only source confusion case removed from TASK-090 scope.",
-        "closure": "Close after validation confirms portable fixture matrix passes and is included in smoke tests."
-      },
-      "created": "2026-05-16",
-      "updated": "2026-05-16T21:45:59Z"
     }
   },
   "sprints": {
