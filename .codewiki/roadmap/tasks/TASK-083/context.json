@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T04:12:58Z",
+  "generated_at": "2026-05-16T06:36:09Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-083/context.json",
   "task": {
     "id": "TASK-083",
@@ -26,27 +26,27 @@
         "Bootstrap workflow guidance and prompt templates live under the CodeWiki skill asset boundary, with source code only exposing executable application tools or compatibility loaders.",
         "/wiki-resume injected implementation prompts are rendered from skill-owned templates/assets rather than hard-coded application prompt text.",
         "/wiki-resume preserves or incorporates user-supplied follow-up intent after command invocation instead of discarding it.",
-        "Resume prompt templates include selected task, suggested scoped-lease scopes, conflict/skip reasons when relevant, and helper-safe next steps for parallel sessions.",
+        "Resume prompt templates include selected task, artifact statuses, conflicting artifacts and holders/waiters when relevant, temporary session usage record, and helper-safe next steps for parallel sessions.",
         "Packaged skills include required bootstrap/prompt/template assets and smoke tests prove package reachability.",
         "Architecture/audit check detects active docs/source that call .codewiki/ package source or generated task views canonical truth."
       ],
       "non_goals": [
         "Do not make skills import adapters or own product semantics.",
         "Do not remove compatibility loaders before packaging and migration tests pass.",
-        "Do not implement session queue scheduling policy in the template layer; TASK-086 owns allocation semantics."
+        "Do not implement session queue/artifact-status scheduling policy in the template layer; TASK-086 owns allocation semantics."
       ],
       "verification": [
         "npm run typecheck",
         "npm run test:smoke",
         "npm run test:pack",
         "source-owned package/audit check verifies skill assets are reachable",
-        "/wiki-resume prompt fixture proves skill-owned template rendering and follow-up intent preservation"
+        "/wiki-resume prompt fixture proves skill-owned template rendering, artifact-status wording, and follow-up intent preservation"
       ]
     },
     "delta": {
       "desired": "Skill assets own bootstrap guidance, prompts, resume prompt templates, and starter templates; source exposes tools/loaders without duplicating workflow policy.",
       "current": "Bootstrap/templates/prompts are split across package source and skill docs; /wiki-resume prompt text is source-owned and can discard user follow-up text.",
-      "closure": "Skill-owned assets are packaged, /wiki-resume renders skill-owned templates while preserving follow-up intent, source callers use shared application tools/loaders, and dogfood/source boundary checks pass."
+      "closure": "Skill-owned assets are packaged, /wiki-resume renders skill-owned templates using artifact-status wording while preserving follow-up intent, source callers use shared application tools/loaders, and dogfood/source boundary checks pass."
     }
   }
 }

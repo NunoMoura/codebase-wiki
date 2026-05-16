@@ -4,7 +4,7 @@
   "status": "in_progress",
   "priority": "high",
   "kind": "architecture",
-  "summary": "Replace public claim vocabulary with session queue scoped leases and make /wiki-resume use fresh session-queue state to allocate conflict-safe parallel work.",
+  "summary": "Replace public claim vocabulary with artifact-status-first session queue coordination while preserving transitional compatibility for existing claim/lease callers.",
   "spec_paths": [
     ".codewiki/kb/lexicon.md",
     ".codewiki/kb/system/api.md",
@@ -26,40 +26,43 @@
   "labels": [
     "domain-led-refactor",
     "session-queue",
-    "scoped-leases",
+    "artifact-status",
     "api-compatibility",
     "parallel-resume"
   ],
   "goal": {
-    "outcome": "CodeWiki public coordination language and API use session queue/scoped lease concepts, and /wiki-resume can allocate safe parallel helper work from fresh roadmap/graph/session queue state.",
+    "outcome": "CodeWiki public coordination language/API expose artifact availability, in-use, waiting, conflict, and stale status from session queue state; sessions are holders/waiters behind artifact status, and /wiki-resume allocates safe parallel work from that state.",
     "acceptance": [
-      "Domain/session queue types model focus, waits, scoped leases, handoff metadata, and isolation context without public claim terminology.",
-      "New or renamed application tool/API surface exposes session queue scoped lease operations; legacy codewiki_claim remains as a compatibility alias with deprecation/transition documentation if needed.",
-      "Pi tool schemas, skills, UI labels, generated state summaries, and validation isolation fields use session queue/scoped lease language in public output.",
+      "Domain/session queue types model artifact statuses for tasks, paths, builds, validation refs, generated state, and publication refs with holders, waiters, heartbeat/TTL, handoff metadata, and isolation context.",
+      "Public API/tool/UI/graph/prompt language uses artifact status terminology (available, in-use, waiting, conflict, stale, holder, waiter) instead of claim/lease as primary concepts.",
+      "Legacy codewiki_claim and any lease/claim naming remains only as compatibility/internal implementation detail with deprecation/migration notes if needed.",
+      "New or renamed application tool/API surface exposes artifact-status operations: inspect status, mark/use artifact for read/write work, wait, heartbeat, release, and list holders/waiters.",
       "Storage remains .codewiki/session/queue.json unless migration planning explicitly changes it.",
-      "Tests cover scoped lease create/list/release/heartbeat behavior and legacy alias compatibility.",
-      "/wiki-resume without an explicit task reads fresh CodeWiki state plus session queue scoped leases and selects the next unblocked atomic task whose suggested write scopes do not conflict with active leases.",
-      "/wiki-resume TASK-### honors an explicit non-closed task request even when an umbrella task is active, unless task policy or session queue conflicts provide a real block with a clear explanation.",
-      "Resume output includes suggested scoped-lease scopes, conflict/skip reasons for unavailable tasks, and helper-safe next steps so one tab/session can start parallel work with a single /wiki-resume invocation."
+      "Tests cover artifact status create/list/release/heartbeat/wait behavior and legacy alias compatibility.",
+      "/wiki-resume without an explicit task reads fresh CodeWiki state plus session queue artifact statuses and selects the next unblocked atomic task whose relevant artifacts are available or read-compatible.",
+      "/wiki-resume TASK-### honors an explicit non-closed task request even when an umbrella task is active, unless task policy or artifact conflict provides a real block with a clear explanation.",
+      "Resume output includes selected task, artifact statuses, conflicting artifacts and holders/waiters, temporary session usage record, and helper-safe next steps so one tab/session can start parallel work with a single /wiki-resume invocation."
     ],
     "non_goals": [
       "Do not break existing users abruptly by deleting codewiki_claim before compatibility alias and migration notes exist.",
-      "Do not treat session queue leases as durable roadmap truth.",
-      "Do not use broad umbrella tasks such as TASK-077 as default implementation work when safe child/atomic tasks are available."
+      "Do not treat session queue artifact status as durable roadmap truth.",
+      "Do not use broad umbrella tasks such as TASK-077 as default implementation work when safe child/atomic tasks are available.",
+      "Do not make claim or lease primary project lexicon terms."
     ],
     "verification": [
       "npm run typecheck",
       "npm run test:smoke",
-      "targeted session queue/scoped lease smoke",
-      "targeted /wiki-resume parallel allocation smoke with active umbrella focus and active lease conflict fixtures",
-      "stale-term scan for public claim vocabulary with allowed compatibility exceptions only"
+      "targeted artifact-status session queue smoke",
+      "targeted legacy claim/lease alias compatibility smoke",
+      "targeted /wiki-resume parallel allocation smoke with active umbrella focus and artifact conflict fixtures",
+      "stale-term scan for public claim/lease vocabulary with allowed compatibility/internal exceptions only"
     ]
   },
   "delta": {
-    "desired": "Session queue scoped leases are the canonical project lexicon and source/API concept for parallel coordination, and /wiki-resume allocates safe parallel work from that state.",
-    "current": "Implementation and Pi tool names still use change claim terminology; /wiki-resume can prefer persisted active umbrella focus and does not yet allocate helper sessions by session queue lease safety.",
-    "closure": "Public API/output/skills use session queue scoped leases, legacy alias is tested, /wiki-resume selects conflict-safe work from fresh session queue state, and stale public claim terms are controlled."
+    "desired": "Artifact statuses are the canonical public coordination model, backed by session queue runtime state; /wiki-resume allocates safe parallel work from artifact availability/conflict state.",
+    "current": "Implementation and Pi tool names still use change claim terminology, and /wiki-resume can prefer persisted active umbrella focus without artifact-status scheduling.",
+    "closure": "Public API/output/skills use artifact status language, legacy claim/lease aliases are tested, /wiki-resume selects conflict-safe work from fresh artifact status state, and stale public claim/lease terms are controlled."
   },
   "created": "2026-05-16",
-  "updated": "2026-05-16T04:12:42Z"
+  "updated": "2026-05-16T06:35:55Z"
 }
