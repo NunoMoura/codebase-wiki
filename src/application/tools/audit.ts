@@ -301,6 +301,16 @@ async function auditFileStructure(project: WikiProject, input: CodewikiAuditInpu
 		}
 	}
 
+	const scriptFiles = await walkFiles(resolve(project.root, "scripts"), (path) => /\.(?:mjs|js|ts)$/.test(path));
+	for (const scriptFile of scriptFiles) {
+		const rel = normalizeRel(relative(project.root, scriptFile));
+		const text = await maybeReadText(scriptFile);
+		if (!text) continue;
+		if (/const\s+checks\s*=|ARCHITECTURE_RULES|domain-is-pure|\.codewiki\/roadmap\/queue\.json|writeFileSync\([\s\S]{0,160}\.codewiki\//.test(text) && !text.includes("../src/")) {
+			issues.push(createIssue(profile, "error", "script-owned-product-logic", "Script appears to own CodeWiki product/audit semantics instead of delegating to source-owned code.", rel));
+		}
+	}
+
 	const fingerprints = await fingerprintFiles(project, [
 		"src/application/tools/audit.ts",
 		"src/domain/shared/types.ts",
@@ -312,7 +322,7 @@ async function auditFileStructure(project: WikiProject, input: CodewikiAuditInpu
 		profile,
 		status: statusForIssues(issues),
 		summary: `Checked ${tsFiles.length} TypeScript source files and architecture wrapper boundaries.`,
-		checked_scopes: { root: project.root, files: ["src/**/*.ts", "scripts/check-architecture.mjs"] },
+		checked_scopes: { root: project.root, files: ["src/**/*.ts", "scripts/**/*.mjs", "scripts/check-architecture.mjs"] },
 		issues,
 		evidence_refs: evidence,
 		fingerprints,
@@ -375,7 +385,7 @@ async function auditStaleReference(project: WikiProject, input: CodewikiAuditInp
 		for (const item of stalePatterns) {
 			item.pattern.lastIndex = 0;
 			if (item.pattern.test(text)) {
-				issues.push(createIssue(profile, "warning", "stale-reference", item.message, rel));
+				issues.push(createIssue(profile, "error", "stale-reference", item.message, rel));
 			}
 		}
 	}
@@ -389,6 +399,18 @@ async function auditStaleReference(project: WikiProject, input: CodewikiAuditInp
 		evidence_refs: [project.docsRoot, "skills", "README.md"],
 		fingerprints,
 	};
+}
+
+async function npmPackDryRunFiles(project: WikiProject): Promise<string[] | null> {
+	try {
+		const result = await execFileAsync("npm", ["pack", "--dry-run", "--json"], { cwd: project.root, encoding: "utf8", maxBuffer: 1024 * 1024 * 8 });
+		const parsed = JSON.parse(result.stdout || "[]");
+		const files = parsed?.[0]?.files;
+		if (!Array.isArray(files)) return null;
+		return files.map((item: JsonObject) => String(item.path || "")).filter(Boolean).sort();
+	} catch {
+		return null;
+	}
 }
 
 async function auditPackage(project: WikiProject, input: CodewikiAuditInput): Promise<AuditProfileResult> {
@@ -405,23 +427,53 @@ async function auditPackage(project: WikiProject, input: CodewikiAuditInput): Pr
 				issues.push(createIssue(profile, "error", "package-files", `package.json files must include ${required}.`, packageJsonPath));
 			}
 		}
-		if (files.some((item: string) => item.startsWith("extensions"))) {
-			issues.push(createIssue(profile, "error", "package-files", "package.json files must not include deprecated extensions/ source paths.", packageJsonPath));
+		for (const entry of files) {
+			if (entry.startsWith("extensions")) {
+				issues.push(createIssue(profile, "error", "package-files", "package.json files must not include deprecated extensions/ source paths.", packageJsonPath));
+			}
+			if (!entry.includes("*") && !(await pathExists(resolve(project.root, entry)))) {
+				issues.push(createIssue(profile, "error", "package-files-unreachable", `package.json files entry is unreachable: ${entry}.`, packageJsonPath));
+			}
 		}
 		const extensions = Array.isArray(packageJson.pi?.extensions) ? packageJson.pi.extensions.map(String) : [];
 		if (!extensions.includes("./src/index.ts")) {
 			issues.push(createIssue(profile, "error", "pi-extension-entry", "Pi extension entry must resolve from ./src/index.ts.", packageJsonPath));
 		}
+		for (const entry of extensions) {
+			if (!(await pathExists(resolve(project.root, entry.replace(/^\.\//, ""))))) {
+				issues.push(createIssue(profile, "error", "pi-extension-unreachable", `Pi extension entry is unreachable: ${entry}.`, packageJsonPath));
+			}
+		}
 		const skills = Array.isArray(packageJson.pi?.skills) ? packageJson.pi.skills.map(String) : [];
 		if (!skills.includes("./skills")) {
 			issues.push(createIssue(profile, "error", "pi-skill-entry", "Pi skill entry must resolve from ./skills.", packageJsonPath));
 		}
+		for (const entry of skills) {
+			if (!(await pathExists(resolve(project.root, entry.replace(/^\.\//, ""))))) {
+				issues.push(createIssue(profile, "error", "pi-skill-unreachable", `Pi skill entry is unreachable: ${entry}.`, packageJsonPath));
+			}
+		}
 		if (!packageJson.scripts?.["check:architecture"]) {
 			issues.push(createIssue(profile, "warning", "package-checks", "package.json should expose check:architecture wrapper for CI/package smoke.", packageJsonPath));
 		}
+		const packedFiles = await npmPackDryRunFiles(project);
+		if (packedFiles) {
+			for (const required of ["src/index.ts", "skills/codewiki/SKILL.md", "scripts/check-architecture.mjs", "package.json", "README.md"]) {
+				if (!packedFiles.includes(required)) {
+					issues.push(createIssue(profile, "error", "package-dry-run-missing", `npm pack --dry-run omits required artifact ${required}.`, packageJsonPath));
+				}
+			}
+			for (const packed of packedFiles) {
+				if (/^(?:\.codewiki|\.pi|tests|node_modules|extensions)\//.test(packed)) {
+					issues.push(createIssue(profile, "error", "package-dry-run-unexpected", `npm pack --dry-run includes unexpected artifact ${packed}.`, packageJsonPath));
+				}
+			}
+		} else {
+			issues.push(createIssue(profile, "warning", "package-dry-run-unavailable", "Unable to inspect npm pack --dry-run --json output.", packageJsonPath));
+		}
 	}
-	if (!(await pathExists(resolve(project.root, "package-lock.json")))) {
-		issues.push(createIssue(profile, "warning", "missing-lockfile", "package-lock.json is absent; publication reproducibility may be weaker.", "package-lock.json"));
+	if (packageJson && !(await pathExists(resolve(project.root, "package-lock.json")))) {
+		issues.push(createIssue(profile, "error", "missing-lockfile", "package-lock.json is absent; publication reproducibility is not anchored.", "package-lock.json"));
 	}
 	const fingerprints = await fingerprintFiles(project, ["package.json", "package-lock.json", "src/index.ts", "skills/codewiki/SKILL.md"], input.include_fingerprints !== false);
 	return {
@@ -478,6 +530,55 @@ async function auditSecurity(project: WikiProject, input: CodewikiAuditInput): P
 	};
 }
 
+function comparableTaskFields(task: JsonObject): JsonObject {
+	return {
+		id: task.id,
+		title: task.title,
+		status: task.status,
+		priority: task.priority,
+		kind: task.kind,
+		summary: task.summary,
+	};
+}
+
+async function auditRoadmapTaskViewParity(project: WikiProject, issues: AuditIssue[]): Promise<number> {
+	const profile: AuditProfile = "generated-parity";
+	const queue = await maybeReadJson(resolve(project.root, project.roadmapPath));
+	if (!queue?.tasks || typeof queue.tasks !== "object") return 0;
+	let checked = 0;
+	const activeIds = new Set<string>();
+	const allIds = new Set(Object.keys(queue.tasks));
+	for (const [taskId, rawTask] of Object.entries(queue.tasks)) {
+		const task = rawTask as JsonObject;
+		if (task.status === "done" || task.status === "cancelled") continue;
+		activeIds.add(taskId);
+		checked++;
+		const taskViewPath = `.codewiki/roadmap/tasks/${taskId}/task.json`;
+		const contextViewPath = `.codewiki/roadmap/tasks/${taskId}/context.json`;
+		const taskView = await maybeReadJson(resolve(project.root, taskViewPath));
+		const contextView = await maybeReadJson(resolve(project.root, contextViewPath));
+		if (!taskView) {
+			issues.push(createIssue(profile, "error", "roadmap-task-view-missing", `Generated task view missing for active ${taskId}.`, taskViewPath));
+		} else if (JSON.stringify(comparableTaskFields(taskView)) !== JSON.stringify(comparableTaskFields(task))) {
+			issues.push(createIssue(profile, "error", "roadmap-task-view-mismatch", `Generated task view does not match canonical roadmap queue for ${taskId}.`, taskViewPath));
+		}
+		const contextTask = contextView?.task;
+		if (!contextTask) {
+			issues.push(createIssue(profile, "error", "roadmap-task-context-missing", `Generated task context missing for active ${taskId}.`, contextViewPath));
+		} else if (JSON.stringify(comparableTaskFields(contextTask)) !== JSON.stringify(comparableTaskFields(task))) {
+			issues.push(createIssue(profile, "error", "roadmap-task-context-mismatch", `Generated task context does not match canonical roadmap queue for ${taskId}.`, contextViewPath));
+		}
+	}
+	const generatedTaskDirs = await walkFiles(resolve(project.root, ".codewiki/roadmap/tasks"), (path) => path.endsWith("task.json"));
+	for (const taskView of generatedTaskDirs) {
+		const taskId = normalizeRel(relative(resolve(project.root, ".codewiki/roadmap/tasks"), taskView)).split("/")[0];
+		if (taskId && !activeIds.has(taskId) && !allIds.has(taskId)) {
+			issues.push(createIssue(profile, "error", "roadmap-task-view-orphan", `Generated task view exists for missing task ${taskId}.`, `.codewiki/roadmap/tasks/${taskId}/task.json`));
+		}
+	}
+	return checked;
+}
+
 async function auditGeneratedParity(project: WikiProject, input: CodewikiAuditInput): Promise<AuditProfileResult> {
 	const profile: AuditProfile = "generated-parity";
 	const issues: AuditIssue[] = [];
@@ -507,12 +608,13 @@ async function auditGeneratedParity(project: WikiProject, input: CodewikiAuditIn
 			}
 		}
 	}
-	const fingerprints = await fingerprintFiles(project, [".codewiki/index_graph.json", project.roadmapPath, ...(input.paths || [])], input.include_fingerprints !== false);
+	const taskViewsChecked = await auditRoadmapTaskViewParity(project, issues);
+	const fingerprints = await fingerprintFiles(project, [".codewiki/index_graph.json", project.roadmapPath, ".codewiki/roadmap/tasks", ...(input.paths || [])], input.include_fingerprints !== false);
 	return {
 		profile,
 		status: statusForIssues(issues),
-		summary: "Checked generated graph presence and freshness against canonical docs/roadmap mtimes.",
-		checked_scopes: { root: project.root, files: [".codewiki/index_graph.json", project.roadmapPath, project.docsRoot] },
+		summary: `Checked generated graph presence, freshness, and ${taskViewsChecked} active roadmap task views against canonical sources.`,
+		checked_scopes: { root: project.root, files: [".codewiki/index_graph.json", project.roadmapPath, ".codewiki/roadmap/tasks", project.docsRoot] },
 		issues,
 		evidence_refs: [".codewiki/index_graph.json", project.roadmapPath, project.docsRoot],
 		fingerprints,
