@@ -1,6 +1,8 @@
 import { dirname, resolve } from "node:path";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import type {
+	ArtifactStatusHolder,
+	ArtifactStatusRecord,
 	ChangeClaimConflict,
 	ChangeClaimMode,
 	ChangeClaimRecord,
@@ -285,7 +287,7 @@ export function buildChangeClaimState(file: ChangeClaimsFile, now = new Date()):
 			return t !== 0 ? t : a.id.localeCompare(b.id);
 		});
 	const conflicts = detectClaimConflicts(claims);
-	return {
+	const state = {
 		generated_at: nowIso(),
 		active_claim_count: claims.length,
 		warning_count: conflicts.filter((conflict) => conflict.kind === "warning").length,
@@ -296,10 +298,122 @@ export function buildChangeClaimState(file: ChangeClaimsFile, now = new Date()):
 		conflicts,
 		waiters,
 	};
+	return {
+		...state,
+		artifact_statuses: buildArtifactStatusRecords(state),
+	};
 }
 
 function waiterStatusRank(status: ChangeClaimWaiterRecord["status"]): number {
 	return status === "ready" ? 0 : status === "pending" ? 1 : 2;
+}
+
+function holderFromClaim(claim: ChangeClaimRecord): ArtifactStatusHolder {
+	return {
+		record_id: claim.id,
+		session_id: claim.session_id,
+		agent_name: claim.agent_name,
+		mode: claim.mode,
+		...(claim.role ? { role: claim.role } : {}),
+		...(claim.task_id ? { task_id: claim.task_id } : {}),
+		...(claim.summary ? { summary: claim.summary } : {}),
+		...(claim.expires_at ? { expires_at: claim.expires_at } : {}),
+	};
+}
+
+function holderFromWaiter(waiter: ChangeClaimWaiterRecord): ArtifactStatusHolder {
+	return {
+		record_id: waiter.id,
+		session_id: waiter.session_id,
+		agent_name: waiter.agent_name,
+		mode: waiter.mode,
+		...(waiter.role ? { role: waiter.role } : {}),
+		...(waiter.task_id ? { task_id: waiter.task_id } : {}),
+		...(waiter.summary ? { summary: waiter.summary } : {}),
+		...(waiter.expires_at ? { expires_at: waiter.expires_at } : {}),
+	};
+}
+
+export function artifactScopeLabel(scope: ChangeClaimScope): string {
+	return scope.task_id || scope.path || scope.ref || scope.description || scope.layer;
+}
+
+export function buildArtifactStatusRecords(state: Pick<ChangeClaimState, "claims" | "waiters" | "conflicts">): ArtifactStatusRecord[] {
+	const records = new Map<string, ArtifactStatusRecord>();
+	function ensure(scope: ChangeClaimScope): ArtifactStatusRecord {
+		const key = scopeKey(scope);
+		const existing = records.get(key);
+		if (existing) return existing;
+		const record: ArtifactStatusRecord = {
+			artifact: scope,
+			status: "available",
+			holders: [],
+			waiters: [],
+			conflict_ids: [],
+		};
+		records.set(key, record);
+		return record;
+	}
+	for (const claim of state.claims) {
+		for (const scope of claim.scopes) {
+			const record = ensure(scope);
+			record.holders.push(holderFromClaim(claim));
+			if (record.status === "available") record.status = "in-use";
+		}
+	}
+	for (const waiter of state.waiters) {
+		for (const scope of waiter.scopes) {
+			const record = ensure(scope);
+			record.waiters.push(holderFromWaiter(waiter));
+			if (record.status === "available") record.status = "waiting";
+		}
+	}
+	for (const conflict of state.conflicts) {
+		const record = ensure(conflict.scope);
+		record.status = conflict.kind === "conflict" ? "conflict" : record.status === "conflict" ? "conflict" : "in-use";
+		record.conflict_ids.push(...conflict.claim_ids);
+		record.reason = conflict.reason;
+	}
+	return [...records.values()].map((record) => ({
+		...record,
+		conflict_ids: unique(record.conflict_ids).sort(),
+	})).sort((a, b) => artifactScopeLabel(a.artifact).localeCompare(artifactScopeLabel(b.artifact)));
+}
+
+export function artifactStatusesForScopes(
+	scopes: ChangeClaimScope[],
+	state: Pick<ChangeClaimState, "claims" | "waiters" | "conflicts">,
+	sessionId: string,
+	mode: ChangeClaimMode = "write",
+): ArtifactStatusRecord[] {
+	return scopes.map((scope) => {
+		const holders = state.claims
+			.filter((claim) => claim.session_id !== sessionId && claim.scopes.some((claimScope) => scopesOverlap(scope, claimScope)))
+			.map(holderFromClaim);
+		const waiters = state.waiters
+			.filter((waiter) => waiter.session_id !== sessionId && waiter.scopes.some((waitScope) => scopesOverlap(scope, waitScope)))
+			.map(holderFromWaiter);
+		const blockers = holders.filter((holder) => mode === "write" || holder.mode === "write");
+		const status: ArtifactStatusRecord["status"] = blockers.length > 0
+			? "conflict"
+			: holders.length > 0
+				? "in-use"
+				: waiters.length > 0
+					? "waiting"
+					: "available";
+		return {
+			artifact: scope,
+			status,
+			holders,
+			waiters,
+			conflict_ids: blockers.map((holder) => holder.record_id).sort(),
+			...(blockers.length > 0 ? { reason: "Artifact is already in use by another active session." } : {}),
+		};
+	});
+}
+
+export function hasBlockingArtifactStatus(statuses: ArtifactStatusRecord[]): boolean {
+	return statuses.some((status) => status.status === "conflict");
 }
 
 function computedWaiterState(waiter: ChangeClaimWaiterRecord, claims: ChangeClaimRecord[]): ChangeClaimWaiterRecord {

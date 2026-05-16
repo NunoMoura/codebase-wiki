@@ -26,14 +26,24 @@ import {
     isRoadmapTaskToken,
     resolveRoadmapTask,
     isClosedRoadmapStatus,
-    isActiveLoopRoadmapStatus,
 } from "../../../application/roadmap.ts";
 import { currentTaskLink, piSessionPorts } from "../session.ts";
 import { recordSessionTaskAction } from "../../../application/session.ts";
+import {
+	artifactScopeLabel,
+	artifactStatusesForScopes,
+	buildChangeClaimState,
+	hasBlockingArtifactStatus,
+	mutateChangeClaims,
+	normalizeScopes,
+	readChangeClaimsFile,
+} from "../../../application/claims.ts";
+import { stableAgentName } from "../../../application/state-builders.ts";
 import { 
     splitCommandArgs, 
     joinCommandArgs,
-    nowIso
+    nowIso,
+    unique
 } from "../../../domain/shared/utils.ts";
 import { 
     statusColor,
@@ -45,7 +55,11 @@ import type {
     RoadmapTaskRecord, 
     TaskSessionLinkRecord,
     RoadmapStatus,
-    TaskSessionAction
+    TaskSessionAction,
+	ChangeClaimScope,
+	ChangeClaimState,
+	ArtifactStatusRecord,
+	WikiProject
 } from "../../../domain/shared/types.ts";
 
 /**
@@ -80,20 +94,25 @@ async function runResumeCommand(
 	const roadmap = await readRoadmapFile(
 		resolve(project.root, project.roadmapPath),
 	);
-	const task = resolveImplementationTask(
+	const sessionId = String(ctx.sessionManager?.getSessionId?.() || "session-unknown").trim() || "session-unknown";
+	const artifactState = buildChangeClaimState(await readChangeClaimsFile(project));
+	const selection = resolveImplementationTask(
 		roadmap,
 		currentTaskLink(ctx),
 		requestedTaskId,
 		persistedFocusTaskId,
+		artifactState,
+		sessionId,
 	);
-	if (!task) {
+	if (!selection.task) {
 		ctx.ui.notify(
-			`${project.label}: no open roadmap task available for /${commandName}. Open /wiki-status or use Alt+W if you need a different direction.`,
+			`${project.label}: no artifact-available roadmap task for /${commandName}. ${selection.skipped.length > 0 ? `Skipped: ${selection.skipped.slice(0, 3).join("; ")}. ` : ""}Open /wiki-status or use Alt+W if you need a different direction.`,
 			"warning",
 		);
 		await refreshStatusDock(project, ctx, currentTaskLink(ctx));
 		return;
 	}
+	const task = selection.task;
 	let resumedTask = task;
 	let roadmapState = await maybeReadRoadmapState(project.roadmapStatePath);
 	let runtimeTask = roadmapState?.tasks?.[task.id] ?? null;
@@ -117,6 +136,7 @@ async function runResumeCommand(
 		requestedTaskId,
 		persistedFocusTaskId,
 		resumedTask,
+		selection,
 	);
 	const action: TaskSessionAction = "progress";
 	const sessionSummary = `Resumed roadmap work on ${resumedTask.id} through /${commandName}.`;
@@ -126,6 +146,7 @@ async function runResumeCommand(
 		summary: sessionSummary,
 		setSessionName: false,
 	}, piSessionPorts(pi, ctx));
+	const usageSummary = await markResumeArtifactsInUse(project, resumedTask, sessionId);
 	const activeLink: TaskSessionLinkRecord = {
 		taskId: resumedTask.id,
 		action,
@@ -134,7 +155,10 @@ async function runResumeCommand(
 		spawnedTaskIds: [],
 		timestamp: nowIso(),
 	};
-	const evidence = taskLoopEvidenceLine(runtimeTask);
+	const evidence = [
+		taskLoopEvidenceLine(runtimeTask),
+		describeArtifactPromptContext(selection.artifact_statuses, usageSummary, selection.skipped),
+	].filter(Boolean).join("\n");
 	await runRebuild(project);
 	const refreshedRoadmapState = await maybeReadRoadmapState(
 		project.roadmapStatePath,
@@ -148,7 +172,7 @@ async function runResumeCommand(
 	);
 	const refreshedGraph = (await maybeReadGraph(project.graphPath)) ?? graph;
 	ctx.ui.notify(
-		`${project.label}: queued ${resumedTask.status} for ${resumedTask.id} — ${resumedTask.title}. ${selectionReason} Deterministic preflight is ${statusColor(summary.report)}.`,
+		`${project.label}: queued ${resumedTask.status} for ${resumedTask.id} — ${resumedTask.title}. ${selectionReason} ${usageSummary} Deterministic preflight is ${statusColor(summary.report)}.`,
 		statusLevel(summary.report),
 	);
 	await refreshStatusDock(project, ctx, activeLink);
@@ -190,94 +214,160 @@ function normalizeCodeArgs(args: string): {
 	return { requestedTaskId: null, pathArg: joinCommandArgs(tokens) };
 }
 
-function resolveImplementationTask(
+export interface ResumeSelection {
+	task: RoadmapTaskRecord | null;
+	source: "explicit" | "session-focus" | "persisted-focus" | "roadmap-order" | "none";
+	artifact_statuses: ArtifactStatusRecord[];
+	skipped: string[];
+}
+
+export function resolveImplementationTask(
 	roadmap: RoadmapFile,
 	activeLink: TaskSessionLinkRecord | null,
 	requestedTaskId: string | null,
 	persistedFocusTaskId: string | null = null,
-): RoadmapTaskRecord | null {
+	artifactState: ChangeClaimState,
+	sessionId: string,
+): ResumeSelection {
 	const ordered = roadmap.order
 		.map((taskId) => roadmap.tasks[taskId])
 		.filter((task): task is RoadmapTaskRecord => Boolean(task));
-	const activeTask = activeLink
-		? resolveRoadmapTask(roadmap, activeLink.taskId)
-		: null;
-	const linkedActiveLoopTask =
-		activeTask && isActiveLoopRoadmapStatus(activeTask.status)
-			? activeTask
-			: null;
-	const persistedTask = persistedFocusTaskId
-		? resolveRoadmapTask(roadmap, persistedFocusTaskId)
-		: null;
-	const persistedActiveLoopTask =
-		persistedTask && isActiveLoopRoadmapStatus(persistedTask.status)
-			? persistedTask
-			: null;
-	const orderedActiveLoopTask = ordered.find((task) =>
-		isActiveLoopRoadmapStatus(task.status),
-	);
-	const activeWorkTask =
-		linkedActiveLoopTask ?? persistedActiveLoopTask ?? orderedActiveLoopTask;
-
 	if (requestedTaskId) {
 		const requestedTask = resolveRoadmapTask(roadmap, requestedTaskId);
-		if (!requestedTask)
-			throw new Error(`Roadmap task not found: ${requestedTaskId}`);
-		if (isClosedRoadmapStatus(requestedTask.status))
-			throw new Error(`Roadmap task already closed: ${requestedTask.id}`);
-		if (
-			requestedTask.status === "todo" &&
-			activeWorkTask &&
-			activeWorkTask.id !== requestedTask.id
-		) {
-			throw new Error(
-				`Roadmap task ${requestedTask.id} cannot start yet. ${activeWorkTask.id} is still active in ${activeWorkTask.status}; resume or finish active loop work first.`,
-			);
+		if (!requestedTask) throw new Error(`Roadmap task not found: ${requestedTaskId}`);
+		if (isClosedRoadmapStatus(requestedTask.status)) throw new Error(`Roadmap task already closed: ${requestedTask.id}`);
+		const artifactStatuses = artifactStatusesForScopes(taskArtifactScopes(requestedTask), artifactState, sessionId, "write");
+		if (hasBlockingArtifactStatus(artifactStatuses)) {
+			throw new Error(`Roadmap task ${requestedTask.id} cannot start yet. ${formatBlockingArtifactStatuses(artifactStatuses)}`);
 		}
-		return requestedTask;
+		return { task: requestedTask, source: "explicit", artifact_statuses: artifactStatuses, skipped: [] };
 	}
 
-	if (activeWorkTask) return activeWorkTask;
-	if (activeTask && !isClosedRoadmapStatus(activeTask.status))
-		return activeTask;
-	const todoTask = ordered.find((task) => task.status === "todo");
-	if (todoTask) return todoTask;
-	return null;
+	const candidates = resumeCandidates(roadmap, activeLink, persistedFocusTaskId);
+	const skipped: string[] = [];
+	for (const candidate of candidates) {
+		const artifactStatuses = artifactStatusesForScopes(taskArtifactScopes(candidate.task), artifactState, sessionId, "write");
+		if (candidate.umbrella) {
+			skipped.push(`${candidate.task.id}: umbrella coordination task`);
+			continue;
+		}
+		if (hasBlockingArtifactStatus(artifactStatuses)) {
+			skipped.push(`${candidate.task.id}: ${formatBlockingArtifactStatuses(artifactStatuses)}`);
+			continue;
+		}
+		return { task: candidate.task, source: candidate.source, artifact_statuses: artifactStatuses, skipped };
+	}
+
+	for (const task of ordered.filter((item) => !isClosedRoadmapStatus(item.status))) {
+		const artifactStatuses = artifactStatusesForScopes(taskArtifactScopes(task), artifactState, sessionId, "write");
+		if (!hasBlockingArtifactStatus(artifactStatuses)) {
+			return { task, source: "roadmap-order", artifact_statuses: artifactStatuses, skipped };
+		}
+	}
+	return { task: null, source: "none", artifact_statuses: [], skipped };
 }
 
 function describeResumeSelection(
+	_roadmap: RoadmapFile,
+	_activeLink: TaskSessionLinkRecord | null,
+	requestedTaskId: string | null,
+	_persistedFocusTaskId: string | null,
+	task: RoadmapTaskRecord,
+	selection: ResumeSelection,
+): string {
+	if (requestedTaskId) return `User requested ${task.id} explicitly; artifact status allowed start.`;
+	const skipped = selection.skipped.length > 0 ? ` Skipped ${selection.skipped.slice(0, 3).join("; ")}.` : "";
+	if (selection.source === "session-focus") return `Continuing session-focused ${task.status} work after artifact-status check.${skipped}`;
+	if (selection.source === "persisted-focus") return `Continuing persisted ${task.status} focus after artifact-status check.${skipped}`;
+	return `Selected next artifact-available ${task.status} task from fresh roadmap/session queue state.${skipped}`;
+}
+
+function resumeCandidates(
 	roadmap: RoadmapFile,
 	activeLink: TaskSessionLinkRecord | null,
-	requestedTaskId: string | null,
 	persistedFocusTaskId: string | null,
-	task: RoadmapTaskRecord,
-): string {
-	if (requestedTaskId) return `User requested ${task.id} explicitly.`;
+): Array<{ task: RoadmapTaskRecord; source: ResumeSelection["source"]; umbrella: boolean }> {
 	const ordered = roadmap.order
 		.map((taskId) => roadmap.tasks[taskId])
-		.filter((item): item is RoadmapTaskRecord => Boolean(item));
-	const activeTask = activeLink
-		? resolveRoadmapTask(roadmap, activeLink.taskId)
-		: null;
-	const hasOtherTodo = ordered.some(
-		(item) => item.status === "todo" && item.id !== task.id,
-	);
-	if (activeTask?.id === task.id && isActiveLoopRoadmapStatus(task.status)) {
-		return hasOtherTodo
-			? `Continuing session-focused ${task.status} work before opening next todo task.`
-			: `Continuing session-focused ${task.status} work.`;
+		.filter((task): task is RoadmapTaskRecord => Boolean(task) && !isClosedRoadmapStatus(task.status));
+	const candidates: Array<{ task: RoadmapTaskRecord; source: ResumeSelection["source"]; umbrella: boolean }> = [];
+	const add = (task: RoadmapTaskRecord | null, source: ResumeSelection["source"]) => {
+		if (!task || isClosedRoadmapStatus(task.status)) return;
+		if (candidates.some((item) => item.task.id === task.id)) return;
+		candidates.push({ task, source, umbrella: isUmbrellaTask(task) });
+	};
+	if (activeLink) add(resolveRoadmapTask(roadmap, activeLink.taskId), "session-focus");
+	if (persistedFocusTaskId) add(resolveRoadmapTask(roadmap, persistedFocusTaskId), "persisted-focus");
+	for (const task of ordered) add(task, "roadmap-order");
+	return candidates;
+}
+
+function isUmbrellaTask(task: RoadmapTaskRecord): boolean {
+	return task.labels.includes("umbrella") || /\bumbrella\b/i.test(`${task.title} ${task.summary} ${task.goal?.outcome || ""}`);
+}
+
+function taskArtifactScopes(task: RoadmapTaskRecord): ChangeClaimScope[] {
+	return normalizeScopes([
+		{ layer: "roadmap", task_id: task.id },
+		...task.spec_paths.map((path) => ({ layer: layerForArtifactPath(path, "knowledge"), path: pathScope(path) })),
+		...task.code_paths.map((path) => ({ layer: layerForArtifactPath(path, "code"), path: pathScope(path) })),
+	]);
+}
+
+function layerForArtifactPath(path: string, fallback: ChangeClaimScope["layer"]): ChangeClaimScope["layer"] {
+	if (path.startsWith(".codewiki/kb/")) return "knowledge";
+	if (path.startsWith(".codewiki/roadmap/")) return "roadmap";
+	if (path.startsWith(".codewiki/builds/")) return "build";
+	if (path.startsWith(".codewiki/validation/")) return "validation";
+	if (path === ".codewiki/index_graph.json" || path.startsWith(".codewiki/views/")) return "graph";
+	return fallback;
+}
+
+function pathScope(path: string): string {
+	const normalized = path.replace(/^\.\//, "").replace(/\\/g, "/").replace(/\/+/g, "/");
+	const last = normalized.split("/").pop() || "";
+	if (normalized.includes("*")) return normalized;
+	if (normalized.endsWith("/")) return `${normalized}**`;
+	if (last.includes(".")) return normalized;
+	return `${normalized}/**`;
+}
+
+function formatBlockingArtifactStatuses(statuses: ArtifactStatusRecord[]): string {
+	const blocking = statuses.filter((status) => status.status === "conflict");
+	if (blocking.length === 0) return "Artifact status is available.";
+	return `Artifact conflict: ${blocking.slice(0, 4).map((status) => {
+		const holders = status.holders.map((holder) => `${holder.record_id}:${holder.session_id}`).join(", ") || "unknown holder";
+		return `${artifactScopeLabel(status.artifact)} in-use by ${holders}`;
+	}).join("; ")}.`;
+}
+
+async function markResumeArtifactsInUse(project: WikiProject, task: RoadmapTaskRecord, sessionId: string): Promise<string> {
+	const state = buildChangeClaimState(await readChangeClaimsFile(project));
+	if (state.claims.some((claim) => claim.session_id === sessionId && claim.task_id === task.id)) {
+		return `Artifact status: already in-use by this session for ${task.id}.`;
 	}
-	if (persistedFocusTaskId === task.id && isActiveLoopRoadmapStatus(task.status)) {
-		return hasOtherTodo
-			? `Continuing persisted ${task.status} focus before opening next todo task.`
-			: `Continuing persisted ${task.status} focus.`;
+	const scopes = taskArtifactScopes(task);
+	if (scopes.length === 0) return "Artifact status: no scoped artifacts declared for this task.";
+	await mutateChangeClaims(project, {
+		action: "claim",
+		mode: "write",
+		role: "builder",
+		taskId: task.id,
+		summary: `Artifact usage for ${task.id} via /wiki-resume.`,
+		scopes,
+		ttl_minutes: 240,
+	}, { sessionId, agentName: stableAgentName(sessionId) });
+	return `Artifact status: marked in-use by this session for ${scopes.length} artifact(s).`;
+}
+
+function describeArtifactPromptContext(statuses: ArtifactStatusRecord[], usageSummary: string, skipped: string[]): string {
+	const lines = [
+		"Artifact status preflight:",
+		`- ${usageSummary}`,
+		...statuses.slice(0, 10).map((status) => `- ${artifactScopeLabel(status.artifact)}: ${status.status}${status.holders.length > 0 ? ` (${status.holders.length} holder(s))` : ""}${status.waiters.length > 0 ? `, ${status.waiters.length} waiter(s)` : ""}`),
+	];
+	if (skipped.length > 0) {
+		lines.push("Skipped artifact conflicts or coordination tasks:", ...unique(skipped).slice(0, 8).map((item) => `- ${item}`));
 	}
-	if (isActiveLoopRoadmapStatus(task.status)) {
-		return hasOtherTodo
-			? `Continuing active ${task.status} work before opening next todo task.`
-			: `Continuing active ${task.status} work.`;
-	}
-	return task.status === "todo"
-		? "No active loop work found; starting next todo task in implement."
-		: `Continuing ${task.status} work.`;
+	return lines.join("\n");
 }

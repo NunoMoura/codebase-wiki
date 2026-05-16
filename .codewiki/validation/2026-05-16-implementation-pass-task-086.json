@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "kind": "validation_report",
+  "created": "2026-05-16T07:01:04Z",
+  "profile": "implementation",
+  "task_id": "TASK-086",
+  "verdict": "pass",
+  "rationale": "Fresh validator context checked the TASK-086 implementation build, source files, session queue state, and requested command suite. Acceptance is satisfied: /wiki-resume skips persisted umbrella TASK-077 for an artifact-available child, honors explicit TASK-### unless artifact status conflicts, skips artifact-conflicted tasks, marks selected artifacts in-use through session queue claims, and buildChangeClaimState exposes artifact_statuses with holders, waiters, and conflicts.",
+  "checks": [
+    "npm run typecheck",
+    "node ./tests/smoke/resume-scheduler.test.mjs",
+    "npm run test:smoke",
+    "npm run check:architecture",
+    "npm test",
+    "codewiki_audit profiles=alignment,changed task_id=TASK-086"
+  ],
+  "issues": [
+    {
+      "severity": "low",
+      "summary": "changed audit warns .codewiki/index_graph.json is dirty generated state; worktree digest records pre-commit content and publication should refresh or revert generated output."
+    }
+  ],
+  "source": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
+  "policy_profile": "implementation",
+  "required_audits": [
+    "alignment",
+    "changed"
+  ],
+  "audit_refs": [
+    "audit:alignment",
+    "audit:changed"
+  ],
+  "audit_reports": [
+    "codewiki_audit profiles=alignment,changed task_id=TASK-086 warning(changed/generated-file-changed .codewiki/index_graph.json)"
+  ],
+  "content_proof_refs": [
+    "sha256:bdfe7803cdfb9034c491120803516c74db14a3f1f5b1c87b61eacfa4097bbef9"
+  ],
+  "failed_criteria": [],
+  "blocking_questions": [],
+  "isolation_requirement": {
+    "required": true,
+    "mode": "fresh-context-checked-content",
+    "reason": "Implementation validation requires independent validator context and checked content proof.",
+    "evidence": [
+      "fresh_context=true",
+      "clean state recorded",
+      "validated_sha/head_sha/published_sha/tree_sha or working_tree_digest"
+    ],
+    "handoff": "implementation validation",
+    "profiles": [
+      "implementation"
+    ]
+  },
+  "audit_requirement": {
+    "required": true,
+    "profiles": [
+      "alignment",
+      "changed"
+    ],
+    "evidence": [
+      "audit:alignment or profile:alignment",
+      "audit:changed or profile:changed"
+    ],
+    "reason": "Gateway profiles require deterministic audit evidence for their build or boundary context.",
+    "gaps": []
+  },
+  "commit_readiness_requirement": {
+    "required": true,
+    "evidence": [
+      "task_id",
+      "source_planning_build",
+      "acceptance_mapping",
+      "code_files",
+      "test_files or test_design_evidence",
+      "checks_run",
+      "closure_brief",
+      "publication.commit title/body",
+      "CodeWiki task/build/checks/validation/recover trailers"
+    ],
+    "gaps": []
+  },
+  "isolation": {
+    "working_tree_digest": "sha256:bdfe7803cdfb9034c491120803516c74db14a3f1f5b1c87b61eacfa4097bbef9",
+    "clean": false,
+    "fresh_context": true,
+    "builder_claim_id": "CLAIM-059",
+    "related_claim_ids": [
+      "CLAIM-059"
+    ],
+    "notes": "Validated from implementation build and source artifacts, not builder chat. Dirty pre-commit worktree proof covers changed/untracked files listed by git status.",
+    "role": "validator"
+  }
+}

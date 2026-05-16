@@ -52,6 +52,7 @@ export const CHANGE_CLAIM_ROLE_VALUES = ["builder", "validator", "publisher", "o
 export const CHANGE_CLAIM_LAYER_VALUES = ["knowledge", "roadmap", "code", "build", "validation", "graph", "source"] as const;
 export const CHANGE_CLAIM_STATUS_VALUES = ["active", "released", "expired"] as const;
 export const CHANGE_CLAIM_WAITER_STATUS_VALUES = ["pending", "ready", "cancelled", "expired"] as const;
+export const ARTIFACT_STATUS_VALUES = ["available", "in-use", "waiting", "conflict", "stale"] as const;
 export const AGENCY_MODE_VALUES = ["auto", "dry-run", "manual", "observe", "maintain", "work"] as const;
 export const AGENCY_TRIGGER_VALUES = ["manual", "task_end", "sprint_end", "roadmap_end", "budget_end"] as const;
 export const AGENCY_RISK_VALUES = ["low", "medium", "high"] as const;
@@ -84,6 +85,7 @@ export type ChangeClaimRole = (typeof CHANGE_CLAIM_ROLE_VALUES)[number];
 export type ChangeClaimLayer = (typeof CHANGE_CLAIM_LAYER_VALUES)[number];
 export type ChangeClaimStatus = (typeof CHANGE_CLAIM_STATUS_VALUES)[number];
 export type ChangeClaimWaiterStatus = (typeof CHANGE_CLAIM_WAITER_STATUS_VALUES)[number];
+export type ArtifactStatus = (typeof ARTIFACT_STATUS_VALUES)[number];
 export type ToolTaskStatus = (typeof TOOL_TASK_STATUS_VALUES)[number];
 export type TaskEvidenceResult = (typeof TASK_EVIDENCE_RESULT_VALUES)[number];
 export type SubagentRole = (typeof SUBAGENT_ROLE_VALUES)[number];
@@ -523,6 +525,26 @@ export interface ChangeClaimConflict {
 	reason: string;
 }
 
+export interface ArtifactStatusHolder {
+	record_id: string;
+	session_id: string;
+	agent_name: string;
+	mode: ChangeClaimMode;
+	role?: ChangeClaimRole;
+	task_id?: string;
+	summary?: string;
+	expires_at?: string;
+}
+
+export interface ArtifactStatusRecord {
+	artifact: ChangeClaimScope;
+	status: ArtifactStatus;
+	holders: ArtifactStatusHolder[];
+	waiters: ArtifactStatusHolder[];
+	conflict_ids: string[];
+	reason?: string;
+}
+
 export interface ChangeClaimState {
 	generated_at: string;
 	active_claim_count: number;
@@ -533,6 +555,7 @@ export interface ChangeClaimState {
 	claims: ChangeClaimRecord[];
 	conflicts: ChangeClaimConflict[];
 	waiters: ChangeClaimWaiterRecord[];
+	artifact_statuses?: ArtifactStatusRecord[];
 }
 
 export interface TaskLoopUpdateInput {

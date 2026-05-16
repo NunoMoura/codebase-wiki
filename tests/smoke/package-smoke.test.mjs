@@ -2323,8 +2323,8 @@ async function main() {
 		);
 		assert.match(
 			resumeBarrierNotifications.at(-1)?.message ?? "",
-			/TASK-002 cannot start yet\. TASK-001 is still active in in_progress/i,
-			"wiki-resume should refuse to start a todo task while another task is still active in the internal loop",
+			/queued in_progress for TASK-002[\s\S]*User requested TASK-002 explicitly; artifact status allowed start/i,
+			"wiki-resume should honor an explicit task when artifact status has no conflict",
 		);
 		assert.match(
 			errorNotifications[0]?.message ?? "",
