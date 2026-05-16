@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T21:16:46.293Z",
+  "generated_at": "2026-05-16T21:32:09.280Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -144,9 +144,9 @@
       "group": ".codewiki"
     },
     {
-      "id": "code:src/adapters/web",
+      "id": "code:src/ui/web",
       "kind": "code_path",
-      "path": "src/adapters/web",
+      "path": "src/ui/web",
       "layer": "code",
       "alignment_state": "aligned"
     },
@@ -450,9 +450,9 @@
       "group": ".codewiki"
     },
     {
-      "id": "code:src/adapters/web/control-room.ts",
+      "id": "code:src/ui/web/control-room.ts",
       "kind": "code_path",
-      "path": "src/adapters/web/control-room.ts",
+      "path": "src/ui/web/control-room.ts",
       "layer": "code",
       "alignment_state": "aligned"
     },
@@ -1212,15 +1212,6 @@
       "status": "done",
       "change_type": "system",
       "alignment_state": "aligned"
-    },
-    {
-      "id": "task:TASK-088",
-      "kind": "roadmap_task",
-      "title": "Move web UI out of adapter layer",
-      "layer": "roadmap",
-      "status": "in_progress",
-      "change_type": "system",
-      "alignment_state": "drift"
     },
     {
       "id": "task:TASK-090",
@@ -3532,6 +3523,74 @@
       "id": "test:tests/smoke/audit-drift.test.mjs",
       "kind": "test_file",
       "path": "tests/smoke/audit-drift.test.mjs"
+    },
+    {
+      "id": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "kind": "feedback_build",
+      "path": ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "title": "User approved proceeding with TASK-088 move slice.",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false,
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+          "User approved proceeding with TASK-088 move slice.",
+          "TASK-088 web UI move",
+          "src/ui/web/control-room.ts",
+          "tests/smoke/control-room.test.mjs",
+          "tests/smoke/hot-context.test.mjs"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment"
+        ],
+        "content_proof_refs": [],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:User approved proceeding with TASK-088 move slice.",
+      "kind": "canonical_source_ref",
+      "path": "User approved proceeding with TASK-088 move slice.",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-088 web UI move",
+      "kind": "canonical_source_ref",
+      "path": "TASK-088 web UI move",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/ui/web/control-room.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/ui/web/control-room.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:tests/smoke/hot-context.test.mjs",
+      "kind": "canonical_source_ref",
+      "path": "tests/smoke/hot-context.test.mjs",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "test:tests/smoke/hot-context.test.mjs",
+      "kind": "test_file",
+      "path": "tests/smoke/hot-context.test.mjs"
     },
     {
       "id": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
@@ -5941,6 +6000,76 @@
       "default_hidden": true
     },
     {
+      "id": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "kind": "documentation_build",
+      "path": ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "title": ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false,
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+          ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+          "codewiki_build tool",
+          ".codewiki/kb/product/uis/control-room.md",
+          ".codewiki/kb/product/uis/control-room-details.md",
+          ".codewiki/kb/product/uis/graph-navigation.md",
+          ".codewiki/kb/product/uis/board.md",
+          ".codewiki/kb/system/control-room-ui.md",
+          ".codewiki/kb/system/control-room-ui-details.md",
+          ".codewiki/kb/system/diagrams/README.md",
+          "TASK-088 implementation path documented as src/ui/web with adapter compatibility wrapper.",
+          "TASK-088 web UI move planning"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment",
+          "profile:stale-reference"
+        ],
+        "content_proof_refs": [],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:.codewiki/kb/product/uis/control-room-details.md",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/kb/product/uis/control-room-details.md",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:.codewiki/kb/system/control-room-ui-details.md",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/kb/system/control-room-ui-details.md",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-088 implementation path documented as src/ui/web with adapter compatibility wrapper.",
+      "kind": "canonical_source_ref",
+      "path": "TASK-088 implementation path documented as src/ui/web with adapter compatibility wrapper.",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-088 web UI move planning",
+      "kind": "canonical_source_ref",
+      "path": "TASK-088 web UI move planning",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
       "id": "build:.codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
       "kind": "documentation_build",
       "path": ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
@@ -6148,20 +6277,6 @@
       "id": "source:Preserved target source layout and ownership rules in file-structure/API/overview/body text and diagrams.",
       "kind": "canonical_source_ref",
       "path": "Preserved target source layout and ownership rules in file-structure/API/overview/body text and diagrams.",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "source:.codewiki/kb/system/control-room-ui-details.md",
-      "kind": "canonical_source_ref",
-      "path": ".codewiki/kb/system/control-room-ui-details.md",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "source:.codewiki/kb/product/uis/control-room-details.md",
-      "kind": "canonical_source_ref",
-      "path": ".codewiki/kb/product/uis/control-room-details.md",
       "layer": "source",
       "default_hidden": true
     },
@@ -7119,6 +7234,12 @@
       "default_hidden": true
     },
     {
+      "id": "code:src/adapters/web",
+      "kind": "code_path",
+      "path": "src/adapters/web",
+      "layer": "code"
+    },
+    {
       "id": "code:src/application/claims.ts",
       "kind": "code_path",
       "path": "src/application/claims.ts",
@@ -7314,6 +7435,73 @@
       "path": ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
       "layer": "source",
       "default_hidden": true
+    },
+    {
+      "id": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "kind": "planning_build",
+      "path": ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false,
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+          ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+          "codewiki_build tool",
+          "TASK-088",
+          "src/ui/web/control-room.ts",
+          "src/adapters/web/control-room.ts",
+          "src/adapters/pi/commands/ui.ts",
+          "tests/smoke/control-room.test.mjs",
+          "tests/smoke/hot-context.test.mjs",
+          "tests/smoke/builds.test.mjs"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment"
+        ],
+        "content_proof_refs": [],
+        "validation_attestation_refs": [
+          "implementation validation for TASK-088 web UI move"
+        ]
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/adapters/web/control-room.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/adapters/web/control-room.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/adapters/pi/commands/ui.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/adapters/pi/commands/ui.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "code:src/adapters/web/control-room.ts",
+      "kind": "code_path",
+      "path": "src/adapters/web/control-room.ts",
+      "layer": "code"
+    },
+    {
+      "id": "code:src/adapters/pi/commands/ui.ts",
+      "kind": "code_path",
+      "path": "src/adapters/pi/commands/ui.ts",
+      "layer": "code"
     },
     {
       "id": "build:.codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
@@ -9528,13 +9716,6 @@
       "id": "source:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
       "kind": "canonical_source_ref",
       "path": ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "source:tests/smoke/hot-context.test.mjs",
-      "kind": "canonical_source_ref",
-      "path": "tests/smoke/hot-context.test.mjs",
       "layer": "source",
       "default_hidden": true
     },
@@ -12110,13 +12291,6 @@
       "default_hidden": true
     },
     {
-      "id": "source:src/adapters/web/control-room.ts",
-      "kind": "canonical_source_ref",
-      "path": "src/adapters/web/control-room.ts",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
       "id": "content_proof:tests/smoke/package-smoke.test.mjs@sha256:d861a3c950f4158e4275aee02aa83f82266be15345c0c7960aeba80288dc463e",
       "kind": "content_proof",
       "path": "tests/smoke/package-smoke.test.mjs@sha256:d861a3c950f4158e4275aee02aa83f82266be15345c0c7960aeba80288dc463e",
@@ -14514,6 +14688,140 @@
       "layer": "archive"
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
+      "archive_ref": "refs/codewiki/archive/task/TASK-088",
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+          ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+          "codewiki_build tool",
+          "src/ui/web/control-room.ts",
+          "src/adapters/web/control-room.ts",
+          "src/adapters/pi/commands/ui.ts",
+          "tests/smoke/control-room.test.mjs",
+          "tests/smoke/hot-context.test.mjs",
+          "tests/smoke/builds.test.mjs",
+          "TASK-088"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment",
+          "profile:changed"
+        ],
+        "content_proof_refs": [
+          ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json@sha256:5aed481904e24a7ac04775f7f2a6f1821458fef886ceed46e94b93878abcbd78",
+          "tests/smoke/control-room.test.mjs@sha256:6d2cd3e92fcf32ec1db2df22f107a314cc82e31569ff9053da325449ddfc4f7a",
+          "tests/smoke/hot-context.test.mjs@sha256:416356ba9fe6738e484a74847a83cc244aa80fe0f904593d6f1d3aa5d0c4c8ab",
+          "tests/smoke/builds.test.mjs@sha256:d41eae5272bb293a1daafabec335289ca69989794b680a7b384bb6ef3d717ca3",
+          "src/ui/web/control-room.ts@sha256:13a17bc268ee227989d145f93e1d97bf6aa6872547a1973515e85879409c0376",
+          "src/adapters/web/control-room.ts@sha256:ed4940e1d872eab34e70bc471760e4c4af4d28c45d5393b4ca709990a2b5d735",
+          "src/adapters/pi/commands/ui.ts@sha256:80ed2242bf1272783a20dbf40e7dc4b1f21cacb4683da4423512dbac917089bc",
+          "refs/codewiki/archive/task/TASK-088",
+          "sha256:33a9f3d3a5f29a1033de2a361ff5805251e34df7755c583f57ef6ec314dffe93"
+        ],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json@sha256:5aed481904e24a7ac04775f7f2a6f1821458fef886ceed46e94b93878abcbd78",
+      "kind": "content_proof",
+      "path": ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json@sha256:5aed481904e24a7ac04775f7f2a6f1821458fef886ceed46e94b93878abcbd78",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/control-room.test.mjs@sha256:6d2cd3e92fcf32ec1db2df22f107a314cc82e31569ff9053da325449ddfc4f7a",
+      "kind": "content_proof",
+      "path": "tests/smoke/control-room.test.mjs@sha256:6d2cd3e92fcf32ec1db2df22f107a314cc82e31569ff9053da325449ddfc4f7a",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/hot-context.test.mjs@sha256:416356ba9fe6738e484a74847a83cc244aa80fe0f904593d6f1d3aa5d0c4c8ab",
+      "kind": "content_proof",
+      "path": "tests/smoke/hot-context.test.mjs@sha256:416356ba9fe6738e484a74847a83cc244aa80fe0f904593d6f1d3aa5d0c4c8ab",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/builds.test.mjs@sha256:d41eae5272bb293a1daafabec335289ca69989794b680a7b384bb6ef3d717ca3",
+      "kind": "content_proof",
+      "path": "tests/smoke/builds.test.mjs@sha256:d41eae5272bb293a1daafabec335289ca69989794b680a7b384bb6ef3d717ca3",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/ui/web/control-room.ts@sha256:13a17bc268ee227989d145f93e1d97bf6aa6872547a1973515e85879409c0376",
+      "kind": "content_proof",
+      "path": "src/ui/web/control-room.ts@sha256:13a17bc268ee227989d145f93e1d97bf6aa6872547a1973515e85879409c0376",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/web/control-room.ts@sha256:ed4940e1d872eab34e70bc471760e4c4af4d28c45d5393b4ca709990a2b5d735",
+      "kind": "content_proof",
+      "path": "src/adapters/web/control-room.ts@sha256:ed4940e1d872eab34e70bc471760e4c4af4d28c45d5393b4ca709990a2b5d735",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/adapters/pi/commands/ui.ts@sha256:80ed2242bf1272783a20dbf40e7dc4b1f21cacb4683da4423512dbac917089bc",
+      "kind": "content_proof",
+      "path": "src/adapters/pi/commands/ui.ts@sha256:80ed2242bf1272783a20dbf40e7dc4b1f21cacb4683da4423512dbac917089bc",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:refs/codewiki/archive/task/TASK-088",
+      "kind": "content_proof",
+      "path": "refs/codewiki/archive/task/TASK-088",
+      "proof_kind": "git_ref",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:33a9f3d3a5f29a1033de2a361ff5805251e34df7755c583f57ef6ec314dffe93",
+      "kind": "content_proof",
+      "path": "sha256:33a9f3d3a5f29a1033de2a361ff5805251e34df7755c583f57ef6ec314dffe93",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "archive_ref:refs/codewiki/archive/task/TASK-088",
+      "kind": "git_archive_ref",
+      "path": "refs/codewiki/archive/task/TASK-088",
+      "task_id": "TASK-088",
+      "digest": "sha256:33a9f3d3a5f29a1033de2a361ff5805251e34df7755c583f57ef6ec314dffe93",
+      "restore_command": "/wiki-restore TASK-088",
+      "safety_status": "blocked",
+      "default_hidden": true,
+      "layer": "archive"
+    },
+    {
       "id": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
       "kind": "implementation_build",
       "path": ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
@@ -15926,6 +16234,65 @@
       "default_hidden": true
     },
     {
+      "id": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "verdict": "block",
+      "isolation_status": "isolated",
+      "isolation": {
+        "working_tree_digest": "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274",
+        "clean": false,
+        "fresh_context": true,
+        "notes": "Dirty pre-commit validation for TASK-088 web UI move slice.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+          "audit:changed pass Checked 15 changed files across 4 layers.",
+          "audit:task pass Checked roadmap task TASK-088."
+        ],
+        "content_proof_refs": [
+          "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274"
+        ]
+      }
+    },
+    {
+      "id": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+      "kind": "audit_evidence",
+      "path": "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:changed pass Checked 15 changed files across 4 layers.",
+      "kind": "audit_evidence",
+      "path": "audit:changed pass Checked 15 changed files across 4 layers.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:task pass Checked roadmap task TASK-088.",
+      "kind": "audit_evidence",
+      "path": "audit:task pass Checked roadmap task TASK-088.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274",
+      "kind": "content_proof",
+      "path": "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
       "id": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-16-implementation-fail-task-086.json",
@@ -16436,6 +16803,36 @@
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "verdict": "pass",
+      "isolation_status": "isolated",
+      "isolation": {
+        "working_tree_digest": "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274",
+        "clean": false,
+        "fresh_context": true,
+        "notes": "Dirty pre-commit validation for TASK-088 web UI move slice.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+          "audit:changed pass Checked 15 changed files across 4 layers.",
+          "audit:task pass Checked roadmap task TASK-088."
+        ],
+        "content_proof_refs": [
+          "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274"
+        ]
+      }
     },
     {
       "id": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-089.json",
@@ -17051,13 +17448,6 @@
       }
     },
     {
-      "id": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
-      "kind": "audit_evidence",
-      "path": "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
-      "layer": "audit",
-      "default_hidden": true
-    },
-    {
       "id": "audit:audit:generated-parity pass Checked generated graph presence, freshness, and 3 active roadmap task views against canonical sources.",
       "kind": "audit_evidence",
       "path": "audit:generated-parity pass Checked generated graph presence, freshness, and 3 active roadmap task views against canonical sources.",
@@ -17076,6 +17466,71 @@
       "id": "content_proof:c37cf0a1a1790ddd96532c57087b19fdb8a7a5de",
       "kind": "content_proof",
       "path": "c37cf0a1a1790ddd96532c57087b19fdb8a7a5de",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "verdict": "pass",
+      "isolation_status": "isolated",
+      "isolation": {
+        "head_sha": "a239700d90e128c1fe3639033d81a011cac6ede8",
+        "validated_sha": "a239700d90e128c1fe3639033d81a011cac6ede8",
+        "tree_sha": "dd62bdedeb9c47ae5bf37937dde693d8112b46bb",
+        "clean": true,
+        "fresh_context": true,
+        "notes": "Clean committed TASK-088 web UI move; no remote publication performed.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:generated-parity",
+          "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+          "audit:changed pass Checked 15 changed files across 4 layers before commit.",
+          "audit:task pass Checked roadmap task TASK-088.",
+          "audit:generated-parity pass Checked generated graph presence, freshness, and 2 active roadmap task views against canonical sources."
+        ],
+        "content_proof_refs": [
+          "a239700d90e128c1fe3639033d81a011cac6ede8",
+          "dd62bdedeb9c47ae5bf37937dde693d8112b46bb"
+        ]
+      }
+    },
+    {
+      "id": "audit:audit:changed pass Checked 15 changed files across 4 layers before commit.",
+      "kind": "audit_evidence",
+      "path": "audit:changed pass Checked 15 changed files across 4 layers before commit.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:generated-parity pass Checked generated graph presence, freshness, and 2 active roadmap task views against canonical sources.",
+      "kind": "audit_evidence",
+      "path": "audit:generated-parity pass Checked generated graph presence, freshness, and 2 active roadmap task views against canonical sources.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:a239700d90e128c1fe3639033d81a011cac6ede8",
+      "kind": "content_proof",
+      "path": "a239700d90e128c1fe3639033d81a011cac6ede8",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:dd62bdedeb9c47ae5bf37937dde693d8112b46bb",
+      "kind": "content_proof",
+      "path": "dd62bdedeb9c47ae5bf37937dde693d8112b46bb",
       "proof_kind": "git_sha",
       "layer": "content_proof",
       "default_hidden": true
@@ -17425,7 +17880,7 @@
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/product/uis/board.md",
-      "to": "code:src/adapters/web"
+      "to": "code:src/ui/web"
     },
     {
       "kind": "doc_code_path",
@@ -17480,7 +17935,7 @@
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/product/uis/control-room-details.md",
-      "to": "code:src/adapters/web"
+      "to": "code:src/ui/web"
     },
     {
       "kind": "doc_code_path",
@@ -17505,7 +17960,7 @@
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/product/uis/control-room.md",
-      "to": "code:src/adapters/web"
+      "to": "code:src/ui/web"
     },
     {
       "kind": "doc_code_path",
@@ -17535,7 +17990,7 @@
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/product/uis/graph-navigation.md",
-      "to": "code:src/adapters/web"
+      "to": "code:src/ui/web"
     },
     {
       "kind": "doc_code_path",
@@ -18110,7 +18565,7 @@
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/system/control-room-ui-details.md",
-      "to": "code:src/adapters/web"
+      "to": "code:src/ui/web"
     },
     {
       "kind": "doc_code_path",
@@ -18135,7 +18590,7 @@
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/system/control-room-ui.md",
-      "to": "code:src/adapters/web"
+      "to": "code:src/ui/web"
     },
     {
       "kind": "doc_code_path",
@@ -18165,7 +18620,7 @@
     {
       "kind": "doc_code_path",
       "from": "doc:.codewiki/kb/system/diagrams/README.md",
-      "to": "code:src/adapters/web/control-room.ts"
+      "to": "code:src/ui/web/control-room.ts"
     },
     {
       "kind": "doc_code_path",
@@ -19276,66 +19731,6 @@
       "kind": "task_code_path",
       "from": "task:TASK-078",
       "to": "code:tests/smoke"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-088",
-      "to": "doc:.codewiki/kb/system/control-room-ui.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-088",
-      "to": "doc:.codewiki/kb/system/adapters.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-088",
-      "to": "doc:.codewiki/kb/system/file-structure.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-088",
-      "to": "doc:.codewiki/kb/product/uis/control-room.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-088",
-      "to": "doc:.codewiki/kb/product/uis/board.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-088",
-      "to": "doc:.codewiki/kb/product/uis/graph-navigation.md"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-088",
-      "to": "code:src/adapters/web"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-088",
-      "to": "code:src/adapters/pi/commands"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-088",
-      "to": "code:src/application"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-088",
-      "to": "code:tests/smoke"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-088",
-      "to": "code:package.json"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-088",
-      "to": "code:tsconfig.json"
     },
     {
       "kind": "task_spec",
@@ -21522,6 +21917,73 @@
       "kind": "build_produces_test",
       "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
       "to": "test:tests/smoke/audit-drift.test.mjs"
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "source:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "source:User approved proceeding with TASK-088 move slice.",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "source:TASK-088 web UI move",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "source:src/ui/web/control-room.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "source:tests/smoke/control-room.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "source:tests/smoke/hot-context.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "task:TASK-088 web UI move"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "task:TASK-088 web UI move"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "code:src/ui/web/control-room.ts"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "test:tests/smoke/control-room.test.mjs"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "to": "test:tests/smoke/hot-context.test.mjs"
     },
     {
       "kind": "build_references_canonical_source",
@@ -25051,6 +25513,150 @@
     },
     {
       "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:.codewiki/kb/product/uis/control-room.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:.codewiki/kb/product/uis/control-room-details.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:.codewiki/kb/product/uis/graph-navigation.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:.codewiki/kb/product/uis/board.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:.codewiki/kb/system/control-room-ui.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:.codewiki/kb/system/control-room-ui-details.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:.codewiki/kb/system/diagrams/README.md",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:TASK-088 implementation path documented as src/ui/web with adapter compatibility wrapper.",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "source:TASK-088 web UI move planning",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "audit:profile:stale-reference",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "task:TASK-088 implementation path documented as src/ui/web with adapter compatibility wrapper."
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "task:TASK-088 web UI move planning"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "doc:.codewiki/kb/product/uis/control-room.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "doc:.codewiki/kb/product/uis/control-room-details.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "doc:.codewiki/kb/product/uis/graph-navigation.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "doc:.codewiki/kb/product/uis/board.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "doc:.codewiki/kb/system/control-room-ui.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "doc:.codewiki/kb/system/control-room-ui-details.md"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "doc:.codewiki/kb/system/diagrams/README.md"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "task:TASK-088 implementation path documented as src/ui/web with adapter compatibility wrapper."
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "to": "task:TASK-088 web UI move planning"
+    },
+    {
+      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
       "to": "source:.codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
       "default_hidden": true
@@ -27802,6 +28408,127 @@
       "kind": "build_produces_validation",
       "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
       "to": "validation:implementation validation for TASK-087 guard slice"
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "source:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "source:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "source:TASK-088",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "source:src/ui/web/control-room.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "source:src/adapters/web/control-room.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "source:src/adapters/pi/commands/ui.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "source:tests/smoke/control-room.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "source:tests/smoke/hot-context.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "source:tests/smoke/builds.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "task:TASK-088"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "build:.codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "task:TASK-088"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "task:TASK-088"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "code:src/ui/web/control-room.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "code:src/adapters/web/control-room.ts"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "code:src/adapters/pi/commands/ui.ts"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "test:tests/smoke/control-room.test.mjs"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "test:tests/smoke/hot-context.test.mjs"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "test:tests/smoke/builds.test.mjs"
+    },
+    {
+      "kind": "build_produces_validation",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "to": "validation:implementation validation for TASK-088 web UI move"
     },
     {
       "kind": "build_references_canonical_source",
@@ -37083,6 +37810,143 @@
     },
     {
       "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "source:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "source:src/ui/web/control-room.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "source:src/adapters/web/control-room.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "source:src/adapters/pi/commands/ui.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "source:tests/smoke/control-room.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "source:tests/smoke/hot-context.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "source:tests/smoke/builds.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "source:TASK-088",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "audit:profile:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "content_proof:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json@sha256:5aed481904e24a7ac04775f7f2a6f1821458fef886ceed46e94b93878abcbd78",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "content_proof:tests/smoke/control-room.test.mjs@sha256:6d2cd3e92fcf32ec1db2df22f107a314cc82e31569ff9053da325449ddfc4f7a",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "content_proof:tests/smoke/hot-context.test.mjs@sha256:416356ba9fe6738e484a74847a83cc244aa80fe0f904593d6f1d3aa5d0c4c8ab",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "content_proof:tests/smoke/builds.test.mjs@sha256:d41eae5272bb293a1daafabec335289ca69989794b680a7b384bb6ef3d717ca3",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "content_proof:src/ui/web/control-room.ts@sha256:13a17bc268ee227989d145f93e1d97bf6aa6872547a1973515e85879409c0376",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "content_proof:src/adapters/web/control-room.ts@sha256:ed4940e1d872eab34e70bc471760e4c4af4d28c45d5393b4ca709990a2b5d735",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "content_proof:src/adapters/pi/commands/ui.ts@sha256:80ed2242bf1272783a20dbf40e7dc4b1f21cacb4683da4423512dbac917089bc",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "content_proof:refs/codewiki/archive/task/TASK-088",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "content_proof:sha256:33a9f3d3a5f29a1033de2a361ff5805251e34df7755c583f57ef6ec314dffe93",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "task:TASK-088"
+    },
+    {
+      "kind": "build_archive_ref",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "to": "archive_ref:refs/codewiki/archive/task/TASK-088",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
       "default_hidden": true
@@ -38476,6 +39340,59 @@
     },
     {
       "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "to": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "to": "audit:audit:changed pass Checked 15 changed files across 4 layers.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "to": "audit:audit:task pass Checked roadmap task TASK-088.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "to": "content_proof:sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
+      "to": "task:TASK-088"
+    },
+    {
+      "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
       "default_hidden": true
@@ -38985,6 +39902,59 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-087.json",
       "to": "task:TASK-087"
+    },
+    {
+      "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "to": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "to": "audit:audit:changed pass Checked 15 changed files across 4 layers.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "to": "audit:audit:task pass Checked roadmap task TASK-088.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "to": "content_proof:sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+      "to": "task:TASK-088"
     },
     {
       "kind": "validation_attests_source",
@@ -39648,6 +40618,77 @@
     },
     {
       "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "audit:audit:generated-parity",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "audit:audit:changed pass Checked 15 changed files across 4 layers before commit.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "audit:audit:task pass Checked roadmap task TASK-088.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "audit:audit:generated-parity pass Checked generated graph presence, freshness, and 2 active roadmap task views against canonical sources.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "content_proof:a239700d90e128c1fe3639033d81a011cac6ede8",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "content_proof:dd62bdedeb9c47ae5bf37937dde693d8112b46bb",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+      "to": "task:TASK-088"
+    },
+    {
+      "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-089.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
       "default_hidden": true
@@ -39874,16 +40915,12 @@
         "TASK-077",
         "TASK-084",
         "TASK-078",
-        "TASK-088",
         "TASK-090"
       ],
       "open_task_ids": [
-        "TASK-088",
         "TASK-090"
       ],
-      "in_progress_task_ids": [
-        "TASK-088"
-      ],
+      "in_progress_task_ids": [],
       "todo_task_ids": [
         "TASK-090"
       ],
@@ -39945,7 +40982,6 @@
       "status_counts": {
         "done": 45,
         "cancelled": 5,
-        "in_progress": 1,
         "todo": 1
       },
       "sprint_ids": [
@@ -40123,8 +41159,6 @@
         "src/adapters/pi/ui",
         "src/adapters/pi/ui/**",
         "src/adapters/pi/ui/manager.ts",
-        "src/adapters/web",
-        "src/adapters/web/control-room.ts",
         "src/application",
         "src/application/**",
         "src/application/agency.ts",
@@ -40145,6 +41179,8 @@
         "src/index.ts",
         "src/infrastructure/codewiki-rebuilder.ts",
         "src/templates.ts",
+        "src/ui/web",
+        "src/ui/web/control-room.ts",
         "tests",
         "tests/**",
         "tests/fixtures/alignment-drift",
@@ -40387,6 +41423,19 @@
           ]
         },
         {
+          "path": ".codewiki/validation/2026-05-16-implementation-block-task-088.json",
+          "task_id": "TASK-088",
+          "verdict": "block",
+          "status": "isolated",
+          "role": "validator",
+          "clean": false,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274"
+          ]
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-implementation-fail-task-086.json",
           "task_id": "TASK-086",
           "verdict": "fail",
@@ -40535,6 +41584,19 @@
           "related_claim_ids": [],
           "content_proof_refs": [
             "sha256:091ddfe97302f2f1d25dbb94f871a1ff5ece83aaf150630297bedc883ee6717e"
+          ]
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+          "task_id": "TASK-088",
+          "verdict": "pass",
+          "status": "isolated",
+          "role": "validator",
+          "clean": false,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274"
           ]
         },
         {
@@ -40720,6 +41782,22 @@
           ]
         },
         {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+          "task_id": "TASK-088",
+          "verdict": "pass",
+          "status": "isolated",
+          "role": "validator",
+          "head_sha": "a239700d90e128c1fe3639033d81a011cac6ede8",
+          "validated_sha": "a239700d90e128c1fe3639033d81a011cac6ede8",
+          "clean": true,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "a239700d90e128c1fe3639033d81a011cac6ede8",
+            "dd62bdedeb9c47ae5bf37937dde693d8112b46bb"
+          ]
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-task-close-pass-task-089.json",
           "task_id": "TASK-089",
           "verdict": "pass",
@@ -40783,6 +41861,7 @@
         ".codewiki/builds/documentation/2026-05-16-documented-change-type-taxonomy.json",
         ".codewiki/builds/documentation/2026-05-16-documented-no-umbrella-task-invariant-tasks-are-.json",
         ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
+        ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
         ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
         ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
         ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge.json",
@@ -40822,6 +41901,7 @@
         ".codewiki/builds/feedback/2026-05-16-accepted-domain-led-layering-refactor.json",
         ".codewiki/builds/feedback/2026-05-16-accepted-no-umbrella-task-invariant-tasks-are-bo.json",
         ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
+        ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
         ".codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
         ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
         ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
@@ -40886,6 +41966,7 @@
         ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
         ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
         ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
+        ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
         ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
         ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
         ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -40901,6 +41982,7 @@
         ".codewiki/builds/planning/2026-05-16-planned-bounded-enforcement-work-for-task-bounda.json",
         ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
         ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
+        ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
         ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
         ".codewiki/config.json",
         ".codewiki/kb",
@@ -41159,6 +42241,9 @@
         "TASK-087 dependency guard planning",
         "TASK-087 dependency guard slice",
         "TASK-088",
+        "TASK-088 implementation path documented as src/ui/web with adapter compatibility wrapper.",
+        "TASK-088 web UI move",
+        "TASK-088 web UI move planning",
         "TASK-089",
         "TASK-28",
         "TASK-29",
@@ -41193,6 +42278,7 @@
         "User approved all change rows after TASK-082 explanation.",
         "User approved diff rows UT-001..UT-004 after stating umbrella tasks should not exist and sprints should be cohorts.",
         "User approved proceeding with TASK-087 using smallest dependency guard slice before broad source migration.",
+        "User approved proceeding with TASK-088 move slice.",
         "User clarification on 2026-05-12: cold data should be hidden as operating-system mechanics, not only UI filtering; UI user naming is CodeWiki, not Control Room.",
         "User discussion on 2026-05-12 about claim worktrees, validator independence, and SHA-based validation identity.",
         "User request on 2026-05-12 accepted via ask_user: Adopt + open task.",
@@ -41318,6 +42404,7 @@
         "src/adapters/pi/commands/**",
         "src/adapters/pi/commands/audit.ts",
         "src/adapters/pi/commands/resume.ts",
+        "src/adapters/pi/commands/ui.ts",
         "src/adapters/pi/index.ts",
         "src/adapters/pi/schemas.ts",
         "src/adapters/pi/tools/**",
@@ -41373,6 +42460,7 @@
         "src/domain/state/sections.ts",
         "src/domain/validation/profile.ts",
         "src/templates.ts",
+        "src/ui/web/control-room.ts",
         "task to enforce no-umbrella invariant and migrate TASK-077",
         "tests/**",
         "tests/fixtures/**",
@@ -41440,12 +42528,15 @@
         "audit:changed pass Checked 10 changed files across 5 layers before commit.",
         "audit:changed pass Checked 10 changed files across 5 layers.",
         "audit:changed pass Checked 14 changed files across 3 layers.",
+        "audit:changed pass Checked 15 changed files across 4 layers before commit.",
+        "audit:changed pass Checked 15 changed files across 4 layers.",
         "audit:changed pass Checked 3 changed files across 3 layers.",
         "audit:changed pass Checked changed files before commit.",
         "audit:changed warning checked 23 changed files; generated-file-changed .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-077/context.json, .codewiki/roadmap/tasks/TASK-077/task.json.",
         "audit:file-structure",
         "audit:full",
         "audit:generated-parity",
+        "audit:generated-parity pass Checked generated graph presence, freshness, and 2 active roadmap task views against canonical sources.",
         "audit:generated-parity pass Checked generated graph presence, freshness, and 3 active roadmap task views against canonical sources.",
         "audit:generated-parity pass Checked generated graph presence, freshness, and 4 active roadmap task views against canonical sources.",
         "audit:package",
@@ -41455,6 +42546,7 @@
         "audit:task pass Checked roadmap task TASK-077.",
         "audit:task pass Checked roadmap task TASK-085.",
         "audit:task pass Checked roadmap task TASK-087.",
+        "audit:task pass Checked roadmap task TASK-088.",
         "codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
         "codewiki_audit profiles alignment,changed task_id=TASK-079 include_fingerprints=true: warning; alignment pass, changed warning generated-file-changed .codewiki/index_graph.json, task pass.",
         "codewiki_audit profiles alignment,changed,task task_id=TASK-081 include_fingerprints=true: warning; alignment pass, task pass, changed warning generated-file-changed .codewiki/index_graph.json.",
@@ -41497,6 +42589,7 @@
         ".codewiki/builds/planning/2026-05-16-planned-bounded-enforcement-work-for-task-bounda.json@sha256:a0935135238c6691ca2c758aa9958dbeb666da55e452f76873329226312c4e98",
         ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json@sha256:a78b11ece9a46d75800101b8f71d831fd51e06920657e35e0ca7da564e6c461e",
         ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json@sha256:cd7b936d6a737aab6086068689ea41c7699acd76033914951e6e61191979b852",
+        ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json@sha256:5aed481904e24a7ac04775f7f2a6f1821458fef886ceed46e94b93878abcbd78",
         ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json@sha256:93906a76c640d02d38084f9b724eecdb28a20d80e6c5a3c20db1d71f38db75ce",
         ".codewiki/kb/system/adapters.md@sha256:9c75248953903b8f7ca72d89d7f82244170785d5413cab5e715d1d6f3a023c02",
         ".codewiki/kb/system/adapters.md@sha256:c1f891afa3d1fcafba331f700c5e197537e83a0059e44c0c8909bec9d284c1c1",
@@ -41547,6 +42640,7 @@
         "README.md@sha256:9424413daed9b80f70072963b79941f58637fb8a4cb79e78b5b8005f578f38de",
         "README.md@sha256:bca59b2e9eba71f64f76252f0bb13562265476168f9c48396ffd45cee2073403",
         "README.md@sha256:d48e668b6c8cc75e27d8c108977ce223bab6f87791e08fea7ba961ca05089467",
+        "a239700d90e128c1fe3639033d81a011cac6ede8",
         "b04129f22f54723e0bbe2aabbefe18bcf2ad7324",
         "b83862d675dfe48269490c4a92f60d1c32cbf59f",
         "ba155f3",
@@ -41554,6 +42648,7 @@
         "c87e595962a5df630a22e211afe310d936e8e3e4",
         "cc0f949346f8dda07b980c54b451b1b247686155",
         "d72fb38ed289c5089bbafaf3676b0367325400b8",
+        "dd62bdedeb9c47ae5bf37937dde693d8112b46bb",
         "e2c184a96a3fd7c10bf169b78409ec6ab5ab95bf",
         "e5e1a8df676d926eb585a767e4e41e3a5b32deeb",
         "extensions/codewiki/src/adapters/pi/commands/ui.ts@sha256:0c9fa18f4e09f008c27f734fb135bfeab947fc9350ab4a9b483a3c72676fe7cb",
@@ -41633,6 +42728,7 @@
         "refs/codewiki/archive/task/TASK-085",
         "refs/codewiki/archive/task/TASK-086",
         "refs/codewiki/archive/task/TASK-087",
+        "refs/codewiki/archive/task/TASK-088",
         "refs/codewiki/archive/task/TASK-089",
         "scripts/check-architecture.mjs@sha256:15040f43ff6adccd34f18a36c6abc9d36f64b83742991139f2f28d5d299074be",
         "scripts/check-architecture.mjs@sha256:529464c1e0bf8c7d45058392e3e5fe6df0fc4819748aa298728ac4c2e34518d7",
@@ -41662,7 +42758,9 @@
         "sha256:2d36f5e59b7dfb48abd39129b6a43570324f19abde1d100f54d8badf87e14376",
         "sha256:31156ddd2c3cd9a300e09026f54c60de7fe4eb940dbb9b979149a3d408808bd6",
         "sha256:316210a5c85ac533cf8ffe07ab9bbd2858ea441fbc03e3f0fa271d47757df05d",
+        "sha256:33a9f3d3a5f29a1033de2a361ff5805251e34df7755c583f57ef6ec314dffe93",
         "sha256:38aeecaf4921dba93abb7c79a94e0ab768eae857c9ff8120cd53530fb1d7f931",
+        "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274",
         "sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319",
         "sha256:4c50a48ca7842e2a2cece48c90ac2a23a7a60bd51083db52e1746ff473e9f9a5",
         "sha256:59a9eb78246b055a56ee5eb1952d831cc102c7ec1b9449b9f6fca770a0b18163",
@@ -41732,6 +42830,7 @@
         "src/adapters/pi/commands/resume.ts@sha256:e11250c6aa01fd7a7fcce9ca192dda30db9cea1d540c5d0e5069ada9ba6e7706",
         "src/adapters/pi/commands/resume.ts@sha256:e28784ef23df927caa7b64fa7095c0a4a6d9ea5d332aeba9699bf0a6b3e581f2",
         "src/adapters/pi/commands/resume.ts@sha256:f03f4e1ce0b7442715da84eeb8ade4ec6759512d66b7690bd59bc7032892b5c1",
+        "src/adapters/pi/commands/ui.ts@sha256:80ed2242bf1272783a20dbf40e7dc4b1f21cacb4683da4423512dbac917089bc",
         "src/adapters/pi/index.ts@sha256:1fdc288150b440e502f2954934675fba8e2efcca4898874f073de445d64f6396",
         "src/adapters/pi/index.ts@sha256:2830119090c04300df61c9ac353e5dab143dfdb06901c38017481c28668c5d91",
         "src/adapters/pi/index.ts@sha256:2937f82219bda79bda881dac2037e00089ce456774936f8651cd3e35de06db53",
@@ -41758,6 +42857,7 @@
         "src/adapters/pi/ui/theme.ts@sha256:53ae6d8e1085019a9eeb3fc6936f3470b9e956f549fee7d860fda526aa5acb3e",
         "src/adapters/web/control-room.ts@sha256:13a17bc268ee227989d145f93e1d97bf6aa6872547a1973515e85879409c0376",
         "src/adapters/web/control-room.ts@sha256:d3ab4036252cae8611ddafe5e5af394361edecdfb2381d627b8eb0a57721a3ff",
+        "src/adapters/web/control-room.ts@sha256:ed4940e1d872eab34e70bc471760e4c4af4d28c45d5393b4ca709990a2b5d735",
         "src/application/builds.ts@sha256:1bea1bca237802d0c1a675d1e0af568b04847c15d79d1848e108031aec1f803e",
         "src/application/builds.ts@sha256:2b4148fedd4ddc8ded0627bd5620779e56d71ebce3f7ea766d0264a1f8d8cc86",
         "src/application/builds.ts@sha256:3b7e7d1d8c1f93726486264ab4a3b7af13f93e1952a5b79d7ea4e1f315e7c316",
@@ -41843,6 +42943,7 @@
         "src/domain/state/sections.ts@sha256:4b8ce55e9209ecc046c9f9d85ce89ff3de38de5c552a82b3be41624958908000",
         "src/domain/validation/profile.ts@sha256:280d283c429d15d4a987bc524fd6dad97a79697d0d34effb9b3a2c8bbf36c9ee",
         "src/templates.ts@sha256:640991a667693af84fb1644cc6e7d89e991dab6ebbc35b758dcfa74b79f72ad4",
+        "src/ui/web/control-room.ts@sha256:13a17bc268ee227989d145f93e1d97bf6aa6872547a1973515e85879409c0376",
         "tests/run.mjs@sha256:412097fb5944ab7751c54ce73e3acdb02ee86448d4266d7e80695c660ae96230",
         "tests/smoke/alignment-graph.test.mjs@sha256:4eca7441c703f88d036b103ea860ad0959fe07d915e960fc5339646f48e5ba0e",
         "tests/smoke/alignment-graph.test.mjs@sha256:59e97f5d8532b207b62650e0d0767525a7070f1df818fea8a5eaa99326b03753",
@@ -41859,11 +42960,14 @@
         "tests/smoke/builds.test.mjs@sha256:74c45844432282b340e27dbe378091f022bbadbc65e1d6398223f8fa96d329dc",
         "tests/smoke/builds.test.mjs@sha256:a6887a98b5589ba2833526557403517bdf967208669a301c2ea06aaac796fbd0",
         "tests/smoke/builds.test.mjs@sha256:cc092825ddc6488aff3880558ecad610c83588c9da9c6ffc3dd45ec428b75aea",
+        "tests/smoke/builds.test.mjs@sha256:d41eae5272bb293a1daafabec335289ca69989794b680a7b384bb6ef3d717ca3",
         "tests/smoke/builds.test.mjs@sha256:e03e55d9684c75278eefc97add979c631af7d74c4d77de6d82ab829c4eb115ef",
         "tests/smoke/claim-wait-queue.test.mjs@sha256:05a0765daa897015492345ef152164ec2c8c03c780244a0caad748bfbdf4ec9e",
         "tests/smoke/control-room.test.mjs@sha256:5513dc8435e7c82a52abf0ba7ad7c170a52d990d5323c5e435d09d2988718a6c",
+        "tests/smoke/control-room.test.mjs@sha256:6d2cd3e92fcf32ec1db2df22f107a314cc82e31569ff9053da325449ddfc4f7a",
         "tests/smoke/control-room.test.mjs@sha256:f29a6f19d9333265766b987688d6958ab2b94eb67f529887aac488704f44c1ff",
         "tests/smoke/drift-propagation.test.mjs@sha256:f582f82281975b5d59bee435b946709f39070649d2dda76fd56ca5ed9c00df6b",
+        "tests/smoke/hot-context.test.mjs@sha256:416356ba9fe6738e484a74847a83cc244aa80fe0f904593d6f1d3aa5d0c4c8ab",
         "tests/smoke/hot-context.test.mjs@sha256:ce7e50b7fba68c1e470086589b79a50daba6d69ce4b1a1507981276c27eafe22",
         "tests/smoke/hot-retention.test.mjs@sha256:90406c1aceef9cdae7a0763199139d8e39b97480dc9f69570ce95c2362e18d33",
         "tests/smoke/loop-isolation-policy.test.mjs@sha256:37535e24721ec89736af56ab2c0f411e77eb51fe858376f98b8c9b96c6a3ed3a",
@@ -42124,6 +43228,27 @@
           "isolation_status": "isolated"
         },
         {
+          "path": ".codewiki/validation/2026-05-16-implementation-block-task-088.json",
+          "verdict": "block",
+          "profile": "implementation",
+          "task_id": "TASK-088",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+            "audit:changed pass Checked 15 changed files across 4 layers.",
+            "audit:task pass Checked roadmap task TASK-088."
+          ],
+          "content_proof_refs": [
+            "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-implementation-fail-task-086.json",
           "verdict": "fail",
           "profile": "implementation",
@@ -42326,6 +43451,27 @@
           ],
           "content_proof_refs": [
             "sha256:091ddfe97302f2f1d25dbb94f871a1ff5ece83aaf150630297bedc883ee6717e"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-implementation-pass-task-088.json",
+          "verdict": "pass",
+          "profile": "implementation",
+          "task_id": "TASK-088",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+            "audit:changed pass Checked 15 changed files across 4 layers.",
+            "audit:task pass Checked roadmap task TASK-088."
+          ],
+          "content_proof_refs": [
+            "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274"
           ],
           "isolation_status": "isolated"
         },
@@ -42584,6 +43730,30 @@
           "isolation_status": "isolated"
         },
         {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-088.json",
+          "verdict": "pass",
+          "profile": "task-close",
+          "task_id": "TASK-088",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:generated-parity",
+            "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+            "audit:changed pass Checked 15 changed files across 4 layers before commit.",
+            "audit:task pass Checked roadmap task TASK-088.",
+            "audit:generated-parity pass Checked generated graph presence, freshness, and 2 active roadmap task views against canonical sources."
+          ],
+          "content_proof_refs": [
+            "a239700d90e128c1fe3639033d81a011cac6ede8",
+            "dd62bdedeb9c47ae5bf37937dde693d8112b46bb"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-task-close-pass-task-089.json",
           "verdict": "pass",
           "profile": "task-close",
@@ -42621,6 +43791,7 @@
             ".codewiki/builds/feedback/2026-05-13-ui-progressive-disclosure-source-drawer-retro-bo.json",
             ".codewiki/builds/feedback/2026-05-15-accepted-codewiki-alignment-hardening-principles.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
+            ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
             ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
             ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
             ".codewiki/builds/documentation/2026-05-10-runtime-scoped-claims-docs.json",
@@ -42647,6 +43818,7 @@
             ".codewiki/builds/documentation/2026-05-15-documented-codewiki-alignment-model-audit-archit.json",
             ".codewiki/builds/documentation/2026-05-16-documented-change-type-taxonomy.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
+            ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
             ".codewiki/builds/planning/2026-05-13-loop-session-isolation-policy-plan.json",
             ".codewiki/builds/planning/2026-05-13-plan-implementation-of-pi-adapter-session-handof.json",
@@ -42657,6 +43829,7 @@
             ".codewiki/builds/planning/2026-05-16-planned-bounded-enforcement-work-for-task-bounda.json",
             ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
+            ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
             ".codewiki/builds/implementation/2026-05-11-task-056-efficiency-foundation.json",
@@ -42705,6 +43878,7 @@
             ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
             ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
+            ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -42773,11 +43947,9 @@
           "TASK-077",
           "TASK-084",
           "TASK-078",
-          "TASK-088",
           "TASK-090"
         ],
         "open_task_ids": [
-          "TASK-088",
           "TASK-090"
         ],
         "sprint_ids": [
@@ -43624,33 +44796,6 @@
             "tests/smoke"
           ]
         },
-        "TASK-088": {
-          "kind": "task",
-          "id": "TASK-088",
-          "task_ids": [
-            "TASK-088"
-          ],
-          "open_task_ids": [
-            "TASK-088"
-          ],
-          "sprint_ids": [],
-          "spec_paths": [
-            ".codewiki/kb/system/control-room-ui.md",
-            ".codewiki/kb/system/adapters.md",
-            ".codewiki/kb/system/file-structure.md",
-            ".codewiki/kb/product/uis/control-room.md",
-            ".codewiki/kb/product/uis/board.md",
-            ".codewiki/kb/product/uis/graph-navigation.md"
-          ],
-          "code_paths": [
-            "src/adapters/web",
-            "src/adapters/pi/commands",
-            "src/application",
-            "tests/smoke",
-            "package.json",
-            "tsconfig.json"
-          ]
-        },
         "TASK-090": {
           "kind": "task",
           "id": "TASK-090",
@@ -43712,7 +44857,6 @@
       "classes": {
         "hot": {
           "task_ids": [
-            "TASK-088",
             "TASK-090"
           ],
           "sprint_ids": [
@@ -43763,6 +44907,7 @@
             ".codewiki/builds/feedback/2026-05-16-accepted-domain-led-layering-refactor.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-no-umbrella-task-invariant-tasks-are-bo.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
+            ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
             ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
             ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
@@ -43794,6 +44939,7 @@
             ".codewiki/builds/documentation/2026-05-16-documented-change-type-taxonomy.json",
             ".codewiki/builds/documentation/2026-05-16-documented-no-umbrella-task-invariant-tasks-are-.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
+            ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
             ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
             ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge.json",
@@ -43806,6 +44952,7 @@
             ".codewiki/builds/planning/2026-05-16-planned-bounded-enforcement-work-for-task-bounda.json",
             ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
+            ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
@@ -43843,6 +44990,7 @@
             ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
             ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
+            ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -43867,10 +45015,10 @@
             ".codewiki/validation/2026-05-16-implementation-pass-task-085.json",
             ".codewiki/validation/2026-05-16-implementation-pass-task-086.json",
             ".codewiki/validation/2026-05-16-implementation-pass-task-087.json",
+            ".codewiki/validation/2026-05-16-implementation-pass-task-088.json",
             ".codewiki/validation/2026-05-16-implementation-pass-task-089.json",
             ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
-            ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
-            ".codewiki/validation/2026-05-16-task-close-pass-task-080.json"
+            ".codewiki/validation/2026-05-16-task-close-pass-task-079.json"
           ]
         },
         "cold": {
@@ -43992,6 +45140,7 @@
             ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
             ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
+            ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -44359,6 +45508,16 @@
         },
         {
           "kind": "task",
+          "id": "TASK-088",
+          "build_path": ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+          "archive_ref": "refs/codewiki/archive/task/TASK-088",
+          "commit_sha": "",
+          "digest": "sha256:33a9f3d3a5f29a1033de2a361ff5805251e34df7755c583f57ef6ec314dffe93",
+          "restore_command": "/wiki-restore TASK-088",
+          "safety_status": "blocked"
+        },
+        {
+          "kind": "task",
           "id": "TASK-079",
           "build_path": ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           "archive_ref": "refs/codewiki/archive/task/TASK-079",
@@ -44419,7 +45578,7 @@
         }
       ],
       "git_archive": {
-        "ledger_count": 39,
+        "ledger_count": 40,
         "archive_refs": [
           "refs/codewiki/archive/task/TASK-068",
           "refs/codewiki/archive/task/TASK-070",
@@ -44454,6 +45613,7 @@
           "refs/codewiki/archive/task/TASK-082",
           "refs/codewiki/archive/task/TASK-089",
           "refs/codewiki/archive/task/TASK-083",
+          "refs/codewiki/archive/task/TASK-088",
           "refs/codewiki/archive/task/TASK-079",
           "refs/codewiki/archive/task/TASK-080",
           "refs/codewiki/archive/task/TASK-080",
@@ -44495,6 +45655,7 @@
           ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
           ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
           ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
+          ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
           ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -44531,6 +45692,7 @@
           ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
           ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
           ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
+          ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
           ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -44583,17 +45745,6 @@
           ]
         },
         {
-          "id": "reconcile:task:TASK-088",
-          "source_id": "task:TASK-088",
-          "state": "drift",
-          "direction": "downward",
-          "from_layer": "roadmap",
-          "to_layer": "code",
-          "next_loop": "implementation",
-          "task_id": "TASK-088",
-          "reason": "TASK-088 is open implementation delta below knowledge."
-        },
-        {
           "id": "reconcile:task:TASK-090",
           "source_id": "task:TASK-090",
           "state": "drift",
@@ -44608,7 +45759,7 @@
       "counts_by_loop": {
         "feedback": 1,
         "documentation": 2,
-        "implementation": 2
+        "implementation": 1
       },
       "next_action": {
         "loop": "feedback",
@@ -44642,7 +45793,7 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T21:16:46.253Z",
+      "generated_at": "2026-05-16T21:32:09.228Z",
       "counts": {
         "large-doc": 2,
         "roadmap-missing-code-path": 2
@@ -44676,7 +45827,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T21:16:46Z",
+      "generated_at": "2026-05-16T21:32:09Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -44687,18 +45838,17 @@
         "task_context_root": ".codewiki/roadmap/tasks"
       },
       "summary": {
-        "task_count": 52,
-        "open_count": 2,
+        "task_count": 51,
+        "open_count": 1,
         "sprint_count": 3,
         "active_sprint_count": 1,
         "status_counts": {
           "done": 45,
           "cancelled": 5,
-          "in_progress": 1,
           "todo": 1
         },
         "priority_counts": {
-          "high": 29,
+          "high": 28,
           "medium": 13,
           "critical": 9,
           "low": 1
@@ -44756,15 +45906,12 @@
           "TASK-077",
           "TASK-084",
           "TASK-078",
-          "TASK-088",
           "TASK-090"
         ],
         "open_task_ids": [
-          "TASK-088",
           "TASK-090"
         ],
         "executable_open_task_ids": [
-          "TASK-088",
           "TASK-090"
         ],
         "container_task_ids": [],
@@ -44902,12 +46049,8 @@
             }
           }
         ],
-        "in_progress_task_ids": [
-          "TASK-088"
-        ],
-        "executable_in_progress_task_ids": [
-          "TASK-088"
-        ],
+        "in_progress_task_ids": [],
+        "executable_in_progress_task_ids": [],
         "todo_task_ids": [
           "TASK-090"
         ],
@@ -44971,7 +46114,6 @@
         ],
         "recent_task_ids": [
           "TASK-077",
-          "TASK-088",
           "TASK-090",
           "TASK-084",
           "TASK-078",
@@ -47513,68 +48655,6 @@
             "evidence": null
           }
         },
-        "TASK-088": {
-          "id": "TASK-088",
-          "title": "Move web UI out of adapter layer",
-          "status": "in_progress",
-          "priority": "high",
-          "kind": "architecture",
-          "change_type": "system",
-          "summary": "Move browser UI source from adapter ownership to src/ui/web while keeping adapters focused on harness/protocol launch and translation.",
-          "labels": [
-            "domain-led-refactor",
-            "ui",
-            "web",
-            "adapter-boundary"
-          ],
-          "goal": {
-            "outcome": "Browser UI code lives under src/ui/web and delegates semantics to application tools, while adapters only launch/connect or translate harness/protocol concerns.",
-            "acceptance": [
-              "src/ui/web owns browser UI rendering/server assets currently under src/adapters/web.",
-              "Pi adapter launch commands delegate to UI/application APIs without importing UI semantics as adapter business logic.",
-              "Web UI does not import Pi SDK/TUI packages, hosted CDNs, or adapter-only APIs.",
-              "Docs/frontmatter code_paths are updated from current src/adapters/web to src/ui/web only after the path exists.",
-              "Package exports, smoke tests, and pack dry-run include the moved UI assets correctly."
-            ],
-            "non_goals": [
-              "Do not redesign the UI feature set during the move.",
-              "Do not make web UI a hosted service or agent harness adapter."
-            ],
-            "verification": [
-              "npm run typecheck",
-              "npm run test:smoke",
-              "npm run test:pack",
-              "manual /wiki-ui or equivalent smoke if available"
-            ]
-          },
-          "spec_paths": [
-            ".codewiki/kb/system/control-room-ui.md",
-            ".codewiki/kb/system/adapters.md",
-            ".codewiki/kb/system/file-structure.md",
-            ".codewiki/kb/product/uis/control-room.md",
-            ".codewiki/kb/product/uis/board.md",
-            ".codewiki/kb/product/uis/graph-navigation.md"
-          ],
-          "code_paths": [
-            "src/adapters/web",
-            "src/adapters/pi/commands",
-            "src/application",
-            "tests/smoke",
-            "package.json",
-            "tsconfig.json"
-          ],
-          "updated": "2026-05-16T01:02:10Z",
-          "boundary": {
-            "executable": true,
-            "container": false,
-            "reasons": []
-          },
-          "context_path": ".codewiki/roadmap/tasks/TASK-088/context.json",
-          "loop": {
-            "updated_at": "",
-            "evidence": null
-          }
-        },
         "TASK-090": {
           "id": "TASK-090",
           "title": "Codify alignment drift fixture matrix",
@@ -47632,7 +48712,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T21:16:46Z",
+      "generated_at": "2026-05-16T21:32:09Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -47647,27 +48727,27 @@
       "summary": {
         "total_specs": 16,
         "mapped_specs": 16,
-        "aligned_specs": 24,
-        "tracked_specs": 10,
+        "aligned_specs": 30,
+        "tracked_specs": 4,
         "untracked_specs": 0,
         "blocked_specs": 0,
         "unmapped_specs": 0,
-        "task_count": 52,
-        "open_task_count": 2,
+        "task_count": 51,
+        "open_task_count": 1,
         "done_task_count": 45
       },
       "bars": {
         "tracked_drift": {
           "label": "Tracked Drift",
-          "value": 10,
-          "total": 10,
+          "value": 4,
+          "total": 4,
           "percent": 100
         },
         "roadmap_done": {
           "label": "Roadmap Done",
           "value": 45,
-          "total": 52,
-          "percent": 87
+          "total": 51,
+          "percent": 88
         },
         "spec_mapping": {
           "label": "Spec Mapping",
@@ -47678,31 +48758,18 @@
       },
       "views": {
         "risky_spec_paths": [
-          ".codewiki/kb/product/uis/board.md",
-          ".codewiki/kb/product/uis/control-room.md",
-          ".codewiki/kb/product/uis/graph-navigation.md",
-          ".codewiki/kb/system/adapters.md",
           ".codewiki/kb/system/alignment-model.md",
           ".codewiki/kb/system/audits.md",
-          ".codewiki/kb/system/control-room-ui.md",
-          ".codewiki/kb/system/file-structure.md",
           ".codewiki/kb/system/graph.md",
           ".codewiki/kb/system/validation-gateway.md"
         ],
         "top_risky_spec_paths": [
-          ".codewiki/kb/product/uis/board.md",
-          ".codewiki/kb/product/uis/control-room.md",
-          ".codewiki/kb/product/uis/graph-navigation.md",
-          ".codewiki/kb/system/adapters.md",
           ".codewiki/kb/system/alignment-model.md",
           ".codewiki/kb/system/audits.md",
-          ".codewiki/kb/system/control-room-ui.md",
-          ".codewiki/kb/system/file-structure.md",
           ".codewiki/kb/system/graph.md",
           ".codewiki/kb/system/validation-gateway.md"
         ],
         "open_task_ids": [
-          "TASK-088",
           "TASK-090"
         ],
         "sprint_ids": [
@@ -47758,7 +48825,6 @@
         "classes": {
           "hot": {
             "task_ids": [
-              "TASK-088",
               "TASK-090"
             ],
             "sprint_ids": [
@@ -47809,6 +48875,7 @@
               ".codewiki/builds/feedback/2026-05-16-accepted-domain-led-layering-refactor.json",
               ".codewiki/builds/feedback/2026-05-16-accepted-no-umbrella-task-invariant-tasks-are-bo.json",
               ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
+              ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
               ".codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
               ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
               ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
@@ -47840,6 +48907,7 @@
               ".codewiki/builds/documentation/2026-05-16-documented-change-type-taxonomy.json",
               ".codewiki/builds/documentation/2026-05-16-documented-no-umbrella-task-invariant-tasks-are-.json",
               ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
+              ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
               ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
               ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
               ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge.json",
@@ -47852,6 +48920,7 @@
               ".codewiki/builds/planning/2026-05-16-planned-bounded-enforcement-work-for-task-bounda.json",
               ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
               ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
+              ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
               ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
@@ -47889,6 +48958,7 @@
               ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
               ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
               ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
+              ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
               ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -47913,10 +48983,10 @@
               ".codewiki/validation/2026-05-16-implementation-pass-task-085.json",
               ".codewiki/validation/2026-05-16-implementation-pass-task-086.json",
               ".codewiki/validation/2026-05-16-implementation-pass-task-087.json",
+              ".codewiki/validation/2026-05-16-implementation-pass-task-088.json",
               ".codewiki/validation/2026-05-16-implementation-pass-task-089.json",
               ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
-              ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
-              ".codewiki/validation/2026-05-16-task-close-pass-task-080.json"
+              ".codewiki/validation/2026-05-16-task-close-pass-task-079.json"
             ]
           },
           "cold": {
@@ -48038,6 +49108,7 @@
               ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
               ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
               ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
+              ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
               ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -48076,130 +49147,9 @@
         "Parallel sessions: 0 active, 0 collision task(s), 0 artifact(s) in-use, 0 artifact conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
-        "Tracked drift coverage: 10/10."
+        "Tracked drift coverage: 4/4."
       ],
       "specs": [
-        {
-          "path": ".codewiki/kb/product/uis/board.md",
-          "title": "Board UI",
-          "summary": "Product expectations for visual roadmap work, gated agency, approvals, and next-action visibility.",
-          "drift_status": "tracked",
-          "code_paths": [
-            "src/adapters/web",
-            "src/adapters/pi/ui/manager.ts"
-          ],
-          "code_area": "src +1 more",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-088",
-            "TASK-003",
-            "TASK-006",
-            "TASK-007"
-          ],
-          "primary_task": {
-            "id": "TASK-088",
-            "status": "in_progress",
-            "title": "Move web UI out of adapter layer"
-          },
-          "revision": {
-            "digest": "83acbd05a268f20c463cbb658a7c3e1d57348aaf031d35ad09f17c596670161b",
-            "basis": "source_content"
-          },
-          "note": "tracked by TASK-088"
-        },
-        {
-          "path": ".codewiki/kb/product/uis/control-room.md",
-          "title": "CodeWiki UI",
-          "summary": "Product expectations for the simplified ASCII-like second-screen CodeWiki UI.",
-          "drift_status": "tracked",
-          "code_paths": [
-            "src/adapters/web",
-            "src/adapters/pi/commands"
-          ],
-          "code_area": "src +1 more",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-088"
-          ],
-          "primary_task": {
-            "id": "TASK-088",
-            "status": "in_progress",
-            "title": "Move web UI out of adapter layer"
-          },
-          "revision": {
-            "digest": "62f8330384b8093afab6ba06bb838f886d408b7c01890a8785ac2122b2fe006c",
-            "basis": "source_content"
-          },
-          "note": "tracked by TASK-088"
-        },
-        {
-          "path": ".codewiki/kb/product/uis/graph-navigation.md",
-          "title": "Map Navigation UI",
-          "summary": "Product expectations for visual Map navigation over graph-backed CodeWiki relationships.",
-          "drift_status": "tracked",
-          "code_paths": [
-            "src/adapters/web",
-            "src/adapters/pi/ui/manager.ts"
-          ],
-          "code_area": "src +1 more",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-088"
-          ],
-          "primary_task": {
-            "id": "TASK-088",
-            "status": "in_progress",
-            "title": "Move web UI out of adapter layer"
-          },
-          "revision": {
-            "digest": "2400d06fe59bd86e96d1d646773353393a0949faccc0393b55840ac72ba4815d",
-            "basis": "source_content"
-          },
-          "note": "tracked by TASK-088"
-        },
-        {
-          "path": ".codewiki/kb/system/adapters.md",
-          "title": "Adapters",
-          "summary": "Harness and protocol translation boundary for Pi, CLI, MCP, Claude Code, Codex, or other integrations.",
-          "drift_status": "tracked",
-          "code_paths": [
-            "src/adapters",
-            "src/application",
-            "skills/codewiki"
-          ],
-          "code_area": "src, skills",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-088",
-            "TASK-034"
-          ],
-          "primary_task": {
-            "id": "TASK-088",
-            "status": "in_progress",
-            "title": "Move web UI out of adapter layer"
-          },
-          "revision": {
-            "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
-            "basis": "source_content"
-          },
-          "note": "tracked by TASK-088"
-        },
         {
           "path": ".codewiki/kb/system/alignment-model.md",
           "title": "Alignment Model",
@@ -48264,67 +49214,6 @@
             "basis": "source_content"
           },
           "note": "tracked by TASK-090"
-        },
-        {
-          "path": ".codewiki/kb/system/control-room-ui.md",
-          "title": "CodeWiki UI",
-          "summary": "Standalone local web UI and hosting surface for CodeWiki.",
-          "drift_status": "tracked",
-          "code_paths": [
-            "src/adapters/web",
-            "src/adapters/pi/commands",
-            "src/application"
-          ],
-          "code_area": "src +2 more",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-088"
-          ],
-          "primary_task": {
-            "id": "TASK-088",
-            "status": "in_progress",
-            "title": "Move web UI out of adapter layer"
-          },
-          "revision": {
-            "digest": "d0a19cac4190b8255bcf89f2c06db91d8bbc2a45b974e09cdf6750a7059c0e6e",
-            "basis": "source_content"
-          },
-          "note": "tracked by TASK-088"
-        },
-        {
-          "path": ".codewiki/kb/system/file-structure.md",
-          "title": "File Structure",
-          "summary": "Target knowledge-base and package file structure for CodeWiki.",
-          "drift_status": "tracked",
-          "code_paths": [
-            ".codewiki/kb",
-            "src",
-            "skills/codewiki"
-          ],
-          "code_area": ".codewiki, src +1 more",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-088",
-            "TASK-076"
-          ],
-          "primary_task": {
-            "id": "TASK-088",
-            "status": "in_progress",
-            "title": "Move web UI out of adapter layer"
-          },
-          "revision": {
-            "digest": "80c3ce71f0dcdacfd5c129d28547c6eeb56ecf5b9bdfc0543688696bfa6c602a",
-            "basis": "source_content"
-          },
-          "note": "tracked by TASK-088"
         },
         {
           "path": ".codewiki/kb/system/graph.md",
@@ -48588,12 +49477,43 @@
           "note": "no deterministic drift signals"
         },
         {
+          "path": ".codewiki/kb/product/uis/board.md",
+          "title": "Board UI",
+          "summary": "Product expectations for visual roadmap work, gated agency, approvals, and next-action visibility.",
+          "drift_status": "aligned",
+          "code_paths": [
+            "src/ui/web",
+            "src/adapters/pi/ui/manager.ts"
+          ],
+          "code_area": "src +1 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [
+            "TASK-003",
+            "TASK-006",
+            "TASK-007"
+          ],
+          "primary_task": {
+            "id": "TASK-003",
+            "status": "done",
+            "title": "Keep roadmap as freshest delta log"
+          },
+          "revision": {
+            "digest": "83acbd05a268f20c463cbb658a7c3e1d57348aaf031d35ad09f17c596670161b",
+            "basis": "source_content"
+          },
+          "note": "no deterministic drift signals"
+        },
+        {
           "path": ".codewiki/kb/product/uis/control-room-details.md",
           "title": "CodeWiki UI Details",
           "summary": "Detailed product expectations for CodeWiki UI interactions, source disclosure, visual style, and acceptance.",
           "drift_status": "aligned",
           "code_paths": [
-            "src/adapters/web",
+            "src/ui/web",
             "src/adapters/pi/commands"
           ],
           "code_area": "src +1 more",
@@ -48606,6 +49526,52 @@
           "primary_task": null,
           "revision": {
             "digest": "76df67f8f83563fa2b43452248199fed8094a25c32689e2d21c92ef1a5bd085e",
+            "basis": "source_content"
+          },
+          "note": "no deterministic drift signals"
+        },
+        {
+          "path": ".codewiki/kb/product/uis/control-room.md",
+          "title": "CodeWiki UI",
+          "summary": "Product expectations for the simplified ASCII-like second-screen CodeWiki UI.",
+          "drift_status": "aligned",
+          "code_paths": [
+            "src/ui/web",
+            "src/adapters/pi/commands"
+          ],
+          "code_area": "src +1 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [],
+          "primary_task": null,
+          "revision": {
+            "digest": "62f8330384b8093afab6ba06bb838f886d408b7c01890a8785ac2122b2fe006c",
+            "basis": "source_content"
+          },
+          "note": "no deterministic drift signals"
+        },
+        {
+          "path": ".codewiki/kb/product/uis/graph-navigation.md",
+          "title": "Map Navigation UI",
+          "summary": "Product expectations for visual Map navigation over graph-backed CodeWiki relationships.",
+          "drift_status": "aligned",
+          "code_paths": [
+            "src/ui/web",
+            "src/adapters/pi/ui/manager.ts"
+          ],
+          "code_area": "src +1 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [],
+          "primary_task": null,
+          "revision": {
+            "digest": "2400d06fe59bd86e96d1d646773353393a0949faccc0393b55840ac72ba4815d",
             "basis": "source_content"
           },
           "note": "no deterministic drift signals"
@@ -48733,6 +49699,36 @@
           "primary_task": null,
           "revision": {
             "digest": "77b79518df7afd80bcec491cd8ee2047ea29be1789ce5a747a6746e670558dd4",
+            "basis": "source_content"
+          },
+          "note": "no deterministic drift signals"
+        },
+        {
+          "path": ".codewiki/kb/system/adapters.md",
+          "title": "Adapters",
+          "summary": "Harness and protocol translation boundary for Pi, CLI, MCP, Claude Code, Codex, or other integrations.",
+          "drift_status": "aligned",
+          "code_paths": [
+            "src/adapters",
+            "src/application",
+            "skills/codewiki"
+          ],
+          "code_area": "src, skills",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [
+            "TASK-034"
+          ],
+          "primary_task": {
+            "id": "TASK-034",
+            "status": "done",
+            "title": "Align CodeWiki skill package with compiler and API contracts"
+          },
+          "revision": {
+            "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
             "basis": "source_content"
           },
           "note": "no deterministic drift signals"
@@ -48895,7 +49891,7 @@
           "summary": "Detailed system expectations for CodeWiki UI Map, Sessions, Settings, source disclosure, styling, and security.",
           "drift_status": "aligned",
           "code_paths": [
-            "src/adapters/web",
+            "src/ui/web",
             "src/adapters/pi/commands"
           ],
           "code_area": "src +1 more",
@@ -48913,12 +49909,36 @@
           "note": "no deterministic drift signals"
         },
         {
+          "path": ".codewiki/kb/system/control-room-ui.md",
+          "title": "CodeWiki UI",
+          "summary": "Standalone local web UI and hosting surface for CodeWiki.",
+          "drift_status": "aligned",
+          "code_paths": [
+            "src/ui/web",
+            "src/adapters/pi/commands",
+            "src/application"
+          ],
+          "code_area": "src +2 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [],
+          "primary_task": null,
+          "revision": {
+            "digest": "d0a19cac4190b8255bcf89f2c06db91d8bbc2a45b974e09cdf6750a7059c0e6e",
+            "basis": "source_content"
+          },
+          "note": "no deterministic drift signals"
+        },
+        {
           "path": ".codewiki/kb/system/diagrams/README.md",
           "title": "System Diagram Raw Data",
           "summary": "Agent-editable raw data contract for project diagrams rendered by CodeWiki UIs.",
           "drift_status": "aligned",
           "code_paths": [
-            "src/adapters/web/control-room.ts",
+            "src/ui/web/control-room.ts",
             "src/adapters/pi/ui/manager.ts"
           ],
           "code_area": "src +1 more",
@@ -48959,6 +49979,36 @@
           "primary_task": null,
           "revision": {
             "digest": "870ff3d651945f9403e105c0bc58c957fccc8843083846a06f87068ccee175a1",
+            "basis": "source_content"
+          },
+          "note": "no deterministic drift signals"
+        },
+        {
+          "path": ".codewiki/kb/system/file-structure.md",
+          "title": "File Structure",
+          "summary": "Target knowledge-base and package file structure for CodeWiki.",
+          "drift_status": "aligned",
+          "code_paths": [
+            ".codewiki/kb",
+            "src",
+            "skills/codewiki"
+          ],
+          "code_area": ".codewiki, src +1 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [
+            "TASK-076"
+          ],
+          "primary_task": {
+            "id": "TASK-076",
+            "status": "done",
+            "title": "Restructure project filesystem and dogfood boundary"
+          },
+          "revision": {
+            "digest": "80c3ce71f0dcdacfd5c129d28547c6eeb56ecf5b9bdfc0543688696bfa6c602a",
             "basis": "source_content"
           },
           "note": "no deterministic drift signals"
@@ -49053,7 +50103,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T21:16:46Z",
+        "generated_at": "2026-05-16T21:32:09Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -49081,16 +50131,16 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T21:16:46Z",
+            "checked_at": "2026-05-16T21:32:09Z",
             "revision": {
               "git": {
-                "head": "f4be8f717084c61e9289de4a51a69da8c79c722c",
+                "head": "42b8f2affb4b175145bb52cf020669038d7b656b",
                 "dirty": true,
                 "dirty_paths": [
                   ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-087/context.json",
-                  ".codewiki/roadmap/tasks/TASK-087/task.json"
+                  ".codewiki/roadmap/tasks/TASK-088/context.json",
+                  ".codewiki/roadmap/tasks/TASK-088/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -49102,10 +50152,10 @@
                   ".codewiki/kb/product/stories/intent.md": "87bb97a5e6ee5fe9cf4c061e871db214c3265614",
                   ".codewiki/kb/product/stories/navigation.md": "cb897a191daf6466851213899f00f717733c5020",
                   ".codewiki/kb/product/stories/sanitation.md": "6df44c2adc91964239cf62552caabce5f855793b",
-                  ".codewiki/kb/product/uis/board.md": "8ca8391884b93d3fb278cac07dfade3dc755552e",
-                  ".codewiki/kb/product/uis/control-room-details.md": "df50d7c8e64275dfbadf78767eff50dc9ae5216d",
-                  ".codewiki/kb/product/uis/control-room.md": "357e4f77fdee29758a326a37e12cbd05f124dd53",
-                  ".codewiki/kb/product/uis/graph-navigation.md": "e9766bc781bd5e28a0b05ea4313737aa823752ef",
+                  ".codewiki/kb/product/uis/board.md": "df43b5a446e4fdc101a8a915ef59a646a05c4e70",
+                  ".codewiki/kb/product/uis/control-room-details.md": "5d94be7d594ea4340e649656c410464131925d57",
+                  ".codewiki/kb/product/uis/control-room.md": "751638c68b5e19b3157b8589ee5f2d8789e402d2",
+                  ".codewiki/kb/product/uis/graph-navigation.md": "620c887d1f59f2a4a879749f00a65a7d120c3262",
                   ".codewiki/kb/product/uis/status-panel.md": "1f470da5e90d523f9ce5babaeca29a8dd6f5c887",
                   ".codewiki/kb/product/users/agents.md": "b33ad631e08ad594978cc8c00500040dc5b75aa6",
                   ".codewiki/kb/product/users/external-users.md": "6fa169f4e72984edc74cc3dbeca8d7657fccd633",
@@ -49119,9 +50169,9 @@
                   ".codewiki/kb/system/builds.md": "8b9e2faaaaea9613aa9f899651fba952f213811e",
                   ".codewiki/kb/system/change-lifecycle.md": "583c704e4879a3b3f11bbf6fc26ed2ca2d7ddf21",
                   ".codewiki/kb/system/compilers.md": "a3825bfa34eabc66e20cbd9954fd00345aca510f",
-                  ".codewiki/kb/system/control-room-ui-details.md": "fdb67ddb54c58f94cdb87cc38b3265ecb255ebb5",
-                  ".codewiki/kb/system/control-room-ui.md": "9f7b4d4ef536ea545f56858564edc98fc18494a4",
-                  ".codewiki/kb/system/diagrams/README.md": "1cc7a39b36a02ff7ad16ae7c10349740f2c68bd2",
+                  ".codewiki/kb/system/control-room-ui-details.md": "7e26c14de6d76ab241e516c8a02a5f331685e572",
+                  ".codewiki/kb/system/control-room-ui.md": "4e40395efc6306d73ebc19e0fbbb9570d68669b6",
+                  ".codewiki/kb/system/diagrams/README.md": "ea2884c8230a3c6d3b741e61e705416f8f7d3d46",
                   ".codewiki/kb/system/extension.md": "ccf83d263b8066207f8debf5a0c1b4c9f6ee9bb7",
                   ".codewiki/kb/system/file-structure.md": "9b368618da0e8c30de2230cb593b79867f8aa2e2",
                   ".codewiki/kb/system/graph.md": "d4695f7bd4aa6eb3ce4b19e58ae45b0ee2cd4101",
@@ -49130,7 +50180,7 @@
                   ".codewiki/kb/system/roadmap.md": "3fa348d6ebe072e99f54dcc78ad6488536f02831",
                   ".codewiki/kb/system/validation-gateway.md": "1d0e7f421e9027d3fac867da6dcd642b632a2422",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "29fc30143d737c2cfb2bd92adb6caafae51bfc77",
+                  ".codewiki/roadmap/queue.json": "b7b122d1ac3ce900ceb6e0c4d60cb1515ae4901e",
                   ".codewiki/validation": "",
                   "package.json": "a0d88829f255a1e7910aaec0f6a201c544b2a37e",
                   "skills": "",
@@ -49150,8 +50200,6 @@
                   "src/adapters/pi/schemas.ts": "cc53755c9d39c856993c335569da155c4eded5b5",
                   "src/adapters/pi/ui": "",
                   "src/adapters/pi/ui/manager.ts": "e2e6523cd95bc692c2595f335134c796864c36af",
-                  "src/adapters/web": "",
-                  "src/adapters/web/control-room.ts": "5197f2fd4b5d81e7e176ff5df04cec728890cf04",
                   "src/application": "",
                   "src/application/builds.ts": "1b3f1f9f92f4df54903c491ba76421bc1a5c7583",
                   "src/application/gateway": "",
@@ -49168,60 +50216,59 @@
                   "src/domain/shared/types.ts": "7c88f190301bba2fba4b67467ec1ad72dbb4cfd1",
                   "src/index.ts": "0a8180e22f177c11f5f2615e258298acef59c57d",
                   "src/templates.ts": "727af3989bb84112625e63556d86d75d1df429ca",
+                  "src/ui/web": "",
+                  "src/ui/web/control-room.ts": "5197f2fd4b5d81e7e176ff5df04cec728890cf04",
                   "tests/smoke/package-smoke.test.mjs": "b7f9a6d3cc45c8e217f13f7bd7531b6e0a7436ed"
                 }
               },
               "spec_digest": "a4cfeb16c8336b0a3f6d83335a9f5fa793ac3f7d317532252bb8c5a3c1f0538d",
-              "task_digest": "9877cc739691ef6d0f1418da81e5e1d70012e3c9056cce1f809181df8f855b39",
-              "code_digest": "01ce78b133c041c706ad3fb8824e5c5811fca762ef86634b1b0b50c0bdfb2c99",
-              "digest": "0cfc854480662b13caf6265e3ddc72a842dc6a3bad57de91afc67193abe11355"
+              "task_digest": "727a7b829cc43d8e8fa764a47be2d79e1edefa021c742bee5cc9eeac09da60e1",
+              "code_digest": "d39f997596ef46cf2518dd0c909b57b1c7270b68e1b445431b96c78716fdf1ed",
+              "digest": "04f040b6f212abc072327e9c5219dd7a0d0f4d54039ea2207384617eae299103"
             },
             "freshness": {
               "status": "stale",
               "basis": "revision",
-              "checked_at": "2026-05-16T21:16:46Z",
+              "checked_at": "2026-05-16T21:32:09Z",
               "reason": "revision changed: code",
               "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
             },
             "spec_paths": [
-              ".codewiki/kb/product/uis/board.md",
-              ".codewiki/kb/product/uis/control-room.md",
-              ".codewiki/kb/product/uis/graph-navigation.md",
               ".codewiki/kb/product/overview.md",
               ".codewiki/kb/product/stories/automation.md",
               ".codewiki/kb/product/stories/drift.md",
               ".codewiki/kb/product/stories/intent.md",
               ".codewiki/kb/product/stories/navigation.md",
               ".codewiki/kb/product/stories/sanitation.md",
+              ".codewiki/kb/product/uis/board.md",
               ".codewiki/kb/product/uis/control-room-details.md",
+              ".codewiki/kb/product/uis/control-room.md",
+              ".codewiki/kb/product/uis/graph-navigation.md",
               ".codewiki/kb/product/uis/status-panel.md",
               ".codewiki/kb/product/users/agents.md",
               ".codewiki/kb/product/users/external-users.md",
               ".codewiki/kb/product/users/maintainers.md",
               ".codewiki/kb/product/users/package-authors.md",
-              ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/validation-gateway.md",
+              ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui-details.md",
+              ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/diagrams/README.md",
               ".codewiki/kb/system/extension.md",
+              ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/knowledge.md",
               ".codewiki/kb/system/overview.md",
               ".codewiki/kb/system/roadmap.md"
             ],
             "code_paths": [
-              "src/adapters/web",
-              "src/adapters/pi/ui/manager.ts",
-              "src/adapters/pi/commands",
               ".codewiki/kb/product",
               "skills/codewiki/loops/implementation.md",
               "skills/codewiki/loops/documentation.md",
@@ -49232,19 +50279,18 @@
               "src/adapters/pi/ui",
               "tests/smoke/package-smoke.test.mjs",
               "src/application/lint.ts",
+              "src/ui/web",
+              "src/adapters/pi/ui/manager.ts",
+              "src/adapters/pi/commands",
               "skills",
               "src",
               "src/index.ts",
               "package.json",
-              "src/adapters",
-              "src/application",
-              "skills/codewiki",
               "src/application/graph.ts",
               "src/application/builds.ts",
               "src/application/gateway",
               "skills/codewiki/loops",
               "src/adapters/pi",
-              ".codewiki/kb",
               ".codewiki/index_graph.json",
               "src/application/graph/rebuilder.ts",
               "src/application/state-builders.ts",
@@ -49252,39 +50298,36 @@
               "src/domain/shared/types.ts",
               "skills/codewiki/loops/validation.md",
               ".codewiki/validation",
+              "src/adapters",
+              "src/application",
+              "skills/codewiki",
               "src/domain",
               ".codewiki/builds",
               "src/adapters/pi/schemas.ts",
               "src/application/roadmap.ts",
               "src/application/task.ts",
-              "src/adapters/web/control-room.ts",
+              "src/ui/web/control-room.ts",
               "src/bootstrap.ts",
               "src/templates.ts",
               "src/application/prompt.ts",
+              ".codewiki/kb",
               ".codewiki/roadmap/queue.json",
               ".codewiki/roadmap"
             ],
-            "code_area": "src, .codewiki +3 more",
+            "code_area": ".codewiki, skills +3 more",
             "open_task_ids": [
-              "TASK-088",
               "TASK-090"
             ],
             "risky_spec_paths": [
-              ".codewiki/kb/product/uis/board.md",
-              ".codewiki/kb/product/uis/control-room.md",
-              ".codewiki/kb/product/uis/graph-navigation.md",
-              ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/validation-gateway.md"
             ],
             "stats": {
               "total_specs": 33,
-              "aligned_specs": 23,
-              "tracked_specs": 10,
+              "aligned_specs": 29,
+              "tracked_specs": 4,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -49309,16 +50352,16 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T21:16:46Z",
+            "checked_at": "2026-05-16T21:32:09Z",
             "revision": {
               "git": {
-                "head": "f4be8f717084c61e9289de4a51a69da8c79c722c",
+                "head": "42b8f2affb4b175145bb52cf020669038d7b656b",
                 "dirty": true,
                 "dirty_paths": [
                   ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-087/context.json",
-                  ".codewiki/roadmap/tasks/TASK-087/task.json"
+                  ".codewiki/roadmap/tasks/TASK-088/context.json",
+                  ".codewiki/roadmap/tasks/TASK-088/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -49331,9 +50374,9 @@
                   ".codewiki/kb/system/builds.md": "8b9e2faaaaea9613aa9f899651fba952f213811e",
                   ".codewiki/kb/system/change-lifecycle.md": "583c704e4879a3b3f11bbf6fc26ed2ca2d7ddf21",
                   ".codewiki/kb/system/compilers.md": "a3825bfa34eabc66e20cbd9954fd00345aca510f",
-                  ".codewiki/kb/system/control-room-ui-details.md": "fdb67ddb54c58f94cdb87cc38b3265ecb255ebb5",
-                  ".codewiki/kb/system/control-room-ui.md": "9f7b4d4ef536ea545f56858564edc98fc18494a4",
-                  ".codewiki/kb/system/diagrams/README.md": "1cc7a39b36a02ff7ad16ae7c10349740f2c68bd2",
+                  ".codewiki/kb/system/control-room-ui-details.md": "7e26c14de6d76ab241e516c8a02a5f331685e572",
+                  ".codewiki/kb/system/control-room-ui.md": "4e40395efc6306d73ebc19e0fbbb9570d68669b6",
+                  ".codewiki/kb/system/diagrams/README.md": "ea2884c8230a3c6d3b741e61e705416f8f7d3d46",
                   ".codewiki/kb/system/extension.md": "ccf83d263b8066207f8debf5a0c1b4c9f6ee9bb7",
                   ".codewiki/kb/system/file-structure.md": "9b368618da0e8c30de2230cb593b79867f8aa2e2",
                   ".codewiki/kb/system/graph.md": "d4695f7bd4aa6eb3ce4b19e58ae45b0ee2cd4101",
@@ -49342,7 +50385,7 @@
                   ".codewiki/kb/system/roadmap.md": "3fa348d6ebe072e99f54dcc78ad6488536f02831",
                   ".codewiki/kb/system/validation-gateway.md": "1d0e7f421e9027d3fac867da6dcd642b632a2422",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "29fc30143d737c2cfb2bd92adb6caafae51bfc77",
+                  ".codewiki/roadmap/queue.json": "b7b122d1ac3ce900ceb6e0c4d60cb1515ae4901e",
                   ".codewiki/validation": "",
                   "skills": "",
                   "skills/codewiki": "",
@@ -49357,8 +50400,6 @@
                   "src/adapters/pi/commands": "",
                   "src/adapters/pi/schemas.ts": "cc53755c9d39c856993c335569da155c4eded5b5",
                   "src/adapters/pi/ui/manager.ts": "e2e6523cd95bc692c2595f335134c796864c36af",
-                  "src/adapters/web": "",
-                  "src/adapters/web/control-room.ts": "5197f2fd4b5d81e7e176ff5df04cec728890cf04",
                   "src/application": "",
                   "src/application/builds.ts": "1b3f1f9f92f4df54903c491ba76421bc1a5c7583",
                   "src/application/gateway": "",
@@ -49375,55 +50416,50 @@
                   "src/domain/shared/types.ts": "7c88f190301bba2fba4b67467ec1ad72dbb4cfd1",
                   "src/index.ts": "0a8180e22f177c11f5f2615e258298acef59c57d",
                   "src/templates.ts": "727af3989bb84112625e63556d86d75d1df429ca",
+                  "src/ui/web": "",
+                  "src/ui/web/control-room.ts": "5197f2fd4b5d81e7e176ff5df04cec728890cf04",
                   "tests/smoke/package-smoke.test.mjs": "b7f9a6d3cc45c8e217f13f7bd7531b6e0a7436ed"
                 }
               },
               "spec_digest": "8e676fcb8e9e36b9bc8ed69b2ed99716ad8a2ea753d0aed9fb5c0f55f32d88af",
-              "task_digest": "9877cc739691ef6d0f1418da81e5e1d70012e3c9056cce1f809181df8f855b39",
-              "code_digest": "06a06905a8edb718c4c302059bc38ac9d39c62848a7e1434768987d27ae3c329",
-              "digest": "b5bafa0f643593968f5ec3d4270ce63fef5735f08b34aea420164f0bbc12c474"
+              "task_digest": "727a7b829cc43d8e8fa764a47be2d79e1edefa021c742bee5cc9eeac09da60e1",
+              "code_digest": "e0ea58c0915807d61bea72592b2ce88eae67f6689d828e4b3d03f110caa5f0ab",
+              "digest": "511ea4bb8cc0464548e40c77bc320da81967e288e023ecd3260ad25d0da44224"
             },
             "freshness": {
               "status": "stale",
               "basis": "revision",
-              "checked_at": "2026-05-16T21:16:46Z",
+              "checked_at": "2026-05-16T21:32:09Z",
               "reason": "revision changed: code",
               "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
             },
             "spec_paths": [
-              ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/validation-gateway.md",
+              ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui-details.md",
+              ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/diagrams/README.md",
               ".codewiki/kb/system/extension.md",
+              ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/knowledge.md",
               ".codewiki/kb/system/overview.md",
               ".codewiki/kb/system/roadmap.md"
             ],
             "code_paths": [
-              "src/adapters",
-              "src/application",
-              "skills/codewiki",
               "src/application/graph.ts",
               "src/application/builds.ts",
               "src/application/lint.ts",
               "src/application/gateway",
               "skills/codewiki/loops",
               "src/adapters/pi",
-              "src/adapters/web",
-              "src/adapters/pi/commands",
-              ".codewiki/kb",
-              "src",
               ".codewiki/index_graph.json",
               "src/application/graph/rebuilder.ts",
               "src/application/state-builders.ts",
@@ -49431,6 +50467,9 @@
               "src/domain/shared/types.ts",
               "skills/codewiki/loops/validation.md",
               ".codewiki/validation",
+              "src/adapters",
+              "src/application",
+              "skills/codewiki",
               "src/domain",
               ".codewiki/builds",
               "src/adapters/pi/schemas.ts",
@@ -49439,35 +50478,35 @@
               "skills/codewiki/loops/feedback.md",
               "skills/codewiki/loops/documentation.md",
               "skills/codewiki/loops/implementation.md",
-              "src/adapters/web/control-room.ts",
+              "src/ui/web",
+              "src/adapters/pi/commands",
+              "src/ui/web/control-room.ts",
               "src/adapters/pi/ui/manager.ts",
               "src/index.ts",
               "src/bootstrap.ts",
               "src/templates.ts",
               "src/application/prompt.ts",
               "tests/smoke/package-smoke.test.mjs",
+              ".codewiki/kb",
+              "src",
               "skills",
               ".codewiki/roadmap/queue.json",
               ".codewiki/roadmap"
             ],
             "code_area": "src, skills +2 more",
             "open_task_ids": [
-              "TASK-088",
               "TASK-090"
             ],
             "risky_spec_paths": [
-              ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/validation-gateway.md"
             ],
             "stats": {
               "total_specs": 18,
-              "aligned_specs": 11,
-              "tracked_specs": 7,
+              "aligned_specs": 14,
+              "tracked_specs": 4,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -49492,16 +50531,16 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T21:16:46Z",
+            "checked_at": "2026-05-16T21:32:09Z",
             "revision": {
               "git": {
-                "head": "f4be8f717084c61e9289de4a51a69da8c79c722c",
+                "head": "42b8f2affb4b175145bb52cf020669038d7b656b",
                 "dirty": true,
                 "dirty_paths": [
                   ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-087/context.json",
-                  ".codewiki/roadmap/tasks/TASK-087/task.json"
+                  ".codewiki/roadmap/tasks/TASK-088/context.json",
+                  ".codewiki/roadmap/tasks/TASK-088/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -49513,10 +50552,10 @@
                   ".codewiki/kb/product/stories/intent.md": "87bb97a5e6ee5fe9cf4c061e871db214c3265614",
                   ".codewiki/kb/product/stories/navigation.md": "cb897a191daf6466851213899f00f717733c5020",
                   ".codewiki/kb/product/stories/sanitation.md": "6df44c2adc91964239cf62552caabce5f855793b",
-                  ".codewiki/kb/product/uis/board.md": "8ca8391884b93d3fb278cac07dfade3dc755552e",
-                  ".codewiki/kb/product/uis/control-room-details.md": "df50d7c8e64275dfbadf78767eff50dc9ae5216d",
-                  ".codewiki/kb/product/uis/control-room.md": "357e4f77fdee29758a326a37e12cbd05f124dd53",
-                  ".codewiki/kb/product/uis/graph-navigation.md": "e9766bc781bd5e28a0b05ea4313737aa823752ef",
+                  ".codewiki/kb/product/uis/board.md": "df43b5a446e4fdc101a8a915ef59a646a05c4e70",
+                  ".codewiki/kb/product/uis/control-room-details.md": "5d94be7d594ea4340e649656c410464131925d57",
+                  ".codewiki/kb/product/uis/control-room.md": "751638c68b5e19b3157b8589ee5f2d8789e402d2",
+                  ".codewiki/kb/product/uis/graph-navigation.md": "620c887d1f59f2a4a879749f00a65a7d120c3262",
                   ".codewiki/kb/product/uis/status-panel.md": "1f470da5e90d523f9ce5babaeca29a8dd6f5c887",
                   ".codewiki/kb/product/users/agents.md": "b33ad631e08ad594978cc8c00500040dc5b75aa6",
                   ".codewiki/kb/product/users/external-users.md": "6fa169f4e72984edc74cc3dbeca8d7657fccd633",
@@ -49530,9 +50569,9 @@
                   ".codewiki/kb/system/builds.md": "8b9e2faaaaea9613aa9f899651fba952f213811e",
                   ".codewiki/kb/system/change-lifecycle.md": "583c704e4879a3b3f11bbf6fc26ed2ca2d7ddf21",
                   ".codewiki/kb/system/compilers.md": "a3825bfa34eabc66e20cbd9954fd00345aca510f",
-                  ".codewiki/kb/system/control-room-ui-details.md": "fdb67ddb54c58f94cdb87cc38b3265ecb255ebb5",
-                  ".codewiki/kb/system/control-room-ui.md": "9f7b4d4ef536ea545f56858564edc98fc18494a4",
-                  ".codewiki/kb/system/diagrams/README.md": "1cc7a39b36a02ff7ad16ae7c10349740f2c68bd2",
+                  ".codewiki/kb/system/control-room-ui-details.md": "7e26c14de6d76ab241e516c8a02a5f331685e572",
+                  ".codewiki/kb/system/control-room-ui.md": "4e40395efc6306d73ebc19e0fbbb9570d68669b6",
+                  ".codewiki/kb/system/diagrams/README.md": "ea2884c8230a3c6d3b741e61e705416f8f7d3d46",
                   ".codewiki/kb/system/extension.md": "ccf83d263b8066207f8debf5a0c1b4c9f6ee9bb7",
                   ".codewiki/kb/system/file-structure.md": "9b368618da0e8c30de2230cb593b79867f8aa2e2",
                   ".codewiki/kb/system/graph.md": "d4695f7bd4aa6eb3ce4b19e58ae45b0ee2cd4101",
@@ -49541,7 +50580,7 @@
                   ".codewiki/kb/system/roadmap.md": "3fa348d6ebe072e99f54dcc78ad6488536f02831",
                   ".codewiki/kb/system/validation-gateway.md": "1d0e7f421e9027d3fac867da6dcd642b632a2422",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "29fc30143d737c2cfb2bd92adb6caafae51bfc77",
+                  ".codewiki/roadmap/queue.json": "b7b122d1ac3ce900ceb6e0c4d60cb1515ae4901e",
                   ".codewiki/validation": "",
                   "package.json": "a0d88829f255a1e7910aaec0f6a201c544b2a37e",
                   "skills": "",
@@ -49561,8 +50600,6 @@
                   "src/adapters/pi/schemas.ts": "cc53755c9d39c856993c335569da155c4eded5b5",
                   "src/adapters/pi/ui": "",
                   "src/adapters/pi/ui/manager.ts": "e2e6523cd95bc692c2595f335134c796864c36af",
-                  "src/adapters/web": "",
-                  "src/adapters/web/control-room.ts": "5197f2fd4b5d81e7e176ff5df04cec728890cf04",
                   "src/application": "",
                   "src/application/builds.ts": "1b3f1f9f92f4df54903c491ba76421bc1a5c7583",
                   "src/application/gateway": "",
@@ -49579,60 +50616,59 @@
                   "src/domain/shared/types.ts": "7c88f190301bba2fba4b67467ec1ad72dbb4cfd1",
                   "src/index.ts": "0a8180e22f177c11f5f2615e258298acef59c57d",
                   "src/templates.ts": "727af3989bb84112625e63556d86d75d1df429ca",
+                  "src/ui/web": "",
+                  "src/ui/web/control-room.ts": "5197f2fd4b5d81e7e176ff5df04cec728890cf04",
                   "tests/smoke/package-smoke.test.mjs": "b7f9a6d3cc45c8e217f13f7bd7531b6e0a7436ed"
                 }
               },
               "spec_digest": "a4cfeb16c8336b0a3f6d83335a9f5fa793ac3f7d317532252bb8c5a3c1f0538d",
-              "task_digest": "9877cc739691ef6d0f1418da81e5e1d70012e3c9056cce1f809181df8f855b39",
-              "code_digest": "01ce78b133c041c706ad3fb8824e5c5811fca762ef86634b1b0b50c0bdfb2c99",
-              "digest": "0cfc854480662b13caf6265e3ddc72a842dc6a3bad57de91afc67193abe11355"
+              "task_digest": "727a7b829cc43d8e8fa764a47be2d79e1edefa021c742bee5cc9eeac09da60e1",
+              "code_digest": "d39f997596ef46cf2518dd0c909b57b1c7270b68e1b445431b96c78716fdf1ed",
+              "digest": "04f040b6f212abc072327e9c5219dd7a0d0f4d54039ea2207384617eae299103"
             },
             "freshness": {
               "status": "stale",
               "basis": "revision",
-              "checked_at": "2026-05-16T21:16:46Z",
+              "checked_at": "2026-05-16T21:32:09Z",
               "reason": "revision changed: code",
               "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
             },
             "spec_paths": [
-              ".codewiki/kb/product/uis/board.md",
-              ".codewiki/kb/product/uis/control-room.md",
-              ".codewiki/kb/product/uis/graph-navigation.md",
               ".codewiki/kb/product/overview.md",
               ".codewiki/kb/product/stories/automation.md",
               ".codewiki/kb/product/stories/drift.md",
               ".codewiki/kb/product/stories/intent.md",
               ".codewiki/kb/product/stories/navigation.md",
               ".codewiki/kb/product/stories/sanitation.md",
+              ".codewiki/kb/product/uis/board.md",
               ".codewiki/kb/product/uis/control-room-details.md",
+              ".codewiki/kb/product/uis/control-room.md",
+              ".codewiki/kb/product/uis/graph-navigation.md",
               ".codewiki/kb/product/uis/status-panel.md",
               ".codewiki/kb/product/users/agents.md",
               ".codewiki/kb/product/users/external-users.md",
               ".codewiki/kb/product/users/maintainers.md",
               ".codewiki/kb/product/users/package-authors.md",
-              ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/validation-gateway.md",
+              ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/api.md",
               ".codewiki/kb/system/builds.md",
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/compilers.md",
               ".codewiki/kb/system/control-room-ui-details.md",
+              ".codewiki/kb/system/control-room-ui.md",
               ".codewiki/kb/system/diagrams/README.md",
               ".codewiki/kb/system/extension.md",
+              ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/knowledge.md",
               ".codewiki/kb/system/overview.md",
               ".codewiki/kb/system/roadmap.md"
             ],
             "code_paths": [
-              "src/adapters/web",
-              "src/adapters/pi/ui/manager.ts",
-              "src/adapters/pi/commands",
               ".codewiki/kb/product",
               "skills/codewiki/loops/implementation.md",
               "skills/codewiki/loops/documentation.md",
@@ -49643,19 +50679,18 @@
               "src/adapters/pi/ui",
               "tests/smoke/package-smoke.test.mjs",
               "src/application/lint.ts",
+              "src/ui/web",
+              "src/adapters/pi/ui/manager.ts",
+              "src/adapters/pi/commands",
               "skills",
               "src",
               "src/index.ts",
               "package.json",
-              "src/adapters",
-              "src/application",
-              "skills/codewiki",
               "src/application/graph.ts",
               "src/application/builds.ts",
               "src/application/gateway",
               "skills/codewiki/loops",
               "src/adapters/pi",
-              ".codewiki/kb",
               ".codewiki/index_graph.json",
               "src/application/graph/rebuilder.ts",
               "src/application/state-builders.ts",
@@ -49663,39 +50698,36 @@
               "src/domain/shared/types.ts",
               "skills/codewiki/loops/validation.md",
               ".codewiki/validation",
+              "src/adapters",
+              "src/application",
+              "skills/codewiki",
               "src/domain",
               ".codewiki/builds",
               "src/adapters/pi/schemas.ts",
               "src/application/roadmap.ts",
               "src/application/task.ts",
-              "src/adapters/web/control-room.ts",
+              "src/ui/web/control-room.ts",
               "src/bootstrap.ts",
               "src/templates.ts",
               "src/application/prompt.ts",
+              ".codewiki/kb",
               ".codewiki/roadmap/queue.json",
               ".codewiki/roadmap"
             ],
-            "code_area": "src, .codewiki +3 more",
+            "code_area": ".codewiki, skills +3 more",
             "open_task_ids": [
-              "TASK-088",
               "TASK-090"
             ],
             "risky_spec_paths": [
-              ".codewiki/kb/product/uis/board.md",
-              ".codewiki/kb/product/uis/control-room.md",
-              ".codewiki/kb/product/uis/graph-navigation.md",
-              ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/alignment-model.md",
               ".codewiki/kb/system/audits.md",
-              ".codewiki/kb/system/control-room-ui.md",
-              ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/validation-gateway.md"
             ],
             "stats": {
               "total_specs": 33,
-              "aligned_specs": 23,
-              "tracked_specs": 10,
+              "aligned_specs": 29,
+              "tracked_specs": 4,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -49710,18 +50742,18 @@
       },
       "resume": {
         "source": "task",
-        "task_id": "TASK-088",
+        "task_id": "TASK-090",
         "lane_id": "",
-        "heading": "TASK-088 — Move web UI out of adapter layer",
-        "command": "/wiki-resume TASK-088",
-        "reason": "Resume roadmap task (in_progress).",
-        "status": "in_progress",
-        "verification": "npm run typecheck",
+        "heading": "TASK-090 — Codify alignment drift fixture matrix",
+        "command": "/wiki-resume TASK-090",
+        "reason": "Resume roadmap task (todo).",
+        "status": "todo",
+        "verification": "node tests/smoke/alignment-drift-fixtures.test.mjs",
         "evidence": "No closure evidence recorded yet.",
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T21:16:46Z",
+        "generated_at": "2026-05-16T21:32:09Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
@@ -49744,127 +50776,6 @@
       },
       "wiki": {
         "rows": [
-          {
-            "path": ".codewiki/kb/product/uis/board.md",
-            "title": "Board UI",
-            "summary": "Product expectations for visual roadmap work, gated agency, approvals, and next-action visibility.",
-            "drift_status": "tracked",
-            "code_paths": [
-              "src/adapters/web",
-              "src/adapters/pi/ui/manager.ts"
-            ],
-            "code_area": "src +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-088",
-              "TASK-003",
-              "TASK-006",
-              "TASK-007"
-            ],
-            "primary_task": {
-              "id": "TASK-088",
-              "status": "in_progress",
-              "title": "Move web UI out of adapter layer"
-            },
-            "revision": {
-              "digest": "83acbd05a268f20c463cbb658a7c3e1d57348aaf031d35ad09f17c596670161b",
-              "basis": "source_content"
-            },
-            "note": "tracked by TASK-088"
-          },
-          {
-            "path": ".codewiki/kb/product/uis/control-room.md",
-            "title": "CodeWiki UI",
-            "summary": "Product expectations for the simplified ASCII-like second-screen CodeWiki UI.",
-            "drift_status": "tracked",
-            "code_paths": [
-              "src/adapters/web",
-              "src/adapters/pi/commands"
-            ],
-            "code_area": "src +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-088"
-            ],
-            "primary_task": {
-              "id": "TASK-088",
-              "status": "in_progress",
-              "title": "Move web UI out of adapter layer"
-            },
-            "revision": {
-              "digest": "62f8330384b8093afab6ba06bb838f886d408b7c01890a8785ac2122b2fe006c",
-              "basis": "source_content"
-            },
-            "note": "tracked by TASK-088"
-          },
-          {
-            "path": ".codewiki/kb/product/uis/graph-navigation.md",
-            "title": "Map Navigation UI",
-            "summary": "Product expectations for visual Map navigation over graph-backed CodeWiki relationships.",
-            "drift_status": "tracked",
-            "code_paths": [
-              "src/adapters/web",
-              "src/adapters/pi/ui/manager.ts"
-            ],
-            "code_area": "src +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-088"
-            ],
-            "primary_task": {
-              "id": "TASK-088",
-              "status": "in_progress",
-              "title": "Move web UI out of adapter layer"
-            },
-            "revision": {
-              "digest": "2400d06fe59bd86e96d1d646773353393a0949faccc0393b55840ac72ba4815d",
-              "basis": "source_content"
-            },
-            "note": "tracked by TASK-088"
-          },
-          {
-            "path": ".codewiki/kb/system/adapters.md",
-            "title": "Adapters",
-            "summary": "Harness and protocol translation boundary for Pi, CLI, MCP, Claude Code, Codex, or other integrations.",
-            "drift_status": "tracked",
-            "code_paths": [
-              "src/adapters",
-              "src/application",
-              "skills/codewiki"
-            ],
-            "code_area": "src, skills",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-088",
-              "TASK-034"
-            ],
-            "primary_task": {
-              "id": "TASK-088",
-              "status": "in_progress",
-              "title": "Move web UI out of adapter layer"
-            },
-            "revision": {
-              "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
-              "basis": "source_content"
-            },
-            "note": "tracked by TASK-088"
-          },
           {
             "path": ".codewiki/kb/system/alignment-model.md",
             "title": "Alignment Model",
@@ -49929,67 +50840,6 @@
               "basis": "source_content"
             },
             "note": "tracked by TASK-090"
-          },
-          {
-            "path": ".codewiki/kb/system/control-room-ui.md",
-            "title": "CodeWiki UI",
-            "summary": "Standalone local web UI and hosting surface for CodeWiki.",
-            "drift_status": "tracked",
-            "code_paths": [
-              "src/adapters/web",
-              "src/adapters/pi/commands",
-              "src/application"
-            ],
-            "code_area": "src +2 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-088"
-            ],
-            "primary_task": {
-              "id": "TASK-088",
-              "status": "in_progress",
-              "title": "Move web UI out of adapter layer"
-            },
-            "revision": {
-              "digest": "d0a19cac4190b8255bcf89f2c06db91d8bbc2a45b974e09cdf6750a7059c0e6e",
-              "basis": "source_content"
-            },
-            "note": "tracked by TASK-088"
-          },
-          {
-            "path": ".codewiki/kb/system/file-structure.md",
-            "title": "File Structure",
-            "summary": "Target knowledge-base and package file structure for CodeWiki.",
-            "drift_status": "tracked",
-            "code_paths": [
-              ".codewiki/kb",
-              "src",
-              "skills/codewiki"
-            ],
-            "code_area": ".codewiki, src +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-088",
-              "TASK-076"
-            ],
-            "primary_task": {
-              "id": "TASK-088",
-              "status": "in_progress",
-              "title": "Move web UI out of adapter layer"
-            },
-            "revision": {
-              "digest": "80c3ce71f0dcdacfd5c129d28547c6eeb56ecf5b9bdfc0543688696bfa6c602a",
-              "basis": "source_content"
-            },
-            "note": "tracked by TASK-088"
           },
           {
             "path": ".codewiki/kb/system/graph.md",
@@ -50253,12 +51103,43 @@
             "note": "no deterministic drift signals"
           },
           {
+            "path": ".codewiki/kb/product/uis/board.md",
+            "title": "Board UI",
+            "summary": "Product expectations for visual roadmap work, gated agency, approvals, and next-action visibility.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "src/ui/web",
+              "src/adapters/pi/ui/manager.ts"
+            ],
+            "code_area": "src +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-003",
+              "TASK-006",
+              "TASK-007"
+            ],
+            "primary_task": {
+              "id": "TASK-003",
+              "status": "done",
+              "title": "Keep roadmap as freshest delta log"
+            },
+            "revision": {
+              "digest": "83acbd05a268f20c463cbb658a7c3e1d57348aaf031d35ad09f17c596670161b",
+              "basis": "source_content"
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
             "path": ".codewiki/kb/product/uis/control-room-details.md",
             "title": "CodeWiki UI Details",
             "summary": "Detailed product expectations for CodeWiki UI interactions, source disclosure, visual style, and acceptance.",
             "drift_status": "aligned",
             "code_paths": [
-              "src/adapters/web",
+              "src/ui/web",
               "src/adapters/pi/commands"
             ],
             "code_area": "src +1 more",
@@ -50271,6 +51152,52 @@
             "primary_task": null,
             "revision": {
               "digest": "76df67f8f83563fa2b43452248199fed8094a25c32689e2d21c92ef1a5bd085e",
+              "basis": "source_content"
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".codewiki/kb/product/uis/control-room.md",
+            "title": "CodeWiki UI",
+            "summary": "Product expectations for the simplified ASCII-like second-screen CodeWiki UI.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "src/ui/web",
+              "src/adapters/pi/commands"
+            ],
+            "code_area": "src +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "62f8330384b8093afab6ba06bb838f886d408b7c01890a8785ac2122b2fe006c",
+              "basis": "source_content"
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".codewiki/kb/product/uis/graph-navigation.md",
+            "title": "Map Navigation UI",
+            "summary": "Product expectations for visual Map navigation over graph-backed CodeWiki relationships.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "src/ui/web",
+              "src/adapters/pi/ui/manager.ts"
+            ],
+            "code_area": "src +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "2400d06fe59bd86e96d1d646773353393a0949faccc0393b55840ac72ba4815d",
               "basis": "source_content"
             },
             "note": "no deterministic drift signals"
@@ -50398,6 +51325,36 @@
             "primary_task": null,
             "revision": {
               "digest": "77b79518df7afd80bcec491cd8ee2047ea29be1789ce5a747a6746e670558dd4",
+              "basis": "source_content"
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".codewiki/kb/system/adapters.md",
+            "title": "Adapters",
+            "summary": "Harness and protocol translation boundary for Pi, CLI, MCP, Claude Code, Codex, or other integrations.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "src/adapters",
+              "src/application",
+              "skills/codewiki"
+            ],
+            "code_area": "src, skills",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-034"
+            ],
+            "primary_task": {
+              "id": "TASK-034",
+              "status": "done",
+              "title": "Align CodeWiki skill package with compiler and API contracts"
+            },
+            "revision": {
+              "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
               "basis": "source_content"
             },
             "note": "no deterministic drift signals"
@@ -50560,7 +51517,7 @@
             "summary": "Detailed system expectations for CodeWiki UI Map, Sessions, Settings, source disclosure, styling, and security.",
             "drift_status": "aligned",
             "code_paths": [
-              "src/adapters/web",
+              "src/ui/web",
               "src/adapters/pi/commands"
             ],
             "code_area": "src +1 more",
@@ -50578,12 +51535,36 @@
             "note": "no deterministic drift signals"
           },
           {
+            "path": ".codewiki/kb/system/control-room-ui.md",
+            "title": "CodeWiki UI",
+            "summary": "Standalone local web UI and hosting surface for CodeWiki.",
+            "drift_status": "aligned",
+            "code_paths": [
+              "src/ui/web",
+              "src/adapters/pi/commands",
+              "src/application"
+            ],
+            "code_area": "src +2 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "d0a19cac4190b8255bcf89f2c06db91d8bbc2a45b974e09cdf6750a7059c0e6e",
+              "basis": "source_content"
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
             "path": ".codewiki/kb/system/diagrams/README.md",
             "title": "System Diagram Raw Data",
             "summary": "Agent-editable raw data contract for project diagrams rendered by CodeWiki UIs.",
             "drift_status": "aligned",
             "code_paths": [
-              "src/adapters/web/control-room.ts",
+              "src/ui/web/control-room.ts",
               "src/adapters/pi/ui/manager.ts"
             ],
             "code_area": "src +1 more",
@@ -50624,6 +51605,36 @@
             "primary_task": null,
             "revision": {
               "digest": "870ff3d651945f9403e105c0bc58c957fccc8843083846a06f87068ccee175a1",
+              "basis": "source_content"
+            },
+            "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".codewiki/kb/system/file-structure.md",
+            "title": "File Structure",
+            "summary": "Target knowledge-base and package file structure for CodeWiki.",
+            "drift_status": "aligned",
+            "code_paths": [
+              ".codewiki/kb",
+              "src",
+              "skills/codewiki"
+            ],
+            "code_area": ".codewiki, src +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-076"
+            ],
+            "primary_task": {
+              "id": "TASK-076",
+              "status": "done",
+              "title": "Restructure project filesystem and dogfood boundary"
+            },
+            "revision": {
+              "digest": "80c3ce71f0dcdacfd5c129d28547c6eeb56ecf5b9bdfc0543688696bfa6c602a",
               "basis": "source_content"
             },
             "note": "no deterministic drift signals"
@@ -50722,96 +51733,6 @@
             "id": "product",
             "label": "Product",
             "rows": [
-              {
-                "path": ".codewiki/kb/product/uis/board.md",
-                "title": "Board UI",
-                "summary": "Product expectations for visual roadmap work, gated agency, approvals, and next-action visibility.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  "src/adapters/web",
-                  "src/adapters/pi/ui/manager.ts"
-                ],
-                "code_area": "src +1 more",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-088",
-                  "TASK-003",
-                  "TASK-006",
-                  "TASK-007"
-                ],
-                "primary_task": {
-                  "id": "TASK-088",
-                  "status": "in_progress",
-                  "title": "Move web UI out of adapter layer"
-                },
-                "revision": {
-                  "digest": "83acbd05a268f20c463cbb658a7c3e1d57348aaf031d35ad09f17c596670161b",
-                  "basis": "source_content"
-                },
-                "note": "tracked by TASK-088"
-              },
-              {
-                "path": ".codewiki/kb/product/uis/control-room.md",
-                "title": "CodeWiki UI",
-                "summary": "Product expectations for the simplified ASCII-like second-screen CodeWiki UI.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  "src/adapters/web",
-                  "src/adapters/pi/commands"
-                ],
-                "code_area": "src +1 more",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-088"
-                ],
-                "primary_task": {
-                  "id": "TASK-088",
-                  "status": "in_progress",
-                  "title": "Move web UI out of adapter layer"
-                },
-                "revision": {
-                  "digest": "62f8330384b8093afab6ba06bb838f886d408b7c01890a8785ac2122b2fe006c",
-                  "basis": "source_content"
-                },
-                "note": "tracked by TASK-088"
-              },
-              {
-                "path": ".codewiki/kb/product/uis/graph-navigation.md",
-                "title": "Map Navigation UI",
-                "summary": "Product expectations for visual Map navigation over graph-backed CodeWiki relationships.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  "src/adapters/web",
-                  "src/adapters/pi/ui/manager.ts"
-                ],
-                "code_area": "src +1 more",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-088"
-                ],
-                "primary_task": {
-                  "id": "TASK-088",
-                  "status": "in_progress",
-                  "title": "Move web UI out of adapter layer"
-                },
-                "revision": {
-                  "digest": "2400d06fe59bd86e96d1d646773353393a0949faccc0393b55840ac72ba4815d",
-                  "basis": "source_content"
-                },
-                "note": "tracked by TASK-088"
-              },
               {
                 "path": ".codewiki/kb/product/overview.md",
                 "title": "Product",
@@ -50967,12 +51888,43 @@
                 "note": "no deterministic drift signals"
               },
               {
+                "path": ".codewiki/kb/product/uis/board.md",
+                "title": "Board UI",
+                "summary": "Product expectations for visual roadmap work, gated agency, approvals, and next-action visibility.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  "src/ui/web",
+                  "src/adapters/pi/ui/manager.ts"
+                ],
+                "code_area": "src +1 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [
+                  "TASK-003",
+                  "TASK-006",
+                  "TASK-007"
+                ],
+                "primary_task": {
+                  "id": "TASK-003",
+                  "status": "done",
+                  "title": "Keep roadmap as freshest delta log"
+                },
+                "revision": {
+                  "digest": "83acbd05a268f20c463cbb658a7c3e1d57348aaf031d35ad09f17c596670161b",
+                  "basis": "source_content"
+                },
+                "note": "no deterministic drift signals"
+              },
+              {
                 "path": ".codewiki/kb/product/uis/control-room-details.md",
                 "title": "CodeWiki UI Details",
                 "summary": "Detailed product expectations for CodeWiki UI interactions, source disclosure, visual style, and acceptance.",
                 "drift_status": "aligned",
                 "code_paths": [
-                  "src/adapters/web",
+                  "src/ui/web",
                   "src/adapters/pi/commands"
                 ],
                 "code_area": "src +1 more",
@@ -50985,6 +51937,52 @@
                 "primary_task": null,
                 "revision": {
                   "digest": "76df67f8f83563fa2b43452248199fed8094a25c32689e2d21c92ef1a5bd085e",
+                  "basis": "source_content"
+                },
+                "note": "no deterministic drift signals"
+              },
+              {
+                "path": ".codewiki/kb/product/uis/control-room.md",
+                "title": "CodeWiki UI",
+                "summary": "Product expectations for the simplified ASCII-like second-screen CodeWiki UI.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  "src/ui/web",
+                  "src/adapters/pi/commands"
+                ],
+                "code_area": "src +1 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [],
+                "primary_task": null,
+                "revision": {
+                  "digest": "62f8330384b8093afab6ba06bb838f886d408b7c01890a8785ac2122b2fe006c",
+                  "basis": "source_content"
+                },
+                "note": "no deterministic drift signals"
+              },
+              {
+                "path": ".codewiki/kb/product/uis/graph-navigation.md",
+                "title": "Map Navigation UI",
+                "summary": "Product expectations for visual Map navigation over graph-backed CodeWiki relationships.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  "src/ui/web",
+                  "src/adapters/pi/ui/manager.ts"
+                ],
+                "code_area": "src +1 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [],
+                "primary_task": null,
+                "revision": {
+                  "digest": "2400d06fe59bd86e96d1d646773353393a0949faccc0393b55840ac72ba4815d",
                   "basis": "source_content"
                 },
                 "note": "no deterministic drift signals"
@@ -51123,37 +52121,6 @@
             "label": "System",
             "rows": [
               {
-                "path": ".codewiki/kb/system/adapters.md",
-                "title": "Adapters",
-                "summary": "Harness and protocol translation boundary for Pi, CLI, MCP, Claude Code, Codex, or other integrations.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  "src/adapters",
-                  "src/application",
-                  "skills/codewiki"
-                ],
-                "code_area": "src, skills",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-088",
-                  "TASK-034"
-                ],
-                "primary_task": {
-                  "id": "TASK-088",
-                  "status": "in_progress",
-                  "title": "Move web UI out of adapter layer"
-                },
-                "revision": {
-                  "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
-                  "basis": "source_content"
-                },
-                "note": "tracked by TASK-088"
-              },
-              {
                 "path": ".codewiki/kb/system/alignment-model.md",
                 "title": "Alignment Model",
                 "summary": "Core CodeWiki model for context-driven development alignment across intent, knowledge, roadmap, tests, code, validation, commits, and publication.",
@@ -51217,67 +52184,6 @@
                   "basis": "source_content"
                 },
                 "note": "tracked by TASK-090"
-              },
-              {
-                "path": ".codewiki/kb/system/control-room-ui.md",
-                "title": "CodeWiki UI",
-                "summary": "Standalone local web UI and hosting surface for CodeWiki.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  "src/adapters/web",
-                  "src/adapters/pi/commands",
-                  "src/application"
-                ],
-                "code_area": "src +2 more",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-088"
-                ],
-                "primary_task": {
-                  "id": "TASK-088",
-                  "status": "in_progress",
-                  "title": "Move web UI out of adapter layer"
-                },
-                "revision": {
-                  "digest": "d0a19cac4190b8255bcf89f2c06db91d8bbc2a45b974e09cdf6750a7059c0e6e",
-                  "basis": "source_content"
-                },
-                "note": "tracked by TASK-088"
-              },
-              {
-                "path": ".codewiki/kb/system/file-structure.md",
-                "title": "File Structure",
-                "summary": "Target knowledge-base and package file structure for CodeWiki.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  ".codewiki/kb",
-                  "src",
-                  "skills/codewiki"
-                ],
-                "code_area": ".codewiki, src +1 more",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-088",
-                  "TASK-076"
-                ],
-                "primary_task": {
-                  "id": "TASK-088",
-                  "status": "in_progress",
-                  "title": "Move web UI out of adapter layer"
-                },
-                "revision": {
-                  "digest": "80c3ce71f0dcdacfd5c129d28547c6eeb56ecf5b9bdfc0543688696bfa6c602a",
-                  "basis": "source_content"
-                },
-                "note": "tracked by TASK-088"
               },
               {
                 "path": ".codewiki/kb/system/graph.md",
@@ -51382,6 +52288,36 @@
                 },
                 "revision": {
                   "digest": "b5051fbe8f0404be1c939f3d3786c73c575d42f322f9c828d7e5d933a2af4736",
+                  "basis": "source_content"
+                },
+                "note": "no deterministic drift signals"
+              },
+              {
+                "path": ".codewiki/kb/system/adapters.md",
+                "title": "Adapters",
+                "summary": "Harness and protocol translation boundary for Pi, CLI, MCP, Claude Code, Codex, or other integrations.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  "src/adapters",
+                  "src/application",
+                  "skills/codewiki"
+                ],
+                "code_area": "src, skills",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [
+                  "TASK-034"
+                ],
+                "primary_task": {
+                  "id": "TASK-034",
+                  "status": "done",
+                  "title": "Align CodeWiki skill package with compiler and API contracts"
+                },
+                "revision": {
+                  "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
                   "basis": "source_content"
                 },
                 "note": "no deterministic drift signals"
@@ -51544,7 +52480,7 @@
                 "summary": "Detailed system expectations for CodeWiki UI Map, Sessions, Settings, source disclosure, styling, and security.",
                 "drift_status": "aligned",
                 "code_paths": [
-                  "src/adapters/web",
+                  "src/ui/web",
                   "src/adapters/pi/commands"
                 ],
                 "code_area": "src +1 more",
@@ -51562,12 +52498,36 @@
                 "note": "no deterministic drift signals"
               },
               {
+                "path": ".codewiki/kb/system/control-room-ui.md",
+                "title": "CodeWiki UI",
+                "summary": "Standalone local web UI and hosting surface for CodeWiki.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  "src/ui/web",
+                  "src/adapters/pi/commands",
+                  "src/application"
+                ],
+                "code_area": "src +2 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [],
+                "primary_task": null,
+                "revision": {
+                  "digest": "d0a19cac4190b8255bcf89f2c06db91d8bbc2a45b974e09cdf6750a7059c0e6e",
+                  "basis": "source_content"
+                },
+                "note": "no deterministic drift signals"
+              },
+              {
                 "path": ".codewiki/kb/system/diagrams/README.md",
                 "title": "System Diagram Raw Data",
                 "summary": "Agent-editable raw data contract for project diagrams rendered by CodeWiki UIs.",
                 "drift_status": "aligned",
                 "code_paths": [
-                  "src/adapters/web/control-room.ts",
+                  "src/ui/web/control-room.ts",
                   "src/adapters/pi/ui/manager.ts"
                 ],
                 "code_area": "src +1 more",
@@ -51608,6 +52568,36 @@
                 "primary_task": null,
                 "revision": {
                   "digest": "870ff3d651945f9403e105c0bc58c957fccc8843083846a06f87068ccee175a1",
+                  "basis": "source_content"
+                },
+                "note": "no deterministic drift signals"
+              },
+              {
+                "path": ".codewiki/kb/system/file-structure.md",
+                "title": "File Structure",
+                "summary": "Target knowledge-base and package file structure for CodeWiki.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  ".codewiki/kb",
+                  "src",
+                  "skills/codewiki"
+                ],
+                "code_area": ".codewiki, src +1 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [
+                  "TASK-076"
+                ],
+                "primary_task": {
+                  "id": "TASK-076",
+                  "status": "done",
+                  "title": "Restructure project filesystem and dogfood boundary"
+                },
+                "revision": {
+                  "digest": "80c3ce71f0dcdacfd5c129d28547c6eeb56ecf5b9bdfc0543688696bfa6c602a",
                   "basis": "source_content"
                 },
                 "note": "no deterministic drift signals"
@@ -51710,12 +52700,10 @@
         ]
       },
       "roadmap": {
-        "focused_task_id": "TASK-088",
+        "focused_task_id": "",
         "blocked_task_ids": [],
-        "in_progress_task_ids": [
-          "TASK-088"
-        ],
-        "next_task_id": "TASK-088",
+        "in_progress_task_ids": [],
+        "next_task_id": "TASK-090",
         "sprint_ids": [
           "SPRINT-001",
           "SPRINT-002",
@@ -51861,9 +52849,7 @@
           {
             "id": "implement",
             "label": "Implement",
-            "task_ids": [
-              "TASK-088"
-            ]
+            "task_ids": []
           },
           {
             "id": "done",
