@@ -1,10 +1,10 @@
 {
   "id": "TASK-077",
   "title": "Prevent cross-layer alignment drift",
-  "status": "in_progress",
+  "status": "cancelled",
   "priority": "critical",
   "kind": "architecture",
-  "summary": "Umbrella sprint for hardening CodeWiki alignment so dogfood state, product source, docs, roadmap, tests, code, validation, commits, and publication cannot drift silently.",
+  "summary": "Superseded by SPRINT-003: TASK-077 was a container/umbrella task, not self-contained executable work.",
   "spec_paths": [
     ".codewiki/kb/system/alignment-model.md",
     ".codewiki/kb/system/audits.md",
@@ -80,5 +80,5 @@
     "closure": "All sprint child tasks are closed or explicitly deferred with accepted feedback and graph/gateway/audit checks pass.\nRefinement: Source, docs, tests, builds, and validation accept change_type canonical metadata with change_class compatibility and no build-per-file tax."
   },
   "created": "2026-05-15",
-  "updated": "2026-05-16T10:14:32Z"
+  "updated": "2026-05-16T10:33:01Z"
 }

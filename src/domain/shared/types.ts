@@ -365,6 +365,11 @@ export interface RoadmapStateTaskSummary {
 	code_paths?: string[];
 	labels?: string[];
 	goal?: RoadmapTaskGoal;
+	boundary?: {
+		executable: boolean;
+		container: boolean;
+		reasons: string[];
+	};
 	context_path?: string;
 	loop?: {
 		updated_at: string;
@@ -394,8 +399,12 @@ export interface RoadmapStateFile {
 	views: {
 		ordered_task_ids: string[];
 		open_task_ids: string[];
+		executable_open_task_ids?: string[];
+		container_task_ids?: string[];
 		in_progress_task_ids: string[];
+		executable_in_progress_task_ids?: string[];
 		todo_task_ids: string[];
+		executable_todo_task_ids?: string[];
 		blocked_task_ids: string[];
 		done_task_ids: string[];
 		cancelled_task_ids: string[];

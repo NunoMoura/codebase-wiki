@@ -27,6 +27,7 @@ import {
     resolveRoadmapTask,
     isClosedRoadmapStatus,
 } from "../../../application/roadmap.ts";
+import { assessRoadmapTaskBoundary } from "../../../application/task-boundary.ts";
 import { currentTaskLink, piSessionPorts } from "../session.ts";
 import { recordSessionTaskAction } from "../../../application/session.ts";
 import {
@@ -271,6 +272,10 @@ export function resolveImplementationTask(
 		const requestedTask = resolveRoadmapTask(roadmap, requestedTaskId);
 		if (!requestedTask) throw new Error(`Roadmap task not found: ${requestedTaskId}`);
 		if (isClosedRoadmapStatus(requestedTask.status)) throw new Error(`Roadmap task already closed: ${requestedTask.id}`);
+		const requestedBoundary = assessRoadmapTaskBoundary(requestedTask);
+		if (!requestedBoundary.executable) {
+			throw new Error(`Roadmap task ${requestedTask.id} is not executable work. Use a sprint for grouping. ${requestedBoundary.reasons.join("; ")}`);
+		}
 		const artifactStatuses = artifactStatusesForScopes(taskArtifactScopes(requestedTask), artifactState, sessionId, "write");
 		if (hasBlockingArtifactStatus(artifactStatuses)) {
 			throw new Error(`Roadmap task ${requestedTask.id} cannot start yet. ${formatBlockingArtifactStatuses(artifactStatuses)}`);
@@ -282,8 +287,8 @@ export function resolveImplementationTask(
 	const skipped: string[] = [];
 	for (const candidate of candidates) {
 		const artifactStatuses = artifactStatusesForScopes(taskArtifactScopes(candidate.task), artifactState, sessionId, "write");
-		if (candidate.umbrella) {
-			skipped.push(`${candidate.task.id}: umbrella coordination task`);
+		if (!candidate.boundary.executable) {
+			skipped.push(`${candidate.task.id}: non-executable container task (${candidate.boundary.reasons.join("; ")})`);
 			continue;
 		}
 		if (hasBlockingArtifactStatus(artifactStatuses)) {
@@ -294,6 +299,11 @@ export function resolveImplementationTask(
 	}
 
 	for (const task of ordered.filter((item) => !isClosedRoadmapStatus(item.status))) {
+		const boundary = assessRoadmapTaskBoundary(task);
+		if (!boundary.executable) {
+			skipped.push(`${task.id}: non-executable container task (${boundary.reasons.join("; ")})`);
+			continue;
+		}
 		const artifactStatuses = artifactStatusesForScopes(taskArtifactScopes(task), artifactState, sessionId, "write");
 		if (!hasBlockingArtifactStatus(artifactStatuses)) {
 			return { task, source: "roadmap-order", artifact_statuses: artifactStatuses, skipped };
@@ -321,24 +331,20 @@ function resumeCandidates(
 	roadmap: RoadmapFile,
 	activeLink: TaskSessionLinkRecord | null,
 	persistedFocusTaskId: string | null,
-): Array<{ task: RoadmapTaskRecord; source: ResumeSelection["source"]; umbrella: boolean }> {
+): Array<{ task: RoadmapTaskRecord; source: ResumeSelection["source"]; boundary: ReturnType<typeof assessRoadmapTaskBoundary> }> {
 	const ordered = roadmap.order
 		.map((taskId) => roadmap.tasks[taskId])
 		.filter((task): task is RoadmapTaskRecord => Boolean(task) && !isClosedRoadmapStatus(task.status));
-	const candidates: Array<{ task: RoadmapTaskRecord; source: ResumeSelection["source"]; umbrella: boolean }> = [];
+	const candidates: Array<{ task: RoadmapTaskRecord; source: ResumeSelection["source"]; boundary: ReturnType<typeof assessRoadmapTaskBoundary> }> = [];
 	const add = (task: RoadmapTaskRecord | null, source: ResumeSelection["source"]) => {
 		if (!task || isClosedRoadmapStatus(task.status)) return;
 		if (candidates.some((item) => item.task.id === task.id)) return;
-		candidates.push({ task, source, umbrella: isUmbrellaTask(task) });
+		candidates.push({ task, source, boundary: assessRoadmapTaskBoundary(task) });
 	};
 	if (activeLink) add(resolveRoadmapTask(roadmap, activeLink.taskId), "session-focus");
 	if (persistedFocusTaskId) add(resolveRoadmapTask(roadmap, persistedFocusTaskId), "persisted-focus");
 	for (const task of ordered) add(task, "roadmap-order");
 	return candidates;
-}
-
-function isUmbrellaTask(task: RoadmapTaskRecord): boolean {
-	return task.labels.includes("umbrella") || /\bumbrella\b/i.test(`${task.title} ${task.summary} ${task.goal?.outcome || ""}`);
 }
 
 function taskArtifactScopes(task: RoadmapTaskRecord): ChangeClaimScope[] {

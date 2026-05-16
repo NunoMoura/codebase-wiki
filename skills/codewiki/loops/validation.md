@@ -32,15 +32,28 @@ Use the smallest useful context:
 - unresolved issues,
 - isolation policy and available fresh-context, clean-worktree, and checked-SHA evidence.
 
+## Roadmap task boundary gate
+
+For planning, implementation, and task-close validation, first judge whether the roadmap item is executable work:
+
+- A task must be self-contained, with clear boundaries, direct acceptance criteria, and independent validation evidence.
+- A task must not exist only to group, coordinate, sequence, or close other tasks.
+- A sprint may cluster related tasks and own aggregate outcome/priority/sequencing; a task may not duplicate that role.
+- Acceptance criteria that mostly say other `TASK-###` items are closed, done, or validated are container-task evidence.
+- Shared file paths are allowed only when ownership remains non-overlapping and each task can pass independently.
+
+Return `block` when a task is actually a sprint/umbrella/container or when its boundaries overlap sibling tasks without explicit dependency/split rationale.
+
 ## Workflow
 
 1. Read the compact brief first.
 2. Inspect only enough source to validate claims.
 3. Validate the submitted build against its policy, change type, accepted upstream build refs, source refs, requirement ids, evidence mapping, and isolation requirements.
 4. Run or review relevant checks when allowed.
-5. Judge acceptance criteria one by one.
-6. Judge non-goals and scope.
-7. Return deterministic JSON only.
+5. Judge task self-containment and sibling-task boundary overlap before accepting implementation evidence.
+6. Judge acceptance criteria one by one.
+7. Judge non-goals and scope.
+8. Return deterministic JSON only.
 
 ## Output
 
@@ -63,7 +76,7 @@ Use the smallest useful context:
 }
 ```
 
-`fail` means requirements are not satisfied. `block` means validation cannot safely decide because context, checks, schema, source refs, accepted build traceability, policy, isolation evidence, or task meaning is insufficient. For implementation, task-close, publication, publish, or release profiles, missing `fresh_context=true`, `clean=true`, checked SHA evidence, or required semantic build traceability must block rather than pass. The gateway evaluates builds; it does not invent requirements or mutate canonical truth.
+`fail` means requirements are not satisfied. `block` means validation cannot safely decide because context, checks, schema, source refs, accepted build traceability, policy, isolation evidence, task meaning, or task/sprint boundary integrity is insufficient. For implementation, task-close, publication, publish, or release profiles, missing `fresh_context=true`, `clean=true`, checked SHA evidence, required semantic build traceability, or a container/umbrella task posing as executable work must block rather than pass. The gateway evaluates builds; it does not invent requirements or mutate canonical truth.
 
 Passing validation does not require durable storage by default. Failed, blocked, or policy-required reports should be stored under `.codewiki/validation/**` by the parent process.
 

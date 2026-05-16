@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import { resolveImplementationTask } from "../../src/adapters/pi/commands/resume.ts";
 
-function task(id, status, labels = [], codePaths = []) {
+function task(id, status, labels = [], codePaths = [], acceptance = []) {
 	return {
 		id,
 		title: `${id} title`,
@@ -14,7 +14,7 @@ function task(id, status, labels = [], codePaths = []) {
 		code_paths: codePaths,
 		research_ids: [],
 		labels,
-		goal: { outcome: "", acceptance: [], non_goals: [], verification: [] },
+		goal: { outcome: "", acceptance, non_goals: [], verification: [] },
 		delta: { desired: "", current: "", closure: "" },
 		created: "2026-05-16T00:00:00Z",
 		updated: "2026-05-16T00:00:00Z",
@@ -45,13 +45,24 @@ function state(claims = []) {
 }
 
 const umbrella = task("TASK-077", "in_progress", ["umbrella"], ["src/application/graph.ts"]);
+const delegatedContainer = task("TASK-082", "todo", [], ["src/application/roadmap.ts"], [
+	"TASK-078 is closed with passing checks and evidence.",
+	"TASK-079 is closed with passing checks and evidence.",
+]);
 const firstChild = task("TASK-083", "todo", [], ["skills/codewiki"]);
 const secondChild = task("TASK-085", "todo", [], ["tests/fixtures"]);
-const board = roadmap([umbrella, firstChild, secondChild]);
+const board = roadmap([umbrella, delegatedContainer, firstChild, secondChild]);
 
 const selected = resolveImplementationTask(board, null, null, "TASK-077", state(), "session-helper");
-assert.equal(selected.task?.id, "TASK-083", "implicit /wiki-resume should skip persisted umbrella focus");
-assert.ok(selected.skipped.some((item) => /TASK-077: umbrella/.test(item)), "selection should explain skipped umbrella");
+assert.equal(selected.task?.id, "TASK-083", "implicit /wiki-resume should skip persisted container focus and delegated container tasks");
+assert.ok(selected.skipped.some((item) => /TASK-077: non-executable container task/.test(item)), "selection should explain skipped container task");
+assert.ok(selected.skipped.some((item) => /TASK-082: non-executable container task/.test(item)), "selection should explain delegated task-closure criteria");
+
+assert.throws(
+	() => resolveImplementationTask(board, null, "TASK-077", null, state(), "session-helper"),
+	/not executable work/i,
+	"explicit /wiki-resume TASK-### should reject container tasks",
+);
 
 const explicit = resolveImplementationTask(board, null, "TASK-083", "TASK-077", state(), "session-helper");
 assert.equal(explicit.task?.id, "TASK-083", "explicit /wiki-resume TASK-### should honor requested child task");

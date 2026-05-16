@@ -62,6 +62,16 @@ A sprint should record:
 
 Future sprints can stay outcome-level. The active sprint should be decomposed into executable roadmap tasks. The canonical roadmap JSON supports a top-level `sprints` map; generated graph and roadmap state expose sprint ids, active sprint ids, task membership, scope, budget, and gates.
 
+## Task boundary contract
+
+A roadmap task is an actionable, self-contained unit of work. It must have clear boundaries, a direct outcome, acceptance criteria that can be validated from its own evidence, and verification steps that do not require another task to close first.
+
+A task must not exist only to group, coordinate, sequence, or close other tasks. Umbrellas, epics, parent tasks, and sprint-level coordination belong in sprint metadata or planning builds, not in `TASK-###` records. Acceptance criteria that mostly say other `TASK-###` items are closed, done, or validated indicate a container task and should block planning, implementation, or task-close validation.
+
+Task boundaries forbid overlapping ownership, not shared files. Two tasks may touch the same file when their outcomes, acceptance criteria, and validation evidence remain independent and conflict-free. If one task must own another task's acceptance, split or re-plan the work through the sprint/planning layer.
+
+Resume and agency routing should select executable tasks only. Non-executable container tasks should be rejected at creation/update, skipped by next-action selection, and blocked by validation if found in active roadmap state.
+
 ## Roadmap item contents
 
 A roadmap work item should record:

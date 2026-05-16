@@ -3,6 +3,7 @@ import { resolve, relative } from "node:path";
 import type { LintIssue, LintReport, RoadmapTaskRecord, WikiProject } from "../domain/shared/types.ts";
 import { extractLinks } from "./knowledge/doc-parser.ts";
 import type { ParsedDoc } from "./knowledge/doc-parser.ts";
+import { assessRoadmapTaskBoundary } from "./task-boundary.ts";
 
 const DEFAULT_REQUIRED_FIELDS = ["id", "title", "state", "summary", "owners", "updated"];
 const FORBIDDEN_HEADINGS = [
@@ -225,6 +226,11 @@ export function lintRoadmapEntries(repoRoot: string, project: WikiProject, entri
 
 		if (isOpenRoadmapStatus(status) && specPaths.length === 0 && codePaths.length === 0) {
 			issues.push(createIssue("warning", "roadmap-unscoped", sourcePath, `${entryId} should reference at least one spec_paths or code_paths entry`));
+		}
+
+		const boundary = assessRoadmapTaskBoundary(entry);
+		if (isOpenRoadmapStatus(status) && !boundary.executable) {
+			issues.push(createIssue("error", "roadmap-container-task", sourcePath, `${entryId} is not self-contained executable work; use a sprint for grouping. ${boundary.reasons.join("; ")}`));
 		}
 
 		for (const specPath of specPaths) {

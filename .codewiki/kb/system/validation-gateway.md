@@ -88,7 +88,7 @@ Requirement ids and evidence mapping should make this trace explicit. The gatewa
 | --- | --- |
 | `pass` | The build satisfies its policy and can be consumed by the next loop or publication step. |
 | `fail` | A requirement, criterion, alignment assertion, or evidence mapping is proven wrong or incomplete. |
-| `block` | The gateway cannot safely decide because context, checks, policy, source refs, or intent is insufficient. |
+| `block` | The gateway cannot safely decide because context, checks, policy, source refs, intent, or task boundary integrity is insufficient. |
 
 A failed or blocked verdict should name the failed criteria or missing context. The producing loop then creates a superseding cycle build after revision.
 
@@ -113,6 +113,8 @@ Persistent hot reports live under `.codewiki/validation/**`. Pass reports are ho
 - The gateway report is an attestation; commits, tree SHAs, package digests, and canonical files prove content.
 - The gateway does not replace mechanical checks or required audit profiles.
 - The gateway does not invent requirements or plan implementation work.
+- Planning, implementation, and task-close validation must block when a `TASK-###` item is actually an umbrella/container/epic, mainly groups other tasks, or has acceptance criteria that mostly close other tasks.
+- Shared files across tasks are allowed only when ownership and acceptance evidence remain independent; overlapping ownership without an explicit dependency/split rationale blocks validation.
 - Semantic validation should run in a fresh, bounded context when independence matters.
 - Implementation, task-close, publication, publish, and release validation profiles require fresh-context isolation evidence before they can pass.
 - The gateway may recommend next routing: feedback, documentation, planning, implementation, validation, observe, or block.

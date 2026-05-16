@@ -63,6 +63,8 @@ Internal agent tools:
 
 - `.codewiki/kb/**` is canonical intended knowledge.
 - `.codewiki/roadmap/queue.json` is canonical active work truth: task records, ordering, and queue state. `.codewiki/roadmap/tasks/**` is generated task-view/context output rebuilt from queue truth and must not be hand-edited.
+- A roadmap task is a self-contained executable unit of work with clear boundaries, direct acceptance criteria, and independent validation evidence. It must not exist only to group, coordinate, sequence, or close other tasks. A sprint is the grouping unit for related tasks and may own aggregate outcome, priority, and sequencing.
+- Task boundaries forbid overlapping ownership, not shared file paths. Two tasks may touch the same file only when their outcomes and acceptance criteria remain independent and conflict-free.
 - `.codewiki/session/queue.json` is runtime coordination state for artifact status: available/in-use/waiting/conflict/stale artifacts, holders, waiters, heartbeats, TTLs, and compatibility records for legacy claim callers.
 - Compiler builds are compact transient handoff artifacts: `feedback_build`, `documentation_build`, `planning_build`, and `implementation_build`. They move through lifecycle states (`proposed`, `accepted`, `applied`, `validated`, `archived`) and can be purged after their lower-layer changes validate.
 - Validation gateways check horizontal and vertical alignment at handoffs.
@@ -85,7 +87,7 @@ feedback compiler -> feedback_build
 
 Use `codewiki_build` after accepted feedback-loop decisions so the handoff becomes a real `feedback_build` artifact, not chat-only intent. Use `codewiki_build kind='documentation'` to record knowledge/roadmap changes, and `codewiki_build kind='implementation'` to record test/code/check evidence.
 
-Use the feedback compiler as escalation whenever intent, requirements, risk, or roadmap item meaning is ambiguous.
+Use the feedback compiler as escalation whenever intent, requirements, risk, or roadmap item meaning is ambiguous. If intent asks for grouping, clustering, sprint coordination, or umbrella work, update/create a sprint or planning handoff instead of creating a task.
 
 ## Agency policy
 

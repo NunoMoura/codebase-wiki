@@ -24,6 +24,7 @@ import {
 } from "../domain/shared/types.ts";
 import { unique, nowIso, formatError } from "../domain/shared/utils.ts";
 import { withLockedPaths } from "../mutation-queue.ts";
+import { assertExecutableRoadmapTask, assessRoadmapTaskBoundary } from "./task-boundary.ts";
 import {
 	rebuildTargetPaths,
 	runRebuildUnlocked,
@@ -242,6 +243,10 @@ async function pathExists(path: string): Promise<boolean> {
 export async function runTaskClosePreflight(project: WikiProject, task: RoadmapTaskRecord, closeEvidence?: any): Promise<TaskVerifierResult> {
 	const checks = ["task-close deterministic preflight"];
 	const issues: TaskVerifierResult["issues"] = [];
+	const boundary = assessRoadmapTaskBoundary(task);
+	if (!boundary.executable) {
+		issues.push({ severity: "high", summary: `Task is not self-contained executable work: ${boundary.reasons.join("; ")}` });
+	}
 	if (!task.goal?.outcome) issues.push({ severity: "high", summary: "Task goal.outcome missing" });
 	if (!task.goal?.acceptance?.length) issues.push({ severity: "high", summary: "Task goal.acceptance missing" });
 	if (!task.goal?.verification?.length) issues.push({ severity: "medium", summary: "Task goal.verification missing" });
@@ -708,6 +713,7 @@ export async function appendRoadmapTasks(
 				const existing = resolveRoadmapTask(roadmap, input.id ?? "");
 				if (existing) {
 					const refined = refineRoadmapTaskFromInput(existing, input, ["explicit_id"]);
+					assertExecutableRoadmapTask(existing, "roadmap task reuse");
 					results.reused.push(existing);
 					if (refined) results.refined.push(existing);
 					if (refined) {
@@ -731,6 +737,7 @@ export async function appendRoadmapTasks(
 				const related = findRelatedRoadmapTask(roadmap, input);
 				if (related) {
 					const refined = refineRoadmapTaskFromInput(related.task, input, related.reasons);
+					assertExecutableRoadmapTask(related.task, "roadmap task reuse");
 					results.reused.push(related.task);
 					if (refined) results.refined.push(related.task);
 					if (refined) {
@@ -775,6 +782,7 @@ export async function appendRoadmapTasks(
 					updated: todayIso(),
 				};
 
+				assertExecutableRoadmapTask(task, "roadmap task creation");
 				roadmap.tasks[id] = task;
 				roadmap.order.push(id);
 				results.created.push(task);
@@ -904,6 +912,7 @@ export async function updateRoadmapTask(
 			}
 
 			if (changed) {
+				assertExecutableRoadmapTask(task, "roadmap task update");
 				task.updated = nowIso();
 				roadmap.updated = nowIso();
 				await writeRoadmapFile(roadmapPath, roadmap);
@@ -965,6 +974,7 @@ export async function updateTaskLoop(
 				action === "block" ? "blocked" : "in_progress";
 
 			existing.status = nextStatus;
+			assertExecutableRoadmapTask(existing, "task evidence update");
 			existing.updated = nowIso();
 			roadmap.updated = nowIso();
 			await writeRoadmapFile(roadmapPath, roadmap);

@@ -5,6 +5,7 @@ import type { ChangeClaimsFile, GraphFile, LintReport, RoadmapStateFile, Roadmap
 import type { ParsedDoc } from "./knowledge/doc-parser.ts";
 import { nowIso } from "../domain/shared/utils.ts";
 import { buildChangeClaimState } from "./claims.ts";
+import { assessRoadmapTaskBoundary } from "./task-boundary.ts";
 
 export function sha256Text(text: string): string {
 	return createHash("sha256").update(text).digest("hex");
@@ -136,6 +137,7 @@ export function buildRoadmapState(
 		if (!taskId) continue;
 
 		const goal = item.goal || ({} as any);
+		const boundary = assessRoadmapTaskBoundary(item);
 		tasks[taskId] = {
 			id: taskId,
 			title: String(item.title || taskId).trim(),
@@ -154,6 +156,11 @@ export function buildRoadmapState(
 			spec_paths: Array.isArray(item.spec_paths) ? item.spec_paths : [],
 			code_paths: Array.isArray(item.code_paths) ? item.code_paths : [],
 			updated: String(item.updated || "").trim(),
+			boundary: {
+				executable: boundary.executable,
+				container: boundary.container,
+				reasons: boundary.reasons,
+			},
 			context_path: `.codewiki/roadmap/tasks/${taskId}/context.json`,
 			loop: buildTaskLoopState(taskId, status, events),
 		};
@@ -192,6 +199,10 @@ export function buildRoadmapState(
 	const openTaskIds = sortedEntries.filter((t) => isOpenTaskStatus(t.status)).map((t) => t.id);
 	const inProgressIds = sortedEntries.filter((t) => isActiveTaskStatus(t.status)).map((t) => t.id);
 	const todoIds = sortedEntries.filter((t) => String(t.status) === "todo").map((t) => t.id);
+	const containerTaskIds = openTaskIds.filter((taskId) => tasks[taskId]?.boundary?.container === true);
+	const executableOpenTaskIds = openTaskIds.filter((taskId) => tasks[taskId]?.boundary?.executable !== false);
+	const executableInProgressIds = inProgressIds.filter((taskId) => executableOpenTaskIds.includes(taskId));
+	const executableTodoIds = todoIds.filter((taskId) => executableOpenTaskIds.includes(taskId));
 
 	return {
 		version: 2,
@@ -211,11 +222,15 @@ export function buildRoadmapState(
 		views: {
 			ordered_task_ids: ordered,
 			open_task_ids: openTaskIds,
+			executable_open_task_ids: executableOpenTaskIds,
+			container_task_ids: containerTaskIds,
 			sprint_ids: (graphRoadmap as any).sprint_ids || graphSprints.map((sprint: any) => sprint.id),
 			active_sprint_ids: (graphRoadmap as any).active_sprint_ids || graphSprints.filter((sprint: any) => !["closed", "cancelled"].includes(String(sprint.status))).map((sprint: any) => sprint.id),
 			sprints: graphSprints,
 			in_progress_task_ids: inProgressIds,
+			executable_in_progress_task_ids: executableInProgressIds,
 			todo_task_ids: todoIds,
+			executable_todo_task_ids: executableTodoIds,
 			blocked_task_ids: blockedTaskIds,
 			done_task_ids: sortedEntries.filter((t) => String(t.status) === "done").map((t) => t.id),
 			cancelled_task_ids: (graphRoadmap as any).cancelled_task_ids || sortedEntries.filter((t) => String(t.status) === "cancelled").map((t) => t.id),
@@ -507,10 +522,11 @@ export function latestPersistedFocusTaskId(events: any[], roadmapState: RoadmapS
 export function buildResumeState(roadmapState: RoadmapStateFile, agencyLanes: any[], nextStep: any, persistedFocusTaskId = ""): any {
 	const views: any = roadmapState.views || {};
 	const tasks: any = roadmapState.tasks || {};
-	const inProgressIds = views.in_progress_task_ids || [];
-	const todoIds = views.todo_task_ids || [];
+	const inProgressIds = views.executable_in_progress_task_ids || views.in_progress_task_ids || [];
+	const todoIds = views.executable_todo_task_ids || views.todo_task_ids || [];
 	const persistedTask = persistedFocusTaskId ? tasks[persistedFocusTaskId] : null;
-	const openTaskId = persistedTask && isOpenTaskStatus(persistedTask.status)
+	const persistedExecutable = persistedTask && isOpenTaskStatus(persistedTask.status) && persistedTask.boundary?.executable !== false;
+	const openTaskId = persistedExecutable
 		? persistedFocusTaskId
 		: [...inProgressIds, ...todoIds, ""][0];
 	const task = openTaskId ? tasks[openTaskId] : null;
@@ -905,10 +921,12 @@ export function buildStatusState(
 		nextStep = { kind: "status", command: "/wiki-status", reason: `${counts.untracked} untracked spec drift needs inspection through the canonical status surface.` };
 	} else if (counts.blocked > 0 || (taskStatusCounts.blocked || 0) > 0) {
 		nextStep = { kind: "status", command: "/wiki-status", reason: "Blocked drift exists; inspect constraints in status before resuming implementation." };
-	} else if (roadmapState.views?.in_progress_task_ids?.length) {
-		nextStep = { kind: "code", command: `/wiki-resume ${roadmapState.views.in_progress_task_ids[0]}`, reason: "Roadmap already covers current delta; continue in-progress implementation." };
-	} else if (roadmapState.views?.todo_task_ids?.length) {
-		nextStep = { kind: "code", command: `/wiki-resume ${roadmapState.views.todo_task_ids[0]}`, reason: "Roadmap is ready; continue with the next open task." };
+	} else if (((roadmapState.views as any)?.executable_in_progress_task_ids || roadmapState.views?.in_progress_task_ids || []).length) {
+		const taskId = ((roadmapState.views as any)?.executable_in_progress_task_ids || roadmapState.views.in_progress_task_ids)[0];
+		nextStep = { kind: "code", command: `/wiki-resume ${taskId}`, reason: "Roadmap already covers current executable delta; continue in-progress implementation." };
+	} else if (((roadmapState.views as any)?.executable_todo_task_ids || roadmapState.views?.todo_task_ids || []).length) {
+		const taskId = ((roadmapState.views as any)?.executable_todo_task_ids || roadmapState.views.todo_task_ids)[0];
+		nextStep = { kind: "code", command: `/wiki-resume ${taskId}`, reason: "Roadmap is ready; continue with the next executable task." };
 	} else {
 		nextStep = { kind: "observe", command: "Observe — roadmap clear", reason: "No open deterministic drift requires action right now." };
 	}
@@ -1038,10 +1056,10 @@ export function buildStatusState(
 			sections: Object.values(wikiSections) as any[],
 		},
 		roadmap: {
-			focused_task_id: persistedFocusTaskId || (roadmapState.views?.in_progress_task_ids || [])[0] || "",
+			focused_task_id: persistedFocusTaskId || ((roadmapState.views as any)?.executable_in_progress_task_ids || roadmapState.views?.in_progress_task_ids || [])[0] || "",
 			blocked_task_ids: roadmapState.views?.blocked_task_ids || [],
 			in_progress_task_ids: roadmapState.views?.in_progress_task_ids || [],
-			next_task_id: String(resume.task_id || "") || (roadmapState.views?.todo_task_ids || [])[0] || "",
+			next_task_id: String(resume.task_id || "") || (((roadmapState.views as any)?.executable_todo_task_ids || roadmapState.views?.todo_task_ids || [])[0]) || "",
 			sprint_ids: (roadmapState.views as any)?.sprint_ids || [],
 			active_sprint_ids: (roadmapState.views as any)?.active_sprint_ids || [],
 			sprints: (roadmapState.views as any)?.sprints || [],

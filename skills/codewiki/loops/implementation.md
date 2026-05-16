@@ -13,6 +13,7 @@ graph locates -> planning_build + roadmap item + linked specs/code
 - Start implementation from the validated `planning_build` and roadmap task in a fresh session, fresh worker process, or recorded context reset; do not rely on prior compiler-loop chat memory. When the adapter exposes `codewiki_session_handoff`, use it instead of asking the user to run `/new` manually.
 - Use `codewiki_session` when starting or continuing a task; keep task id, graph/build revisions, and current decision state in parent RAM.
 - Use `codewiki_state` as the map, then read the planning build, roadmap item, linked builds, linked specs, validation reports, and code/test paths as sources of truth before changing behavior.
+- Implement only self-contained executable tasks. If the selected item is an umbrella/container/epic, or its acceptance is mostly "other tasks close", stop and route grouping to the sprint/planning layer instead of implementing it.
 - For semantic work, preserve `change_type` (`product`, `system`, `task`, or `code`) and accepted upstream build refs in implementation evidence; generated, runtime, or mechanical-only work may use traceability exemption metadata and `semantic=false` only when policy allows.
 - Claim narrow write scopes for non-trivial implementation work when parallel sessions may touch overlapping code, tests, docs, roadmap, builds, or validation refs.
 - Read only linked sources unless graph drift/freshness signals or those sources prove broader context is needed.
@@ -37,6 +38,7 @@ The split is optional. Use it when independence matters more than coordination c
 1. **Load implementation context**
    - Use graph/state only to locate relevant sources and freshness/drift signals.
    - Read the planning build, roadmap item outcome, acceptance, non-goals, validation expectations, linked specs, linked builds, validation reports, and code paths directly.
+   - Confirm the roadmap item is self-contained executable work, not a sprint/umbrella/container task.
    - Confirm those sources are still aligned with current `codewiki_state`.
 
 2. **Plan tests**

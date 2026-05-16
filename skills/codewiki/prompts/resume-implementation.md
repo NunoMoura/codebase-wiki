@@ -22,6 +22,7 @@ Task source refs:
 
 Rules:
 - Implement surgically from roadmap/build context, then submit build evidence to the validation gateway.
+- Proceed only when the selected roadmap item is self-contained executable work. If it is a sprint/umbrella/container or mainly closes other tasks, stop and route grouping to sprint/planning instead.
 - Treat parent context as expensive RAM: keep focused task, loaded view revisions, and small decisions; do not load raw wiki trees by default.
 - Consume graph/status as a map first, then read linked source-of-truth docs/builds/roadmap/validation/code directly before semantic edits.
 - Use fresh validation/research/architecture review only when the gateway or task policy requires independent context.
