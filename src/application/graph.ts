@@ -1,3 +1,4 @@
+import { isAcceptedBuildData } from "../domain/build/lifecycle.ts";
 import { normalizeChangeType, normalizeTraceabilityExemption } from "../domain/change/traceability.ts";
 import type { ChangeClaimsFile, GraphEdge, GraphFile, GraphNode, GraphViews, LintReport, RoadmapTaskRecord, WikiProject } from "../domain/shared/types.ts";
 import { GitCache } from "./local/git-cache.ts";
@@ -109,14 +110,8 @@ function pathsOverlap(left: string, right: string): boolean {
 	return a === b || a.startsWith(`${b}/`) || b.startsWith(`${a}/`) || pathMatchesScope(a, b) || pathMatchesScope(b, a);
 }
 
-const ACCEPTED_BUILD_STATES = new Set(["accepted", "applied", "validated", "consumed", "archived"]);
-
-function buildLifecycleState(data: any, fallback?: string): string {
-	return String(data?.lifecycle?.state || data?.status || fallback || "").trim().toLowerCase();
-}
-
 function isAcceptedBuild(build: BuildArtifact): boolean {
-	return ACCEPTED_BUILD_STATES.has(buildLifecycleState(build.data, build.status));
+	return isAcceptedBuildData(build.data, build.status);
 }
 
 function isSemanticTraceability(build: BuildArtifact, fallbackChangeType: string): boolean {

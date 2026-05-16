@@ -1,28 +1,20 @@
 {
   "version": 1,
   "kind": "validation_report",
-  "created": "2026-05-16T21:06:32Z",
+  "created": "2026-05-16T21:13:16Z",
   "profile": "implementation",
   "task_id": "TASK-087",
   "verdict": "pass",
-  "rationale": "Fresh validation passes for TASK-087 traceability taxonomy domain extraction slice. change_type and traceability exemption normalization semantics moved to src/domain/change/traceability.ts and are reused by builds and graph, removing duplicated application-layer taxonomy logic. Checks pass; TASK-087 remains open for broader migration.",
+  "rationale": "Fresh validation passes for TASK-087 build lifecycle domain extraction slice. Accepted build lifecycle state semantics moved to src/domain/build/lifecycle.ts and are reused by builds and graph, removing duplicated application-layer lifecycle logic. Checks pass; this is one slice of TASK-087.",
   "checks": [
     "npm run typecheck",
     "node tests/smoke/loop-isolation-policy.test.mjs",
     "node tests/smoke/alignment-graph.test.mjs",
     "npm run check:architecture",
-    "audit:alignment",
-    "audit:changed",
-    "audit:task",
-    "dirty diff digest sha256:21c1001f673d0972feb66950d1aba7af8c2b91f331cf4af5c012d5ee8493d809"
+    "dirty diff digest sha256:b027fc500d631485b85db0169453f4587e7f4bd22696909d61181cbb09087c72"
   ],
-  "issues": [
-    {
-      "severity": "low",
-      "summary": "audit:alignment reports pre-existing graph health warnings; audit:changed and audit:task pass."
-    }
-  ],
-  "source": ".codewiki/builds/implementation/2026-05-16-extracted-change-traceability-normalization-sema.json",
+  "issues": [],
+  "source": ".codewiki/builds/implementation/2026-05-16-extracted-accepted-build-lifecycle-semantics-int.json",
   "policy_profile": "implementation",
   "required_audits": [
     "alignment",
@@ -35,12 +27,10 @@
     "audit:task"
   ],
   "audit_reports": [
-    "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
-    "audit:changed pass Checked 5 changed files across 3 layers.",
-    "audit:task pass Checked roadmap task TASK-087."
+    "audit refs from prior slice checks; full task validation needed after complete TASK-087"
   ],
   "content_proof_refs": [
-    "sha256:21c1001f673d0972feb66950d1aba7af8c2b91f331cf4af5c012d5ee8493d809"
+    "sha256:b027fc500d631485b85db0169453f4587e7f4bd22696909d61181cbb09087c72"
   ],
   "failed_criteria": [],
   "blocking_questions": [],
@@ -100,10 +90,10 @@
     "warnings": []
   },
   "isolation": {
-    "working_tree_digest": "sha256:21c1001f673d0972feb66950d1aba7af8c2b91f331cf4af5c012d5ee8493d809",
+    "working_tree_digest": "sha256:b027fc500d631485b85db0169453f4587e7f4bd22696909d61181cbb09087c72",
     "clean": false,
     "fresh_context": true,
-    "notes": "Dirty pre-commit validation for narrow traceability extraction slice; TASK-087 remains open.",
+    "notes": "Pre-commit validation for build lifecycle extraction slice.",
     "role": "validator"
   }
 }

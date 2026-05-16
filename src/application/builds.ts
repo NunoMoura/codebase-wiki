@@ -3,6 +3,7 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import type { CodewikiBuildProducesInput, CodewikiBuildRefsInput, CodewikiBuildToolInput, CodewikiClosureBriefInput, CodewikiDiffTableRowInput, CodewikiValidationReportInput, WikiProject, RoadmapTaskRecord } from "../domain/shared/types.ts";
+import { isAcceptedBuildData } from "../domain/build/lifecycle.ts";
 import { normalizeChangeType, normalizeTraceabilityExemption, isSemanticTraceability } from "../domain/change/traceability.ts";
 import { nowIso, unique } from "../domain/shared/utils.ts";
 import { normalizeWorktreeIsolation } from "./claims.ts";
@@ -46,8 +47,6 @@ function trimList(values?: unknown[]): string[] {
 	return (values ?? []).map((value) => String(value || "").trim()).filter(Boolean);
 }
 
-const ACCEPTED_BUILD_STATES = new Set(["accepted", "applied", "validated", "consumed", "archived"]);
-
 function inferChangeTypeForBuild(kind: string, inputOrBuild: any): string {
 	if (kind === "feedback_build" || kind === "feedback") {
 		const delta = inputOrBuild.lower_layer_delta || {};
@@ -75,14 +74,6 @@ function inferChangeTypeForBuild(kind: string, inputOrBuild: any): string {
 		return "code";
 	}
 	return "task";
-}
-
-function buildLifecycleState(data: any): string {
-	return String(data?.lifecycle?.state || data?.status || "").trim().toLowerCase();
-}
-
-function isAcceptedBuildData(data: any): boolean {
-	return ACCEPTED_BUILD_STATES.has(buildLifecycleState(data));
 }
 
 function normalizeBuildPath(ref: string): string {
