@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T08:12:11.823Z",
+  "generated_at": "2026-05-16T08:14:55.214Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -1199,49 +1199,6 @@
       "title": "Define executable alignment graph contract",
       "layer": "roadmap",
       "status": "done",
-      "alignment_state": "aligned"
-    },
-    {
-      "id": "task:TASK-086",
-      "kind": "roadmap_task",
-      "title": "Migrate public coordination API to artifact status",
-      "layer": "roadmap",
-      "status": "in_progress",
-      "alignment_state": "drift"
-    },
-    {
-      "id": "code:src/application/claims.ts",
-      "kind": "code_path",
-      "path": "src/application/claims.ts",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
-      "id": "code:src/application/session.ts",
-      "kind": "code_path",
-      "path": "src/application/session.ts",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
-      "id": "code:src/adapters/pi/tools/claim.ts",
-      "kind": "code_path",
-      "path": "src/adapters/pi/tools/claim.ts",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
-      "id": "code:src/adapters/pi/tools/session-handoff.ts",
-      "kind": "code_path",
-      "path": "src/adapters/pi/tools/session-handoff.ts",
-      "layer": "code",
-      "alignment_state": "aligned"
-    },
-    {
-      "id": "code:tests/smoke/session-handoff.test.mjs",
-      "kind": "code_path",
-      "path": "tests/smoke/session-handoff.test.mjs",
-      "layer": "code",
       "alignment_state": "aligned"
     },
     {
@@ -6638,6 +6595,18 @@
       "default_hidden": true
     },
     {
+      "id": "code:src/application/claims.ts",
+      "kind": "code_path",
+      "path": "src/application/claims.ts",
+      "layer": "code"
+    },
+    {
+      "id": "code:src/application/session.ts",
+      "kind": "code_path",
+      "path": "src/application/session.ts",
+      "layer": "code"
+    },
+    {
       "id": "test:tests/smoke/package-smoke.test.mjs",
       "kind": "test_file",
       "path": "tests/smoke/package-smoke.test.mjs"
@@ -12029,9 +11998,9 @@
       "status": "accepted",
       "layer": "build",
       "lifecycle_state": "accepted",
-      "alignment_state": "drift",
-      "compacted": false,
-      "default_hidden": false,
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
       "archive_ref": "refs/codewiki/archive/task/TASK-086",
       "superseded_by": [],
       "evidence_summary": {
@@ -12109,11 +12078,6 @@
       "safety_status": "blocked",
       "default_hidden": true,
       "layer": "archive"
-    },
-    {
-      "id": "closure:TASK-086",
-      "kind": "closure_brief",
-      "path": "TASK-086"
     },
     {
       "id": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
@@ -12218,9 +12182,9 @@
       "status": "accepted",
       "layer": "build",
       "lifecycle_state": "accepted",
-      "alignment_state": "drift",
-      "compacted": false,
-      "default_hidden": false,
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
       "archive_ref": "refs/codewiki/archive/task/TASK-086",
       "superseded_by": [],
       "evidence_summary": {
@@ -12327,12 +12291,6 @@
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
-    },
-    {
-      "id": "code:.codewiki/kb/system/agency.md",
-      "kind": "code_path",
-      "path": ".codewiki/kb/system/agency.md",
-      "layer": "code"
     },
     {
       "id": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
@@ -12856,9 +12814,9 @@
       "status": "accepted",
       "layer": "build",
       "lifecycle_state": "accepted",
-      "alignment_state": "drift",
-      "compacted": false,
-      "default_hidden": false,
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
       "archive_ref": "refs/codewiki/archive/task/TASK-086",
       "superseded_by": [],
       "evidence_summary": {
@@ -13063,23 +13021,6 @@
       "default_hidden": true
     },
     {
-      "id": "code:src/adapters/pi/tools/artifact-status.ts",
-      "kind": "code_path",
-      "path": "src/adapters/pi/tools/artifact-status.ts",
-      "layer": "code"
-    },
-    {
-      "id": "code:src/adapters/pi/tools/state.ts",
-      "kind": "code_path",
-      "path": "src/adapters/pi/tools/state.ts",
-      "layer": "code"
-    },
-    {
-      "id": "test:tests/smoke/resume-scheduler.test.mjs",
-      "kind": "test_file",
-      "path": "tests/smoke/resume-scheduler.test.mjs"
-    },
-    {
       "id": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
       "kind": "implementation_build",
       "path": ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
@@ -13087,9 +13028,9 @@
       "status": "accepted",
       "layer": "build",
       "lifecycle_state": "accepted",
-      "alignment_state": "drift",
-      "compacted": false,
-      "default_hidden": false,
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
       "archive_ref": "refs/codewiki/archive/task/TASK-086",
       "superseded_by": [],
       "evidence_summary": {
@@ -14173,6 +14114,77 @@
       "id": "content_proof:3680881721d01f5450aa2ba5aeedc4f15e216b17",
       "kind": "content_proof",
       "path": "3680881721d01f5450aa2ba5aeedc4f15e216b17",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "verdict": "pass",
+      "isolation_status": "isolated",
+      "isolation": {
+        "worktree_path": "/home/nunoc/projects/codewiki",
+        "head_sha": "16f3b1810573b1a797196f223a2320bd4ea11db5",
+        "validated_sha": "16f3b1810573b1a797196f223a2320bd4ea11db5",
+        "tree_sha": "6c53ab1b0cd9ae116fe1fe80286e873424004bee",
+        "clean": true,
+        "fresh_context": true,
+        "notes": "Fresh task-close validation from repo truth. Worktree clean before validation artifact write; only validation report expected after this call.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          "fresh task-close validation for TASK-086"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:generated-parity",
+          "codewiki_audit(profiles=[alignment,changed], task_id=TASK-086): pass — alignment pass; changed pass (0 changed files across 0 layers); task pass.",
+          "codewiki_audit(profiles=[generated-parity], task_id=TASK-086): pass — generated-parity pass (generated graph presence, freshness, and 7 active roadmap task views checked); task pass."
+        ],
+        "content_proof_refs": [
+          "16f3b1810573b1a797196f223a2320bd4ea11db5",
+          "6c53ab1b0cd9ae116fe1fe80286e873424004bee"
+        ]
+      }
+    },
+    {
+      "id": "source:fresh task-close validation for TASK-086",
+      "kind": "canonical_source_ref",
+      "path": "fresh task-close validation for TASK-086",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:codewiki_audit(profiles=[alignment,changed], task_id=TASK-086): pass — alignment pass; changed pass (0 changed files across 0 layers); task pass.",
+      "kind": "audit_evidence",
+      "path": "codewiki_audit(profiles=[alignment,changed], task_id=TASK-086): pass — alignment pass; changed pass (0 changed files across 0 layers); task pass.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:codewiki_audit(profiles=[generated-parity], task_id=TASK-086): pass — generated-parity pass (generated graph presence, freshness, and 7 active roadmap task views checked); task pass.",
+      "kind": "audit_evidence",
+      "path": "codewiki_audit(profiles=[generated-parity], task_id=TASK-086): pass — generated-parity pass (generated graph presence, freshness, and 7 active roadmap task views checked); task pass.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:16f3b1810573b1a797196f223a2320bd4ea11db5",
+      "kind": "content_proof",
+      "path": "16f3b1810573b1a797196f223a2320bd4ea11db5",
+      "proof_kind": "git_sha",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:6c53ab1b0cd9ae116fe1fe80286e873424004bee",
+      "kind": "content_proof",
+      "path": "6c53ab1b0cd9ae116fe1fe80286e873424004bee",
       "proof_kind": "git_sha",
       "layer": "content_proof",
       "default_hidden": true
@@ -16428,91 +16440,6 @@
       "kind": "task_code_path",
       "from": "task:TASK-078",
       "to": "code:tests/smoke"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-086",
-      "to": "doc:.codewiki/kb/lexicon.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-086",
-      "to": "doc:.codewiki/kb/system/api.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-086",
-      "to": "doc:.codewiki/kb/system/roadmap.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-086",
-      "to": "doc:.codewiki/kb/system/adapters.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-086",
-      "to": "doc:.codewiki/kb/system/graph.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-086",
-      "to": "doc:.codewiki/kb/system/file-structure.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-086",
-      "to": "doc:.codewiki/kb/system/validation-gateway.md"
-    },
-    {
-      "kind": "task_spec",
-      "from": "task:TASK-086",
-      "to": "doc:skills/codewiki/SKILL.md"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-086",
-      "to": "code:src/application/claims.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-086",
-      "to": "code:src/application/session.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-086",
-      "to": "code:src/adapters/pi/tools/claim.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-086",
-      "to": "code:src/adapters/pi/schemas.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-086",
-      "to": "code:src/domain/shared/types.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-086",
-      "to": "code:skills/codewiki"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-086",
-      "to": "code:tests/smoke"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-086",
-      "to": "code:src/adapters/pi/tools/session-handoff.ts"
-    },
-    {
-      "kind": "task_code_path",
-      "from": "task:TASK-086",
-      "to": "code:tests/smoke/session-handoff.test.mjs"
     },
     {
       "kind": "task_spec",
@@ -31369,41 +31296,6 @@
       "default_hidden": true
     },
     {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-      "to": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json"
-    },
-    {
-      "kind": "build_consumes_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-      "to": "task:TASK-086"
-    },
-    {
-      "kind": "build_consumes_validation",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-      "to": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-      "to": "doc:.codewiki/kb/system/api.md"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-      "to": "code:.codewiki/kb/system/api.md"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-      "to": "test:tests/smoke/session-handoff.test.mjs"
-    },
-    {
-      "kind": "build_produces_closure",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-      "to": "closure:TASK-086"
-    },
-    {
       "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
@@ -31646,66 +31538,6 @@
       "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
       "to": "archive_ref:refs/codewiki/archive/task/TASK-086",
       "default_hidden": true
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json"
-    },
-    {
-      "kind": "build_consumes_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "task:TASK-086"
-    },
-    {
-      "kind": "build_consumes_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "source:User request: fix /wiki-session-handoff before continuing parallel resume work"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "doc:.codewiki/kb/system/adapters.md"
-    },
-    {
-      "kind": "build_produces_knowledge",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "doc:.codewiki/kb/system/agency.md"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "code:src/adapters/pi/tools/session-handoff.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "code:src/adapters/pi/schemas.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "code:skills/codewiki/SKILL.md"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "code:.codewiki/kb/system/adapters.md"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "code:.codewiki/kb/system/agency.md"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "test:tests/smoke/session-handoff.test.mjs"
-    },
-    {
-      "kind": "build_produces_closure",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-      "to": "closure:TASK-086"
     },
     {
       "kind": "build_references_canonical_source",
@@ -32603,106 +32435,6 @@
       "default_hidden": true
     },
     {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "build:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json"
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
-    },
-    {
-      "kind": "build_consumes_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "task:TASK-086"
-    },
-    {
-      "kind": "build_consumes_validation",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-086.json"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:src/adapters/pi/tools/artifact-status.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:src/adapters/pi/index.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:src/adapters/pi/schemas.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:src/adapters/pi/tools/claim.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:src/adapters/pi/tools/state.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:src/application/claims.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:src/application/graph.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:src/application/state.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:src/application/state-builders.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:src/domain/shared/types.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:README.md"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:skills/codewiki/SKILL.md"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "code:package.json"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "test:tests/smoke/package-smoke.test.mjs"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "test:tests/smoke/resume-scheduler.test.mjs"
-    },
-    {
-      "kind": "build_produces_closure",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-      "to": "closure:TASK-086"
-    },
-    {
       "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
@@ -32826,61 +32558,6 @@
       "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
       "to": "archive_ref:refs/codewiki/archive/task/TASK-086",
       "default_hidden": true
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json"
-    },
-    {
-      "kind": "build_derives_from",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "build:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json"
-    },
-    {
-      "kind": "build_consumes_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "task:TASK-086"
-    },
-    {
-      "kind": "build_consumes_validation",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "validation:.codewiki/validation/2026-05-16-feedback-pass.json"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "code:src/adapters/pi/commands/resume.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "code:src/application/claims.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "code:src/domain/shared/types.ts"
-    },
-    {
-      "kind": "build_produces_code",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "code:package.json"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "test:tests/smoke/resume-scheduler.test.mjs"
-    },
-    {
-      "kind": "build_produces_test",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "test:tests/smoke/package-smoke.test.mjs"
-    },
-    {
-      "kind": "build_produces_closure",
-      "from": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-      "to": "closure:TASK-086"
     },
     {
       "kind": "validation_attests_source",
@@ -33684,6 +33361,65 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-081.json",
       "to": "task:TASK-081"
+    },
+    {
+      "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "to": "source:fresh task-close validation for TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "to": "audit:audit:generated-parity",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "to": "audit:codewiki_audit(profiles=[alignment,changed], task_id=TASK-086): pass — alignment pass; changed pass (0 changed files across 0 layers); task pass.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "to": "audit:codewiki_audit(profiles=[generated-parity], task_id=TASK-086): pass — generated-parity pass (generated graph presence, freshness, and 7 active roadmap task views checked); task pass.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "to": "content_proof:16f3b1810573b1a797196f223a2320bd4ea11db5",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "to": "content_proof:6c53ab1b0cd9ae116fe1fe80286e873424004bee",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+      "to": "task:TASK-086"
     }
   ],
   "views": {
@@ -33858,7 +33594,6 @@
         "TASK-084",
         "TASK-085",
         "TASK-078",
-        "TASK-086",
         "TASK-087",
         "TASK-088"
       ],
@@ -33867,7 +33602,6 @@
         "TASK-082",
         "TASK-083",
         "TASK-085",
-        "TASK-086",
         "TASK-087",
         "TASK-088"
       ],
@@ -33875,7 +33609,6 @@
         "TASK-077",
         "TASK-082",
         "TASK-083",
-        "TASK-086",
         "TASK-087",
         "TASK-088"
       ],
@@ -33939,7 +33672,7 @@
       "status_counts": {
         "done": 45,
         "cancelled": 4,
-        "in_progress": 6,
+        "in_progress": 5,
         "todo": 1
       },
       "sprint_ids": [
@@ -34118,8 +33851,6 @@
         "src/adapters/pi/schemas.ts",
         "src/adapters/pi/tools/**",
         "src/adapters/pi/tools/agency.ts",
-        "src/adapters/pi/tools/claim.ts",
-        "src/adapters/pi/tools/session-handoff.ts",
         "src/adapters/pi/tools/task.ts",
         "src/adapters/pi/ui",
         "src/adapters/pi/ui/**",
@@ -34130,7 +33861,6 @@
         "src/application/**",
         "src/application/agency.ts",
         "src/application/builds.ts",
-        "src/application/claims.ts",
         "src/application/diff-table.ts",
         "src/application/gateway",
         "src/application/graph.ts",
@@ -34138,7 +33868,6 @@
         "src/application/lint.ts",
         "src/application/prompt.ts",
         "src/application/roadmap.ts",
-        "src/application/session.ts",
         "src/application/state-builders.ts",
         "src/application/state.ts",
         "src/application/task.ts",
@@ -34153,7 +33882,6 @@
         "tests/fixtures",
         "tests/smoke",
         "tests/smoke/package-smoke.test.mjs",
-        "tests/smoke/session-handoff.test.mjs",
         "tsconfig.json"
       ],
       "dirty_paths": []
@@ -34501,6 +34229,23 @@
           "content_proof_refs": [
             "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
             "3680881721d01f5450aa2ba5aeedc4f15e216b17"
+          ]
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+          "task_id": "TASK-086",
+          "verdict": "pass",
+          "status": "isolated",
+          "role": "validator",
+          "worktree_path": "/home/nunoc/projects/codewiki",
+          "head_sha": "16f3b1810573b1a797196f223a2320bd4ea11db5",
+          "validated_sha": "16f3b1810573b1a797196f223a2320bd4ea11db5",
+          "clean": true,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "16f3b1810573b1a797196f223a2320bd4ea11db5",
+            "6c53ab1b0cd9ae116fe1fe80286e873424004bee"
           ]
         }
       ]
@@ -34988,6 +34733,7 @@
         "extensions/codewiki/templates.ts",
         "feedback_build .codewiki/builds/feedback/2026-05-13-claim-wait-queue.json",
         "feedback_build .codewiki/builds/feedback/2026-05-13-ui-progressive-disclosure-source-drawer-retro-bo.json",
+        "fresh task-close validation for TASK-086",
         "future source-owned architecture/audit tests",
         "manual production audit: consolidated architecture migration evidence",
         "manual production audit: consolidated traceability and evidence-link evidence",
@@ -35149,6 +34895,8 @@
         "codewiki_audit profiles file-structure,stale-reference,generated-parity include_fingerprints=false: pass; issues=0.",
         "codewiki_audit profiles package include_fingerprints=true: pass; issues=0.",
         "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only",
+        "codewiki_audit(profiles=[alignment,changed], task_id=TASK-086): pass — alignment pass; changed pass (0 changed files across 0 layers); task pass.",
+        "codewiki_audit(profiles=[generated-parity], task_id=TASK-086): pass — generated-parity pass (generated graph presence, freshness, and 7 active roadmap task views checked); task pass.",
         "codewiki_audit:alignment:feedback+roadmap:pass",
         "codewiki_audit:alignment:pass",
         "codewiki_audit:changed:warning",
@@ -35192,12 +34940,14 @@
         ".codewiki/kb/system/validation-gateway.md@sha256:28412c990a27c6c0c269f079e13dec20e7685ec99bc8c91c2bee42dbf3d7418a",
         ".codewiki/kb/system/validation-gateway.md@sha256:ad22379f1adaca77f4bee521f9ef75959b7d99b69fa56715bd73d78bb610f265",
         ".codewiki/kb/system/validation-gateway.md@sha256:eaa503964317945e84f67e89a1519b39651cd2cabc2fff79ad72a753f71ed6a0",
+        "16f3b1810573b1a797196f223a2320bd4ea11db5",
         "2d2673719bd55fd50876ccae84672c3773b7215a",
         "335e0dab36bf7c49eb14ff1c50477c6d08ed0c1f",
         "3680881721d01f5450aa2ba5aeedc4f15e216b17",
         "3ac936ffbbad8b32613427c515a5b5e46ecc3062",
         "59ebea7622e14a3faf6596b8a03a5dcb9710730f",
         "69e97f8a3ad77cc24a9413392d1b5bbeb5f5a363",
+        "6c53ab1b0cd9ae116fe1fe80286e873424004bee",
         "9299b9cb7eb8d2498a5c382ff2ee84404308d854",
         "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
         "README.md@sha256:2e961747eb2a6032a7ba985a60a165050e9233d00bb5c713130c4bebf799691c",
@@ -35851,6 +35601,28 @@
             "3680881721d01f5450aa2ba5aeedc4f15e216b17"
           ],
           "isolation_status": "isolated"
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-task-close-pass-task-086.json",
+          "verdict": "pass",
+          "profile": "task-close",
+          "task_id": "TASK-086",
+          "source_refs": [
+            "fresh task-close validation for TASK-086"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:generated-parity",
+            "codewiki_audit(profiles=[alignment,changed], task_id=TASK-086): pass — alignment pass; changed pass (0 changed files across 0 layers); task pass.",
+            "codewiki_audit(profiles=[generated-parity], task_id=TASK-086): pass — generated-parity pass (generated graph presence, freshness, and 7 active roadmap task views checked); task pass."
+          ],
+          "content_proof_refs": [
+            "16f3b1810573b1a797196f223a2320bd4ea11db5",
+            "6c53ab1b0cd9ae116fe1fe80286e873424004bee"
+          ],
+          "isolation_status": "isolated"
         }
       ]
     },
@@ -36198,7 +35970,6 @@
           "TASK-084",
           "TASK-085",
           "TASK-078",
-          "TASK-086",
           "TASK-087",
           "TASK-088"
         ],
@@ -36207,7 +35978,6 @@
           "TASK-082",
           "TASK-083",
           "TASK-085",
-          "TASK-086",
           "TASK-087",
           "TASK-088"
         ],
@@ -37134,38 +36904,6 @@
             "tests/smoke"
           ]
         },
-        "TASK-086": {
-          "kind": "task",
-          "id": "TASK-086",
-          "task_ids": [
-            "TASK-086"
-          ],
-          "open_task_ids": [
-            "TASK-086"
-          ],
-          "sprint_ids": [],
-          "spec_paths": [
-            ".codewiki/kb/lexicon.md",
-            ".codewiki/kb/system/api.md",
-            ".codewiki/kb/system/roadmap.md",
-            ".codewiki/kb/system/adapters.md",
-            ".codewiki/kb/system/graph.md",
-            ".codewiki/kb/system/file-structure.md",
-            ".codewiki/kb/system/validation-gateway.md",
-            "skills/codewiki/SKILL.md"
-          ],
-          "code_paths": [
-            "src/application/claims.ts",
-            "src/application/session.ts",
-            "src/adapters/pi/tools/claim.ts",
-            "src/adapters/pi/schemas.ts",
-            "src/domain/shared/types.ts",
-            "skills/codewiki",
-            "tests/smoke",
-            "src/adapters/pi/tools/session-handoff.ts",
-            "tests/smoke/session-handoff.test.mjs"
-          ]
-        },
         "TASK-087": {
           "kind": "task",
           "id": "TASK-087",
@@ -37265,7 +37003,6 @@
             "TASK-082",
             "TASK-083",
             "TASK-085",
-            "TASK-086",
             "TASK-087",
             "TASK-088"
           ],
@@ -37274,17 +37011,11 @@
           ],
           "build_paths": [
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-            ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-            ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-            ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+            ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json"
           ],
           "validation_paths": [
             ".codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-            ".codewiki/validation/2026-05-16-feedback-block.json",
-            ".codewiki/validation/2026-05-16-implementation-block-task-086.json",
-            ".codewiki/validation/2026-05-16-implementation-fail-task-086.json"
+            ".codewiki/validation/2026-05-16-feedback-block.json"
           ],
           "claim_ids": [],
           "claim_wait_ids": []
@@ -37380,11 +37111,15 @@
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+            ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
             ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+            ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
+            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
+            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
           ],
           "validation_paths": [
             ".codewiki/validation/2026-05-14-documentation-pass.json",
@@ -37401,7 +37136,8 @@
             ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
             ".codewiki/validation/2026-05-16-task-close-pass-task-080.json",
-            ".codewiki/validation/2026-05-16-task-close-pass-task-081.json"
+            ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+            ".codewiki/validation/2026-05-16-task-close-pass-task-086.json"
           ]
         },
         "cold": {
@@ -37507,11 +37243,15 @@
             ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+            ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
             ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+            ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
+            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
+            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
           ]
         },
         "purgeable": {
@@ -37910,11 +37650,15 @@
           ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+          ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
           ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+          ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
           ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-          ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
+          ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
+          ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+          ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
         ],
         "gate": "validated + artifact digests + archive ledger + publication safety pass"
       }
@@ -37944,50 +37688,6 @@
           "to_layer": "validation",
           "next_loop": "validation",
           "task_id": "TASK-082",
-          "reason": "Accepted implementation build still needs passing validation gateway evidence."
-        },
-        {
-          "id": "reconcile:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-          "source_id": "build:.codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "build",
-          "to_layer": "validation",
-          "next_loop": "validation",
-          "task_id": "TASK-086",
-          "reason": "Accepted implementation build still needs passing validation gateway evidence."
-        },
-        {
-          "id": "reconcile:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-          "source_id": "build:.codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "build",
-          "to_layer": "validation",
-          "next_loop": "validation",
-          "task_id": "TASK-086",
-          "reason": "Accepted implementation build still needs passing validation gateway evidence."
-        },
-        {
-          "id": "reconcile:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-          "source_id": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "build",
-          "to_layer": "validation",
-          "next_loop": "validation",
-          "task_id": "TASK-086",
-          "reason": "Accepted implementation build still needs passing validation gateway evidence."
-        },
-        {
-          "id": "reconcile:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-          "source_id": "build:.codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "build",
-          "to_layer": "validation",
-          "next_loop": "validation",
-          "task_id": "TASK-086",
           "reason": "Accepted implementation build still needs passing validation gateway evidence."
         },
         {
@@ -38110,28 +37810,6 @@
           "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
         },
         {
-          "id": "reconcile:validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
-          "source_id": "validation:.codewiki/validation/2026-05-16-implementation-block-task-086.json",
-          "state": "blocked",
-          "direction": "gateway",
-          "from_layer": "validation",
-          "to_layer": "feedback",
-          "next_loop": "feedback",
-          "task_id": "TASK-086",
-          "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
-        },
-        {
-          "id": "reconcile:validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
-          "source_id": "validation:.codewiki/validation/2026-05-16-implementation-fail-task-086.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "validation",
-          "to_layer": "documentation",
-          "next_loop": "documentation",
-          "task_id": "TASK-086",
-          "reason": "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps."
-        },
-        {
           "id": "reconcile:task:TASK-077",
           "source_id": "task:TASK-077",
           "state": "drift",
@@ -38188,9 +37866,9 @@
         }
       ],
       "counts_by_loop": {
-        "validation": 6,
-        "documentation": 9,
-        "feedback": 2,
+        "validation": 2,
+        "documentation": 8,
+        "feedback": 1,
         "implementation": 5
       },
       "next_action": {
@@ -38225,13 +37903,13 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T08:12:11.790Z",
+      "generated_at": "2026-05-16T08:14:55.181Z",
       "counts": {},
       "issues": []
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T08:12:11Z",
+      "generated_at": "2026-05-16T08:14:55Z",
       "health": {
         "color": "green",
         "errors": 0,
@@ -38242,20 +37920,20 @@
         "task_context_root": ".codewiki/roadmap/tasks"
       },
       "summary": {
-        "task_count": 56,
-        "open_count": 7,
+        "task_count": 55,
+        "open_count": 6,
         "sprint_count": 3,
         "active_sprint_count": 1,
         "status_counts": {
           "done": 45,
           "cancelled": 4,
-          "in_progress": 6,
+          "in_progress": 5,
           "todo": 1
         },
         "priority_counts": {
           "high": 31,
           "medium": 13,
-          "critical": 11,
+          "critical": 10,
           "low": 1
         }
       },
@@ -38314,7 +37992,6 @@
           "TASK-084",
           "TASK-085",
           "TASK-078",
-          "TASK-086",
           "TASK-087",
           "TASK-088"
         ],
@@ -38322,7 +37999,6 @@
           "TASK-077",
           "TASK-082",
           "TASK-083",
-          "TASK-086",
           "TASK-087",
           "TASK-088",
           "TASK-085"
@@ -38469,7 +38145,6 @@
           "TASK-077",
           "TASK-082",
           "TASK-083",
-          "TASK-086",
           "TASK-087",
           "TASK-088"
         ],
@@ -38531,7 +38206,6 @@
           "TASK-039"
         ],
         "recent_task_ids": [
-          "TASK-086",
           "TASK-083",
           "TASK-088",
           "TASK-087",
@@ -40910,90 +40584,6 @@
             "evidence": null
           }
         },
-        "TASK-086": {
-          "id": "TASK-086",
-          "title": "Migrate public coordination API to artifact status",
-          "status": "in_progress",
-          "priority": "critical",
-          "kind": "architecture",
-          "summary": "Replace public claim/lease vocabulary with artifact-status-first session queue coordination while preserving transitional compatibility for existing claim/lease callers.",
-          "labels": [
-            "domain-led-refactor",
-            "session-queue",
-            "artifact-status",
-            "api-compatibility",
-            "parallel-resume",
-            "session-handoff",
-            "pi-adapter",
-            "validation-gateway",
-            "fresh-context"
-          ],
-          "goal": {
-            "outcome": "CodeWiki public coordination language/API expose artifact availability, in-use, waiting, conflict, and stale status from session queue state; sessions are holders/waiters behind artifact status, and /wiki-resume allocates safe parallel work from that state.",
-            "acceptance": [
-              "Domain/session queue types model artifact statuses for tasks, paths, builds, validation refs, generated state, and publication refs with holders, waiters, heartbeat/TTL, handoff metadata, and isolation context.",
-              "Public API/tool/UI/graph/prompt language uses artifact status terminology (available, in-use, waiting, conflict, stale, holder, waiter) instead of claim/lease as primary concepts.",
-              "Legacy codewiki_claim and any lease/claim naming remains only as compatibility/internal implementation detail with deprecation/migration notes if needed.",
-              "New or renamed application tool/API surface exposes artifact-status operations: inspect status, mark/use artifact for read/write work, wait, heartbeat, release, and list holders/waiters.",
-              "Storage remains .codewiki/session/queue.json unless migration planning explicitly changes it.",
-              "Tests cover artifact status create/list/release/heartbeat/wait behavior and legacy alias compatibility.",
-              "/wiki-resume without an explicit task reads fresh CodeWiki state plus session queue artifact statuses and selects the next unblocked atomic task whose relevant artifacts are available or read-compatible.",
-              "/wiki-resume TASK-### honors an explicit non-closed task request even when an umbrella task is active, unless task policy or artifact conflict provides a real block with a clear explanation.",
-              "Resume output includes selected task, artifact statuses, conflicting artifacts and holders/waiters, temporary session usage record, and helper-safe next steps so one tab/session can start parallel work with a single /wiki-resume invocation.",
-              "codewiki_session_handoff no longer treats a killed spawned Pi subprocess as an acceptable validation/handoff path.",
-              "Tool-context new-session handoff stages a durable handoff artifact and reports the exact /wiki-session-handoff command when interactive replacement is required.",
-              "/wiki-session-handoff can execute a staged handoff via ctx.newSession and marks started/completed/cancelled/failures accurately.",
-              "Tests cover tool staging behavior, no unbounded spawn by default, command-context ctx.newSession execution, and stale/bad handoff handling.",
-              "Public schemas/skill guidance no longer claim tool context reliably spawns fresh pi processes for validation."
-            ],
-            "non_goals": [
-              "Do not break existing users abruptly by deleting codewiki_claim before compatibility alias and migration notes exist.",
-              "Do not treat session queue artifact status as durable roadmap truth.",
-              "Do not use broad umbrella tasks such as TASK-077 as default implementation work when safe child/atomic tasks are available.",
-              "Do not make claim or lease primary project lexicon terms.",
-              "Do not implement a full subagent scheduler.",
-              "Do not change Pi core APIs.",
-              "Do not close or validate unrelated artifact-status scheduler work."
-            ],
-            "verification": [
-              "npm run typecheck",
-              "npm run test:smoke",
-              "targeted artifact-status session queue smoke",
-              "targeted legacy claim/lease alias compatibility smoke",
-              "targeted /wiki-resume parallel allocation smoke with active umbrella focus and artifact conflict fixtures",
-              "stale-term scan for public claim/lease vocabulary with allowed compatibility/internal exceptions only",
-              "node tests/smoke/session-handoff.test.mjs",
-              "codewiki_state refresh=true"
-            ]
-          },
-          "spec_paths": [
-            ".codewiki/kb/lexicon.md",
-            ".codewiki/kb/system/api.md",
-            ".codewiki/kb/system/roadmap.md",
-            ".codewiki/kb/system/adapters.md",
-            ".codewiki/kb/system/graph.md",
-            ".codewiki/kb/system/file-structure.md",
-            ".codewiki/kb/system/validation-gateway.md",
-            "skills/codewiki/SKILL.md"
-          ],
-          "code_paths": [
-            "src/application/claims.ts",
-            "src/application/session.ts",
-            "src/adapters/pi/tools/claim.ts",
-            "src/adapters/pi/schemas.ts",
-            "src/domain/shared/types.ts",
-            "skills/codewiki",
-            "tests/smoke",
-            "src/adapters/pi/tools/session-handoff.ts",
-            "tests/smoke/session-handoff.test.mjs"
-          ],
-          "updated": "2026-05-16T08:10:53Z",
-          "context_path": ".codewiki/roadmap/tasks/TASK-086/context.json",
-          "loop": {
-            "updated_at": "",
-            "evidence": null
-          }
-        },
         "TASK-087": {
           "id": "TASK-087",
           "title": "Migrate source to domain-led CodeWiki layers",
@@ -41115,7 +40705,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T08:12:11Z",
+      "generated_at": "2026-05-16T08:14:55Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -41130,27 +40720,27 @@
       "summary": {
         "total_specs": 16,
         "mapped_specs": 16,
-        "aligned_specs": 17,
-        "tracked_specs": 17,
+        "aligned_specs": 19,
+        "tracked_specs": 15,
         "untracked_specs": 0,
         "blocked_specs": 0,
         "unmapped_specs": 0,
-        "task_count": 56,
-        "open_task_count": 7,
+        "task_count": 55,
+        "open_task_count": 6,
         "done_task_count": 45
       },
       "bars": {
         "tracked_drift": {
           "label": "Tracked Drift",
-          "value": 17,
-          "total": 17,
+          "value": 15,
+          "total": 15,
           "percent": 100
         },
         "roadmap_done": {
           "label": "Roadmap Done",
           "value": 45,
-          "total": 56,
-          "percent": 80
+          "total": 55,
+          "percent": 82
         },
         "spec_mapping": {
           "label": "Spec Mapping",
@@ -41161,7 +40751,6 @@
       },
       "views": {
         "risky_spec_paths": [
-          ".codewiki/kb/lexicon.md",
           ".codewiki/kb/product/uis/board.md",
           ".codewiki/kb/product/uis/control-room.md",
           ".codewiki/kb/product/uis/graph-navigation.md",
@@ -41176,11 +40765,9 @@
           ".codewiki/kb/system/file-structure.md",
           ".codewiki/kb/system/graph.md",
           ".codewiki/kb/system/overview.md",
-          ".codewiki/kb/system/roadmap.md",
           ".codewiki/kb/system/validation-gateway.md"
         ],
         "top_risky_spec_paths": [
-          ".codewiki/kb/lexicon.md",
           ".codewiki/kb/product/uis/board.md",
           ".codewiki/kb/product/uis/control-room.md",
           ".codewiki/kb/product/uis/graph-navigation.md",
@@ -41189,13 +40776,13 @@
           ".codewiki/kb/system/api.md",
           ".codewiki/kb/system/audits.md",
           ".codewiki/kb/system/builds.md",
-          ".codewiki/kb/system/compilers.md"
+          ".codewiki/kb/system/compilers.md",
+          ".codewiki/kb/system/control-room-ui.md"
         ],
         "open_task_ids": [
           "TASK-077",
           "TASK-082",
           "TASK-083",
-          "TASK-086",
           "TASK-087",
           "TASK-088",
           "TASK-085"
@@ -41257,7 +40844,6 @@
               "TASK-082",
               "TASK-083",
               "TASK-085",
-              "TASK-086",
               "TASK-087",
               "TASK-088"
             ],
@@ -41266,17 +40852,11 @@
             ],
             "build_paths": [
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-              ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-              ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-              ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-              ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-              ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+              ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json"
             ],
             "validation_paths": [
               ".codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-              ".codewiki/validation/2026-05-16-feedback-block.json",
-              ".codewiki/validation/2026-05-16-implementation-block-task-086.json",
-              ".codewiki/validation/2026-05-16-implementation-fail-task-086.json"
+              ".codewiki/validation/2026-05-16-feedback-block.json"
             ],
             "claim_ids": [],
             "claim_wait_ids": []
@@ -41372,11 +40952,15 @@
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+              ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
               ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+              ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
               ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-              ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
+              ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
+              ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+              ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
             ],
             "validation_paths": [
               ".codewiki/validation/2026-05-14-documentation-pass.json",
@@ -41393,7 +40977,8 @@
               ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-079.json",
               ".codewiki/validation/2026-05-16-task-close-pass-task-080.json",
-              ".codewiki/validation/2026-05-16-task-close-pass-task-081.json"
+              ".codewiki/validation/2026-05-16-task-close-pass-task-081.json",
+              ".codewiki/validation/2026-05-16-task-close-pass-task-086.json"
             ]
           },
           "cold": {
@@ -41499,11 +41084,15 @@
               ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
+              ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
               ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
+              ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
               ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-              ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json"
+              ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
+              ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
+              ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
             ]
           },
           "purgeable": {
@@ -41536,46 +41125,9 @@
         "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
-        "Tracked drift coverage: 17/17."
+        "Tracked drift coverage: 15/15."
       ],
       "specs": [
-        {
-          "path": ".codewiki/kb/lexicon.md",
-          "title": "Lexicon",
-          "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, validation gateways, and generated graph views.",
-          "drift_status": "tracked",
-          "code_paths": [
-            ".codewiki/kb"
-          ],
-          "code_area": ".codewiki/kb",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-086",
-            "TASK-016",
-            "TASK-018",
-            "TASK-026",
-            "TASK-034",
-            "TASK-038",
-            "TASK-040",
-            "TASK-041",
-            "TASK-045",
-            "TASK-047"
-          ],
-          "primary_task": {
-            "id": "TASK-086",
-            "status": "in_progress",
-            "title": "Migrate public coordination API to artifact status"
-          },
-          "revision": {
-            "digest": "b5051fbe8f0404be1c939f3d3786c73c575d42f322f9c828d7e5d933a2af4736",
-            "basis": "source_content"
-          },
-          "note": "tracked by TASK-086"
-        },
         {
           "path": ".codewiki/kb/product/uis/board.md",
           "title": "Board UI",
@@ -41683,20 +41235,19 @@
             "total": 0
           },
           "related_task_ids": [
-            "TASK-086",
             "TASK-088",
             "TASK-034"
           ],
           "primary_task": {
-            "id": "TASK-086",
+            "id": "TASK-088",
             "status": "in_progress",
-            "title": "Migrate public coordination API to artifact status"
+            "title": "Move web UI out of adapter layer"
           },
           "revision": {
             "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
             "basis": "source_content"
           },
-          "note": "tracked by TASK-086"
+          "note": "tracked by TASK-088"
         },
         {
           "path": ".codewiki/kb/system/alignment-model.md",
@@ -41752,20 +41303,19 @@
             "total": 0
           },
           "related_task_ids": [
-            "TASK-086",
             "TASK-087",
             "TASK-034"
           ],
           "primary_task": {
-            "id": "TASK-086",
+            "id": "TASK-087",
             "status": "in_progress",
-            "title": "Migrate public coordination API to artifact status"
+            "title": "Migrate source to domain-led CodeWiki layers"
           },
           "revision": {
             "digest": "7bb646a33f0fdf2586aceb2d73d618d1ad3e99d6a7b9dfb9d68e81b3b4250834",
             "basis": "source_content"
           },
-          "note": "tracked by TASK-086"
+          "note": "tracked by TASK-087"
         },
         {
           "path": ".codewiki/kb/system/audits.md",
@@ -41953,7 +41503,6 @@
           "related_task_ids": [
             "TASK-077",
             "TASK-083",
-            "TASK-086",
             "TASK-087",
             "TASK-088",
             "TASK-076"
@@ -41990,7 +41539,6 @@
           },
           "related_task_ids": [
             "TASK-077",
-            "TASK-086",
             "TASK-087",
             "TASK-085",
             "TASK-038",
@@ -42052,36 +41600,6 @@
           "note": "tracked by TASK-087"
         },
         {
-          "path": ".codewiki/kb/system/roadmap.md",
-          "title": "Roadmap",
-          "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
-          "drift_status": "tracked",
-          "code_paths": [
-            ".codewiki/roadmap/queue.json",
-            ".codewiki/roadmap",
-            "src/application/roadmap.ts"
-          ],
-          "code_area": ".codewiki, src",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-086"
-          ],
-          "primary_task": {
-            "id": "TASK-086",
-            "status": "in_progress",
-            "title": "Migrate public coordination API to artifact status"
-          },
-          "revision": {
-            "digest": "c96ec2a09a42eb7dd12fd673bf8289be34adffee9fe08be91389d40abbe77fc1",
-            "basis": "source_content"
-          },
-          "note": "tracked by TASK-086"
-        },
-        {
           "path": ".codewiki/kb/system/validation-gateway.md",
           "title": "Validation Gateway",
           "summary": "Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.",
@@ -42100,7 +41618,6 @@
           },
           "related_task_ids": [
             "TASK-077",
-            "TASK-086",
             "TASK-087",
             "TASK-085",
             "TASK-034",
@@ -42118,6 +41635,42 @@
             "basis": "source_content"
           },
           "note": "tracked by TASK-077"
+        },
+        {
+          "path": ".codewiki/kb/lexicon.md",
+          "title": "Lexicon",
+          "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, validation gateways, and generated graph views.",
+          "drift_status": "aligned",
+          "code_paths": [
+            ".codewiki/kb"
+          ],
+          "code_area": ".codewiki/kb",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [
+            "TASK-016",
+            "TASK-018",
+            "TASK-026",
+            "TASK-034",
+            "TASK-038",
+            "TASK-040",
+            "TASK-041",
+            "TASK-045",
+            "TASK-047"
+          ],
+          "primary_task": {
+            "id": "TASK-016",
+            "status": "done",
+            "title": "Bake product split and lexicon into templates"
+          },
+          "revision": {
+            "digest": "b5051fbe8f0404be1c939f3d3786c73c575d42f322f9c828d7e5d933a2af4736",
+            "basis": "source_content"
+          },
+          "note": "no deterministic drift signals"
         },
         {
           "path": ".codewiki/kb/product/overview.md",
@@ -42544,10 +42097,34 @@
             "basis": "source_content"
           },
           "note": "no deterministic drift signals"
+        },
+        {
+          "path": ".codewiki/kb/system/roadmap.md",
+          "title": "Roadmap",
+          "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
+          "drift_status": "aligned",
+          "code_paths": [
+            ".codewiki/roadmap/queue.json",
+            ".codewiki/roadmap",
+            "src/application/roadmap.ts"
+          ],
+          "code_area": ".codewiki, src",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [],
+          "primary_task": null,
+          "revision": {
+            "digest": "c96ec2a09a42eb7dd12fd673bf8289be34adffee9fe08be91389d40abbe77fc1",
+            "basis": "source_content"
+          },
+          "note": "no deterministic drift signals"
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T08:12:11Z",
+        "generated_at": "2026-05-16T08:14:55Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -42575,12 +42152,17 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T08:12:11Z",
+            "checked_at": "2026-05-16T08:14:55Z",
             "revision": {
               "git": {
-                "head": "30448c9ec90e544992f23e078fc494895435f09a",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "16f3b1810573b1a797196f223a2320bd4ea11db5",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-086/context.json",
+                  ".codewiki/roadmap/tasks/TASK-086/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -42661,14 +42243,14 @@
                 }
               },
               "spec_digest": "4bf38b0b0799a1d9e074211f0a26a5f2e390b38c058a2860504ffc83da3742d6",
-              "task_digest": "8799d35b459d4de6e902b290bffef3ae136c7b49be27babab4cb895a254124a1",
-              "code_digest": "be5d4ca82c398d29520b7fa4daceec490c90705df77e56eeaa99d8f8eb076de2",
-              "digest": "d0fb63d89909ca518c9ede57a7d449729fbb71b041628c121a38191f36ef2337"
+              "task_digest": "423e03b7bf62754aa063f21f29f1f932e990a35b9980945f50b1646343635554",
+              "code_digest": "52f92692a1062a5521b9c0812a0ac487b79b58624b270de39a908078967d0462",
+              "digest": "6fada764f75074f6354b275ca3a8a2bc9005df66efcaccf47b9c17413d1908a6"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T08:12:11Z",
+              "checked_at": "2026-05-16T08:14:55Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -42699,13 +42281,13 @@
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/control-room-ui-details.md",
               ".codewiki/kb/system/diagrams/README.md",
-              ".codewiki/kb/system/knowledge.md"
+              ".codewiki/kb/system/knowledge.md",
+              ".codewiki/kb/system/roadmap.md"
             ],
             "code_paths": [
               "src/adapters/web",
@@ -42748,10 +42330,10 @@
               "src/application/graph/rebuilder.ts",
               "src/application/state-builders.ts",
               "src/application/state.ts",
-              ".codewiki/roadmap/queue.json",
-              ".codewiki/roadmap",
               ".codewiki/validation",
-              "src/adapters/web/control-room.ts"
+              "src/adapters/web/control-room.ts",
+              ".codewiki/roadmap/queue.json",
+              ".codewiki/roadmap"
             ],
             "code_area": "src, .codewiki +3 more",
             "open_task_ids": [
@@ -42759,7 +42341,6 @@
               "TASK-082",
               "TASK-083",
               "TASK-085",
-              "TASK-086",
               "TASK-087",
               "TASK-088"
             ],
@@ -42778,13 +42359,12 @@
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md"
             ],
             "stats": {
               "total_specs": 33,
-              "aligned_specs": 17,
-              "tracked_specs": 16,
+              "aligned_specs": 18,
+              "tracked_specs": 15,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -42809,12 +42389,17 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T08:12:11Z",
+            "checked_at": "2026-05-16T08:14:55Z",
             "revision": {
               "git": {
-                "head": "30448c9ec90e544992f23e078fc494895435f09a",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "16f3b1810573b1a797196f223a2320bd4ea11db5",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-086/context.json",
+                  ".codewiki/roadmap/tasks/TASK-086/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -42874,14 +42459,14 @@
                 }
               },
               "spec_digest": "1757fe47f3161a515c55357a302f40f341273552190f7a6b913b4136b1c89cb5",
-              "task_digest": "8799d35b459d4de6e902b290bffef3ae136c7b49be27babab4cb895a254124a1",
-              "code_digest": "dcbe452b3d3688ed60dc1eb41d94985ca0c97195bd43c3ac9e6d9c8d2a040657",
-              "digest": "50b0ed3212ed5929c89c285ca34cb22c8e6a68fa66ca1674c0f002dc8506733f"
+              "task_digest": "423e03b7bf62754aa063f21f29f1f932e990a35b9980945f50b1646343635554",
+              "code_digest": "df421fd5ba8c0b7adbc90acaa7b480ec1898718734edc200396e9d5788e6c6e4",
+              "digest": "694f9efef652e425745a82c86ec03e38707ef595a33a8895a077feb95cbd87b1"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T08:12:11Z",
+              "checked_at": "2026-05-16T08:14:55Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -42897,13 +42482,13 @@
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/control-room-ui-details.md",
               ".codewiki/kb/system/diagrams/README.md",
-              ".codewiki/kb/system/knowledge.md"
+              ".codewiki/kb/system/knowledge.md",
+              ".codewiki/kb/system/roadmap.md"
             ],
             "code_paths": [
               "src/adapters",
@@ -42939,11 +42524,11 @@
               "src/application/state-builders.ts",
               "src/application/state.ts",
               "skills",
-              ".codewiki/roadmap/queue.json",
-              ".codewiki/roadmap",
               ".codewiki/validation",
               "src/adapters/web/control-room.ts",
-              "src/adapters/pi/ui/manager.ts"
+              "src/adapters/pi/ui/manager.ts",
+              ".codewiki/roadmap/queue.json",
+              ".codewiki/roadmap"
             ],
             "code_area": "src, skills +2 more",
             "open_task_ids": [
@@ -42951,7 +42536,6 @@
               "TASK-082",
               "TASK-083",
               "TASK-085",
-              "TASK-086",
               "TASK-087",
               "TASK-088"
             ],
@@ -42967,13 +42551,12 @@
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md"
             ],
             "stats": {
               "total_specs": 18,
-              "aligned_specs": 5,
-              "tracked_specs": 13,
+              "aligned_specs": 6,
+              "tracked_specs": 12,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -42998,12 +42581,17 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T08:12:11Z",
+            "checked_at": "2026-05-16T08:14:55Z",
             "revision": {
               "git": {
-                "head": "30448c9ec90e544992f23e078fc494895435f09a",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "16f3b1810573b1a797196f223a2320bd4ea11db5",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/roadmap/archive.jsonl",
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap/tasks/TASK-086/context.json",
+                  ".codewiki/roadmap/tasks/TASK-086/task.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -43084,14 +42672,14 @@
                 }
               },
               "spec_digest": "4bf38b0b0799a1d9e074211f0a26a5f2e390b38c058a2860504ffc83da3742d6",
-              "task_digest": "8799d35b459d4de6e902b290bffef3ae136c7b49be27babab4cb895a254124a1",
-              "code_digest": "be5d4ca82c398d29520b7fa4daceec490c90705df77e56eeaa99d8f8eb076de2",
-              "digest": "d0fb63d89909ca518c9ede57a7d449729fbb71b041628c121a38191f36ef2337"
+              "task_digest": "423e03b7bf62754aa063f21f29f1f932e990a35b9980945f50b1646343635554",
+              "code_digest": "52f92692a1062a5521b9c0812a0ac487b79b58624b270de39a908078967d0462",
+              "digest": "6fada764f75074f6354b275ca3a8a2bc9005df66efcaccf47b9c17413d1908a6"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T08:12:11Z",
+              "checked_at": "2026-05-16T08:14:55Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -43122,13 +42710,13 @@
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/change-lifecycle.md",
               ".codewiki/kb/system/control-room-ui-details.md",
               ".codewiki/kb/system/diagrams/README.md",
-              ".codewiki/kb/system/knowledge.md"
+              ".codewiki/kb/system/knowledge.md",
+              ".codewiki/kb/system/roadmap.md"
             ],
             "code_paths": [
               "src/adapters/web",
@@ -43171,10 +42759,10 @@
               "src/application/graph/rebuilder.ts",
               "src/application/state-builders.ts",
               "src/application/state.ts",
-              ".codewiki/roadmap/queue.json",
-              ".codewiki/roadmap",
               ".codewiki/validation",
-              "src/adapters/web/control-room.ts"
+              "src/adapters/web/control-room.ts",
+              ".codewiki/roadmap/queue.json",
+              ".codewiki/roadmap"
             ],
             "code_area": "src, .codewiki +3 more",
             "open_task_ids": [
@@ -43182,7 +42770,6 @@
               "TASK-082",
               "TASK-083",
               "TASK-085",
-              "TASK-086",
               "TASK-087",
               "TASK-088"
             ],
@@ -43201,13 +42788,12 @@
               ".codewiki/kb/system/file-structure.md",
               ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/overview.md",
-              ".codewiki/kb/system/roadmap.md",
               ".codewiki/kb/system/validation-gateway.md"
             ],
             "stats": {
               "total_specs": 33,
-              "aligned_specs": 17,
-              "tracked_specs": 16,
+              "aligned_specs": 18,
+              "tracked_specs": 15,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -43233,7 +42819,7 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T08:12:11Z",
+        "generated_at": "2026-05-16T08:14:55Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
@@ -43248,43 +42834,6 @@
       },
       "wiki": {
         "rows": [
-          {
-            "path": ".codewiki/kb/lexicon.md",
-            "title": "Lexicon",
-            "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, validation gateways, and generated graph views.",
-            "drift_status": "tracked",
-            "code_paths": [
-              ".codewiki/kb"
-            ],
-            "code_area": ".codewiki/kb",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-086",
-              "TASK-016",
-              "TASK-018",
-              "TASK-026",
-              "TASK-034",
-              "TASK-038",
-              "TASK-040",
-              "TASK-041",
-              "TASK-045",
-              "TASK-047"
-            ],
-            "primary_task": {
-              "id": "TASK-086",
-              "status": "in_progress",
-              "title": "Migrate public coordination API to artifact status"
-            },
-            "revision": {
-              "digest": "b5051fbe8f0404be1c939f3d3786c73c575d42f322f9c828d7e5d933a2af4736",
-              "basis": "source_content"
-            },
-            "note": "tracked by TASK-086"
-          },
           {
             "path": ".codewiki/kb/product/uis/board.md",
             "title": "Board UI",
@@ -43392,20 +42941,19 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-086",
               "TASK-088",
               "TASK-034"
             ],
             "primary_task": {
-              "id": "TASK-086",
+              "id": "TASK-088",
               "status": "in_progress",
-              "title": "Migrate public coordination API to artifact status"
+              "title": "Move web UI out of adapter layer"
             },
             "revision": {
               "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
               "basis": "source_content"
             },
-            "note": "tracked by TASK-086"
+            "note": "tracked by TASK-088"
           },
           {
             "path": ".codewiki/kb/system/alignment-model.md",
@@ -43461,20 +43009,19 @@
               "total": 0
             },
             "related_task_ids": [
-              "TASK-086",
               "TASK-087",
               "TASK-034"
             ],
             "primary_task": {
-              "id": "TASK-086",
+              "id": "TASK-087",
               "status": "in_progress",
-              "title": "Migrate public coordination API to artifact status"
+              "title": "Migrate source to domain-led CodeWiki layers"
             },
             "revision": {
               "digest": "7bb646a33f0fdf2586aceb2d73d618d1ad3e99d6a7b9dfb9d68e81b3b4250834",
               "basis": "source_content"
             },
-            "note": "tracked by TASK-086"
+            "note": "tracked by TASK-087"
           },
           {
             "path": ".codewiki/kb/system/audits.md",
@@ -43662,7 +43209,6 @@
             "related_task_ids": [
               "TASK-077",
               "TASK-083",
-              "TASK-086",
               "TASK-087",
               "TASK-088",
               "TASK-076"
@@ -43699,7 +43245,6 @@
             },
             "related_task_ids": [
               "TASK-077",
-              "TASK-086",
               "TASK-087",
               "TASK-085",
               "TASK-038",
@@ -43761,36 +43306,6 @@
             "note": "tracked by TASK-087"
           },
           {
-            "path": ".codewiki/kb/system/roadmap.md",
-            "title": "Roadmap",
-            "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
-            "drift_status": "tracked",
-            "code_paths": [
-              ".codewiki/roadmap/queue.json",
-              ".codewiki/roadmap",
-              "src/application/roadmap.ts"
-            ],
-            "code_area": ".codewiki, src",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-086"
-            ],
-            "primary_task": {
-              "id": "TASK-086",
-              "status": "in_progress",
-              "title": "Migrate public coordination API to artifact status"
-            },
-            "revision": {
-              "digest": "c96ec2a09a42eb7dd12fd673bf8289be34adffee9fe08be91389d40abbe77fc1",
-              "basis": "source_content"
-            },
-            "note": "tracked by TASK-086"
-          },
-          {
             "path": ".codewiki/kb/system/validation-gateway.md",
             "title": "Validation Gateway",
             "summary": "Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.",
@@ -43809,7 +43324,6 @@
             },
             "related_task_ids": [
               "TASK-077",
-              "TASK-086",
               "TASK-087",
               "TASK-085",
               "TASK-034",
@@ -43827,6 +43341,42 @@
               "basis": "source_content"
             },
             "note": "tracked by TASK-077"
+          },
+          {
+            "path": ".codewiki/kb/lexicon.md",
+            "title": "Lexicon",
+            "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, validation gateways, and generated graph views.",
+            "drift_status": "aligned",
+            "code_paths": [
+              ".codewiki/kb"
+            ],
+            "code_area": ".codewiki/kb",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-016",
+              "TASK-018",
+              "TASK-026",
+              "TASK-034",
+              "TASK-038",
+              "TASK-040",
+              "TASK-041",
+              "TASK-045",
+              "TASK-047"
+            ],
+            "primary_task": {
+              "id": "TASK-016",
+              "status": "done",
+              "title": "Bake product split and lexicon into templates"
+            },
+            "revision": {
+              "digest": "b5051fbe8f0404be1c939f3d3786c73c575d42f322f9c828d7e5d933a2af4736",
+              "basis": "source_content"
+            },
+            "note": "no deterministic drift signals"
           },
           {
             "path": ".codewiki/kb/product/overview.md",
@@ -44253,6 +43803,30 @@
               "basis": "source_content"
             },
             "note": "no deterministic drift signals"
+          },
+          {
+            "path": ".codewiki/kb/system/roadmap.md",
+            "title": "Roadmap",
+            "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
+            "drift_status": "aligned",
+            "code_paths": [
+              ".codewiki/roadmap/queue.json",
+              ".codewiki/roadmap",
+              "src/application/roadmap.ts"
+            ],
+            "code_area": ".codewiki, src",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [],
+            "primary_task": null,
+            "revision": {
+              "digest": "c96ec2a09a42eb7dd12fd673bf8289be34adffee9fe08be91389d40abbe77fc1",
+              "basis": "source_content"
+            },
+            "note": "no deterministic drift signals"
           }
         ],
         "sections": [
@@ -44661,43 +44235,6 @@
             "label": "System",
             "rows": [
               {
-                "path": ".codewiki/kb/lexicon.md",
-                "title": "Lexicon",
-                "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, validation gateways, and generated graph views.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  ".codewiki/kb"
-                ],
-                "code_area": ".codewiki/kb",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-086",
-                  "TASK-016",
-                  "TASK-018",
-                  "TASK-026",
-                  "TASK-034",
-                  "TASK-038",
-                  "TASK-040",
-                  "TASK-041",
-                  "TASK-045",
-                  "TASK-047"
-                ],
-                "primary_task": {
-                  "id": "TASK-086",
-                  "status": "in_progress",
-                  "title": "Migrate public coordination API to artifact status"
-                },
-                "revision": {
-                  "digest": "b5051fbe8f0404be1c939f3d3786c73c575d42f322f9c828d7e5d933a2af4736",
-                  "basis": "source_content"
-                },
-                "note": "tracked by TASK-086"
-              },
-              {
                 "path": ".codewiki/kb/system/adapters.md",
                 "title": "Adapters",
                 "summary": "Harness and protocol translation boundary for Pi, CLI, MCP, Claude Code, Codex, or other integrations.",
@@ -44714,20 +44251,19 @@
                   "total": 0
                 },
                 "related_task_ids": [
-                  "TASK-086",
                   "TASK-088",
                   "TASK-034"
                 ],
                 "primary_task": {
-                  "id": "TASK-086",
+                  "id": "TASK-088",
                   "status": "in_progress",
-                  "title": "Migrate public coordination API to artifact status"
+                  "title": "Move web UI out of adapter layer"
                 },
                 "revision": {
                   "digest": "150abc5c513fabd3d62f348abcbb143d5596f4f160c825b3ab203abbf73de86f",
                   "basis": "source_content"
                 },
-                "note": "tracked by TASK-086"
+                "note": "tracked by TASK-088"
               },
               {
                 "path": ".codewiki/kb/system/alignment-model.md",
@@ -44783,20 +44319,19 @@
                   "total": 0
                 },
                 "related_task_ids": [
-                  "TASK-086",
                   "TASK-087",
                   "TASK-034"
                 ],
                 "primary_task": {
-                  "id": "TASK-086",
+                  "id": "TASK-087",
                   "status": "in_progress",
-                  "title": "Migrate public coordination API to artifact status"
+                  "title": "Migrate source to domain-led CodeWiki layers"
                 },
                 "revision": {
                   "digest": "7bb646a33f0fdf2586aceb2d73d618d1ad3e99d6a7b9dfb9d68e81b3b4250834",
                   "basis": "source_content"
                 },
-                "note": "tracked by TASK-086"
+                "note": "tracked by TASK-087"
               },
               {
                 "path": ".codewiki/kb/system/audits.md",
@@ -44984,7 +44519,6 @@
                 "related_task_ids": [
                   "TASK-077",
                   "TASK-083",
-                  "TASK-086",
                   "TASK-087",
                   "TASK-088",
                   "TASK-076"
@@ -45021,7 +44555,6 @@
                 },
                 "related_task_ids": [
                   "TASK-077",
-                  "TASK-086",
                   "TASK-087",
                   "TASK-085",
                   "TASK-038",
@@ -45083,36 +44616,6 @@
                 "note": "tracked by TASK-087"
               },
               {
-                "path": ".codewiki/kb/system/roadmap.md",
-                "title": "Roadmap",
-                "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
-                "drift_status": "tracked",
-                "code_paths": [
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap",
-                  "src/application/roadmap.ts"
-                ],
-                "code_area": ".codewiki, src",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-086"
-                ],
-                "primary_task": {
-                  "id": "TASK-086",
-                  "status": "in_progress",
-                  "title": "Migrate public coordination API to artifact status"
-                },
-                "revision": {
-                  "digest": "c96ec2a09a42eb7dd12fd673bf8289be34adffee9fe08be91389d40abbe77fc1",
-                  "basis": "source_content"
-                },
-                "note": "tracked by TASK-086"
-              },
-              {
                 "path": ".codewiki/kb/system/validation-gateway.md",
                 "title": "Validation Gateway",
                 "summary": "Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.",
@@ -45131,7 +44634,6 @@
                 },
                 "related_task_ids": [
                   "TASK-077",
-                  "TASK-086",
                   "TASK-087",
                   "TASK-085",
                   "TASK-034",
@@ -45149,6 +44651,42 @@
                   "basis": "source_content"
                 },
                 "note": "tracked by TASK-077"
+              },
+              {
+                "path": ".codewiki/kb/lexicon.md",
+                "title": "Lexicon",
+                "summary": "Shared CodeWiki vocabulary for agents, humans, tasks, compiler builds, validation gateways, and generated graph views.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  ".codewiki/kb"
+                ],
+                "code_area": ".codewiki/kb",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [
+                  "TASK-016",
+                  "TASK-018",
+                  "TASK-026",
+                  "TASK-034",
+                  "TASK-038",
+                  "TASK-040",
+                  "TASK-041",
+                  "TASK-045",
+                  "TASK-047"
+                ],
+                "primary_task": {
+                  "id": "TASK-016",
+                  "status": "done",
+                  "title": "Bake product split and lexicon into templates"
+                },
+                "revision": {
+                  "digest": "b5051fbe8f0404be1c939f3d3786c73c575d42f322f9c828d7e5d933a2af4736",
+                  "basis": "source_content"
+                },
+                "note": "no deterministic drift signals"
               },
               {
                 "path": ".codewiki/kb/system/agency.md",
@@ -45271,6 +44809,30 @@
                   "basis": "source_content"
                 },
                 "note": "no deterministic drift signals"
+              },
+              {
+                "path": ".codewiki/kb/system/roadmap.md",
+                "title": "Roadmap",
+                "summary": "Work truth for active items, priority, status, blockers, progress, and closure.",
+                "drift_status": "aligned",
+                "code_paths": [
+                  ".codewiki/roadmap/queue.json",
+                  ".codewiki/roadmap",
+                  "src/application/roadmap.ts"
+                ],
+                "code_area": ".codewiki, src",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [],
+                "primary_task": null,
+                "revision": {
+                  "digest": "c96ec2a09a42eb7dd12fd673bf8289be34adffee9fe08be91389d40abbe77fc1",
+                  "basis": "source_content"
+                },
+                "note": "no deterministic drift signals"
               }
             ]
           },
@@ -45288,7 +44850,6 @@
           "TASK-077",
           "TASK-082",
           "TASK-083",
-          "TASK-086",
           "TASK-087",
           "TASK-088"
         ],
@@ -45446,7 +45007,6 @@
               "TASK-077",
               "TASK-082",
               "TASK-083",
-              "TASK-086",
               "TASK-087",
               "TASK-088"
             ]
