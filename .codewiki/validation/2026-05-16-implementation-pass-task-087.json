@@ -1,31 +1,31 @@
 {
   "version": 1,
   "kind": "validation_report",
-  "created": "2026-05-16T20:52:57Z",
+  "created": "2026-05-16T20:59:20Z",
   "profile": "implementation",
   "task_id": "TASK-087",
   "verdict": "pass",
-  "rationale": "Fresh validation passes for TASK-087 narrow dependency-direction guard slice. Accepted feedback, documentation, planning, and implementation builds form a traceable chain. Implementation build uses change_type=system, traceability.requires_accepted_build=true, and accepted_build_refs includes .codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json. The slice adds regression fixture coverage proving source-owned file-structure audit detects forbidden domain-to-application and application-to-adapter imports. It satisfies the TASK-087 acceptance item for dependency checks/tests while leaving broader source migration open.",
+  "rationale": "Fresh validation passes for TASK-087 task-boundary domain extraction slice. Roadmap task-boundary semantics moved from application to domain roadmap module while application compatibility re-export preserves existing imports. Typecheck, boundary smoke, and architecture audit pass. This satisfies a narrow part of TASK-087 domain-led layering; task remains open for broader migration.",
   "checks": [
-    "read .codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
-    "read .codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
-    "read .codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
-    "read .codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
-    "node tests/smoke/audit-drift.test.mjs",
-    "npm run check:architecture",
     "npm run typecheck",
+    "node tests/smoke/roadmap-task-boundary.test.mjs",
+    "npm run check:architecture",
     "audit:alignment",
     "audit:changed",
     "audit:task",
-    "dirty diff digest sha256:fea3d0c8ce23ea099b7c68c3d85e5f2ebe4fc6c5b9420880274063a8233006e7"
+    "dirty diff digest sha256:117f80076421e0d4b0655c34fc502280a98b9919fbfb32a2d930854898789796"
   ],
   "issues": [
     {
       "severity": "low",
       "summary": "audit:alignment reports pre-existing graph health warnings; audit:changed and audit:task pass."
+    },
+    {
+      "severity": "low",
+      "summary": "Implementation build uses prior TASK-087 planning chain rather than a dedicated extraction planning build; acceptable for this small continuation slice but future slices should create exact planning refs."
     }
   ],
-  "source": ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
+  "source": ".codewiki/builds/implementation/2026-05-16-extracted-roadmap-task-boundary-semantics-into-d.json",
   "policy_profile": "implementation",
   "required_audits": [
     "alignment",
@@ -39,11 +39,11 @@
   ],
   "audit_reports": [
     "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
-    "audit:changed pass Checked 7 changed files across 4 layers.",
+    "audit:changed pass Checked 4 changed files across 3 layers.",
     "audit:task pass Checked roadmap task TASK-087."
   ],
   "content_proof_refs": [
-    "sha256:fea3d0c8ce23ea099b7c68c3d85e5f2ebe4fc6c5b9420880274063a8233006e7"
+    "sha256:117f80076421e0d4b0655c34fc502280a98b9919fbfb32a2d930854898789796"
   ],
   "failed_criteria": [],
   "blocking_questions": [],
@@ -103,10 +103,10 @@
     "warnings": []
   },
   "isolation": {
-    "working_tree_digest": "sha256:fea3d0c8ce23ea099b7c68c3d85e5f2ebe4fc6c5b9420880274063a8233006e7",
+    "working_tree_digest": "sha256:117f80076421e0d4b0655c34fc502280a98b9919fbfb32a2d930854898789796",
     "clean": false,
     "fresh_context": true,
-    "notes": "Dirty pre-commit validation for narrow guard slice; TASK-087 remains open for broader migration.",
+    "notes": "Dirty pre-commit validation for narrow extraction slice; TASK-087 remains open.",
     "role": "validator"
   }
 }
