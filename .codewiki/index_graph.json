@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T22:01:04.222Z",
+  "generated_at": "2026-05-16T22:07:44.077Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -16393,74 +16393,6 @@
         "audit_evidence_refs": [],
         "content_proof_refs": []
       }
-    },
-    {
-      "id": "validation:.codewiki/validation/2026-05-16-feedback-block.json",
-      "kind": "validation_report",
-      "path": ".codewiki/validation/2026-05-16-feedback-block.json",
-      "verdict": "block",
-      "isolation_status": "partial",
-      "isolation": {
-        "fresh_context": true,
-        "notes": "Validation read build, roadmap, and policy artifacts directly in this session and did not rely on prior chat memory.",
-        "role": "validator"
-      },
-      "evidence_summary": {
-        "canonical_source_refs": [
-          ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json"
-        ],
-        "audit_evidence_refs": [
-          "codewiki_audit:alignment:feedback+roadmap:pass",
-          "codewiki_audit:task+generated-parity:TASK-086:pass",
-          "codewiki_audit:task:TASK-083:pass",
-          "CodeWiki audit output: alignment pass with 0 issues for feedback build and roadmap paths",
-          "CodeWiki audit output: task/generated-parity pass for TASK-086 with 0 issues",
-          "CodeWiki audit output: task pass for TASK-083 with 0 issues"
-        ],
-        "content_proof_refs": []
-      }
-    },
-    {
-      "id": "audit:codewiki_audit:alignment:feedback+roadmap:pass",
-      "kind": "audit_evidence",
-      "path": "codewiki_audit:alignment:feedback+roadmap:pass",
-      "layer": "audit",
-      "default_hidden": true
-    },
-    {
-      "id": "audit:codewiki_audit:task+generated-parity:TASK-086:pass",
-      "kind": "audit_evidence",
-      "path": "codewiki_audit:task+generated-parity:TASK-086:pass",
-      "layer": "audit",
-      "default_hidden": true
-    },
-    {
-      "id": "audit:codewiki_audit:task:TASK-083:pass",
-      "kind": "audit_evidence",
-      "path": "codewiki_audit:task:TASK-083:pass",
-      "layer": "audit",
-      "default_hidden": true
-    },
-    {
-      "id": "audit:CodeWiki audit output: alignment pass with 0 issues for feedback build and roadmap paths",
-      "kind": "audit_evidence",
-      "path": "CodeWiki audit output: alignment pass with 0 issues for feedback build and roadmap paths",
-      "layer": "audit",
-      "default_hidden": true
-    },
-    {
-      "id": "audit:CodeWiki audit output: task/generated-parity pass for TASK-086 with 0 issues",
-      "kind": "audit_evidence",
-      "path": "CodeWiki audit output: task/generated-parity pass for TASK-086 with 0 issues",
-      "layer": "audit",
-      "default_hidden": true
-    },
-    {
-      "id": "audit:CodeWiki audit output: task pass for TASK-083 with 0 issues",
-      "kind": "audit_evidence",
-      "path": "CodeWiki audit output: task pass for TASK-083 with 0 issues",
-      "layer": "audit",
-      "default_hidden": true
     },
     {
       "id": "validation:.codewiki/validation/2026-05-16-feedback-pass.json",
@@ -40461,48 +40393,6 @@
     },
     {
       "kind": "validation_attests_source",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-block.json",
-      "to": "source:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_audit_evidence",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-block.json",
-      "to": "audit:codewiki_audit:alignment:feedback+roadmap:pass",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_audit_evidence",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-block.json",
-      "to": "audit:codewiki_audit:task+generated-parity:TASK-086:pass",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_audit_evidence",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-block.json",
-      "to": "audit:codewiki_audit:task:TASK-083:pass",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_audit_evidence",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-block.json",
-      "to": "audit:CodeWiki audit output: alignment pass with 0 issues for feedback build and roadmap paths",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_audit_evidence",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-block.json",
-      "to": "audit:CodeWiki audit output: task/generated-parity pass for TASK-086 with 0 issues",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_audit_evidence",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-block.json",
-      "to": "audit:CodeWiki audit output: task pass for TASK-083 with 0 issues",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-16-feedback-pass.json",
       "to": "source:.codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
       "default_hidden": true
@@ -42979,15 +42869,6 @@
           "content_proof_refs": []
         },
         {
-          "path": ".codewiki/validation/2026-05-16-feedback-block.json",
-          "verdict": "block",
-          "status": "partial",
-          "role": "validator",
-          "fresh_context": true,
-          "related_claim_ids": [],
-          "content_proof_refs": []
-        },
-        {
           "path": ".codewiki/validation/2026-05-16-feedback-pass.json",
           "verdict": "pass",
           "status": "partial",
@@ -44232,9 +44113,6 @@
         "validation-gateway, roadmap, builds, graph/api docs specify isolation metadata and gateway expectations."
       ],
       "audit_evidence_refs": [
-        "CodeWiki audit output: alignment pass with 0 issues for feedback build and roadmap paths",
-        "CodeWiki audit output: task pass for TASK-083 with 0 issues",
-        "CodeWiki audit output: task/generated-parity pass for TASK-086 with 0 issues",
         "TASK-081 implementation validation report .codewiki/validation/2026-05-16-implementation-pass-task-081.json: pass; recorded package audit dry-run contents, npm audit 0 vulnerabilities, npm test 15 passed, full audit pass.",
         "audit:alignment",
         "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings before implementation validation.",
@@ -44286,11 +44164,8 @@
         "codewiki_audit(profiles=[alignment, changed], task_id=TASK-086): alignment pass — Checked generated graph health and roadmap queue reachability; changed warning — Checked 29 changed files across 7 layers; task pass — Checked roadmap task TASK-086; generated-file-changed warnings for .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-086/context.json, .codewiki/roadmap/tasks/TASK-086/task.json only",
         "codewiki_audit(profiles=[alignment,changed], task_id=TASK-086): pass — alignment pass; changed pass (0 changed files across 0 layers); task pass.",
         "codewiki_audit(profiles=[generated-parity], task_id=TASK-086): pass — generated-parity pass (generated graph presence, freshness, and 7 active roadmap task views checked); task pass.",
-        "codewiki_audit:alignment:feedback+roadmap:pass",
         "codewiki_audit:alignment:pass",
         "codewiki_audit:changed:warning",
-        "codewiki_audit:task+generated-parity:TASK-086:pass",
-        "codewiki_audit:task:TASK-083:pass",
         "codewiki_audit:task:pass",
         "executeCodewikiAudit direct assertion: kind=audit_report, machine-readable profiles/checked_scopes/issues/evidence_refs/fingerprints present; full fingerprints=17; scoped file-structure/security/package sha256 fingerprints present.",
         "profile:alignment",
@@ -44869,24 +44744,6 @@
             ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json"
           ],
           "audit_evidence_refs": [],
-          "content_proof_refs": [],
-          "isolation_status": "partial"
-        },
-        {
-          "path": ".codewiki/validation/2026-05-16-feedback-block.json",
-          "verdict": "block",
-          "profile": "feedback",
-          "source_refs": [
-            ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json"
-          ],
-          "audit_evidence_refs": [
-            "codewiki_audit:alignment:feedback+roadmap:pass",
-            "codewiki_audit:task+generated-parity:TASK-086:pass",
-            "codewiki_audit:task:TASK-083:pass",
-            "CodeWiki audit output: alignment pass with 0 issues for feedback build and roadmap paths",
-            "CodeWiki audit output: task/generated-parity pass for TASK-086 with 0 issues",
-            "CodeWiki audit output: task pass for TASK-083 with 0 issues"
-          ],
           "content_proof_refs": [],
           "isolation_status": "partial"
         },
@@ -46570,9 +46427,7 @@
             "SPRINT-003"
           ],
           "build_paths": [],
-          "validation_paths": [
-            ".codewiki/validation/2026-05-16-feedback-block.json"
-          ],
+          "validation_paths": [],
           "claim_ids": [],
           "claim_wait_ids": []
         },
@@ -47478,7 +47333,7 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T22:01:04.124Z",
+      "generated_at": "2026-05-16T22:07:44.029Z",
       "counts": {
         "large-doc": 2
       },
@@ -47499,7 +47354,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T22:01:04Z",
+      "generated_at": "2026-05-16T22:07:44Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -50320,7 +50175,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T22:01:04Z",
+      "generated_at": "2026-05-16T22:07:44Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -50417,9 +50272,7 @@
               "SPRINT-003"
             ],
             "build_paths": [],
-            "validation_paths": [
-              ".codewiki/validation/2026-05-16-feedback-block.json"
-            ],
+            "validation_paths": [],
             "claim_ids": [],
             "claim_wait_ids": []
           },
@@ -51690,7 +51543,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T22:01:04Z",
+        "generated_at": "2026-05-16T22:07:44Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -51718,12 +51571,14 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T22:01:04Z",
+            "checked_at": "2026-05-16T22:07:44Z",
             "revision": {
               "git": {
-                "head": "c743249bcb0c39df038b8b94dd4150e7eb030db3",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "586e4ab0c80d24e68bf96bbf27262bf672944dbb",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/validation/2026-05-16-feedback-block.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -51806,12 +51661,12 @@
               "spec_digest": "a4cfeb16c8336b0a3f6d83335a9f5fa793ac3f7d317532252bb8c5a3c1f0538d",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
               "code_digest": "b6b8b54bb40912d84f09bc2e0923384c54d64b2d7d0ad5f55e1df10ad9b30137",
-              "digest": "d266940abe7579f709edfb4e54084d5b1f6e2536403bace95911de1501462e69"
+              "digest": "6718d6c36f366b685cda3829d3198ea6ed782aaba8b5c06533537645021656e1"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T22:01:04Z",
+              "checked_at": "2026-05-16T22:07:44Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -51927,12 +51782,14 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T22:01:04Z",
+            "checked_at": "2026-05-16T22:07:44Z",
             "revision": {
               "git": {
-                "head": "c743249bcb0c39df038b8b94dd4150e7eb030db3",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "586e4ab0c80d24e68bf96bbf27262bf672944dbb",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/validation/2026-05-16-feedback-block.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -51994,12 +51851,12 @@
               "spec_digest": "8e676fcb8e9e36b9bc8ed69b2ed99716ad8a2ea753d0aed9fb5c0f55f32d88af",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
               "code_digest": "70fdba52dcf5165d1f4314a9a4d78b5afc8e7b59d9a20de69f87ef0e45f6066a",
-              "digest": "e2d9ca99ad5727511206dd577fa142d984abe2122c671abb6da3aecd1df4e701"
+              "digest": "09d6e7e328c957d09a34ad19dc03cb13dd3e2f14198a335e0ba4d8aa3afebb50"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T22:01:04Z",
+              "checked_at": "2026-05-16T22:07:44Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -52094,12 +51951,14 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T22:01:04Z",
+            "checked_at": "2026-05-16T22:07:44Z",
             "revision": {
               "git": {
-                "head": "c743249bcb0c39df038b8b94dd4150e7eb030db3",
-                "dirty": false,
-                "dirty_paths": [],
+                "head": "586e4ab0c80d24e68bf96bbf27262bf672944dbb",
+                "dirty": true,
+                "dirty_paths": [
+                  ".codewiki/validation/2026-05-16-feedback-block.json"
+                ],
                 "paths": {
                   ".codewiki/builds": "",
                   ".codewiki/kb": "",
@@ -52182,12 +52041,12 @@
               "spec_digest": "a4cfeb16c8336b0a3f6d83335a9f5fa793ac3f7d317532252bb8c5a3c1f0538d",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
               "code_digest": "b6b8b54bb40912d84f09bc2e0923384c54d64b2d7d0ad5f55e1df10ad9b30137",
-              "digest": "d266940abe7579f709edfb4e54084d5b1f6e2536403bace95911de1501462e69"
+              "digest": "6718d6c36f366b685cda3829d3198ea6ed782aaba8b5c06533537645021656e1"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T22:01:04Z",
+              "checked_at": "2026-05-16T22:07:44Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -52304,7 +52163,7 @@
         "agency": "All agency lanes currently fresh."
       },
       "parallel": {
-        "generated_at": "2026-05-16T22:01:04Z",
+        "generated_at": "2026-05-16T22:07:44Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
