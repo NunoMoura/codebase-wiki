@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T21:50:53.705Z",
+  "generated_at": "2026-05-16T21:59:38.051Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -216,7 +216,7 @@
       "kind": "code_path",
       "path": "src",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "doc:.codewiki/kb/product/users/external-users.md",
@@ -276,7 +276,7 @@
       "kind": "code_path",
       "path": "src/application",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:skills/codewiki",
@@ -313,7 +313,7 @@
       "kind": "code_path",
       "path": "src/application/graph.ts",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:src/application/builds.ts",
@@ -1156,7 +1156,7 @@
       "kind": "code_path",
       "path": "tests",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "code:scripts",
@@ -1193,7 +1193,7 @@
       "kind": "code_path",
       "path": "tests/smoke",
       "layer": "code",
-      "alignment_state": "aligned"
+      "alignment_state": "drift"
     },
     {
       "id": "task:TASK-084",
@@ -1212,6 +1212,22 @@
       "status": "done",
       "change_type": "system",
       "alignment_state": "aligned"
+    },
+    {
+      "id": "task:TASK-091",
+      "kind": "roadmap_task",
+      "title": "Ignore superseded unscoped validation blockers",
+      "layer": "roadmap",
+      "status": "in_progress",
+      "change_type": "system",
+      "alignment_state": "drift"
+    },
+    {
+      "id": "code:tests/smoke/alignment-graph.test.mjs",
+      "kind": "code_path",
+      "path": "tests/smoke/alignment-graph.test.mjs",
+      "layer": "code",
+      "alignment_state": "drift"
     },
     {
       "id": "test:scripts/check-architecture.mjs",
@@ -3640,6 +3656,73 @@
       "id": "test:tests/smoke/alignment-drift-fixtures.test.mjs",
       "kind": "test_file",
       "path": "tests/smoke/alignment-drift-fixtures.test.mjs"
+    },
+    {
+      "id": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "kind": "feedback_build",
+      "path": ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "title": "Current graph routed stale unscoped feedback block after roadmap completion; user approved proceeding with diagnosis/fix.",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false,
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+          "Current graph routed stale unscoped feedback block after roadmap completion; user approved proceeding with diagnosis/fix.",
+          "TASK-091",
+          "src/application/graph.ts",
+          "tests/smoke/alignment-graph.test.mjs"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment"
+        ],
+        "content_proof_refs": [],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:Current graph routed stale unscoped feedback block after roadmap completion; user approved proceeding with diagnosis/fix.",
+      "kind": "canonical_source_ref",
+      "path": "Current graph routed stale unscoped feedback block after roadmap completion; user approved proceeding with diagnosis/fix.",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-091",
+      "kind": "canonical_source_ref",
+      "path": "TASK-091",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:src/application/graph.ts",
+      "kind": "canonical_source_ref",
+      "path": "src/application/graph.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:tests/smoke/alignment-graph.test.mjs",
+      "kind": "canonical_source_ref",
+      "path": "tests/smoke/alignment-graph.test.mjs",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "test:tests/smoke/alignment-graph.test.mjs",
+      "kind": "test_file",
+      "path": "tests/smoke/alignment-graph.test.mjs"
     },
     {
       "id": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
@@ -6176,6 +6259,63 @@
       "default_hidden": true
     },
     {
+      "id": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "kind": "documentation_build",
+      "path": ".codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "title": ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false,
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+          ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+          "codewiki_build tool",
+          "No knowledge file edits needed; reconciliation behavior clarified in TASK-091 acceptance and implementation evidence.",
+          "TASK-091 owns stale unscoped validation blocker fix.",
+          "TASK-091 planning"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment",
+          "profile:stale-reference"
+        ],
+        "content_proof_refs": [],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:No knowledge file edits needed; reconciliation behavior clarified in TASK-091 acceptance and implementation evidence.",
+      "kind": "canonical_source_ref",
+      "path": "No knowledge file edits needed; reconciliation behavior clarified in TASK-091 acceptance and implementation evidence.",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-091 owns stale unscoped validation blocker fix.",
+      "kind": "canonical_source_ref",
+      "path": "TASK-091 owns stale unscoped validation blocker fix.",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-091 planning",
+      "kind": "canonical_source_ref",
+      "path": "TASK-091 planning",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
       "id": "build:.codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
       "kind": "documentation_build",
       "path": ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
@@ -6979,13 +7119,6 @@
       "default_hidden": true
     },
     {
-      "id": "source:src/application/graph.ts",
-      "kind": "canonical_source_ref",
-      "path": "src/application/graph.ts",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
       "id": "source:src/application/graph/rebuilder.ts",
       "kind": "canonical_source_ref",
       "path": "src/application/graph/rebuilder.ts",
@@ -7056,13 +7189,6 @@
       "default_hidden": true
     },
     {
-      "id": "source:tests/smoke/alignment-graph.test.mjs",
-      "kind": "canonical_source_ref",
-      "path": "tests/smoke/alignment-graph.test.mjs",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
       "id": "source:tests/smoke/audit.test.mjs",
       "kind": "canonical_source_ref",
       "path": "tests/smoke/audit.test.mjs",
@@ -7121,11 +7247,6 @@
       "kind": "code_path",
       "path": "planned audit/graph/gateway/build/validation enforcement",
       "layer": "code"
-    },
-    {
-      "id": "test:tests/smoke/alignment-graph.test.mjs",
-      "kind": "test_file",
-      "path": "tests/smoke/alignment-graph.test.mjs"
     },
     {
       "id": "test:tests/smoke/audit.test.mjs",
@@ -7651,6 +7772,43 @@
       "id": "source:TASK-090",
       "kind": "canonical_source_ref",
       "path": "TASK-090",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "kind": "planning_build",
+      "path": ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false,
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+          ".codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+          "codewiki_build tool",
+          "TASK-091",
+          "src/application/graph.ts",
+          "tests/smoke/alignment-graph.test.mjs"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment"
+        ],
+        "content_proof_refs": [],
+        "validation_attestation_refs": [
+          "TASK-091 implementation validation"
+        ]
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
       "layer": "source",
       "default_hidden": true
     },
@@ -15077,6 +15235,100 @@
       "layer": "archive"
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
+      "archive_ref": "refs/codewiki/archive/task/TASK-091",
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+          ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+          "codewiki_build tool",
+          "src/application/graph.ts",
+          "tests/smoke/alignment-graph.test.mjs",
+          "TASK-091"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment",
+          "profile:changed"
+        ],
+        "content_proof_refs": [
+          ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json@sha256:16c4dcff226f9d85cd7265d033d5e2ec0f5a054577248845e15de7ac29db848c",
+          "tests/smoke/alignment-graph.test.mjs@sha256:72d746eeeae49ae1b2646f35e2cc6d6232de8b14f6778890bf2eb916886b176f",
+          "src/application/graph.ts@sha256:a977044bf1701982170a72cdb74e819635acbbe525701759363c789def515c79",
+          "refs/codewiki/archive/task/TASK-091",
+          "sha256:c096c748542a3f618787d0d92b446688fc6694c82dbf1e9f74ef8a61442bda2d"
+        ],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json@sha256:16c4dcff226f9d85cd7265d033d5e2ec0f5a054577248845e15de7ac29db848c",
+      "kind": "content_proof",
+      "path": ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json@sha256:16c4dcff226f9d85cd7265d033d5e2ec0f5a054577248845e15de7ac29db848c",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/alignment-graph.test.mjs@sha256:72d746eeeae49ae1b2646f35e2cc6d6232de8b14f6778890bf2eb916886b176f",
+      "kind": "content_proof",
+      "path": "tests/smoke/alignment-graph.test.mjs@sha256:72d746eeeae49ae1b2646f35e2cc6d6232de8b14f6778890bf2eb916886b176f",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:src/application/graph.ts@sha256:a977044bf1701982170a72cdb74e819635acbbe525701759363c789def515c79",
+      "kind": "content_proof",
+      "path": "src/application/graph.ts@sha256:a977044bf1701982170a72cdb74e819635acbbe525701759363c789def515c79",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:refs/codewiki/archive/task/TASK-091",
+      "kind": "content_proof",
+      "path": "refs/codewiki/archive/task/TASK-091",
+      "proof_kind": "git_ref",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:c096c748542a3f618787d0d92b446688fc6694c82dbf1e9f74ef8a61442bda2d",
+      "kind": "content_proof",
+      "path": "sha256:c096c748542a3f618787d0d92b446688fc6694c82dbf1e9f74ef8a61442bda2d",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "archive_ref:refs/codewiki/archive/task/TASK-091",
+      "kind": "git_archive_ref",
+      "path": "refs/codewiki/archive/task/TASK-091",
+      "task_id": "TASK-091",
+      "digest": "sha256:c096c748542a3f618787d0d92b446688fc6694c82dbf1e9f74ef8a61442bda2d",
+      "restore_command": "/wiki-restore TASK-091",
+      "safety_status": "blocked",
+      "default_hidden": true,
+      "layer": "archive"
+    },
+    {
       "id": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
       "kind": "implementation_build",
       "path": ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
@@ -16233,8 +16485,9 @@
       "verdict": "pass",
       "isolation_status": "partial",
       "isolation": {
+        "clean": false,
         "fresh_context": true,
-        "notes": "Validation read build, roadmap, and policy artifacts directly in this session and did not rely on prior chat memory.",
+        "notes": "Fresh diagnosis from current graph/audit state; only validation artifact written.",
         "role": "validator"
       },
       "evidence_summary": {
@@ -16243,13 +16496,9 @@
         ],
         "audit_evidence_refs": [
           "audit:alignment",
-          "profile:alignment",
-          "codewiki_audit:alignment:feedback+roadmap:pass",
-          "codewiki_audit:task+generated-parity:TASK-086:pass",
-          "codewiki_audit:task:TASK-083:pass",
-          "CodeWiki audit output: alignment pass with 0 issues for feedback build and roadmap paths",
-          "CodeWiki audit output: task/generated-parity pass for TASK-086 with 0 issues",
-          "CodeWiki audit output: task pass for TASK-083 with 0 issues"
+          "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+          "audit:generated-parity pass Checked generated graph presence, freshness, and 0 active roadmap task views against canonical sources.",
+          "audit:changed warning only generated .codewiki/index_graph.json changed after refresh."
         ],
         "content_proof_refs": []
       }
@@ -16258,6 +16507,27 @@
       "id": "audit:audit:alignment",
       "kind": "audit_evidence",
       "path": "audit:alignment",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+      "kind": "audit_evidence",
+      "path": "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:generated-parity pass Checked generated graph presence, freshness, and 0 active roadmap task views against canonical sources.",
+      "kind": "audit_evidence",
+      "path": "audit:generated-parity pass Checked generated graph presence, freshness, and 0 active roadmap task views against canonical sources.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:changed warning only generated .codewiki/index_graph.json changed after refresh.",
+      "kind": "audit_evidence",
+      "path": "audit:changed warning only generated .codewiki/index_graph.json changed after refresh.",
       "layer": "audit",
       "default_hidden": true
     },
@@ -16460,13 +16730,6 @@
       "default_hidden": true
     },
     {
-      "id": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
-      "kind": "audit_evidence",
-      "path": "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
-      "layer": "audit",
-      "default_hidden": true
-    },
-    {
       "id": "audit:audit:changed pass Checked 3 changed files across 3 layers.",
       "kind": "audit_evidence",
       "path": "audit:changed pass Checked 3 changed files across 3 layers.",
@@ -16543,6 +16806,58 @@
       "id": "content_proof:sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274",
       "kind": "content_proof",
       "path": "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "verdict": "block",
+      "isolation_status": "isolated",
+      "isolation": {
+        "working_tree_digest": "sha256:a4d934f92837c0620cd467a75c185ac34a25795414f7e7afb9ca3f974003bfb7",
+        "clean": false,
+        "fresh_context": true,
+        "notes": "Dirty pre-commit validation for TASK-091 stale unscoped block fix.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+          "audit:changed warning generated .codewiki/index_graph.json and TASK-091 views changed from rebuild.",
+          "audit:task pass Checked roadmap task TASK-091."
+        ],
+        "content_proof_refs": [
+          "sha256:a4d934f92837c0620cd467a75c185ac34a25795414f7e7afb9ca3f974003bfb7"
+        ]
+      }
+    },
+    {
+      "id": "audit:audit:changed warning generated .codewiki/index_graph.json and TASK-091 views changed from rebuild.",
+      "kind": "audit_evidence",
+      "path": "audit:changed warning generated .codewiki/index_graph.json and TASK-091 views changed from rebuild.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:task pass Checked roadmap task TASK-091.",
+      "kind": "audit_evidence",
+      "path": "audit:task pass Checked roadmap task TASK-091.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:a4d934f92837c0620cd467a75c185ac34a25795414f7e7afb9ca3f974003bfb7",
+      "kind": "content_proof",
+      "path": "sha256:a4d934f92837c0620cd467a75c185ac34a25795414f7e7afb9ca3f974003bfb7",
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
@@ -17190,6 +17505,44 @@
       "id": "content_proof:sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd",
       "kind": "content_proof",
       "path": "sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "verdict": "pass",
+      "isolation_status": "isolated",
+      "isolation": {
+        "working_tree_digest": "sha256:78a9681cf6ab987288460e2dda8c45e8db699a9ddb7474a8e62979733e172595",
+        "clean": false,
+        "fresh_context": true,
+        "notes": "Dirty pre-commit validation for TASK-091 stale unscoped block fix.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+          "audit:changed warning generated .codewiki/index_graph.json and TASK-091 views changed from rebuild.",
+          "audit:task pass Checked roadmap task TASK-091."
+        ],
+        "content_proof_refs": [
+          "sha256:78a9681cf6ab987288460e2dda8c45e8db699a9ddb7474a8e62979733e172595"
+        ]
+      }
+    },
+    {
+      "id": "content_proof:sha256:78a9681cf6ab987288460e2dda8c45e8db699a9ddb7474a8e62979733e172595",
+      "kind": "content_proof",
+      "path": "sha256:78a9681cf6ab987288460e2dda8c45e8db699a9ddb7474a8e62979733e172595",
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
@@ -20096,6 +20449,26 @@
       "to": "code:tests/smoke"
     },
     {
+      "kind": "task_spec",
+      "from": "task:TASK-091",
+      "to": "doc:.codewiki/kb/system/graph.md"
+    },
+    {
+      "kind": "task_spec",
+      "from": "task:TASK-091",
+      "to": "doc:.codewiki/kb/system/validation-gateway.md"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-091",
+      "to": "code:src/application/graph.ts"
+    },
+    {
+      "kind": "task_code_path",
+      "from": "task:TASK-091",
+      "to": "code:tests/smoke/alignment-graph.test.mjs"
+    },
+    {
       "kind": "test_code",
       "from": "test:scripts/check-architecture.mjs",
       "to": "code:scripts/check-architecture.mjs"
@@ -22373,6 +22746,62 @@
       "kind": "build_produces_test",
       "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
       "to": "test:tests/smoke/alignment-drift-fixtures.test.mjs"
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "to": "source:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "to": "source:Current graph routed stale unscoped feedback block after roadmap completion; user approved proceeding with diagnosis/fix.",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "to": "source:TASK-091",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "to": "source:src/application/graph.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "to": "source:tests/smoke/alignment-graph.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "to": "task:TASK-091"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "to": "task:TASK-091"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "to": "code:src/application/graph.ts"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "to": "test:tests/smoke/alignment-graph.test.mjs"
     },
     {
       "kind": "build_references_canonical_source",
@@ -26124,6 +26553,84 @@
     },
     {
       "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "source:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "source:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "source:No knowledge file edits needed; reconciliation behavior clarified in TASK-091 acceptance and implementation evidence.",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "source:TASK-091 owns stale unscoped validation blocker fix.",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "source:TASK-091 planning",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "audit:profile:stale-reference",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "task:TASK-091 owns stale unscoped validation blocker fix."
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "task:TASK-091 planning"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "doc:No knowledge file edits needed; reconciliation behavior clarified in TASK-091 acceptance and implementation evidence."
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "task:TASK-091 owns stale unscoped validation blocker fix."
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "to": "task:TASK-091 planning"
+    },
+    {
+      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
       "to": "source:.codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
       "default_hidden": true
@@ -29084,6 +29591,83 @@
       "kind": "build_produces_validation",
       "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
       "to": "validation:TASK-090 implementation validation"
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "source:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "source:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "source:TASK-091",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "source:src/application/graph.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "source:tests/smoke/alignment-graph.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "task:TASK-091"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "build:.codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "task:TASK-091"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "task:TASK-091"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "code:src/application/graph.ts"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "test:tests/smoke/alignment-graph.test.mjs"
+    },
+    {
+      "kind": "build_produces_validation",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "to": "validation:TASK-091 implementation validation"
     },
     {
       "kind": "build_references_canonical_source",
@@ -38603,6 +39187,95 @@
     },
     {
       "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "source:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "source:src/application/graph.ts",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "source:tests/smoke/alignment-graph.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "source:TASK-091",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "audit:profile:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "content_proof:.codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json@sha256:16c4dcff226f9d85cd7265d033d5e2ec0f5a054577248845e15de7ac29db848c",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "content_proof:tests/smoke/alignment-graph.test.mjs@sha256:72d746eeeae49ae1b2646f35e2cc6d6232de8b14f6778890bf2eb916886b176f",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "content_proof:src/application/graph.ts@sha256:a977044bf1701982170a72cdb74e819635acbbe525701759363c789def515c79",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "content_proof:refs/codewiki/archive/task/TASK-091",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "content_proof:sha256:c096c748542a3f618787d0d92b446688fc6694c82dbf1e9f74ef8a61442bda2d",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "task:TASK-091"
+    },
+    {
+      "kind": "build_archive_ref",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "to": "archive_ref:refs/codewiki/archive/task/TASK-091",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
       "default_hidden": true
@@ -39814,43 +40487,19 @@
     {
       "kind": "validation_audit_evidence",
       "from": "validation:.codewiki/validation/2026-05-16-feedback-pass.json",
-      "to": "audit:profile:alignment",
+      "to": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
       "default_hidden": true
     },
     {
       "kind": "validation_audit_evidence",
       "from": "validation:.codewiki/validation/2026-05-16-feedback-pass.json",
-      "to": "audit:codewiki_audit:alignment:feedback+roadmap:pass",
+      "to": "audit:audit:generated-parity pass Checked generated graph presence, freshness, and 0 active roadmap task views against canonical sources.",
       "default_hidden": true
     },
     {
       "kind": "validation_audit_evidence",
       "from": "validation:.codewiki/validation/2026-05-16-feedback-pass.json",
-      "to": "audit:codewiki_audit:task+generated-parity:TASK-086:pass",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_audit_evidence",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-pass.json",
-      "to": "audit:codewiki_audit:task:TASK-083:pass",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_audit_evidence",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-pass.json",
-      "to": "audit:CodeWiki audit output: alignment pass with 0 issues for feedback build and roadmap paths",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_audit_evidence",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-pass.json",
-      "to": "audit:CodeWiki audit output: task/generated-parity pass for TASK-086 with 0 issues",
-      "default_hidden": true
-    },
-    {
-      "kind": "validation_audit_evidence",
-      "from": "validation:.codewiki/validation/2026-05-16-feedback-pass.json",
-      "to": "audit:CodeWiki audit output: task pass for TASK-083 with 0 issues",
+      "to": "audit:audit:changed warning only generated .codewiki/index_graph.json changed after refresh.",
       "default_hidden": true
     },
     {
@@ -40046,6 +40695,59 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-088.json",
       "to": "task:TASK-088"
+    },
+    {
+      "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "to": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "to": "audit:audit:changed warning generated .codewiki/index_graph.json and TASK-091 views changed from rebuild.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "to": "audit:audit:task pass Checked roadmap task TASK-091.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "to": "content_proof:sha256:a4d934f92837c0620cd467a75c185ac34a25795414f7e7afb9ca3f974003bfb7",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+      "to": "task:TASK-091"
     },
     {
       "kind": "validation_attests_source",
@@ -40711,6 +41413,59 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
       "to": "task:TASK-090"
+    },
+    {
+      "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "to": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "to": "audit:audit:changed warning generated .codewiki/index_graph.json and TASK-091 views changed from rebuild.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "to": "audit:audit:task pass Checked roadmap task TASK-091.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "to": "content_proof:sha256:78a9681cf6ab987288460e2dda8c45e8db699a9ddb7474a8e62979733e172595",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+      "to": "task:TASK-091"
     },
     {
       "kind": "validation_attests_source",
@@ -41689,10 +42444,15 @@
         "TASK-076",
         "TASK-077",
         "TASK-084",
-        "TASK-078"
+        "TASK-078",
+        "TASK-091"
       ],
-      "open_task_ids": [],
-      "in_progress_task_ids": [],
+      "open_task_ids": [
+        "TASK-091"
+      ],
+      "in_progress_task_ids": [
+        "TASK-091"
+      ],
       "todo_task_ids": [],
       "blocked_task_ids": [],
       "done_task_ids": [
@@ -41751,7 +42511,8 @@
       ],
       "status_counts": {
         "done": 45,
-        "cancelled": 5
+        "cancelled": 5,
+        "in_progress": 1
       },
       "sprint_ids": [
         "SPRINT-001",
@@ -41953,10 +42714,14 @@
         "tests",
         "tests/**",
         "tests/smoke",
+        "tests/smoke/alignment-graph.test.mjs",
         "tests/smoke/package-smoke.test.mjs",
         "tsconfig.json"
       ],
-      "dirty_paths": []
+      "dirty_paths": [
+        "src/application/graph.ts",
+        "tests/smoke/alignment-graph.test.mjs"
+      ]
     },
     "claims": {
       "active_claim_count": 0,
@@ -42137,6 +42902,7 @@
           "verdict": "pass",
           "status": "partial",
           "role": "validator",
+          "clean": false,
           "fresh_context": true,
           "related_claim_ids": [],
           "content_proof_refs": []
@@ -42200,6 +42966,19 @@
           "related_claim_ids": [],
           "content_proof_refs": [
             "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274"
+          ]
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-implementation-block-task-091.json",
+          "task_id": "TASK-091",
+          "verdict": "block",
+          "status": "isolated",
+          "role": "validator",
+          "clean": false,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "sha256:a4d934f92837c0620cd467a75c185ac34a25795414f7e7afb9ca3f974003bfb7"
           ]
         },
         {
@@ -42392,6 +43171,19 @@
           "related_claim_ids": [],
           "content_proof_refs": [
             "sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd"
+          ]
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+          "task_id": "TASK-091",
+          "verdict": "pass",
+          "status": "isolated",
+          "role": "validator",
+          "clean": false,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "sha256:78a9681cf6ab987288460e2dda8c45e8db699a9ddb7474a8e62979733e172595"
           ]
         },
         {
@@ -42659,6 +43451,7 @@
         ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
         ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
         ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+        ".codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
         ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
         ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
         ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge.json",
@@ -42700,6 +43493,7 @@
         ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
         ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
         ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+        ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
         ".codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
         ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
         ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
@@ -42766,6 +43560,7 @@
         ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
         ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
         ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+        ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
         ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
         ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
         ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -42783,6 +43578,7 @@
         ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
         ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
         ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+        ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
         ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
         ".codewiki/config.json",
         ".codewiki/kb",
@@ -42908,6 +43704,7 @@
         "Created TASK-075 to implement Product progressive disclosure, value-first drawer content, and retro Kanban Board in extensions/codewiki/src/adapters/web/control-room.ts.",
         "Created TASK-089 for concrete enforcement work.",
         "Created diagram raw data contract and initial five YAML diagram specs: context map, component/container map, key flow sequence, data/domain model, and state/lifecycle map.",
+        "Current graph routed stale unscoped feedback block after roadmap completion; user approved proceeding with diagnosis/fix.",
         "DT-2026-05-14-loop-build-validation-contracts; user approved all rows in chat on 2026-05-14",
         "DT-2026-05-15-codewiki-alignment-core approved by user",
         "Document Build Contract v2, mandatory feedback diff rows, mandatory implementation closure brief, roadmap sprint cohorts, agency scope/budgets, and future diff-table UI.",
@@ -42938,6 +43735,7 @@
         "No direct roadmap mutation.",
         "No direct roadmap mutation; next planning layer should refine or create tasks for source layout migration and compatibility strategy.",
         "No knowledge file edits needed; TASK-090 canonical scope updated to portable fixture classes only.",
+        "No knowledge file edits needed; reconciliation behavior clarified in TASK-091 acceptance and implementation evidence.",
         "Plan TASK-087 narrow dependency-direction guard implementation.",
         "Plan bounded enforcement task for no-umbrella invariant and TASK-077 migration.",
         "Planning compiler should create/refine implementation work to migrate source layout and tool lexicon without relying on scripts.",
@@ -43050,6 +43848,9 @@
         "TASK-090 acceptance excludes CodeWiki dogfood-only source/package confusion.",
         "TASK-090 portable alignment drift fixture planning",
         "TASK-090 scope correction",
+        "TASK-091",
+        "TASK-091 owns stale unscoped validation blocker fix.",
+        "TASK-091 planning",
         "TASK-28",
         "TASK-29",
         "TASK-30",
@@ -43343,9 +44144,12 @@
         "audit:changed pass Checked 9 changed files across 3 layers.",
         "audit:changed pass Checked changed files before commit.",
         "audit:changed warning checked 23 changed files; generated-file-changed .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-077/context.json, .codewiki/roadmap/tasks/TASK-077/task.json.",
+        "audit:changed warning generated .codewiki/index_graph.json and TASK-091 views changed from rebuild.",
+        "audit:changed warning only generated .codewiki/index_graph.json changed after refresh.",
         "audit:file-structure",
         "audit:full",
         "audit:generated-parity",
+        "audit:generated-parity pass Checked generated graph presence, freshness, and 0 active roadmap task views against canonical sources.",
         "audit:generated-parity pass Checked generated graph presence, freshness, and 1 active roadmap task views against canonical sources.",
         "audit:generated-parity pass Checked generated graph presence, freshness, and 2 active roadmap task views against canonical sources.",
         "audit:generated-parity pass Checked generated graph presence, freshness, and 3 active roadmap task views against canonical sources.",
@@ -43359,6 +44163,7 @@
         "audit:task pass Checked roadmap task TASK-087.",
         "audit:task pass Checked roadmap task TASK-088.",
         "audit:task pass Checked roadmap task TASK-090.",
+        "audit:task pass Checked roadmap task TASK-091.",
         "codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
         "codewiki_audit profiles alignment,changed task_id=TASK-079 include_fingerprints=true: warning; alignment pass, changed warning generated-file-changed .codewiki/index_graph.json, task pass.",
         "codewiki_audit profiles alignment,changed,task task_id=TASK-081 include_fingerprints=true: warning; alignment pass, task pass, changed warning generated-file-changed .codewiki/index_graph.json.",
@@ -43403,6 +44208,7 @@
         ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json@sha256:cd7b936d6a737aab6086068689ea41c7699acd76033914951e6e61191979b852",
         ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json@sha256:5aed481904e24a7ac04775f7f2a6f1821458fef886ceed46e94b93878abcbd78",
         ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json@sha256:b0e34dc35b166d346e6a03c4b63006bbf2f3a6d4e20e55722dbc4dedc9002205",
+        ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json@sha256:16c4dcff226f9d85cd7265d033d5e2ec0f5a054577248845e15de7ac29db848c",
         ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json@sha256:93906a76c640d02d38084f9b724eecdb28a20d80e6c5a3c20db1d71f38db75ce",
         ".codewiki/kb/system/adapters.md@sha256:9c75248953903b8f7ca72d89d7f82244170785d5413cab5e715d1d6f3a023c02",
         ".codewiki/kb/system/adapters.md@sha256:c1f891afa3d1fcafba331f700c5e197537e83a0059e44c0c8909bec9d284c1c1",
@@ -43547,6 +44353,7 @@
         "refs/codewiki/archive/task/TASK-088",
         "refs/codewiki/archive/task/TASK-089",
         "refs/codewiki/archive/task/TASK-090",
+        "refs/codewiki/archive/task/TASK-091",
         "scripts/check-architecture.mjs@sha256:15040f43ff6adccd34f18a36c6abc9d36f64b83742991139f2f28d5d299074be",
         "scripts/check-architecture.mjs@sha256:529464c1e0bf8c7d45058392e3e5fe6df0fc4819748aa298728ac4c2e34518d7",
         "scripts/check-architecture.mjs@sha256:8658e95fdaef6a0bb55abf3e8ddc85f4fbc4f967ec229af6b5d6885d25d08532",
@@ -43591,6 +44398,7 @@
         "sha256:6df3563bddd436fae6424ff836e280ea6c2e497efbd9fa5b9d4800d3ffff0d85",
         "sha256:72b5ec4c52f2e4f3579c2167d812ff451e69d6adb1f229ae5918a06c7563d7a0",
         "sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
+        "sha256:78a9681cf6ab987288460e2dda8c45e8db699a9ddb7474a8e62979733e172595",
         "sha256:800f927b9a83d83593921074292201268fcc2414cc2426431f075e089d9eafbf",
         "sha256:81af747f2b6792d09ce2dfa6b446cfd397bf04ff4c538349819ecc730cc12b22",
         "sha256:83053599b3df1bcb277f5bb5033bc1d116e65af9631e48e1bb8a4573f6f9ea47",
@@ -43599,11 +44407,13 @@
         "sha256:8f5e57b601d0aabff89ffdde28c7662aff78c0ca0b591d5f4ebe1dc4d184ab8c",
         "sha256:a2392d7bc50595e7946c6cd87021cfae7d17ceb1f2d6a19354e4246ca791c661",
         "sha256:a40ebc4cf2101c3dee0794194623bf4b03e6e491a3337e959f3ce38f5f48707b",
+        "sha256:a4d934f92837c0620cd467a75c185ac34a25795414f7e7afb9ca3f974003bfb7",
         "sha256:ac815696d14260ed60582a484178b17042662471d07a562343675328526de7ee",
         "sha256:b57ee1974aa33054c7df1f4b709ef5d245a53370a45055a9c378475f3b987f79",
         "sha256:b875ddc8873683bfebcd3554b7135ec5674cb2245dd2510ab34af67658d04ca1",
         "sha256:b8bf1330b168de8d4067d49731b9b05079923c923eca8944b74185f9803f1e2e",
         "sha256:be7075ef0f749954140b215aa8d17923624abec5bda46a33b8f00ddee49e7462",
+        "sha256:c096c748542a3f618787d0d92b446688fc6694c82dbf1e9f74ef8a61442bda2d",
         "sha256:c1486ae9360c1bf1078fb605f98df5c6127ac8be407022aadb2f2b7e74a848c5",
         "sha256:c87a2cb9d57bcada8eec6721961e91c4a3dc6f7d074bca98db2854104cb50d91",
         "sha256:cce756b39627583364da737b59d787abb4e5ad3cef03c53aa7c434f6fa86d572",
@@ -43704,6 +44514,7 @@
         "src/application/graph.ts@sha256:9261daedb6cb408e3ede564d3e79a1f05053776f7432d2e544e29d1ec2ccf9ca",
         "src/application/graph.ts@sha256:a3a3a5029e72e44f5e382c7c239a38bc3dbc37b22e020d9a04f89128eb2672ce",
         "src/application/graph.ts@sha256:a42369357aaa082024e8c41a7f7ff5247bace8a23b303ced003d793ffd556a96",
+        "src/application/graph.ts@sha256:a977044bf1701982170a72cdb74e819635acbbe525701759363c789def515c79",
         "src/application/graph.ts@sha256:d808463a2008f1e35629d954c00f4cd4b01fa5ce5a9651a0ac960915a0648121",
         "src/application/graph.ts@sha256:db3bbe85f8fe798878b3932fddb993f1acd0c3cdb447006673fa05c95405be91",
         "src/application/graph.ts@sha256:de8b887bc097aa82ba569ed9768af8817d5760cbceed410c4b7f22652d2da7d8",
@@ -43768,6 +44579,7 @@
         "tests/smoke/alignment-drift-fixtures.test.mjs@sha256:8a4e1447ec535d438683d2bddb3b026aaa658489c14a205e41c42f799bcc404c",
         "tests/smoke/alignment-graph.test.mjs@sha256:4eca7441c703f88d036b103ea860ad0959fe07d915e960fc5339646f48e5ba0e",
         "tests/smoke/alignment-graph.test.mjs@sha256:59e97f5d8532b207b62650e0d0767525a7070f1df818fea8a5eaa99326b03753",
+        "tests/smoke/alignment-graph.test.mjs@sha256:72d746eeeae49ae1b2646f35e2cc6d6232de8b14f6778890bf2eb916886b176f",
         "tests/smoke/alignment-graph.test.mjs@sha256:c33462637ecbeaae74e8a0426e139438dd6d3af0bda3b7eaa34c2658cc5bfc81",
         "tests/smoke/audit-drift.test.mjs@sha256:17914aaf0099248b0d5afa202ee267df88540cb4e29af554efe273730b575312",
         "tests/smoke/audit-drift.test.mjs@sha256:3167c428b694520ec155a13a1dd5c3fe43d180851b4dabde5f3dfb2ff619836a",
@@ -43977,13 +44789,9 @@
           ],
           "audit_evidence_refs": [
             "audit:alignment",
-            "profile:alignment",
-            "codewiki_audit:alignment:feedback+roadmap:pass",
-            "codewiki_audit:task+generated-parity:TASK-086:pass",
-            "codewiki_audit:task:TASK-083:pass",
-            "CodeWiki audit output: alignment pass with 0 issues for feedback build and roadmap paths",
-            "CodeWiki audit output: task/generated-parity pass for TASK-086 with 0 issues",
-            "CodeWiki audit output: task pass for TASK-083 with 0 issues"
+            "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+            "audit:generated-parity pass Checked generated graph presence, freshness, and 0 active roadmap task views against canonical sources.",
+            "audit:changed warning only generated .codewiki/index_graph.json changed after refresh."
           ],
           "content_proof_refs": [],
           "isolation_status": "partial"
@@ -44066,6 +44874,27 @@
           ],
           "content_proof_refs": [
             "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-implementation-block-task-091.json",
+          "verdict": "block",
+          "profile": "implementation",
+          "task_id": "TASK-091",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+            "audit:changed warning generated .codewiki/index_graph.json and TASK-091 views changed from rebuild.",
+            "audit:task pass Checked roadmap task TASK-091."
+          ],
+          "content_proof_refs": [
+            "sha256:a4d934f92837c0620cd467a75c185ac34a25795414f7e7afb9ca3f974003bfb7"
           ],
           "isolation_status": "isolated"
         },
@@ -44334,6 +45163,27 @@
           ],
           "content_proof_refs": [
             "sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
+          "path": ".codewiki/validation/2026-05-16-implementation-pass-task-091.json",
+          "verdict": "pass",
+          "profile": "implementation",
+          "task_id": "TASK-091",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+            "audit:changed warning generated .codewiki/index_graph.json and TASK-091 views changed from rebuild.",
+            "audit:task pass Checked roadmap task TASK-091."
+          ],
+          "content_proof_refs": [
+            "sha256:78a9681cf6ab987288460e2dda8c45e8db699a9ddb7474a8e62979733e172595"
           ],
           "isolation_status": "isolated"
         },
@@ -44643,7 +45493,51 @@
       ]
     },
     "traceability": {
-      "rows": [],
+      "rows": [
+        {
+          "requirement_id": "SVB-001",
+          "requirement_text": "Do not route unscoped block validations as current reconciliation. Preserve unscoped fail routing and active task-scoped fail/block routing.",
+          "feedback_build": ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+          "documentation_builds": [
+            ".codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json"
+          ],
+          "knowledge_paths": [
+            "No knowledge file edits needed; reconciliation behavior clarified in TASK-091 acceptance and implementation evidence."
+          ],
+          "planning_builds": [
+            ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json"
+          ],
+          "roadmap_task_ids": [
+            "TASK-091"
+          ],
+          "test_paths": [
+            "tests/smoke/alignment-graph.test.mjs"
+          ],
+          "code_paths": [
+            "src/application/graph.ts"
+          ],
+          "implementation_builds": [
+            ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json"
+          ],
+          "validation_paths": [
+            ".codewiki/validation/2026-05-16-implementation-block-task-091.json",
+            ".codewiki/validation/2026-05-16-implementation-pass-task-091.json"
+          ],
+          "audit_evidence_refs": [
+            "profile:alignment",
+            "profile:changed"
+          ],
+          "publication_refs": [],
+          "content_proof_refs": [
+            ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json@sha256:16c4dcff226f9d85cd7265d033d5e2ec0f5a054577248845e15de7ac29db848c",
+            "tests/smoke/alignment-graph.test.mjs@sha256:72d746eeeae49ae1b2646f35e2cc6d6232de8b14f6778890bf2eb916886b176f",
+            "src/application/graph.ts@sha256:a977044bf1701982170a72cdb74e819635acbbe525701759363c789def515c79",
+            "refs/codewiki/archive/task/TASK-091",
+            "sha256:c096c748542a3f618787d0d92b446688fc6694c82dbf1e9f74ef8a61442bda2d"
+          ],
+          "gaps": []
+        }
+      ],
       "semantic_change_rows": [
         {
           "path": ".codewiki/roadmap/queue.json",
@@ -44659,6 +45553,7 @@
             ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+            ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
             ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
             ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
             ".codewiki/builds/documentation/2026-05-10-runtime-scoped-claims-docs.json",
@@ -44687,6 +45582,7 @@
             ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+            ".codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
             ".codewiki/builds/planning/2026-05-13-loop-session-isolation-policy-plan.json",
             ".codewiki/builds/planning/2026-05-13-plan-implementation-of-pi-adapter-session-handof.json",
@@ -44699,6 +45595,7 @@
             ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+            ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
             ".codewiki/builds/implementation/2026-05-11-task-056-efficiency-foundation.json",
@@ -44749,12 +45646,66 @@
             ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
             ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+            ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
             ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
             ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
             ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
+          ],
+          "gaps": []
+        },
+        {
+          "path": "src/application/graph.ts",
+          "change_type": "code",
+          "semantic": true,
+          "accepted_build_refs": [
+            ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+            ".codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json",
+            ".codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json",
+            ".codewiki/builds/planning/2026-05-16-planned-bounded-enforcement-work-for-task-bounda.json",
+            ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
+            ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+            ".codewiki/builds/implementation/2026-05-14-task-076-expanded-audit-cleanup-fixed-stale-sour.json",
+            ".codewiki/builds/implementation/2026-05-15-task-078-implemented-executable-alignment-graph-.json",
+            ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
+            ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
+            ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
+            ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
+            ".codewiki/builds/implementation/2026-05-16-extracted-accepted-build-lifecycle-semantics-int.json",
+            ".codewiki/builds/implementation/2026-05-16-extracted-change-traceability-normalization-sema.json",
+            ".codewiki/builds/implementation/2026-05-16-implemented-change-type-taxonomy-migration.json",
+            ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
+            ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+            ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
+            ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
+            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json"
+          ],
+          "gaps": []
+        },
+        {
+          "path": "tests/smoke/alignment-graph.test.mjs",
+          "change_type": "code",
+          "semantic": true,
+          "accepted_build_refs": [
+            ".codewiki/builds/feedback/2026-05-12-deprecate-evidence-index-and-enforce-hot-retenti.json",
+            ".codewiki/builds/feedback/2026-05-13-accepted-intent-enforce-loop-and-gateway-isolati.json",
+            ".codewiki/builds/feedback/2026-05-13-accepted-scope-change-codewiki-agency-should-be-.json",
+            ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
+            ".codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json",
+            ".codewiki/builds/planning/2026-05-16-planned-bounded-enforcement-work-for-task-bounda.json",
+            ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
+            ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
+            ".codewiki/builds/implementation/2026-05-15-task-078-implemented-executable-alignment-graph-.json",
+            ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
+            ".codewiki/builds/implementation/2026-05-16-added-audit-and-smoke-test-enforcement-for-bound.json",
+            ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
+            ".codewiki/builds/implementation/2026-05-16-extracted-accepted-build-lifecycle-semantics-int.json",
+            ".codewiki/builds/implementation/2026-05-16-extracted-change-traceability-normalization-sema.json",
+            ".codewiki/builds/implementation/2026-05-16-implemented-change-type-taxonomy-migration.json",
+            ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
+            ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json"
           ],
           "gaps": []
         }
@@ -44816,9 +45767,12 @@
           "TASK-076",
           "TASK-077",
           "TASK-084",
-          "TASK-078"
+          "TASK-078",
+          "TASK-091"
         ],
-        "open_task_ids": [],
+        "open_task_ids": [
+          "TASK-091"
+        ],
         "sprint_ids": [
           "SPRINT-001",
           "SPRINT-002",
@@ -45662,6 +46616,25 @@
             "src/domain/shared/types.ts",
             "tests/smoke"
           ]
+        },
+        "TASK-091": {
+          "kind": "task",
+          "id": "TASK-091",
+          "task_ids": [
+            "TASK-091"
+          ],
+          "open_task_ids": [
+            "TASK-091"
+          ],
+          "sprint_ids": [],
+          "spec_paths": [
+            ".codewiki/kb/system/graph.md",
+            ".codewiki/kb/system/validation-gateway.md"
+          ],
+          "code_paths": [
+            "src/application/graph.ts",
+            "tests/smoke/alignment-graph.test.mjs"
+          ]
         }
       }
     },
@@ -45702,13 +46675,16 @@
       },
       "classes": {
         "hot": {
-          "task_ids": [],
+          "task_ids": [
+            "TASK-091"
+          ],
           "sprint_ids": [
             "SPRINT-003"
           ],
           "build_paths": [],
           "validation_paths": [
-            ".codewiki/validation/2026-05-16-feedback-block.json"
+            ".codewiki/validation/2026-05-16-feedback-block.json",
+            ".codewiki/validation/2026-05-16-implementation-block-task-091.json"
           ],
           "claim_ids": [],
           "claim_wait_ids": []
@@ -45753,6 +46729,7 @@
             ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+            ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
             ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
             ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
@@ -45786,6 +46763,7 @@
             ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+            ".codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
             ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
             ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge.json",
@@ -45800,6 +46778,7 @@
             ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+            ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
@@ -45839,6 +46818,7 @@
             ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
             ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+            ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -45866,7 +46846,7 @@
             ".codewiki/validation/2026-05-16-implementation-pass-task-088.json",
             ".codewiki/validation/2026-05-16-implementation-pass-task-089.json",
             ".codewiki/validation/2026-05-16-implementation-pass-task-090.json",
-            ".codewiki/validation/2026-05-16-planning-pass-task-077.json"
+            ".codewiki/validation/2026-05-16-implementation-pass-task-091.json"
           ]
         },
         "cold": {
@@ -45990,6 +46970,7 @@
             ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
             ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+            ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
             ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
             ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -46377,6 +47358,16 @@
         },
         {
           "kind": "task",
+          "id": "TASK-091",
+          "build_path": ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
+          "archive_ref": "refs/codewiki/archive/task/TASK-091",
+          "commit_sha": "",
+          "digest": "sha256:c096c748542a3f618787d0d92b446688fc6694c82dbf1e9f74ef8a61442bda2d",
+          "restore_command": "/wiki-restore TASK-091",
+          "safety_status": "blocked"
+        },
+        {
+          "kind": "task",
           "id": "TASK-079",
           "build_path": ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           "archive_ref": "refs/codewiki/archive/task/TASK-079",
@@ -46437,7 +47428,7 @@
         }
       ],
       "git_archive": {
-        "ledger_count": 41,
+        "ledger_count": 42,
         "archive_refs": [
           "refs/codewiki/archive/task/TASK-068",
           "refs/codewiki/archive/task/TASK-070",
@@ -46474,6 +47465,7 @@
           "refs/codewiki/archive/task/TASK-089",
           "refs/codewiki/archive/task/TASK-083",
           "refs/codewiki/archive/task/TASK-088",
+          "refs/codewiki/archive/task/TASK-091",
           "refs/codewiki/archive/task/TASK-079",
           "refs/codewiki/archive/task/TASK-080",
           "refs/codewiki/archive/task/TASK-080",
@@ -46517,6 +47509,7 @@
           ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
           ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
           ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+          ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
           ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -46555,6 +47548,7 @@
           ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
           ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
           ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+          ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
           ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
           ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -46579,10 +47573,33 @@
           "to_layer": "feedback",
           "next_loop": "feedback",
           "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
+        },
+        {
+          "id": "reconcile:validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+          "source_id": "validation:.codewiki/validation/2026-05-16-implementation-block-task-091.json",
+          "state": "blocked",
+          "direction": "gateway",
+          "from_layer": "validation",
+          "to_layer": "feedback",
+          "next_loop": "feedback",
+          "task_id": "TASK-091",
+          "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
+        },
+        {
+          "id": "reconcile:task:TASK-091",
+          "source_id": "task:TASK-091",
+          "state": "drift",
+          "direction": "downward",
+          "from_layer": "roadmap",
+          "to_layer": "code",
+          "next_loop": "implementation",
+          "task_id": "TASK-091",
+          "reason": "TASK-091 is open implementation delta below knowledge."
         }
       ],
       "counts_by_loop": {
-        "feedback": 1
+        "feedback": 2,
+        "implementation": 1
       },
       "next_action": {
         "loop": "feedback",
@@ -46608,15 +47625,15 @@
       "layer_states": {
         "intent": "aligned",
         "knowledge": "aligned",
-        "roadmap": "aligned",
-        "code": "aligned",
+        "roadmap": "drift",
+        "code": "drift",
         "validation": "drift"
       }
     }
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T21:50:53.662Z",
+      "generated_at": "2026-05-16T21:59:37.987Z",
       "counts": {
         "large-doc": 2
       },
@@ -46637,7 +47654,7 @@
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T21:50:53Z",
+      "generated_at": "2026-05-16T21:59:38Z",
       "health": {
         "color": "yellow",
         "errors": 0,
@@ -46648,16 +47665,17 @@
         "task_context_root": ".codewiki/roadmap/tasks"
       },
       "summary": {
-        "task_count": 50,
-        "open_count": 0,
+        "task_count": 51,
+        "open_count": 1,
         "sprint_count": 3,
         "active_sprint_count": 1,
         "status_counts": {
           "done": 45,
-          "cancelled": 5
+          "cancelled": 5,
+          "in_progress": 1
         },
         "priority_counts": {
-          "high": 28,
+          "high": 29,
           "medium": 13,
           "critical": 8,
           "low": 1
@@ -46714,10 +47732,15 @@
           "TASK-076",
           "TASK-077",
           "TASK-084",
-          "TASK-078"
+          "TASK-078",
+          "TASK-091"
         ],
-        "open_task_ids": [],
-        "executable_open_task_ids": [],
+        "open_task_ids": [
+          "TASK-091"
+        ],
+        "executable_open_task_ids": [
+          "TASK-091"
+        ],
         "container_task_ids": [],
         "sprint_ids": [
           "SPRINT-001",
@@ -46853,8 +47876,12 @@
             }
           }
         ],
-        "in_progress_task_ids": [],
-        "executable_in_progress_task_ids": [],
+        "in_progress_task_ids": [
+          "TASK-091"
+        ],
+        "executable_in_progress_task_ids": [
+          "TASK-091"
+        ],
         "todo_task_ids": [],
         "executable_todo_task_ids": [],
         "blocked_task_ids": [],
@@ -46913,6 +47940,7 @@
           "TASK-077"
         ],
         "recent_task_ids": [
+          "TASK-091",
           "TASK-077",
           "TASK-084",
           "TASK-078",
@@ -49453,12 +50481,63 @@
             "updated_at": "",
             "evidence": null
           }
+        },
+        "TASK-091": {
+          "id": "TASK-091",
+          "title": "Ignore superseded unscoped validation blockers",
+          "status": "in_progress",
+          "priority": "high",
+          "kind": "bug",
+          "change_type": "system",
+          "summary": "Prevent stale unscoped validation block reports from routing current feedback reconciliation after a matching pass report supersedes them.",
+          "labels": [
+            "graph",
+            "validation",
+            "reconciliation"
+          ],
+          "goal": {
+            "outcome": "Graph reconciliation only routes active validation blockers and ignores stale unscoped blockers superseded by pass evidence.",
+            "acceptance": [
+              "Unscoped fail/block validation reports do not route current feedback reconciliation when they lack an active task target.",
+              "A fail/block validation with a matching same-profile same-source pass report does not route current reconciliation.",
+              "Active task-scoped fail/block validation still routes reconciliation.",
+              "Regression smoke covers the superseded unscoped block case."
+            ],
+            "non_goals": [
+              "Do not delete historical validation reports.",
+              "Do not suppress active task-scoped validation failures or blockers."
+            ],
+            "verification": [
+              "node tests/smoke/alignment-graph.test.mjs",
+              "npm run typecheck",
+              "codewiki_state refresh=true shows no stale feedback reconciliation from superseded block"
+            ]
+          },
+          "spec_paths": [
+            ".codewiki/kb/system/graph.md",
+            ".codewiki/kb/system/validation-gateway.md"
+          ],
+          "code_paths": [
+            "src/application/graph.ts",
+            "tests/smoke/alignment-graph.test.mjs"
+          ],
+          "updated": "2026-05-16T21:54:04Z",
+          "boundary": {
+            "executable": true,
+            "container": false,
+            "reasons": []
+          },
+          "context_path": ".codewiki/roadmap/tasks/TASK-091/context.json",
+          "loop": {
+            "updated_at": "",
+            "evidence": null
+          }
         }
       }
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T21:50:53Z",
+      "generated_at": "2026-05-16T21:59:38Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -49473,27 +50552,27 @@
       "summary": {
         "total_specs": 16,
         "mapped_specs": 16,
-        "aligned_specs": 34,
-        "tracked_specs": 0,
+        "aligned_specs": 32,
+        "tracked_specs": 2,
         "untracked_specs": 0,
         "blocked_specs": 0,
         "unmapped_specs": 0,
-        "task_count": 50,
-        "open_task_count": 0,
+        "task_count": 51,
+        "open_task_count": 1,
         "done_task_count": 45
       },
       "bars": {
         "tracked_drift": {
           "label": "Tracked Drift",
-          "value": 0,
-          "total": 0,
+          "value": 2,
+          "total": 2,
           "percent": 100
         },
         "roadmap_done": {
           "label": "Roadmap Done",
           "value": 45,
-          "total": 50,
-          "percent": 90
+          "total": 51,
+          "percent": 88
         },
         "spec_mapping": {
           "label": "Spec Mapping",
@@ -49503,9 +50582,17 @@
         }
       },
       "views": {
-        "risky_spec_paths": [],
-        "top_risky_spec_paths": [],
-        "open_task_ids": [],
+        "risky_spec_paths": [
+          ".codewiki/kb/system/graph.md",
+          ".codewiki/kb/system/validation-gateway.md"
+        ],
+        "top_risky_spec_paths": [
+          ".codewiki/kb/system/graph.md",
+          ".codewiki/kb/system/validation-gateway.md"
+        ],
+        "open_task_ids": [
+          "TASK-091"
+        ],
         "sprint_ids": [
           "SPRINT-001",
           "SPRINT-002",
@@ -49558,13 +50645,16 @@
         },
         "classes": {
           "hot": {
-            "task_ids": [],
+            "task_ids": [
+              "TASK-091"
+            ],
             "sprint_ids": [
               "SPRINT-003"
             ],
             "build_paths": [],
             "validation_paths": [
-              ".codewiki/validation/2026-05-16-feedback-block.json"
+              ".codewiki/validation/2026-05-16-feedback-block.json",
+              ".codewiki/validation/2026-05-16-implementation-block-task-091.json"
             ],
             "claim_ids": [],
             "claim_wait_ids": []
@@ -49609,6 +50699,7 @@
               ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
               ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
               ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+              ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
               ".codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
               ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
               ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
@@ -49642,6 +50733,7 @@
               ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
               ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
               ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+              ".codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
               ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
               ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
               ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge.json",
@@ -49656,6 +50748,7 @@
               ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
               ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
               ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+              ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
               ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
@@ -49695,6 +50788,7 @@
               ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
               ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
               ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+              ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
               ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -49722,7 +50816,7 @@
               ".codewiki/validation/2026-05-16-implementation-pass-task-088.json",
               ".codewiki/validation/2026-05-16-implementation-pass-task-089.json",
               ".codewiki/validation/2026-05-16-implementation-pass-task-090.json",
-              ".codewiki/validation/2026-05-16-planning-pass-task-077.json"
+              ".codewiki/validation/2026-05-16-implementation-pass-task-091.json"
             ]
           },
           "cold": {
@@ -49846,6 +50940,7 @@
               ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
               ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
               ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
+              ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
               ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
               ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
@@ -49884,9 +50979,80 @@
         "Parallel sessions: 0 active, 0 collision task(s), 0 artifact(s) in-use, 0 artifact conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
-        "No tracked spec drift is open."
+        "Tracked drift coverage: 2/2."
       ],
       "specs": [
+        {
+          "path": ".codewiki/kb/system/graph.md",
+          "title": "Graph",
+          "summary": "Generated state/graph representation for reconciliation, routing, freshness, and requirement traceability.",
+          "drift_status": "tracked",
+          "code_paths": [
+            ".codewiki/index_graph.json",
+            "src/application/graph.ts",
+            "src/application/graph/rebuilder.ts",
+            "src/application/state-builders.ts",
+            "src/application/state.ts",
+            "src/domain/shared/types.ts"
+          ],
+          "code_area": ".codewiki, src",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [
+            "TASK-091",
+            "TASK-038",
+            "TASK-078",
+            "TASK-084"
+          ],
+          "primary_task": {
+            "id": "TASK-091",
+            "status": "in_progress",
+            "title": "Ignore superseded unscoped validation blockers"
+          },
+          "revision": {
+            "digest": "5b9003916d9120ce4bd0084fcfe49deee10845153ad0552ce1437fabf055d866",
+            "basis": "source_content"
+          },
+          "note": "tracked by TASK-091"
+        },
+        {
+          "path": ".codewiki/kb/system/validation-gateway.md",
+          "title": "Validation Gateway",
+          "summary": "Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.",
+          "drift_status": "tracked",
+          "code_paths": [
+            "src/application/gateway",
+            "skills/codewiki/loops/validation.md",
+            ".codewiki/validation",
+            "src/application/builds.ts"
+          ],
+          "code_area": "src, skills +1 more",
+          "issue_counts": {
+            "errors": 0,
+            "warnings": 0,
+            "total": 0
+          },
+          "related_task_ids": [
+            "TASK-091",
+            "TASK-034",
+            "TASK-038",
+            "TASK-078",
+            "TASK-084"
+          ],
+          "primary_task": {
+            "id": "TASK-091",
+            "status": "in_progress",
+            "title": "Ignore superseded unscoped validation blockers"
+          },
+          "revision": {
+            "digest": "4c22e4d0343bff6dd02ba1513ee79e43a1fdb448c5c2b765014aed88ea11dbf6",
+            "basis": "source_content"
+          },
+          "note": "tracked by TASK-091"
+        },
         {
           "path": ".codewiki/kb/lexicon.md",
           "title": "Lexicon",
@@ -50673,41 +51839,6 @@
           "note": "no deterministic drift signals"
         },
         {
-          "path": ".codewiki/kb/system/graph.md",
-          "title": "Graph",
-          "summary": "Generated state/graph representation for reconciliation, routing, freshness, and requirement traceability.",
-          "drift_status": "aligned",
-          "code_paths": [
-            ".codewiki/index_graph.json",
-            "src/application/graph.ts",
-            "src/application/graph/rebuilder.ts",
-            "src/application/state-builders.ts",
-            "src/application/state.ts",
-            "src/domain/shared/types.ts"
-          ],
-          "code_area": ".codewiki, src",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-038",
-            "TASK-078",
-            "TASK-084"
-          ],
-          "primary_task": {
-            "id": "TASK-038",
-            "status": "done",
-            "title": "Implement trigger-based agency controller"
-          },
-          "revision": {
-            "digest": "5b9003916d9120ce4bd0084fcfe49deee10845153ad0552ce1437fabf055d866",
-            "basis": "source_content"
-          },
-          "note": "no deterministic drift signals"
-        },
-        {
           "path": ".codewiki/kb/system/knowledge.md",
           "title": "Knowledge",
           "summary": "Durable product and system knowledge structure for CodeWiki projects.",
@@ -50794,44 +51925,10 @@
             "basis": "source_content"
           },
           "note": "no deterministic drift signals"
-        },
-        {
-          "path": ".codewiki/kb/system/validation-gateway.md",
-          "title": "Validation Gateway",
-          "summary": "Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.",
-          "drift_status": "aligned",
-          "code_paths": [
-            "src/application/gateway",
-            "skills/codewiki/loops/validation.md",
-            ".codewiki/validation",
-            "src/application/builds.ts"
-          ],
-          "code_area": "src, skills +1 more",
-          "issue_counts": {
-            "errors": 0,
-            "warnings": 0,
-            "total": 0
-          },
-          "related_task_ids": [
-            "TASK-034",
-            "TASK-038",
-            "TASK-078",
-            "TASK-084"
-          ],
-          "primary_task": {
-            "id": "TASK-034",
-            "status": "done",
-            "title": "Align CodeWiki skill package with compiler and API contracts"
-          },
-          "revision": {
-            "digest": "4c22e4d0343bff6dd02ba1513ee79e43a1fdb448c5c2b765014aed88ea11dbf6",
-            "basis": "source_content"
-          },
-          "note": "no deterministic drift signals"
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T21:50:53Z",
+        "generated_at": "2026-05-16T21:59:38Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -50859,16 +51956,15 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T21:50:53Z",
+            "checked_at": "2026-05-16T21:59:38Z",
             "revision": {
               "git": {
-                "head": "5909bee4a448e74fb2c66c85a2956b3474e929d8",
+                "head": "f5bab7e180a783a90c2d6dadc0c960f85ff1cd45",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-090/context.json",
-                  ".codewiki/roadmap/tasks/TASK-090/task.json"
+                  ".codewiki/validation/2026-05-16-feedback-pass.json",
+                  "src/application/graph.ts"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -50908,7 +52004,7 @@
                   ".codewiki/kb/system/roadmap.md": "3fa348d6ebe072e99f54dcc78ad6488536f02831",
                   ".codewiki/kb/system/validation-gateway.md": "1d0e7f421e9027d3fac867da6dcd642b632a2422",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "d99b2b124ce2538c3329999fa0b0e012d07cb38b",
+                  ".codewiki/roadmap/queue.json": "4da29138192864ffd61519f7c9afb463a7bb567c",
                   ".codewiki/validation": "",
                   "package.json": "d4896da385fc70ba168653d7134b82a155501e73",
                   "skills": "",
@@ -50950,16 +52046,16 @@
                 }
               },
               "spec_digest": "a4cfeb16c8336b0a3f6d83335a9f5fa793ac3f7d317532252bb8c5a3c1f0538d",
-              "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "59f1abc346a5b474fbd1e8698c08261885b058955a36c5b5d70ad2b4c49ea733",
-              "digest": "97afacb7d6470238667086225cfa776e262ee7b5a1b11516a3594c8c682494c5"
+              "task_digest": "4914e488f8115d539950b4e68b5f25480bf4b0ec6b1c401a1c1dedb3ec8647ec",
+              "code_digest": "470e853acf687593f639308fdeb54e724c8b7b80a63278a170f8df2819e7b8b9",
+              "digest": "e540025ef7093351d9cbc4b177eee406f52c22e382777036221266d4e114d9a3"
             },
             "freshness": {
-              "status": "stale",
+              "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T21:50:53Z",
-              "reason": "revision changed: code",
-              "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
+              "checked_at": "2026-05-16T21:59:38Z",
+              "reason": "revision anchors unchanged since previous agency",
+              "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
             "spec_paths": [
               ".codewiki/kb/product/overview.md",
@@ -50977,6 +52073,8 @@
               ".codewiki/kb/product/users/external-users.md",
               ".codewiki/kb/product/users/maintainers.md",
               ".codewiki/kb/product/users/package-authors.md",
+              ".codewiki/kb/system/graph.md",
+              ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/alignment-model.md",
@@ -50990,11 +52088,9 @@
               ".codewiki/kb/system/diagrams/README.md",
               ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
-              ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/knowledge.md",
               ".codewiki/kb/system/overview.md",
-              ".codewiki/kb/system/roadmap.md",
-              ".codewiki/kb/system/validation-gateway.md"
+              ".codewiki/kb/system/roadmap.md"
             ],
             "code_paths": [
               ".codewiki/kb/product",
@@ -51014,41 +52110,46 @@
               "src",
               "src/index.ts",
               "package.json",
+              ".codewiki/index_graph.json",
+              "src/application/graph.ts",
+              "src/application/graph/rebuilder.ts",
+              "src/application/state-builders.ts",
+              "src/application/state.ts",
+              "src/domain/shared/types.ts",
+              "src/application/gateway",
+              "skills/codewiki/loops/validation.md",
+              ".codewiki/validation",
+              "src/application/builds.ts",
               "src/adapters",
               "src/application",
               "skills/codewiki",
               "src/adapters/pi",
-              "src/application/graph.ts",
-              "src/application/builds.ts",
-              "src/application/gateway",
               "skills/codewiki/loops",
               "src/domain",
               ".codewiki/builds",
-              "src/domain/shared/types.ts",
               "src/adapters/pi/schemas.ts",
               "src/application/roadmap.ts",
               "src/application/task.ts",
-              "skills/codewiki/loops/validation.md",
               "src/ui/web/control-room.ts",
               "src/bootstrap.ts",
               "src/templates.ts",
               "src/application/prompt.ts",
               ".codewiki/kb",
-              ".codewiki/index_graph.json",
-              "src/application/graph/rebuilder.ts",
-              "src/application/state-builders.ts",
-              "src/application/state.ts",
               ".codewiki/roadmap/queue.json",
-              ".codewiki/roadmap",
-              ".codewiki/validation"
+              ".codewiki/roadmap"
             ],
             "code_area": ".codewiki, skills +3 more",
-            "open_task_ids": [],
-            "risky_spec_paths": [],
+            "open_task_ids": [
+              "TASK-091"
+            ],
+            "risky_spec_paths": [
+              ".codewiki/kb/system/graph.md",
+              ".codewiki/kb/system/validation-gateway.md"
+            ],
             "stats": {
               "total_specs": 33,
-              "aligned_specs": 33,
-              "tracked_specs": 0,
+              "aligned_specs": 31,
+              "tracked_specs": 2,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -51073,16 +52174,15 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T21:50:53Z",
+            "checked_at": "2026-05-16T21:59:38Z",
             "revision": {
               "git": {
-                "head": "5909bee4a448e74fb2c66c85a2956b3474e929d8",
+                "head": "f5bab7e180a783a90c2d6dadc0c960f85ff1cd45",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-090/context.json",
-                  ".codewiki/roadmap/tasks/TASK-090/task.json"
+                  ".codewiki/validation/2026-05-16-feedback-pass.json",
+                  "src/application/graph.ts"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -51106,7 +52206,7 @@
                   ".codewiki/kb/system/roadmap.md": "3fa348d6ebe072e99f54dcc78ad6488536f02831",
                   ".codewiki/kb/system/validation-gateway.md": "1d0e7f421e9027d3fac867da6dcd642b632a2422",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "d99b2b124ce2538c3329999fa0b0e012d07cb38b",
+                  ".codewiki/roadmap/queue.json": "4da29138192864ffd61519f7c9afb463a7bb567c",
                   ".codewiki/validation": "",
                   "skills": "",
                   "skills/codewiki": "",
@@ -51143,18 +52243,20 @@
                 }
               },
               "spec_digest": "8e676fcb8e9e36b9bc8ed69b2ed99716ad8a2ea753d0aed9fb5c0f55f32d88af",
-              "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "18bbb8343e2ba6aef39d0491c76cc9eac7872c01f8bd9d09e9729d6bcc7ae268",
-              "digest": "05214b4f76c93bd1b223bf9b79743374f4cc7717c41ff108c3e9fa460d07d783"
+              "task_digest": "4914e488f8115d539950b4e68b5f25480bf4b0ec6b1c401a1c1dedb3ec8647ec",
+              "code_digest": "4459b89bd464afa515a0b1100956cf440bcc81f1ea79522e67fa31345f3715ff",
+              "digest": "940dcc9d1306118e8bcf449fa80d4306c44dfaa204b5ce0aba095aaeb4e468ad"
             },
             "freshness": {
-              "status": "stale",
+              "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T21:50:53Z",
-              "reason": "revision changed: code",
-              "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
+              "checked_at": "2026-05-16T21:59:38Z",
+              "reason": "revision anchors unchanged since previous agency",
+              "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
             "spec_paths": [
+              ".codewiki/kb/system/graph.md",
+              ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/alignment-model.md",
@@ -51168,32 +52270,35 @@
               ".codewiki/kb/system/diagrams/README.md",
               ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
-              ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/knowledge.md",
               ".codewiki/kb/system/overview.md",
-              ".codewiki/kb/system/roadmap.md",
-              ".codewiki/kb/system/validation-gateway.md"
+              ".codewiki/kb/system/roadmap.md"
             ],
             "code_paths": [
+              ".codewiki/index_graph.json",
+              "src/application/graph.ts",
+              "src/application/graph/rebuilder.ts",
+              "src/application/state-builders.ts",
+              "src/application/state.ts",
+              "src/domain/shared/types.ts",
+              "src/application/gateway",
+              "skills/codewiki/loops/validation.md",
+              ".codewiki/validation",
+              "src/application/builds.ts",
               "src/adapters",
               "src/application",
               "skills/codewiki",
               "src/adapters/pi",
-              "src/application/graph.ts",
-              "src/application/builds.ts",
               "src/application/lint.ts",
-              "src/application/gateway",
               "skills/codewiki/loops",
               "src/domain",
               ".codewiki/builds",
-              "src/domain/shared/types.ts",
               "src/adapters/pi/schemas.ts",
               "src/application/roadmap.ts",
               "src/application/task.ts",
               "skills/codewiki/loops/feedback.md",
               "skills/codewiki/loops/documentation.md",
               "skills/codewiki/loops/implementation.md",
-              "skills/codewiki/loops/validation.md",
               "src/ui/web",
               "src/adapters/pi/commands",
               "src/ui/web/control-room.ts",
@@ -51205,22 +52310,22 @@
               "tests/smoke/package-smoke.test.mjs",
               ".codewiki/kb",
               "src",
-              ".codewiki/index_graph.json",
-              "src/application/graph/rebuilder.ts",
-              "src/application/state-builders.ts",
-              "src/application/state.ts",
               "skills",
               ".codewiki/roadmap/queue.json",
-              ".codewiki/roadmap",
-              ".codewiki/validation"
+              ".codewiki/roadmap"
             ],
-            "code_area": "src, skills +2 more",
-            "open_task_ids": [],
-            "risky_spec_paths": [],
+            "code_area": ".codewiki, src +2 more",
+            "open_task_ids": [
+              "TASK-091"
+            ],
+            "risky_spec_paths": [
+              ".codewiki/kb/system/graph.md",
+              ".codewiki/kb/system/validation-gateway.md"
+            ],
             "stats": {
               "total_specs": 18,
-              "aligned_specs": 18,
-              "tracked_specs": 0,
+              "aligned_specs": 16,
+              "tracked_specs": 2,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -51245,16 +52350,15 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T21:50:53Z",
+            "checked_at": "2026-05-16T21:59:38Z",
             "revision": {
               "git": {
-                "head": "5909bee4a448e74fb2c66c85a2956b3474e929d8",
+                "head": "f5bab7e180a783a90c2d6dadc0c960f85ff1cd45",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-090/context.json",
-                  ".codewiki/roadmap/tasks/TASK-090/task.json"
+                  ".codewiki/validation/2026-05-16-feedback-pass.json",
+                  "src/application/graph.ts"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -51294,7 +52398,7 @@
                   ".codewiki/kb/system/roadmap.md": "3fa348d6ebe072e99f54dcc78ad6488536f02831",
                   ".codewiki/kb/system/validation-gateway.md": "1d0e7f421e9027d3fac867da6dcd642b632a2422",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "d99b2b124ce2538c3329999fa0b0e012d07cb38b",
+                  ".codewiki/roadmap/queue.json": "4da29138192864ffd61519f7c9afb463a7bb567c",
                   ".codewiki/validation": "",
                   "package.json": "d4896da385fc70ba168653d7134b82a155501e73",
                   "skills": "",
@@ -51336,16 +52440,16 @@
                 }
               },
               "spec_digest": "a4cfeb16c8336b0a3f6d83335a9f5fa793ac3f7d317532252bb8c5a3c1f0538d",
-              "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-              "code_digest": "59f1abc346a5b474fbd1e8698c08261885b058955a36c5b5d70ad2b4c49ea733",
-              "digest": "97afacb7d6470238667086225cfa776e262ee7b5a1b11516a3594c8c682494c5"
+              "task_digest": "4914e488f8115d539950b4e68b5f25480bf4b0ec6b1c401a1c1dedb3ec8647ec",
+              "code_digest": "470e853acf687593f639308fdeb54e724c8b7b80a63278a170f8df2819e7b8b9",
+              "digest": "e540025ef7093351d9cbc4b177eee406f52c22e382777036221266d4e114d9a3"
             },
             "freshness": {
-              "status": "stale",
+              "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T21:50:53Z",
-              "reason": "revision changed: code",
-              "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
+              "checked_at": "2026-05-16T21:59:38Z",
+              "reason": "revision anchors unchanged since previous agency",
+              "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
             "spec_paths": [
               ".codewiki/kb/product/overview.md",
@@ -51363,6 +52467,8 @@
               ".codewiki/kb/product/users/external-users.md",
               ".codewiki/kb/product/users/maintainers.md",
               ".codewiki/kb/product/users/package-authors.md",
+              ".codewiki/kb/system/graph.md",
+              ".codewiki/kb/system/validation-gateway.md",
               ".codewiki/kb/system/adapters.md",
               ".codewiki/kb/system/agency.md",
               ".codewiki/kb/system/alignment-model.md",
@@ -51376,11 +52482,9 @@
               ".codewiki/kb/system/diagrams/README.md",
               ".codewiki/kb/system/extension.md",
               ".codewiki/kb/system/file-structure.md",
-              ".codewiki/kb/system/graph.md",
               ".codewiki/kb/system/knowledge.md",
               ".codewiki/kb/system/overview.md",
-              ".codewiki/kb/system/roadmap.md",
-              ".codewiki/kb/system/validation-gateway.md"
+              ".codewiki/kb/system/roadmap.md"
             ],
             "code_paths": [
               ".codewiki/kb/product",
@@ -51400,41 +52504,46 @@
               "src",
               "src/index.ts",
               "package.json",
+              ".codewiki/index_graph.json",
+              "src/application/graph.ts",
+              "src/application/graph/rebuilder.ts",
+              "src/application/state-builders.ts",
+              "src/application/state.ts",
+              "src/domain/shared/types.ts",
+              "src/application/gateway",
+              "skills/codewiki/loops/validation.md",
+              ".codewiki/validation",
+              "src/application/builds.ts",
               "src/adapters",
               "src/application",
               "skills/codewiki",
               "src/adapters/pi",
-              "src/application/graph.ts",
-              "src/application/builds.ts",
-              "src/application/gateway",
               "skills/codewiki/loops",
               "src/domain",
               ".codewiki/builds",
-              "src/domain/shared/types.ts",
               "src/adapters/pi/schemas.ts",
               "src/application/roadmap.ts",
               "src/application/task.ts",
-              "skills/codewiki/loops/validation.md",
               "src/ui/web/control-room.ts",
               "src/bootstrap.ts",
               "src/templates.ts",
               "src/application/prompt.ts",
               ".codewiki/kb",
-              ".codewiki/index_graph.json",
-              "src/application/graph/rebuilder.ts",
-              "src/application/state-builders.ts",
-              "src/application/state.ts",
               ".codewiki/roadmap/queue.json",
-              ".codewiki/roadmap",
-              ".codewiki/validation"
+              ".codewiki/roadmap"
             ],
             "code_area": ".codewiki, skills +3 more",
-            "open_task_ids": [],
-            "risky_spec_paths": [],
+            "open_task_ids": [
+              "TASK-091"
+            ],
+            "risky_spec_paths": [
+              ".codewiki/kb/system/graph.md",
+              ".codewiki/kb/system/validation-gateway.md"
+            ],
             "stats": {
               "total_specs": 33,
-              "aligned_specs": 33,
-              "tracked_specs": 0,
+              "aligned_specs": 31,
+              "tracked_specs": 2,
               "untracked_specs": 0,
               "blocked_specs": 0,
               "unmapped_specs": 0
@@ -51448,19 +52557,19 @@
         ]
       },
       "resume": {
-        "source": "agency",
-        "task_id": "",
-        "lane_id": "product_system",
-        "heading": "Product ↔ System",
-        "command": "/wiki-status",
-        "reason": "Resume from stale agency lane.",
+        "source": "task",
+        "task_id": "TASK-091",
+        "lane_id": "",
+        "heading": "TASK-091 — Ignore superseded unscoped validation blockers",
+        "command": "/wiki-resume TASK-091",
+        "reason": "Resume roadmap task (in_progress).",
         "status": "in_progress",
-        "verification": "Strategic intent drift should first be inspected through the canonical status surface.",
+        "verification": "node tests/smoke/alignment-graph.test.mjs",
         "evidence": "No closure evidence recorded yet.",
-        "agency": "Re-run status or resume implementation before trusting prior drift analysis."
+        "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T21:50:53Z",
+        "generated_at": "2026-05-16T21:59:38Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
@@ -51483,6 +52592,77 @@
       },
       "wiki": {
         "rows": [
+          {
+            "path": ".codewiki/kb/system/graph.md",
+            "title": "Graph",
+            "summary": "Generated state/graph representation for reconciliation, routing, freshness, and requirement traceability.",
+            "drift_status": "tracked",
+            "code_paths": [
+              ".codewiki/index_graph.json",
+              "src/application/graph.ts",
+              "src/application/graph/rebuilder.ts",
+              "src/application/state-builders.ts",
+              "src/application/state.ts",
+              "src/domain/shared/types.ts"
+            ],
+            "code_area": ".codewiki, src",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-091",
+              "TASK-038",
+              "TASK-078",
+              "TASK-084"
+            ],
+            "primary_task": {
+              "id": "TASK-091",
+              "status": "in_progress",
+              "title": "Ignore superseded unscoped validation blockers"
+            },
+            "revision": {
+              "digest": "5b9003916d9120ce4bd0084fcfe49deee10845153ad0552ce1437fabf055d866",
+              "basis": "source_content"
+            },
+            "note": "tracked by TASK-091"
+          },
+          {
+            "path": ".codewiki/kb/system/validation-gateway.md",
+            "title": "Validation Gateway",
+            "summary": "Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.",
+            "drift_status": "tracked",
+            "code_paths": [
+              "src/application/gateway",
+              "skills/codewiki/loops/validation.md",
+              ".codewiki/validation",
+              "src/application/builds.ts"
+            ],
+            "code_area": "src, skills +1 more",
+            "issue_counts": {
+              "errors": 0,
+              "warnings": 0,
+              "total": 0
+            },
+            "related_task_ids": [
+              "TASK-091",
+              "TASK-034",
+              "TASK-038",
+              "TASK-078",
+              "TASK-084"
+            ],
+            "primary_task": {
+              "id": "TASK-091",
+              "status": "in_progress",
+              "title": "Ignore superseded unscoped validation blockers"
+            },
+            "revision": {
+              "digest": "4c22e4d0343bff6dd02ba1513ee79e43a1fdb448c5c2b765014aed88ea11dbf6",
+              "basis": "source_content"
+            },
+            "note": "tracked by TASK-091"
+          },
           {
             "path": ".codewiki/kb/lexicon.md",
             "title": "Lexicon",
@@ -52269,41 +53449,6 @@
             "note": "no deterministic drift signals"
           },
           {
-            "path": ".codewiki/kb/system/graph.md",
-            "title": "Graph",
-            "summary": "Generated state/graph representation for reconciliation, routing, freshness, and requirement traceability.",
-            "drift_status": "aligned",
-            "code_paths": [
-              ".codewiki/index_graph.json",
-              "src/application/graph.ts",
-              "src/application/graph/rebuilder.ts",
-              "src/application/state-builders.ts",
-              "src/application/state.ts",
-              "src/domain/shared/types.ts"
-            ],
-            "code_area": ".codewiki, src",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-038",
-              "TASK-078",
-              "TASK-084"
-            ],
-            "primary_task": {
-              "id": "TASK-038",
-              "status": "done",
-              "title": "Implement trigger-based agency controller"
-            },
-            "revision": {
-              "digest": "5b9003916d9120ce4bd0084fcfe49deee10845153ad0552ce1437fabf055d866",
-              "basis": "source_content"
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
             "path": ".codewiki/kb/system/knowledge.md",
             "title": "Knowledge",
             "summary": "Durable product and system knowledge structure for CodeWiki projects.",
@@ -52387,40 +53532,6 @@
             "primary_task": null,
             "revision": {
               "digest": "fbf4670c4dcf1a653941d0f83843942aa917946da15d0d59bb6cf3b1f9075125",
-              "basis": "source_content"
-            },
-            "note": "no deterministic drift signals"
-          },
-          {
-            "path": ".codewiki/kb/system/validation-gateway.md",
-            "title": "Validation Gateway",
-            "summary": "Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.",
-            "drift_status": "aligned",
-            "code_paths": [
-              "src/application/gateway",
-              "skills/codewiki/loops/validation.md",
-              ".codewiki/validation",
-              "src/application/builds.ts"
-            ],
-            "code_area": "src, skills +1 more",
-            "issue_counts": {
-              "errors": 0,
-              "warnings": 0,
-              "total": 0
-            },
-            "related_task_ids": [
-              "TASK-034",
-              "TASK-038",
-              "TASK-078",
-              "TASK-084"
-            ],
-            "primary_task": {
-              "id": "TASK-034",
-              "status": "done",
-              "title": "Align CodeWiki skill package with compiler and API contracts"
-            },
-            "revision": {
-              "digest": "4c22e4d0343bff6dd02ba1513ee79e43a1fdb448c5c2b765014aed88ea11dbf6",
               "basis": "source_content"
             },
             "note": "no deterministic drift signals"
@@ -52818,6 +53929,77 @@
             "id": "system",
             "label": "System",
             "rows": [
+              {
+                "path": ".codewiki/kb/system/graph.md",
+                "title": "Graph",
+                "summary": "Generated state/graph representation for reconciliation, routing, freshness, and requirement traceability.",
+                "drift_status": "tracked",
+                "code_paths": [
+                  ".codewiki/index_graph.json",
+                  "src/application/graph.ts",
+                  "src/application/graph/rebuilder.ts",
+                  "src/application/state-builders.ts",
+                  "src/application/state.ts",
+                  "src/domain/shared/types.ts"
+                ],
+                "code_area": ".codewiki, src",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [
+                  "TASK-091",
+                  "TASK-038",
+                  "TASK-078",
+                  "TASK-084"
+                ],
+                "primary_task": {
+                  "id": "TASK-091",
+                  "status": "in_progress",
+                  "title": "Ignore superseded unscoped validation blockers"
+                },
+                "revision": {
+                  "digest": "5b9003916d9120ce4bd0084fcfe49deee10845153ad0552ce1437fabf055d866",
+                  "basis": "source_content"
+                },
+                "note": "tracked by TASK-091"
+              },
+              {
+                "path": ".codewiki/kb/system/validation-gateway.md",
+                "title": "Validation Gateway",
+                "summary": "Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.",
+                "drift_status": "tracked",
+                "code_paths": [
+                  "src/application/gateway",
+                  "skills/codewiki/loops/validation.md",
+                  ".codewiki/validation",
+                  "src/application/builds.ts"
+                ],
+                "code_area": "src, skills +1 more",
+                "issue_counts": {
+                  "errors": 0,
+                  "warnings": 0,
+                  "total": 0
+                },
+                "related_task_ids": [
+                  "TASK-091",
+                  "TASK-034",
+                  "TASK-038",
+                  "TASK-078",
+                  "TASK-084"
+                ],
+                "primary_task": {
+                  "id": "TASK-091",
+                  "status": "in_progress",
+                  "title": "Ignore superseded unscoped validation blockers"
+                },
+                "revision": {
+                  "digest": "4c22e4d0343bff6dd02ba1513ee79e43a1fdb448c5c2b765014aed88ea11dbf6",
+                  "basis": "source_content"
+                },
+                "note": "tracked by TASK-091"
+              },
               {
                 "path": ".codewiki/kb/lexicon.md",
                 "title": "Lexicon",
@@ -53223,41 +54405,6 @@
                 "note": "no deterministic drift signals"
               },
               {
-                "path": ".codewiki/kb/system/graph.md",
-                "title": "Graph",
-                "summary": "Generated state/graph representation for reconciliation, routing, freshness, and requirement traceability.",
-                "drift_status": "aligned",
-                "code_paths": [
-                  ".codewiki/index_graph.json",
-                  "src/application/graph.ts",
-                  "src/application/graph/rebuilder.ts",
-                  "src/application/state-builders.ts",
-                  "src/application/state.ts",
-                  "src/domain/shared/types.ts"
-                ],
-                "code_area": ".codewiki, src",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-038",
-                  "TASK-078",
-                  "TASK-084"
-                ],
-                "primary_task": {
-                  "id": "TASK-038",
-                  "status": "done",
-                  "title": "Implement trigger-based agency controller"
-                },
-                "revision": {
-                  "digest": "5b9003916d9120ce4bd0084fcfe49deee10845153ad0552ce1437fabf055d866",
-                  "basis": "source_content"
-                },
-                "note": "no deterministic drift signals"
-              },
-              {
                 "path": ".codewiki/kb/system/knowledge.md",
                 "title": "Knowledge",
                 "summary": "Durable product and system knowledge structure for CodeWiki projects.",
@@ -53344,40 +54491,6 @@
                   "basis": "source_content"
                 },
                 "note": "no deterministic drift signals"
-              },
-              {
-                "path": ".codewiki/kb/system/validation-gateway.md",
-                "title": "Validation Gateway",
-                "summary": "Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.",
-                "drift_status": "aligned",
-                "code_paths": [
-                  "src/application/gateway",
-                  "skills/codewiki/loops/validation.md",
-                  ".codewiki/validation",
-                  "src/application/builds.ts"
-                ],
-                "code_area": "src, skills +1 more",
-                "issue_counts": {
-                  "errors": 0,
-                  "warnings": 0,
-                  "total": 0
-                },
-                "related_task_ids": [
-                  "TASK-034",
-                  "TASK-038",
-                  "TASK-078",
-                  "TASK-084"
-                ],
-                "primary_task": {
-                  "id": "TASK-034",
-                  "status": "done",
-                  "title": "Align CodeWiki skill package with compiler and API contracts"
-                },
-                "revision": {
-                  "digest": "4c22e4d0343bff6dd02ba1513ee79e43a1fdb448c5c2b765014aed88ea11dbf6",
-                  "basis": "source_content"
-                },
-                "note": "no deterministic drift signals"
               }
             ]
           },
@@ -53389,10 +54502,12 @@
         ]
       },
       "roadmap": {
-        "focused_task_id": "",
+        "focused_task_id": "TASK-091",
         "blocked_task_ids": [],
-        "in_progress_task_ids": [],
-        "next_task_id": "",
+        "in_progress_task_ids": [
+          "TASK-091"
+        ],
+        "next_task_id": "TASK-091",
         "sprint_ids": [
           "SPRINT-001",
           "SPRINT-002",
@@ -53536,7 +54651,9 @@
           {
             "id": "implement",
             "label": "Implement",
-            "task_ids": []
+            "task_ids": [
+              "TASK-091"
+            ]
           },
           {
             "id": "done",

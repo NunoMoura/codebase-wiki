@@ -1189,7 +1189,18 @@ export function buildGraph(inputs: GraphBuildInputs): GraphFile {
 		}
 		const validationTaskId = String(v.taskId || v.data?.task_id || v.data?.taskId || "").trim();
 		const validationTargetsClosedTask = Boolean(validationTaskId && !activeRoadmapTaskIds.has(validationTaskId));
-		if ((v.verdict === "fail" || v.verdict === "block") && !validationTargetsClosedTask) {
+		const validationTargetsNoTask = !validationTaskId;
+		const validationHasSupersedingPass = validations.some((candidate) => {
+			if (candidate === v || candidate.verdict !== "pass") return false;
+			const candidateTaskId = String(candidate.taskId || candidate.data?.task_id || candidate.data?.taskId || "").trim();
+			if (candidateTaskId !== validationTaskId) return false;
+			const candidateProfile = String(candidate.data?.profile || "").trim();
+			const profile = String(v.data?.profile || "").trim();
+			if (candidateProfile && profile && candidateProfile !== profile) return false;
+			return String(candidate.data?.source || "").trim() === String(v.data?.source || "").trim();
+		});
+		const unscopedBlock = v.verdict === "block" && validationTargetsNoTask;
+		if ((v.verdict === "fail" || v.verdict === "block") && !validationTargetsClosedTask && !unscopedBlock && !validationHasSupersedingPass) {
 			reconciliationItems.push({
 				id: `reconcile:validation:${v.path}`,
 				source_id: valNodeId,

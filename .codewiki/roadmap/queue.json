@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-05-16T21:50:53Z",
+  "updated": "2026-05-16T21:54:04Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -51,7 +51,8 @@
     "TASK-076",
     "TASK-077",
     "TASK-078",
-    "TASK-084"
+    "TASK-084",
+    "TASK-091"
   ],
   "tasks": {
     "TASK-001": {
@@ -2385,6 +2386,54 @@
       },
       "created": "2026-05-15",
       "updated": "2026-05-15T03:08:30Z"
+    },
+    "TASK-091": {
+      "id": "TASK-091",
+      "title": "Ignore superseded unscoped validation blockers",
+      "status": "in_progress",
+      "priority": "high",
+      "kind": "bug",
+      "summary": "Prevent stale unscoped validation block reports from routing current feedback reconciliation after a matching pass report supersedes them.",
+      "spec_paths": [
+        ".codewiki/kb/system/graph.md",
+        ".codewiki/kb/system/validation-gateway.md"
+      ],
+      "code_paths": [
+        "src/application/graph.ts",
+        "tests/smoke/alignment-graph.test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "graph",
+        "validation",
+        "reconciliation"
+      ],
+      "change_type": "system",
+      "goal": {
+        "outcome": "Graph reconciliation only routes active validation blockers and ignores stale unscoped blockers superseded by pass evidence.",
+        "acceptance": [
+          "Unscoped fail/block validation reports do not route current feedback reconciliation when they lack an active task target.",
+          "A fail/block validation with a matching same-profile same-source pass report does not route current reconciliation.",
+          "Active task-scoped fail/block validation still routes reconciliation.",
+          "Regression smoke covers the superseded unscoped block case."
+        ],
+        "non_goals": [
+          "Do not delete historical validation reports.",
+          "Do not suppress active task-scoped validation failures or blockers."
+        ],
+        "verification": [
+          "node tests/smoke/alignment-graph.test.mjs",
+          "npm run typecheck",
+          "codewiki_state refresh=true shows no stale feedback reconciliation from superseded block"
+        ]
+      },
+      "delta": {
+        "desired": "Stale historical feedback block reports no longer keep roadmap-empty repo in feedback reconciliation.",
+        "current": "Unscoped stale feedback block still routes next_action despite superseding pass report.",
+        "closure": ""
+      },
+      "created": "2026-05-16",
+      "updated": "2026-05-16T21:54:04Z"
     }
   },
   "sprints": {

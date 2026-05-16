@@ -1,41 +1,35 @@
 {
   "version": 1,
   "kind": "validation_report",
-  "created": "2026-05-16T06:43:22Z",
+  "created": "2026-05-16T21:52:06Z",
   "profile": "feedback",
   "verdict": "pass",
-  "rationale": "Accepted feedback builds are valid source-backed handoffs. Both feedback_build artifacts are accepted, every approved diff row is present and approved, every requirement maps to approved row refs, every requirement id appears in evidence_mapping, and roadmap refinement ownership is coherent: TASK-086 owns artifact-status/session-queue scheduling semantics; TASK-083 owns skill-owned /wiki-resume template rendering and follow-up intent preservation while explicitly excluding scheduling policy. Required alignment audit passed with 0 issues.",
+  "rationale": "Superseding stale feedback block report. Current roadmap has no open TASK-083/TASK-086 follow-up work, generated parity passes with 0 active task views, and alignment audit has only pre-existing graph health warnings from the stale block itself. Required audit evidence is now cited with canonical audit refs.",
   "checks": [
-    "codewiki_state refresh=true: health green",
-    "Read .codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-    "Read .codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-    "Parsed both feedback build JSON artifacts and checked kind/status/lifecycle accepted",
-    "Checked approved_diff_rows equal diff_table ids for PAR-001..003 and ART-001..003",
-    "Checked requirement source refs target approved diff row ids and evidence_mapping covers FB-PAR-001..004 and FB-ART-001..003",
-    "Read .codewiki/roadmap/queue.json TASK-086 and TASK-083 canonical task records",
-    "Verified TASK-086 acceptance owns artifact statuses, session queue state, holders/waiters, /wiki-resume task selection, explicit task honoring, conflict explanation, and compatibility-only claim/lease language",
-    "Verified TASK-083 acceptance owns skill-owned prompt/template assets, /wiki-resume template rendering, follow-up intent preservation, artifact-status wording in templates, and non-goal excluding scheduling policy",
-    "codewiki_audit profiles=alignment layers=feedback,roadmap: pass",
-    "codewiki_audit profiles=task,generated-parity task_id=TASK-086: pass",
-    "codewiki_audit profiles=task task_id=TASK-083: pass"
+    "codewiki_state(refresh=true): roadmap open 0, generated parity current",
+    "audit:alignment",
+    "audit:generated-parity",
+    "audit:changed",
+    "read stale .codewiki/validation/2026-05-16-feedback-block.json"
   ],
-  "issues": [],
+  "issues": [
+    {
+      "severity": "low",
+      "summary": "audit:alignment reports graph health warnings caused by stale feedback block reconciliation; this report supersedes the stale blocker."
+    }
+  ],
   "source": ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
   "policy_profile": "feedback",
   "required_audits": [
     "alignment"
   ],
   "audit_refs": [
-    "audit:alignment",
-    "profile:alignment",
-    "codewiki_audit:alignment:feedback+roadmap:pass",
-    "codewiki_audit:task+generated-parity:TASK-086:pass",
-    "codewiki_audit:task:TASK-083:pass"
+    "audit:alignment"
   ],
   "audit_reports": [
-    "CodeWiki audit output: alignment pass with 0 issues for feedback build and roadmap paths",
-    "CodeWiki audit output: task/generated-parity pass for TASK-086 with 0 issues",
-    "CodeWiki audit output: task pass for TASK-083 with 0 issues"
+    "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 2 warnings.",
+    "audit:generated-parity pass Checked generated graph presence, freshness, and 0 active roadmap task views against canonical sources.",
+    "audit:changed warning only generated .codewiki/index_graph.json changed after refresh."
   ],
   "content_proof_refs": [],
   "failed_criteria": [],
@@ -61,9 +55,20 @@
     "reason": "Gateway profiles require deterministic audit evidence for their build or boundary context.",
     "gaps": []
   },
+  "semantic_traceability_requirement": {
+    "required": false,
+    "evidence": [
+      "source implementation build",
+      "change_type",
+      "accepted upstream compiler build refs"
+    ],
+    "gaps": [],
+    "warnings": []
+  },
   "isolation": {
+    "clean": false,
     "fresh_context": true,
-    "notes": "Validation read build, roadmap, and policy artifacts directly in this session and did not rely on prior chat memory.",
+    "notes": "Fresh diagnosis from current graph/audit state; only validation artifact written.",
     "role": "validator"
   }
 }

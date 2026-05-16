@@ -217,3 +217,24 @@ const validationReport = {
 	assert.ok(graph.views.reconciliation.items.some((item) => item.source_id === "validation:.codewiki/validation/open-fail.json"), "Active-task fail validation should route drift");
 	assert.ok(!graph.views.reconciliation.items.some((item) => item.source_id === "validation:.codewiki/validation/closed-fail.json"), "Closed-task fail validation should not route current drift");
 }
+
+{
+	const graph = baseGraph({
+		validations: [
+			{ path: ".codewiki/validation/unscoped-block.json", verdict: "block", data: { profile: "feedback", verdict: "block", source: ".codewiki/builds/feedback/old.json" } },
+			{ path: ".codewiki/validation/unscoped-pass.json", verdict: "pass", data: { profile: "feedback", verdict: "pass", source: ".codewiki/builds/feedback/old.json" } },
+		],
+	});
+	assert.ok(!graph.views.reconciliation.items.some((item) => item.source_id === "validation:.codewiki/validation/unscoped-block.json"), "Unscoped superseded block validation should not route current feedback drift");
+}
+
+{
+	const graph = baseGraph({
+		validations: [
+			{ path: ".codewiki/validation/unscoped-fail.json", verdict: "fail", data: { profile: "documentation", verdict: "fail" } },
+		],
+	});
+	assert.ok(graph.views.reconciliation.items.some((item) => item.source_id === "validation:.codewiki/validation/unscoped-fail.json"), "Unscoped fail validation should still route documentation drift");
+}
+
+console.log("✓ alignment graph smoke passed");
