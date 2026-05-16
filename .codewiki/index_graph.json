@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T21:32:09.280Z",
+  "generated_at": "2026-05-16T21:49:48.887Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -1218,7 +1218,7 @@
       "kind": "roadmap_task",
       "title": "Codify alignment drift fixture matrix",
       "layer": "roadmap",
-      "status": "todo",
+      "status": "in_progress",
       "change_type": "code",
       "alignment_state": "drift"
     },
@@ -3591,6 +3591,78 @@
       "id": "test:tests/smoke/hot-context.test.mjs",
       "kind": "test_file",
       "path": "tests/smoke/hot-context.test.mjs"
+    },
+    {
+      "id": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "kind": "feedback_build",
+      "path": ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "title": "User clarified dogfood/source confusion test is useful for CodeWiki development but not applicable to software development in general, so it should not be part of source distributed to developers.",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false,
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+          "User clarified dogfood/source confusion test is useful for CodeWiki development but not applicable to software development in general, so it should not be part of source distributed to developers.",
+          "TASK-090 scope correction",
+          "tests/fixtures/alignment-drift/matrix.json",
+          "tests/smoke/alignment-drift-fixtures.test.mjs"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment"
+        ],
+        "content_proof_refs": [],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:User clarified dogfood/source confusion test is useful for CodeWiki development but not applicable to software development in general, so it should not be part of source distributed to developers.",
+      "kind": "canonical_source_ref",
+      "path": "User clarified dogfood/source confusion test is useful for CodeWiki development but not applicable to software development in general, so it should not be part of source distributed to developers.",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-090 scope correction",
+      "kind": "canonical_source_ref",
+      "path": "TASK-090 scope correction",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:tests/fixtures/alignment-drift/matrix.json",
+      "kind": "canonical_source_ref",
+      "path": "tests/fixtures/alignment-drift/matrix.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:tests/smoke/alignment-drift-fixtures.test.mjs",
+      "kind": "canonical_source_ref",
+      "path": "tests/smoke/alignment-drift-fixtures.test.mjs",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "test:tests/fixtures/alignment-drift/matrix.json",
+      "kind": "test_file",
+      "path": "tests/fixtures/alignment-drift/matrix.json"
+    },
+    {
+      "id": "test:tests/smoke/alignment-drift-fixtures.test.mjs",
+      "kind": "test_file",
+      "path": "tests/smoke/alignment-drift-fixtures.test.mjs"
     },
     {
       "id": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
@@ -6070,6 +6142,63 @@
       "default_hidden": true
     },
     {
+      "id": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "kind": "documentation_build",
+      "path": ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "title": ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false,
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+          ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+          "codewiki_build tool",
+          "No knowledge file edits needed; TASK-090 canonical scope updated to portable fixture classes only.",
+          "TASK-090 acceptance excludes CodeWiki dogfood-only source/package confusion.",
+          "TASK-090 portable alignment drift fixture planning"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment",
+          "profile:stale-reference"
+        ],
+        "content_proof_refs": [],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:No knowledge file edits needed; TASK-090 canonical scope updated to portable fixture classes only.",
+      "kind": "canonical_source_ref",
+      "path": "No knowledge file edits needed; TASK-090 canonical scope updated to portable fixture classes only.",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-090 acceptance excludes CodeWiki dogfood-only source/package confusion.",
+      "kind": "canonical_source_ref",
+      "path": "TASK-090 acceptance excludes CodeWiki dogfood-only source/package confusion.",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-090 portable alignment drift fixture planning",
+      "kind": "canonical_source_ref",
+      "path": "TASK-090 portable alignment drift fixture planning",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
       "id": "build:.codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
       "kind": "documentation_build",
       "path": ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
@@ -7502,6 +7631,51 @@
       "kind": "code_path",
       "path": "src/adapters/pi/commands/ui.ts",
       "layer": "code"
+    },
+    {
+      "id": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "kind": "planning_build",
+      "path": ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": false,
+      "default_hidden": false,
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+          ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+          "codewiki_build tool",
+          "TASK-090",
+          "package.json",
+          "tests/fixtures/alignment-drift/matrix.json",
+          "tests/smoke/alignment-drift-fixtures.test.mjs"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment"
+        ],
+        "content_proof_refs": [],
+        "validation_attestation_refs": [
+          "TASK-090 implementation validation"
+        ]
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-090",
+      "kind": "canonical_source_ref",
+      "path": "TASK-090",
+      "layer": "source",
+      "default_hidden": true
     },
     {
       "id": "build:.codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
@@ -13016,6 +13190,110 @@
       "layer": "archive"
     },
     {
+      "id": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "kind": "implementation_build",
+      "path": ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "title": "codewiki_build tool",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "aligned",
+      "compacted": true,
+      "default_hidden": true,
+      "archive_ref": "refs/codewiki/archive/task/TASK-090",
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+          ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+          "codewiki_build tool",
+          "package.json",
+          "tests/smoke/alignment-drift-fixtures.test.mjs",
+          "tests/fixtures/alignment-drift/matrix.json",
+          "TASK-090"
+        ],
+        "audit_evidence_refs": [
+          "profile:alignment",
+          "profile:changed"
+        ],
+        "content_proof_refs": [
+          ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json@sha256:b0e34dc35b166d346e6a03c4b63006bbf2f3a6d4e20e55722dbc4dedc9002205",
+          "tests/smoke/alignment-drift-fixtures.test.mjs@sha256:8a4e1447ec535d438683d2bddb3b026aaa658489c14a205e41c42f799bcc404c",
+          "tests/fixtures/alignment-drift/matrix.json@sha256:3bac0a661224b28c2722a59cb3a5a122ad6fb14e56ddb0e841bc3a630d96c065",
+          "package.json@sha256:9452307fe4ab989720bd79a7212bd9a75144d9c5d8abcaae448fbec96833bd57",
+          "refs/codewiki/archive/task/TASK-090",
+          "sha256:030fdd659b7b75bd8e54788c36eb52164adff62dd5d1f2937d392ab55fe7fe29"
+        ],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json@sha256:b0e34dc35b166d346e6a03c4b63006bbf2f3a6d4e20e55722dbc4dedc9002205",
+      "kind": "content_proof",
+      "path": ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json@sha256:b0e34dc35b166d346e6a03c4b63006bbf2f3a6d4e20e55722dbc4dedc9002205",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/smoke/alignment-drift-fixtures.test.mjs@sha256:8a4e1447ec535d438683d2bddb3b026aaa658489c14a205e41c42f799bcc404c",
+      "kind": "content_proof",
+      "path": "tests/smoke/alignment-drift-fixtures.test.mjs@sha256:8a4e1447ec535d438683d2bddb3b026aaa658489c14a205e41c42f799bcc404c",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:tests/fixtures/alignment-drift/matrix.json@sha256:3bac0a661224b28c2722a59cb3a5a122ad6fb14e56ddb0e841bc3a630d96c065",
+      "kind": "content_proof",
+      "path": "tests/fixtures/alignment-drift/matrix.json@sha256:3bac0a661224b28c2722a59cb3a5a122ad6fb14e56ddb0e841bc3a630d96c065",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:package.json@sha256:9452307fe4ab989720bd79a7212bd9a75144d9c5d8abcaae448fbec96833bd57",
+      "kind": "content_proof",
+      "path": "package.json@sha256:9452307fe4ab989720bd79a7212bd9a75144d9c5d8abcaae448fbec96833bd57",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:refs/codewiki/archive/task/TASK-090",
+      "kind": "content_proof",
+      "path": "refs/codewiki/archive/task/TASK-090",
+      "proof_kind": "git_ref",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:030fdd659b7b75bd8e54788c36eb52164adff62dd5d1f2937d392ab55fe7fe29",
+      "kind": "content_proof",
+      "path": "sha256:030fdd659b7b75bd8e54788c36eb52164adff62dd5d1f2937d392ab55fe7fe29",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
+      "id": "archive_ref:refs/codewiki/archive/task/TASK-090",
+      "kind": "git_archive_ref",
+      "path": "refs/codewiki/archive/task/TASK-090",
+      "task_id": "TASK-090",
+      "digest": "sha256:030fdd659b7b75bd8e54788c36eb52164adff62dd5d1f2937d392ab55fe7fe29",
+      "restore_command": "/wiki-restore TASK-090",
+      "safety_status": "blocked",
+      "default_hidden": true,
+      "layer": "archive"
+    },
+    {
       "id": "build:.codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
       "kind": "implementation_build",
       "path": ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
@@ -16888,6 +17166,58 @@
       "default_hidden": true
     },
     {
+      "id": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "kind": "validation_report",
+      "path": ".codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "verdict": "pass",
+      "isolation_status": "isolated",
+      "isolation": {
+        "working_tree_digest": "sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd",
+        "clean": false,
+        "fresh_context": true,
+        "notes": "Dirty pre-commit validation for TASK-090 portable fixture matrix.",
+        "role": "validator"
+      },
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json"
+        ],
+        "audit_evidence_refs": [
+          "audit:alignment",
+          "audit:changed",
+          "audit:task",
+          "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+          "audit:changed pass Checked 9 changed files across 3 layers.",
+          "audit:task pass Checked roadmap task TASK-090."
+        ],
+        "content_proof_refs": [
+          "sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd"
+        ]
+      }
+    },
+    {
+      "id": "audit:audit:changed pass Checked 9 changed files across 3 layers.",
+      "kind": "audit_evidence",
+      "path": "audit:changed pass Checked 9 changed files across 3 layers.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "audit:audit:task pass Checked roadmap task TASK-090.",
+      "kind": "audit_evidence",
+      "path": "audit:task pass Checked roadmap task TASK-090.",
+      "layer": "audit",
+      "default_hidden": true
+    },
+    {
+      "id": "content_proof:sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd",
+      "kind": "content_proof",
+      "path": "sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd",
+      "proof_kind": "digest",
+      "layer": "content_proof",
+      "default_hidden": true
+    },
+    {
       "id": "validation:.codewiki/validation/2026-05-16-planning-pass-task-077.json",
       "kind": "validation_report",
       "path": ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
@@ -17565,15 +17895,6 @@
           "cc0f949346f8dda07b980c54b451b1b247686155"
         ]
       }
-    },
-    {
-      "id": "lint:roadmap-missing-code-path:.codewiki/roadmap/queue.json",
-      "kind": "lint_issue",
-      "path": ".codewiki/roadmap/queue.json",
-      "layer": "validation",
-      "severity": "warning",
-      "issue_kind": "roadmap-missing-code-path",
-      "message": "TASK-090 references missing code path: tests/fixtures/alignment-drift"
     }
   ],
   "edges": [
@@ -21987,6 +22308,62 @@
     },
     {
       "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "to": "source:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "to": "source:User clarified dogfood/source confusion test is useful for CodeWiki development but not applicable to software development in general, so it should not be part of source distributed to developers.",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "to": "source:TASK-090 scope correction",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "to": "source:tests/fixtures/alignment-drift/matrix.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "to": "source:tests/smoke/alignment-drift-fixtures.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "to": "task:TASK-090 scope correction"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "to": "task:TASK-090 scope correction"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "to": "test:tests/fixtures/alignment-drift/matrix.json"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "to": "test:tests/smoke/alignment-drift-fixtures.test.mjs"
+    },
+    {
+      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
       "to": "source:.codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
       "default_hidden": true
@@ -25657,6 +26034,84 @@
     },
     {
       "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "source:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "source:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "source:No knowledge file edits needed; TASK-090 canonical scope updated to portable fixture classes only.",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "source:TASK-090 acceptance excludes CodeWiki dogfood-only source/package confusion.",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "source:TASK-090 portable alignment drift fixture planning",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "audit:profile:stale-reference",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "task:TASK-090 acceptance excludes CodeWiki dogfood-only source/package confusion."
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "task:TASK-090 portable alignment drift fixture planning"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "build:.codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "doc:No knowledge file edits needed; TASK-090 canonical scope updated to portable fixture classes only."
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "task:TASK-090 acceptance excludes CodeWiki dogfood-only source/package confusion."
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "to": "task:TASK-090 portable alignment drift fixture planning"
+    },
+    {
+      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
       "to": "source:.codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
       "default_hidden": true
@@ -28529,6 +28984,94 @@
       "kind": "build_produces_validation",
       "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
       "to": "validation:implementation validation for TASK-088 web UI move"
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "source:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "source:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "source:TASK-090",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "source:package.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "source:tests/fixtures/alignment-drift/matrix.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "source:tests/smoke/alignment-drift-fixtures.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "task:TASK-090"
+    },
+    {
+      "kind": "build_derives_from",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "build:.codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json"
+    },
+    {
+      "kind": "build_consumes_task",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "task:TASK-090"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "task:TASK-090"
+    },
+    {
+      "kind": "build_produces_code",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "code:package.json"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "test:tests/fixtures/alignment-drift/matrix.json"
+    },
+    {
+      "kind": "build_produces_test",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "test:tests/smoke/alignment-drift-fixtures.test.mjs"
+    },
+    {
+      "kind": "build_produces_validation",
+      "from": "build:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "to": "validation:TASK-090 implementation validation"
     },
     {
       "kind": "build_references_canonical_source",
@@ -35830,6 +36373,107 @@
     },
     {
       "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "source:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "source:codewiki_build tool",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "source:package.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "source:tests/smoke/alignment-drift-fixtures.test.mjs",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "source:tests/fixtures/alignment-drift/matrix.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "source:TASK-090",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "audit:profile:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_audit_evidence",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "audit:profile:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "content_proof:.codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json@sha256:b0e34dc35b166d346e6a03c4b63006bbf2f3a6d4e20e55722dbc4dedc9002205",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "content_proof:tests/smoke/alignment-drift-fixtures.test.mjs@sha256:8a4e1447ec535d438683d2bddb3b026aaa658489c14a205e41c42f799bcc404c",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "content_proof:tests/fixtures/alignment-drift/matrix.json@sha256:3bac0a661224b28c2722a59cb3a5a122ad6fb14e56ddb0e841bc3a630d96c065",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "content_proof:package.json@sha256:9452307fe4ab989720bd79a7212bd9a75144d9c5d8abcaae448fbec96833bd57",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "content_proof:refs/codewiki/archive/task/TASK-090",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_content_proof",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "content_proof:sha256:030fdd659b7b75bd8e54788c36eb52164adff62dd5d1f2937d392ab55fe7fe29",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "task:TASK-090"
+    },
+    {
+      "kind": "build_archive_ref",
+      "from": "build:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "to": "archive_ref:refs/codewiki/archive/task/TASK-090",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
       "to": "source:.codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
       "default_hidden": true
@@ -40005,6 +40649,59 @@
     },
     {
       "kind": "validation_attests_source",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "to": "source:.codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "to": "audit:audit:alignment",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "to": "audit:audit:changed",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "to": "audit:audit:task",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "to": "audit:audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "to": "audit:audit:changed pass Checked 9 changed files across 3 layers.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_audit_evidence",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "to": "audit:audit:task pass Checked roadmap task TASK-090.",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_content_proof",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "to": "content_proof:sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd",
+      "default_hidden": true
+    },
+    {
+      "kind": "validation_task",
+      "from": "validation:.codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+      "to": "task:TASK-090"
+    },
+    {
+      "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-16-planning-pass-task-077.json",
       "to": "source:.codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json",
       "default_hidden": true
@@ -40739,11 +41436,6 @@
       "kind": "validation_task",
       "from": "validation:.codewiki/validation/2026-05-16-task-close-pass-task-089.json",
       "to": "task:TASK-089"
-    },
-    {
-      "kind": "lint_issue_path",
-      "from": "lint:roadmap-missing-code-path:.codewiki/roadmap/queue.json",
-      "to": "doc:.codewiki/roadmap/queue.json"
     }
   ],
   "views": {
@@ -40920,10 +41612,10 @@
       "open_task_ids": [
         "TASK-090"
       ],
-      "in_progress_task_ids": [],
-      "todo_task_ids": [
+      "in_progress_task_ids": [
         "TASK-090"
       ],
+      "todo_task_ids": [],
       "blocked_task_ids": [],
       "done_task_ids": [
         "TASK-001",
@@ -40982,7 +41674,7 @@
       "status_counts": {
         "done": 45,
         "cancelled": 5,
-        "todo": 1
+        "in_progress": 1
       },
       "sprint_ids": [
         "SPRINT-001",
@@ -41615,6 +42307,19 @@
           ]
         },
         {
+          "path": ".codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+          "task_id": "TASK-090",
+          "verdict": "pass",
+          "status": "isolated",
+          "role": "validator",
+          "clean": false,
+          "fresh_context": true,
+          "related_claim_ids": [],
+          "content_proof_refs": [
+            "sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd"
+          ]
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
           "task_id": "TASK-077",
           "verdict": "pass",
@@ -41862,6 +42567,7 @@
         ".codewiki/builds/documentation/2026-05-16-documented-no-umbrella-task-invariant-tasks-are-.json",
         ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
         ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+        ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
         ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
         ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
         ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge.json",
@@ -41902,6 +42608,7 @@
         ".codewiki/builds/feedback/2026-05-16-accepted-no-umbrella-task-invariant-tasks-are-bo.json",
         ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
         ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+        ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
         ".codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
         ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
         ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
@@ -41954,6 +42661,7 @@
         ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
         ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
         ".codewiki/builds/implementation/2026-05-16-added-audit-and-smoke-test-enforcement-for-bound.json",
+        ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
         ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
         ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
         ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
@@ -41983,6 +42691,7 @@
         ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
         ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
         ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+        ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
         ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
         ".codewiki/config.json",
         ".codewiki/kb",
@@ -42137,6 +42846,7 @@
         "Later implementation will update build schemas/writers/lint/graph/API and eventually UI.",
         "No direct roadmap mutation.",
         "No direct roadmap mutation; next planning layer should refine or create tasks for source layout migration and compatibility strategy.",
+        "No knowledge file edits needed; TASK-090 canonical scope updated to portable fixture classes only.",
         "Plan TASK-087 narrow dependency-direction guard implementation.",
         "Plan bounded enforcement task for no-umbrella invariant and TASK-077 migration.",
         "Planning compiler should create/refine implementation work to migrate source layout and tool lexicon without relying on scripts.",
@@ -42245,6 +42955,10 @@
         "TASK-088 web UI move",
         "TASK-088 web UI move planning",
         "TASK-089",
+        "TASK-090",
+        "TASK-090 acceptance excludes CodeWiki dogfood-only source/package confusion.",
+        "TASK-090 portable alignment drift fixture planning",
+        "TASK-090 scope correction",
         "TASK-28",
         "TASK-29",
         "TASK-30",
@@ -42280,6 +42994,7 @@
         "User approved proceeding with TASK-087 using smallest dependency guard slice before broad source migration.",
         "User approved proceeding with TASK-088 move slice.",
         "User clarification on 2026-05-12: cold data should be hidden as operating-system mechanics, not only UI filtering; UI user naming is CodeWiki, not Control Room.",
+        "User clarified dogfood/source confusion test is useful for CodeWiki development but not applicable to software development in general, so it should not be part of source distributed to developers.",
         "User discussion on 2026-05-12 about claim worktrees, validator independence, and SHA-based validation identity.",
         "User request on 2026-05-12 accepted via ask_user: Adopt + open task.",
         "User request on 2026-05-12 after simplification: settings should live in local web app header top-right cog and map CodeWiki config options.",
@@ -42465,10 +43180,12 @@
         "tests/**",
         "tests/fixtures/**",
         "tests/fixtures/alignment-drift/**",
+        "tests/fixtures/alignment-drift/matrix.json",
         "tests/run.mjs",
         "tests/smoke/*",
         "tests/smoke/**",
         "tests/smoke/*.test.mjs",
+        "tests/smoke/alignment-drift-fixtures.test.mjs",
         "tests/smoke/alignment-graph.test.mjs",
         "tests/smoke/audit-drift.test.mjs",
         "tests/smoke/audit.test.mjs",
@@ -42531,6 +43248,7 @@
         "audit:changed pass Checked 15 changed files across 4 layers before commit.",
         "audit:changed pass Checked 15 changed files across 4 layers.",
         "audit:changed pass Checked 3 changed files across 3 layers.",
+        "audit:changed pass Checked 9 changed files across 3 layers.",
         "audit:changed pass Checked changed files before commit.",
         "audit:changed warning checked 23 changed files; generated-file-changed .codewiki/index_graph.json, .codewiki/roadmap/tasks/TASK-077/context.json, .codewiki/roadmap/tasks/TASK-077/task.json.",
         "audit:file-structure",
@@ -42547,6 +43265,7 @@
         "audit:task pass Checked roadmap task TASK-085.",
         "audit:task pass Checked roadmap task TASK-087.",
         "audit:task pass Checked roadmap task TASK-088.",
+        "audit:task pass Checked roadmap task TASK-090.",
         "codewiki_audit full include_fingerprints=true: pass; profiles alignment,file-structure,stale-reference,package,security,generated-parity; issues=0.",
         "codewiki_audit profiles alignment,changed task_id=TASK-079 include_fingerprints=true: warning; alignment pass, changed warning generated-file-changed .codewiki/index_graph.json, task pass.",
         "codewiki_audit profiles alignment,changed,task task_id=TASK-081 include_fingerprints=true: warning; alignment pass, task pass, changed warning generated-file-changed .codewiki/index_graph.json.",
@@ -42590,6 +43309,7 @@
         ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json@sha256:a78b11ece9a46d75800101b8f71d831fd51e06920657e35e0ca7da564e6c461e",
         ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json@sha256:cd7b936d6a737aab6086068689ea41c7699acd76033914951e6e61191979b852",
         ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json@sha256:5aed481904e24a7ac04775f7f2a6f1821458fef886ceed46e94b93878abcbd78",
+        ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json@sha256:b0e34dc35b166d346e6a03c4b63006bbf2f3a6d4e20e55722dbc4dedc9002205",
         ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json@sha256:93906a76c640d02d38084f9b724eecdb28a20d80e6c5a3c20db1d71f38db75ce",
         ".codewiki/kb/system/adapters.md@sha256:9c75248953903b8f7ca72d89d7f82244170785d5413cab5e715d1d6f3a023c02",
         ".codewiki/kb/system/adapters.md@sha256:c1f891afa3d1fcafba331f700c5e197537e83a0059e44c0c8909bec9d284c1c1",
@@ -42708,6 +43428,7 @@
         "package.json@sha256:3c4462d8ad708479894e90a466e1463e97d5eb2c22f7244f4f554b4d5d5d36b4",
         "package.json@sha256:44806c850b93d7c685b589d8b20f0199bb7df0f7219bca31eaa08d90636005f1",
         "package.json@sha256:4f7166e2775b6896906fd878e6aa7eb936701f4b3d615367e3739a3f51b0e24b",
+        "package.json@sha256:9452307fe4ab989720bd79a7212bd9a75144d9c5d8abcaae448fbec96833bd57",
         "package.json@sha256:b499b1d2495f100faa8f5dc35a77b3942d6db71226c146c6bb0a2fed51228ad6",
         "package.json@sha256:d09359ff5c2d4dbd4093ab8509edae19fb1963977b3eb606718256bfdf31236f",
         "refs/codewiki/archive/task/TASK-068",
@@ -42730,6 +43451,7 @@
         "refs/codewiki/archive/task/TASK-087",
         "refs/codewiki/archive/task/TASK-088",
         "refs/codewiki/archive/task/TASK-089",
+        "refs/codewiki/archive/task/TASK-090",
         "scripts/check-architecture.mjs@sha256:15040f43ff6adccd34f18a36c6abc9d36f64b83742991139f2f28d5d299074be",
         "scripts/check-architecture.mjs@sha256:529464c1e0bf8c7d45058392e3e5fe6df0fc4819748aa298728ac4c2e34518d7",
         "scripts/check-architecture.mjs@sha256:8658e95fdaef6a0bb55abf3e8ddc85f4fbc4f967ec229af6b5d6885d25d08532",
@@ -42745,6 +43467,7 @@
         "scripts/token-benchmark.mjs@sha256:65e19d4a58fc8998b75e2d1f9593e7c057c49ef8ed7ea54b2309700f67260f62",
         "scripts/token-benchmark.mjs@sha256:f47fbac152550a4f4a4eb82dd756265b2dff9820f083d2dd4dc2f0d23d84a5e5",
         "sha256:000889d11f4466a03a1383627bc0c34d3a75c749abd931a2da128d45ec909b92",
+        "sha256:030fdd659b7b75bd8e54788c36eb52164adff62dd5d1f2937d392ab55fe7fe29",
         "sha256:03130c72da26956fde76c06bc5eeaea5caf2505bf6511619eb045680b8740cfe",
         "sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
         "sha256:091ddfe97302f2f1d25dbb94f871a1ff5ece83aaf150630297bedc883ee6717e",
@@ -42761,6 +43484,7 @@
         "sha256:33a9f3d3a5f29a1033de2a361ff5805251e34df7755c583f57ef6ec314dffe93",
         "sha256:38aeecaf4921dba93abb7c79a94e0ab768eae857c9ff8120cd53530fb1d7f931",
         "sha256:3bb57291d1ac44161054162cb4ee8c905ea8673fffa250c1bcf3cc1abdfbb274",
+        "sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd",
         "sha256:486066240f5757e014328e7778abfa63ef6f44105f00b1bd6d6f5ebdf552d319",
         "sha256:4c50a48ca7842e2a2cece48c90ac2a23a7a60bd51083db52e1746ff473e9f9a5",
         "sha256:59a9eb78246b055a56ee5eb1952d831cc102c7ec1b9449b9f6fca770a0b18163",
@@ -42944,7 +43668,9 @@
         "src/domain/validation/profile.ts@sha256:280d283c429d15d4a987bc524fd6dad97a79697d0d34effb9b3a2c8bbf36c9ee",
         "src/templates.ts@sha256:640991a667693af84fb1644cc6e7d89e991dab6ebbc35b758dcfa74b79f72ad4",
         "src/ui/web/control-room.ts@sha256:13a17bc268ee227989d145f93e1d97bf6aa6872547a1973515e85879409c0376",
+        "tests/fixtures/alignment-drift/matrix.json@sha256:3bac0a661224b28c2722a59cb3a5a122ad6fb14e56ddb0e841bc3a630d96c065",
         "tests/run.mjs@sha256:412097fb5944ab7751c54ce73e3acdb02ee86448d4266d7e80695c660ae96230",
+        "tests/smoke/alignment-drift-fixtures.test.mjs@sha256:8a4e1447ec535d438683d2bddb3b026aaa658489c14a205e41c42f799bcc404c",
         "tests/smoke/alignment-graph.test.mjs@sha256:4eca7441c703f88d036b103ea860ad0959fe07d915e960fc5339646f48e5ba0e",
         "tests/smoke/alignment-graph.test.mjs@sha256:59e97f5d8532b207b62650e0d0767525a7070f1df818fea8a5eaa99326b03753",
         "tests/smoke/alignment-graph.test.mjs@sha256:c33462637ecbeaae74e8a0426e139438dd6d3af0bda3b7eaa34c2658cc5bfc81",
@@ -43496,6 +44222,27 @@
           "isolation_status": "isolated"
         },
         {
+          "path": ".codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+          "verdict": "pass",
+          "profile": "implementation",
+          "task_id": "TASK-090",
+          "source_refs": [
+            ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json"
+          ],
+          "audit_evidence_refs": [
+            "audit:alignment",
+            "audit:changed",
+            "audit:task",
+            "audit:alignment warning graph-health .codewiki/index_graph.json: Graph health reports 4 warnings.",
+            "audit:changed pass Checked 9 changed files across 3 layers.",
+            "audit:task pass Checked roadmap task TASK-090."
+          ],
+          "content_proof_refs": [
+            "sha256:45880d987854a32abfd64d3fcccd8c52467a7f60b12fe297c00bd5d9fae486cd"
+          ],
+          "isolation_status": "isolated"
+        },
+        {
           "path": ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
           "verdict": "pass",
           "profile": "planning",
@@ -43778,117 +44525,7 @@
     },
     "traceability": {
       "rows": [],
-      "semantic_change_rows": [
-        {
-          "path": ".codewiki/roadmap/queue.json",
-          "change_type": "task",
-          "semantic": true,
-          "accepted_build_refs": [
-            ".codewiki/builds/feedback/2026-05-11-control-room-ui.json",
-            ".codewiki/builds/feedback/2026-05-11-cytoscape-graph-visualization-selection.json",
-            ".codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
-            ".codewiki/builds/feedback/2026-05-13-claim-wait-queue.json",
-            ".codewiki/builds/feedback/2026-05-13-ui-progressive-disclosure-source-drawer-retro-bo.json",
-            ".codewiki/builds/feedback/2026-05-15-accepted-codewiki-alignment-hardening-principles.json",
-            ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
-            ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
-            ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-            ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-            ".codewiki/builds/documentation/2026-05-10-runtime-scoped-claims-docs.json",
-            ".codewiki/builds/documentation/2026-05-10-scoped-change-claims-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-build-contract-v2-and-efficiency-sprints-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-control-room-refinement-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-control-room-ui-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-cytoscape-control-room-graph-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-reconciliation-lifecycle-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-control-room-config-settings-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-control-room-simplification-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-final-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
-            ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json",
-            ".codewiki/builds/documentation/2026-05-13-claim-wait-queue-docs.json",
-            ".codewiki/builds/documentation/2026-05-13-document-adapter-managed-session-handoff-capabil.json",
-            ".codewiki/builds/documentation/2026-05-13-loop-session-isolation-policy-docs-v2.json",
-            ".codewiki/builds/documentation/2026-05-13-ui-progressive-disclosure-source-drawer-retro-bo.json",
-            ".codewiki/builds/documentation/2026-05-15-documented-codewiki-alignment-model-audit-archit.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-change-type-taxonomy.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
-            ".codewiki/builds/planning/2026-05-13-loop-session-isolation-policy-plan.json",
-            ".codewiki/builds/planning/2026-05-13-plan-implementation-of-pi-adapter-session-handof.json",
-            ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json",
-            ".codewiki/builds/planning/2026-05-14-plan-task-075-implementation-of-ascii-like-codew.json",
-            ".codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json",
-            ".codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json",
-            ".codewiki/builds/planning/2026-05-16-planned-bounded-enforcement-work-for-task-bounda.json",
-            ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
-            ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
-            ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
-            ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
-            ".codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
-            ".codewiki/builds/implementation/2026-05-11-task-056-efficiency-foundation.json",
-            ".codewiki/builds/implementation/2026-05-11-task-057-status-graph-diff-ui.json",
-            ".codewiki/builds/implementation/2026-05-11-task-058-control-room-shell.json",
-            ".codewiki/builds/implementation/2026-05-11-task-059-system-diagram-inspector.json",
-            ".codewiki/builds/implementation/2026-05-11-task-060-graph-visual-map.json",
-            ".codewiki/builds/implementation/2026-05-11-task-061-control-room-refinement.json",
-            ".codewiki/builds/implementation/2026-05-11-task-062-wiki-ui-browser-open.json",
-            ".codewiki/builds/implementation/2026-05-11-task-063-cytoscape-control-room-graph.json",
-            ".codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
-            ".codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
-            ".codewiki/builds/implementation/2026-05-12-task-066-drift-propagation-assurance.json",
-            ".codewiki/builds/implementation/2026-05-12-task-067-control-room-simplification.json",
-            ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-            ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
-            ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-            ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-            ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-            ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-            ".codewiki/builds/implementation/2026-05-13-task-074-claim-wait-queue.json",
-            ".codewiki/builds/implementation/2026-05-13-task-074-loop-isolation-session-handoff.json",
-            ".codewiki/builds/implementation/2026-05-13-task-074-loop-session-isolation-policy.json",
-            ".codewiki/builds/implementation/2026-05-13-task-074-session-handoff-fresh-process-fix.json",
-            ".codewiki/builds/implementation/2026-05-13-task-075-value-first-ui-kanban.json",
-            ".codewiki/builds/implementation/2026-05-14-task-076-expanded-audit-cleanup-fixed-stale-sour.json",
-            ".codewiki/builds/implementation/2026-05-14-task-076-final-tidy-pass-moved-package-smoke-und.json",
-            ".codewiki/builds/implementation/2026-05-15-task-078-implemented-executable-alignment-graph-.json",
-            ".codewiki/builds/implementation/2026-05-15-task-080-implementation-gateway-now-enforces-com.json",
-            ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
-            ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
-            ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-            ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
-            ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-            ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-            ".codewiki/builds/implementation/2026-05-16-added-audit-and-smoke-test-enforcement-for-bound.json",
-            ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
-            ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
-            ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-            ".codewiki/builds/implementation/2026-05-16-extracted-accepted-build-lifecycle-semantics-int.json",
-            ".codewiki/builds/implementation/2026-05-16-extracted-change-traceability-normalization-sema.json",
-            ".codewiki/builds/implementation/2026-05-16-extracted-roadmap-task-boundary-semantics-into-d.json",
-            ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
-            ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-            ".codewiki/builds/implementation/2026-05-16-implemented-change-type-taxonomy-migration.json",
-            ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
-            ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
-            ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
-            ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
-            ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
-            ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
-            ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
-            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json"
-          ],
-          "gaps": []
-        }
-      ],
+      "semantic_change_rows": [],
       "semantic_change_gaps": [],
       "gap_count": 0,
       "gaps": []
@@ -44908,6 +45545,7 @@
             ".codewiki/builds/feedback/2026-05-16-accepted-no-umbrella-task-invariant-tasks-are-bo.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+            ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
             ".codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
             ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
             ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
@@ -44940,6 +45578,7 @@
             ".codewiki/builds/documentation/2026-05-16-documented-no-umbrella-task-invariant-tasks-are-.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+            ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
             ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
             ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
             ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge.json",
@@ -44953,6 +45592,7 @@
             ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+            ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
             ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
             ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
@@ -44978,6 +45618,7 @@
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
             ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
             ".codewiki/builds/implementation/2026-05-16-added-audit-and-smoke-test-enforcement-for-bound.json",
+            ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
             ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
             ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
             ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
@@ -45017,8 +45658,8 @@
             ".codewiki/validation/2026-05-16-implementation-pass-task-087.json",
             ".codewiki/validation/2026-05-16-implementation-pass-task-088.json",
             ".codewiki/validation/2026-05-16-implementation-pass-task-089.json",
-            ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
-            ".codewiki/validation/2026-05-16-task-close-pass-task-079.json"
+            ".codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+            ".codewiki/validation/2026-05-16-planning-pass-task-077.json"
           ]
         },
         "cold": {
@@ -45128,6 +45769,7 @@
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
             ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
             ".codewiki/builds/implementation/2026-05-16-added-audit-and-smoke-test-enforcement-for-bound.json",
+            ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
             ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
             ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
             ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
@@ -45388,6 +46030,16 @@
         },
         {
           "kind": "task",
+          "id": "TASK-090",
+          "build_path": ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
+          "archive_ref": "refs/codewiki/archive/task/TASK-090",
+          "commit_sha": "",
+          "digest": "sha256:030fdd659b7b75bd8e54788c36eb52164adff62dd5d1f2937d392ab55fe7fe29",
+          "restore_command": "/wiki-restore TASK-090",
+          "safety_status": "blocked"
+        },
+        {
+          "kind": "task",
           "id": "TASK-087",
           "build_path": ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
           "archive_ref": "refs/codewiki/archive/task/TASK-087",
@@ -45578,7 +46230,7 @@
         }
       ],
       "git_archive": {
-        "ledger_count": 40,
+        "ledger_count": 41,
         "archive_refs": [
           "refs/codewiki/archive/task/TASK-068",
           "refs/codewiki/archive/task/TASK-070",
@@ -45601,6 +46253,7 @@
           "refs/codewiki/archive/task/TASK-081",
           "refs/codewiki/archive/task/TASK-082",
           "refs/codewiki/archive/task/TASK-085",
+          "refs/codewiki/archive/task/TASK-090",
           "refs/codewiki/archive/task/TASK-087",
           "refs/codewiki/archive/task/TASK-087",
           "refs/codewiki/archive/task/TASK-086",
@@ -45643,6 +46296,7 @@
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
           ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
           ".codewiki/builds/implementation/2026-05-16-added-audit-and-smoke-test-enforcement-for-bound.json",
+          ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
           ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
           ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
           ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
@@ -45680,6 +46334,7 @@
           ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
           ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
           ".codewiki/builds/implementation/2026-05-16-added-audit-and-smoke-test-enforcement-for-bound.json",
+          ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
           ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
           ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
           ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
@@ -45719,32 +46374,6 @@
           "reason": "Validation blocked; escalate ambiguous intent to feedback compiler."
         },
         {
-          "id": "reconcile:lint:roadmap-missing-code-path:.codewiki/roadmap/queue.json",
-          "source_id": "lint:roadmap-missing-code-path:.codewiki/roadmap/queue.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "knowledge",
-          "to_layer": "roadmap",
-          "next_loop": "documentation",
-          "reason": "Lint warning (roadmap-missing-code-path) has no open roadmap coverage; reconcile knowledge or create scoped work.",
-          "doc_paths": [
-            ".codewiki/roadmap/queue.json"
-          ]
-        },
-        {
-          "id": "reconcile:lint:roadmap-missing-code-path:.codewiki/roadmap/queue.json",
-          "source_id": "lint:roadmap-missing-code-path:.codewiki/roadmap/queue.json",
-          "state": "drift",
-          "direction": "gateway",
-          "from_layer": "knowledge",
-          "to_layer": "roadmap",
-          "next_loop": "documentation",
-          "reason": "Lint warning (roadmap-missing-code-path) has no open roadmap coverage; reconcile knowledge or create scoped work.",
-          "doc_paths": [
-            ".codewiki/roadmap/queue.json"
-          ]
-        },
-        {
           "id": "reconcile:task:TASK-090",
           "source_id": "task:TASK-090",
           "state": "drift",
@@ -45758,7 +46387,6 @@
       ],
       "counts_by_loop": {
         "feedback": 1,
-        "documentation": 2,
         "implementation": 1
       },
       "next_action": {
@@ -45784,7 +46412,7 @@
       },
       "layer_states": {
         "intent": "aligned",
-        "knowledge": "drift",
+        "knowledge": "aligned",
         "roadmap": "drift",
         "code": "drift",
         "validation": "drift"
@@ -45793,10 +46421,9 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T21:32:09.228Z",
+      "generated_at": "2026-05-16T21:49:48.838Z",
       "counts": {
-        "large-doc": 2,
-        "roadmap-missing-code-path": 2
+        "large-doc": 2
       },
       "issues": [
         {
@@ -45810,29 +46437,17 @@
           "kind": "large-doc",
           "path": ".codewiki/kb/system/roadmap.md",
           "message": "Live doc has 1634 words; consider split or cut."
-        },
-        {
-          "severity": "warning",
-          "kind": "roadmap-missing-code-path",
-          "path": ".codewiki/roadmap/queue.json",
-          "message": "TASK-090 references missing code path: tests/fixtures/alignment-drift"
-        },
-        {
-          "severity": "warning",
-          "kind": "roadmap-missing-code-path",
-          "path": ".codewiki/roadmap/queue.json",
-          "message": "TASK-090 references missing code path: tests/smoke/alignment-drift-fixtures.test.mjs"
         }
       ]
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T21:32:09Z",
+      "generated_at": "2026-05-16T21:49:48Z",
       "health": {
         "color": "yellow",
         "errors": 0,
-        "warnings": 4,
-        "total_issues": 4
+        "warnings": 2,
+        "total_issues": 2
       },
       "source": {
         "task_context_root": ".codewiki/roadmap/tasks"
@@ -45845,7 +46460,7 @@
         "status_counts": {
           "done": 45,
           "cancelled": 5,
-          "todo": 1
+          "in_progress": 1
         },
         "priority_counts": {
           "high": 28,
@@ -46049,14 +46664,14 @@
             }
           }
         ],
-        "in_progress_task_ids": [],
-        "executable_in_progress_task_ids": [],
-        "todo_task_ids": [
+        "in_progress_task_ids": [
           "TASK-090"
         ],
-        "executable_todo_task_ids": [
+        "executable_in_progress_task_ids": [
           "TASK-090"
         ],
+        "todo_task_ids": [],
+        "executable_todo_task_ids": [],
         "blocked_task_ids": [],
         "done_task_ids": [
           "TASK-001",
@@ -46113,8 +46728,8 @@
           "TASK-077"
         ],
         "recent_task_ids": [
-          "TASK-077",
           "TASK-090",
+          "TASK-077",
           "TASK-084",
           "TASK-078",
           "TASK-076",
@@ -48658,27 +49273,28 @@
         "TASK-090": {
           "id": "TASK-090",
           "title": "Codify alignment drift fixture matrix",
-          "status": "todo",
+          "status": "in_progress",
           "priority": "critical",
           "kind": "testing",
           "change_type": "code",
-          "summary": "Add deterministic fixture cases for alignment drift detection in fixture-only test assets.",
+          "summary": "Add deterministic fixture cases for generally applicable alignment drift detection in fixture-only test assets.",
           "labels": [
             "alignment",
             "drift",
             "fixtures"
           ],
           "goal": {
-            "outcome": "Known alignment drift classes have deterministic fixture coverage independent of task-boundary enforcement.",
+            "outcome": "Known generally applicable alignment drift classes have deterministic fixture coverage independent of task-boundary enforcement and CodeWiki dogfood-only concerns.",
             "acceptance": [
-              "Fixture cases cover vertical drift, horizontal drift, dogfood/source confusion, stale generated output, missing accepted build, missing audit evidence, and invalid publication proof.",
+              "Fixture cases cover vertical drift, horizontal drift, stale generated output, missing accepted build, missing audit evidence, and invalid publication proof.",
               "Each failing fixture asserts a specific issue kind or reconciliation item.",
               "Clean fixture passes the same audit/graph check path.",
               "Fixture runner is included in smoke or feature tests."
             ],
             "non_goals": [
               "Do not change task-boundary enforcement.",
-              "Do not depend on network or remote Git state."
+              "Do not depend on network or remote Git state.",
+              "Do not include CodeWiki dogfood-only source/package confusion as a distributed general fixture."
             ],
             "verification": [
               "node tests/smoke/alignment-drift-fixtures.test.mjs",
@@ -48696,7 +49312,7 @@
             "tests/fixtures/alignment-drift",
             "tests/smoke/alignment-drift-fixtures.test.mjs"
           ],
-          "updated": "2026-05-16",
+          "updated": "2026-05-16T21:45:59Z",
           "boundary": {
             "executable": true,
             "container": false,
@@ -48712,7 +49328,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T21:32:09Z",
+      "generated_at": "2026-05-16T21:49:48Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -48721,8 +49337,8 @@
       "health": {
         "color": "yellow",
         "errors": 0,
-        "warnings": 4,
-        "total_issues": 4
+        "warnings": 2,
+        "total_issues": 2
       },
       "summary": {
         "total_specs": 16,
@@ -48876,6 +49492,7 @@
               ".codewiki/builds/feedback/2026-05-16-accepted-no-umbrella-task-invariant-tasks-are-bo.json",
               ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
               ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
+              ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
               ".codewiki/builds/feedback/2026-05-16-accepted-task-sprint-boundary-hardening.json",
               ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
               ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
@@ -48908,6 +49525,7 @@
               ".codewiki/builds/documentation/2026-05-16-documented-no-umbrella-task-invariant-tasks-are-.json",
               ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
               ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
+              ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
               ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
               ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
               ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge.json",
@@ -48921,6 +49539,7 @@
               ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
               ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
               ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
+              ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
               ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
               ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
@@ -48946,6 +49565,7 @@
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
               ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
               ".codewiki/builds/implementation/2026-05-16-added-audit-and-smoke-test-enforcement-for-bound.json",
+              ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
               ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
               ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
               ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
@@ -48985,8 +49605,8 @@
               ".codewiki/validation/2026-05-16-implementation-pass-task-087.json",
               ".codewiki/validation/2026-05-16-implementation-pass-task-088.json",
               ".codewiki/validation/2026-05-16-implementation-pass-task-089.json",
-              ".codewiki/validation/2026-05-16-planning-pass-task-077.json",
-              ".codewiki/validation/2026-05-16-task-close-pass-task-079.json"
+              ".codewiki/validation/2026-05-16-implementation-pass-task-090.json",
+              ".codewiki/validation/2026-05-16-planning-pass-task-077.json"
             ]
           },
           "cold": {
@@ -49096,6 +49716,7 @@
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
               ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
               ".codewiki/builds/implementation/2026-05-16-added-audit-and-smoke-test-enforcement-for-bound.json",
+              ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
               ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
               ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
               ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
@@ -49175,7 +49796,7 @@
           ],
           "primary_task": {
             "id": "TASK-090",
-            "status": "todo",
+            "status": "in_progress",
             "title": "Codify alignment drift fixture matrix"
           },
           "revision": {
@@ -49206,7 +49827,7 @@
           ],
           "primary_task": {
             "id": "TASK-090",
-            "status": "todo",
+            "status": "in_progress",
             "title": "Codify alignment drift fixture matrix"
           },
           "revision": {
@@ -49242,7 +49863,7 @@
           ],
           "primary_task": {
             "id": "TASK-090",
-            "status": "todo",
+            "status": "in_progress",
             "title": "Codify alignment drift fixture matrix"
           },
           "revision": {
@@ -49277,7 +49898,7 @@
           ],
           "primary_task": {
             "id": "TASK-090",
-            "status": "todo",
+            "status": "in_progress",
             "title": "Codify alignment drift fixture matrix"
           },
           "revision": {
@@ -50103,7 +50724,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T21:32:09Z",
+        "generated_at": "2026-05-16T21:49:48Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -50131,16 +50752,13 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T21:32:09Z",
+            "checked_at": "2026-05-16T21:49:48Z",
             "revision": {
               "git": {
-                "head": "42b8f2affb4b175145bb52cf020669038d7b656b",
+                "head": "bee75a6f4a307579f734277208bac22b2225ece1",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-088/context.json",
-                  ".codewiki/roadmap/tasks/TASK-088/task.json"
+                  ".codewiki/roadmap/tasks/TASK-090/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -50180,9 +50798,9 @@
                   ".codewiki/kb/system/roadmap.md": "3fa348d6ebe072e99f54dcc78ad6488536f02831",
                   ".codewiki/kb/system/validation-gateway.md": "1d0e7f421e9027d3fac867da6dcd642b632a2422",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "b7b122d1ac3ce900ceb6e0c4d60cb1515ae4901e",
+                  ".codewiki/roadmap/queue.json": "d99b2b124ce2538c3329999fa0b0e012d07cb38b",
                   ".codewiki/validation": "",
-                  "package.json": "a0d88829f255a1e7910aaec0f6a201c544b2a37e",
+                  "package.json": "d4896da385fc70ba168653d7134b82a155501e73",
                   "skills": "",
                   "skills/codewiki": "",
                   "skills/codewiki/SKILL.md": "0c4502b222c435863243637e9200f59c9f8a6399",
@@ -50222,15 +50840,15 @@
                 }
               },
               "spec_digest": "a4cfeb16c8336b0a3f6d83335a9f5fa793ac3f7d317532252bb8c5a3c1f0538d",
-              "task_digest": "727a7b829cc43d8e8fa764a47be2d79e1edefa021c742bee5cc9eeac09da60e1",
-              "code_digest": "d39f997596ef46cf2518dd0c909b57b1c7270b68e1b445431b96c78716fdf1ed",
-              "digest": "04f040b6f212abc072327e9c5219dd7a0d0f4d54039ea2207384617eae299103"
+              "task_digest": "5e911b42d6023121fff36441c7a680545025eb2174e3b82f079f063e39d3f2b0",
+              "code_digest": "d02002f3fd97f1ab35109f4e06cef250c9a9f111791106fc8e69d8fed2cb9905",
+              "digest": "67e67a9f483e2bea07c133d7d8d878ba75b0c61d0d51823664e7d412a9c9ee1e"
             },
             "freshness": {
               "status": "stale",
               "basis": "revision",
-              "checked_at": "2026-05-16T21:32:09Z",
-              "reason": "revision changed: code",
+              "checked_at": "2026-05-16T21:49:48Z",
+              "reason": "revision changed: task, code",
               "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
             },
             "spec_paths": [
@@ -50352,16 +50970,13 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T21:32:09Z",
+            "checked_at": "2026-05-16T21:49:48Z",
             "revision": {
               "git": {
-                "head": "42b8f2affb4b175145bb52cf020669038d7b656b",
+                "head": "bee75a6f4a307579f734277208bac22b2225ece1",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-088/context.json",
-                  ".codewiki/roadmap/tasks/TASK-088/task.json"
+                  ".codewiki/roadmap/tasks/TASK-090/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -50385,7 +51000,7 @@
                   ".codewiki/kb/system/roadmap.md": "3fa348d6ebe072e99f54dcc78ad6488536f02831",
                   ".codewiki/kb/system/validation-gateway.md": "1d0e7f421e9027d3fac867da6dcd642b632a2422",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "b7b122d1ac3ce900ceb6e0c4d60cb1515ae4901e",
+                  ".codewiki/roadmap/queue.json": "d99b2b124ce2538c3329999fa0b0e012d07cb38b",
                   ".codewiki/validation": "",
                   "skills": "",
                   "skills/codewiki": "",
@@ -50422,15 +51037,15 @@
                 }
               },
               "spec_digest": "8e676fcb8e9e36b9bc8ed69b2ed99716ad8a2ea753d0aed9fb5c0f55f32d88af",
-              "task_digest": "727a7b829cc43d8e8fa764a47be2d79e1edefa021c742bee5cc9eeac09da60e1",
-              "code_digest": "e0ea58c0915807d61bea72592b2ce88eae67f6689d828e4b3d03f110caa5f0ab",
-              "digest": "511ea4bb8cc0464548e40c77bc320da81967e288e023ecd3260ad25d0da44224"
+              "task_digest": "5e911b42d6023121fff36441c7a680545025eb2174e3b82f079f063e39d3f2b0",
+              "code_digest": "cdb6ffde4fdcfa808ebf7da020a31dd4b928521b91d0e8de29a3bb58129ef2b1",
+              "digest": "909a425bdf93be4e1853c9d5144364900ba1785fc8633b351207053e2edf6af8"
             },
             "freshness": {
               "status": "stale",
               "basis": "revision",
-              "checked_at": "2026-05-16T21:32:09Z",
-              "reason": "revision changed: code",
+              "checked_at": "2026-05-16T21:49:48Z",
+              "reason": "revision changed: task, code",
               "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
             },
             "spec_paths": [
@@ -50531,16 +51146,13 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T21:32:09Z",
+            "checked_at": "2026-05-16T21:49:48Z",
             "revision": {
               "git": {
-                "head": "42b8f2affb4b175145bb52cf020669038d7b656b",
+                "head": "bee75a6f4a307579f734277208bac22b2225ece1",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-088/context.json",
-                  ".codewiki/roadmap/tasks/TASK-088/task.json"
+                  ".codewiki/roadmap/tasks/TASK-090/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -50580,9 +51192,9 @@
                   ".codewiki/kb/system/roadmap.md": "3fa348d6ebe072e99f54dcc78ad6488536f02831",
                   ".codewiki/kb/system/validation-gateway.md": "1d0e7f421e9027d3fac867da6dcd642b632a2422",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "b7b122d1ac3ce900ceb6e0c4d60cb1515ae4901e",
+                  ".codewiki/roadmap/queue.json": "d99b2b124ce2538c3329999fa0b0e012d07cb38b",
                   ".codewiki/validation": "",
-                  "package.json": "a0d88829f255a1e7910aaec0f6a201c544b2a37e",
+                  "package.json": "d4896da385fc70ba168653d7134b82a155501e73",
                   "skills": "",
                   "skills/codewiki": "",
                   "skills/codewiki/SKILL.md": "0c4502b222c435863243637e9200f59c9f8a6399",
@@ -50622,15 +51234,15 @@
                 }
               },
               "spec_digest": "a4cfeb16c8336b0a3f6d83335a9f5fa793ac3f7d317532252bb8c5a3c1f0538d",
-              "task_digest": "727a7b829cc43d8e8fa764a47be2d79e1edefa021c742bee5cc9eeac09da60e1",
-              "code_digest": "d39f997596ef46cf2518dd0c909b57b1c7270b68e1b445431b96c78716fdf1ed",
-              "digest": "04f040b6f212abc072327e9c5219dd7a0d0f4d54039ea2207384617eae299103"
+              "task_digest": "5e911b42d6023121fff36441c7a680545025eb2174e3b82f079f063e39d3f2b0",
+              "code_digest": "d02002f3fd97f1ab35109f4e06cef250c9a9f111791106fc8e69d8fed2cb9905",
+              "digest": "67e67a9f483e2bea07c133d7d8d878ba75b0c61d0d51823664e7d412a9c9ee1e"
             },
             "freshness": {
               "status": "stale",
               "basis": "revision",
-              "checked_at": "2026-05-16T21:32:09Z",
-              "reason": "revision changed: code",
+              "checked_at": "2026-05-16T21:49:48Z",
+              "reason": "revision changed: task, code",
               "stale_state_guidance": "Re-run status or resume implementation before trusting prior drift analysis."
             },
             "spec_paths": [
@@ -50746,14 +51358,14 @@
         "lane_id": "",
         "heading": "TASK-090 — Codify alignment drift fixture matrix",
         "command": "/wiki-resume TASK-090",
-        "reason": "Resume roadmap task (todo).",
-        "status": "todo",
+        "reason": "Resume roadmap task (in_progress).",
+        "status": "in_progress",
         "verification": "node tests/smoke/alignment-drift-fixtures.test.mjs",
         "evidence": "No closure evidence recorded yet.",
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T21:32:09Z",
+        "generated_at": "2026-05-16T21:49:48Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
@@ -50801,7 +51413,7 @@
             ],
             "primary_task": {
               "id": "TASK-090",
-              "status": "todo",
+              "status": "in_progress",
               "title": "Codify alignment drift fixture matrix"
             },
             "revision": {
@@ -50832,7 +51444,7 @@
             ],
             "primary_task": {
               "id": "TASK-090",
-              "status": "todo",
+              "status": "in_progress",
               "title": "Codify alignment drift fixture matrix"
             },
             "revision": {
@@ -50868,7 +51480,7 @@
             ],
             "primary_task": {
               "id": "TASK-090",
-              "status": "todo",
+              "status": "in_progress",
               "title": "Codify alignment drift fixture matrix"
             },
             "revision": {
@@ -50903,7 +51515,7 @@
             ],
             "primary_task": {
               "id": "TASK-090",
-              "status": "todo",
+              "status": "in_progress",
               "title": "Codify alignment drift fixture matrix"
             },
             "revision": {
@@ -52145,7 +52757,7 @@
                 ],
                 "primary_task": {
                   "id": "TASK-090",
-                  "status": "todo",
+                  "status": "in_progress",
                   "title": "Codify alignment drift fixture matrix"
                 },
                 "revision": {
@@ -52176,7 +52788,7 @@
                 ],
                 "primary_task": {
                   "id": "TASK-090",
-                  "status": "todo",
+                  "status": "in_progress",
                   "title": "Codify alignment drift fixture matrix"
                 },
                 "revision": {
@@ -52212,7 +52824,7 @@
                 ],
                 "primary_task": {
                   "id": "TASK-090",
-                  "status": "todo",
+                  "status": "in_progress",
                   "title": "Codify alignment drift fixture matrix"
                 },
                 "revision": {
@@ -52247,7 +52859,7 @@
                 ],
                 "primary_task": {
                   "id": "TASK-090",
-                  "status": "todo",
+                  "status": "in_progress",
                   "title": "Codify alignment drift fixture matrix"
                 },
                 "revision": {
@@ -52700,9 +53312,11 @@
         ]
       },
       "roadmap": {
-        "focused_task_id": "",
+        "focused_task_id": "TASK-090",
         "blocked_task_ids": [],
-        "in_progress_task_ids": [],
+        "in_progress_task_ids": [
+          "TASK-090"
+        ],
         "next_task_id": "TASK-090",
         "sprint_ids": [
           "SPRINT-001",
@@ -52842,14 +53456,14 @@
           {
             "id": "todo",
             "label": "Todo",
-            "task_ids": [
-              "TASK-090"
-            ]
+            "task_ids": []
           },
           {
             "id": "implement",
             "label": "Implement",
-            "task_ids": []
+            "task_ids": [
+              "TASK-090"
+            ]
           },
           {
             "id": "done",
