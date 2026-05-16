@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-16T22:16:42Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-092/context.json",
+  "task": {
+    "id": "TASK-092",
+    "title": "Trim oversized system docs",
+    "status": "in_progress",
+    "priority": "medium",
+    "kind": "docs",
+    "change_type": "system",
+    "summary": "Reduce oversized CodeWiki system docs below lint warning thresholds without changing behavior or roadmap semantics.",
+    "labels": [
+      "docs",
+      "lint",
+      "knowledge"
+    ],
+    "goal": {
+      "outcome": "System knowledge docs no longer trigger large-doc warnings while preserving canonical build and roadmap policy.",
+      "acceptance": [
+        ".codewiki/kb/system/builds.md no longer triggers large-doc lint warning.",
+        ".codewiki/kb/system/roadmap.md no longer triggers large-doc lint warning.",
+        "No build lifecycle, traceability, task-boundary, or sprint semantics are removed.",
+        "Generated graph/lint state is refreshed and passes alignment/generated-parity checks."
+      ],
+      "non_goals": [
+        "Do not change product behavior.",
+        "Do not rewrite docs beyond size-focused consolidation."
+      ],
+      "verification": [
+        "codewiki_audit profiles alignment,generated-parity,changed",
+        "npm test"
+      ]
+    },
+    "delta": {
+      "desired": "No large-doc warnings in system knowledge docs.",
+      "current": "builds.md and roadmap.md exceed live-doc size warning threshold.",
+      "closure": ""
+    }
+  }
+}
