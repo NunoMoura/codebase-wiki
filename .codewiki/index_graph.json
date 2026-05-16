@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T03:41:06.571Z",
+  "generated_at": "2026-05-16T04:14:23.461Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -3371,6 +3371,66 @@
       "default_hidden": true
     },
     {
+      "id": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "kind": "feedback_build",
+      "path": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "title": "user feedback 2026-05-16: /wiki-resume should be enough once per tab/session and should account for session queue state.",
+      "status": "accepted",
+      "layer": "build",
+      "lifecycle_state": "accepted",
+      "alignment_state": "drift",
+      "compacted": false,
+      "default_hidden": false,
+      "superseded_by": [],
+      "evidence_summary": {
+        "canonical_source_refs": [
+          ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "user feedback 2026-05-16: /wiki-resume should be enough once per tab/session and should account for session queue state.",
+          "parallel /wiki-resume scheduling requirement",
+          "TASK-086",
+          "TASK-083"
+        ],
+        "audit_evidence_refs": [],
+        "content_proof_refs": [],
+        "validation_attestation_refs": []
+      }
+    },
+    {
+      "id": "source:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "kind": "canonical_source_ref",
+      "path": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:user feedback 2026-05-16: /wiki-resume should be enough once per tab/session and should account for session queue state.",
+      "kind": "canonical_source_ref",
+      "path": "user feedback 2026-05-16: /wiki-resume should be enough once per tab/session and should account for session queue state.",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:parallel /wiki-resume scheduling requirement",
+      "kind": "canonical_source_ref",
+      "path": "parallel /wiki-resume scheduling requirement",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-086",
+      "kind": "canonical_source_ref",
+      "path": "TASK-086",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:TASK-083",
+      "kind": "canonical_source_ref",
+      "path": "TASK-083",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
       "id": "build:.codewiki/builds/documentation/2026-05-07-compiler-kb-refactor.json",
       "kind": "documentation_build",
       "path": ".codewiki/builds/documentation/2026-05-07-compiler-kb-refactor.json",
@@ -6136,13 +6196,6 @@
       "default_hidden": true
     },
     {
-      "id": "source:TASK-083",
-      "kind": "canonical_source_ref",
-      "path": "TASK-083",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
       "id": "source:TASK-084",
       "kind": "canonical_source_ref",
       "path": "TASK-084",
@@ -6402,13 +6455,6 @@
       "id": "source:planning compiler from validated documentation build .codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
       "kind": "canonical_source_ref",
       "path": "planning compiler from validated documentation build .codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "source:TASK-086",
-      "kind": "canonical_source_ref",
-      "path": "TASK-086",
       "layer": "source",
       "default_hidden": true
     },
@@ -17640,6 +17686,61 @@
       "kind": "build_produces_knowledge",
       "from": "build:.codewiki/builds/feedback/2026-05-16-accepted-domain-led-layering-refactor.json",
       "to": "doc:.codewiki/kb/lexicon.md"
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "to": "source:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "to": "source:user feedback 2026-05-16: /wiki-resume should be enough once per tab/session and should account for session queue state.",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "to": "source:parallel /wiki-resume scheduling requirement",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "to": "source:TASK-086",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_references_canonical_source",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "to": "source:TASK-083",
+      "default_hidden": true
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "build_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "to": "task:TASK-083"
+    },
+    {
+      "kind": "build_produces_knowledge",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "to": "doc:parallel /wiki-resume scheduling requirement"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "to": "task:TASK-086"
+    },
+    {
+      "kind": "build_produces_task",
+      "from": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+      "to": "task:TASK-083"
     },
     {
       "kind": "build_references_canonical_source",
@@ -32231,6 +32332,7 @@
         ".codewiki/builds/feedback/2026-05-14-ui-ascii-kb-map-sessions-redesign.json",
         ".codewiki/builds/feedback/2026-05-15-accepted-codewiki-alignment-hardening-principles.json",
         ".codewiki/builds/feedback/2026-05-16-accepted-domain-led-layering-refactor.json",
+        ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
         ".codewiki/builds/implementation/2026-05-09-closed-task-035-enforced-structured-knowledge-ro.json",
         ".codewiki/builds/implementation/2026-05-09-closed-task-30-after-completing-codewiki-archite.json",
         ".codewiki/builds/implementation/2026-05-10-architecture-refactoring-production.json",
@@ -32636,6 +32738,7 @@
         "new role/worktree isolation task",
         "package-lock.json",
         "package.json",
+        "parallel /wiki-resume scheduling requirement",
         "planned audit/graph/gateway/build/validation enforcement",
         "planned drift regression fixtures",
         "planning compiler from validated documentation build .codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json",
@@ -32749,6 +32852,7 @@
         "user decision: no task phases; just task status plus compiler/gateway builds",
         "user feedback 2026-05-13",
         "user feedback 2026-05-16 architecture alignment discussion",
+        "user feedback 2026-05-16: /wiki-resume should be enough once per tab/session and should account for session queue state.",
         "user feedback: drifts continue to surface; CodeWiki must prevent them",
         "user request: enforce commit proof so next agent cannot miss rule",
         "user request: solve expanded audit findings",
@@ -33337,9 +33441,171 @@
       ]
     },
     "traceability": {
-      "rows": [],
-      "gap_count": 0,
-      "gaps": []
+      "rows": [
+        {
+          "requirement_id": "FB-PAR-001",
+          "requirement_text": "/wiki-resume without explicit task should act as a parallel-work scheduler: read fresh CodeWiki state and session queue scoped leases, then select the next unblocked task whose write scopes do not conflict with active leases.",
+          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "documentation_builds": [],
+          "knowledge_paths": [],
+          "planning_builds": [],
+          "roadmap_task_ids": [],
+          "test_paths": [],
+          "code_paths": [],
+          "implementation_builds": [],
+          "validation_paths": [],
+          "audit_evidence_refs": [],
+          "publication_refs": [],
+          "content_proof_refs": [],
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        },
+        {
+          "requirement_id": "FB-PAR-002",
+          "requirement_text": "/wiki-resume TASK-### must honor explicit requested child tasks even when an umbrella task is active, unless the session queue reports a real lease conflict or task policy block.",
+          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "documentation_builds": [],
+          "knowledge_paths": [],
+          "planning_builds": [],
+          "roadmap_task_ids": [],
+          "test_paths": [],
+          "code_paths": [],
+          "implementation_builds": [],
+          "validation_paths": [],
+          "audit_evidence_refs": [],
+          "publication_refs": [],
+          "content_proof_refs": [],
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        },
+        {
+          "requirement_id": "FB-PAR-003",
+          "requirement_text": "Injected /wiki-resume prompts should come from skill-owned prompt/template assets and preserve user-supplied follow-up intent instead of discarding it.",
+          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "documentation_builds": [],
+          "knowledge_paths": [],
+          "planning_builds": [],
+          "roadmap_task_ids": [],
+          "test_paths": [],
+          "code_paths": [],
+          "implementation_builds": [],
+          "validation_paths": [],
+          "audit_evidence_refs": [],
+          "publication_refs": [],
+          "content_proof_refs": [],
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        },
+        {
+          "requirement_id": "FB-PAR-004",
+          "requirement_text": "Parallel helpers should be able to start with one /wiki-resume invocation per tab/session and receive a narrow task, suggested scoped lease, and conflict-safe implementation prompt.",
+          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "documentation_builds": [],
+          "knowledge_paths": [],
+          "planning_builds": [],
+          "roadmap_task_ids": [],
+          "test_paths": [],
+          "code_paths": [],
+          "implementation_builds": [],
+          "validation_paths": [],
+          "audit_evidence_refs": [],
+          "publication_refs": [],
+          "content_proof_refs": [],
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        }
+      ],
+      "gap_count": 8,
+      "gaps": [
+        {
+          "requirement_id": "FB-PAR-001",
+          "requirement_text": "/wiki-resume without explicit task should act as a parallel-work scheduler: read fresh CodeWiki state and session queue scoped leases, then select the next unblocked task whose write scopes do not conflict with active leases.",
+          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "documentation_builds": [],
+          "knowledge_paths": [],
+          "planning_builds": [],
+          "roadmap_task_ids": [],
+          "test_paths": [],
+          "code_paths": [],
+          "implementation_builds": [],
+          "validation_paths": [],
+          "audit_evidence_refs": [],
+          "publication_refs": [],
+          "content_proof_refs": [],
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        },
+        {
+          "requirement_id": "FB-PAR-002",
+          "requirement_text": "/wiki-resume TASK-### must honor explicit requested child tasks even when an umbrella task is active, unless the session queue reports a real lease conflict or task policy block.",
+          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "documentation_builds": [],
+          "knowledge_paths": [],
+          "planning_builds": [],
+          "roadmap_task_ids": [],
+          "test_paths": [],
+          "code_paths": [],
+          "implementation_builds": [],
+          "validation_paths": [],
+          "audit_evidence_refs": [],
+          "publication_refs": [],
+          "content_proof_refs": [],
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        },
+        {
+          "requirement_id": "FB-PAR-003",
+          "requirement_text": "Injected /wiki-resume prompts should come from skill-owned prompt/template assets and preserve user-supplied follow-up intent instead of discarding it.",
+          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "documentation_builds": [],
+          "knowledge_paths": [],
+          "planning_builds": [],
+          "roadmap_task_ids": [],
+          "test_paths": [],
+          "code_paths": [],
+          "implementation_builds": [],
+          "validation_paths": [],
+          "audit_evidence_refs": [],
+          "publication_refs": [],
+          "content_proof_refs": [],
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        },
+        {
+          "requirement_id": "FB-PAR-004",
+          "requirement_text": "Parallel helpers should be able to start with one /wiki-resume invocation per tab/session and receive a narrow task, suggested scoped lease, and conflict-safe implementation prompt.",
+          "feedback_build": ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "documentation_builds": [],
+          "knowledge_paths": [],
+          "planning_builds": [],
+          "roadmap_task_ids": [],
+          "test_paths": [],
+          "code_paths": [],
+          "implementation_builds": [],
+          "validation_paths": [],
+          "audit_evidence_refs": [],
+          "publication_refs": [],
+          "content_proof_refs": [],
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        }
+      ]
     },
     "scope_views": {
       "roadmap": {
@@ -34421,10 +34687,9 @@
     },
     "workflow_cursor": {
       "active_loop": "documentation",
-      "reason": "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps.",
+      "reason": "Accepted feedback build has no downstream documentation, implementation, or validation evidence yet.",
       "input_refs": [
-        "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-        "TASK-077"
+        "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json"
       ],
       "expected_output": "documentation_build",
       "exit_gate": "validation pass or explicit user decision",
@@ -34444,8 +34709,7 @@
       },
       "context_boundary": "fresh-session-or-clear-context",
       "handoff_refs": [
-        "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-        "TASK-077"
+        "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json"
       ]
     },
     "gc": {
@@ -34471,6 +34735,7 @@
             "SPRINT-003"
           ],
           "build_paths": [
+            ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
             ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
             ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json"
           ],
@@ -35048,6 +35313,16 @@
       "model": "graph-backed-state-machine",
       "items": [
         {
+          "id": "reconcile:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "source_id": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "state": "drift",
+          "direction": "downward",
+          "from_layer": "intent",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Accepted feedback build has no downstream documentation, implementation, or validation evidence yet."
+        },
+        {
           "id": "reconcile:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
           "source_id": "build:.codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
           "state": "drift",
@@ -35068,6 +35343,62 @@
           "next_loop": "validation",
           "task_id": "TASK-082",
           "reason": "Accepted implementation build still needs passing validation gateway evidence."
+        },
+        {
+          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json:FB-PAR-001",
+          "source_id": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "state": "drift",
+          "direction": "downward",
+          "from_layer": "intent",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Traceability gap for FB-PAR-001: missing_documentation_build, missing_planning_build.",
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        },
+        {
+          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json:FB-PAR-002",
+          "source_id": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "state": "drift",
+          "direction": "downward",
+          "from_layer": "intent",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Traceability gap for FB-PAR-002: missing_documentation_build, missing_planning_build.",
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        },
+        {
+          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json:FB-PAR-003",
+          "source_id": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "state": "drift",
+          "direction": "downward",
+          "from_layer": "intent",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Traceability gap for FB-PAR-003: missing_documentation_build, missing_planning_build.",
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
+        },
+        {
+          "id": "reconcile:traceability:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json:FB-PAR-004",
+          "source_id": "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
+          "state": "drift",
+          "direction": "downward",
+          "from_layer": "intent",
+          "to_layer": "knowledge",
+          "next_loop": "documentation",
+          "reason": "Traceability gap for FB-PAR-004: missing_documentation_build, missing_planning_build.",
+          "gaps": [
+            "missing_documentation_build",
+            "missing_planning_build"
+          ]
         },
         {
           "id": "reconcile:validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
@@ -35148,15 +35479,15 @@
         }
       ],
       "counts_by_loop": {
+        "documentation": 6,
         "validation": 2,
-        "documentation": 1,
         "implementation": 6
       },
       "next_action": {
         "loop": "documentation",
         "command": "Run documentation compiler",
-        "reason": "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps.",
-        "item_id": "reconcile:validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
+        "reason": "Accepted feedback build has no downstream documentation, implementation, or validation evidence yet.",
+        "item_id": "reconcile:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
         "isolation_required": true,
         "isolation": {
           "required": true,
@@ -35170,13 +35501,12 @@
         },
         "context_boundary": "fresh-session-or-clear-context",
         "handoff_refs": [
-          "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-          "TASK-077"
+          "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json"
         ]
       },
       "layer_states": {
-        "intent": "aligned",
-        "knowledge": "aligned",
+        "intent": "drift",
+        "knowledge": "drift",
         "roadmap": "drift",
         "code": "drift",
         "validation": "drift"
@@ -35185,13 +35515,13 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-16T03:41:06.472Z",
+      "generated_at": "2026-05-16T04:14:23.382Z",
       "counts": {},
       "issues": []
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-16T03:41:06Z",
+      "generated_at": "2026-05-16T04:14:23Z",
       "health": {
         "color": "green",
         "errors": 0,
@@ -35491,11 +35821,11 @@
           "TASK-039"
         ],
         "recent_task_ids": [
+          "TASK-083",
+          "TASK-086",
           "TASK-088",
           "TASK-087",
-          "TASK-086",
           "TASK-077",
-          "TASK-083",
           "TASK-082",
           "TASK-084",
           "TASK-078",
@@ -37665,33 +37995,39 @@
           "status": "in_progress",
           "priority": "high",
           "kind": "agent-workflow",
-          "summary": "Make the CodeWiki-product vs CodeWiki-dogfood boundary explicit while moving bootstrap workflow guidance, prompt templates, and starter template assets to the CodeWiki skill asset boundary.",
+          "summary": "Make the CodeWiki-product vs CodeWiki-dogfood boundary explicit while moving bootstrap, /wiki-resume prompt templates, and starter template assets to the CodeWiki skill asset boundary.",
           "labels": [
             "sprint:alignment-hardening",
             "dogfood",
             "prompt",
             "templates",
             "bootstrap",
-            "skill-assets"
+            "skill-assets",
+            "parallel-resume"
           ],
           "goal": {
-            "outcome": "Agents cannot confuse .codewiki/ dogfood state with package source, and bootstrap/prompt/template assets are owned by the CodeWiki skill while source executes them through application APIs.",
+            "outcome": "Agents cannot confuse .codewiki/ dogfood state with package source, and bootstrap/resume prompt/template assets are owned by the CodeWiki skill while source executes them through application APIs.",
             "acceptance": [
               "Repo prompt/skill/template language explicitly distinguishes dogfood state, generated state, runtime state, and package source.",
               "Starter templates include canonical/generated/runtime path taxonomy guidance.",
               "Bootstrap workflow guidance and prompt templates live under the CodeWiki skill asset boundary, with source code only exposing executable application tools or compatibility loaders.",
+              "/wiki-resume injected implementation prompts are rendered from skill-owned templates/assets rather than hard-coded application prompt text.",
+              "/wiki-resume preserves or incorporates user-supplied follow-up intent after command invocation instead of discarding it.",
+              "Resume prompt templates include selected task, suggested scoped-lease scopes, conflict/skip reasons when relevant, and helper-safe next steps for parallel sessions.",
               "Packaged skills include required bootstrap/prompt/template assets and smoke tests prove package reachability.",
               "Architecture/audit check detects active docs/source that call .codewiki/ package source or generated task views canonical truth."
             ],
             "non_goals": [
               "Do not make skills import adapters or own product semantics.",
-              "Do not remove compatibility loaders before packaging and migration tests pass."
+              "Do not remove compatibility loaders before packaging and migration tests pass.",
+              "Do not implement session queue scheduling policy in the template layer; TASK-086 owns allocation semantics."
             ],
             "verification": [
               "npm run typecheck",
               "npm run test:smoke",
               "npm run test:pack",
-              "source-owned package/audit check verifies skill assets are reachable"
+              "source-owned package/audit check verifies skill assets are reachable",
+              "/wiki-resume prompt fixture proves skill-owned template rendering and follow-up intent preservation"
             ]
           },
           "spec_paths": [
@@ -37708,7 +38044,7 @@
             "skills/codewiki",
             "tests/smoke"
           ],
-          "updated": "2026-05-16T00:59:53Z",
+          "updated": "2026-05-16T04:12:58Z",
           "context_path": ".codewiki/roadmap/tasks/TASK-083/context.json",
           "loop": {
             "updated_at": "",
@@ -37870,30 +38206,36 @@
           "status": "in_progress",
           "priority": "high",
           "kind": "architecture",
-          "summary": "Replace public claim vocabulary with session queue scoped leases while preserving a tested transitional alias for existing callers.",
+          "summary": "Replace public claim vocabulary with session queue scoped leases and make /wiki-resume use fresh session-queue state to allocate conflict-safe parallel work.",
           "labels": [
             "domain-led-refactor",
             "session-queue",
             "scoped-leases",
-            "api-compatibility"
+            "api-compatibility",
+            "parallel-resume"
           ],
           "goal": {
-            "outcome": "CodeWiki public coordination language and API use session queue/scoped lease concepts, with legacy claim naming retained only as a documented transitional alias.",
+            "outcome": "CodeWiki public coordination language and API use session queue/scoped lease concepts, and /wiki-resume can allocate safe parallel helper work from fresh roadmap/graph/session queue state.",
             "acceptance": [
               "Domain/session queue types model focus, waits, scoped leases, handoff metadata, and isolation context without public claim terminology.",
               "New or renamed application tool/API surface exposes session queue scoped lease operations; legacy codewiki_claim remains as a compatibility alias with deprecation/transition documentation if needed.",
               "Pi tool schemas, skills, UI labels, generated state summaries, and validation isolation fields use session queue/scoped lease language in public output.",
               "Storage remains .codewiki/session/queue.json unless migration planning explicitly changes it.",
-              "Tests cover scoped lease create/list/release/heartbeat behavior and legacy alias compatibility."
+              "Tests cover scoped lease create/list/release/heartbeat behavior and legacy alias compatibility.",
+              "/wiki-resume without an explicit task reads fresh CodeWiki state plus session queue scoped leases and selects the next unblocked atomic task whose suggested write scopes do not conflict with active leases.",
+              "/wiki-resume TASK-### honors an explicit non-closed task request even when an umbrella task is active, unless task policy or session queue conflicts provide a real block with a clear explanation.",
+              "Resume output includes suggested scoped-lease scopes, conflict/skip reasons for unavailable tasks, and helper-safe next steps so one tab/session can start parallel work with a single /wiki-resume invocation."
             ],
             "non_goals": [
               "Do not break existing users abruptly by deleting codewiki_claim before compatibility alias and migration notes exist.",
-              "Do not treat session queue leases as durable roadmap truth."
+              "Do not treat session queue leases as durable roadmap truth.",
+              "Do not use broad umbrella tasks such as TASK-077 as default implementation work when safe child/atomic tasks are available."
             ],
             "verification": [
               "npm run typecheck",
               "npm run test:smoke",
               "targeted session queue/scoped lease smoke",
+              "targeted /wiki-resume parallel allocation smoke with active umbrella focus and active lease conflict fixtures",
               "stale-term scan for public claim vocabulary with allowed compatibility exceptions only"
             ]
           },
@@ -37914,7 +38256,7 @@
             "skills/codewiki",
             "tests/smoke"
           ],
-          "updated": "2026-05-16T01:01:58Z",
+          "updated": "2026-05-16T04:12:42Z",
           "context_path": ".codewiki/roadmap/tasks/TASK-086/context.json",
           "loop": {
             "updated_at": "",
@@ -38042,7 +38384,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-16T03:41:06Z",
+      "generated_at": "2026-05-16T04:14:23Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -38139,15 +38481,14 @@
       "next_step": {
         "kind": "reconciliation:documentation",
         "command": "Run documentation compiler",
-        "reason": "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps.",
-        "item_id": "reconcile:validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json"
+        "reason": "Accepted feedback build has no downstream documentation, implementation, or validation evidence yet.",
+        "item_id": "reconcile:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json"
       },
       "workflow_cursor": {
         "active_loop": "documentation",
-        "reason": "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps.",
+        "reason": "Accepted feedback build has no downstream documentation, implementation, or validation evidence yet.",
         "input_refs": [
-          "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-          "TASK-077"
+          "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json"
         ],
         "expected_output": "documentation_build",
         "exit_gate": "validation pass or explicit user decision",
@@ -38167,8 +38508,7 @@
         },
         "context_boundary": "fresh-session-or-clear-context",
         "handoff_refs": [
-          "validation:.codewiki/validation/2026-05-16-documentation-fail-task-077.json",
-          "TASK-077"
+          "build:.codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json"
         ]
       },
       "gc": {
@@ -38194,6 +38534,7 @@
               "SPRINT-003"
             ],
             "build_paths": [
+              ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
               ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
               ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json"
             ],
@@ -38447,7 +38788,7 @@
         ]
       },
       "direction": [
-        "Validation failed; return to documentation compiler to fix knowledge/roadmap gaps.",
+        "Accepted feedback build has no downstream documentation, implementation, or validation evidence yet.",
         "Parallel sessions: 0 active, 0 collision task(s), 0 active claim(s), 0 claim conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
@@ -39461,7 +39802,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-16T03:41:06Z",
+        "generated_at": "2026-05-16T04:14:23Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -39489,16 +39830,17 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T03:41:06Z",
+            "checked_at": "2026-05-16T04:14:23Z",
             "revision": {
               "git": {
-                "head": "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+                "head": "16a3c4ec78bf8a6ee1d6e8a9ae339dc4320e8b5e",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-081/context.json",
-                  ".codewiki/roadmap/tasks/TASK-081/task.json"
+                  ".codewiki/roadmap/tasks/TASK-083/context.json",
+                  ".codewiki/roadmap/tasks/TASK-083/task.json",
+                  ".codewiki/roadmap/tasks/TASK-086/context.json",
+                  ".codewiki/roadmap/tasks/TASK-086/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -39538,7 +39880,7 @@
                   ".codewiki/kb/system/roadmap.md": "47ca7c9b7856d6c9d1dff2a0be630d070acae51c",
                   ".codewiki/kb/system/validation-gateway.md": "38c6c3d0ea9c8368e6651c1b38df1a52bf9fab02",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "4390bde74738605b80e2b31ffe1aec450b029293",
+                  ".codewiki/roadmap/queue.json": "99fe2ef33ec6d4dfbebaab698d3801af453ebaac",
                   ".codewiki/validation": "",
                   "package.json": "1413614c4e98c9f85f81a592bc6146c007d9a79c",
                   "skills": "",
@@ -39580,14 +39922,14 @@
                 }
               },
               "spec_digest": "7dd2528fc40345a33ee7c2b5855cebd66468226c2e16e2a74f5eaaf317b9a6ab",
-              "task_digest": "0573f65157394909a1649bcc4d437533f8eda6fafad5a49e334b7bf19eab460b",
-              "code_digest": "a103119df43ac2d745ca7c94fe60c3265b31153cacd8808c62a871c364cbbb41",
-              "digest": "dff6e8649d556bd6ffb0229b213f7c825f62e698de5516515647f1e17f28d09d"
+              "task_digest": "b51bdc890331c1e2009e8adf591048a814934e377d9a86eb73c1fdb64f131100",
+              "code_digest": "30a09b8e49c948dbb8e664cbb2f04d8a4f68c2487dc1bdf7b31b5dac6da7f080",
+              "digest": "811b90a30db018cf7bbe4f2637120335840694062a372ff56380c5754da2d1d8"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T03:41:06Z",
+              "checked_at": "2026-05-16T04:14:23Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -39728,16 +40070,17 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-16T03:41:06Z",
+            "checked_at": "2026-05-16T04:14:23Z",
             "revision": {
               "git": {
-                "head": "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+                "head": "16a3c4ec78bf8a6ee1d6e8a9ae339dc4320e8b5e",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-081/context.json",
-                  ".codewiki/roadmap/tasks/TASK-081/task.json"
+                  ".codewiki/roadmap/tasks/TASK-083/context.json",
+                  ".codewiki/roadmap/tasks/TASK-083/task.json",
+                  ".codewiki/roadmap/tasks/TASK-086/context.json",
+                  ".codewiki/roadmap/tasks/TASK-086/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -39761,7 +40104,7 @@
                   ".codewiki/kb/system/roadmap.md": "47ca7c9b7856d6c9d1dff2a0be630d070acae51c",
                   ".codewiki/kb/system/validation-gateway.md": "38c6c3d0ea9c8368e6651c1b38df1a52bf9fab02",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "4390bde74738605b80e2b31ffe1aec450b029293",
+                  ".codewiki/roadmap/queue.json": "99fe2ef33ec6d4dfbebaab698d3801af453ebaac",
                   ".codewiki/validation": "",
                   "skills": "",
                   "skills/codewiki": "",
@@ -39798,14 +40141,14 @@
                 }
               },
               "spec_digest": "03d72cb217ce699ecec7e27d5224f94ea696d9a63c8a8fdd68103c83244bb2be",
-              "task_digest": "0573f65157394909a1649bcc4d437533f8eda6fafad5a49e334b7bf19eab460b",
-              "code_digest": "85fe1d0e675bd54bad8f67985571fd8fd83e06999170d8f717c50463ea4c3dab",
-              "digest": "aeee9409f2e3140ef4228ba1b59e24172d6e24a088a635a43bc758a81f946d78"
+              "task_digest": "b51bdc890331c1e2009e8adf591048a814934e377d9a86eb73c1fdb64f131100",
+              "code_digest": "1921fc7e1230836b658e464d04f5ddb2dcdfa22083cdad2764c8389b7c6e19ee",
+              "digest": "a64cc62871ee0c5b26b1a434e2b76064964ab8a739bae94a7a3492c832e15ac4"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T03:41:06Z",
+              "checked_at": "2026-05-16T04:14:23Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -39922,16 +40265,17 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-16T03:41:06Z",
+            "checked_at": "2026-05-16T04:14:23Z",
             "revision": {
               "git": {
-                "head": "935dc8c0ba681fc48a07dc7d47a9b53a0cb614f3",
+                "head": "16a3c4ec78bf8a6ee1d6e8a9ae339dc4320e8b5e",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
                   ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-081/context.json",
-                  ".codewiki/roadmap/tasks/TASK-081/task.json"
+                  ".codewiki/roadmap/tasks/TASK-083/context.json",
+                  ".codewiki/roadmap/tasks/TASK-083/task.json",
+                  ".codewiki/roadmap/tasks/TASK-086/context.json",
+                  ".codewiki/roadmap/tasks/TASK-086/task.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -39971,7 +40315,7 @@
                   ".codewiki/kb/system/roadmap.md": "47ca7c9b7856d6c9d1dff2a0be630d070acae51c",
                   ".codewiki/kb/system/validation-gateway.md": "38c6c3d0ea9c8368e6651c1b38df1a52bf9fab02",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "4390bde74738605b80e2b31ffe1aec450b029293",
+                  ".codewiki/roadmap/queue.json": "99fe2ef33ec6d4dfbebaab698d3801af453ebaac",
                   ".codewiki/validation": "",
                   "package.json": "1413614c4e98c9f85f81a592bc6146c007d9a79c",
                   "skills": "",
@@ -40013,14 +40357,14 @@
                 }
               },
               "spec_digest": "7dd2528fc40345a33ee7c2b5855cebd66468226c2e16e2a74f5eaaf317b9a6ab",
-              "task_digest": "0573f65157394909a1649bcc4d437533f8eda6fafad5a49e334b7bf19eab460b",
-              "code_digest": "a103119df43ac2d745ca7c94fe60c3265b31153cacd8808c62a871c364cbbb41",
-              "digest": "dff6e8649d556bd6ffb0229b213f7c825f62e698de5516515647f1e17f28d09d"
+              "task_digest": "b51bdc890331c1e2009e8adf591048a814934e377d9a86eb73c1fdb64f131100",
+              "code_digest": "30a09b8e49c948dbb8e664cbb2f04d8a4f68c2487dc1bdf7b31b5dac6da7f080",
+              "digest": "811b90a30db018cf7bbe4f2637120335840694062a372ff56380c5754da2d1d8"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-16T03:41:06Z",
+              "checked_at": "2026-05-16T04:14:23Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -40162,7 +40506,7 @@
         "agency": "Roadmap task should stay grounded in current agency cues."
       },
       "parallel": {
-        "generated_at": "2026-05-16T03:41:06Z",
+        "generated_at": "2026-05-16T04:14:23Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],

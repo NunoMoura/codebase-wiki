@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T01:01:58Z",
+  "generated_at": "2026-05-16T04:12:42Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-086/context.json",
   "task": {
     "id": "TASK-086",
@@ -8,37 +8,43 @@
     "status": "in_progress",
     "priority": "high",
     "kind": "architecture",
-    "summary": "Replace public claim vocabulary with session queue scoped leases while preserving a tested transitional alias for existing callers.",
+    "summary": "Replace public claim vocabulary with session queue scoped leases and make /wiki-resume use fresh session-queue state to allocate conflict-safe parallel work.",
     "labels": [
       "domain-led-refactor",
       "session-queue",
       "scoped-leases",
-      "api-compatibility"
+      "api-compatibility",
+      "parallel-resume"
     ],
     "goal": {
-      "outcome": "CodeWiki public coordination language and API use session queue/scoped lease concepts, with legacy claim naming retained only as a documented transitional alias.",
+      "outcome": "CodeWiki public coordination language and API use session queue/scoped lease concepts, and /wiki-resume can allocate safe parallel helper work from fresh roadmap/graph/session queue state.",
       "acceptance": [
         "Domain/session queue types model focus, waits, scoped leases, handoff metadata, and isolation context without public claim terminology.",
         "New or renamed application tool/API surface exposes session queue scoped lease operations; legacy codewiki_claim remains as a compatibility alias with deprecation/transition documentation if needed.",
         "Pi tool schemas, skills, UI labels, generated state summaries, and validation isolation fields use session queue/scoped lease language in public output.",
         "Storage remains .codewiki/session/queue.json unless migration planning explicitly changes it.",
-        "Tests cover scoped lease create/list/release/heartbeat behavior and legacy alias compatibility."
+        "Tests cover scoped lease create/list/release/heartbeat behavior and legacy alias compatibility.",
+        "/wiki-resume without an explicit task reads fresh CodeWiki state plus session queue scoped leases and selects the next unblocked atomic task whose suggested write scopes do not conflict with active leases.",
+        "/wiki-resume TASK-### honors an explicit non-closed task request even when an umbrella task is active, unless task policy or session queue conflicts provide a real block with a clear explanation.",
+        "Resume output includes suggested scoped-lease scopes, conflict/skip reasons for unavailable tasks, and helper-safe next steps so one tab/session can start parallel work with a single /wiki-resume invocation."
       ],
       "non_goals": [
         "Do not break existing users abruptly by deleting codewiki_claim before compatibility alias and migration notes exist.",
-        "Do not treat session queue leases as durable roadmap truth."
+        "Do not treat session queue leases as durable roadmap truth.",
+        "Do not use broad umbrella tasks such as TASK-077 as default implementation work when safe child/atomic tasks are available."
       ],
       "verification": [
         "npm run typecheck",
         "npm run test:smoke",
         "targeted session queue/scoped lease smoke",
+        "targeted /wiki-resume parallel allocation smoke with active umbrella focus and active lease conflict fixtures",
         "stale-term scan for public claim vocabulary with allowed compatibility exceptions only"
       ]
     },
     "delta": {
-      "desired": "Session queue scoped leases are the canonical project lexicon and source/API concept for parallel coordination.",
-      "current": "Implementation and Pi tool names still use change claim terminology while docs now mark claim as transitional.",
-      "closure": "Public API/output/skills use session queue scoped leases, legacy alias is tested, and stale public claim terms are controlled."
+      "desired": "Session queue scoped leases are the canonical project lexicon and source/API concept for parallel coordination, and /wiki-resume allocates safe parallel work from that state.",
+      "current": "Implementation and Pi tool names still use change claim terminology; /wiki-resume can prefer persisted active umbrella focus and does not yet allocate helper sessions by session queue lease safety.",
+      "closure": "Public API/output/skills use session queue scoped leases, legacy alias is tested, /wiki-resume selects conflict-safe work from fresh session queue state, and stale public claim terms are controlled."
     }
   }
 }

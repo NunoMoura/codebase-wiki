@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T00:59:53Z",
+  "generated_at": "2026-05-16T04:12:58Z",
   "context_path": ".codewiki/roadmap/tasks/TASK-083/context.json",
   "task": {
     "id": "TASK-083",
@@ -8,39 +8,45 @@
     "status": "in_progress",
     "priority": "high",
     "kind": "agent-workflow",
-    "summary": "Make the CodeWiki-product vs CodeWiki-dogfood boundary explicit while moving bootstrap workflow guidance, prompt templates, and starter template assets to the CodeWiki skill asset boundary.",
+    "summary": "Make the CodeWiki-product vs CodeWiki-dogfood boundary explicit while moving bootstrap, /wiki-resume prompt templates, and starter template assets to the CodeWiki skill asset boundary.",
     "labels": [
       "sprint:alignment-hardening",
       "dogfood",
       "prompt",
       "templates",
       "bootstrap",
-      "skill-assets"
+      "skill-assets",
+      "parallel-resume"
     ],
     "goal": {
-      "outcome": "Agents cannot confuse .codewiki/ dogfood state with package source, and bootstrap/prompt/template assets are owned by the CodeWiki skill while source executes them through application APIs.",
+      "outcome": "Agents cannot confuse .codewiki/ dogfood state with package source, and bootstrap/resume prompt/template assets are owned by the CodeWiki skill while source executes them through application APIs.",
       "acceptance": [
         "Repo prompt/skill/template language explicitly distinguishes dogfood state, generated state, runtime state, and package source.",
         "Starter templates include canonical/generated/runtime path taxonomy guidance.",
         "Bootstrap workflow guidance and prompt templates live under the CodeWiki skill asset boundary, with source code only exposing executable application tools or compatibility loaders.",
+        "/wiki-resume injected implementation prompts are rendered from skill-owned templates/assets rather than hard-coded application prompt text.",
+        "/wiki-resume preserves or incorporates user-supplied follow-up intent after command invocation instead of discarding it.",
+        "Resume prompt templates include selected task, suggested scoped-lease scopes, conflict/skip reasons when relevant, and helper-safe next steps for parallel sessions.",
         "Packaged skills include required bootstrap/prompt/template assets and smoke tests prove package reachability.",
         "Architecture/audit check detects active docs/source that call .codewiki/ package source or generated task views canonical truth."
       ],
       "non_goals": [
         "Do not make skills import adapters or own product semantics.",
-        "Do not remove compatibility loaders before packaging and migration tests pass."
+        "Do not remove compatibility loaders before packaging and migration tests pass.",
+        "Do not implement session queue scheduling policy in the template layer; TASK-086 owns allocation semantics."
       ],
       "verification": [
         "npm run typecheck",
         "npm run test:smoke",
         "npm run test:pack",
-        "source-owned package/audit check verifies skill assets are reachable"
+        "source-owned package/audit check verifies skill assets are reachable",
+        "/wiki-resume prompt fixture proves skill-owned template rendering and follow-up intent preservation"
       ]
     },
     "delta": {
-      "desired": "Skill assets own bootstrap guidance, prompts, and starter templates; source exposes tools/loaders without duplicating workflow policy.",
-      "current": "Bootstrap/templates/prompts are split across package source and skill docs without a clear asset owner.",
-      "closure": "Skill-owned assets are packaged, source callers use shared application tools/loaders, and dogfood/source boundary checks pass."
+      "desired": "Skill assets own bootstrap guidance, prompts, resume prompt templates, and starter templates; source exposes tools/loaders without duplicating workflow policy.",
+      "current": "Bootstrap/templates/prompts are split across package source and skill docs; /wiki-resume prompt text is source-owned and can discard user follow-up text.",
+      "closure": "Skill-owned assets are packaged, /wiki-resume renders skill-owned templates while preserving follow-up intent, source callers use shared application tools/loaders, and dogfood/source boundary checks pass."
     }
   }
 }
