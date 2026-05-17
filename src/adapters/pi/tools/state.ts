@@ -1,18 +1,13 @@
-import type {
-	WikiProject,
-	CodewikiStateToolInput,
-} from "../../../domain/shared/types.ts";
-import { readFile, writeFile, appendFile } from "node:fs/promises";
 import type { ExtensionContext } from "@earendil-works/pi-coding-agent";
-import { codewikiStateToolInputSchema } from "../schemas.ts";
-import { readCodewikiState } from "../../../application/state.ts";
+import type { CodewikiStateToolInput } from "../../../domain/shared/types.ts";
+import { executeCodewikiStateTool } from "../../../application/tools/state.ts";
 import { resolveToolProject } from "../../../application/project.ts";
-import { currentTaskLink, piSessionStore } from "../session.ts";
+import { codewikiStateToolInputSchema } from "../schemas.ts";
+import { currentTaskLink } from "../session.ts";
 import { refreshStatusDock } from "../ui/manager.ts";
+import { piStatePorts } from "./ports.ts";
 
-/**
- * Register the codewiki_state tool.
- */
+/** Register the codewiki_state tool. */
 export function registerCodewikiStateTool(pi: any) {
 	pi.registerTool({
 		name: "codewiki_state",
@@ -27,82 +22,13 @@ export function registerCodewikiStateTool(pi: any) {
 		],
 		parameters: codewikiStateToolInputSchema,
 		async execute(_toolCallId: string, params: CodewikiStateToolInput, _signal: any, _onUpdate: any, ctx: ExtensionContext) {
-			const project = await resolveToolProject(
-				ctx.cwd,
-				params.repoPath,
-				"codewiki_state",
-			);
-			const result = await readCodewikiState(project, {
-				include: params.include,
-				taskId: params.taskId,
-				refresh: params.refresh ?? false,
-			}, {
-				fileStore: piFileStore(),
-				rebuildRunner: piRebuildRunner(),
-				sessionStore: piSessionStore(ctx),
-			});
+			const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_state");
+			const result = await executeCodewikiStateTool(project, params, piStatePorts(ctx));
 			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
 			return {
-				content: [
-					{ type: "text", text: formatCodewikiStateSummary(project, result) },
-				],
-				details: result,
+				content: [{ type: "text", text: result.summary }],
+				details: result.result,
 			};
 		},
 	});
-}
-
-// ---------------------------------------------------------------------------
-// Pi port adapters — build port implementations
-// ---------------------------------------------------------------------------
-
-function piFileStore() {
-	return {
-		readJson: async (path: string) => JSON.parse(await readFile(path, "utf8")),
-		maybeReadJson: async (path: string) => {
-			try { return JSON.parse(await readFile(path, "utf8")); } catch { return null; }
-		},
-		writeJson: async (path: string, data: unknown) => writeFile(path, JSON.stringify(data, null, 2), "utf8"),
-		appendJsonl: async (path: string, record: unknown) => appendFile(path, JSON.stringify(record) + "\n", "utf8"),
-	};
-}
-
-function piRebuildRunner() {
-	return {
-		run: async (project: WikiProject) => {
-			const { runConfiguredOrDefaultRebuild } = await import("../../../application/local/rebuild-runner.ts");
-			await runConfiguredOrDefaultRebuild(project);
-		},
-	};
-}
-
-
-export function formatCodewikiStateSummary(
-	project: WikiProject,
-	result: any,
-): string {
-	const repo = result.repo;
-	const summary = result.summary;
-	const health = result.health;
-	const session = result.session;
-	const nextAction = result.next_action;
-
-	const parts = [
-		`Codewiki State: ${project.label} [${repo.contract_version}]`,
-		`Health: ${health.color} (${health.errors} errors, ${health.warnings} warnings)`,
-		`Roadmap: open ${summary.open_task_count}; next ${nextAction.taskId ?? "none"}; unmapped ${summary.unmapped_spec_count}`,
-	];
-
-	if (session?.focused_task_id) {
-		parts.push(`Session: focusing on ${session.focused_task_id}`);
-	}
-	const claims = result.claims || result.graph?.claims || session?.claims;
-	if (claims) {
-		parts.push(`Artifacts: in-use ${claims.active_claim_count ?? 0}; warnings ${claims.warning_count ?? 0}; conflicts ${claims.conflict_count ?? 0}`);
-	}
-
-	parts.push(`Next Action [${nextAction.kind}]: ${nextAction.reason}`);
-	if (nextAction.taskId) parts.push(`Suggested task: ${nextAction.taskId}`);
-
-	return parts.join("\n");
 }

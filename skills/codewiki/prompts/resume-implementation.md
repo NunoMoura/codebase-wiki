@@ -21,21 +21,19 @@ Task source refs:
 {{task.refs_block}}
 
 Rules:
-- Implement surgically from roadmap/build context, then submit build evidence to the validation gateway.
+- Execute one self-contained roadmap task from roadmap/build context.
+- Use `codewiki_state` as the map, then read linked source-of-truth docs/builds/roadmap/validation/code directly before semantic edits.
+- Use `codewiki_session` for focus and `codewiki_artifact_status` for narrow write scopes when overlap risk exists.
 - Proceed only when the selected roadmap item is self-contained executable work. If it is a sprint/umbrella/container or mainly closes other tasks, stop and route grouping to sprint/planning instead.
-- Treat parent context as expensive RAM: keep focused task, loaded view revisions, and small decisions; do not load raw wiki trees by default.
-- Consume graph/status as a map first, then read linked source-of-truth docs/builds/roadmap/validation/code directly before semantic edits.
-- Use fresh validation/research/architecture review only when the gateway or task policy requires independent context.
-- Use graph/state to locate the roadmap item, linked builds, validation refs, code paths, and exact specs; read those sources before changing code or wiki surgically.
-- During implementation, use lint, typecheck, tests, runtime feedback, and Pi-lens as short-cycle correction signals for mechanical code quality.
-- Validation gateway should judge alignment/coherence; do not reduce it to linting or typechecking.
-- Gather research only when uncertainty or unsupported claims require new evidence.
-- Implement according to specs and roadmap; surface drift instead of silently choosing code over wiki.
+- If task meaning or requirement approval is unclear, stop and route to feedback. If knowledge or planning is stale, route to documentation or planning.
+- Derive tests or test-design evidence before behavior changes where practical.
+- Implement surgically according to specs and roadmap; surface drift instead of silently choosing code over wiki.
+- During implementation, use lint, typecheck, tests, runtime feedback, and targeted scripts as short-cycle correction signals for mechanical quality.
+- Compile an `implementation_build` with `codewiki_build kind="implementation"` after edits/checks and before requesting implementation validation.
+- Request fresh validation with `codewiki_session_handoff` when policy requires independent context. Validation gateway judges alignment/coherence and must start from artifacts, not builder chat.
+- Do not close the task from builder context when policy requires fresh validation/content proof. Use `codewiki_task action="update"` for builder evidence; use `action="close"` only after required pass proof exists.
 - Keep public UX focused on wiki-bootstrap, wiki-status, wiki-config, wiki-resume, wiki-session-handoff, and /audit; Alt+W toggles the live status panel.
 - Do not create a separate user-facing wiki-edit command; update roadmap/wiki artifacts automatically when user intent requires it.
-- If intended design must change, update wiki docs and code consistently.
-- If this task finishes, blocks, or needs evidence recorded, use codewiki_task to persist canonical task truth.
-- If follow-up delta appears that is not already tracked, use codewiki_task action=create.
 - Rebuild generated outputs before finishing.
 - Rerun deterministic status before summarizing.
 
@@ -44,9 +42,13 @@ Helper-safe next steps:
 - Honor artifact-status conflicts; do not override another holder unless user/policy explicitly says so.
 - Treat temporary session usage as coordination evidence, not canonical task truth.
 - Preserve user follow-up intent as a requirement input, but record durable decisions through builds/tasks/docs.
+- Record exact checks, changed files, acceptance mapping, and remaining risks in the implementation build.
 
 Output format:
 - Changes made
-- Task status recommendation: todo|in_progress|done|blocked
+- Checks run
+- `implementation_build` path
+- Fresh validation handoff path/command if staged
+- Task status recommendation: in_progress|done after validation|blocked
 - Wiki updates made automatically, if any
 - Remaining risks or follow-ups

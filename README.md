@@ -51,12 +51,23 @@ All internal `codewiki_*` tools accept optional `repoPath` so agents can target 
 ### Skills
 
 - `/skill:codewiki`
+- `/skill:codewiki-feedback`
+- `/skill:codewiki-documentation`
+- `/skill:codewiki-planning`
+- `/skill:codewiki-implementation`
+- `/skill:codewiki-validation`
 
-The single public CodeWiki skill covers package invariants and points the agent to supporting loop/playbook files under `skills/codewiki/` for:
+The main CodeWiki skill covers package invariants, bootstrap/status flow, sprint-aware routing, and loop selection. Focused compiler/gateway skills provide loop-specific guidance as they are split out:
 
 - intelligent bootstrap/onboarding of a repo-local wiki
+- sprint-aware routing for related executable cohorts without creating umbrella tasks
+- tool catalog mapping `codewiki_*` tools to `src/application/tools/**` contracts, including `codewiki_task action="sprint"`
 - skill-owned bootstrap/resume prompt templates consumed by source-owned command orchestration
-- feedback, documentation, planning, implementation, and validation loops
+- feedback compiler guidance with semantic diff-table approval and accepted `feedback_build` handoffs
+- documentation compiler guidance for KB edits, `documentation_build` evidence, validation, and planning handoff
+- planning compiler guidance for atomic roadmap tasks, `planning_build` evidence, validation, and implementation handoff
+- implementation compiler guidance for one-task execution, TDD/test-design evidence, `implementation_build` before validation, and fresh validation handoff
+- validation gateway guidance for build/task-close/drift/publication checks with no-mutation rules, audit refs, pass/fail/block semantics, and required proof
 - research evidence that supports `.codewiki/kb`
 - fresh-context task validation
 - architecture review grounded in CodeWiki specs and roadmap tasks
@@ -427,6 +438,7 @@ src/
     graph/
     knowledge/
     local/
+    tools/
   adapters/
     pi/
     web/
@@ -436,12 +448,35 @@ skills/
     loops/
       feedback.md
       documentation.md
+      planning.md
       implementation.md
       validation.md
     playbooks/
       architecture.md
       research.md
       view-audit.md
+    references/
+      tool-catalog.md
+  codewiki-feedback/
+    SKILL.md
+    references/
+      tools.md
+  codewiki-documentation/
+    SKILL.md
+    references/
+      tools.md
+  codewiki-planning/
+    SKILL.md
+    references/
+      tools.md
+  codewiki-implementation/
+    SKILL.md
+    references/
+      tools.md
+  codewiki-validation/
+    SKILL.md
+    references/
+      tools.md
 tests/
   smoke/
     package-smoke.test.mjs

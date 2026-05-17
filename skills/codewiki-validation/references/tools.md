@@ -1,0 +1,88 @@
+# Validation gateway tools
+
+Use these tools to validate submitted CodeWiki artifacts. Validation mode may write validation reports, but it must not mutate canonical knowledge, roadmap task truth, builds, source code, or tests.
+
+## Required sequence
+
+1. `codewiki_state`
+   - First read for repo health, graph/build/task routing, stale generated state, and artifact status.
+   - Use `refresh=true` when validating a handoff, task close, graph/drift audit, or publication gate.
+   - Use `taskId` when validating implementation or task-close.
+
+2. Direct reads of submitted refs
+   - Read the build/report/task/source refs named by the handoff or user.
+   - Do not rely on builder chat context.
+   - Treat `.codewiki/index_graph.json` and generated task views as routing/read models, not canonical proof.
+
+3. `codewiki_audit`
+   - Run required audit profiles or cite existing audit refs before a pass verdict when policy requires them.
+   - Common profile sets:
+     - feedback/documentation/planning: `alignment`, `generated-parity`, plus scoped/changed checks when relevant;
+     - implementation: `alignment`, `changed`;
+     - task-close: `alignment`, `changed`, `task`, `generated-parity`;
+     - graph/drift: `graph-audit`, `drift-audit`, `generated-parity` or configured equivalents;
+     - publication/release: package/security/publication policy profiles when available.
+
+4. `codewiki_validation`
+   - Record verdict when policy requires a report, verdict is `fail`/`block`, task-close/publication needs proof, or a handoff expected an explicit report.
+   - Required fields: `profile`, `task_id` if any, `source`, `verdict`, `rationale`, `checks`, `issues`, `audit_refs`/`audit_reports`, `failed_criteria`, `blocking_questions`, and `isolation` when required.
+   - Implementation pass requires `isolation.fresh_context=true`, explicit `clean` value, and checked content proof (`validated_sha`, `tree_sha`, `working_tree_digest`, or equivalent allowed by policy).
+   - Task-close/publication/publish/release pass requires `isolation.fresh_context=true`, `clean=true`, and immutable proof (`validated_sha`, `head_sha`, `published_sha`, `tree_sha`, `package_digest`, `archive_ref`, or `remote_ref`).
+
+## Conditional tool
+
+- `codewiki_session_handoff`
+  - Use only when the current session is not an acceptable validator context and a fresh validator boundary is required.
+  - Stage or consume a handoff that includes source/build refs, task id, audit expectations, changed paths, checks, and expected `codewiki_validation` output.
+
+## Forbidden tools/actions in validation mode
+
+- Do not call `codewiki_build`; compilers produce builds.
+- Do not call `codewiki_diff_table`; feedback compilers capture semantic proposals.
+- Do not call `codewiki_task action="create"`, `update`, `close`, or `cancel`; parent/compiler/closer handles task mutation after validation.
+- Do not hand-edit `.codewiki/kb/**`, `.codewiki/roadmap/**`, `.codewiki/builds/**`, source code, tests, or generated views.
+- Do not mark work pass without required audits and proof.
+
+## Deterministic verdict checklist
+
+Return `fail` when:
+
+- a requirement or acceptance criterion is contradicted by source truth;
+- evidence mapping is wrong or incomplete;
+- checks prove behavior broken;
+- horizontal or vertical alignment is false;
+- implementation changed scope beyond non-goals.
+
+Return `block` when:
+
+- required source/build refs are missing;
+- policy profile or required audits are missing;
+- fresh-context isolation is required but absent;
+- content proof is missing or too weak for the boundary;
+- task is an umbrella/container/sprint coordinator;
+- sibling tasks overlap without explicit dependency/split rationale;
+- validator cannot safely inspect enough source to decide.
+
+Return `pass` only when:
+
+- required refs and audits are present;
+- vertical and horizontal alignment checks pass;
+- each acceptance criterion has evidence;
+- non-goals and scope are preserved;
+- task-boundary gate passes where applicable;
+- fresh-context, clean-state, and content-proof requirements are satisfied.
+
+## Output fields to preserve
+
+Every report/rationale should name:
+
+- validation profile;
+- source/build refs checked;
+- task id when applicable;
+- audit refs/reports;
+- checks run or reviewed;
+- vertical/horizontal alignment status;
+- failed criteria or blocking questions;
+- isolation role, `fresh_context`, `clean`, builder/validator separation notes;
+- checked proof refs: SHA/tree/digest/package/archive/remote;
+- next routing recommendation.

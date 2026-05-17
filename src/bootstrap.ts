@@ -2,6 +2,7 @@ import { access, mkdir, readdir, writeFile } from "node:fs/promises";
 import { basename, dirname, extname, resolve } from "node:path";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { Type } from "@sinclair/typebox";
+import { executeCodewikiBootstrapTool, executeCodewikiSetupTool } from "./application/tools/bootstrap.ts";
 import { renderSkillAsset } from "./application/skill-assets.ts";
 import { withLockedPaths } from "./mutation-queue.ts";
 import { resolveSetupRoot } from "./project-root.ts";
@@ -155,16 +156,7 @@ export function registerBootstrapFeatures(pi: ExtensionAPI): void {
 			repoPath: repoPathToolField,
 		}),
 		async execute(_toolCallId: string, params: any, _signal: unknown, _onUpdate: unknown, ctx: any) {
-			const result = await setupCodewiki(
-				resolveToolStartDir(ctx.cwd, params.repoPath),
-				{
-					projectName: params.projectName,
-				},
-			);
-			return {
-				content: [{ type: "text", text: formatSummary("Configured", result) }],
-				details: result,
-			};
+			return executeCodewikiSetupTool(params, { cwd: ctx.cwd }, bootstrapToolPorts());
 		},
 	} as any);
 
@@ -195,21 +187,18 @@ export function registerBootstrapFeatures(pi: ExtensionAPI): void {
 			repoPath: repoPathToolField,
 		}),
 		async execute(_toolCallId: string, params: any, _signal: unknown, _onUpdate: unknown, ctx: any) {
-			const result = await bootstrapFromCurrentProject(
-				resolveToolStartDir(ctx.cwd, params.repoPath),
-				{
-					projectName: params.projectName,
-					force: params.force ?? false,
-				},
-			);
-			return {
-				content: [
-					{ type: "text", text: formatSummary("Bootstrapped", result) },
-				],
-				details: result,
-			};
+			return executeCodewikiBootstrapTool(params, { cwd: ctx.cwd }, bootstrapToolPorts());
 		},
 	} as any);
+}
+
+function bootstrapToolPorts() {
+	return {
+		resolveStartDir: resolveToolStartDir,
+		setup: setupCodewiki,
+		bootstrap: bootstrapFromCurrentProject,
+		format: formatSummary,
+	};
 }
 
 export async function setupCodewiki(

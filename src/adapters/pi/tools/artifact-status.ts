@@ -1,13 +1,6 @@
-import type {
-	ExtensionAPI,
-	ExtensionContext,
-} from "@earendil-works/pi-coding-agent";
-import type {
-	CodewikiArtifactStatusToolInput,
-	WikiProject,
-} from "../../../domain/shared/types.ts";
-import { mutateArtifactStatuses } from "../../../application/claims.ts";
-import { runRebuild } from "../../../application/state-artifacts.ts";
+import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
+import type { CodewikiArtifactStatusToolInput, WikiProject } from "../../../domain/shared/types.ts";
+import { executeCodewikiArtifactStatusTool } from "../../../application/tools/artifact-status.ts";
 import { stableAgentName } from "../../../application/state-builders.ts";
 import { resolveToolProject } from "../../../application/project.ts";
 import { codewikiArtifactStatusToolInputSchema } from "../schemas.ts";
@@ -21,19 +14,8 @@ export async function executeCodewikiArtifactStatus(
 	input: CodewikiArtifactStatusToolInput,
 ) {
 	const sessionId = String(ctx.sessionManager?.getSessionId?.() || "session-unknown").trim() || "session-unknown";
-	const agentName = stableAgentName(sessionId);
-	const result = await mutateArtifactStatuses(project, input, { sessionId, agentName });
-	if ((input.refresh ?? true) && result.changed) await runRebuild(project);
-	const conflictCount = result.conflicts.filter((conflict) => conflict.kind === "conflict").length;
-	const warningCount = result.conflicts.filter((conflict) => conflict.kind === "warning").length;
-	const waiterCount = result.waiters?.length || 0;
-	const readyWaiters = (result.waiters || []).filter((waiter) => waiter.status === "ready").length;
-	ctx.ui.setStatus?.(
-		"codewiki-artifacts",
-		result.artifact_statuses.length > 0 || waiterCount > 0
-			? `${result.artifact_statuses.length} artifact status(es), ${waiterCount} wait(s), ${readyWaiters} ready, ${conflictCount} conflict(s), ${warningCount} warning(s)`
-			: undefined,
-	);
+	const result = await executeCodewikiArtifactStatusTool(project, input, { sessionId, agentName: stableAgentName(sessionId) });
+	ctx.ui.setStatus?.("codewiki-artifacts", result.statusText);
 	return result;
 }
 
@@ -53,11 +35,7 @@ export function registerCodewikiArtifactStatusTool(pi: ExtensionAPI): void {
 		],
 		parameters: codewikiArtifactStatusToolInputSchema,
 		async execute(_toolCallId: string, params: CodewikiArtifactStatusToolInput, _signal: unknown, _onUpdate: unknown, ctx: ExtensionContext) {
-			const project = await resolveToolProject(
-				ctx.cwd,
-				params.repoPath,
-				"codewiki_artifact_status",
-			);
+			const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_artifact_status");
 			const result = await executeCodewikiArtifactStatus(pi, project, ctx, params);
 			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
 			return {

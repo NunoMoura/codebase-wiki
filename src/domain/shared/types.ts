@@ -646,10 +646,25 @@ export interface CodewikiTaskPatchInput {
 	delta?: Partial<{ desired: string; current: string; closure: string }>;
 }
 
+export interface CodewikiSprintInput {
+	id?: string;
+	title: string;
+	status?: SprintStatus;
+	outcome: string;
+	task_ids?: string[];
+	scope?: {
+		knowledge?: string[];
+		code?: string[];
+	};
+	budget?: AgencyBudget;
+	gates?: string[];
+}
+
 export interface CodewikiTaskToolInput {
 	repoPath?: string;
-	action: "create" | "update" | "close" | "cancel" | "checkpoint" | "clear-archive";
+	action: "create" | "update" | "close" | "cancel" | "checkpoint" | "clear-archive" | "sprint";
 	tasks?: RoadmapTaskInput[];
+	sprint?: CodewikiSprintInput;
 	taskId?: string;
 	summary?: string;
 	patch?: CodewikiTaskPatchInput;

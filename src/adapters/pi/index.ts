@@ -10,16 +10,16 @@ import { registerUiCommand } from "./commands/ui.ts";
 import { currentTaskLink } from "./session.ts";
 import { readRoadmapTask } from "../../application/roadmap.ts";
 import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject } from "../../application/project.ts";
-import { runRebuild } from "../../application/state-artifacts.ts";
+import { executeCodewikiBuildTool } from "../../application/tools/build.ts";
+import { executeCodewikiValidationTool } from "../../application/tools/validation.ts";
+import { executeCodewikiDiffTableTool } from "../../application/tools/diff-table.ts";
 import { executeCodewikiAgency } from "./tools/agency.ts";
 import { registerCodewikiArtifactStatusTool } from "./tools/artifact-status.ts";
 import { registerCodewikiAuditTool } from "./tools/audit.ts";
 import { executeCodewikiClaim } from "./tools/claim.ts";
-import { executeDiffTableAction } from "../../application/diff-table.ts";
 import { executeCodewikiSession } from "./tools/session.ts";
 import { registerSessionHandoffCommand, registerCodewikiSessionHandoffTool } from "./tools/session-handoff.ts";
 import { registerCodewikiStateTool } from "./tools/state.ts";
-import { writeBuild, writeValidationReport } from "../../application/builds.ts";
 import { executeCodewikiTask } from "./tools/task.ts";
 import {
 	activeStatusPanelGlobal,
@@ -149,17 +149,12 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 		],
 		parameters: codewikiBuildToolInputSchema,
 		async execute(_toolCallId: string, params: any, _signal: unknown, _onUpdate: unknown, ctx: any) {
-			const project = await resolveToolProject(
-				ctx.cwd,
-				params.repoPath,
-				"codewiki_build",
-			);
-			const result = await writeBuild(project, params as any);
-			if ((params as any).refresh ?? true) await runRebuild(project);
+			const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_build");
+			const result = await executeCodewikiBuildTool(project, params as any);
 			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
 			return {
-				content: [{ type: "text", text: `codewiki build: wrote ${result.path}` }],
-				details: result,
+				content: [{ type: "text", text: result.summary }],
+				details: result.result,
 			};
 		},
 	} as any);
@@ -179,17 +174,12 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 		],
 		parameters: codewikiValidationReportSchema,
 		async execute(_toolCallId: string, params: any, _signal: unknown, _onUpdate: unknown, ctx: any) {
-			const project = await resolveToolProject(
-				ctx.cwd,
-				params.repoPath,
-				"codewiki_validation",
-			);
-			const result = await writeValidationReport(project, params as any);
-			if ((params as any).refresh ?? true) await runRebuild(project);
+			const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_validation");
+			const result = await executeCodewikiValidationTool(project, params as any);
 			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
 			return {
-				content: [{ type: "text", text: `codewiki validation: wrote ${result.path}` }],
-				details: result,
+				content: [{ type: "text", text: result.summary }],
+				details: result.result,
 			};
 		},
 	} as any);
@@ -198,12 +188,13 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 		name: "codewiki_task",
 		label: "Codewiki Task",
 		description:
-			"Create, update, close, or cancel roadmap tasks through one canonical task mutation tool",
+			"Create, update, close, cancel roadmap tasks, or update sprint metadata through one canonical roadmap mutation tool",
 		promptSnippet:
-			"Mutate canonical roadmap task truth through one create/update/close/cancel entrypoint",
+			"Mutate canonical roadmap task truth and sprint metadata through one safe entrypoint",
 		promptGuidelines: [
-			"Use this for all canonical roadmap task mutation: create tasks, update metadata, append evidence, close work, or cancel work.",
+			"Use this for all canonical roadmap task mutation: create tasks, update metadata, append evidence, close work, cancel work, or maintain sprint metadata.",
 			"Before creating roadmap work, check active tasks/sprints for related intent; prefer refining existing task metadata, docs, and sprint scope over creating duplicates.",
+			"Use action='sprint' with sprint input when accepted intent forms a related executable cohort; never hand-edit roadmap sprint metadata.",
 			"Create actions automatically reuse/refine related active tasks when spec paths, code paths, labels, or intent text overlap; pass an explicit taskId/update when you already know the target.",
 			"Prefer evidence.result='pass'|'fail'|'block' when advancing lifecycle with structured execution evidence.",
 			"Use action='close' or action='cancel' instead of patching status directly when intent is final closure.",
@@ -261,10 +252,10 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 		parameters: codewikiDiffTableToolInputSchema,
 		execute: async (_id: string, params: any, _notify: any, _progress: any, ctx: any) => {
 			const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_diff_table");
-			const result = await executeDiffTableAction(project, params);
+			const result = await executeCodewikiDiffTableTool(project, params);
 			return {
-				content: [{ type: "text", text: `codewiki diff_table: ${params.action}` }],
-				details: result,
+				content: [{ type: "text", text: result.summary }],
+				details: result.result,
 			};
 		},
 	} as any);

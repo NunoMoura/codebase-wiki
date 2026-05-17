@@ -1,0 +1,87 @@
+---
+name: codewiki-planning
+description: Use when a validated documentation_build must become executable roadmap work, when roadmap tasks need alignment with updated knowledge, or when planning_build handoff evidence is required before implementation. Runs the planning compiler with task-boundary, tool, validation, and implementation handoff rules.
+id: skill.codewiki-planning
+title: CodeWiki planning compiler skill
+state: active
+summary: Planning-loop instructions for roadmap alignment and planning build handoffs.
+owners: [maintainers]
+updated: "2026-05-17"
+---
+
+# CodeWiki Planning Compiler
+
+Use this skill after documentation mode has produced a validated `documentation_build`, or when validation/audit routes work to roadmap alignment. The planning loop creates or refines executable roadmap tasks and emits a `planning_build` for implementation.
+
+For exact tool arguments and output fields, read `references/tools.md` when needed.
+
+## Core rules
+
+- Start from a validated `documentation_build` or an explicit validation/audit route to planning.
+- Start with `codewiki_state`, then read the documentation build, changed knowledge refs, active tasks, and active sprint context directly.
+- Planning owns roadmap alignment. Documentation owns knowledge. Implementation owns code/tests.
+- Use `codewiki_task` for roadmap creation/refinement. Never hand-edit `.codewiki/roadmap/queue.json` or generated task views.
+- Inspect active tasks and sprints before creating work. Refine an existing active task when paths, labels, or intent overlap.
+- Create only self-contained executable tasks with direct outcomes, acceptance criteria, non-goals, verification, candidate files, and independent validation evidence.
+- Reject coordination-only tasks, sprint/umbrella/container tasks, and tasks whose acceptance mainly says other tasks must close.
+- Compile `codewiki_build kind="planning"` after roadmap alignment and before implementation handoff.
+- Use `codewiki_task action="sprint"` for accepted related executable cohorts; never create umbrella tasks or hand-edit sprint metadata.
+- Validate planning-to-roadmap alignment before routing to implementation.
+
+## Workflow
+
+1. **Load handoff context**
+   - Run `codewiki_state` for repo health, reconciliation, active work, and artifact status.
+   - Read the validated `documentation_build`, changed KB paths, and any validation report that routed work here.
+   - Restate requirements, knowledge refs, non-goals, blockers, assumptions, and open questions.
+   - If no validated documentation/source route exists, return to documentation mode or validation as appropriate.
+
+2. **Analyze executable delta**
+   - Identify which documented requirements need code, tests, docs, config, validation, or no executable work.
+   - Read active tasks and active sprint scope before deciding whether to create or refine work.
+   - Surface conflicts between requested work and task-boundary rules.
+
+3. **Shape roadmap work**
+   - For each executable unit, define outcome, acceptance criteria, non-goals, verification, candidate code/test paths, blockers, and requirement refs.
+   - Prefer refining existing active tasks when the new intent overlaps.
+   - Create new tasks only when the work is independent and conflict-free.
+   - If the work is a cohort, use sprint metadata through `codewiki_task action="sprint"` and planning-build context instead of a task that only groups other tasks.
+
+4. **Coordinate writes**
+   - Use `codewiki_artifact_status` for narrow roadmap/build scopes when parallel sessions may overlap.
+   - Release artifact status when planning writes complete.
+
+5. **Mutate roadmap truth**
+   - Call `codewiki_task action="create"` for new tasks or `action="update"` for refinements.
+   - Include `spec_paths`, `code_paths`, labels, `change_type`, and a complete `goal` with outcome/acceptance/non-goals/verification.
+   - Add evidence when a task is refined, blocked, or intentionally not created.
+
+6. **Compile planning build**
+   - Call `codewiki_build kind="planning"` after task creation/refinement.
+   - Include `source_documentation_build`, `task_ids`, `task_changes`, `tdd_plan`, `candidate_test_files`, `candidate_code_paths`, requirements, evidence mapping, assumptions, open questions, non-goals, and risks.
+   - The build is the implementation handoff. It should be compact enough for a fresh implementation session to execute without reading prior chat.
+
+7. **Validate planning**
+   - Run `codewiki_audit` for task/alignment evidence when policy or risk requires it.
+   - Use `codewiki_validation profile="documentation"` or a planning-specific policy profile if available when validation is required, failed, blocked, or policy-required.
+   - Validation checks documentation-to-roadmap alignment, task atomicity, boundary quality, and planning build completeness.
+
+8. **Route to implementation**
+   - Use `codewiki_session_handoff` with the `planning_build` ref and target task id when implementation must start fresh.
+   - Expected output is `implementation_build` plus validation evidence.
+
+## Stop conditions
+
+Stop and route back to documentation when requirements are not represented in knowledge or source docs are stale.
+
+Stop and route back to feedback when task meaning, scope, or acceptance needs user approval not covered by the documentation build.
+
+Block when the requested work is coordination-only, overlaps another active task without safe refinement, lacks verifiable acceptance, or requires destructive action without approval.
+
+## Output
+
+End planning mode with one of:
+
+- `planning_build` path, affected task ids, task changes, TDD/test strategy, candidate paths, and implementation handoff refs;
+- a knowledge-only/no-executable-work result with evidence and no task creation;
+- blocking questions or task-boundary findings routed to feedback/documentation.

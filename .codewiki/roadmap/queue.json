@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-05-16T22:20:40Z",
+  "updated": "2026-05-17T03:16:35Z",
   "order": [
     "TASK-001",
     "TASK-002",
@@ -51,7 +51,14 @@
     "TASK-076",
     "TASK-077",
     "TASK-078",
-    "TASK-084"
+    "TASK-084",
+    "TASK-093",
+    "TASK-094",
+    "TASK-095",
+    "TASK-096",
+    "TASK-097",
+    "TASK-098",
+    "TASK-099"
   ],
   "tasks": {
     "TASK-001": {
@@ -2385,6 +2392,337 @@
       },
       "created": "2026-05-15",
       "updated": "2026-05-15T03:08:30Z"
+    },
+    "TASK-093": {
+      "id": "TASK-093",
+      "title": "Write feedback compiler skill contract",
+      "status": "in_progress",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Define feedback-mode agent instructions so semantic user intent is captured through `codewiki_diff_table` before `feedback_build` creation.",
+      "spec_paths": [
+        ".codewiki/kb/system/compilers.md",
+        ".codewiki/kb/system/validation-gateway.md",
+        ".codewiki/kb/system/builds.md"
+      ],
+      "code_paths": [
+        "skills",
+        "skills/codewiki/loops/feedback.md",
+        "tests/smoke/prompt-assets.test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "feedback-loop",
+        "semantic-diff"
+      ],
+      "change_type": "system",
+      "goal": {
+        "outcome": "Feedback mode makes semantic diff rows, explicit user acceptance, and `feedback_build` creation mandatory and unambiguous.",
+        "acceptance": [
+          "`codewiki-feedback` skill frontmatter has a specific trigger for ambiguous intent, semantic proposals, requirement changes, and user approval decisions.",
+          "Instructions require `codewiki_diff_table` for proposed semantic changes and require accepted rows before `codewiki_build kind=feedback`.",
+          "Instructions define when feedback validation happens, what evidence is required, and when the agent must stop instead of writing lower-layer docs/code."
+        ],
+        "non_goals": [
+          "Do not edit documentation, planning, implementation, or validation loop content except a route pointer needed by feedback mode.",
+          "Do not create roadmap tasks from unaccepted feedback rows."
+        ],
+        "verification": [
+          "Run `npm run test:smoke`.",
+          "Run package skill asset smoke coverage after adding/updating tests.",
+          "Inspect against `.codewiki/builds/feedback/2026-05-17-accepted-skill-loop-restructure.json`."
+        ]
+      },
+      "delta": {
+        "desired": "Feedback mode has exact tool/build/gateway timing for semantic intent capture.",
+        "current": "Feedback loop guidance can let agents discuss semantic change without using the semantic diff table and references nonexistent `ask_user`.",
+        "closure": "Feedback skill and tests make the missed-diff-table failure mode hard to repeat."
+      },
+      "created": "2026-05-17",
+      "updated": "2026-05-17T01:08:25Z"
+    },
+    "TASK-094": {
+      "id": "TASK-094",
+      "title": "Write documentation compiler skill contract",
+      "status": "in_progress",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Define documentation-mode instructions for converting accepted feedback into KB edits and `documentation_build` evidence.",
+      "spec_paths": [
+        ".codewiki/kb/system/knowledge.md"
+      ],
+      "code_paths": [
+        "skills",
+        "skills/codewiki/loops/documentation.md",
+        "tests/smoke/prompt-assets.test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "documentation-loop"
+      ],
+      "change_type": "system",
+      "goal": {
+        "outcome": "Documentation mode compiles accepted feedback into canonical knowledge changes and a validated `documentation_build`.",
+        "acceptance": [
+          "`codewiki-documentation` skill frontmatter triggers on accepted feedback builds, KB/spec updates, and documentation alignment work.",
+          "Instructions state exact actions, tools, KB ownership rules, `codewiki_build kind=documentation` point, validation point, and planning handoff output.",
+          "Instructions remove stale migration wording and send task shaping to planning mode."
+        ],
+        "non_goals": [
+          "Do not write planning task-shaping guidance beyond handoff requirements.",
+          "Do not edit feedback, implementation, or validation loop content except route pointers."
+        ],
+        "verification": [
+          "Run `npm run test:smoke`.",
+          "Run scoped `codewiki_audit` for skills and alignment.",
+          "Inspect against knowledge and compiler specs."
+        ]
+      },
+      "delta": {
+        "desired": "Documentation mode has exact KB/build/gateway timing and hands executable delta to planning.",
+        "current": "Documentation loop guidance mixes KB work with migration-era roadmap creation wording.",
+        "closure": "Documentation skill and tests prevent docs-to-planning drift."
+      },
+      "created": "2026-05-17",
+      "updated": "2026-05-17T01:24:36Z"
+    },
+    "TASK-095": {
+      "id": "TASK-095",
+      "title": "Write planning compiler skill contract",
+      "status": "in_progress",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Define planning-mode instructions for turning validated documentation into atomic roadmap tasks and `planning_build` evidence.",
+      "spec_paths": [
+        ".codewiki/kb/system/roadmap.md"
+      ],
+      "code_paths": [
+        "skills",
+        "src/application/builds.ts",
+        "tests/smoke/prompt-assets.test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "planning-loop"
+      ],
+      "change_type": "system",
+      "goal": {
+        "outcome": "Planning mode becomes the explicit path for roadmap task shaping and `planning_build` handoff creation.",
+        "acceptance": [
+          "`codewiki-planning` skill frontmatter triggers on validated documentation builds, roadmap alignment, task shaping, acceptance criteria, non-goals, and implementation handoffs.",
+          "Instructions state exact actions and tools: `codewiki_state`, `codewiki_task`, `codewiki_build kind=planning`, and artifact status when overlap risk exists.",
+          "Instructions enforce self-contained executable task boundaries, reject coordination-only tasks, reject tasks that only close other tasks, and define clear implementation handoff output."
+        ],
+        "non_goals": [
+          "Do not implement code changes planned by the tasks.",
+          "Do not write feedback/documentation/implementation/validation loop content except route pointers."
+        ],
+        "verification": [
+          "Run `npm run test:smoke`.",
+          "Run task-boundary or roadmap smoke coverage.",
+          "Inspect against roadmap and compiler specs."
+        ]
+      },
+      "delta": {
+        "desired": "Agents have a focused planning mode for roadmap tasks and planning builds.",
+        "current": "Planning build exists in source but no dedicated planning loop skill/asset exists.",
+        "closure": "Planning skill and tests make task shaping and build/gateway timing explicit."
+      },
+      "created": "2026-05-17",
+      "updated": "2026-05-17T01:33:53Z"
+    },
+    "TASK-096": {
+      "id": "TASK-096",
+      "title": "Write implementation compiler skill contract",
+      "status": "in_progress",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Define implementation-mode instructions for executing one roadmap task, producing `implementation_build`, and requesting fresh validation before closure.",
+      "spec_paths": [
+        ".codewiki/kb/system/builds.md"
+      ],
+      "code_paths": [
+        "skills",
+        "skills/codewiki/loops/implementation.md",
+        "skills/codewiki/prompts/resume-implementation.md",
+        "tests/smoke/prompt-assets.test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "implementation-loop"
+      ],
+      "change_type": "system",
+      "goal": {
+        "outcome": "Implementation mode gives agents exact build-before-validation lifecycle and production-grade task closure evidence.",
+        "acceptance": [
+          "`codewiki-implementation` skill frontmatter triggers on executing one atomic roadmap task from a planning build or `/wiki-resume`.",
+          "Instructions state exact actions, tools, artifact-status coordination, TDD/test-design expectations, `codewiki_build kind=implementation` point, fresh validation handoff, task-close gate, and output format.",
+          "Instructions fix ordering so implementation build is compiled before gateway validation, and closure requires passing validation/content proof when policy requires it."
+        ],
+        "non_goals": [
+          "Do not change validation gateway policy.",
+          "Do not implement arbitrary roadmap work; only implementation-mode skill/prompt guidance and supporting tests."
+        ],
+        "verification": [
+          "Run `npm run test:smoke`.",
+          "Run prompt asset tests.",
+          "Inspect implementation prompt and skill against validation-gateway spec."
+        ]
+      },
+      "delta": {
+        "desired": "Implementation mode has exact build-before-validation lifecycle and production-grade closure gate.",
+        "current": "Implementation guidance ambiguously places validation before implementation build and uses legacy claim wording.",
+        "closure": "Agents can execute tasks with clear evidence, validation, and closure boundaries."
+      },
+      "created": "2026-05-17",
+      "updated": "2026-05-17T02:22:36Z"
+    },
+    "TASK-097": {
+      "id": "TASK-097",
+      "title": "Write validation gateway skill contract",
+      "status": "in_progress",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Define validation-mode instructions for independent fresh-context checks of builds, audits, content proof, and task close decisions.",
+      "spec_paths": [
+        ".codewiki/kb/system/validation-gateway.md"
+      ],
+      "code_paths": [
+        "skills",
+        "skills/codewiki/loops/validation.md",
+        "src/application/gateway",
+        "tests/smoke/loop-isolation-policy.test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "validation-loop"
+      ],
+      "change_type": "system",
+      "goal": {
+        "outcome": "Validation mode gives agents a deterministic no-mutation gateway contract with exact refs, audits, and proof requirements.",
+        "acceptance": [
+          "`codewiki-validation` skill frontmatter triggers on validating feedback/documentation/planning/implementation builds, task close, graph/drift audit, publication, or fresh validator handoff.",
+          "Instructions state exact inputs, tools (`codewiki_state`, `codewiki_audit`, `codewiki_validation`, session handoff as needed), pass/fail/block semantics, required proof, task boundary gate, and no-mutation rule.",
+          "Output contract includes profile, build/source refs, audit refs, fresh_context/clean/content proof fields when required, and deterministic failed/blocking criteria."
+        ],
+        "non_goals": [
+          "Do not perform compiler work or mutate canonical truth in validation mode.",
+          "Do not loosen existing validation policy."
+        ],
+        "verification": [
+          "Run `npm run test:smoke`.",
+          "Run validation/loop isolation tests.",
+          "Inspect validation skill against validation-gateway spec."
+        ]
+      },
+      "delta": {
+        "desired": "Validation gateway skill blocks drift by demanding exact refs, audits, and proof before pass/closure.",
+        "current": "Validation guidance lacks full evidence fields and can under-specify fresh-context/content-proof requirements.",
+        "closure": "Validator mode is independent, deterministic, and production-ready."
+      },
+      "created": "2026-05-17",
+      "updated": "2026-05-17T02:28:43Z"
+    },
+    "TASK-098": {
+      "id": "TASK-098",
+      "title": "Revise main CodeWiki bootstrap skill",
+      "status": "in_progress",
+      "priority": "high",
+      "kind": "agent-workflow",
+      "summary": "Update the main `codewiki` skill so it owns bootstrap, status, onboarding, and loop routing without embedding compiler-specific workflow detail.",
+      "spec_paths": [
+        ".codewiki/kb/system/extension.md"
+      ],
+      "code_paths": [
+        "skills/codewiki/SKILL.md",
+        "skills/codewiki/bootstrap/onboarding.md",
+        "skills/codewiki/bootstrap/starter-taxonomy.md",
+        "tests/smoke/prompt-assets.test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "main-skill",
+        "bootstrap"
+      ],
+      "change_type": "system",
+      "goal": {
+        "outcome": "Main `codewiki` skill is a lean package-safe entry point for bootstrap/status/router behavior, including sprint-aware routing for related executable work.",
+        "acceptance": [
+          "`skills/codewiki/SKILL.md` describes when to use the main skill for bootstrap, status, onboarding, and selecting the next compiler/gateway mode.",
+          "Bootstrap/onboarding guidance is reachable through package-local skill references and does not rely on unpublished `.codewiki/**` links.",
+          "Main skill lists available commands/tools accurately enough for first contact, then routes detailed loop work to focused loop skills.",
+          "Main skill/router guidance states when related executable work should be tracked through sprint metadata and routes that decision to planning/tool-contract support."
+        ],
+        "non_goals": [
+          "Do not author detailed compiler/gateway loop instructions in the main skill.",
+          "Do not change runtime bootstrap command behavior unless needed to keep prompt assets loading.",
+          "Do not hand-edit roadmap sprint metadata directly from the skill guidance."
+        ],
+        "verification": [
+          "Run `npm run test:smoke`.",
+          "Run `npm run test:pack`.",
+          "Run scoped skill package audit.",
+          "Inspect against `.codewiki/builds/feedback/2026-05-17-accepted-sprint-grouping-skill-gap.json`."
+        ]
+      },
+      "delta": {
+        "desired": "Main skill is package-safe, concise, and optimized as the agents' CodeWiki entry point.",
+        "current": "Main skill mixes package surface, invariants, loop pointers, and broken package-local related-doc assumptions.",
+        "closure": "Bootstrap/status/router guidance is clear and tested without overloading loop behavior."
+      },
+      "created": "2026-05-17",
+      "updated": "2026-05-17T02:53:48Z"
+    },
+    "TASK-099": {
+      "id": "TASK-099",
+      "title": "Route CodeWiki tool executors through application tools",
+      "status": "in_progress",
+      "priority": "high",
+      "kind": "architecture",
+      "summary": "Move agent-facing CodeWiki tool contracts into `src/application/tools/**` and keep Pi tool files as transport wrappers.",
+      "spec_paths": [
+        ".codewiki/kb/system/adapters.md"
+      ],
+      "code_paths": [
+        "src/application/tools",
+        "src/adapters/pi/tools",
+        "src/adapters/pi/index.ts",
+        "src/bootstrap.ts",
+        "tests/smoke/package-smoke.test.mjs"
+      ],
+      "research_ids": [],
+      "labels": [
+        "application-tools",
+        "adapter-boundary"
+      ],
+      "change_type": "system",
+      "goal": {
+        "outcome": "Skill guidance can point to source-owned application tool contracts instead of adapter-owned behavior, including the safe path for sprint metadata used by planning.",
+        "acceptance": [
+          "Application-layer modules exist for the agent-facing `codewiki_*` operations used by skills.",
+          "Pi adapter tool registration files resolve project/schema/transport concerns and delegate execution to application tool modules.",
+          "Regression coverage catches a registered `codewiki_*` tool that lacks an application tool contract or skill-facing catalog entry.",
+          "Application tool contracts document or provide the safe mutation path for sprint metadata so agents do not hand-edit roadmap JSON."
+        ],
+        "non_goals": [
+          "Do not rename public `codewiki_*` tool names.",
+          "Do not change user-visible tool semantics except preserving behavior behind the new boundary.",
+          "Do not require compiler skills to hand-edit sprint metadata."
+        ],
+        "verification": [
+          "Run `npm run typecheck`.",
+          "Run `npm run test:smoke`.",
+          "Run `npm run check:architecture`.",
+          "Inspect against `.codewiki/builds/feedback/2026-05-17-accepted-sprint-grouping-skill-gap.json`."
+        ]
+      },
+      "delta": {
+        "desired": "Agent-facing tool contracts live under `src/application/tools/**` with thin Pi wrappers.",
+        "current": "Only audit has an application tool module; other tool behavior is scattered through adapters and generic application modules.",
+        "closure": "Tool contract location matches the skill architecture and tests prevent regression."
+      },
+      "created": "2026-05-17",
+      "updated": "2026-05-17T03:16:35Z"
     }
   },
   "sprints": {
@@ -2514,6 +2852,57 @@
       ],
       "created": "2026-05-15",
       "updated": "2026-05-16T10:41:25Z"
+    },
+    "SPRINT-004": {
+      "id": "SPRINT-004",
+      "title": "Skill loop restructure",
+      "status": "active",
+      "outcome": "CodeWiki skills expose focused compiler/gateway loops, package-safe bootstrap routing, and source-owned application tool contracts without umbrella tasks.",
+      "task_ids": [
+        "TASK-093",
+        "TASK-094",
+        "TASK-095",
+        "TASK-096",
+        "TASK-097",
+        "TASK-098",
+        "TASK-099"
+      ],
+      "scope": {
+        "knowledge": [
+          "skills/codewiki/**",
+          "skills/codewiki-feedback/**",
+          "skills/codewiki-documentation/**",
+          "skills/codewiki-planning/**",
+          "skills/codewiki-implementation/**",
+          "skills/codewiki-validation/**"
+        ],
+        "code": [
+          "src/application/tools/**",
+          "src/adapters/pi/tools/**",
+          "src/adapters/pi/index.ts",
+          "src/adapters/pi/schemas.ts",
+          "src/application/roadmap.ts",
+          "src/application/task.ts",
+          "src/bootstrap.ts",
+          "tests/**"
+        ]
+      },
+      "budget": {
+        "maxCycles": 7,
+        "maxWallSeconds": 3600,
+        "maxTokens": 180000,
+        "maxWrites": 80,
+        "maxSessions": 8,
+        "risk": "medium"
+      },
+      "gates": [
+        "implementation-validation",
+        "task-close-validation",
+        "package-smoke",
+        "architecture-check"
+      ],
+      "created": "2026-05-17T03:15:17Z",
+      "updated": "2026-05-17T03:15:17Z"
     }
   }
 }

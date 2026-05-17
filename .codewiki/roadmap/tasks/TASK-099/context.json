@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-17T03:16:35Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-099/context.json",
+  "task": {
+    "id": "TASK-099",
+    "title": "Route CodeWiki tool executors through application tools",
+    "status": "in_progress",
+    "priority": "high",
+    "kind": "architecture",
+    "change_type": "system",
+    "summary": "Move agent-facing CodeWiki tool contracts into `src/application/tools/**` and keep Pi tool files as transport wrappers.",
+    "labels": [
+      "application-tools",
+      "adapter-boundary"
+    ],
+    "goal": {
+      "outcome": "Skill guidance can point to source-owned application tool contracts instead of adapter-owned behavior, including the safe path for sprint metadata used by planning.",
+      "acceptance": [
+        "Application-layer modules exist for the agent-facing `codewiki_*` operations used by skills.",
+        "Pi adapter tool registration files resolve project/schema/transport concerns and delegate execution to application tool modules.",
+        "Regression coverage catches a registered `codewiki_*` tool that lacks an application tool contract or skill-facing catalog entry.",
+        "Application tool contracts document or provide the safe mutation path for sprint metadata so agents do not hand-edit roadmap JSON."
+      ],
+      "non_goals": [
+        "Do not rename public `codewiki_*` tool names.",
+        "Do not change user-visible tool semantics except preserving behavior behind the new boundary.",
+        "Do not require compiler skills to hand-edit sprint metadata."
+      ],
+      "verification": [
+        "Run `npm run typecheck`.",
+        "Run `npm run test:smoke`.",
+        "Run `npm run check:architecture`.",
+        "Inspect against `.codewiki/builds/feedback/2026-05-17-accepted-sprint-grouping-skill-gap.json`."
+      ]
+    },
+    "delta": {
+      "desired": "Agent-facing tool contracts live under `src/application/tools/**` with thin Pi wrappers.",
+      "current": "Only audit has an application tool module; other tool behavior is scattered through adapters and generic application modules.",
+      "closure": "Tool contract location matches the skill architecture and tests prevent regression."
+    }
+  }
+}

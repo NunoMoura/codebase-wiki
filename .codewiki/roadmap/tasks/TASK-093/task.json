@@ -1,0 +1,48 @@
+{
+  "id": "TASK-093",
+  "title": "Write feedback compiler skill contract",
+  "status": "in_progress",
+  "priority": "high",
+  "kind": "agent-workflow",
+  "summary": "Define feedback-mode agent instructions so semantic user intent is captured through `codewiki_diff_table` before `feedback_build` creation.",
+  "spec_paths": [
+    ".codewiki/kb/system/compilers.md",
+    ".codewiki/kb/system/validation-gateway.md",
+    ".codewiki/kb/system/builds.md"
+  ],
+  "code_paths": [
+    "skills",
+    "skills/codewiki/loops/feedback.md",
+    "tests/smoke/prompt-assets.test.mjs"
+  ],
+  "research_ids": [],
+  "labels": [
+    "feedback-loop",
+    "semantic-diff"
+  ],
+  "change_type": "system",
+  "goal": {
+    "outcome": "Feedback mode makes semantic diff rows, explicit user acceptance, and `feedback_build` creation mandatory and unambiguous.",
+    "acceptance": [
+      "`codewiki-feedback` skill frontmatter has a specific trigger for ambiguous intent, semantic proposals, requirement changes, and user approval decisions.",
+      "Instructions require `codewiki_diff_table` for proposed semantic changes and require accepted rows before `codewiki_build kind=feedback`.",
+      "Instructions define when feedback validation happens, what evidence is required, and when the agent must stop instead of writing lower-layer docs/code."
+    ],
+    "non_goals": [
+      "Do not edit documentation, planning, implementation, or validation loop content except a route pointer needed by feedback mode.",
+      "Do not create roadmap tasks from unaccepted feedback rows."
+    ],
+    "verification": [
+      "Run `npm run test:smoke`.",
+      "Run package skill asset smoke coverage after adding/updating tests.",
+      "Inspect against `.codewiki/builds/feedback/2026-05-17-accepted-skill-loop-restructure.json`."
+    ]
+  },
+  "delta": {
+    "desired": "Feedback mode has exact tool/build/gateway timing for semantic intent capture.",
+    "current": "Feedback loop guidance can let agents discuss semantic change without using the semantic diff table and references nonexistent `ask_user`.",
+    "closure": "Feedback skill and tests make the missed-diff-table failure mode hard to repeat."
+  },
+  "created": "2026-05-17",
+  "updated": "2026-05-17T01:08:25Z"
+}

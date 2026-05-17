@@ -235,6 +235,22 @@ export const agencyBudgetSchema = Type.Object({
 	maxSubagents: Type.Optional(Type.Number()),
 	risk: Type.Optional(agencyRiskSchema),
 });
+export const sprintStatusSchema = Type.Union(
+	T.SPRINT_STATUS_VALUES.map((value) => Type.Literal(value)),
+);
+export const codewikiSprintSchema = Type.Object({
+	id: Type.Optional(Type.String({ minLength: 1, description: "Existing or desired sprint id, e.g. SPRINT-004." })),
+	title: Type.String({ minLength: 1, description: "Short sprint/cohort title." }),
+	status: Type.Optional(sprintStatusSchema),
+	outcome: Type.String({ minLength: 1, description: "Shared outcome for related executable tasks." }),
+	task_ids: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	scope: Type.Optional(Type.Object({
+		knowledge: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+		code: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+	})),
+	budget: Type.Optional(agencyBudgetSchema),
+	gates: Type.Optional(Type.Array(Type.String({ minLength: 1 }), { default: [] })),
+});
 const codewikiIsolationRequirementSchema = Type.Object({
 	required: Type.Optional(Type.Boolean()),
 	mode: Type.Optional(Type.String({ minLength: 1 })),
@@ -342,6 +358,7 @@ export const codewikiTaskToolInputSchema = Type.Object({
 		Type.Literal("cancel"),
 		Type.Literal("clear-archive"),
 		Type.Literal("checkpoint"),
+		Type.Literal("sprint"),
 	]),
 	refresh: Type.Optional(
 		Type.Boolean({
@@ -352,6 +369,7 @@ export const codewikiTaskToolInputSchema = Type.Object({
 	),
 	taskId: Type.Optional(toolTaskIdField),
 	tasks: Type.Optional(Type.Array(codewikiTaskCreateSchema, { minItems: 1 })),
+	sprint: Type.Optional(codewikiSprintSchema),
 	patch: Type.Optional(codewikiTaskPatchSchema),
 	evidence: Type.Optional(codewikiTaskEvidenceSchema),
 	summary: Type.Optional(Type.String({ minLength: 1 })),

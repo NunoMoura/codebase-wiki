@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-17T02:22:36Z",
+  "context_path": ".codewiki/roadmap/tasks/TASK-096/context.json",
+  "task": {
+    "id": "TASK-096",
+    "title": "Write implementation compiler skill contract",
+    "status": "in_progress",
+    "priority": "high",
+    "kind": "agent-workflow",
+    "change_type": "system",
+    "summary": "Define implementation-mode instructions for executing one roadmap task, producing `implementation_build`, and requesting fresh validation before closure.",
+    "labels": [
+      "implementation-loop"
+    ],
+    "goal": {
+      "outcome": "Implementation mode gives agents exact build-before-validation lifecycle and production-grade task closure evidence.",
+      "acceptance": [
+        "`codewiki-implementation` skill frontmatter triggers on executing one atomic roadmap task from a planning build or `/wiki-resume`.",
+        "Instructions state exact actions, tools, artifact-status coordination, TDD/test-design expectations, `codewiki_build kind=implementation` point, fresh validation handoff, task-close gate, and output format.",
+        "Instructions fix ordering so implementation build is compiled before gateway validation, and closure requires passing validation/content proof when policy requires it."
+      ],
+      "non_goals": [
+        "Do not change validation gateway policy.",
+        "Do not implement arbitrary roadmap work; only implementation-mode skill/prompt guidance and supporting tests."
+      ],
+      "verification": [
+        "Run `npm run test:smoke`.",
+        "Run prompt asset tests.",
+        "Inspect implementation prompt and skill against validation-gateway spec."
+      ]
+    },
+    "delta": {
+      "desired": "Implementation mode has exact build-before-validation lifecycle and production-grade closure gate.",
+      "current": "Implementation guidance ambiguously places validation before implementation build and uses legacy claim wording.",
+      "closure": "Agents can execute tasks with clear evidence, validation, and closure boundaries."
+    }
+  }
+}

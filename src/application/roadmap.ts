@@ -16,6 +16,7 @@ import type {
 	RoadmapTaskInput,
 	TaskLoopUpdateInput,
 	ChangeType,
+	CodewikiSprintInput,
 } from "../domain/shared/types.ts";
 import {
 	ROADMAP_STATUS_VALUES,
@@ -1036,6 +1037,119 @@ export function nextTaskIdSequence(roadmap: RoadmapFile, extraTaskIds: string[] 
 
 async function nextTaskIdSequenceForProject(project: WikiProject, roadmap: RoadmapFile): Promise<number> {
 	return nextTaskIdSequence(roadmap, await archivedTaskIds(project));
+}
+
+function parseSprintIdSequence(value: string): number | null {
+	const match = String(value || "").match(/^SPRINT-(\d+)$/);
+	return match ? Number(match[1]) : null;
+}
+
+function nextSprintId(roadmap: RoadmapFile): string {
+	const max = Math.max(0, ...Object.keys(roadmap.sprints || {})
+		.map(parseSprintIdSequence)
+		.filter((value): value is number => value !== null));
+	return `SPRINT-${String(max + 1).padStart(3, "0")}`;
+}
+
+function sameStringArray(a: string[] | undefined, b: string[] | undefined): boolean {
+	return JSON.stringify(unique(a || [])) === JSON.stringify(unique(b || []));
+}
+
+export async function upsertRoadmapSprint(
+	project: WikiProject,
+	input: CodewikiSprintInput,
+	options: { refresh?: boolean } = {},
+): Promise<{ sprint: RoadmapSprintRecord; changed: boolean; created: boolean }> {
+	const title = input.title.trim();
+	const outcome = input.outcome.trim();
+	if (!title) throw new Error("codewiki_task sprint requires sprint.title.");
+	if (!outcome) throw new Error("codewiki_task sprint requires sprint.outcome.");
+	const roadmapPath = resolve(project.root, project.roadmapPath);
+	let sprint!: RoadmapSprintRecord;
+	let changed = false;
+	let created = false;
+	await withLockedPaths(roadmapMutationTargetPaths(project, options), async () => {
+		const roadmap = await readRoadmapFile(roadmapPath);
+		roadmap.sprints = roadmap.sprints || {};
+		const requestedId = input.id?.trim();
+		const id = requestedId || nextSprintId(roadmap);
+		if (requestedId && !/^SPRINT-\d+$/.test(requestedId)) {
+			throw new Error(`Invalid sprint id: ${requestedId}. Expected SPRINT-###.`);
+		}
+		const missingTaskIds = unique(input.task_ids || []).filter((taskId) => !resolveRoadmapTask(roadmap, taskId));
+		if (missingTaskIds.length) throw new Error(`Sprint references unknown task(s): ${missingTaskIds.join(", ")}`);
+		const existing = roadmap.sprints[id];
+		const next: RoadmapSprintRecord = existing
+			? { ...existing }
+			: {
+				id,
+				title,
+				status: input.status || "active",
+				outcome,
+				task_ids: [],
+				created: nowIso(),
+				updated: nowIso(),
+			};
+		created = !existing;
+		if (next.title !== title) {
+			next.title = title;
+			changed = true;
+		}
+		const status = normalizeSprintStatus(input.status || next.status);
+		if (next.status !== status) {
+			next.status = status;
+			changed = true;
+		}
+		if (next.outcome !== outcome) {
+			next.outcome = outcome;
+			changed = true;
+		}
+		const taskIds = unique(input.task_ids || next.task_ids || []);
+		if (!sameStringArray(next.task_ids, taskIds)) {
+			next.task_ids = taskIds;
+			changed = true;
+		}
+		const scope = input.scope || next.scope || {};
+		const normalizedScope = {
+			knowledge: unique(scope.knowledge || []),
+			code: unique(scope.code || []),
+		};
+		if (!sameStringArray(next.scope?.knowledge, normalizedScope.knowledge) || !sameStringArray(next.scope?.code, normalizedScope.code)) {
+			next.scope = normalizedScope;
+			changed = true;
+		}
+		if (input.budget !== undefined && JSON.stringify(next.budget || {}) !== JSON.stringify(input.budget || {})) {
+			next.budget = input.budget;
+			changed = true;
+		}
+		const gates = unique(input.gates || next.gates || []);
+		if (!sameStringArray(next.gates, gates)) {
+			next.gates = gates;
+			changed = true;
+		}
+		if (created) changed = true;
+		if (changed) {
+			next.updated = nowIso();
+			roadmap.sprints[id] = next;
+			roadmap.updated = nowIso();
+			await writeRoadmapFile(roadmapPath, roadmap);
+			await appendProjectEvent(project, {
+				ts: nowIso(),
+				kind: created ? "roadmap_sprint_created" : "roadmap_sprint_updated",
+				sprintId: id,
+				title: next.title,
+			});
+			await appendRoadmapEvent(project, {
+				ts: nowIso(),
+				action: created ? "sprint-create" : "sprint-update",
+				sprintId: id,
+				title: next.title,
+			});
+		}
+		sprint = next;
+	});
+	if ((options.refresh ?? true) && changed) await runRebuildUnlocked(project);
+	return { sprint, changed, created };
 }
 
 async function archivedTaskIds(project: WikiProject): Promise<string[]> {

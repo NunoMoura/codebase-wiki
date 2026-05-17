@@ -1,0 +1,15 @@
+import type { CodewikiBuildToolInput, WikiProject } from "../../domain/shared/types.ts";
+import { writeBuild } from "../builds.ts";
+import { runRebuild } from "../state-artifacts.ts";
+
+export async function executeCodewikiBuildTool(
+	project: WikiProject,
+	input: CodewikiBuildToolInput,
+) {
+	const result = await writeBuild(project, input);
+	if (input.refresh ?? true) await runRebuild(project);
+	return {
+		summary: `codewiki build: wrote ${result.path}`,
+		result,
+	};
+}

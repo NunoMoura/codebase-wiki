@@ -242,8 +242,9 @@ async function main() {
 			extension.shortcuts.has("alt+w"),
 			"Expected alt+w shortcut for toggling the status panel",
 		);
+		const extensionToolNames = [...extension.tools.keys()];
 		ensureIncludes(
-			[...extension.tools.keys()],
+			extensionToolNames,
 			[
 				"codewiki_setup",
 				"codewiki_bootstrap",
@@ -261,6 +262,27 @@ async function main() {
 			],
 			"extension tools",
 		);
+		const toolCatalogSource = readFileSync(resolve(repoRoot, "src", "application", "tools", "catalog.ts"), "utf8");
+		const skillToolCatalog = readFileSync(resolve(repoRoot, "skills", "codewiki", "references", "tool-catalog.md"), "utf8");
+		for (const toolName of extensionToolNames.filter((name) => name.startsWith("codewiki_"))) {
+			assert.match(toolCatalogSource, new RegExp(`name: "${toolName}"`), `Application tool catalog missing ${toolName}`);
+			assert.match(skillToolCatalog, new RegExp(`\\\`${toolName}\\\``), `Skill-facing tool catalog missing ${toolName}`);
+		}
+		for (const modulePath of [...toolCatalogSource.matchAll(/module: "([^"]+)"/g)].map((match) => match[1])) {
+			assert.ok(existsSync(resolve(repoRoot, modulePath)), `Application tool contract module missing: ${modulePath}`);
+		}
+		assert.match(toolCatalogSource, /action='sprint'/, "Application tool catalog should document safe sprint metadata path");
+		assert.match(skillToolCatalog, /action="sprint"/, "Skill-facing tool catalog should document safe sprint metadata path");
+		const piIndexSource = readFileSync(resolve(repoRoot, "src", "adapters", "pi", "index.ts"), "utf8");
+		const bootstrapSource = readFileSync(resolve(repoRoot, "src", "bootstrap.ts"), "utf8");
+		assert.match(piIndexSource, /executeCodewikiBuildTool/, "Pi build registration should delegate to application tool executor");
+		assert.match(piIndexSource, /executeCodewikiValidationTool/, "Pi validation registration should delegate to application tool executor");
+		assert.match(piIndexSource, /executeCodewikiDiffTableTool/, "Pi diff-table registration should delegate to application tool executor");
+		assert.match(bootstrapSource, /executeCodewikiSetupTool/, "Bootstrap setup tool should delegate through application tool contract");
+		for (const adapterFile of ["agency", "artifact-status", "claim", "session", "session-handoff", "state", "task"]) {
+			const adapterSource = readFileSync(resolve(repoRoot, "src", "adapters", "pi", "tools", `${adapterFile}.ts`), "utf8");
+			assert.match(adapterSource, /application\/tools/, `Pi ${adapterFile} tool should delegate to application tool module`);
+		}
 		for (const removedTool of [
 			"codewiki_rebuild",
 			"codewiki_status",
@@ -284,7 +306,7 @@ async function main() {
 		const skills = skillResult.skills.filter((skill) =>
 			skill.filePath.startsWith(repoRoot),
 		);
-		const expectedSkillNames = ["codewiki"];
+		const expectedSkillNames = ["codewiki", "codewiki-documentation", "codewiki-feedback", "codewiki-implementation", "codewiki-planning", "codewiki-validation"];
 		assert.deepEqual(
 			skills.map((skill) => skill.name).sort(),
 			expectedSkillNames,
@@ -299,7 +321,7 @@ async function main() {
 		}
 	});
 	console.log(
-		"✓ package loads through DefaultResourceLoader with one extension and one public CodeWiki skill",
+		"✓ package loads through DefaultResourceLoader with one extension and CodeWiki skills",
 	);
 
 	await withTempDir("codewiki-bootstrap-", async (projectDir) => {
@@ -870,6 +892,34 @@ async function main() {
 				)
 			: undefined;
 		assert.ok(distinctTaskId, "Distinct smoke follow-up task id missing");
+		const sprintResult = await taskTool.definition.execute(
+			"task-sprint-smoke",
+			{
+				repoPath: projectDir,
+				action: "sprint",
+				sprint: {
+					title: "Smoke related work sprint",
+					status: "active",
+					outcome: "Related smoke tasks stay grouped without a container task.",
+					task_ids: [appendedTaskId, distinctTaskId],
+					scope: {
+						knowledge: [".codewiki/kb/product/overview.md"],
+						code: ["tests/smoke/package-smoke.test.mjs"],
+					},
+					gates: ["validation", "package-smoke"],
+				},
+			},
+			undefined,
+			undefined,
+			outsideToolCtx,
+		);
+		assert.match(sprintResult.content?.[0]?.text ?? "", /sprint created SPRINT-\d+/, "Task tool should create sprint metadata through safe action");
+		const roadmapAfterSprint = JSON.parse(
+			readFileSync(resolve(projectDir, ".codewiki", "roadmap", "queue.json"), "utf8"),
+		);
+		const smokeSprint = Object.values(roadmapAfterSprint.sprints || {}).find((sprint) => sprint.title === "Smoke related work sprint");
+		assert.ok(smokeSprint, "Sprint metadata should be written through the task tool, not by hand");
+		assert.deepEqual(smokeSprint.task_ids, [appendedTaskId, distinctTaskId]);
 
 		await taskTool.definition.execute(
 			"task_update_smoke_1",

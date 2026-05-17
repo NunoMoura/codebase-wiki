@@ -4,25 +4,46 @@ description: Router and invariants for repo-local CodeWiki operation. Use when a
 id: skill.codewiki
 title: codewiki skill
 state: active
-summary: Packaged CodeWiki agent skill.
+summary: Main CodeWiki entry skill for bootstrap, status, invariants, and loop routing.
 owners: [maintainers]
-updated: "2026-05-14"
+updated: "2026-05-17"
 ---
 
 # CodeWiki
 
-Use this as the single public CodeWiki skill. Load supporting workflow files only when the current task needs that detail:
+Use this as the main CodeWiki entry skill. It owns first contact, bootstrap/status flow, core invariants, and routing to focused compiler or gateway skills. It should not duplicate detailed loop instructions.
 
-- `loops/feedback.md` — feedback compiler: ground user intent, propose a diff table, and create accepted `feedback_build` handoffs.
-- `loops/documentation.md` — documentation compiler: turn accepted feedback into `.codewiki/kb/**` updates, documentation builds, and planning handoffs.
-- `loops/implementation.md` — implementation compiler: execute roadmap work from planning/build/task context with checks and evidence.
-- `loops/validation.md` — validation gateway: independently judge horizontal and vertical alignment from fresh context.
-- `playbooks/architecture.md` — architecture review for seams, ownership friction, testability gaps, and roadmap-worthy refactors.
-- `playbooks/research.md` — external/source research workflow for evidence-backed knowledge and planning decisions.
-- `playbooks/view-audit.md` — generated graph/index audit workflow.
-- `prompts/**` and `bootstrap/**` — skill-owned prompt templates and bootstrap onboarding/starter guidance consumed by source-owned command orchestration.
+## When to use
 
-Keep user-provided or repo-local research preferences outside CodeWiki when they are not CodeWiki-specific. CodeWiki owns the compiler loops, validation gateway, graph-backed context, and repo-local memory contract; other skills may own domain-specific research, writing, testing, or implementation style.
+Use the main skill when the repo needs:
+
+- `.codewiki` setup, bootstrap, onboarding, or starter taxonomy guidance;
+- status/roadmap/session visibility before choosing work;
+- routing between feedback, documentation, planning, implementation, and validation loops;
+- CodeWiki invariants for canonical vs generated vs runtime state;
+- artifact-status coordination policy before broad edits;
+- a safe answer about whether a request belongs in a task, sprint metadata, build, validation report, or package source.
+
+For loop-specific work, load the focused skill and only the package-local assets needed for that loop:
+
+- `../codewiki-feedback/SKILL.md` and `loops/feedback.md` — capture ambiguous or semantic user intent with `codewiki_diff_table`, accepted rows, and `feedback_build`.
+- `../codewiki-documentation/SKILL.md` and `loops/documentation.md` — turn accepted feedback into `.codewiki/kb/**` changes and `documentation_build`.
+- `../codewiki-planning/SKILL.md` and `loops/planning.md` — shape validated documentation into executable tasks, sprint-aware planning, and `planning_build`.
+- `../codewiki-implementation/SKILL.md` and `loops/implementation.md` — execute one atomic task, emit `implementation_build`, and request fresh validation.
+- `../codewiki-validation/SKILL.md` and `loops/validation.md` — validate builds, task close, graph/drift, and publication/readiness gates without mutating truth.
+- `bootstrap/onboarding.md` and `bootstrap/starter-taxonomy.md` — repo-local wiki onboarding prompts and path-class starter guidance.
+- `references/tool-catalog.md` — skill-facing map from `codewiki_*` tools to `src/application/tools/**` contracts, including safe sprint metadata usage.
+- `playbooks/architecture.md`, `playbooks/research.md`, and `playbooks/view-audit.md` — focused review/playbook modes.
+
+When package-local assets need repo specs, use `codewiki_state` to locate the installed repo's `.codewiki/kb/**` sources instead of relying on package-relative `.codewiki` links.
+
+## First read and bootstrap
+
+1. Run `codewiki_state` when `.codewiki/config.json` exists or may exist. Treat it as the routing map, not final truth.
+2. If the repo has no CodeWiki config, use `/wiki-bootstrap` or internal `codewiki_setup`/`codewiki_bootstrap`.
+3. If commands are missing after install, ask the user to run `/reload`.
+4. Use `/wiki-ui` for the rich local Control Room; use `Alt+W` and `codewiki_state` for compact status.
+5. Use `bootstrap/onboarding.md` after bootstrap to infer project shape, ask only high-value questions, and propose next status/resume action.
 
 ## Package surface
 
@@ -30,11 +51,11 @@ Public commands:
 
 - `/audit [flags]`
 - `/wiki-bootstrap [project name] [--force]`
-- `Alt+W` to toggle the compact live status panel
-- `/wiki-ui [repo-path] [port]` to start the standalone local Control Room
 - `/wiki-config`
 - `/wiki-resume [TASK-###] [repo-path] [-- follow-up intent]`
 - `/wiki-session-handoff [handoff-path]`
+- `/wiki-ui [repo-path] [port]`
+- `Alt+W` to toggle the compact live status panel
 
 Internal agent tools:
 
@@ -45,70 +66,73 @@ Internal agent tools:
 - `codewiki_audit`
 - `codewiki_build`
 - `codewiki_validation`
-- `codewiki_task`
-- `codewiki_claim` (legacy compatibility alias for artifact status)
+- `codewiki_task` (tasks and sprint metadata)
+- `codewiki_diff_table`
 - `codewiki_session`
 - `codewiki_session_handoff`
 - `codewiki_agency`
+- `codewiki_claim` as a legacy compatibility alias for artifact status
 
-## Memory policy
+Daily default flow: `codewiki_state` for routing, `codewiki_artifact_status` for overlap coordination, loop-specific tools for compiler work, `codewiki_audit`/`codewiki_validation` for gates, and `codewiki_session_handoff` for required fresh-context boundaries.
 
-- Treat the parent Pi context window as expensive session RAM: keep current user intent, focused task, loaded graph/build revisions, and small decisions only.
-- Treat `.codewiki/kb/**`, roadmap tasks/queue, compiler builds, validation reports, and session queue state as persistent CodeWiki memory.
-- Treat `.codewiki/index_graph.json` as the primary generated map/state index, not as canonical intent or execution truth. Extra cached status/queue files should be avoided unless a specific adapter needs them; if present, consume them as generated caches and do not hand-edit them.
-- Default first read is `codewiki_state` or graph-backed status. Use it to locate exact knowledge, roadmap, build, validation, and code paths, then read those source-of-truth files directly before semantic edits.
-- Use bounded context tools for programmatic filtering, validation, and context packets when raw repo output would be noisy. ThinkCode is optional; fall back to CodeWiki graph/gateway/native Pi tools when unavailable.
-
-## Invariants
+## Core invariants
 
 - `.codewiki/kb/**` is canonical intended knowledge.
-- `.codewiki/roadmap/queue.json` is canonical active work truth: task records, ordering, and queue state. `.codewiki/roadmap/tasks/**` is generated task-view/context output rebuilt from queue truth and must not be hand-edited.
-- A roadmap task is a self-contained executable unit of work with clear boundaries, direct acceptance criteria, and independent validation evidence. It must not exist only to group, coordinate, sequence, or close other tasks. A sprint is the grouping unit for related tasks and may own aggregate outcome, priority, and sequencing.
-- Task boundaries forbid overlapping ownership, not shared file paths. Two tasks may touch the same file only when their outcomes and acceptance criteria remain independent and conflict-free.
-- `.codewiki/session/queue.json` is runtime coordination state for artifact status: available/in-use/waiting/conflict/stale artifacts, holders, waiters, heartbeats, TTLs, and compatibility records for legacy claim callers.
-- Compiler builds are compact transient handoff artifacts: `feedback_build`, `documentation_build`, `planning_build`, and `implementation_build`. They move through lifecycle states (`proposed`, `accepted`, `applied`, `validated`, `archived`) and can be purged after their lower-layer changes validate.
-- Validation gateways check horizontal and vertical alignment at handoffs.
-- Failed, blocked, or policy-required validation reports live under `.codewiki/validation/**`; passing validation need not be stored by default.
-- Tests live in code/test directories, not in `.codewiki/kb/**` or task folders.
-- `.codewiki/index_graph.json` is generated and must not be hand-edited.
-- Git is the full history mechanism; do not duplicate raw event history inside `.codewiki/`.
-- Pi sessions are execution history linked to tasks, not roadmap truth.
-- Artifact statuses are temporary coordination aids for parallel work; mark narrow docs/roadmap/build/validation/code artifacts in-use before non-trivial semantic edits when overlap risk exists.
-- When loop/gateway policy requires a fresh context and the adapter exposes `codewiki_session_handoff`, use that handoff instead of asking the user to manually create a new session. In Pi, tool-context `new-session` handoffs stage a durable artifact and return `/wiki-session-handoff`; only the command-context path performs `ctx.newSession` replacement.
+- `.codewiki/roadmap/queue.json` is canonical roadmap truth for tasks, ordering, and sprint metadata. Mutate it through CodeWiki tools only.
+- `.codewiki/roadmap/tasks/**` and `.codewiki/index_graph.json` are generated read models. Never hand-edit them.
+- `.codewiki/session/**` and `.codewiki/runtime/**` are operational coordination state, not durable product truth.
+- `.codewiki/builds/**` contains transient compiler handoff artifacts. Compile durable changes into knowledge, roadmap, code, tests, validation, or publication proof.
+- `.codewiki/validation/**` contains fail/block/policy-required/current validation reports.
+- Tests live in code/test directories, not in `.codewiki/kb/**` or roadmap task folders.
+- Git remains the full history mechanism; do not duplicate raw event history inside CodeWiki.
+- In this repository, `.codewiki/**` is dogfood state and `src/**`, `skills/**`, `scripts/**`, `tests/**`, `README.md`, and `package.json` are product/package source.
+
+## Task and sprint routing
+
+A roadmap task is one self-contained executable unit with a direct outcome, acceptance criteria, non-goals, verification, and independent validation evidence. Do not create a task only to coordinate, sequence, collect, or close other tasks.
+
+Sprint metadata is the grouping mechanism for related executable tasks. Route work to sprint-aware planning when accepted intent creates:
+
+- three or more related executable tasks;
+- a multi-loop cohort with a shared outcome and ordered handoffs;
+- shared budget, gates, validation/publication risk, or cross-task sequencing;
+- related work that would otherwise tempt an umbrella/container task.
+
+Do not hand-edit sprint metadata. Until an explicit sprint mutation tool exists, record the need in a feedback/planning build and route the safe mutation path to application tool contract work.
 
 ## Compiler routing
 
 ```text
 feedback compiler -> feedback_build
   -> documentation compiler -> documentation_build
-    -> planning compiler -> planning_build + roadmap work items
+    -> planning compiler -> planning_build + roadmap tasks / sprint metadata
       -> implementation compiler -> implementation_build
+        -> validation gateway -> pass | fail | block
 ```
 
-Use `codewiki_build` after accepted feedback-loop decisions so the handoff becomes a real `feedback_build` artifact, not chat-only intent. Use `codewiki_build kind='documentation'` to record knowledge/roadmap changes, and `codewiki_build kind='implementation'` to record test/code/check evidence.
+Routing rules:
 
-Use the feedback compiler as escalation whenever intent, requirements, risk, or roadmap item meaning is ambiguous. If intent asks for grouping, clustering, sprint coordination, or umbrella work, update/create a sprint or planning handoff instead of creating a task.
+- Ambiguous intent, changed requirements, risk approval, or unclear task meaning goes to feedback.
+- Accepted semantic intent becomes `feedback_build`.
+- Knowledge changes go through documentation and `documentation_build`.
+- Roadmap task shaping and sprint-aware cohort decisions go through planning and `planning_build`.
+- Code/test/docs execution happens in implementation and emits `implementation_build` before validation.
+- Independent checks happen in validation from exact refs, audits, and required proof.
+
+## Coordination and memory
+
+- Keep current user intent, focused task, loaded graph/build refs, and small decisions in chat context only.
+- Persist durable intent in knowledge, roadmap tasks/sprints, builds, validation reports, and source code/tests.
+- Use `codewiki_session` for runtime focus; it is not roadmap truth.
+- Use `codewiki_artifact_status` before non-trivial semantic writes when another session may touch overlapping paths, task state, build refs, or validation refs.
+- Use `codewiki_session_handoff` when loop/gateway policy requires fresh context. In Pi tool context, this stages a handoff and returns `/wiki-session-handoff` for command-context execution.
 
 ## Agency policy
 
 Agency modes are bounded:
 
 - `observe`: read status/graph only and report next action.
-- `maintain`: refresh/audit graph/index state and propose safe maintenance within write/subagent budgets.
-- `work`: resume a roadmap task or compiler workflow only inside explicit cycle, wall-time, write, subagent, and risk budgets.
+- `maintain`: refresh/audit graph/index state and propose safe maintenance within budget.
+- `work`: resume a task or compiler workflow only inside explicit cycle, wall-time, write, session, and risk budgets.
 
-Stop on budget exhaustion, medium/high risk beyond budget, ambiguity, destructive action, failed checks, or missing approval. Push, version bump, and archive actions require policy permission plus green checks.
-
-## Bootstrap/status flow
-
-1. If `.codewiki/config.json` is absent, use `/wiki-bootstrap` or internal `codewiki_setup`/`codewiki_bootstrap`.
-2. If commands are missing after install, ask the user to run `/reload`.
-3. Use `/wiki-ui` for the rich local Control Room; use `Alt+W` and `codewiki_state` as compact status surfaces.
-4. If CodeWiki itself is unstable while editing this repo, stop using CodeWiki tools for the refactor, restore typecheck/test stability with plain tools, then update knowledge/skills after checks pass.
-
-## Related docs
-
-- ../../.codewiki/kb/system/compilers.md
-- ../../.codewiki/kb/system/validation-gateway.md
-- ../../.codewiki/kb/system/builds.md
-- ../../.codewiki/kb/system/graph.md
+Stop on budget exhaustion, medium/high risk beyond budget, ambiguity, destructive action, failed checks, missing approval, or unavailable required validation proof.
