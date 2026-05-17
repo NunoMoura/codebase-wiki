@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-17T09:04:28.759Z",
+  "generated_at": "2026-05-17T09:06:29.281Z",
   "nodes": [
     {
       "id": "doc:.codewiki/kb/lexicon.md",
@@ -10584,127 +10584,6 @@
       "path": "TASK-067"
     },
     {
-      "id": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "kind": "implementation_build",
-      "path": ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "title": "codewiki_build tool",
-      "status": "accepted",
-      "layer": "build",
-      "lifecycle_state": "accepted",
-      "alignment_state": "aligned",
-      "compacted": true,
-      "default_hidden": true,
-      "archive_ref": "refs/codewiki/archive/task/TASK-068",
-      "superseded_by": [],
-      "evidence_summary": {
-        "canonical_source_refs": [
-          ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-          ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json",
-          "codewiki_build tool",
-          "extensions/codewiki/src/application/builds.ts",
-          "extensions/codewiki/src/application/graph.ts",
-          "extensions/codewiki/src/domain/shared/types.ts",
-          "extensions/codewiki/src/adapters/pi/schemas.ts",
-          "tests/smoke/builds.test.mjs",
-          "TASK-068"
-        ],
-        "audit_evidence_refs": [],
-        "content_proof_refs": [
-          ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json@sha256:b468b1b96698d92d37e2cad7e13def8d1fe02453e99ba00b77a3881998d63f7f",
-          "tests/smoke/builds.test.mjs@sha256:74c45844432282b340e27dbe378091f022bbadbc65e1d6398223f8fa96d329dc",
-          "extensions/codewiki/src/application/builds.ts@sha256:211aaefda741eadcf43ecc1f5b992dcd466bb4c24aa0f418dbdc64f462a8241b",
-          "extensions/codewiki/src/application/graph.ts@sha256:6aab873f036789e50a03a40f54a54a1a5ae0bf61b34cc8c792e825bbfcd89d4e",
-          "extensions/codewiki/src/domain/shared/types.ts@sha256:e23a0943e54e6b659cc41ef80499251130c0cb7b753e9f4957ce4872cb33dedf",
-          "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:8bc3759938d8d864c1ffef9097be776d6a7d1f7cc7c8bca8278d3da6fed2075f",
-          "refs/codewiki/archive/task/TASK-068",
-          "sha256:0f9ba243c61c6963a118eeae1c145d54fec2f0903a4de0682ede65d3552c4cb2"
-        ],
-        "validation_attestation_refs": []
-      }
-    },
-    {
-      "id": "source:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "kind": "canonical_source_ref",
-      "path": ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:.codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json@sha256:b468b1b96698d92d37e2cad7e13def8d1fe02453e99ba00b77a3881998d63f7f",
-      "kind": "content_proof",
-      "path": ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json@sha256:b468b1b96698d92d37e2cad7e13def8d1fe02453e99ba00b77a3881998d63f7f",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:tests/smoke/builds.test.mjs@sha256:74c45844432282b340e27dbe378091f022bbadbc65e1d6398223f8fa96d329dc",
-      "kind": "content_proof",
-      "path": "tests/smoke/builds.test.mjs@sha256:74c45844432282b340e27dbe378091f022bbadbc65e1d6398223f8fa96d329dc",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/builds.ts@sha256:211aaefda741eadcf43ecc1f5b992dcd466bb4c24aa0f418dbdc64f462a8241b",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/builds.ts@sha256:211aaefda741eadcf43ecc1f5b992dcd466bb4c24aa0f418dbdc64f462a8241b",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/graph.ts@sha256:6aab873f036789e50a03a40f54a54a1a5ae0bf61b34cc8c792e825bbfcd89d4e",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/graph.ts@sha256:6aab873f036789e50a03a40f54a54a1a5ae0bf61b34cc8c792e825bbfcd89d4e",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/domain/shared/types.ts@sha256:e23a0943e54e6b659cc41ef80499251130c0cb7b753e9f4957ce4872cb33dedf",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/domain/shared/types.ts@sha256:e23a0943e54e6b659cc41ef80499251130c0cb7b753e9f4957ce4872cb33dedf",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/adapters/pi/schemas.ts@sha256:8bc3759938d8d864c1ffef9097be776d6a7d1f7cc7c8bca8278d3da6fed2075f",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:8bc3759938d8d864c1ffef9097be776d6a7d1f7cc7c8bca8278d3da6fed2075f",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:refs/codewiki/archive/task/TASK-068",
-      "kind": "content_proof",
-      "path": "refs/codewiki/archive/task/TASK-068",
-      "proof_kind": "git_ref",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:sha256:0f9ba243c61c6963a118eeae1c145d54fec2f0903a4de0682ede65d3552c4cb2",
-      "kind": "content_proof",
-      "path": "sha256:0f9ba243c61c6963a118eeae1c145d54fec2f0903a4de0682ede65d3552c4cb2",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "archive_ref:refs/codewiki/archive/task/TASK-068",
-      "kind": "git_archive_ref",
-      "path": "refs/codewiki/archive/task/TASK-068",
-      "task_id": "TASK-068",
-      "digest": "sha256:0f9ba243c61c6963a118eeae1c145d54fec2f0903a4de0682ede65d3552c4cb2",
-      "restore_command": "/wiki-restore TASK-068",
-      "safety_status": "safe_to_push",
-      "default_hidden": true,
-      "layer": "archive"
-    },
-    {
       "id": "build:.codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
       "kind": "implementation_build",
       "path": ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
@@ -10751,735 +10630,6 @@
       "id": "closure:TASK-069",
       "kind": "closure_brief",
       "path": "TASK-069"
-    },
-    {
-      "id": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "kind": "implementation_build",
-      "path": ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "title": "codewiki_build tool",
-      "status": "accepted",
-      "layer": "build",
-      "lifecycle_state": "accepted",
-      "alignment_state": "aligned",
-      "compacted": true,
-      "default_hidden": true,
-      "archive_ref": "refs/codewiki/archive/task/TASK-070",
-      "superseded_by": [],
-      "evidence_summary": {
-        "canonical_source_refs": [
-          ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-          ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
-          "codewiki_build tool",
-          "extensions/codewiki/src/domain/shared/types.ts",
-          "extensions/codewiki/src/adapters/pi/schemas.ts",
-          "extensions/codewiki/src/application/claims.ts",
-          "extensions/codewiki/src/application/builds.ts",
-          "extensions/codewiki/src/application/graph.ts",
-          "tests/smoke/role-worktree-isolation.test.mjs",
-          "TASK-070"
-        ],
-        "audit_evidence_refs": [],
-        "content_proof_refs": [
-          ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json@sha256:67e7182e80d523f5d8f05f838d831ce518fc6b618b252a50bbb47a3e122031fe",
-          "tests/smoke/role-worktree-isolation.test.mjs@sha256:7fffd93ecfe87b2a2ece47848143e1ee53f9664a0293ca58b0c2d116c793b55a",
-          "extensions/codewiki/src/domain/shared/types.ts@sha256:1bf96e35232f704c484cffed9612a97eb1ce5a26511aa80006a0235a1155a103",
-          "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:93c389d686a7c9608e932c461ebc7ed7175534fa993b9c85eabfc754f76dc2dd",
-          "extensions/codewiki/src/application/claims.ts@sha256:de3273101578d9d65d512f955c8ecc1de7b1a4629f1ed60cc1133c7d9ad63e08",
-          "extensions/codewiki/src/application/builds.ts@sha256:65b493c862f44deef96d6f76b3a02a1f28b1bab743d7dacfb076969a4b4b2f13",
-          "extensions/codewiki/src/application/graph.ts@sha256:29057157d3e0023fce81469a90a67bcaf491078324049649326fbe7c4a0f7231",
-          "refs/codewiki/archive/task/TASK-070",
-          "sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa"
-        ],
-        "validation_attestation_refs": []
-      }
-    },
-    {
-      "id": "source:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "kind": "canonical_source_ref",
-      "path": ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "source:tests/smoke/role-worktree-isolation.test.mjs",
-      "kind": "canonical_source_ref",
-      "path": "tests/smoke/role-worktree-isolation.test.mjs",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:.codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json@sha256:67e7182e80d523f5d8f05f838d831ce518fc6b618b252a50bbb47a3e122031fe",
-      "kind": "content_proof",
-      "path": ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json@sha256:67e7182e80d523f5d8f05f838d831ce518fc6b618b252a50bbb47a3e122031fe",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:tests/smoke/role-worktree-isolation.test.mjs@sha256:7fffd93ecfe87b2a2ece47848143e1ee53f9664a0293ca58b0c2d116c793b55a",
-      "kind": "content_proof",
-      "path": "tests/smoke/role-worktree-isolation.test.mjs@sha256:7fffd93ecfe87b2a2ece47848143e1ee53f9664a0293ca58b0c2d116c793b55a",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/domain/shared/types.ts@sha256:1bf96e35232f704c484cffed9612a97eb1ce5a26511aa80006a0235a1155a103",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/domain/shared/types.ts@sha256:1bf96e35232f704c484cffed9612a97eb1ce5a26511aa80006a0235a1155a103",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/adapters/pi/schemas.ts@sha256:93c389d686a7c9608e932c461ebc7ed7175534fa993b9c85eabfc754f76dc2dd",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:93c389d686a7c9608e932c461ebc7ed7175534fa993b9c85eabfc754f76dc2dd",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/claims.ts@sha256:de3273101578d9d65d512f955c8ecc1de7b1a4629f1ed60cc1133c7d9ad63e08",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/claims.ts@sha256:de3273101578d9d65d512f955c8ecc1de7b1a4629f1ed60cc1133c7d9ad63e08",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/builds.ts@sha256:65b493c862f44deef96d6f76b3a02a1f28b1bab743d7dacfb076969a4b4b2f13",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/builds.ts@sha256:65b493c862f44deef96d6f76b3a02a1f28b1bab743d7dacfb076969a4b4b2f13",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/graph.ts@sha256:29057157d3e0023fce81469a90a67bcaf491078324049649326fbe7c4a0f7231",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/graph.ts@sha256:29057157d3e0023fce81469a90a67bcaf491078324049649326fbe7c4a0f7231",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:refs/codewiki/archive/task/TASK-070",
-      "kind": "content_proof",
-      "path": "refs/codewiki/archive/task/TASK-070",
-      "proof_kind": "git_ref",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa",
-      "kind": "content_proof",
-      "path": "sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "archive_ref:refs/codewiki/archive/task/TASK-070",
-      "kind": "git_archive_ref",
-      "path": "refs/codewiki/archive/task/TASK-070",
-      "task_id": "TASK-070",
-      "digest": "sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa",
-      "restore_command": "/wiki-restore TASK-070",
-      "safety_status": "safe_to_push",
-      "default_hidden": true,
-      "layer": "archive"
-    },
-    {
-      "id": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "kind": "implementation_build",
-      "path": ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "title": "codewiki_build tool",
-      "status": "accepted",
-      "layer": "build",
-      "lifecycle_state": "accepted",
-      "alignment_state": "aligned",
-      "compacted": true,
-      "default_hidden": true,
-      "archive_ref": "refs/codewiki/archive/task/TASK-071",
-      "superseded_by": [],
-      "evidence_summary": {
-        "canonical_source_refs": [
-          ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-          ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
-          "codewiki_build tool",
-          "extensions/codewiki/src/application/graph.ts",
-          "extensions/codewiki/src/application/state.ts",
-          "extensions/codewiki/src/domain/shared/types.ts",
-          "extensions/codewiki/src/adapters/web/control-room.ts",
-          "extensions/codewiki/src/adapters/pi/commands/ui.ts",
-          "tests/smoke/hot-context.test.mjs",
-          "tests/smoke/builds.test.mjs",
-          "tests/smoke/control-room.test.mjs",
-          "TASK-071"
-        ],
-        "audit_evidence_refs": [],
-        "content_proof_refs": [
-          ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json@sha256:cf129c194706f4386e47f6b2518437ccc2ca03c1b576844baa879f1675bee179",
-          "tests/smoke/hot-context.test.mjs@sha256:ce7e50b7fba68c1e470086589b79a50daba6d69ce4b1a1507981276c27eafe22",
-          "tests/smoke/builds.test.mjs@sha256:00f5df96bf50da7827735045a112faabf504700c8115bd6b44af20427f93b6fd",
-          "tests/smoke/control-room.test.mjs@sha256:5513dc8435e7c82a52abf0ba7ad7c170a52d990d5323c5e435d09d2988718a6c",
-          "extensions/codewiki/src/application/graph.ts@sha256:e4870501cebc993973b56661a9244958d1a5395dcbdddce6fb0378fcd11e8e30",
-          "extensions/codewiki/src/application/state.ts@sha256:3b62ed21310d8600b949a354ac5dd7f0c50723ceb77f94351be39f167c971d28",
-          "extensions/codewiki/src/domain/shared/types.ts@sha256:7689b6084446098fa09a828b7cd9c73cf0c5ba4f2464ab477d242c90c5617f91",
-          "extensions/codewiki/src/adapters/web/control-room.ts@sha256:859fbb9677bbc5afc725d5cd59c2ec628dd3a204b5f0a48ac515527667d64e68",
-          "extensions/codewiki/src/adapters/pi/commands/ui.ts@sha256:0c9fa18f4e09f008c27f734fb135bfeab947fc9350ab4a9b483a3c72676fe7cb",
-          "refs/codewiki/archive/task/TASK-071",
-          "sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324"
-        ],
-        "validation_attestation_refs": []
-      }
-    },
-    {
-      "id": "source:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "kind": "canonical_source_ref",
-      "path": ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:.codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json@sha256:cf129c194706f4386e47f6b2518437ccc2ca03c1b576844baa879f1675bee179",
-      "kind": "content_proof",
-      "path": ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json@sha256:cf129c194706f4386e47f6b2518437ccc2ca03c1b576844baa879f1675bee179",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:tests/smoke/hot-context.test.mjs@sha256:ce7e50b7fba68c1e470086589b79a50daba6d69ce4b1a1507981276c27eafe22",
-      "kind": "content_proof",
-      "path": "tests/smoke/hot-context.test.mjs@sha256:ce7e50b7fba68c1e470086589b79a50daba6d69ce4b1a1507981276c27eafe22",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:tests/smoke/builds.test.mjs@sha256:00f5df96bf50da7827735045a112faabf504700c8115bd6b44af20427f93b6fd",
-      "kind": "content_proof",
-      "path": "tests/smoke/builds.test.mjs@sha256:00f5df96bf50da7827735045a112faabf504700c8115bd6b44af20427f93b6fd",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:tests/smoke/control-room.test.mjs@sha256:5513dc8435e7c82a52abf0ba7ad7c170a52d990d5323c5e435d09d2988718a6c",
-      "kind": "content_proof",
-      "path": "tests/smoke/control-room.test.mjs@sha256:5513dc8435e7c82a52abf0ba7ad7c170a52d990d5323c5e435d09d2988718a6c",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/graph.ts@sha256:e4870501cebc993973b56661a9244958d1a5395dcbdddce6fb0378fcd11e8e30",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/graph.ts@sha256:e4870501cebc993973b56661a9244958d1a5395dcbdddce6fb0378fcd11e8e30",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/state.ts@sha256:3b62ed21310d8600b949a354ac5dd7f0c50723ceb77f94351be39f167c971d28",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/state.ts@sha256:3b62ed21310d8600b949a354ac5dd7f0c50723ceb77f94351be39f167c971d28",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/domain/shared/types.ts@sha256:7689b6084446098fa09a828b7cd9c73cf0c5ba4f2464ab477d242c90c5617f91",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/domain/shared/types.ts@sha256:7689b6084446098fa09a828b7cd9c73cf0c5ba4f2464ab477d242c90c5617f91",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/adapters/web/control-room.ts@sha256:859fbb9677bbc5afc725d5cd59c2ec628dd3a204b5f0a48ac515527667d64e68",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/adapters/web/control-room.ts@sha256:859fbb9677bbc5afc725d5cd59c2ec628dd3a204b5f0a48ac515527667d64e68",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/adapters/pi/commands/ui.ts@sha256:0c9fa18f4e09f008c27f734fb135bfeab947fc9350ab4a9b483a3c72676fe7cb",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/adapters/pi/commands/ui.ts@sha256:0c9fa18f4e09f008c27f734fb135bfeab947fc9350ab4a9b483a3c72676fe7cb",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:refs/codewiki/archive/task/TASK-071",
-      "kind": "content_proof",
-      "path": "refs/codewiki/archive/task/TASK-071",
-      "proof_kind": "git_ref",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
-      "kind": "content_proof",
-      "path": "sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "archive_ref:refs/codewiki/archive/task/TASK-071",
-      "kind": "git_archive_ref",
-      "path": "refs/codewiki/archive/task/TASK-071",
-      "task_id": "TASK-071",
-      "digest": "sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
-      "restore_command": "/wiki-restore TASK-071",
-      "safety_status": "safe_to_push",
-      "default_hidden": true,
-      "layer": "archive"
-    },
-    {
-      "id": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "kind": "implementation_build",
-      "path": ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "title": "codewiki_build tool",
-      "status": "accepted",
-      "layer": "build",
-      "lifecycle_state": "accepted",
-      "alignment_state": "aligned",
-      "compacted": true,
-      "default_hidden": true,
-      "archive_ref": "refs/codewiki/archive/task/TASK-072",
-      "superseded_by": [],
-      "evidence_summary": {
-        "canonical_source_refs": [
-          ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-          ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
-          "codewiki_build tool",
-          "extensions/codewiki/src/application/lint.ts",
-          "extensions/codewiki/src/application/graph.ts",
-          "extensions/codewiki/src/application/project.ts",
-          "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
-          "extensions/codewiki/src/infrastructure/transaction.ts",
-          "extensions/codewiki/src/infrastructure/gateway.ts",
-          "extensions/codewiki/templates.ts",
-          "scripts/codewiki-gateway.mjs",
-          "scripts/codewiki-transaction.mjs",
-          "scripts/smoke-test.mjs",
-          "extensions/codewiki/src/adapters/web/control-room.ts",
-          "README.md",
-          "skills/codewiki-view-audit/SKILL.md",
-          "tests/smoke/hot-retention.test.mjs",
-          "tests/smoke/builds.test.mjs",
-          "TASK-072"
-        ],
-        "audit_evidence_refs": [],
-        "content_proof_refs": [
-          ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json@sha256:5219d9f10245e95f4e133e06e2c33ac4d0c1c0a59954b7ae88c27f6d8d565e3d",
-          "tests/smoke/hot-retention.test.mjs@sha256:90406c1aceef9cdae7a0763199139d8e39b97480dc9f69570ce95c2362e18d33",
-          "tests/smoke/builds.test.mjs@sha256:00f5df96bf50da7827735045a112faabf504700c8115bd6b44af20427f93b6fd",
-          "scripts/smoke-test.mjs@sha256:0d89405ca7c57ce81b797c2807a36660d41f7bc9c59c72a73dca7b6536fdba77",
-          "extensions/codewiki/src/application/lint.ts@sha256:c0fd347a55de56c764847cb8d3f355777453925a3876aef12d73575cccb622c4",
-          "extensions/codewiki/src/application/graph.ts@sha256:5e32e1a04354d6c558c4fe044faf4cd48de979d4aefa42a7c6ab68de99bde632",
-          "extensions/codewiki/src/application/project.ts@sha256:f62495fef5919dc7c540c1d9a35dc3fb631e343a5ab9bf2d1c55ba670853eafe",
-          "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts@sha256:8c1c8c417c9bea90d372ad23818840955351e3ee0d57e499be15cd44c945535c",
-          "extensions/codewiki/src/infrastructure/transaction.ts@sha256:fdb19a5ffbcbc6f962e79b15c27587732d753ed8848079fca7496b29776061b7",
-          "extensions/codewiki/src/infrastructure/gateway.ts@sha256:ced3facca2ce6e51e52c1ac59d5bfbb6a15780abafa77b6d68b09793d8cb3d4a",
-          "extensions/codewiki/templates.ts@sha256:ca26fa6f7e5ff8bc4a10b8e6664585b30b03bb928e922b4a231ff252aa98b296",
-          "scripts/codewiki-gateway.mjs@sha256:e0ccb18313358db0bcbbf393a158024aac3e32d013523558d1a2ea30c504bf33",
-          "scripts/codewiki-transaction.mjs@sha256:fe24de6cc3cd17da91edc532bde5a4003437a558e8e28c4783ec29812334f789",
-          "extensions/codewiki/src/adapters/web/control-room.ts@sha256:c1df8aca4126d6973a938e3f216f8c7eedff0d081cce06f1abcd9146adb75a68",
-          "README.md@sha256:9424413daed9b80f70072963b79941f58637fb8a4cb79e78b5b8005f578f38de",
-          "skills/codewiki-view-audit/SKILL.md@sha256:780eb2439b9390215f1046ae9d6f983e038f22cb8388d5134f680b1485c0653a",
-          "refs/codewiki/archive/task/TASK-072",
-          "sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210"
-        ],
-        "validation_attestation_refs": []
-      }
-    },
-    {
-      "id": "source:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "kind": "canonical_source_ref",
-      "path": ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "source:extensions/codewiki/src/application/project.ts",
-      "kind": "canonical_source_ref",
-      "path": "extensions/codewiki/src/application/project.ts",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "source:extensions/codewiki/src/infrastructure/transaction.ts",
-      "kind": "canonical_source_ref",
-      "path": "extensions/codewiki/src/infrastructure/transaction.ts",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "source:scripts/codewiki-gateway.mjs",
-      "kind": "canonical_source_ref",
-      "path": "scripts/codewiki-gateway.mjs",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "source:scripts/codewiki-transaction.mjs",
-      "kind": "canonical_source_ref",
-      "path": "scripts/codewiki-transaction.mjs",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json@sha256:5219d9f10245e95f4e133e06e2c33ac4d0c1c0a59954b7ae88c27f6d8d565e3d",
-      "kind": "content_proof",
-      "path": ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json@sha256:5219d9f10245e95f4e133e06e2c33ac4d0c1c0a59954b7ae88c27f6d8d565e3d",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:tests/smoke/hot-retention.test.mjs@sha256:90406c1aceef9cdae7a0763199139d8e39b97480dc9f69570ce95c2362e18d33",
-      "kind": "content_proof",
-      "path": "tests/smoke/hot-retention.test.mjs@sha256:90406c1aceef9cdae7a0763199139d8e39b97480dc9f69570ce95c2362e18d33",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:scripts/smoke-test.mjs@sha256:0d89405ca7c57ce81b797c2807a36660d41f7bc9c59c72a73dca7b6536fdba77",
-      "kind": "content_proof",
-      "path": "scripts/smoke-test.mjs@sha256:0d89405ca7c57ce81b797c2807a36660d41f7bc9c59c72a73dca7b6536fdba77",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/lint.ts@sha256:c0fd347a55de56c764847cb8d3f355777453925a3876aef12d73575cccb622c4",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/lint.ts@sha256:c0fd347a55de56c764847cb8d3f355777453925a3876aef12d73575cccb622c4",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/graph.ts@sha256:5e32e1a04354d6c558c4fe044faf4cd48de979d4aefa42a7c6ab68de99bde632",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/graph.ts@sha256:5e32e1a04354d6c558c4fe044faf4cd48de979d4aefa42a7c6ab68de99bde632",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/project.ts@sha256:f62495fef5919dc7c540c1d9a35dc3fb631e343a5ab9bf2d1c55ba670853eafe",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/project.ts@sha256:f62495fef5919dc7c540c1d9a35dc3fb631e343a5ab9bf2d1c55ba670853eafe",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts@sha256:8c1c8c417c9bea90d372ad23818840955351e3ee0d57e499be15cd44c945535c",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts@sha256:8c1c8c417c9bea90d372ad23818840955351e3ee0d57e499be15cd44c945535c",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/infrastructure/transaction.ts@sha256:fdb19a5ffbcbc6f962e79b15c27587732d753ed8848079fca7496b29776061b7",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/infrastructure/transaction.ts@sha256:fdb19a5ffbcbc6f962e79b15c27587732d753ed8848079fca7496b29776061b7",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/infrastructure/gateway.ts@sha256:ced3facca2ce6e51e52c1ac59d5bfbb6a15780abafa77b6d68b09793d8cb3d4a",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/infrastructure/gateway.ts@sha256:ced3facca2ce6e51e52c1ac59d5bfbb6a15780abafa77b6d68b09793d8cb3d4a",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/templates.ts@sha256:ca26fa6f7e5ff8bc4a10b8e6664585b30b03bb928e922b4a231ff252aa98b296",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/templates.ts@sha256:ca26fa6f7e5ff8bc4a10b8e6664585b30b03bb928e922b4a231ff252aa98b296",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:scripts/codewiki-gateway.mjs@sha256:e0ccb18313358db0bcbbf393a158024aac3e32d013523558d1a2ea30c504bf33",
-      "kind": "content_proof",
-      "path": "scripts/codewiki-gateway.mjs@sha256:e0ccb18313358db0bcbbf393a158024aac3e32d013523558d1a2ea30c504bf33",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:scripts/codewiki-transaction.mjs@sha256:fe24de6cc3cd17da91edc532bde5a4003437a558e8e28c4783ec29812334f789",
-      "kind": "content_proof",
-      "path": "scripts/codewiki-transaction.mjs@sha256:fe24de6cc3cd17da91edc532bde5a4003437a558e8e28c4783ec29812334f789",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/adapters/web/control-room.ts@sha256:c1df8aca4126d6973a938e3f216f8c7eedff0d081cce06f1abcd9146adb75a68",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/adapters/web/control-room.ts@sha256:c1df8aca4126d6973a938e3f216f8c7eedff0d081cce06f1abcd9146adb75a68",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:README.md@sha256:9424413daed9b80f70072963b79941f58637fb8a4cb79e78b5b8005f578f38de",
-      "kind": "content_proof",
-      "path": "README.md@sha256:9424413daed9b80f70072963b79941f58637fb8a4cb79e78b5b8005f578f38de",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:skills/codewiki-view-audit/SKILL.md@sha256:780eb2439b9390215f1046ae9d6f983e038f22cb8388d5134f680b1485c0653a",
-      "kind": "content_proof",
-      "path": "skills/codewiki-view-audit/SKILL.md@sha256:780eb2439b9390215f1046ae9d6f983e038f22cb8388d5134f680b1485c0653a",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:refs/codewiki/archive/task/TASK-072",
-      "kind": "content_proof",
-      "path": "refs/codewiki/archive/task/TASK-072",
-      "proof_kind": "git_ref",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
-      "kind": "content_proof",
-      "path": "sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "archive_ref:refs/codewiki/archive/task/TASK-072",
-      "kind": "git_archive_ref",
-      "path": "refs/codewiki/archive/task/TASK-072",
-      "task_id": "TASK-072",
-      "digest": "sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
-      "restore_command": "/wiki-restore TASK-072",
-      "safety_status": "safe_to_push",
-      "default_hidden": true,
-      "layer": "archive"
-    },
-    {
-      "id": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "kind": "implementation_build",
-      "path": ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "title": "codewiki_build tool",
-      "status": "accepted",
-      "layer": "build",
-      "lifecycle_state": "accepted",
-      "alignment_state": "aligned",
-      "compacted": true,
-      "default_hidden": true,
-      "archive_ref": "refs/codewiki/archive/task/TASK-073",
-      "superseded_by": [],
-      "evidence_summary": {
-        "canonical_source_refs": [
-          ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-          ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json",
-          ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json",
-          "codewiki_build tool",
-          ".codewiki/kb/system/compilers.md",
-          ".codewiki/kb/system/builds.md",
-          ".codewiki/kb/system/validation-gateway.md",
-          ".codewiki/kb/system/roadmap.md",
-          ".codewiki/kb/system/graph.md",
-          ".codewiki/kb/system/overview.md",
-          ".codewiki/kb/lexicon.md",
-          ".codewiki/kb/product/users/agents.md",
-          "TASK-073",
-          "extensions/codewiki/src/application/builds.ts",
-          "extensions/codewiki/src/application/graph.ts",
-          "extensions/codewiki/src/application/state-builders.ts",
-          "extensions/codewiki/src/application/lint.ts",
-          "extensions/codewiki/src/domain/shared/types.ts",
-          "extensions/codewiki/src/adapters/pi/schemas.ts",
-          "extensions/codewiki/src/adapters/pi/index.ts",
-          "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
-          "tests/smoke/builds.test.mjs",
-          "tests/smoke/drift-propagation.test.mjs",
-          "scripts/smoke-test.mjs"
-        ],
-        "audit_evidence_refs": [],
-        "content_proof_refs": [
-          ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json@sha256:1d1cf64075fb67ff1aca6381136968bace518e18291e15684bb8e5c030fdbd1e",
-          ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json@sha256:eb76e2a398723df4204a4cab13fd13e8b1943350e170a92c00070806d121f8d3",
-          "tests/smoke/builds.test.mjs@sha256:114f13f095ee6aa1d6fe3bdc7a8c64e93dc5268bce3040930762f6e30875532d",
-          "tests/smoke/drift-propagation.test.mjs@sha256:f582f82281975b5d59bee435b946709f39070649d2dda76fd56ca5ed9c00df6b",
-          "scripts/smoke-test.mjs@sha256:f90f22343644fa14306136ea6e2419c761c92d5a20fcc8a6a2dc9bdb7e08781b",
-          "extensions/codewiki/src/application/builds.ts@sha256:bcb6f375b6bfd800b0f0dc1573e7fc576c4e78eb0e16296e1e0339e52d2aa65c",
-          "extensions/codewiki/src/application/graph.ts@sha256:b9272982b58dcb725d5768eb64098f0760fcf461149daa3df4d1f961a9d614ae",
-          "extensions/codewiki/src/application/state-builders.ts@sha256:9c10e0f40b9e3021f7e2b83c1d577d2077c2db08935fda64f3df5bc9301f094d",
-          "extensions/codewiki/src/application/lint.ts@sha256:5abf2a858ad21df009b93dab825a10e4834b1d1140768e9d3c82111f98178e8e",
-          "extensions/codewiki/src/domain/shared/types.ts@sha256:6bc8fc61a5e8063037c3b7f3d725812567353eded19a66da1bc8f255b6c89220",
-          "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:85715505a465264fc65d551a4bf662d3af86464376a455ce2889833af789beee",
-          "extensions/codewiki/src/adapters/pi/index.ts@sha256:41f056530809bf5dcd625fb946a87b0980045b8e1a6ee4c62875a5adbab6437c",
-          "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts@sha256:c84e72f9b236fd69ffcc82087774cf6ed8fc708c6a0bb7f7d60ba6de4d68b97b",
-          "refs/codewiki/archive/task/TASK-073",
-          "sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5"
-        ],
-        "validation_attestation_refs": []
-      }
-    },
-    {
-      "id": "source:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "kind": "canonical_source_ref",
-      "path": ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "layer": "source",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:.codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json@sha256:1d1cf64075fb67ff1aca6381136968bace518e18291e15684bb8e5c030fdbd1e",
-      "kind": "content_proof",
-      "path": ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json@sha256:1d1cf64075fb67ff1aca6381136968bace518e18291e15684bb8e5c030fdbd1e",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:.codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json@sha256:eb76e2a398723df4204a4cab13fd13e8b1943350e170a92c00070806d121f8d3",
-      "kind": "content_proof",
-      "path": ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json@sha256:eb76e2a398723df4204a4cab13fd13e8b1943350e170a92c00070806d121f8d3",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:tests/smoke/builds.test.mjs@sha256:114f13f095ee6aa1d6fe3bdc7a8c64e93dc5268bce3040930762f6e30875532d",
-      "kind": "content_proof",
-      "path": "tests/smoke/builds.test.mjs@sha256:114f13f095ee6aa1d6fe3bdc7a8c64e93dc5268bce3040930762f6e30875532d",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:tests/smoke/drift-propagation.test.mjs@sha256:f582f82281975b5d59bee435b946709f39070649d2dda76fd56ca5ed9c00df6b",
-      "kind": "content_proof",
-      "path": "tests/smoke/drift-propagation.test.mjs@sha256:f582f82281975b5d59bee435b946709f39070649d2dda76fd56ca5ed9c00df6b",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:scripts/smoke-test.mjs@sha256:f90f22343644fa14306136ea6e2419c761c92d5a20fcc8a6a2dc9bdb7e08781b",
-      "kind": "content_proof",
-      "path": "scripts/smoke-test.mjs@sha256:f90f22343644fa14306136ea6e2419c761c92d5a20fcc8a6a2dc9bdb7e08781b",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/builds.ts@sha256:bcb6f375b6bfd800b0f0dc1573e7fc576c4e78eb0e16296e1e0339e52d2aa65c",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/builds.ts@sha256:bcb6f375b6bfd800b0f0dc1573e7fc576c4e78eb0e16296e1e0339e52d2aa65c",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/graph.ts@sha256:b9272982b58dcb725d5768eb64098f0760fcf461149daa3df4d1f961a9d614ae",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/graph.ts@sha256:b9272982b58dcb725d5768eb64098f0760fcf461149daa3df4d1f961a9d614ae",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/state-builders.ts@sha256:9c10e0f40b9e3021f7e2b83c1d577d2077c2db08935fda64f3df5bc9301f094d",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/state-builders.ts@sha256:9c10e0f40b9e3021f7e2b83c1d577d2077c2db08935fda64f3df5bc9301f094d",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/application/lint.ts@sha256:5abf2a858ad21df009b93dab825a10e4834b1d1140768e9d3c82111f98178e8e",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/application/lint.ts@sha256:5abf2a858ad21df009b93dab825a10e4834b1d1140768e9d3c82111f98178e8e",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/domain/shared/types.ts@sha256:6bc8fc61a5e8063037c3b7f3d725812567353eded19a66da1bc8f255b6c89220",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/domain/shared/types.ts@sha256:6bc8fc61a5e8063037c3b7f3d725812567353eded19a66da1bc8f255b6c89220",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/adapters/pi/schemas.ts@sha256:85715505a465264fc65d551a4bf662d3af86464376a455ce2889833af789beee",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:85715505a465264fc65d551a4bf662d3af86464376a455ce2889833af789beee",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/adapters/pi/index.ts@sha256:41f056530809bf5dcd625fb946a87b0980045b8e1a6ee4c62875a5adbab6437c",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/adapters/pi/index.ts@sha256:41f056530809bf5dcd625fb946a87b0980045b8e1a6ee4c62875a5adbab6437c",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts@sha256:c84e72f9b236fd69ffcc82087774cf6ed8fc708c6a0bb7f7d60ba6de4d68b97b",
-      "kind": "content_proof",
-      "path": "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts@sha256:c84e72f9b236fd69ffcc82087774cf6ed8fc708c6a0bb7f7d60ba6de4d68b97b",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:refs/codewiki/archive/task/TASK-073",
-      "kind": "content_proof",
-      "path": "refs/codewiki/archive/task/TASK-073",
-      "proof_kind": "git_ref",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "content_proof:sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5",
-      "kind": "content_proof",
-      "path": "sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5",
-      "proof_kind": "digest",
-      "layer": "content_proof",
-      "default_hidden": true
-    },
-    {
-      "id": "archive_ref:refs/codewiki/archive/task/TASK-073",
-      "kind": "git_archive_ref",
-      "path": "refs/codewiki/archive/task/TASK-073",
-      "task_id": "TASK-073",
-      "digest": "sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5",
-      "restore_command": "/wiki-restore TASK-073",
-      "safety_status": "safe_to_push",
-      "default_hidden": true,
-      "layer": "archive"
     },
     {
       "id": "build:.codewiki/builds/implementation/2026-05-13-task-074-claim-wait-queue.json",
@@ -12440,6 +11590,13 @@
       "id": "source:src/application/gateway/index.ts",
       "kind": "canonical_source_ref",
       "path": "src/application/gateway/index.ts",
+      "layer": "source",
+      "default_hidden": true
+    },
+    {
+      "id": "source:scripts/codewiki-gateway.mjs",
+      "kind": "canonical_source_ref",
+      "path": "scripts/codewiki-gateway.mjs",
       "layer": "source",
       "default_hidden": true
     },
@@ -19667,56 +18824,6 @@
       "proof_kind": "digest",
       "layer": "content_proof",
       "default_hidden": true
-    },
-    {
-      "id": "claim:CLAIM-093",
-      "kind": "change_claim",
-      "claim_id": "CLAIM-093",
-      "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-      "agent_name": "Koala",
-      "mode": "write",
-      "role": "builder",
-      "status": "active",
-      "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-      "expires_at": "2026-05-17T10:40:44.412Z",
-      "scopes": [
-        {
-          "layer": "code",
-          "path": "src/application/gc.ts"
-        },
-        {
-          "layer": "code",
-          "path": "tests/smoke/hot-retention.test.mjs"
-        },
-        {
-          "layer": "roadmap",
-          "task_id": "TASK-100"
-        },
-        {
-          "layer": "build",
-          "path": ".codewiki/builds/implementation/**"
-        }
-      ]
-    },
-    {
-      "id": "claim_scope:src/application/gc.ts",
-      "kind": "change_claim_scope",
-      "path": "src/application/gc.ts"
-    },
-    {
-      "id": "claim_scope:tests/smoke/hot-retention.test.mjs",
-      "kind": "change_claim_scope",
-      "path": "tests/smoke/hot-retention.test.mjs"
-    },
-    {
-      "id": "claim_scope:TASK-100",
-      "kind": "change_claim_scope",
-      "path": "TASK-100"
-    },
-    {
-      "id": "claim_scope:.codewiki/builds/implementation/**",
-      "kind": "change_claim_scope",
-      "path": ".codewiki/builds/implementation/**"
     },
     {
       "id": "validation:.codewiki/validation/2026-05-13-task-close-block-task-074.json",
@@ -39011,119 +38118,6 @@
     },
     {
       "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "source:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "source:.codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "source:codewiki_build tool",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "source:extensions/codewiki/src/application/builds.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "source:extensions/codewiki/src/application/graph.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "source:extensions/codewiki/src/domain/shared/types.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "source:extensions/codewiki/src/adapters/pi/schemas.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "source:tests/smoke/builds.test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "source:TASK-068",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "content_proof:.codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json@sha256:b468b1b96698d92d37e2cad7e13def8d1fe02453e99ba00b77a3881998d63f7f",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "content_proof:tests/smoke/builds.test.mjs@sha256:74c45844432282b340e27dbe378091f022bbadbc65e1d6398223f8fa96d329dc",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "content_proof:extensions/codewiki/src/application/builds.ts@sha256:211aaefda741eadcf43ecc1f5b992dcd466bb4c24aa0f418dbdc64f462a8241b",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "content_proof:extensions/codewiki/src/application/graph.ts@sha256:6aab873f036789e50a03a40f54a54a1a5ae0bf61b34cc8c792e825bbfcd89d4e",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "content_proof:extensions/codewiki/src/domain/shared/types.ts@sha256:e23a0943e54e6b659cc41ef80499251130c0cb7b753e9f4957ce4872cb33dedf",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "content_proof:extensions/codewiki/src/adapters/pi/schemas.ts@sha256:8bc3759938d8d864c1ffef9097be776d6a7d1f7cc7c8bca8278d3da6fed2075f",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "content_proof:refs/codewiki/archive/task/TASK-068",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "content_proof:sha256:0f9ba243c61c6963a118eeae1c145d54fec2f0903a4de0682ede65d3552c4cb2",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "task:TASK-068"
-    },
-    {
-      "kind": "build_archive_ref",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-      "to": "archive_ref:refs/codewiki/archive/task/TASK-068",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
       "from": "build:.codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
       "to": "source:.codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
       "default_hidden": true
@@ -39197,758 +38191,6 @@
       "kind": "build_produces_closure",
       "from": "build:.codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
       "to": "closure:TASK-069"
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "source:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "source:.codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "source:codewiki_build tool",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "source:extensions/codewiki/src/domain/shared/types.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "source:extensions/codewiki/src/adapters/pi/schemas.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "source:extensions/codewiki/src/application/claims.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "source:extensions/codewiki/src/application/builds.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "source:extensions/codewiki/src/application/graph.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "source:tests/smoke/role-worktree-isolation.test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "source:TASK-070",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "content_proof:.codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json@sha256:67e7182e80d523f5d8f05f838d831ce518fc6b618b252a50bbb47a3e122031fe",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "content_proof:tests/smoke/role-worktree-isolation.test.mjs@sha256:7fffd93ecfe87b2a2ece47848143e1ee53f9664a0293ca58b0c2d116c793b55a",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "content_proof:extensions/codewiki/src/domain/shared/types.ts@sha256:1bf96e35232f704c484cffed9612a97eb1ce5a26511aa80006a0235a1155a103",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "content_proof:extensions/codewiki/src/adapters/pi/schemas.ts@sha256:93c389d686a7c9608e932c461ebc7ed7175534fa993b9c85eabfc754f76dc2dd",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "content_proof:extensions/codewiki/src/application/claims.ts@sha256:de3273101578d9d65d512f955c8ecc1de7b1a4629f1ed60cc1133c7d9ad63e08",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "content_proof:extensions/codewiki/src/application/builds.ts@sha256:65b493c862f44deef96d6f76b3a02a1f28b1bab743d7dacfb076969a4b4b2f13",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "content_proof:extensions/codewiki/src/application/graph.ts@sha256:29057157d3e0023fce81469a90a67bcaf491078324049649326fbe7c4a0f7231",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "content_proof:refs/codewiki/archive/task/TASK-070",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "content_proof:sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "task:TASK-070"
-    },
-    {
-      "kind": "build_archive_ref",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-      "to": "archive_ref:refs/codewiki/archive/task/TASK-070",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:.codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:codewiki_build tool",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:extensions/codewiki/src/application/graph.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:extensions/codewiki/src/application/state.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:extensions/codewiki/src/domain/shared/types.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:extensions/codewiki/src/adapters/web/control-room.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:extensions/codewiki/src/adapters/pi/commands/ui.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:tests/smoke/hot-context.test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:tests/smoke/builds.test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:tests/smoke/control-room.test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "source:TASK-071",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:.codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json@sha256:cf129c194706f4386e47f6b2518437ccc2ca03c1b576844baa879f1675bee179",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:tests/smoke/hot-context.test.mjs@sha256:ce7e50b7fba68c1e470086589b79a50daba6d69ce4b1a1507981276c27eafe22",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:tests/smoke/builds.test.mjs@sha256:00f5df96bf50da7827735045a112faabf504700c8115bd6b44af20427f93b6fd",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:tests/smoke/control-room.test.mjs@sha256:5513dc8435e7c82a52abf0ba7ad7c170a52d990d5323c5e435d09d2988718a6c",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:extensions/codewiki/src/application/graph.ts@sha256:e4870501cebc993973b56661a9244958d1a5395dcbdddce6fb0378fcd11e8e30",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:extensions/codewiki/src/application/state.ts@sha256:3b62ed21310d8600b949a354ac5dd7f0c50723ceb77f94351be39f167c971d28",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:extensions/codewiki/src/domain/shared/types.ts@sha256:7689b6084446098fa09a828b7cd9c73cf0c5ba4f2464ab477d242c90c5617f91",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:extensions/codewiki/src/adapters/web/control-room.ts@sha256:859fbb9677bbc5afc725d5cd59c2ec628dd3a204b5f0a48ac515527667d64e68",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:extensions/codewiki/src/adapters/pi/commands/ui.ts@sha256:0c9fa18f4e09f008c27f734fb135bfeab947fc9350ab4a9b483a3c72676fe7cb",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:refs/codewiki/archive/task/TASK-071",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "content_proof:sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "task:TASK-071"
-    },
-    {
-      "kind": "build_archive_ref",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-      "to": "archive_ref:refs/codewiki/archive/task/TASK-071",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:codewiki_build tool",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:extensions/codewiki/src/application/lint.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:extensions/codewiki/src/application/graph.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:extensions/codewiki/src/application/project.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:extensions/codewiki/src/infrastructure/transaction.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:extensions/codewiki/src/infrastructure/gateway.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:extensions/codewiki/templates.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:scripts/codewiki-gateway.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:scripts/codewiki-transaction.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:scripts/smoke-test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:extensions/codewiki/src/adapters/web/control-room.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:README.md",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:skills/codewiki-view-audit/SKILL.md",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:tests/smoke/hot-retention.test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:tests/smoke/builds.test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "source:TASK-072",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:.codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json@sha256:5219d9f10245e95f4e133e06e2c33ac4d0c1c0a59954b7ae88c27f6d8d565e3d",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:tests/smoke/hot-retention.test.mjs@sha256:90406c1aceef9cdae7a0763199139d8e39b97480dc9f69570ce95c2362e18d33",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:tests/smoke/builds.test.mjs@sha256:00f5df96bf50da7827735045a112faabf504700c8115bd6b44af20427f93b6fd",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:scripts/smoke-test.mjs@sha256:0d89405ca7c57ce81b797c2807a36660d41f7bc9c59c72a73dca7b6536fdba77",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:extensions/codewiki/src/application/lint.ts@sha256:c0fd347a55de56c764847cb8d3f355777453925a3876aef12d73575cccb622c4",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:extensions/codewiki/src/application/graph.ts@sha256:5e32e1a04354d6c558c4fe044faf4cd48de979d4aefa42a7c6ab68de99bde632",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:extensions/codewiki/src/application/project.ts@sha256:f62495fef5919dc7c540c1d9a35dc3fb631e343a5ab9bf2d1c55ba670853eafe",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts@sha256:8c1c8c417c9bea90d372ad23818840955351e3ee0d57e499be15cd44c945535c",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:extensions/codewiki/src/infrastructure/transaction.ts@sha256:fdb19a5ffbcbc6f962e79b15c27587732d753ed8848079fca7496b29776061b7",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:extensions/codewiki/src/infrastructure/gateway.ts@sha256:ced3facca2ce6e51e52c1ac59d5bfbb6a15780abafa77b6d68b09793d8cb3d4a",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:extensions/codewiki/templates.ts@sha256:ca26fa6f7e5ff8bc4a10b8e6664585b30b03bb928e922b4a231ff252aa98b296",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:scripts/codewiki-gateway.mjs@sha256:e0ccb18313358db0bcbbf393a158024aac3e32d013523558d1a2ea30c504bf33",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:scripts/codewiki-transaction.mjs@sha256:fe24de6cc3cd17da91edc532bde5a4003437a558e8e28c4783ec29812334f789",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:extensions/codewiki/src/adapters/web/control-room.ts@sha256:c1df8aca4126d6973a938e3f216f8c7eedff0d081cce06f1abcd9146adb75a68",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:README.md@sha256:9424413daed9b80f70072963b79941f58637fb8a4cb79e78b5b8005f578f38de",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:skills/codewiki-view-audit/SKILL.md@sha256:780eb2439b9390215f1046ae9d6f983e038f22cb8388d5134f680b1485c0653a",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:refs/codewiki/archive/task/TASK-072",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "content_proof:sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "task:TASK-072"
-    },
-    {
-      "kind": "build_archive_ref",
-      "from": "build:.codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-      "to": "archive_ref:refs/codewiki/archive/task/TASK-072",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:codewiki_build tool",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/kb/system/compilers.md",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/kb/system/builds.md",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/kb/system/validation-gateway.md",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/kb/system/roadmap.md",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/kb/system/graph.md",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/kb/system/overview.md",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/kb/lexicon.md",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:.codewiki/kb/product/users/agents.md",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:TASK-073",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:extensions/codewiki/src/application/builds.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:extensions/codewiki/src/application/graph.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:extensions/codewiki/src/application/state-builders.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:extensions/codewiki/src/application/lint.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:extensions/codewiki/src/domain/shared/types.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:extensions/codewiki/src/adapters/pi/schemas.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:extensions/codewiki/src/adapters/pi/index.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:tests/smoke/builds.test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:tests/smoke/drift-propagation.test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_references_canonical_source",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "source:scripts/smoke-test.mjs",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:.codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json@sha256:1d1cf64075fb67ff1aca6381136968bace518e18291e15684bb8e5c030fdbd1e",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:.codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json@sha256:eb76e2a398723df4204a4cab13fd13e8b1943350e170a92c00070806d121f8d3",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:tests/smoke/builds.test.mjs@sha256:114f13f095ee6aa1d6fe3bdc7a8c64e93dc5268bce3040930762f6e30875532d",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:tests/smoke/drift-propagation.test.mjs@sha256:f582f82281975b5d59bee435b946709f39070649d2dda76fd56ca5ed9c00df6b",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:scripts/smoke-test.mjs@sha256:f90f22343644fa14306136ea6e2419c761c92d5a20fcc8a6a2dc9bdb7e08781b",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:extensions/codewiki/src/application/builds.ts@sha256:bcb6f375b6bfd800b0f0dc1573e7fc576c4e78eb0e16296e1e0339e52d2aa65c",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:extensions/codewiki/src/application/graph.ts@sha256:b9272982b58dcb725d5768eb64098f0760fcf461149daa3df4d1f961a9d614ae",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:extensions/codewiki/src/application/state-builders.ts@sha256:9c10e0f40b9e3021f7e2b83c1d577d2077c2db08935fda64f3df5bc9301f094d",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:extensions/codewiki/src/application/lint.ts@sha256:5abf2a858ad21df009b93dab825a10e4834b1d1140768e9d3c82111f98178e8e",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:extensions/codewiki/src/domain/shared/types.ts@sha256:6bc8fc61a5e8063037c3b7f3d725812567353eded19a66da1bc8f255b6c89220",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:extensions/codewiki/src/adapters/pi/schemas.ts@sha256:85715505a465264fc65d551a4bf662d3af86464376a455ce2889833af789beee",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:extensions/codewiki/src/adapters/pi/index.ts@sha256:41f056530809bf5dcd625fb946a87b0980045b8e1a6ee4c62875a5adbab6437c",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts@sha256:c84e72f9b236fd69ffcc82087774cf6ed8fc708c6a0bb7f7d60ba6de4d68b97b",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:refs/codewiki/archive/task/TASK-073",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_content_proof",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "content_proof:sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5",
-      "default_hidden": true
-    },
-    {
-      "kind": "build_task",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "task:TASK-073"
-    },
-    {
-      "kind": "build_archive_ref",
-      "from": "build:.codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-      "to": "archive_ref:refs/codewiki/archive/task/TASK-073",
-      "default_hidden": true
     },
     {
       "kind": "build_references_canonical_source",
@@ -50623,31 +48865,6 @@
       "default_hidden": true
     },
     {
-      "kind": "claim_task",
-      "from": "claim:CLAIM-093",
-      "to": "task:TASK-100"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-093",
-      "to": "claim_scope:src/application/gc.ts"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-093",
-      "to": "claim_scope:tests/smoke/hot-retention.test.mjs"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-093",
-      "to": "claim_scope:TASK-100"
-    },
-    {
-      "kind": "claim_scope",
-      "from": "claim:CLAIM-093",
-      "to": "claim_scope:.codewiki/builds/implementation/**"
-    },
-    {
       "kind": "validation_attests_source",
       "from": "validation:.codewiki/validation/2026-05-13-task-close-block-task-074.json",
       "to": "source:.codewiki/builds/implementation/2026-05-13-task-074-session-handoff-fresh-process-fix.json; .codewiki/builds/implementation/2026-05-13-task-074-loop-isolation-session-handoff.json",
@@ -54636,236 +52853,25 @@
       "dirty_paths": []
     },
     "claims": {
-      "active_claim_count": 1,
+      "active_claim_count": 0,
       "warning_count": 0,
       "conflict_count": 0,
       "pending_waiter_count": 0,
       "ready_waiter_count": 0,
-      "by_role": {
-        "builder": 1
-      },
-      "isolation": [
-        {
-          "id": "CLAIM-093",
-          "role": "builder",
-          "mode": "write",
-          "task_id": "TASK-100"
-        }
-      ],
-      "claims": [
-        {
-          "id": "CLAIM-093",
-          "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-          "agent_name": "Koala",
-          "status": "active",
-          "mode": "write",
-          "role": "builder",
-          "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-          "task_id": "TASK-100",
-          "scopes": [
-            {
-              "layer": "code",
-              "path": "src/application/gc.ts"
-            },
-            {
-              "layer": "code",
-              "path": "tests/smoke/hot-retention.test.mjs"
-            },
-            {
-              "layer": "roadmap",
-              "task_id": "TASK-100"
-            },
-            {
-              "layer": "build",
-              "path": ".codewiki/builds/implementation/**"
-            }
-          ],
-          "created_at": "2026-05-17T08:40:44Z",
-          "updated_at": "2026-05-17T08:40:44Z",
-          "expires_at": "2026-05-17T10:40:44.412Z"
-        }
-      ],
+      "by_role": {},
+      "isolation": [],
+      "claims": [],
       "conflicts": [],
       "waiters": [],
-      "artifact_statuses": [
-        {
-          "artifact": {
-            "layer": "build",
-            "path": ".codewiki/builds/implementation/**"
-          },
-          "status": "in-use",
-          "holders": [
-            {
-              "record_id": "CLAIM-093",
-              "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-              "agent_name": "Koala",
-              "mode": "write",
-              "role": "builder",
-              "task_id": "TASK-100",
-              "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-              "expires_at": "2026-05-17T10:40:44.412Z"
-            }
-          ],
-          "waiters": [],
-          "conflict_ids": []
-        },
-        {
-          "artifact": {
-            "layer": "code",
-            "path": "src/application/gc.ts"
-          },
-          "status": "in-use",
-          "holders": [
-            {
-              "record_id": "CLAIM-093",
-              "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-              "agent_name": "Koala",
-              "mode": "write",
-              "role": "builder",
-              "task_id": "TASK-100",
-              "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-              "expires_at": "2026-05-17T10:40:44.412Z"
-            }
-          ],
-          "waiters": [],
-          "conflict_ids": []
-        },
-        {
-          "artifact": {
-            "layer": "roadmap",
-            "task_id": "TASK-100"
-          },
-          "status": "in-use",
-          "holders": [
-            {
-              "record_id": "CLAIM-093",
-              "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-              "agent_name": "Koala",
-              "mode": "write",
-              "role": "builder",
-              "task_id": "TASK-100",
-              "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-              "expires_at": "2026-05-17T10:40:44.412Z"
-            }
-          ],
-          "waiters": [],
-          "conflict_ids": []
-        },
-        {
-          "artifact": {
-            "layer": "code",
-            "path": "tests/smoke/hot-retention.test.mjs"
-          },
-          "status": "in-use",
-          "holders": [
-            {
-              "record_id": "CLAIM-093",
-              "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-              "agent_name": "Koala",
-              "mode": "write",
-              "role": "builder",
-              "task_id": "TASK-100",
-              "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-              "expires_at": "2026-05-17T10:40:44.412Z"
-            }
-          ],
-          "waiters": [],
-          "conflict_ids": []
-        }
-      ]
+      "artifact_statuses": []
     },
     "artifact_status": {
-      "in_use_count": 1,
+      "in_use_count": 0,
       "warning_count": 0,
       "conflict_count": 0,
       "waiting_count": 0,
       "ready_waiter_count": 0,
-      "artifacts": [
-        {
-          "artifact": {
-            "layer": "build",
-            "path": ".codewiki/builds/implementation/**"
-          },
-          "status": "in-use",
-          "holders": [
-            {
-              "record_id": "CLAIM-093",
-              "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-              "agent_name": "Koala",
-              "mode": "write",
-              "role": "builder",
-              "task_id": "TASK-100",
-              "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-              "expires_at": "2026-05-17T10:40:44.412Z"
-            }
-          ],
-          "waiters": [],
-          "conflict_ids": []
-        },
-        {
-          "artifact": {
-            "layer": "code",
-            "path": "src/application/gc.ts"
-          },
-          "status": "in-use",
-          "holders": [
-            {
-              "record_id": "CLAIM-093",
-              "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-              "agent_name": "Koala",
-              "mode": "write",
-              "role": "builder",
-              "task_id": "TASK-100",
-              "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-              "expires_at": "2026-05-17T10:40:44.412Z"
-            }
-          ],
-          "waiters": [],
-          "conflict_ids": []
-        },
-        {
-          "artifact": {
-            "layer": "roadmap",
-            "task_id": "TASK-100"
-          },
-          "status": "in-use",
-          "holders": [
-            {
-              "record_id": "CLAIM-093",
-              "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-              "agent_name": "Koala",
-              "mode": "write",
-              "role": "builder",
-              "task_id": "TASK-100",
-              "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-              "expires_at": "2026-05-17T10:40:44.412Z"
-            }
-          ],
-          "waiters": [],
-          "conflict_ids": []
-        },
-        {
-          "artifact": {
-            "layer": "code",
-            "path": "tests/smoke/hot-retention.test.mjs"
-          },
-          "status": "in-use",
-          "holders": [
-            {
-              "record_id": "CLAIM-093",
-              "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-              "agent_name": "Koala",
-              "mode": "write",
-              "role": "builder",
-              "task_id": "TASK-100",
-              "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-              "expires_at": "2026-05-17T10:40:44.412Z"
-            }
-          ],
-          "waiters": [],
-          "conflict_ids": []
-        }
-      ]
+      "artifacts": []
     },
     "validation": {
       "isolation": [
@@ -56065,12 +54071,7 @@
         ".codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
         ".codewiki/builds/implementation/2026-05-12-task-066-drift-propagation-assurance.json",
         ".codewiki/builds/implementation/2026-05-12-task-067-control-room-simplification.json",
-        ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
         ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
-        ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-        ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-        ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-        ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
         ".codewiki/builds/implementation/2026-05-13-task-074-claim-wait-queue.json",
         ".codewiki/builds/implementation/2026-05-13-task-074-loop-isolation-session-handoff.json",
         ".codewiki/builds/implementation/2026-05-13-task-074-loop-session-isolation-policy.json",
@@ -56545,7 +54546,6 @@
         "extensions/codewiki/src/application/diff-table.ts",
         "extensions/codewiki/src/application/graph.ts",
         "extensions/codewiki/src/application/lint.ts",
-        "extensions/codewiki/src/application/project.ts",
         "extensions/codewiki/src/application/prompt.ts",
         "extensions/codewiki/src/application/roadmap.ts",
         "extensions/codewiki/src/application/session.ts",
@@ -56560,7 +54560,6 @@
         "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts",
         "extensions/codewiki/src/infrastructure/doc-parser.ts",
         "extensions/codewiki/src/infrastructure/gateway.ts",
-        "extensions/codewiki/src/infrastructure/transaction.ts",
         "extensions/codewiki/templates.ts",
         "feedback_build .codewiki/builds/feedback/2026-05-13-claim-wait-queue.json",
         "feedback_build .codewiki/builds/feedback/2026-05-13-ui-progressive-disclosure-source-drawer-retro-bo.json",
@@ -56585,7 +54584,6 @@
         "scripts/**",
         "scripts/check-architecture.mjs",
         "scripts/codewiki-gateway.mjs",
-        "scripts/codewiki-transaction.mjs",
         "scripts/smoke-test.mjs",
         "scripts/token-benchmark.mjs",
         "session handoff implementation task",
@@ -56736,7 +54734,6 @@
         "tests/smoke/publication-proof.test.mjs",
         "tests/smoke/resume-scheduler.test.mjs",
         "tests/smoke/roadmap-task-boundary.test.mjs",
-        "tests/smoke/role-worktree-isolation.test.mjs",
         "tests/smoke/session-handoff.test.mjs",
         "tests/smoke/validation-gateway.test.mjs",
         "tests/tasks/TASK-076/restructure.test.mjs",
@@ -56875,17 +54872,11 @@
         "task"
       ],
       "content_proof_refs": [
-        ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json@sha256:5219d9f10245e95f4e133e06e2c33ac4d0c1c0a59954b7ae88c27f6d8d565e3d",
-        ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json@sha256:b468b1b96698d92d37e2cad7e13def8d1fe02453e99ba00b77a3881998d63f7f",
-        ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json@sha256:cf129c194706f4386e47f6b2518437ccc2ca03c1b576844baa879f1675bee179",
-        ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json@sha256:67e7182e80d523f5d8f05f838d831ce518fc6b618b252a50bbb47a3e122031fe",
-        ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json@sha256:1d1cf64075fb67ff1aca6381136968bace518e18291e15684bb8e5c030fdbd1e",
         ".codewiki/builds/documentation/2026-05-13-document-adapter-managed-session-handoff-capabil.json@sha256:d6ca3dcc4d84972560e0857bdc4f6984eb4b99cd48db8eaef3c88ad158a540b6",
         ".codewiki/builds/documentation/2026-05-13-loop-session-isolation-policy-docs-v2.json@sha256:71bf157ffcdaf45ff16926545bdfa30b42885ad0bab471bace0bc1afb5da0a9f",
         ".codewiki/builds/documentation/2026-05-16-domain-led-layering-refactor-knowledge-codepaths.json@sha256:11fcd069fa0503de8a246661a0f0ea846b4f4f1838babb23270ed10b4911cd0d",
         ".codewiki/builds/planning/2026-05-13-loop-session-isolation-policy-plan.json@sha256:07185e986a0a94517f64830b0728f5e88e5025c5ed81a856bd118b0be11c8674",
         ".codewiki/builds/planning/2026-05-13-plan-implementation-of-pi-adapter-session-handof.json@sha256:538e1f7cb86e607531bc9c895e217ff3ef1d1c47c6e42661189fd87a35def77a",
-        ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json@sha256:eb76e2a398723df4204a4cab13fd13e8b1943350e170a92c00070806d121f8d3",
         ".codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json@sha256:a18cebe9bf67d26c3d3b4ca5779cd8209b13d1bcbd825401d507ff8d1ce1bb7e",
         ".codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json@sha256:cf8b46289e6be5d1adc557e49f4cf8541d41e06a78ddddcfdb9883eb3abb95f9",
         ".codewiki/builds/planning/2026-05-16-planned-bounded-enforcement-work-for-task-bounda.json@sha256:a0935135238c6691ca2c758aa9958dbeb666da55e452f76873329226312c4e98",
@@ -56966,7 +54957,6 @@
         "README.md@sha256:2e961747eb2a6032a7ba985a60a165050e9233d00bb5c713130c4bebf799691c",
         "README.md@sha256:855aa70acb23772372faf71aa5802c56911aae8c2a960de7d8663404ddee5d0a",
         "README.md@sha256:8b050054ab6dd88dcfe57f0d243c33e5b3804ef4522fcfc36014149b7af19b95",
-        "README.md@sha256:9424413daed9b80f70072963b79941f58637fb8a4cb79e78b5b8005f578f38de",
         "README.md@sha256:9b8821dc6bc07293cfcb10ae89249e66d8cbb63e210e00ffd52e7416333b7301",
         "README.md@sha256:bca59b2e9eba71f64f76252f0bb13562265476168f9c48396ffd45cee2073403",
         "README.md@sha256:c81e92829efe3da70cbfccbda5162fa5080b7cd4c8d0c5e101fcbc1060e2c46e",
@@ -56988,58 +54978,28 @@
         "e2c184a96a3fd7c10bf169b78409ec6ab5ab95bf",
         "e57eb0af707624aa291739f99a5d6ecaae148b7f",
         "e5e1a8df676d926eb585a767e4e41e3a5b32deeb",
-        "extensions/codewiki/src/adapters/pi/commands/ui.ts@sha256:0c9fa18f4e09f008c27f734fb135bfeab947fc9350ab4a9b483a3c72676fe7cb",
-        "extensions/codewiki/src/adapters/pi/index.ts@sha256:41f056530809bf5dcd625fb946a87b0980045b8e1a6ee4c62875a5adbab6437c",
         "extensions/codewiki/src/adapters/pi/index.ts@sha256:5224bd2f575dbf1d222591ac720d19c91c14b4a612c3ca9b823cabe1c9239193",
         "extensions/codewiki/src/adapters/pi/index.ts@sha256:68ccd4ef17e8bca8d60f595430c90ba088f8def15cba8cc3589df5442fc23b24",
         "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:278642e4725f83df042638fc4634d739f9ec72274d9d7ee8d96fc4ee00f6a039",
         "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:28cf5b5e97178c11d67d30947f0b20dd40b57cf0c48fac2ec6f1452ff4041d27",
         "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:67209bfba634cc16aaeaca678db17cfcb485cddfdc5355b3d3b33f9316156e8f",
-        "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:85715505a465264fc65d551a4bf662d3af86464376a455ce2889833af789beee",
-        "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:8bc3759938d8d864c1ffef9097be776d6a7d1f7cc7c8bca8278d3da6fed2075f",
-        "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:93c389d686a7c9608e932c461ebc7ed7175534fa993b9c85eabfc754f76dc2dd",
         "extensions/codewiki/src/adapters/pi/schemas.ts@sha256:bf1feb88d4f970327a85a9054687ed7767eb66aabb22c9b675c8b33baf6d6f58",
         "extensions/codewiki/src/adapters/pi/tools/claim.ts@sha256:749fbba6239559d1f688b914182bd99c93a5dd0f8682741fa70013b129147385",
         "extensions/codewiki/src/adapters/pi/tools/session-handoff.ts@sha256:4506a6774cf9ec09786f00efed9030862821334cf4efe08ea5ba9aaba17a7055",
         "extensions/codewiki/src/adapters/pi/tools/session-handoff.ts@sha256:d32b7b16403640d4ad4c2a3ae66f50bc2e0b2f898c71744f6a94a665dc7f6446",
         "extensions/codewiki/src/adapters/web/control-room.ts@sha256:3dafa2494db60d316cd010a32937c3cb0611e35d4ababd5760f7eff67a9b1f4e",
-        "extensions/codewiki/src/adapters/web/control-room.ts@sha256:859fbb9677bbc5afc725d5cd59c2ec628dd3a204b5f0a48ac515527667d64e68",
-        "extensions/codewiki/src/adapters/web/control-room.ts@sha256:c1df8aca4126d6973a938e3f216f8c7eedff0d081cce06f1abcd9146adb75a68",
-        "extensions/codewiki/src/application/builds.ts@sha256:211aaefda741eadcf43ecc1f5b992dcd466bb4c24aa0f418dbdc64f462a8241b",
-        "extensions/codewiki/src/application/builds.ts@sha256:65b493c862f44deef96d6f76b3a02a1f28b1bab743d7dacfb076969a4b4b2f13",
         "extensions/codewiki/src/application/builds.ts@sha256:884a73b9293ef8f900c2f2ecc527fc1c76dbc69ae1cdd2ee7189a73e681b1136",
         "extensions/codewiki/src/application/builds.ts@sha256:9326a010e384b870385c9da9b10bce421b7ad4c145b7c05c9e517df553f319a1",
-        "extensions/codewiki/src/application/builds.ts@sha256:bcb6f375b6bfd800b0f0dc1573e7fc576c4e78eb0e16296e1e0339e52d2aa65c",
         "extensions/codewiki/src/application/claims.ts@sha256:c97d93524564a97f82c0be1f4855e14cd27c7155196de127f06bfce6774fa1db",
-        "extensions/codewiki/src/application/claims.ts@sha256:de3273101578d9d65d512f955c8ecc1de7b1a4629f1ed60cc1133c7d9ad63e08",
-        "extensions/codewiki/src/application/graph.ts@sha256:29057157d3e0023fce81469a90a67bcaf491078324049649326fbe7c4a0f7231",
-        "extensions/codewiki/src/application/graph.ts@sha256:5e32e1a04354d6c558c4fe044faf4cd48de979d4aefa42a7c6ab68de99bde632",
         "extensions/codewiki/src/application/graph.ts@sha256:6569efffdcb682ef3a5f7af91cce8b99aa3b24fb86d0dd4571133dc1fc618710",
-        "extensions/codewiki/src/application/graph.ts@sha256:6aab873f036789e50a03a40f54a54a1a5ae0bf61b34cc8c792e825bbfcd89d4e",
         "extensions/codewiki/src/application/graph.ts@sha256:8ab9e765b0b2c7dc377fdcb09a211a7d7e2508210356058b1c4aa8b5794d3836",
-        "extensions/codewiki/src/application/graph.ts@sha256:b9272982b58dcb725d5768eb64098f0760fcf461149daa3df4d1f961a9d614ae",
-        "extensions/codewiki/src/application/graph.ts@sha256:e4870501cebc993973b56661a9244958d1a5395dcbdddce6fb0378fcd11e8e30",
         "extensions/codewiki/src/application/graph.ts@sha256:f9958f0d4bf2361810b7712e4ddfd816af798101ad64c4f5f7d56e3989ff9aa5",
-        "extensions/codewiki/src/application/lint.ts@sha256:5abf2a858ad21df009b93dab825a10e4834b1d1140768e9d3c82111f98178e8e",
-        "extensions/codewiki/src/application/lint.ts@sha256:c0fd347a55de56c764847cb8d3f355777453925a3876aef12d73575cccb622c4",
-        "extensions/codewiki/src/application/project.ts@sha256:f62495fef5919dc7c540c1d9a35dc3fb631e343a5ab9bf2d1c55ba670853eafe",
-        "extensions/codewiki/src/application/state-builders.ts@sha256:9c10e0f40b9e3021f7e2b83c1d577d2077c2db08935fda64f3df5bc9301f094d",
         "extensions/codewiki/src/application/state-builders.ts@sha256:f3c3bc4fdc82081849cba1eb0bea58a987ffbdce7824ed6a5fe3c23cf50c9873",
-        "extensions/codewiki/src/application/state.ts@sha256:3b62ed21310d8600b949a354ac5dd7f0c50723ceb77f94351be39f167c971d28",
         "extensions/codewiki/src/application/state.ts@sha256:f0edd863fe608b51335f85b855e4f845b39422d715c24dfac0a6fd1d3c5dff11",
         "extensions/codewiki/src/domain/shared/session.ts@sha256:5acc0f19493e07e2de2fecc6393d91fa55e15f8c8421ee091cbb29ff9dfaee20",
         "extensions/codewiki/src/domain/shared/types.ts@sha256:03a554c15507f09317227f715a8fe4ee413b5d4f368bd604ed1067bef81d2706",
-        "extensions/codewiki/src/domain/shared/types.ts@sha256:1bf96e35232f704c484cffed9612a97eb1ce5a26511aa80006a0235a1155a103",
-        "extensions/codewiki/src/domain/shared/types.ts@sha256:6bc8fc61a5e8063037c3b7f3d725812567353eded19a66da1bc8f255b6c89220",
-        "extensions/codewiki/src/domain/shared/types.ts@sha256:7689b6084446098fa09a828b7cd9c73cf0c5ba4f2464ab477d242c90c5617f91",
         "extensions/codewiki/src/domain/shared/types.ts@sha256:daae552e2467fe5145937d5303091565190591dbd757c1a53503ecee84d163c8",
-        "extensions/codewiki/src/domain/shared/types.ts@sha256:e23a0943e54e6b659cc41ef80499251130c0cb7b753e9f4957ce4872cb33dedf",
         "extensions/codewiki/src/domain/shared/types.ts@sha256:eea1e3dbfa3981cc204f5f961fe54a176d5b75038a34cc4cd0255eaa42266156",
-        "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts@sha256:8c1c8c417c9bea90d372ad23818840955351e3ee0d57e499be15cd44c945535c",
-        "extensions/codewiki/src/infrastructure/codewiki-rebuilder.ts@sha256:c84e72f9b236fd69ffcc82087774cf6ed8fc708c6a0bb7f7d60ba6de4d68b97b",
-        "extensions/codewiki/src/infrastructure/gateway.ts@sha256:ced3facca2ce6e51e52c1ac59d5bfbb6a15780abafa77b6d68b09793d8cb3d4a",
-        "extensions/codewiki/src/infrastructure/transaction.ts@sha256:fdb19a5ffbcbc6f962e79b15c27587732d753ed8848079fca7496b29776061b7",
-        "extensions/codewiki/templates.ts@sha256:ca26fa6f7e5ff8bc4a10b8e6664585b30b03bb928e922b4a231ff252aa98b296",
         "fb2303770ce7e70129db09a6b03d2848991a8df2",
         "fe65ab6b92bac8e4ff7f8dbe73cb3024984b87d7",
         "package-lock.json@sha256:81536d88910c1deb22c05ef2af12c325094b089acab55cd750c9cfc97cddccb5",
@@ -57049,11 +55009,6 @@
         "package.json@sha256:9452307fe4ab989720bd79a7212bd9a75144d9c5d8abcaae448fbec96833bd57",
         "package.json@sha256:b499b1d2495f100faa8f5dc35a77b3942d6db71226c146c6bb0a2fed51228ad6",
         "package.json@sha256:d09359ff5c2d4dbd4093ab8509edae19fb1963977b3eb606718256bfdf31236f",
-        "refs/codewiki/archive/task/TASK-068",
-        "refs/codewiki/archive/task/TASK-070",
-        "refs/codewiki/archive/task/TASK-071",
-        "refs/codewiki/archive/task/TASK-072",
-        "refs/codewiki/archive/task/TASK-073",
         "refs/codewiki/archive/task/TASK-074",
         "refs/codewiki/archive/task/TASK-075",
         "refs/codewiki/archive/task/TASK-076",
@@ -57086,12 +55041,8 @@
         "scripts/check-architecture.mjs@sha256:b5d001b2c65932fcc2faba89d1d5167859ec8e58a89adaeb4b4e463314626f03",
         "scripts/codewiki-gateway.mjs@sha256:7aa641c7f3dd3206af6b58a3887d1b28c90142b62bc408e6694db40175e02d68",
         "scripts/codewiki-gateway.mjs@sha256:9c51a1e6c713da57b36b559af963b835ac31ea04483d9dd578f15af9af9ad8bc",
-        "scripts/codewiki-gateway.mjs@sha256:e0ccb18313358db0bcbbf393a158024aac3e32d013523558d1a2ea30c504bf33",
-        "scripts/codewiki-transaction.mjs@sha256:fe24de6cc3cd17da91edc532bde5a4003437a558e8e28c4783ec29812334f789",
-        "scripts/smoke-test.mjs@sha256:0d89405ca7c57ce81b797c2807a36660d41f7bc9c59c72a73dca7b6536fdba77",
         "scripts/smoke-test.mjs@sha256:4d8a794af4e139f34980495f5edfe5976b4aca8c58ee19c92f17a76796f42798",
         "scripts/smoke-test.mjs@sha256:56d73e813f005450e7a10dc7e67d7e34fea7b50948e8137457e7f1952335283e",
-        "scripts/smoke-test.mjs@sha256:f90f22343644fa14306136ea6e2419c761c92d5a20fcc8a6a2dc9bdb7e08781b",
         "scripts/token-benchmark.mjs@sha256:65e19d4a58fc8998b75e2d1f9593e7c057c49ef8ed7ea54b2309700f67260f62",
         "scripts/token-benchmark.mjs@sha256:f47fbac152550a4f4a4eb82dd756265b2dff9820f083d2dd4dc2f0d23d84a5e5",
         "sha256:000889d11f4466a03a1383627bc0c34d3a75c749abd931a2da128d45ec909b92",
@@ -57100,11 +55051,9 @@
         "sha256:030fdd659b7b75bd8e54788c36eb52164adff62dd5d1f2937d392ab55fe7fe29",
         "sha256:03130c72da26956fde76c06bc5eeaea5caf2505bf6511619eb045680b8740cfe",
         "sha256:059e66d9c0e373e0b9e5a5fa62effaaacb750e0da3fc08d6c03bd57cb528e832",
-        "sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
         "sha256:091ddfe97302f2f1d25dbb94f871a1ff5ece83aaf150630297bedc883ee6717e",
         "sha256:0b166081ad213b8391a2afe2c7b2bee4e4dc173458bbf1afab7713670a7ea412",
         "sha256:0c615c23a58fadd68c7c583ce74f76811d36f6712974870a0b87d59e574261c3",
-        "sha256:0f9ba243c61c6963a118eeae1c145d54fec2f0903a4de0682ede65d3552c4cb2",
         "sha256:1165ab5921f6a65464f500a1a944bc1bc0521cf47b22d12f280d78ee64e58795",
         "sha256:11883c7cb0993638db8c9baf4d490082b2bcd1e9186aa582353331042f62f6ab",
         "sha256:11db4811446a82e66c7763a7b64ed1af6fa7e20f82f1555cb2886e078336afab",
@@ -57137,7 +55086,6 @@
         "sha256:6df3563bddd436fae6424ff836e280ea6c2e497efbd9fa5b9d4800d3ffff0d85",
         "sha256:726baab5c731037751e525354f9137ad8c32b5b85473c23485a1ab1df655a8e3",
         "sha256:72b5ec4c52f2e4f3579c2167d812ff451e69d6adb1f229ae5918a06c7563d7a0",
-        "sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
         "sha256:76306153ae42495d53fba368e24f602310d540214dad03353e0fa096a763cc1c",
         "sha256:78a9681cf6ab987288460e2dda8c45e8db699a9ddb7474a8e62979733e172595",
         "sha256:7f5e60b06b2fe4a502de5a48520d3782fa74e98f5f98e56d0eb8a1a6e85e43e7",
@@ -57171,13 +55119,11 @@
         "sha256:d3b051063201e72454da26777777a1eb41f4b5ef98cc729b6a703dec7f5700ba",
         "sha256:d43907a7c3792419b36c5964e89dd0e57b4643fd72236297329288929c708000",
         "sha256:d758e4c5fc98a80fd5644cb2b66bd19b686a4284cd10a71eb9242a3dab093d19",
-        "sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa",
         "sha256:eaaa078d6acab17c768f375d731f566807d4ee1f877e71d5f6a6d69fd9ee97fa",
         "sha256:f003ac5a3010ac9f6ca414549606ad498d817ec45b7e23bc7ef5031dc2183e01",
         "sha256:f1a04ef408659121072174891739cc06359b039b2d38cad58d0d4d061ebf8193",
         "sha256:f45804f8b82fccec1ddb33b3e7b85fb2d7e6b1ef9472815518ce322005a21f26",
         "sha256:f8d91847e41ab9cfce358cb08138cd02dfa3dcf6fea8f8aca3983009183c1752",
-        "sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5",
         "sha256:fd264be653c216efb030c2024885b750d139c3c257a55cbc12334b90e62fb4b3",
         "sha256:fdf62107f2abc4077daff77e6bb0605bd5c1ccccb873030a8a56fccce2c2212e",
         "sha256:fe4cd7ee8bd5bdc829f998ea010af623f85d7d8a179a5bd1241cfafc82bbc663",
@@ -57206,7 +55152,6 @@
         "skills/codewiki-validation/references/tools.md@sha256:da5496b3ee2a87b63b72b2ccc542154fc947930e74ef3e381ad9845f952491e8",
         "skills/codewiki-verify/SKILL.md@sha256:047803820b687a7d135075fcbb37767f2c968fc491f2ba1e3e9c0050a3bdde3e",
         "skills/codewiki-verify/SKILL.md@sha256:c595176a54d1e74865eca16359a5602147460c34f943e617b905c6ae5bda9401",
-        "skills/codewiki-view-audit/SKILL.md@sha256:780eb2439b9390215f1046ae9d6f983e038f22cb8388d5134f680b1485c0653a",
         "skills/codewiki/SKILL.md@sha256:28df0b353334cb77414b7ce35ba1d44362c57d428a573ff001b967da5c44e7ff",
         "skills/codewiki/SKILL.md@sha256:34caad33343321df8ae8a3b73fd8834db56ed7813a4e554f313f09c8eade6c4e",
         "skills/codewiki/SKILL.md@sha256:55be43c8e4f8ac7bde4fd1e5d42cd29fade9aeba66575ad75b13b63c035bb19c",
@@ -57409,25 +55354,18 @@
         "tests/smoke/audit-drift.test.mjs@sha256:3167c428b694520ec155a13a1dd5c3fe43d180851b4dabde5f3dfb2ff619836a",
         "tests/smoke/audit-drift.test.mjs@sha256:9f8b2b12cdf5ce6e967c5116ce247f9bfc1df05c765e6205b4b18654d274080f",
         "tests/smoke/audit.test.mjs@sha256:4ddf6c75d2a45b13a5edda5fd971c8f6187102d3e76d5a0715f39fe72f8c766e",
-        "tests/smoke/builds.test.mjs@sha256:00f5df96bf50da7827735045a112faabf504700c8115bd6b44af20427f93b6fd",
-        "tests/smoke/builds.test.mjs@sha256:114f13f095ee6aa1d6fe3bdc7a8c64e93dc5268bce3040930762f6e30875532d",
         "tests/smoke/builds.test.mjs@sha256:19467188bfb848f95bce216b1fbd2f7e096860baba14aea416e206175ab4e016",
         "tests/smoke/builds.test.mjs@sha256:2e814c248807d9e1c1e3071a8e29676ecfff13cb3aacd4a0fdbe0108f2e42acc",
         "tests/smoke/builds.test.mjs@sha256:616dfb113d0441656a2d162c5c87715f11aef0dbc6c70b28d5b9299a238e7155",
-        "tests/smoke/builds.test.mjs@sha256:74c45844432282b340e27dbe378091f022bbadbc65e1d6398223f8fa96d329dc",
         "tests/smoke/builds.test.mjs@sha256:a6887a98b5589ba2833526557403517bdf967208669a301c2ea06aaac796fbd0",
         "tests/smoke/builds.test.mjs@sha256:cc092825ddc6488aff3880558ecad610c83588c9da9c6ffc3dd45ec428b75aea",
         "tests/smoke/builds.test.mjs@sha256:d41eae5272bb293a1daafabec335289ca69989794b680a7b384bb6ef3d717ca3",
         "tests/smoke/builds.test.mjs@sha256:e03e55d9684c75278eefc97add979c631af7d74c4d77de6d82ab829c4eb115ef",
         "tests/smoke/claim-wait-queue.test.mjs@sha256:05a0765daa897015492345ef152164ec2c8c03c780244a0caad748bfbdf4ec9e",
-        "tests/smoke/control-room.test.mjs@sha256:5513dc8435e7c82a52abf0ba7ad7c170a52d990d5323c5e435d09d2988718a6c",
         "tests/smoke/control-room.test.mjs@sha256:6d2cd3e92fcf32ec1db2df22f107a314cc82e31569ff9053da325449ddfc4f7a",
         "tests/smoke/control-room.test.mjs@sha256:f29a6f19d9333265766b987688d6958ab2b94eb67f529887aac488704f44c1ff",
-        "tests/smoke/drift-propagation.test.mjs@sha256:f582f82281975b5d59bee435b946709f39070649d2dda76fd56ca5ed9c00df6b",
         "tests/smoke/hot-context.test.mjs@sha256:416356ba9fe6738e484a74847a83cc244aa80fe0f904593d6f1d3aa5d0c4c8ab",
-        "tests/smoke/hot-context.test.mjs@sha256:ce7e50b7fba68c1e470086589b79a50daba6d69ce4b1a1507981276c27eafe22",
         "tests/smoke/hot-retention.test.mjs@sha256:292a329b5244cb157c506b788269f279be53f32086b1b1124e4a228948ee9eed",
-        "tests/smoke/hot-retention.test.mjs@sha256:90406c1aceef9cdae7a0763199139d8e39b97480dc9f69570ce95c2362e18d33",
         "tests/smoke/hot-retention.test.mjs@sha256:a60d1be38d80fda1011be0133b9b04b16ba14c7d95ba5c70250b6e3811ae3289",
         "tests/smoke/loop-isolation-policy.test.mjs@sha256:37535e24721ec89736af56ab2c0f411e77eb51fe858376f98b8c9b96c6a3ed3a",
         "tests/smoke/loop-isolation-policy.test.mjs@sha256:3b3e0e8d5d72b1f4656608478adf1d621ea054cd8cd9e4476540cdebc86ce8b6",
@@ -57465,7 +55403,6 @@
         "tests/smoke/resume-scheduler.test.mjs@sha256:3bce0e0525b2534236cf9ad1c9520b78240dee2340d073e2bc652c59b38241ad",
         "tests/smoke/resume-scheduler.test.mjs@sha256:dd2a6324ceee14efee4f2bde910e6083e9e3e7079c371166822a01f0b51f0c99",
         "tests/smoke/roadmap-task-boundary.test.mjs@sha256:b571e182298ec45b67d611b271b2566a1c6156e335ca5e71f93f963f82959d5d",
-        "tests/smoke/role-worktree-isolation.test.mjs@sha256:7fffd93ecfe87b2a2ece47848143e1ee53f9664a0293ca58b0c2d116c793b55a",
         "tests/smoke/session-handoff.test.mjs@sha256:018f52a3a8356bcfd4bd0356d9e129c559dd5f6aab0a29e3f5d31f0400147d38",
         "tests/smoke/session-handoff.test.mjs@sha256:18e86bfbe2b41d720d9a462d993fa649f37b84deb506defb0dc25737448b6869",
         "tests/smoke/session-handoff.test.mjs@sha256:23408888e1d98f5194d083579c18d34484a3e9d20497c42c4f9aa75da28d9784",
@@ -58920,148 +56857,7 @@
     },
     "traceability": {
       "rows": [],
-      "semantic_change_rows": [
-        {
-          "path": ".codewiki/roadmap/queue.json",
-          "change_type": "task",
-          "semantic": true,
-          "accepted_build_refs": [
-            ".codewiki/builds/feedback/2026-05-11-control-room-ui.json",
-            ".codewiki/builds/feedback/2026-05-11-cytoscape-graph-visualization-selection.json",
-            ".codewiki/builds/feedback/2026-05-11-progressive-task-refinement-intent.json",
-            ".codewiki/builds/feedback/2026-05-13-claim-wait-queue.json",
-            ".codewiki/builds/feedback/2026-05-13-ui-progressive-disclosure-source-drawer-retro-bo.json",
-            ".codewiki/builds/feedback/2026-05-15-accepted-codewiki-alignment-hardening-principles.json",
-            ".codewiki/builds/feedback/2026-05-16-accepted-task-087-narrow-dependency-direction-gu.json",
-            ".codewiki/builds/feedback/2026-05-16-accepted-task-088-web-ui-move-slice-from-adapter.json",
-            ".codewiki/builds/feedback/2026-05-16-accepted-task-090-scope-correction-dogfood-sourc.json",
-            ".codewiki/builds/feedback/2026-05-16-accepted-task-091-stale-unscoped-validation-bloc.json",
-            ".codewiki/builds/feedback/2026-05-16-accepted-task-092-large-doc-warning-cleanup-for-.json",
-            ".codewiki/builds/feedback/2026-05-16-artifact-status-parallel-coordination.json",
-            ".codewiki/builds/feedback/2026-05-16-parallel-wiki-resume-session-scheduler.json",
-            ".codewiki/builds/documentation/2026-05-10-runtime-scoped-claims-docs.json",
-            ".codewiki/builds/documentation/2026-05-10-scoped-change-claims-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-build-contract-v2-and-efficiency-sprints-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-control-room-refinement-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-control-room-ui-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-cytoscape-control-room-graph-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-progressive-task-refinement-docs.json",
-            ".codewiki/builds/documentation/2026-05-11-reconciliation-lifecycle-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-control-room-config-settings-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-control-room-simplification-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-deprecated-evidence-index-retention-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-drift-propagation-assurance-final-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-git-backed-archival-gc-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-hot-only-default-context-docs.json",
-            ".codewiki/builds/documentation/2026-05-12-role-worktree-isolation-docs.json",
-            ".codewiki/builds/documentation/2026-05-13-alignment-cycles-planning-gateway-docs.json",
-            ".codewiki/builds/documentation/2026-05-13-claim-wait-queue-docs.json",
-            ".codewiki/builds/documentation/2026-05-13-document-adapter-managed-session-handoff-capabil.json",
-            ".codewiki/builds/documentation/2026-05-13-loop-session-isolation-policy-docs-v2.json",
-            ".codewiki/builds/documentation/2026-05-13-ui-progressive-disclosure-source-drawer-retro-bo.json",
-            ".codewiki/builds/documentation/2026-05-15-documented-codewiki-alignment-model-audit-archit.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-change-type-taxonomy.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-task-087-dependency-direction-guard-s.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-task-088-web-ui-move-paths-from-src-a.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-task-090-portable-alignment-drift-fix.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-task-091-validation-reconciliation-ru.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-task-092-large-doc-cleanup-by-condens.json",
-            ".codewiki/builds/documentation/2026-05-16-documented-task-sprint-boundary-contract.json",
-            ".codewiki/builds/planning/2026-05-13-loop-session-isolation-policy-plan.json",
-            ".codewiki/builds/planning/2026-05-13-plan-implementation-of-pi-adapter-session-handof.json",
-            ".codewiki/builds/planning/2026-05-13-task-073-alignment-routing-plan.json",
-            ".codewiki/builds/planning/2026-05-14-plan-task-075-implementation-of-ascii-like-codew.json",
-            ".codewiki/builds/planning/2026-05-15-planned-sprint-003-alignment-hardening-with-umbr.json",
-            ".codewiki/builds/planning/2026-05-16-domain-led-layering-refactor-roadmap.json",
-            ".codewiki/builds/planning/2026-05-16-planned-bounded-enforcement-work-for-task-bounda.json",
-            ".codewiki/builds/planning/2026-05-16-planned-change-type-taxonomy-migration.json",
-            ".codewiki/builds/planning/2026-05-16-planned-task-087-dependency-direction-guard-fixt.json",
-            ".codewiki/builds/planning/2026-05-16-planned-task-088-web-ui-move-slice.json",
-            ".codewiki/builds/planning/2026-05-16-planned-task-090-portable-alignment-drift-fixtur.json",
-            ".codewiki/builds/planning/2026-05-16-planned-task-091-stale-unscoped-validation-block.json",
-            ".codewiki/builds/planning/2026-05-16-planned-task-092-oversized-system-docs-trim.json",
-            ".codewiki/builds/planning/2026-05-16-planned-task-sprint-boundary-enforcement.json",
-            ".codewiki/builds/planning/2026-05-17-planned-agent-managed-codewiki-gc.json",
-            ".codewiki/builds/planning/2026-05-17-planned-skill-loop-restructure-sprint.json",
-            ".codewiki/builds/implementation/2026-05-11-task-055-build-contract-v2.json",
-            ".codewiki/builds/implementation/2026-05-11-task-056-efficiency-foundation.json",
-            ".codewiki/builds/implementation/2026-05-11-task-057-status-graph-diff-ui.json",
-            ".codewiki/builds/implementation/2026-05-11-task-058-control-room-shell.json",
-            ".codewiki/builds/implementation/2026-05-11-task-059-system-diagram-inspector.json",
-            ".codewiki/builds/implementation/2026-05-11-task-060-graph-visual-map.json",
-            ".codewiki/builds/implementation/2026-05-11-task-061-control-room-refinement.json",
-            ".codewiki/builds/implementation/2026-05-11-task-062-wiki-ui-browser-open.json",
-            ".codewiki/builds/implementation/2026-05-11-task-063-cytoscape-control-room-graph.json",
-            ".codewiki/builds/implementation/2026-05-11-task-064-graph-spacing-fit.json",
-            ".codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
-            ".codewiki/builds/implementation/2026-05-12-task-066-drift-propagation-assurance.json",
-            ".codewiki/builds/implementation/2026-05-12-task-067-control-room-simplification.json",
-            ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-            ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
-            ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-            ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-            ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-            ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-            ".codewiki/builds/implementation/2026-05-13-task-074-claim-wait-queue.json",
-            ".codewiki/builds/implementation/2026-05-13-task-074-loop-isolation-session-handoff.json",
-            ".codewiki/builds/implementation/2026-05-13-task-074-loop-session-isolation-policy.json",
-            ".codewiki/builds/implementation/2026-05-13-task-074-session-handoff-fresh-process-fix.json",
-            ".codewiki/builds/implementation/2026-05-13-task-075-value-first-ui-kanban.json",
-            ".codewiki/builds/implementation/2026-05-14-task-076-expanded-audit-cleanup-fixed-stale-sour.json",
-            ".codewiki/builds/implementation/2026-05-14-task-076-final-tidy-pass-moved-package-smoke-und.json",
-            ".codewiki/builds/implementation/2026-05-15-task-078-implemented-executable-alignment-graph-.json",
-            ".codewiki/builds/implementation/2026-05-15-task-080-implementation-gateway-now-enforces-com.json",
-            ".codewiki/builds/implementation/2026-05-15-task-080-task-084-corrected-task-close-policy-di.json",
-            ".codewiki/builds/implementation/2026-05-15-task-080-task-084-gateway-content-proof-policy-n.json",
-            ".codewiki/builds/implementation/2026-05-15-task-081-removes-deprecated-roadmap-verify-phase.json",
-            ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-and-guards.json",
-            ".codewiki/builds/implementation/2026-05-15-task-081-removes-task-phases-entirely-roadmap-wo.json",
-            ".codewiki/builds/implementation/2026-05-15-task-082-task-084-task-close-now-blocks-without-.json",
-            ".codewiki/builds/implementation/2026-05-16-added-audit-and-smoke-test-enforcement-for-bound.json",
-            ".codewiki/builds/implementation/2026-05-16-added-portable-alignment-drift-fixture-matrix-an.json",
-            ".codewiki/builds/implementation/2026-05-16-added-regression-coverage-proving-task-087-depen.json",
-            ".codewiki/builds/implementation/2026-05-16-completed-task-087-domain-led-layering-migration.json",
-            ".codewiki/builds/implementation/2026-05-16-corrected-stale-public-api-guidance-found-by-fre.json",
-            ".codewiki/builds/implementation/2026-05-16-extracted-accepted-build-lifecycle-semantics-int.json",
-            ".codewiki/builds/implementation/2026-05-16-extracted-change-traceability-normalization-sema.json",
-            ".codewiki/builds/implementation/2026-05-16-extracted-roadmap-task-boundary-semantics-into-d.json",
-            ".codewiki/builds/implementation/2026-05-16-finalized-task-086-public-coordination-wording-a.json",
-            ".codewiki/builds/implementation/2026-05-16-fixed-task-086-handoff-blocker-tool-context-new-.json",
-            ".codewiki/builds/implementation/2026-05-16-implemented-change-type-taxonomy-migration.json",
-            ".codewiki/builds/implementation/2026-05-16-implemented-task-082-semantic-build-traceability.json",
-            ".codewiki/builds/implementation/2026-05-16-implemented-task-sprint-boundary-enforcement.json",
-            ".codewiki/builds/implementation/2026-05-16-moved-bootstrap-resume-prompt-assets-into-skill-.json",
-            ".codewiki/builds/implementation/2026-05-16-moved-control-room-browser-ui-source-from-adapte.json",
-            ".codewiki/builds/implementation/2026-05-16-stopped-stale-unscoped-validation-block-reports-.json",
-            ".codewiki/builds/implementation/2026-05-16-task-079-source-owned-audit-engine.json",
-            ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy-current-p.json",
-            ".codewiki/builds/implementation/2026-05-16-task-080-gateway-audit-evidence-policy.json",
-            ".codewiki/builds/implementation/2026-05-16-task-081-source-owned-drift-fixtures.json",
-            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-public-api.json",
-            ".codewiki/builds/implementation/2026-05-16-task-086-artifact-status-resume-scheduler.json",
-            ".codewiki/builds/implementation/2026-05-16-trimmed-oversized-builds-and-roadmap-system-docs.json",
-            ".codewiki/builds/implementation/2026-05-17-task-093-feedback-skill-contract-planning-traced.json",
-            ".codewiki/builds/implementation/2026-05-17-task-093-feedback-skill-contract.json",
-            ".codewiki/builds/implementation/2026-05-17-task-094-documentation-skill-contract-planning-t.json",
-            ".codewiki/builds/implementation/2026-05-17-task-094-documentation-skill-contract.json",
-            ".codewiki/builds/implementation/2026-05-17-task-095-planning-skill-contract-planning-traced.json",
-            ".codewiki/builds/implementation/2026-05-17-task-095-planning-skill-contract.json",
-            ".codewiki/builds/implementation/2026-05-17-task-096-implementation-skill-contract-planning-.json",
-            ".codewiki/builds/implementation/2026-05-17-task-096-implementation-skill-contract.json",
-            ".codewiki/builds/implementation/2026-05-17-task-097-validation-skill-contract-planning-trac.json",
-            ".codewiki/builds/implementation/2026-05-17-task-097-validation-skill-contract.json",
-            ".codewiki/builds/implementation/2026-05-17-task-098-main-skill-router-contract-planning-tra.json",
-            ".codewiki/builds/implementation/2026-05-17-task-098-main-skill-router-contract.json",
-            ".codewiki/builds/implementation/2026-05-17-task-099-application-tool-contracts-planning-tra.json",
-            ".codewiki/builds/implementation/2026-05-17-task-099-application-tool-contracts.json",
-            ".codewiki/builds/implementation/2026-05-17-task-100-post-commit-codewiki-gc-active-handoff-.json",
-            ".codewiki/builds/implementation/2026-05-17-task-100-post-commit-codewiki-gc-handoff-visibil.json",
-            ".codewiki/builds/implementation/2026-05-17-task-100-post-commit-codewiki-gc.json"
-          ],
-          "gaps": []
-        }
-      ],
+      "semantic_change_rows": [],
       "semantic_change_gaps": [],
       "gap_count": 0,
       "gaps": []
@@ -60058,9 +57854,7 @@
           "validation_paths": [
             ".codewiki/validation/2026-05-17-documentation-block.json"
           ],
-          "claim_ids": [
-            "CLAIM-093"
-          ],
+          "claim_ids": [],
           "claim_wait_ids": []
         },
         "warm": {
@@ -60338,12 +58132,7 @@
             ".codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
             ".codewiki/builds/implementation/2026-05-12-task-066-drift-propagation-assurance.json",
             ".codewiki/builds/implementation/2026-05-12-task-067-control-room-simplification.json",
-            ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
             ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
-            ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-            ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-            ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-            ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
             ".codewiki/builds/implementation/2026-05-13-task-074-claim-wait-queue.json",
             ".codewiki/builds/implementation/2026-05-13-task-074-loop-isolation-session-handoff.json",
             ".codewiki/builds/implementation/2026-05-13-task-074-loop-session-isolation-policy.json",
@@ -60403,20 +58192,8 @@
           ]
         },
         "purgeable": {
-          "task_ids": [
-            "TASK-068",
-            "TASK-070",
-            "TASK-071",
-            "TASK-072",
-            "TASK-073"
-          ],
-          "build_paths": [
-            ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-            ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-            ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-            ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-            ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json"
-          ],
+          "task_ids": [],
+          "build_paths": [],
           "validation_paths": []
         }
       },
@@ -60429,56 +58206,6 @@
     },
     "archive": {
       "restore_index": [
-        {
-          "kind": "task",
-          "id": "TASK-068",
-          "build_path": ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-          "archive_ref": "refs/codewiki/archive/task/TASK-068",
-          "commit_sha": "",
-          "digest": "sha256:0f9ba243c61c6963a118eeae1c145d54fec2f0903a4de0682ede65d3552c4cb2",
-          "restore_command": "/wiki-restore TASK-068",
-          "safety_status": "safe_to_push"
-        },
-        {
-          "kind": "task",
-          "id": "TASK-070",
-          "build_path": ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-          "archive_ref": "refs/codewiki/archive/task/TASK-070",
-          "commit_sha": "",
-          "digest": "sha256:df16924b117dbef240806c6516d68f3177919cea603a5c5e586d5461ea2276fa",
-          "restore_command": "/wiki-restore TASK-070",
-          "safety_status": "safe_to_push"
-        },
-        {
-          "kind": "task",
-          "id": "TASK-071",
-          "build_path": ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-          "archive_ref": "refs/codewiki/archive/task/TASK-071",
-          "commit_sha": "",
-          "digest": "sha256:06c9041ab4ceaf2614f3981235c7b3d9360d2a1a9cdf5187483b89dbc329a324",
-          "restore_command": "/wiki-restore TASK-071",
-          "safety_status": "safe_to_push"
-        },
-        {
-          "kind": "task",
-          "id": "TASK-072",
-          "build_path": ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-          "archive_ref": "refs/codewiki/archive/task/TASK-072",
-          "commit_sha": "",
-          "digest": "sha256:72cf6944cd2ab47c0bbc01a2b4db856eca1a1d04109947fae78bd56505471210",
-          "restore_command": "/wiki-restore TASK-072",
-          "safety_status": "safe_to_push"
-        },
-        {
-          "kind": "task",
-          "id": "TASK-073",
-          "build_path": ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
-          "archive_ref": "refs/codewiki/archive/task/TASK-073",
-          "commit_sha": "",
-          "digest": "sha256:f9147537f5c5a5daf72290cc4d037c1d9bb2e58bbc5033d5337a855ecbed68c5",
-          "restore_command": "/wiki-restore TASK-073",
-          "safety_status": "safe_to_push"
-        },
         {
           "kind": "task",
           "id": "TASK-074",
@@ -61031,13 +58758,8 @@
         }
       ],
       "git_archive": {
-        "ledger_count": 60,
+        "ledger_count": 55,
         "archive_refs": [
-          "refs/codewiki/archive/task/TASK-068",
-          "refs/codewiki/archive/task/TASK-070",
-          "refs/codewiki/archive/task/TASK-071",
-          "refs/codewiki/archive/task/TASK-072",
-          "refs/codewiki/archive/task/TASK-073",
           "refs/codewiki/archive/task/TASK-074",
           "refs/codewiki/archive/task/TASK-074",
           "refs/codewiki/archive/task/TASK-074",
@@ -61095,11 +58817,6 @@
           "refs/codewiki/archive/task/TASK-100"
         ],
         "build_paths": [
-          ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-          ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-          ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-          ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-          ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
           ".codewiki/builds/implementation/2026-05-13-task-074-claim-wait-queue.json",
           ".codewiki/builds/implementation/2026-05-13-task-074-loop-isolation-session-handoff.json",
           ".codewiki/builds/implementation/2026-05-13-task-074-loop-session-isolation-policy.json",
@@ -61248,13 +58965,13 @@
   },
   "lenses": {
     "lint": {
-      "generated_at": "2026-05-17T09:04:28.626Z",
+      "generated_at": "2026-05-17T09:06:29.174Z",
       "counts": {},
       "issues": []
     },
     "roadmap": {
       "version": 2,
-      "generated_at": "2026-05-17T09:04:28Z",
+      "generated_at": "2026-05-17T09:06:29Z",
       "health": {
         "color": "green",
         "errors": 0,
@@ -64126,7 +61843,7 @@
     },
     "status": {
       "version": 1,
-      "generated_at": "2026-05-17T09:04:28Z",
+      "generated_at": "2026-05-17T09:06:29Z",
       "project": {
         "name": "codewiki",
         "docs_root": ".codewiki/kb",
@@ -64227,9 +61944,7 @@
             "validation_paths": [
               ".codewiki/validation/2026-05-17-documentation-block.json"
             ],
-            "claim_ids": [
-              "CLAIM-093"
-            ],
+            "claim_ids": [],
             "claim_wait_ids": []
           },
           "warm": {
@@ -64507,12 +62222,7 @@
               ".codewiki/builds/implementation/2026-05-11-task-065-progressive-task-refinement.json",
               ".codewiki/builds/implementation/2026-05-12-task-066-drift-propagation-assurance.json",
               ".codewiki/builds/implementation/2026-05-12-task-067-control-room-simplification.json",
-              ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
               ".codewiki/builds/implementation/2026-05-12-task-069-control-room-settings.json",
-              ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-              ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-              ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-              ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json",
               ".codewiki/builds/implementation/2026-05-13-task-074-claim-wait-queue.json",
               ".codewiki/builds/implementation/2026-05-13-task-074-loop-isolation-session-handoff.json",
               ".codewiki/builds/implementation/2026-05-13-task-074-loop-session-isolation-policy.json",
@@ -64572,20 +62282,8 @@
             ]
           },
           "purgeable": {
-            "task_ids": [
-              "TASK-068",
-              "TASK-070",
-              "TASK-071",
-              "TASK-072",
-              "TASK-073"
-            ],
-            "build_paths": [
-              ".codewiki/builds/implementation/2026-05-12-task-068-git-backed-archival-gc.json",
-              ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
-              ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
-              ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
-              ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json"
-            ],
+            "task_ids": [],
+            "build_paths": [],
             "validation_paths": []
           }
         },
@@ -64598,7 +62296,7 @@
       },
       "direction": [
         "No open deterministic drift requires action right now.",
-        "Parallel sessions: 0 active, 0 collision task(s), 1 artifact(s) in-use, 0 artifact conflict(s), 0 waiting, 0 ready.",
+        "Parallel sessions: 0 active, 0 collision task(s), 0 artifact(s) in-use, 0 artifact conflict(s), 0 waiting, 0 ready.",
         "Agency lanes: 3 work-first (high=1, medium=1, low=1).",
         "Mapped specs: 16/16.",
         "No tracked spec drift is open."
@@ -65548,7 +63246,7 @@
         }
       ],
       "agency": {
-        "generated_at": "2026-05-17T09:04:28Z",
+        "generated_at": "2026-05-17T09:06:29Z",
         "summary": {
           "lane_count": 3,
           "freshness_basis": "work-first",
@@ -65576,16 +63274,16 @@
               "task_close:architecture",
               "manual_review"
             ],
-            "checked_at": "2026-05-17T09:04:28Z",
+            "checked_at": "2026-05-17T09:06:29Z",
             "revision": {
               "git": {
-                "head": "2b74a0a9f3ded314d086df09ba15a8c67aeffeea",
+                "head": "87e37011541125dbb94184931f806c15cc625c93",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-100/context.json",
-                  ".codewiki/roadmap/tasks/TASK-100/task.json"
+                  ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
+                  ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+                  ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+                  ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -65625,7 +63323,7 @@
                   ".codewiki/kb/system/roadmap.md": "f6c599374eacc7ec3e438c6ad23788de20bf289d",
                   ".codewiki/kb/system/validation-gateway.md": "25b4a50e6904fb6b1f7eb509b8b1d1b67784a832",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "23c2957616ed79cd1b2ebdb4b77bbdc51240b474",
+                  ".codewiki/roadmap/queue.json": "b4f7b19b915ac85002386d77e6e6d3005c089ceb",
                   ".codewiki/validation": "",
                   "package.json": "d4896da385fc70ba168653d7134b82a155501e73",
                   "skills": "",
@@ -65669,12 +63367,12 @@
               "spec_digest": "87536d62eb9da524aeba1f4a61c03b4c6ffce51ddccb6d01b986c8df73defc48",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
               "code_digest": "76346d38a7b4bf49844e2e57c80e793b6107c803fec9186cc17248af6efea6fd",
-              "digest": "87a06fc465ef87a271d2f3728de2e088b051beaa6187a9948786261439759e07"
+              "digest": "289e6231b3fddbffd7060567f5813e25abdf2ab3915f7e95874c859f07c6fa3f"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-17T09:04:28Z",
+              "checked_at": "2026-05-17T09:06:29Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -65790,16 +63488,16 @@
               "rebuild_complete",
               "pre_close_check"
             ],
-            "checked_at": "2026-05-17T09:04:28Z",
+            "checked_at": "2026-05-17T09:06:29Z",
             "revision": {
               "git": {
-                "head": "2b74a0a9f3ded314d086df09ba15a8c67aeffeea",
+                "head": "87e37011541125dbb94184931f806c15cc625c93",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-100/context.json",
-                  ".codewiki/roadmap/tasks/TASK-100/task.json"
+                  ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
+                  ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+                  ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+                  ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -65823,7 +63521,7 @@
                   ".codewiki/kb/system/roadmap.md": "f6c599374eacc7ec3e438c6ad23788de20bf289d",
                   ".codewiki/kb/system/validation-gateway.md": "25b4a50e6904fb6b1f7eb509b8b1d1b67784a832",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "23c2957616ed79cd1b2ebdb4b77bbdc51240b474",
+                  ".codewiki/roadmap/queue.json": "b4f7b19b915ac85002386d77e6e6d3005c089ceb",
                   ".codewiki/validation": "",
                   "skills": "",
                   "skills/codewiki": "",
@@ -65862,12 +63560,12 @@
               "spec_digest": "8717e59462471de8cde9afc6358aec2fbfb22e32c6db6503efc291f27b255584",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
               "code_digest": "8841159f3bfa9e56d2b3c240cd5a86043120667ccf3fa7c7b5eabe76ce268d31",
-              "digest": "21548e22e8cbca3fc4c58f8dc1398c024e9d4cf410b852995407597609c70f02"
+              "digest": "046b34d2b18cf21a4bffc5019f14cedaf79e755c24addded345dfa5e6bc4ae98"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-17T09:04:28Z",
+              "checked_at": "2026-05-17T09:06:29Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -65962,16 +63660,16 @@
               "code_change:ux_surface",
               "manual_review"
             ],
-            "checked_at": "2026-05-17T09:04:28Z",
+            "checked_at": "2026-05-17T09:06:29Z",
             "revision": {
               "git": {
-                "head": "2b74a0a9f3ded314d086df09ba15a8c67aeffeea",
+                "head": "87e37011541125dbb94184931f806c15cc625c93",
                 "dirty": true,
                 "dirty_paths": [
-                  ".codewiki/roadmap/archive.jsonl",
-                  ".codewiki/roadmap/queue.json",
-                  ".codewiki/roadmap/tasks/TASK-100/context.json",
-                  ".codewiki/roadmap/tasks/TASK-100/task.json"
+                  ".codewiki/builds/implementation/2026-05-12-task-070-role-worktree-isolation.json",
+                  ".codewiki/builds/implementation/2026-05-12-task-071-hot-only-default-context.json",
+                  ".codewiki/builds/implementation/2026-05-12-task-072-deprecated-evidence-index-hot-retention.json",
+                  ".codewiki/builds/implementation/2026-05-13-task-073-planning-build-alignment-routing.json"
                 ],
                 "paths": {
                   ".codewiki/builds": "",
@@ -66011,7 +63709,7 @@
                   ".codewiki/kb/system/roadmap.md": "f6c599374eacc7ec3e438c6ad23788de20bf289d",
                   ".codewiki/kb/system/validation-gateway.md": "25b4a50e6904fb6b1f7eb509b8b1d1b67784a832",
                   ".codewiki/roadmap": "",
-                  ".codewiki/roadmap/queue.json": "23c2957616ed79cd1b2ebdb4b77bbdc51240b474",
+                  ".codewiki/roadmap/queue.json": "b4f7b19b915ac85002386d77e6e6d3005c089ceb",
                   ".codewiki/validation": "",
                   "package.json": "d4896da385fc70ba168653d7134b82a155501e73",
                   "skills": "",
@@ -66055,12 +63753,12 @@
               "spec_digest": "87536d62eb9da524aeba1f4a61c03b4c6ffce51ddccb6d01b986c8df73defc48",
               "task_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
               "code_digest": "76346d38a7b4bf49844e2e57c80e793b6107c803fec9186cc17248af6efea6fd",
-              "digest": "87a06fc465ef87a271d2f3728de2e088b051beaa6187a9948786261439759e07"
+              "digest": "289e6231b3fddbffd7060567f5813e25abdf2ab3915f7e95874c859f07c6fa3f"
             },
             "freshness": {
               "status": "fresh",
               "basis": "revision",
-              "checked_at": "2026-05-17T09:04:28Z",
+              "checked_at": "2026-05-17T09:06:29Z",
               "reason": "revision anchors unchanged since previous agency",
               "stale_state_guidance": "Prior drift analysis remains correlated with current spec, task, and mapped code revisions."
             },
@@ -66177,138 +63875,21 @@
         "agency": "All agency lanes currently fresh."
       },
       "parallel": {
-        "generated_at": "2026-05-17T09:04:28Z",
+        "generated_at": "2026-05-17T09:06:29Z",
         "active_session_count": 0,
         "collision_task_ids": [],
         "sessions": [],
-        "active_claim_count": 1,
+        "active_claim_count": 0,
         "claim_warning_count": 0,
         "claim_conflict_count": 0,
         "claim_pending_wait_count": 0,
         "claim_ready_wait_count": 0,
-        "claims": [
-          {
-            "id": "CLAIM-093",
-            "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-            "agent_name": "Koala",
-            "status": "active",
-            "mode": "write",
-            "role": "builder",
-            "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-            "task_id": "TASK-100",
-            "scopes": [
-              {
-                "layer": "code",
-                "path": "src/application/gc.ts"
-              },
-              {
-                "layer": "code",
-                "path": "tests/smoke/hot-retention.test.mjs"
-              },
-              {
-                "layer": "roadmap",
-                "task_id": "TASK-100"
-              },
-              {
-                "layer": "build",
-                "path": ".codewiki/builds/implementation/**"
-              }
-            ],
-            "created_at": "2026-05-17T08:40:44Z",
-            "updated_at": "2026-05-17T08:40:44Z",
-            "expires_at": "2026-05-17T10:40:44.412Z"
-          }
-        ],
+        "claims": [],
         "claim_waiters": [],
         "claim_conflicts": [],
-        "artifact_statuses": [
-          {
-            "artifact": {
-              "layer": "build",
-              "path": ".codewiki/builds/implementation/**"
-            },
-            "status": "in-use",
-            "holders": [
-              {
-                "record_id": "CLAIM-093",
-                "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-                "agent_name": "Koala",
-                "mode": "write",
-                "role": "builder",
-                "task_id": "TASK-100",
-                "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-                "expires_at": "2026-05-17T10:40:44.412Z"
-              }
-            ],
-            "waiters": [],
-            "conflict_ids": []
-          },
-          {
-            "artifact": {
-              "layer": "code",
-              "path": "src/application/gc.ts"
-            },
-            "status": "in-use",
-            "holders": [
-              {
-                "record_id": "CLAIM-093",
-                "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-                "agent_name": "Koala",
-                "mode": "write",
-                "role": "builder",
-                "task_id": "TASK-100",
-                "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-                "expires_at": "2026-05-17T10:40:44.412Z"
-              }
-            ],
-            "waiters": [],
-            "conflict_ids": []
-          },
-          {
-            "artifact": {
-              "layer": "roadmap",
-              "task_id": "TASK-100"
-            },
-            "status": "in-use",
-            "holders": [
-              {
-                "record_id": "CLAIM-093",
-                "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-                "agent_name": "Koala",
-                "mode": "write",
-                "role": "builder",
-                "task_id": "TASK-100",
-                "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-                "expires_at": "2026-05-17T10:40:44.412Z"
-              }
-            ],
-            "waiters": [],
-            "conflict_ids": []
-          },
-          {
-            "artifact": {
-              "layer": "code",
-              "path": "tests/smoke/hot-retention.test.mjs"
-            },
-            "status": "in-use",
-            "holders": [
-              {
-                "record_id": "CLAIM-093",
-                "session_id": "019e32ec-88a6-7501-a231-ff6109af62cc",
-                "agent_name": "Koala",
-                "mode": "write",
-                "role": "builder",
-                "task_id": "TASK-100",
-                "summary": "Fix TASK-100 validation failure: protect active queued/started session handoffs from runtime GC.",
-                "expires_at": "2026-05-17T10:40:44.412Z"
-              }
-            ],
-            "waiters": [],
-            "conflict_ids": []
-          }
-        ],
+        "artifact_statuses": [],
         "artifact_status": {
-          "in_use_count": 1,
+          "in_use_count": 0,
           "warning_count": 0,
           "conflict_count": 0,
           "waiting_count": 0,
