@@ -34,7 +34,7 @@ export interface StagedSessionHandoff {
 }
 
 export interface ToolSessionHandoffResult {
-	action: "staged" | "external" | "context-reset";
+	action: "staged" | "external";
 	command?: string;
 	reason?: string;
 }
@@ -179,16 +179,18 @@ export async function markHandoff(path: string, payload: CodewikiSessionHandoffP
 
 export async function executeSessionHandoffFromTool(
 	staged: StagedSessionHandoff,
-	ctx: CompactContext,
+	_ctx: CompactContext,
 ): Promise<ToolSessionHandoffResult> {
 	if (staged.payload.mode === "external-orchestrator") {
 		await markHandoff(staged.absolutePath, staged.payload, "external");
 		return { action: "external" };
 	}
 	if (staged.payload.mode === "context-reset") {
-		ctx.compact({ customInstructions: `CodeWiki context reset for ${staged.payload.reason}. Keep handoff refs and current task/build ids.` });
-		await markHandoff(staged.absolutePath, staged.payload, "completed");
-		return { action: "context-reset" };
+		return {
+			action: "staged",
+			command: staged.command,
+			reason: "context-reset handoffs must run from command context; tool-context compaction can hide the tool result.",
+		};
 	}
 	return {
 		action: "staged",

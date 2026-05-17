@@ -1,4 +1,4 @@
-export type CodewikiToolLayer = "bootstrap" | "state" | "coordination" | "compiler" | "roadmap" | "validation" | "session" | "agency";
+export type CodewikiToolLayer = "bootstrap" | "state" | "coordination" | "compiler" | "roadmap" | "validation" | "session" | "agency" | "gc";
 
 export interface CodewikiToolContract {
 	name: string;
@@ -66,6 +66,13 @@ export const CODEWIKI_TOOL_CONTRACTS = [
 		safeMutationPath: "Writes validation reports; validators do not mutate source/roadmap/build truth.",
 	},
 	{
+		name: "codewiki_gc",
+		module: "src/application/tools/gc.ts",
+		layer: "gc",
+		summary: "Dry-run or purge eligible CodeWiki artifacts after archive commit proof and restore-ledger emission.",
+		safeMutationPath: "Tracked purge requires archive_sha/tree_sha, writes a restore ledger first, and runs after the archive/close/publication commit; runtime cleanup is scoped to ignored session handoffs.",
+	},
+	{
 		name: "codewiki_task",
 		module: "src/application/tools/task.ts",
 		layer: "roadmap",
@@ -91,7 +98,7 @@ export const CODEWIKI_TOOL_CONTRACTS = [
 		module: "src/application/tools/session-handoff.ts",
 		layer: "session",
 		summary: "Stage fresh-session/context-reset handoffs from durable artifact refs.",
-		safeMutationPath: "Writes runtime handoff files and lets command context perform new-session execution.",
+		safeMutationPath: "Writes runtime handoff files and lets command context perform new-session/context-reset execution.",
 	},
 	{
 		name: "codewiki_agency",

@@ -34,6 +34,8 @@ assert.match(mainSkill, /name: codewiki/, "main skill should define public skill
 assert.match(mainSkill, /First read and bootstrap/, "main skill should own bootstrap and status flow");
 assert.match(mainSkill, /codewiki_setup/, "main skill should list setup tool");
 assert.match(mainSkill, /codewiki_state/, "main skill should center state routing");
+assert.match(mainSkill, /codewiki_gc/, "main skill should expose post-commit GC tool");
+assert.match(mainSkill, /post-commit/i, "main skill should enforce post-commit GC boundary");
 assert.match(mainSkill, /codewiki-feedback/, "main skill should route to focused loop skills");
 assert.match(mainSkill, /Task and sprint routing/, "main skill should define task and sprint routing rules");
 assert.match(mainSkill, /three or more related executable tasks/, "main skill should define sprint creation threshold");
@@ -44,6 +46,8 @@ assert.doesNotMatch(mainSkill, /(?:\.\.\/)+\.codewiki/, "main skill should not r
 const toolCatalog = readFileSync(resolve(repoRoot, "skills", "codewiki", "references", "tool-catalog.md"), "utf8");
 assert.match(toolCatalog, /src\/application\/tools\/catalog\.ts/, "skill tool catalog should point to application tool contracts");
 assert.match(toolCatalog, /`codewiki_task`/, "skill tool catalog should list codewiki_task");
+assert.match(toolCatalog, /`codewiki_gc`/, "skill tool catalog should list codewiki_gc");
+assert.match(toolCatalog, /archive_sha/, "skill tool catalog should document GC archive proof fields");
 assert.match(toolCatalog, /action="sprint"/, "skill tool catalog should document sprint metadata action");
 assert.match(toolCatalog, /Do not create umbrella tasks/, "skill tool catalog should preserve task boundary rule");
 
@@ -84,6 +88,7 @@ assert.match(implementationSkill, /codewiki_artifact_status/, "implementation sk
 assert.match(implementationSkill, /codewiki_build kind="implementation"/, "implementation skill should define implementation build compilation point");
 assert.match(implementationSkill, /before implementation validation/, "implementation skill should place implementation build before validation");
 assert.match(implementationSkill, /codewiki_session_handoff/, "implementation skill should request fresh validation handoff");
+assert.match(implementationSkill, /codewiki_gc action="dry-run"/, "implementation skill should require post-commit GC review");
 
 const implementationTools = readFileSync(resolve(repoRoot, "skills", "codewiki-implementation", "references", "tools.md"), "utf8");
 assert.match(implementationTools, /source_planning_build/, "implementation tool reference should require source planning build");
@@ -98,6 +103,7 @@ assert.match(validationSkill, /codewiki_audit/, "validation skill should define 
 assert.match(validationSkill, /codewiki_validation/, "validation skill should define validation report tool usage");
 assert.match(validationSkill, /Do not call compiler tools/, "validation skill should forbid compiler work");
 assert.match(validationSkill, /fresh_context=true/, "validation skill should require fresh-context proof where applicable");
+assert.match(validationSkill, /GC restore ledger/, "validation skill should distinguish GC ledger from validation proof");
 
 const validationTools = readFileSync(resolve(repoRoot, "skills", "codewiki-validation", "references", "tools.md"), "utf8");
 assert.match(validationTools, /codewiki_session_handoff/, "validation tool reference should cover fresh validator handoff");

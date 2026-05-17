@@ -283,6 +283,24 @@ export const codewikiAgencyToolInputSchema = Type.Object({
 	budget: Type.Optional(agencyBudgetSchema),
 	dryRun: Type.Optional(Type.Boolean()),
 });
+export const codewikiGcToolInputSchema = Type.Object({
+	repoPath: repoPathToolField,
+	action: Type.Optional(Type.Union([
+		Type.Literal("dry-run"),
+		Type.Literal("purge"),
+	])),
+	include: Type.Optional(Type.Array(Type.Union([
+		Type.Literal("tracked"),
+		Type.Literal("runtime"),
+	]))),
+	scopes: Type.Optional(Type.Array(Type.String({ minLength: 1 }))),
+	archive_sha: Type.Optional(Type.String({ minLength: 1 })),
+	tree_sha: Type.Optional(Type.String({ minLength: 1 })),
+	archive_ref: Type.Optional(Type.String({ minLength: 1 })),
+	ledger_path: Type.Optional(Type.String({ minLength: 1 })),
+	max_deletes: Type.Optional(Type.Number({ minimum: 1 })),
+	refresh: Type.Optional(Type.Boolean({ default: true })),
+});
 
 export const toolTaskIdField = Type.String({
 	minLength: 1,

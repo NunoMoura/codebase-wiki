@@ -29,6 +29,7 @@ For exact tool arguments and output fields, read `references/tools.md` when need
 - Compile `codewiki_build kind="implementation"` after edits and checks, before implementation validation.
 - Request fresh validation with `codewiki_session_handoff`; do not close the task from builder context when policy requires independent proof.
 - Close only after passing task-close validation/content proof when policy requires it.
+- After any task-close, sprint-close, publication, or roadmap-end commit exists, run `codewiki_gc action="dry-run"`; purge eligible artifacts only with archive commit/tree proof or record defer/block evidence.
 
 ## Workflow
 
@@ -69,6 +70,7 @@ For exact tool arguments and output fields, read `references/tools.md` when need
 8. **Record task evidence**
    - Use `codewiki_task action="update"` to append builder evidence and staged validation handoff.
    - Use `codewiki_task action="close"` only after the required passing validation/task-close proof exists.
+   - After the close/publication commit captures revive context, run `codewiki_gc action="dry-run"`; if tracked candidates exist, purge only with `archive_sha`/`tree_sha` and keep the restore ledger, otherwise record why GC is deferred or blocked.
    - Release artifact status when done.
 
 ## Output
@@ -79,6 +81,7 @@ End implementation mode with:
 - tests/checks run with outcomes;
 - `implementation_build` path;
 - fresh validation handoff command/path;
+- post-commit GC review status: purged with ledger, deferred, blocked, or not yet eligible;
 - task status recommendation: `in_progress`, `blocked`, or `done after validation`;
 - remaining risks or follow-up routing.
 

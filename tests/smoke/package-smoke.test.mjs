@@ -253,6 +253,7 @@ async function main() {
 				"codewiki_audit",
 				"codewiki_build",
 				"codewiki_validation",
+				"codewiki_gc",
 				"codewiki_task",
 				"codewiki_claim",
 				"codewiki_diff_table",
@@ -278,6 +279,7 @@ async function main() {
 		assert.match(piIndexSource, /executeCodewikiBuildTool/, "Pi build registration should delegate to application tool executor");
 		assert.match(piIndexSource, /executeCodewikiValidationTool/, "Pi validation registration should delegate to application tool executor");
 		assert.match(piIndexSource, /executeCodewikiDiffTableTool/, "Pi diff-table registration should delegate to application tool executor");
+		assert.match(piIndexSource, /executeCodewikiGcTool/, "Pi GC registration should delegate to application tool executor");
 		assert.match(bootstrapSource, /executeCodewikiSetupTool/, "Bootstrap setup tool should delegate through application tool contract");
 		for (const adapterFile of ["agency", "artifact-status", "claim", "session", "session-handoff", "state", "task"]) {
 			const adapterSource = readFileSync(resolve(repoRoot, "src", "adapters", "pi", "tools", `${adapterFile}.ts`), "utf8");

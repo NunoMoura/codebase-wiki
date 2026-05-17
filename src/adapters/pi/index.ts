@@ -1,7 +1,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import type { ActiveStatusPanel } from "../../domain/shared/types.ts";
 import { registerBootstrapFeatures } from "../../bootstrap.ts";
-import { codewikiBuildToolInputSchema, codewikiAgencyToolInputSchema, codewikiClaimToolInputSchema, codewikiDiffTableToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas.ts";
+import { codewikiBuildToolInputSchema, codewikiAgencyToolInputSchema, codewikiClaimToolInputSchema, codewikiDiffTableToolInputSchema, codewikiGcToolInputSchema, codewikiSessionToolInputSchema, codewikiTaskToolInputSchema, codewikiValidationReportSchema } from "./schemas.ts";
 import { registerAuditCommand } from "./commands/audit.ts";
 import { registerConfigCommand } from "./commands/config.ts";
 import { registerResumeCommand } from "./commands/resume.ts";
@@ -13,6 +13,7 @@ import { rememberStatusDockProject, resolveStatusDockProject, resolveToolProject
 import { executeCodewikiBuildTool } from "../../application/tools/build.ts";
 import { executeCodewikiValidationTool } from "../../application/tools/validation.ts";
 import { executeCodewikiDiffTableTool } from "../../application/tools/diff-table.ts";
+import { executeCodewikiGcTool } from "../../application/tools/gc.ts";
 import { executeCodewikiAgency } from "./tools/agency.ts";
 import { registerCodewikiArtifactStatusTool } from "./tools/artifact-status.ts";
 import { registerCodewikiAuditTool } from "./tools/audit.ts";
@@ -133,6 +134,31 @@ export function registerPiAdapter(pi: ExtensionAPI): void {
 	registerCodewikiArtifactStatusTool(pi);
 	registerCodewikiAuditTool(pi);
 	registerCodewikiSessionHandoffTool(pi);
+
+	pi.registerTool({
+		name: "codewiki_gc",
+		label: "Codewiki GC",
+		description:
+			"Dry-run or purge eligible CodeWiki artifacts after archive commit proof and restore-ledger emission.",
+		promptSnippet:
+			"Run post-commit CodeWiki garbage collection with archive proof and restore ledger.",
+		promptGuidelines: [
+			"Use after task-close, sprint-close, publication, or roadmap-end commits to keep .codewiki hot state small.",
+			"Run action='dry-run' before destructive purge to inspect tracked and runtime candidates.",
+			"Tracked purge requires archive_sha and tree_sha for the commit that still contains deleted artifacts; GC writes a restore ledger before deletion.",
+			"Do not use GC ledger proof as validation/content proof; fail/block/current-policy reports remain hot until policy permits archival.",
+		],
+		parameters: codewikiGcToolInputSchema,
+		async execute(_toolCallId: string, params: any, _signal: unknown, _onUpdate: unknown, ctx: any) {
+			const project = await resolveToolProject(ctx.cwd, params.repoPath, "codewiki_gc");
+			const result = await executeCodewikiGcTool(project, params as any);
+			await refreshStatusDock(project, ctx, currentTaskLink(ctx));
+			return {
+				content: [{ type: "text", text: result.summary }],
+				details: result.result,
+			};
+		},
+	} as any);
 
 	pi.registerTool({
 		name: "codewiki_build",

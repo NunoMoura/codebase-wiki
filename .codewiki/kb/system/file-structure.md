@@ -5,7 +5,7 @@ state: active
 summary: Target knowledge-base and package file structure for CodeWiki.
 owners:
   - architecture
-updated: "2026-05-16"
+updated: "2026-05-17"
 code_paths:
   - .codewiki/kb
   - src
@@ -147,7 +147,7 @@ Legacy system KB paths removed by the flattening migration:
 | Product/package source | `src/**`, `skills/**`, `tests/**`, `README.md`, `package.json`, lockfile, `tsconfig.json` | Implements and packages CodeWiki itself. |
 | Optional developer helpers | `scripts/**` | Disposable wrappers or one-off local helpers only; source, tests, gateways, and skills must not depend on scripts for authoritative semantics. |
 | Dogfood canonical state | `.codewiki/config.json`, `.codewiki/kb/**`, `.codewiki/roadmap/queue.json` | Maintains this repository with CodeWiki; not package source. |
-| Generated state/views | `.codewiki/index_graph.json`, `.codewiki/roadmap/tasks/**` | Rebuilt from canonical inputs; never hand-edit. |
+| Generated state/views | `.codewiki/index_graph.json`, `.codewiki/roadmap/tasks/**` | Rebuilt from roadmap queue and KB inputs; never hand-edit. |
 | Transient handoffs | `.codewiki/builds/**` | Compiler build artifacts that can be archived/purged after downstream truth and publication proof. |
 | Validation/audit evidence | `.codewiki/validation/**` and policy-required audit reports | Attestations and deterministic evidence, not content proof by themselves. |
 | Runtime/session state | `.codewiki/session/**`, `.codewiki/runtime/**` | Coordination and pending feedback UI state; not durable product truth unless compiled into builds. |

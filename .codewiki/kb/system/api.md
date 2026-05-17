@@ -5,7 +5,7 @@ state: active
 summary: Harness-independent application-tool contract for CodeWiki state, compilers, builds, validation, session queue, and publication support.
 owners:
   - architecture
-updated: "2026-05-16"
+updated: "2026-05-17"
 code_paths:
   - src/application
   - src/domain
@@ -36,6 +36,7 @@ The API should expose CodeWiki operations as typed capabilities instead of askin
 | `codewiki.build` | Read and write accepted compiler build briefs. |
 | `codewiki.validation` | Run validation gateways and persist failed, blocked, or policy-kept reports. |
 | `codewiki.state_engine` | Rebuild and read generated state/graph representations. |
+| `codewiki.gc` | Classify, dry-run, ledger, and purge eligible CodeWiki builds, validation reports, roadmap archive detail, and runtime artifacts after archive commit proof exists. |
 | `codewiki.ui` | Serve local-first UI read models and route UI actions through existing CodeWiki capabilities. |
 | `codewiki.bootstrap` | Adopt or initialize repo-local CodeWiki state from skill-owned bootstrap/templates assets through application tools. |
 | `codewiki.patch` | Apply validated CodeWiki patches or append-only source/research writes under policy. |
@@ -68,10 +69,12 @@ All access surfaces must preserve the same `.codewiki/` semantics.
 - Validation callers may provide isolation metadata such as fresh-context status, worktree path, branch, base/head/validated SHA, and clean worktree result when independence matters.
 - Validation callers must provide fresh-context, clean-worktree, and checked-SHA evidence for implementation, task-close, publication, publish, and release profiles; otherwise the API records a `block` verdict.
 - Gated agency runs must respect token, time, cost, write, session, risk, validation, policy, and approval gates.
-- Session handoff callers must provide reason, source refs, expected output, and mode; adapters decide whether that becomes a replacement session, context reset, bounded worker process, or external orchestration plan. Tool-context Pi `new-session` handoffs stage a durable handoff artifact and return `/wiki-session-handoff`; command-context `/wiki-session-handoff` performs `ctx.newSession` replacement because Pi session replacement is only exposed to command handlers.
+- Session handoff callers must provide reason, source refs, expected output, and mode; adapters decide whether that becomes a replacement session, context reset, bounded worker process, or external orchestration plan. Tool-context Pi `new-session` and `context-reset` handoffs stage a durable handoff artifact and return `/wiki-session-handoff`; command-context `/wiki-session-handoff` performs `ctx.newSession` replacement or `ctx.compact` reset because those context mutations are command-context operations and direct tool-context compaction can hide the tool result.
 - Pending diff tables are runtime/session decision surfaces; accepted rows become feedback build truth. The CodeWiki UI diff surface and compact status-panel diff affordance can approve, reject, defer, or attach alternatives to pending rows.
 - Builds are accepted loop handoff briefs and should expose explicit consumes/produces edges plus loop-start, validation, and next-loop isolation policy.
 - Config schema v4 defines quiet rebuild defaults, scoped agency budgets, parallelism/session-per-sprint policy, and hot/warm/cold/purge garbage-collection windows.
+- Tracked CodeWiki garbage collection must run after an archive/close/publication commit exists. The GC capability requires archive commit/tree proof, supports dry-run, writes a restore ledger with removed paths and `git restore --source=<archive-sha> -- <path>` commands, and applies tracked deletions only in a separate GC commit.
+- Ignored runtime/session artifacts may be purged under runtime policy, but manual deletion of tracked `.codewiki` builds, validation reports, or roadmap truth is not an API-compliant GC path.
 - Generated state/graph index is never hand-edited.
 - Failed, blocked, policy-required, current-publication, release, or audit-mode validation reports persist under `.codewiki/validation/**`; pass reports should be evicted after safe Git archival/publication.
 - Deprecated `.codewiki/index/**` and default `.codewiki/evidence/**` paths must not be created by normal API flows.

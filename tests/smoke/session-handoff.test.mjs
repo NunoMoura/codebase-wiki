@@ -70,16 +70,31 @@ try {
 	const toolQueued = JSON.parse(await readFile(toolStaged.absolutePath, "utf8"));
 	assert.equal(toolQueued.status, "queued");
 
+	const resetToolStaged = await stageSessionHandoff(project, { ...input, mode: "context-reset", reason: "Context reset should keep a visible tool result." });
+	let toolCompactCalled = false;
+	const resetToolResult = await executeSessionHandoffFromTool(
+		resetToolStaged,
+		{ compact: () => { toolCompactCalled = true; } },
+	);
+	assert.equal(resetToolResult.action, "staged");
+	assert.equal(resetToolResult.command, resetToolStaged.command);
+	assert.match(resetToolResult.reason, /hide the tool result/);
+	assert.equal(toolCompactCalled, false, "tool-context context-reset should not call compact directly");
+	const resetToolQueued = JSON.parse(await readFile(resetToolStaged.absolutePath, "utf8"));
+	assert.equal(resetToolQueued.status, "queued");
+
 	const commandStaged = await stageSessionHandoff(project, input);
 	let waited = false;
 	let capturedParentSession;
 	let customEntry;
 	let replacementPrompt;
+	let compactInstructions;
 	const commandCtx = {
 		cwd: root,
 		waitForIdle: async () => { waited = true; },
 		sessionManager: { getSessionFile: () => "/tmp/parent-session.jsonl" },
 		ui: { notify: () => undefined },
+		compact: ({ customInstructions }) => { compactInstructions = customInstructions; },
 		newSession: async (options) => {
 			capturedParentSession = options.parentSession;
 			await options.setup({ appendCustomEntry: (type, data) => { customEntry = { type, data }; } });
@@ -96,6 +111,14 @@ try {
 
 	const commandCompleted = JSON.parse(await readFile(commandStaged.absolutePath, "utf8"));
 	assert.equal(commandCompleted.status, "completed");
+
+	const resetCommandStaged = await stageSessionHandoff(project, { ...input, mode: "context-reset", reason: "Command context reset should compact." });
+	compactInstructions = undefined;
+	const resetCommandResult = await runSessionHandoffCommand(resetCommandStaged.relativePath, commandCtx);
+	assert.equal(resetCommandResult.cancelled, false);
+	assert.match(compactInstructions, /Command context reset should compact/);
+	const resetCommandCompleted = JSON.parse(await readFile(resetCommandStaged.absolutePath, "utf8"));
+	assert.equal(resetCommandCompleted.status, "completed");
 
 	const latestStaged = await stageSessionHandoff(project, { ...input, reason: "Latest queued handoff should run without path." });
 	replacementPrompt = undefined;

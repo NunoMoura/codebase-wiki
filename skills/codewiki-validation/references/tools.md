@@ -28,6 +28,7 @@ Use these tools to validate submitted CodeWiki artifacts. Validation mode may wr
    - Required fields: `profile`, `task_id` if any, `source`, `verdict`, `rationale`, `checks`, `issues`, `audit_refs`/`audit_reports`, `failed_criteria`, `blocking_questions`, and `isolation` when required.
    - Implementation pass requires `isolation.fresh_context=true`, explicit `clean` value, and checked content proof (`validated_sha`, `tree_sha`, `working_tree_digest`, or equivalent allowed by policy).
    - Task-close/publication/publish/release pass requires `isolation.fresh_context=true`, `clean=true`, and immutable proof (`validated_sha`, `head_sha`, `published_sha`, `tree_sha`, `package_digest`, `archive_ref`, or `remote_ref`).
+- A GC restore ledger is not validation/content proof. Pre-commit tracked GC blocks close/publication readiness; post-commit GC is hygiene that must name the archive commit/tree and preserve restore commands.
 
 ## Conditional tool
 
@@ -59,6 +60,7 @@ Return `block` when:
 - policy profile or required audits are missing;
 - fresh-context isolation is required but absent;
 - content proof is missing or too weak for the boundary;
+- tracked CodeWiki artifacts were purged before the archive/close/publication commit or without restore-ledger proof;
 - task is an umbrella/container/sprint coordinator;
 - sibling tasks overlap without explicit dependency/split rationale;
 - validator cannot safely inspect enough source to decide.
@@ -85,4 +87,5 @@ Every report/rationale should name:
 - failed criteria or blocking questions;
 - isolation role, `fresh_context`, `clean`, builder/validator separation notes;
 - checked proof refs: SHA/tree/digest/package/archive/remote;
+- GC finding when relevant: not required, safe post-commit cleanup, deferred, or blocked;
 - next routing recommendation.

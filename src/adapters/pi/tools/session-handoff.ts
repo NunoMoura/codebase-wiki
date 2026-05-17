@@ -81,11 +81,11 @@ export function registerCodewikiSessionHandoffTool(pi: ExtensionAPI): void {
 	pi.registerTool({
 		name: "codewiki_session_handoff",
 		label: "Codewiki Session Handoff",
-		description: "Stage a CodeWiki fresh-session/context-reset handoff and execute only handoffs that are safe from tool context.",
+		description: "Stage a CodeWiki fresh-session/context-reset handoff and execute only handoffs that are safe from tool context without hiding the tool result.",
 		promptSnippet: "Request a fresh CodeWiki session/context handoff at compiler, validation, or agency boundaries.",
 		promptGuidelines: [
 			"Use codewiki_session_handoff when graph/build policy requires a fresh session or context reset; do not ask the user to run /new manually.",
-			"From tool context, Pi cannot call ctx.newSession; for new-session handoffs codewiki_session_handoff stages a durable handoff file and returns the /wiki-session-handoff command instead of running an unbounded subprocess.",
+			"From tool context, Pi cannot call ctx.newSession, and ctx.compact can hide the tool result; for new-session and context-reset handoffs codewiki_session_handoff stages a durable handoff file and returns the /wiki-session-handoff command.",
 			"/wiki-session-handoff uses command-context ctx.newSession with the staged handoff file and is the reliable Pi replacement-session execution path.",
 			"Session handoffs do not replace artifact status coordination, validation, task evidence, checks, or publication policy.",
 		],

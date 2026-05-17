@@ -27,6 +27,7 @@ For exact tool arguments and required fields, read `references/tools.md` when ne
 - Do not edit `.codewiki/kb/**`, source code, tests, roadmap queue, generated views, or builds.
 - Return `pass`, `fail`, or `block`; never return “probably pass”.
 - Missing required refs, audit evidence, fresh context, content proof, or task-boundary integrity blocks instead of passing.
+- A GC restore ledger is restoration evidence only. It never replaces validation, task-close, publication, or content-proof evidence.
 
 ## Inputs to inspect
 
@@ -73,6 +74,7 @@ Read only enough source truth to decide:
    - Implementation validation requires `fresh_context=true`, a clean-state value, required audits, and checked content proof (`validated_sha`, `tree_sha`, `working_tree_digest`, etc.).
    - Task-close/publication/publish/release require `fresh_context=true`, `clean=true`, and immutable committed/published/archive proof (`validated_sha`, `head_sha`, `tree_sha`, `package_digest`, `archive_ref`, `remote_ref`, etc.).
    - Working-tree digest alone can support dirty pre-commit implementation validation, not task-close/publication.
+   - Pre-commit tracked GC blocks close/publication readiness. Post-commit GC may be reviewed as hygiene only after archive commit/tree proof exists and must not erase the proof commit.
 
 8. **Record verdict**
    - Use `codewiki_validation` with profile, source/build refs, task id if any, verdict, rationale, checks, issues, audit refs/reports, failed criteria/blocking questions, and isolation fields.
@@ -97,4 +99,5 @@ End validation with:
 - acceptance/task-boundary findings;
 - failed criteria or blocking questions;
 - isolation fields: `fresh_context`, `clean`, role, checked SHA/tree/digest/archive/remote proof when required;
+- GC finding when relevant: not required, safe post-commit cleanup, deferred, or blocked because archive proof/restore ledger is missing;
 - routing recommendation: next compiler loop, task-close allowed, publication allowed, or blocked.

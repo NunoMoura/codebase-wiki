@@ -5,7 +5,7 @@ state: active
 summary: High-signal cycle build contracts for intent, knowledge, planning, implementation evidence, and state reconciliation.
 owners:
   - architecture
-updated: "2026-05-16"
+updated: "2026-05-17"
 code_paths:
   - .codewiki/builds
   - src/application/builds.ts
@@ -23,6 +23,8 @@ Builds are temporary handoff contracts between alignment loops. They compact val
 Every semantic change must trace to accepted build evidence before it closes, validates, or publishes. Builds should carry the smallest useful downstream contract plus enough evidence to prove intent was preserved across layers.
 
 Builds are not permanent archives. After downstream truth absorbs them, validation confirms alignment, and Git publication preserves recoverable history, builds can become cold or purgeable. Commits, tree SHAs, package digests, archive ledgers, and remote refs are stronger content proof than build files.
+
+Tracked build files must not be deleted from the working tree until a reachable archive commit contains the full revive context. Garbage collection runs after that archive commit, writes compact restore evidence that names the archive commit/tree and removed paths, then deletes eligible tracked build artifacts in a separate GC commit. The GC commit must not amend or squash away the archive commit it depends on.
 
 ## Build kinds
 
@@ -85,6 +87,12 @@ A build is consumed when lower-layer truth or validation evidence references it:
 - implementation: passing validation, a passing validation verdict, or safe publication/archive proof references it.
 
 Accepted implementation evidence without validation or publication safety still routes to the validation gateway.
+
+## Post-commit garbage collection
+
+Build garbage collection is a post-commit maintenance step, not a pre-commit cleanup. A close or publication commit first captures the builds, validation reports, roadmap archive state, graph state, and recovery context needed to revive or reinterpret the work. Only after that commit exists may GC classify tracked builds as cold or purgeable.
+
+A GC run must use an exact archive commit SHA and tree SHA as input, emit a restore ledger with `git restore --source=<archive-sha> -- <path>` commands for deleted tracked files, and commit the deletion plus ledger separately. Runtime-only handoff files may be cleaned under runtime policy, but tracked builds require archive proof.
 
 ## Related docs
 

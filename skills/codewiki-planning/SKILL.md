@@ -22,7 +22,7 @@ For exact tool arguments and output fields, read `references/tools.md` when need
 - Planning owns roadmap alignment. Documentation owns knowledge. Implementation owns code/tests.
 - Use `codewiki_task` for roadmap creation/refinement. Never hand-edit `.codewiki/roadmap/queue.json` or generated task views.
 - Inspect active tasks and sprints before creating work. Refine an existing active task when paths, labels, or intent overlap.
-- Create only self-contained executable tasks with direct outcomes, acceptance criteria, non-goals, verification, candidate files, and independent validation evidence.
+- Create only self-contained executable tasks with direct outcomes, acceptance criteria, non-goals, verification, candidate files, independent validation evidence, and post-commit GC review when the work closes tasks/sprints or publishes artifacts.
 - Reject coordination-only tasks, sprint/umbrella/container tasks, and tasks whose acceptance mainly says other tasks must close.
 - Compile `codewiki_build kind="planning"` after roadmap alignment and before implementation handoff.
 - Use `codewiki_task action="sprint"` for accepted related executable cohorts; never create umbrella tasks or hand-edit sprint metadata.
@@ -42,7 +42,7 @@ For exact tool arguments and output fields, read `references/tools.md` when need
    - Surface conflicts between requested work and task-boundary rules.
 
 3. **Shape roadmap work**
-   - For each executable unit, define outcome, acceptance criteria, non-goals, verification, candidate code/test paths, blockers, and requirement refs.
+   - For each executable unit, define outcome, acceptance criteria, non-goals, verification, candidate code/test paths, blockers, requirement refs, and any `codewiki_gc action="dry-run"`/defer evidence expected after close/publication commits.
    - Prefer refining existing active tasks when the new intent overlaps.
    - Create new tasks only when the work is independent and conflict-free.
    - If the work is a cohort, use sprint metadata through `codewiki_task action="sprint"` and planning-build context instead of a task that only groups other tasks.

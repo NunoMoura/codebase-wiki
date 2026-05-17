@@ -5,7 +5,7 @@ state: active
 summary: Pure build-validation gateway for horizontal and vertical alignment before handoff, closure, release, or publication.
 owners:
   - architecture
-updated: "2026-05-16"
+updated: "2026-05-17"
 code_paths:
   - src/application/gateway
   - skills/codewiki/loops/validation.md
@@ -106,6 +106,8 @@ Persist validation reports when:
 
 Persistent hot reports live under `.codewiki/validation/**`. Pass reports are hot only while active work, active publication, or audit policy needs them. After safe Git archival/publication, pass reports should be evicted from the working tree and recovered from Git only through explicit archive/restore/audit requests. Fail, block, and policy-kept reports remain hot until resolved or explicitly archived by policy.
 
+Tracked validation reports are safe to purge only after a reachable archive commit contains them and the GC step writes restore evidence for the exact removed paths. The GC ledger is a restoration index, not a validation substitute; current task-close, publication, fail, block, audit-required, and policy-kept reports remain hot until their own lifecycle permits archival.
+
 ## Rules
 
 - The gateway validates builds; it does not mutate canonical truth.
@@ -145,6 +147,8 @@ Implementation validation requires `fresh_context=true`, an explicit clean-state
 A commit-ready implementation build must include task id, upstream planning/build refs, acceptance mapping, touched code/test evidence, checks, closure brief, commit title/body draft, and CodeWiki trailers for task, build, checks, validation placeholder or refs, and recovery command. The implementation gateway validates this before passing; it does not require the commit to already exist.
 
 Task-close, publication, publish, and release profiles are stricter. They require `fresh_context=true`, `clean=true`, and immutable proof such as `published_sha`, `head_sha`, `validated_sha`, `tree_sha`, `package_digest`, `archive_ref`, or `remote_ref`. Working-tree digest alone cannot pass a task-close or publication boundary because the close record must be recoverable from committed/published content. The `codewiki_task close` path must block unless a passing `task-close` validation report with this proof already exists for the task.
+
+Those immutable close/publication proofs are also the safety boundary for tracked CodeWiki GC. GC must run after the archive/close commit exists, name that proof in its restore ledger, and produce a separate deletion commit. A GC run must not amend, squash, or otherwise remove the commit that proves the purged content.
 
 When a required validation boundary needs a new context, the producing session should request an adapter session handoff with the submitted build, task id, checks, and expected validation output. The validator session or fresh worker process starts from that handoff artifact instead of from builder chat.
 

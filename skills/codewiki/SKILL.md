@@ -67,13 +67,14 @@ Internal agent tools:
 - `codewiki_build`
 - `codewiki_validation`
 - `codewiki_task` (tasks and sprint metadata)
+- `codewiki_gc` (post-commit garbage collection with archive proof and restore ledger)
 - `codewiki_diff_table`
 - `codewiki_session`
 - `codewiki_session_handoff`
 - `codewiki_agency`
 - `codewiki_claim` as a legacy compatibility alias for artifact status
 
-Daily default flow: `codewiki_state` for routing, `codewiki_artifact_status` for overlap coordination, loop-specific tools for compiler work, `codewiki_audit`/`codewiki_validation` for gates, and `codewiki_session_handoff` for required fresh-context boundaries.
+Daily default flow: `codewiki_state` for routing, `codewiki_artifact_status` for overlap coordination, loop-specific tools for compiler work, `codewiki_audit`/`codewiki_validation` for gates, `codewiki_session_handoff` for required fresh-context boundaries, and `codewiki_gc` after close/publication commits when hot `.codewiki` state has eligible trash.
 
 ## Core invariants
 
@@ -83,6 +84,7 @@ Daily default flow: `codewiki_state` for routing, `codewiki_artifact_status` for
 - `.codewiki/session/**` and `.codewiki/runtime/**` are operational coordination state, not durable product truth.
 - `.codewiki/builds/**` contains transient compiler handoff artifacts. Compile durable changes into knowledge, roadmap, code, tests, validation, or publication proof.
 - `.codewiki/validation/**` contains fail/block/policy-required/current validation reports.
+- Tracked `.codewiki` garbage collection is post-commit: first commit the close/publication/archive state that can revive the work, then run `codewiki_gc` with archive commit/tree proof and commit the ledger/deletions separately.
 - Tests live in code/test directories, not in `.codewiki/kb/**` or roadmap task folders.
 - Git remains the full history mechanism; do not duplicate raw event history inside CodeWiki.
 - In this repository, `.codewiki/**` is dogfood state and `src/**`, `skills/**`, `scripts/**`, `tests/**`, `README.md`, and `package.json` are product/package source.
@@ -118,6 +120,7 @@ Routing rules:
 - Roadmap task shaping and sprint-aware cohort decisions go through planning and `planning_build`.
 - Code/test/docs execution happens in implementation and emits `implementation_build` before validation.
 - Independent checks happen in validation from exact refs, audits, and required proof.
+- Post-close/post-publication maintenance runs `codewiki_gc action="dry-run"` after immutable commit proof exists, then purges or records defer/block evidence; never pre-commit purge tracked build/validation/roadmap artifacts.
 
 ## Coordination and memory
 

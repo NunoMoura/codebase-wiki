@@ -627,6 +627,19 @@ export interface CodewikiAgencyToolInput {
 	dryRun?: boolean;
 }
 
+export interface CodewikiGcToolInput {
+	repoPath?: string;
+	action?: "dry-run" | "purge";
+	include?: Array<"tracked" | "runtime">;
+	scopes?: string[];
+	archive_sha?: string;
+	tree_sha?: string;
+	archive_ref?: string;
+	ledger_path?: string;
+	max_deletes?: number;
+	refresh?: boolean;
+}
+
 export type AgencyToolInput = CodewikiAgencyToolInput;
 
 export interface CodewikiTaskPatchInput {

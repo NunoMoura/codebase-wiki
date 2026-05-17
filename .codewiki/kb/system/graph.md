@@ -5,7 +5,7 @@ state: active
 summary: Generated state/graph representation for reconciliation, routing, freshness, and requirement traceability.
 owners:
   - architecture
-updated: "2026-05-16"
+updated: "2026-05-17"
 code_paths:
   - .codewiki/index_graph.json
   - src/application/graph.ts
@@ -76,6 +76,8 @@ The graph next action should include the context boundary required for the next 
 The graph should keep hot context small. Hot state includes active tasks, active sprints, active session leases, latest active or superseding cycle builds, unconsumed handoffs, fail/block validation, current publication blockers, freshness/drift routes, and compact traceability gaps. Warm and cold evidence must stay available only through explicit archive, restore, audit, or refinement workflows. It must not enter the default CodeWiki operating context, agency context, status summary, or user-facing graph view.
 
 For Git-backed archival, the graph should prefer compact cold references over expanded cold artifact nodes. A cold task or sprint can be represented by a ledger row containing ids, archive ref, commit sha, digest, restore command, and safety status. Default graph views should hide these cold refs and restore indexes unless the caller explicitly asks for archive context.
+
+GC classification is advisory until archive proof exists. The graph may label artifacts warm, cold, or purgeable, but tracked deletion is safe only when a reachable archive commit/tree contains the artifact and the GC ledger can name exact restore commands. Post-commit GC should surface as a next-action candidate after task-close, sprint-close, publication, or roadmap-end commits when purgeable tracked or runtime artifacts remain hot.
 
 ## Requirement traceability
 
@@ -153,6 +155,7 @@ Status, `codewiki_state`, and CodeWiki UI views must consume the generated-state
 - The graph must be reproducible from canonical inputs and source fingerprints.
 - The graph should route to exact files instead of inlining large docs, code, logs, or old task history.
 - Default graph/status/state consumers should receive hot working-set context only; archive refs, closed task bodies, old pass validation, superseded cycle detail, and restore indexes require an explicit archive/restore/audit request.
+- Post-commit GC next actions require archive commit/tree proof and must produce restore-ledger refs before tracked purge operations are applied.
 - The graph should flag deterministic file-contract drift, including deprecated `.codewiki/index/**`, deprecated default `.codewiki/evidence/**`, and legacy dot-wiki path references in active contract/source files.
 - Generated state does not replace builds, knowledge, roadmap work items, validation reports, commits, package digests, or code/tests; those remain the evidence sources for truth and content proof.
 - Generated state should make gated agency and CodeWiki UI stop reasons explicit when state is stale, blocked, unsafe, missing approval, missing required fresh-session isolation, or blocked by overlapping write leases.

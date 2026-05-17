@@ -41,6 +41,12 @@ Use these tools while executing one atomic roadmap task. Implementation produces
    - Use `action="close"` only after required passing validation/task-close proof exists.
    - Do not patch status directly for final closure.
 
+9. `codewiki_gc`
+   - Use after the close/publication/archive commit exists, not before.
+   - Start with `action="dry-run"`.
+   - For tracked purge, pass `archive_sha` and `tree_sha` for the commit that still contains deleted artifacts so the tool can write restore-ledger commands before deletion.
+   - If GC cannot safely run, record defer/block evidence instead of leaving purgeable artifacts hot silently.
+
 ## Acceptance mapping checklist
 
 For every acceptance criterion, record:
@@ -69,4 +75,5 @@ If validation fails or blocks:
 - Do not change accepted requirements without feedback/documentation/planning routing.
 - Do not compile validation before the `implementation_build` exists.
 - Do not close a task from builder context when policy requires fresh validation/content proof.
+- Do not pre-commit purge tracked `.codewiki` builds, validation reports, or roadmap artifacts; post-commit GC needs archive proof and a restore ledger.
 - Do not use legacy claim wording; use artifact status.

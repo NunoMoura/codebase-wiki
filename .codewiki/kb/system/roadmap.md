@@ -5,7 +5,7 @@ state: active
 summary: Work truth for active items, priority, status, blockers, progress, and closure.
 owners:
   - architecture
-updated: "2026-05-16"
+updated: "2026-05-17"
 code_paths:
   - .codewiki/roadmap/queue.json
   - .codewiki/roadmap
@@ -19,6 +19,8 @@ code_paths:
 The roadmap owns active work truth: todo, in-progress, blocked, recently done, and recently cancelled work retained for handoff. It is not the long-term archive and is not the requirements brief. Requirements live in accepted builds and durable knowledge; roadmap items reference those sources and track execution.
 
 Git preserves full historical task state. Builds and validation reports preserve semantic handoff/evidence when needed. Closed or cancelled task detail should leave hot roadmap state after retention or checkpoint and remain recoverable from Git, implementation builds, validation reports, and compact ledger rows.
+
+Roadmap garbage collection is post-commit. Task or sprint closure first produces an archive commit that still contains the closed roadmap detail, relevant builds, validation reports, and generated state. A later GC step may remove eligible closed detail or transient evidence from the hot tree only when it records the archive commit/tree and restore commands in a compact ledger.
 
 ## Planning-loop ownership
 
@@ -78,6 +80,8 @@ Roadmap state should expose fields needed to derive eligible work, blockers, lin
 Hot roadmap state contains active sprints, active work, session leases, unconsumed builds, fail/block validation, and recently closed/cancelled work needed for handoff. Warm state contains recent pass evidence and accepted handoffs. Cold state contains consumed/validated history. Purgeable state contains expired runtime artifacts.
 
 After checkpoint or retention expiry, closed/cancelled detail should leave active roadmap state. Git is the cold immutable ledger; implementation builds, validation reports, and archive refs make old work recoverable. Restored history is reference material until a user or compiler turns it into new knowledge or active work.
+
+Agents own this maintenance boundary. After a task close, sprint close, release checkpoint, or roadmap-end commit, the agent must run or explicitly defer a GC review. The review either purges eligible cold/pass/runtime artifacts through the safe GC path or records why no purge was safe. Leaving purgeable artifacts hot without a block/defer reason is drift.
 
 Default context should hide cold roadmap and archive history unless the user explicitly requests restore, archive inspection, audit, or refinement.
 

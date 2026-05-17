@@ -11,7 +11,7 @@ Tasks:
 4. Ask at most 4 high-value questions only when answers materially reduce ambiguity or edit scope.
 5. Use roadmap as the top-level container, sprint metadata for related task cohorts, tasks as atomic work units, and Pi sessions as native execution history.
 6. When accepted intent suggests 3+ related tasks or a multi-loop cohort, route sprint metadata decisions to planning/tool support instead of creating a container task.
-7. Keep canonical/generated/runtime path classes separate; do not treat generated task views or runtime queues as canonical product truth.
+7. Keep canonical/generated/runtime path classes separate; generated roadmap task pages and runtime queues are not durable product truth.
 
 Output format:
 - Inferred project shape
